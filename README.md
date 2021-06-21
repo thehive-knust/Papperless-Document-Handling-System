@@ -5,5 +5,6 @@ The goal of this project is to develop and design an effective software solution
 handling documents processing in the College of Engineering, KNUST. Specifically,
 internal document approvals.
 
-# Contributors - Name (Index No.)
+# Contributors - Name (Index No. - Role)
 Ayarma Emmanuel John (3581418)
+OCUPUALOR ELIJAH (3591218 - Project Manager)
