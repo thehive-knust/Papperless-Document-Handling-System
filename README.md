@@ -11,3 +11,5 @@ OCUPUALOR ELIJAH (3591218 - Project Manager)
 Saeed Abdul-Mateen Demah (3587518 - System Analyst)
 Alidu abukari baba(3590218)
 Sackey Emmanuel James Ato Sackey (3587418 - Head of Frontend)
+Andrews Tang (3587618 - Head of Backend)
+
