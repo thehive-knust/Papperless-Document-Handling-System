@@ -6,7 +6,7 @@ handling documents processing in the College of Engineering, KNUST. Specifically
 internal document approvals.
 
 # Contributors - Name (Index No. - Role)
-Ayarma Emmanuel John (3581418)
+Ayarma Emmanuel John (3581418 - Quality Assurance Officer)
 OCUPUALOR ELIJAH (3591218 - Project Manager)
 Saeed Abdul-Mateen Demah (3587518 - System Analyst)
 Alidu abukari baba(3590218)
