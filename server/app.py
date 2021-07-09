@@ -11,11 +11,12 @@ def home():
         username = request.form['username']
         password = request.form['password']
         result = Database.insert("users", [username, password])
+        print(result)
         return result
 
-# from models.users.views import user_blueprint #src.
+from models.users.views import user_blueprint #src.
 # from models.messages.views import message_blueprint #src.
 # from models.documents.views import document_blueprint #src.
-# app.register_blueprint(user_blueprint, url_prefix="/users")
+app.register_blueprint(user_blueprint, url_prefix="/users")
 # app.register_blueprint(message_blueprint, url_prefix="/messages")
 # app.register_blueprint(document_blueprin, url_prefix="/documents")

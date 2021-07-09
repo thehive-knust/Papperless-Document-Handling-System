@@ -14,3 +14,7 @@ Before you install flask make sure you have python installed on your pc
 
 # To run the application
 -- Run the file `run.py`
+
+
+# API
+-- Login "192.168.43.205:5000/users/login"

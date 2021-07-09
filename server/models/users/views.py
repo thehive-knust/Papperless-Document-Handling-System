@@ -1,6 +1,6 @@
 __author__ = "Koffi Cobbin"
 
-from flask import Blueprint, request, session, url_for, flash, render_template
+from flask import Blueprint, request, session, url_for, flash, render_template, jsonify
 from werkzeug.utils import redirect
 from models.users.user import User #src.
 import models.users.errors as UserErrors #src.
@@ -11,20 +11,19 @@ user_blueprint = Blueprint('users', __name__)
 
 
 @user_blueprint.route('/login', methods=['GET', 'POST'])
-def login_user():
+def login():
     if request.method == 'POST':
         user_id = request.form['user_id']
         password = request.form['password']
         try:
             if User.is_login_valid(user_id, password):
-                session['user_id'] = user_id
+                # session['user_id'] = user_id
                 if user_id == UserConstants.ADMINS_EMAIL:
-                    return redirect(url_for('.admins_page'))
-                return redirect(url_for('.user_profile'))
+                    return jsonify({})
+                return jsonify({})
         except UserErrors.UserError as e:
-            flash('{}'.format(e.message))
-            return render_template("users/login.html")
-    return render_template("users/login.html")
+            return jsonify({"error_message":f"{e.message}"})
+    return None
 
 
 @user_blueprint.route('/register', methods=['GET', 'POST'])
