@@ -8,20 +8,12 @@ class AuthScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
+        // height: 450,
         width: double.infinity,
-        height: double.infinity,
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage('assets/images/auth_desktop_background.png'),
-            fit: BoxFit.cover,
-          ),
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            AuthForm(),
-          ],
-        ),
+        padding: EdgeInsets.all(20.0),
+        margin: EdgeInsets.only(top: 70),
+        // color: Colors.green,
+        child: AuthForm(isDesktop: false),
       ),
     );
   }

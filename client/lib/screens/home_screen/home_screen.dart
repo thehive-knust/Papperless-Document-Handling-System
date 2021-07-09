@@ -14,6 +14,7 @@ class HomeScreen extends StatelessWidget {
         child: Icon(Icons.note_add_rounded),
       ),
       backgroundColor: Colors.blueGrey[50],
+      // appbar:---------------------------------------------------------------------------------
       appBar: AppBar(
         title: Text(
           "SoftDoc",
@@ -41,12 +42,14 @@ class HomeScreen extends StatelessWidget {
           )
         ],
       ),
+      // body:------------------------------------------------------------------------------------------
       body: Container(
         padding: EdgeInsets.symmetric(horizontal: 12),
         width: double.infinity,
         // color: Colors.blue,
         child: Column(
           children: [
+            // searchbar:--------------------------------------------------------------
             Container(
               height: 45,
               width: double.infinity,
@@ -63,6 +66,7 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
             ),
+            // listView:-----------------------------------------------------------
             Expanded(
               child: ListView.builder(
                 padding: EdgeInsets.symmetric(vertical: 10),
