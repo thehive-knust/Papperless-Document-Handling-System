@@ -9,8 +9,8 @@ class Database(object):
     @staticmethod
     def init_db():
         dpt_columns = "department_name VARCHAR(50) PRIMARY KEY, college VARCHAR(50) NOT NULL, faculty VARCHAR(50)"
-        std_columns = "student_id INT PRIMARY KEY, first_name VARCHAR(20) NOT NULL, last_name VARCHAR(100) NOT NULL, email VARCHAR(50) NOT NULL, password VARCHAR(20) NOT NULL, position VARCHAR(50), department_name VARCHAR(50) FOREIGN KEY REFERENCES department(department_name)"
-        stf_columns = "staff_id INT PRIMARY KEY, first_name VARCHAR(20) NOT NULL, last_name VARCHAR(100) NOT NULL, email VARCHAR(50) NOT NULL, password VARCHAR(20) NOT NULL, department_name VARCHAR(50) FOREIGN KEY REFERENCES department(department_name)"
+        std_columns = "student_id INT PRIMARY KEY, first_name VARCHAR(20) NOT NULL, last_name VARCHAR(100) NOT NULL, email VARCHAR(50) NOT NULL, password VARCHAR(20) NOT NULL, position VARCHAR(50) NOT NULL, department_name VARCHAR(50) NOT NULL, profile_image_link VARCHAR(100), FOREIGN KEY (department_name) REFERENCES department(department_name)"
+        stf_columns = "staff_id INT PRIMARY KEY, first_name VARCHAR(20) NOT NULL, last_name VARCHAR(100) NOT NULL, email VARCHAR(50) NOT NULL, password VARCHAR(20) NOT NULL, position VARCHAR(50) NOT NULL, department_name VARCHAR(50) NOT NULL, profile_image_link VARCHAR(100), FOREIGN KEY (department_name) REFERENCES department(department_name)"
         doc_columns = "document_id VARCHAR(20) PRIMARY KEY, doc_name VARCHAR(50) NOT NULL, doc_type VARCHAR(20) NOT NULL, status VARCHAR(20), upload_time DATETIME, student_id FOREIGN KEY REFERENCES student(student_id), staff_id FOREIGN KEY REFERENCES staff(staff_id)"
         msg_columns = "message_id INT PRIMARY KEY, content VARCHAR(255) NOT NULL, student_id FOREIGN KEY REFERENCES student(student_id), staff_id FOREIGN KEY REFERENCES staff(staff_id)"
         apv_columns = "document_id VARCHAR(20), staff_id INT, PRIMARY KEY (document_id,staff_id), document_id FOREIGN KEY REFERENCES document(document_id), staff_id FOREIGN KEY REFERENCES staff(staff_id)"

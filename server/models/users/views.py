@@ -73,7 +73,7 @@ def profile():
 def edit_profile():
     user = Database.select_from_where("*", "user", f"user_id='{session['user_id']}'")
     if request.method == 'POST':
-        image = request.files['image_file']
+        image = request.files['image_file'] 
         if image and allowed_file(image.filename):
             image_filename = secure_filename(image.filename)
             
