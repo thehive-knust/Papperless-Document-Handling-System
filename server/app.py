@@ -1,12 +1,14 @@
-__author__ = "Koffi-Cobbin"
-from flask import render_template, request
+from flask import render_template, request, jsonify
 from common.database import Database #src.
 from config import app
 
 @app.route('/', methods=['POST', 'GET'])
 def home():
     if request.method =='GET':
-        return render_template('home.html')
+        users = Database.select_from_where("*", "users")
+        test_user, *_ = users
+        return render_template("home.html", user=test_user)
+        
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']

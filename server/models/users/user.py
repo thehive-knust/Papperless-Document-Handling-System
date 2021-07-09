@@ -34,7 +34,8 @@ class User(object):
         for user in users:
             if (user["user_id"] == user_id) and (user["password"] == password):
                 user_data = user
-
+            else:
+                user_data = None
         if user_data is None:
             # Tell the user their user_id does'nt exist
             raise UserErrors.UserDontExistError("User does'nt exist ):")

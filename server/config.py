@@ -1,13 +1,14 @@
-__author__ = "Koffi-Cobbin"
 from flask import Flask
 from flask_mysqldb import MySQL 
+from flask_cors import CORS
 
 app = Flask(__name__)
-app.secret_key = app.secret_key = "1234" #os.environ.get("SECRETE_KEY")
-app.config['MYSQL_HOST'] = 'localhost'
-app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = 'root'
-app.config['MYSQL_DB'] = 'testdb'
+CORS(app)
+app.secret_key = app.secret_key = "1234" #os.environ.get("SECRET_KEY")
+app.config['MYSQL_HOST'] = 'db4free.net'
+app.config['MYSQL_USER'] = 'the_hive'
+app.config['MYSQL_PASSWORD'] = 'thehive2021'
+app.config['MYSQL_DB'] = 'pdhs_db'
 mysql = MySQL(app)
 
 
