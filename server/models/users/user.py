@@ -4,7 +4,7 @@ from common.database import Database
 from common.utils import Utils
 import models.users.errors as UserErrors
 import models.users.constants as UserConstants
-        
+from config import users
 
 class User(object):
     def __init__(self, user_id, first_name, last_name, email, password, department_name, profile_image_link=None):
@@ -29,14 +29,19 @@ class User(object):
         :param password: A sha512 hashed password
         :return: True if valid, False if otherwise.
         """
-        result = Database.select_from_where("*", "users", f"user_id='{user_id}'")
-        user_data, *_ = result
+        # result = Database.select_from_where("*", "users", f"user_id='{user_id}'")
+        # user_data, *_ = result
+        for user in users:
+            if (user["user_id"] == user_id) and (user["password"] == password):
+                user_data = user
+            else:
+                user_data = None
         if user_data is None:
             # Tell the user their user_id does'nt exist
             raise UserErrors.UserDontExistError("User does'nt exist ):")
-        if not Utils.check_hashed_password(password, user_data['password']):
-            # Tell the user that their password is wrong
-            raise UserErrors.IncorrectPasswordError("Invalid Password ):")
+        # if not Utils.check_hashed_password(password, user_data['password']):
+        #     # Tell the user that their password is wrong
+        #     raise UserErrors.IncorrectPasswordError("Invalid Password ):")
         return True
 
     @staticmethod

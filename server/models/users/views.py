@@ -1,29 +1,35 @@
 __author__ = "Koffi Cobbin"
 
-from flask import Blueprint, request, session, url_for, flash, render_template
+from flask import Blueprint, request, session, url_for, flash, render_template, jsonify
 from werkzeug.utils import redirect
 from models.users.user import User #src.
 import models.users.errors as UserErrors #src.
 import models.users.decorators as user_decorators #src.
 import models.users.constants as UserConstants
+import json
 
 user_blueprint = Blueprint('users', __name__)
 
 
 @user_blueprint.route('/login', methods=['GET', 'POST'])
-def login_user():
+def login():
     if request.method == 'POST':
-        user_id = request.form['user_id']
-        password = request.form['password']
+        # content = request.get_json()
+        request_data = request.data
+        request_data = json.loads(request_data.decode('utf-8'))
+        print(request_data)
+        user_id = request_data['user_id']
+        password = request_data['password']
+        print(user_id)
+        print(password)
         try:
             if User.is_login_valid(user_id, password):
-                session['user_id'] = user_id
-                if user_id == UserConstants.ADMINS_EMAIL:
-                    return redirect(url_for('.admins_page'))
-                return redirect(url_for('.user_profile'))
+                # session['user_id'] = user_id
+                # if user_id == UserConstants.ADMINS_EMAIL:
+                #     return jsonify({""})
+                return jsonify({"user_name":"Koffi Cobbin", "position":"General Secretary"})
         except UserErrors.UserError as e:
-            flash('{}'.format(e.message))
-            return render_template("users/login.html")
+            return jsonify({"error_message":f"{e.message}"})
     return render_template("users/login.html")
 
 
