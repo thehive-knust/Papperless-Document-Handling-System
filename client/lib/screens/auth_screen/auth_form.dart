@@ -87,7 +87,8 @@ class AuthForm extends StatelessWidget {
                   //     id.toString() +
                   //     " and the password is: $password");
                   try {
-                    Uri uri = Uri.parse("http://soft-doc.herokuapp.com/users/login");
+                    Uri uri = Uri.parse("https://soft-doc.herokuapp.com/users/login");
+                    print(await http.get(uri));
                     http.Response response = await http.post(uri,
                         headers: <String, String>{
                           // 'Content-Type': 'application/json; charset=UTF-8',
