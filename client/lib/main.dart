@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:softdoc/platformSelect.dart';
 import 'package:softdoc/screens/auth_screen/auth_screen.dart';
 import 'package:softdoc/screens/desktop_screen/desktop_auth_screen.dart';
 import 'package:softdoc/screens/detail_screen/detail_screen.dart';
 import 'package:softdoc/screens/home_screen/home_screen.dart';
+import 'screens/home_screen/home_screen.dart';
 import 'style.dart';
 // import 'package:softdoc/screens/home_screen/home_screen.dart';
 
@@ -16,8 +18,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       routes: {
-        HOMEPAGE : (context) => AuthScreen(),
+        HOMEPAGE : (context) => PlatformSelect(),
         DETAILPAGE: (context) => DetailScreen(),
+        DESKTOPAUTHPAGE: (context) => DesktopAuthScreen(),
+        AUTHPAGE: (context) => AuthScreen(),
       },
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',

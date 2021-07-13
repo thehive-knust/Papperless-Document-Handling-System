@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:softdoc/screens/auth_screen/auth_form.dart';
 
+import '../../style.dart';
+
 class DesktopAuthScreen extends StatelessWidget {
   const DesktopAuthScreen({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    Size screenSize = MediaQuery.of(context).size;
+    final Size screenSize = MediaQuery.of(context).size;
     return Scaffold(
       body: Container(
         width: double.infinity,
@@ -14,7 +16,7 @@ class DesktopAuthScreen extends StatelessWidget {
         decoration: BoxDecoration(
           image: DecorationImage(
             image: AssetImage('assets/images/auth_desktop_background.png'),
-            fit: BoxFit.cover,
+            fit: BoxFit.fill,
           ),
         ),
         child: Row(
