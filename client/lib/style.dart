@@ -12,3 +12,5 @@ Color yellow = Color(0xFFFFFFA8);
 const HOMEPAGE = "/";
 const DETAILPAGE = "/detail_page";
 const SENDPAGE = "/send_page";
+const DESKTOPAUTHPAGE = "/desktop_auth_page";
+const AUTHPAGE = "/auth_page";

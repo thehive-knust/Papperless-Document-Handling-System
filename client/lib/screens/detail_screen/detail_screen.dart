@@ -24,7 +24,7 @@ class DetailScreen extends StatelessWidget {
                     style:
                         TextStyle(fontSize: 21, fontWeight: FontWeight.w600)),
               ),
-              ApprovalProgress(approvalList: selectedDoc.approvalProgress)
+              ApprovalProgress(approvalList: selectedDoc.approvalProgress),
             ],
           ),
         ),
