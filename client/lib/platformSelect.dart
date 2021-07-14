@@ -3,6 +3,8 @@ import 'package:softdoc/screens/auth_screen/auth_screen.dart';
 import 'package:softdoc/screens/desktop_screen/desktop_auth_screen.dart';
 import 'package:softdoc/screens/desktop_screen/desktop_screen.dart';
 import 'package:softdoc/screens/home_screen/home_screen.dart';
+// import 'package:softdoc/screens/home_screen/home_screen.dart';
+import 'package:softdoc/screens/send_doc_screen/send_doc_screen.dart';
 
 class PlatformSelect extends StatelessWidget {
   @override

@@ -1,9 +1,28 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
+import 'package:softdoc/models/doc.dart';
+import 'package:softdoc/screens/send_doc_screen/select_recepient.dart';
 import 'package:softdoc/style.dart';
 
-class SendDocScreen extends StatelessWidget {
-  const SendDocScreen({Key key}) : super(key: key);
+class SendDocScreen extends StatefulWidget {
+  SendDocScreen({Key key}) : super(key: key);
+
+  @override
+  _SendDocScreenState createState() => _SendDocScreenState();
+}
+
+class _SendDocScreenState extends State<SendDocScreen> {
+  Doc doc;
+
+  void changeState() {
+    setState(() {});
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    doc = Doc();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,29 +62,50 @@ class SendDocScreen extends StatelessWidget {
                 ),
                 alignment: Alignment.center,
                 padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-                height: 60,
-                margin: EdgeInsets.symmetric(horizontal: 5),
                 child: Column(
                   children: [
-                    GestureDetector(
-                      child: DottedBorder(
-                        padding: EdgeInsets.symmetric(horizontal: 10),
-                        color: primary.withOpacity(0.6),
-                        borderType: BorderType.RRect,
-                        radius: Radius.circular(6),
-                        dashPattern: [5],
-                        child: Container(
-                          height: 35,
+                    ...approvals.map(
+                      (id) {
+                        // getting the portfolio for each office with the id.
+                        String portfolio = selectedDept.offices
+                            .singleWhere((e) => e.id == id)
+                            .portfolio;
+                        return Container(
+                          alignment: Alignment.centerLeft,
+                          margin: EdgeInsets.only(bottom: 10),
+                          padding: EdgeInsets.symmetric(horizontal: 10),
+                          height: 40,
                           width: double.infinity,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                "Add or edit recepient(s)",
-                                style: TextStyle(color: Colors.black38),
-                              ),
-                              Icon(Icons.add, color: primary)
-                            ],
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(6),
+                          ),
+                          child: Text(portfolio),
+                        );
+                      },
+                    ),
+                    Builder(
+                      builder: (context) => GestureDetector(
+                        onTap: () => selectRecepient(context, changeState),
+                        child: DottedBorder(
+                          padding: EdgeInsets.symmetric(horizontal: 10),
+                          color: primary.withOpacity(0.6),
+                          borderType: BorderType.RRect,
+                          radius: Radius.circular(6),
+                          dashPattern: [5],
+                          child: Container(
+                            height: 35,
+                            width: double.infinity,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  "Add or edit recepient(s)",
+                                  style: TextStyle(color: Colors.black38),
+                                ),
+                                Icon(Icons.add, color: primary)
+                              ],
+                            ),
                           ),
                         ),
                       ),

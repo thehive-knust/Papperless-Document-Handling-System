@@ -1,5 +1,5 @@
 import 'dart:io';
-import 'staff.dart';
+import 'office.dart';
 
 class Doc {
   String id;
