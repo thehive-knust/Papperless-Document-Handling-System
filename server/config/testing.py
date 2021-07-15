@@ -13,3 +13,4 @@ FLASK_ENV = 'testing'
 TESTING = True
 TESTING = True
 SESSION_COOKIE_SECURE = False
+DATABASE_URI = f"sqlite:///{environ.get('SQL_LITE_PATH')}"

@@ -11,6 +11,7 @@ def create_app(*args, **kwargs):
     #     DATABASE=os.path.join(
     #         app.instance_path, os.environ.get('DEV_DATABASE')),
     # )
+    app.config['ENV'] = env
     app.config.from_object('config.%s' % env)
     app.config['SQLALCHEMY_DATABASE_URI'] = app.config['DATABASE_URI']
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -49,7 +50,7 @@ def create_app(*args, **kwargs):
     # a simple page that says hello
     @app.route('/hello')
     def hello():
-        return render_template('hello.html')
+        return "Hello world"
 
     # from models.messages.views import message_blueprint #src.
     # from models.documents.views import document_blueprint #src.
