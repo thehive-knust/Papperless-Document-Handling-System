@@ -1,10 +1,11 @@
 __author__ = "Koffi Cobbin"
 import uuid
-from common.database import Database
-from common.utils import Utils
-import models.users.errors as UserErrors
-import models.users.constants as UserConstants
-from config import users
+from pdhs_app.common.database import Database
+from pdhs_app.common.utils import Utils
+import pdhs_app.models.users.errors as UserErrors
+import pdhs_app.models.users.constants as UserConstants
+# from config import users
+
 
 class User(object):
     def __init__(self, user_id, first_name, last_name, email, password, department_name, profile_image_link=None):
@@ -14,7 +15,8 @@ class User(object):
         self.email = email                      # VARCHAR(50) NOT NULL
         self.password = password                # VARCHAR(20) NOT NULL
         self.portfolio = portfolio              # VARCHAR(50) NOT NULL
-        self.department_name = department_name  # VARCHAR(50) FOREIGN KEY REFERENCES department(department_name)
+        # VARCHAR(50) FOREIGN KEY REFERENCES department(department_name)
+        self.department_name = department_name
         self.profile_image_link = None if profile_image_link is None else profile_image_link
 
     def __repr__(self):
@@ -55,23 +57,25 @@ class User(object):
         :param portfolio:    the user's position (eg. HOD, Secretary, President etc.)
         :return: True if registered successfully, or False otherwise (exceptions can also be raised)
         """
-        result = Database.select_from_where("*", "users", f"user_id='{user_id}'")
+        result = Database.select_from_where(
+            "*", "users", f"user_id='{user_id}'")
         user_data, *_ = result
         if user_data:
             # Tell user they already exist
             raise UserErrors.UserAlreadyRegisteredError("User already exists.")
         if not Utils.email_is_valid(email):
             # Tell user that their e-mail is not constructed properly.
-            raise UserErrors.InvalidEmailError("The email does not have the right format.")
+            raise UserErrors.InvalidEmailError(
+                "The email does not have the right format.")
         data = [
-            user_id, 
-            first_name, 
-            last_name, 
-            email, 
-            password, 
-            portfolio, 
+            user_id,
+            first_name,
+            last_name,
+            email,
+            password,
+            portfolio,
             department_name
-            ]
+        ]
         Database.insert("user", data)
         return True
 
