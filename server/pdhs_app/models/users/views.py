@@ -1,3 +1,4 @@
+from pdhs_app import db
 __author__ = "Koffi Cobbin"
 
 from flask import Blueprint, request, session, url_for, flash, render_template, jsonify
@@ -97,6 +98,17 @@ def edit_profile():
                 "user", f"profile_image_link='{path}'", f"user_id='{user.id}'")
         return redirect(url_for('.profile'))
     return render_template('users/edit_profile.html', user=user)
+
+
+@user_blueprint.route('/try')
+def try_():
+    admin = User(username='adasdfmin', email='admin@example.com')
+    guest = User(username='gueasdfst', email='guesthj@example.com')
+    db.session.add(admin)
+    db.session.add(guest)
+    db.session.commit()
+    users = User.query.all()
+    return render_template("test.html", users=users)
 
 
 @user_blueprint.route('/logout')

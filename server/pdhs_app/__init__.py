@@ -1,36 +1,26 @@
 import os
-from flask_sqlalchemy import SQLAlchemy
-from flask import Flask, render_template, request
+from flask import Flask
+from database import db, migrate
 
 
 def create_app(*args, **kwargs):
-    env = kwargs['env']
+    """
+    Initialize core application using app factory.
+    """
+    try:
+        env = kwargs['env']
+    except KeyError as e:
+        env = 'development'
+        print('Error:', e, 'Environment was not specified, defaulting to development')
+
     # create and configure the app
     app = Flask(__name__, instance_relative_config=True)
-    # app.config.from_mapping(
-    #     DATABASE=os.path.join(
-    #         app.instance_path, os.environ.get('DEV_DATABASE')),
-    # )
+
     app.config['ENV'] = env
     app.config.from_object('config.%s' % env)
     app.config['SQLALCHEMY_DATABASE_URI'] = app.config['DATABASE_URI']
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-    print(app.config)
-
-    # Alternative configuration
-    # if app.config['ENV'] == 'production':
-    #     app.config.from_object('config.ProductionConfig')
-    # elif app.config['ENV'] == 'testing':
-    #     app.config.from_object('config.TestingConfig')
-    # else:
-    #     app.config.from_object('config.DevelopmentConfig')
-
-    # if test_config is None:
-    #     # load the instance config, if it exists, when not testing
-    #     app.config.from_pyfile('./config.py', silent=True)
-    # else:
-    #     # load the test config if passed in
-    #     app.config.from_mapping(test_config)
+    # print(app.config)
 
     # ensure the instance folder exists
     try:
@@ -42,19 +32,25 @@ def create_app(*args, **kwargs):
 
     CORS(app)
 
-    from database import db
+    # Initialize database
     db.init_app(app)
-    from pdhs_app.models.users.views import user_blueprint  # src.
-    app.register_blueprint(user_blueprint, url_prefix="/users")
+    migrate.init_app(app, db, render_as_batch=True)
 
-    # a simple page that says hello
     @app.route('/hello')
     def hello():
         return "Hello world"
 
-    # from models.messages.views import message_blueprint #src.
-    # from models.documents.views import document_blueprint #src.
-    # app.register_blueprint(message_blueprint, url_prefix="/messages")
-    # app.register_blueprint(document_blueprin, url_prefix="/documents")
+    with app.app_context():
+        from pdhs_app.models.users.views import user_blueprint  # src.
 
+        # Register Blueprints
+        app.register_blueprint(user_blueprint, url_prefix="/users")
+        # from models.messages.views import message_blueprint #src.
+        # from models.documents.views import document_blueprint #src.
+        # app.register_blueprint(message_blueprint, url_prefix="/messages")
+        # app.register_blueprint(document_blueprin, url_prefix="/documents")
+
+        # Reset Database
+        db.drop_all()   # Comment out if you want to use flask_migrate
+        db.create_all()  # Comment out if you want to use flask_migrate
     return app

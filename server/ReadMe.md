@@ -40,10 +40,30 @@ Before you install flask make sure you have python installed on your pc
 -- pip install passlib
 -- pip install requests
 
+# Extra setup
+
+-- Create a `.env ` file in the root folder i.e. `server`
+-- In the .env file set INSTANCE_PATH="absolute/path/to/root/folder"
+-- Set SECRET_KEY
+-- Set SQL_LITE_PATH="name_of_sqlite_db_to_be_created"
+-- Contact the Project Manager for other sensitive environment variables which are excluded for security reasons
+
 # To run the application
 
+--Set FLASK*APP environment variable to pdhs_app (app module) in the terminal using:*
+`$env:FLASK_APP='pdhs_app'`
 -- Run the file `run.py`
+
+# Miscellaneous
+
+**Migrations**
+Migration is done using flask migrated
+You can learn more here: https://flask-migrate.readthedocs.io/
+
+**Others**
+-- Flask-SQLAlchemy as ORM
+-- This project utilizes sqlite database for local development and an SQL server for production
 
 # API
 
--- Login "192.168.43.205:5000/users/login"
+-- Login "{/users/login"

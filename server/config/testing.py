@@ -11,6 +11,8 @@ SECRET_KEY = environ.get('SECRET_KEY')
 
 FLASK_ENV = 'testing'
 TESTING = True
-TESTING = True
 SESSION_COOKIE_SECURE = False
-DATABASE_URI = f"sqlite:///{environ.get('SQL_LITE_PATH')}"
+DATABASE_URI = "sqlite:///{instance_path}/{path}".format(
+    instance_path=environ.get('INSTANCE_PATH'),
+    path=environ.get('SQL_LITE_PATH')
+)
