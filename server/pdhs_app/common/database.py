@@ -1,7 +1,7 @@
 __author__ = 'Koffi-Cobbin'
 import MySQLdb 
 from MySQLdb.cursors import DictCursor
-from config import mysql
+# from config import mysql
 
 
 class Database(object):
