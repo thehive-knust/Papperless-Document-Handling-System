@@ -4,56 +4,103 @@ import 'package:timeline_tile/timeline_tile.dart';
 
 class ApprovalProgress extends StatelessWidget {
   Map<String, bool> approvalList;
+  Color previousColor;
+  bool nextIsAsh;
+
   ApprovalProgress({Key key, this.approvalList}) : super(key: key);
 
-  checkColor() {}
+  checkcolor() {
+    approvalList.values.forEach((value) {});
+  }
 
   @override
   Widget build(BuildContext context) {
-    Size screenSize = MediaQuery.of(context).size;
     return Container(
-      color: Colors.blue,
-      width: double.infinity,
-      margin: EdgeInsets.symmetric(horizontal: 12),
-      height: 100,
-      child: Row(
-        //mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Expanded(
-            child: Container(
-              color: Colors.pink,
-              //alignment: Alignment.centerLeft,
-              child: TimelineTile(
-                axis: TimelineAxis.horizontal,
-                //alignment: TimelineAlign.start,
-                isFirst: true,
-                endChild: Text("HOD"),
-              ),
+      alignment: Alignment.topCenter,
+      height: 80,
+      child: approvalList.length == 1
+          ? Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                progressDot(approvalList.values.first),
+                SizedBox(height: 12),
+                Text(approvalList.keys.toList()[0]),
+              ],
+            )
+          : Row(
+              children: approvalList.entries.map((e) {
+                bool isFirst = false;
+                bool isLast = false;
+                if (approvalList.keys.first == e.key) isFirst = true;
+                if (approvalList.keys.last == e.key) isLast = true;
+                return Expanded(
+                  child: Column(
+                    children: [
+                      Row(
+                        children: [
+                          progressLine(isFirst: isFirst),
+                          progressDot(e.value),
+                          progressLine(isLast: isLast),
+                        ],
+                      ),
+                      SizedBox(height: 12),
+                      Text(
+                        e.key,
+                        textAlign: TextAlign.center,
+                      ),
+                    ],
+                  ),
+                );
+              }).toList(),
             ),
-          ),
-          Expanded(
-            child: TimelineTile(
-              axis: TimelineAxis.horizontal,
-              //alignment: TimelineAlign.start,
-              isFirst: true,
-              endChild: Text("HOD"),
-            ),
-          ),
-          Expanded(
-            child: TimelineTile(
-              axis: TimelineAxis.horizontal,
-              //alignment: TimelineAlign.start,
-              isLast: true,
-              endChild: Text("HOD"),
-            ),
-          )
+    );
+  }
+
+  Widget progressDot(bool isApproved) {
+    Color color;
+    if (nextIsAsh == true)
+      color = Colors.grey[400];
+    else if (isApproved == null)
+      color = yellow;
+    else if (isApproved == true)
+      color = green;
+    else
+      color = red;
+
+    if (color == red || color == yellow) nextIsAsh = true;
+
+    return Container(
+      width: 20,
+      height: 20,
+      decoration: BoxDecoration(
+        color: color,
+        shape: BoxShape.circle,
+        boxShadow: [
+          BoxShadow(
+              color: Colors.black26, offset: Offset(0.0, 3.0), blurRadius: 4)
         ],
       ),
     );
   }
+
+  Widget progressLine(
+      {bool isFirst = false, bool isLast = false, bool start, bool end}) {
+    return Expanded(
+      child: isFirst || isLast
+          ? SizedBox()
+          : Container(
+              height: 3,
+              decoration: BoxDecoration(
+                gradient:
+                    LinearGradient(colors: [yellow, Colors.grey.shade300]),
+              ),
+            ),
+    );
+  }
 }
+//
 // Stack(
-// alignment: Alignment.topCenter,
+// //alignment: Alignment.topCenter,
 // children: [
 // // lines:---------------------------------------------------------------------------
 // Container(
@@ -205,3 +252,43 @@ class ApprovalProgress extends StatelessWidget {
 // ),
 // ],
 // ),
+
+// Container(
+// color: Colors.blue,
+// width: double.infinity,
+// margin: EdgeInsets.symmetric(horizontal: 12),
+// height: 100,
+// child: Row(
+// //mainAxisAlignment: MainAxisAlignment.start,
+// children: [
+// Expanded(
+// child: Container(
+// color: Colors.pink,
+// //alignment: Alignment.centerLeft,
+// child: TimelineTile(
+// axis: TimelineAxis.horizontal,
+// //alignment: TimelineAlign.start,
+// isFirst: true,
+// endChild: Text("HOD"),
+// ),
+// ),
+// ),
+// Expanded(
+// child: TimelineTile(
+// axis: TimelineAxis.horizontal,
+// //alignment: TimelineAlign.start,
+// isFirst: true,
+// endChild: Text("HOD"),
+// ),
+// ),
+// Expanded(
+// child: TimelineTile(
+// axis: TimelineAxis.horizontal,
+// //alignment: TimelineAlign.start,
+// isLast: true,
+// endChild: Text("HOD"),
+// ),
+// )
+// ],
+// ),
+// )

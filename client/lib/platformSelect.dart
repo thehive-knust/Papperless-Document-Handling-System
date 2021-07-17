@@ -7,7 +7,7 @@ import 'package:softdoc/screens/home_screen/home_screen.dart';
 class PlatformSelect extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    bool isLoggedIn = false;
+    bool isLoggedIn = true;
     bool isDesktop = MediaQuery.of(context).size.width > 500;
     if(isDesktop){
       return isLoggedIn ? DesktopScreen() : DesktopAuthScreen();

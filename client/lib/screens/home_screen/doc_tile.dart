@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:softdoc/models/doc.dart';
 import 'package:softdoc/style.dart';
 
+import 'docTypeIcon.dart';
+
 class DocTiles extends StatelessWidget {
   final Map<String, List<Doc>> section;
   const DocTiles({Key key, this.section}) : super(key: key);
@@ -76,18 +78,7 @@ class DocTiles extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Container(
-                    margin: EdgeInsets.only(right: 15),
-                    alignment: Alignment.center,
-                    height: 35,
-                    width: 35,
-                    child: Text('PDF',
-                        style: TextStyle(fontSize: 13, color: Colors.black54)),
-                    decoration: BoxDecoration(
-                      color: Colors.red.shade100,
-                      borderRadius: BorderRadius.circular(7),
-                    ),
-                  )
+                  DocTypeIcon(),
                 ],
               ),
             ),
