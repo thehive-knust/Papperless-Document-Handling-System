@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:softdoc/screens/home_screen/doc_tile.dart';
 import '../../models/doc.dart';
+import 'package:softdoc/style.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key key}) : super(key: key);
@@ -9,8 +10,8 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        backgroundColor: Colors.lightBlue[300],
+        onPressed: () => Navigator.of(context).pushNamed(SENDPAGE),
+        backgroundColor: primary,
         child: Icon(Icons.note_add_rounded),
       ),
       backgroundColor: Colors.blueGrey[50],
@@ -20,13 +21,13 @@ class HomeScreen extends StatelessWidget {
           "SoftDoc",
           style: TextStyle(
             fontWeight: FontWeight.w500,
-            color: Colors.lightBlue[600],
+            color: primaryDark,
             fontSize: 25,
           ),
         ),
         elevation: 0.0,
         backgroundColor: Colors.transparent,
-        actionsIconTheme: IconThemeData(color: Colors.lightBlue[600]),
+        actionsIconTheme: IconThemeData(color: primaryDark),
         actions: [
           IconButton(
             onPressed: () {},
