@@ -5,7 +5,9 @@ import 'package:softdoc/screens/send_doc_screen/select_recepient.dart';
 import 'package:softdoc/style.dart';
 
 class SendDocScreen extends StatefulWidget {
-  SendDocScreen({Key key}) : super(key: key);
+  
+  final bool isDesktop;
+  SendDocScreen({Key key, this.isDesktop}) : super(key: key);
 
   @override
   _SendDocScreenState createState() => _SendDocScreenState();
@@ -67,9 +69,9 @@ class _SendDocScreenState extends State<SendDocScreen> {
                     ...approvals.map(
                       (id) {
                         // getting the portfolio for each office with the id.
-                        String portfolio = selectedDept.offices
+                        String title = selectedDept.users
                             .singleWhere((e) => e.id == id)
-                            .portfolio;
+                            .title;
                         return Container(
                           alignment: Alignment.centerLeft,
                           margin: EdgeInsets.only(bottom: 10),
@@ -80,7 +82,7 @@ class _SendDocScreenState extends State<SendDocScreen> {
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(6),
                           ),
-                          child: Text(portfolio),
+                          child: Text(title),
                         );
                       },
                     ),

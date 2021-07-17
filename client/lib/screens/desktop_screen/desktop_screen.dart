@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:softdoc/screens/home_screen/home_screen.dart';
+import 'package:softdoc/screens/send_doc_screen/send_doc_screen.dart';
 
 
 class DesktopScreen extends StatelessWidget {
@@ -15,6 +16,11 @@ class DesktopScreen extends StatelessWidget {
             height: double.infinity,
             width: screenSize.width * 0.35,
             child: HomeScreen()
+          ),
+          Container(
+            height: double.infinity,
+            width: screenSize.width * 0.35,
+            child: SendDocScreen(isDesktop: true),
           )
         ],
       )

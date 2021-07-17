@@ -63,34 +63,61 @@ selectRecepient(BuildContext context, Function setMainState) {
                   child: ListView.builder(
                       padding:
                           EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-                      itemCount: selectedDept.offices.length,
+                      itemCount: selectedDept.users.length,
                       itemBuilder: (context, index) {
                         bool selected =
-                            approvals.contains(selectedDept.offices[index].id);
-                        return GestureDetector(
-                          onTap: () {
-                            if (selected) {
-                              approvals.remove(selectedDept.offices[index].id);
-                              setMainState(); 
-                              setState((){});
-                            } else {
-                              approvals.add(selectedDept.offices[index].id);
-                              setMainState();
-                              setState((){});
-                            }
-                          },
-                          child: Container(
-                            alignment: Alignment.center,
-                            margin: EdgeInsets.only(bottom: 10),
-                            decoration: BoxDecoration(
-                                color:
-                                    selected ? Colors.grey[200] : primaryLight,
-                                borderRadius: BorderRadius.circular(7)),
-                            height: 50,
-                            width: double.infinity,
-                            child: Text(selectedDept.offices[index].portfolio),
+                            approvals.contains(selectedDept.users[index].id);
+                        // bool sel = true;
+
+                        return Container(
+                          margin: EdgeInsets.symmetric(vertical: 5),
+                          decoration: BoxDecoration(
+                            color: primaryLight,
+                            borderRadius: BorderRadius.circular(10),
                           ),
+                          child: CheckboxListTile(
+                              value: selected,
+                              tileColor: primaryLight,
+                              selectedTileColor: primaryDark,
+                              title: Text(selectedDept.users[index].title),
+                              activeColor: primary,
+                              onChanged: (newVal) {
+                                if (selected) {
+                                  approvals
+                                      .remove(selectedDept.users[index].id);
+                                  setMainState();
+                                  setState(() {});
+                                } else {
+                                  approvals.add(selectedDept.users[index].id);
+                                  setMainState();
+                                  setState(() {});
+                                }
+                                setState(() {});
+                              }),
                         );
+                        // return GestureDetector(
+                        //   onTap: () {
+                        //     if (selected) {
+                        //       approvals.remove(selectedDept.users[index].id);
+                        //       setMainState();
+                        //       setState((){});
+                        //     } else {
+                        //       approvals.add(selectedDept.users[index].id);
+                        //       setMainState();
+                        //       setState((){});
+                        //     }
+                        //   },
+                        // child: Container(
+                        //   alignment: Alignment.center,
+                        //   margin: EdgeInsets.only(bottom: 10),
+                        //   decoration: BoxDecoration(
+                        //       color:
+                        //           selected ? Colors.grey[200] : primaryLight,
+                        //       borderRadius: BorderRadius.circular(7)),
+                        //   height: 50,
+                        //   width: double.infinity,
+                        //   child: Text(selectedDept.users[index].title),
+                        // ),
                       }),
                 )
               ],
