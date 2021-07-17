@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:softdoc/screens/auth_screen/auth_form.dart';
 
-import '../../style.dart';
-
 class DesktopAuthScreen extends StatelessWidget {
   const DesktopAuthScreen({Key key}) : super(key: key);
 

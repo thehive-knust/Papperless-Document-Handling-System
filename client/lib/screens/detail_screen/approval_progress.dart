@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:softdoc/style.dart';
-import 'package:timeline_tile/timeline_tile.dart';
 // import 'package:timeline_tile/timeline_tile.dart';
 
 class ApprovalProgress extends StatelessWidget {

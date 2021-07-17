@@ -4,14 +4,13 @@ import 'package:softdoc/screens/desktop_screen/desktop_auth_screen.dart';
 import 'package:softdoc/screens/desktop_screen/desktop_screen.dart';
 import 'package:softdoc/screens/home_screen/home_screen.dart';
 // import 'package:softdoc/screens/home_screen/home_screen.dart';
-import 'package:softdoc/screens/send_doc_screen/send_doc_screen.dart';
 
 class PlatformSelect extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     bool isLoggedIn = true;
     bool isDesktop = MediaQuery.of(context).size.width > 500;
-    if(isDesktop){
+    if (isDesktop) {
       return isLoggedIn ? DesktopScreen() : DesktopAuthScreen();
     } else {
       return isLoggedIn ? HomeScreen() : AuthScreen();
