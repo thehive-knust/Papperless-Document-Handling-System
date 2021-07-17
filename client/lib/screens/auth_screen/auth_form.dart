@@ -4,12 +4,21 @@ import 'package:softdoc/style.dart';
 import 'package:crypto/crypto.dart';
 import 'package:http/http.dart' as http;
 
-class AuthForm extends StatelessWidget {
+class AuthForm extends StatefulWidget {
   final bool isDesktop;
   AuthForm({Key key, this.isDesktop}) : super(key: key);
+
+  @override
+  _AuthFormState createState() => _AuthFormState();
+}
+
+class _AuthFormState extends State<AuthForm> {
   final _formKey = GlobalKey<FormState>();
+
   String id;
+
   String testPass;
+
   Digest password;
 
   @override
@@ -19,9 +28,9 @@ class AuthForm extends StatelessWidget {
       key: _formKey,
       child: Column(
         mainAxisAlignment:
-            isDesktop ? MainAxisAlignment.center : MainAxisAlignment.start,
+            widget.isDesktop ? MainAxisAlignment.center : MainAxisAlignment.start,
         crossAxisAlignment:
-            isDesktop ? CrossAxisAlignment.center : CrossAxisAlignment.start,
+            widget.isDesktop ? CrossAxisAlignment.center : CrossAxisAlignment.start,
         children: [
           Text(
             "SoftDoc",
@@ -30,7 +39,7 @@ class AuthForm extends StatelessWidget {
               fontWeight: FontWeight.w600,
             ),
           ),
-          isDesktop ? SizedBox(height: 10) : const SizedBox(height: 40),
+          widget.isDesktop ? SizedBox(height: 10) : const SizedBox(height: 40),
           TextFormField(
             onChanged: (newId) {
               id = newId;
@@ -87,14 +96,15 @@ class AuthForm extends StatelessWidget {
                   //     id.toString() +
                   //     " and the password is: $password");
                   try {
-                    Uri uri = Uri.parse("https://soft-doc.herokuapp.com/users/login");
-                    http.Response respond = await http.get(uri);
-                    print(respond.body);
-                    http.Response response = await http.post(uri,
+                    Uri url = Uri.parse("https://soft-doc.herokuapp.com/users/login");
+                    // http.Response respond = await http.get(uri);
+                    // print(respond.body);
+                    http.Response response = await http.post(
+                        url,
                         headers: <String, String>{
-                          // 'Content-Type': 'application/json; charset=UTF-8',
-                          "Accept": "application/json",
-                          "Access-Control_Allow_Origin": "*"
+                           'Content-Type': 'application/json; charset=UTF-8',
+                          // "Accept": "application/json",
+                          // "Access-Control_Allow_Origin": "*"
                         },
                         body: jsonEncode(<String, String>{
                           'user_id': id,
