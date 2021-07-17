@@ -36,15 +36,17 @@ def create_app(*args, **kwargs):
     db.init_app(app)
     migrate.init_app(app, db, render_as_batch=True)
 
-    @app.route('/hello')
+    @app.route('/')
     def hello():
         return "Hello world"
 
     with app.app_context():
         from pdhs_app.models.users.views import user_blueprint  # src.
+        from auth import bp as auth_bp
 
         # Register Blueprints
         app.register_blueprint(user_blueprint, url_prefix="/users")
+        app.register_blueprint(auth_bp)
         # from models.messages.views import message_blueprint #src.
         # from models.documents.views import document_blueprint #src.
         # app.register_blueprint(message_blueprint, url_prefix="/messages")
