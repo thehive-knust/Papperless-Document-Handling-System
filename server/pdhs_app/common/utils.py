@@ -1,5 +1,5 @@
 __author__ = "Koffi-Cobbin"
-from passlib.hash import pbkdf2_sha512
+from passlib.hash import pbkdf2_sha256
 import re
 
 class Utils(object):
@@ -15,7 +15,7 @@ class Utils(object):
         :param password: The sha512 password from the login/register form
         :return: A sha512->pbkdf2_sha512 encrypted password
         """
-        return pbkdf2_sha512.encrypt(password)
+        return pbkdf2_sha256.encrypt(password)
 
     @staticmethod
     def check_hashed_password(password, hashed_password):
@@ -26,4 +26,4 @@ class Utils(object):
         :param hashed_password: pbkdf2_sha512 encrypted password
         :return" True if passwordsss mathch else False.
         """
-        return pbkdf2_sha512.verify(password, hashed_password)
+        return pbkdf2_sha256.verify(password, hashed_password)
