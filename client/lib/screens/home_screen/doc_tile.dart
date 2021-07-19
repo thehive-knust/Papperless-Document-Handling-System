@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:softdoc/cubit/AndroidNav_cubit.dart';
 import 'package:softdoc/models/doc.dart';
 import 'package:softdoc/style.dart';
 
 class DocTiles extends StatelessWidget {
   final Map<String, List<Doc>> section;
-  const DocTiles({Key key, this.section}) : super(key: key);
+  DocTiles({Key key, this.section}) : super(key: key);
+  AndroidNavCubit _androidNavCubit;
 
   @override
   Widget build(BuildContext context) {
@@ -25,6 +28,7 @@ class DocTiles extends StatelessWidget {
   }
 
   docTile(doc, context) {
+    _androidNavCubit = BlocProvider.of<AndroidNavCubit>(context);
     Color status;
     if (doc.approved == null)
       status = yellow;
@@ -32,12 +36,15 @@ class DocTiles extends StatelessWidget {
       status = green;
     else if (!doc.approved) status = redLight;
     return GestureDetector(
-      onTap: () => Navigator.of(context).pushNamed(DETAILPAGE, arguments: doc),
+      // onTap: () => Navigator.of(context).pushNamed(DETAILPAGE, arguments: doc),
+      onTap: () => _androidNavCubit.navToDetailScreen(doc),
       child: Padding(
         padding: EdgeInsets.symmetric(vertical: 3),
         child: ClipRRect(
           borderRadius: BorderRadius.circular(6),
           child: Dismissible(
+            key: GlobalKey(),
+            direction: DismissDirection.endToStart,
             confirmDismiss: (direction) => alertDialog(direction, context),
             background: Container(
               padding: EdgeInsets.symmetric(horizontal: 15),
@@ -48,9 +55,8 @@ class DocTiles extends StatelessWidget {
                 color: Colors.white,
               ),
             ),
-            key: GlobalKey(),
             child: Container(
-              height: 60,
+              height: 61,
               color: Colors.white,
               child: Row(
                 children: [
@@ -67,6 +73,8 @@ class DocTiles extends StatelessWidget {
                         children: [
                           Text(
                             "Request for classroom",
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 1,
                             style: TextStyle(fontSize: 20),
                           ),
                           SizedBox(height: 5),

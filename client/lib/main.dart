@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:softdoc/cubit/AndroidNav_cubit.dart';
 import 'package:softdoc/platformSelect.dart';
 import 'package:softdoc/screens/auth_screen/auth_screen.dart';
 import 'package:softdoc/screens/desktop_screen/desktop_auth_screen.dart';
@@ -16,13 +18,19 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      routes: {
-        HOMEPAGE : (context) => PlatformSelect(),
-        DETAILPAGE: (context) => DetailScreen(),
-        SENDPAGE: (context) => SendDocScreen(),
-        DESKTOPAUTHPAGE: (context) => DesktopAuthScreen(),
-        AUTHPAGE: (context) => AuthScreen(),
-      },
+      home: MultiBlocProvider(
+        providers: [
+          BlocProvider<AndroidNavCubit>(create: (context) => AndroidNavCubit())
+        ],
+        child: PlatformSelect(),
+      ),
+      // routes: {
+      //   HOMEPAGE : (context) => PlatformSelect(),
+      //   DETAILPAGE: (context) => DetailScreen(),
+      //   SENDPAGE: (context) => SendDocScreen(),
+      //   DESKTOPAUTHPAGE: (context) => DesktopAuthScreen(),
+      //   AUTHPAGE: (context) => AuthScreen(),
+      // },
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(

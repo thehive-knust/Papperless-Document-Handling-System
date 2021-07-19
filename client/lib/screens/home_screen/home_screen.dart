@@ -1,16 +1,33 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:softdoc/cubit/AndroidNav_cubit.dart';
 import 'package:softdoc/screens/home_screen/doc_tile.dart';
+import 'package:softdoc/screens/send_doc_screen/send_doc_screen.dart';
 import '../../models/doc.dart';
 import 'package:softdoc/style.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({Key key}) : super(key: key);
 
+  @override
+  _HomeScreenState createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  AndroidNavCubit _androidNavCubit;
+
+  @override
+  void initState() {
+    super.initState();
+    _androidNavCubit = BlocProvider.of<AndroidNavCubit>(context);
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-        onPressed: () => Navigator.of(context).pushNamed(SENDPAGE),
+        // onPressed: () => Navigator.of(context).pushNamed(SENDPAGE),
+        onPressed: () => _androidNavCubit.navToSendDocScreen(),
         backgroundColor: primary,
         child: Icon(Icons.note_add_rounded),
       ),
