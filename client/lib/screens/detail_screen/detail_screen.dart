@@ -1,8 +1,5 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:softdoc/models/doc.dart';
-import 'package:path/path.dart';
 import 'package:softdoc/screens/home_screen/docTypeIcon.dart';
 import 'package:softdoc/style.dart';
 import 'package:intl/intl.dart';
@@ -11,8 +8,7 @@ import 'package:thumbnailer/thumbnailer.dart';
 import 'approval_progress.dart';
 
 class DetailScreen extends StatefulWidget {
-  bool isDesktop;
-
+  final bool isDesktop;
   DetailScreen({Key key, this.isDesktop = false}) : super(key: key);
 
   @override
@@ -56,8 +52,8 @@ class _DetailScreenState extends State<DetailScreen> {
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 12),
-          child: Column(
+          padding: const EdgeInsets.all(8.0),
+          child: ListView(
             children: [
               Container(
                 alignment: Alignment.centerLeft,
@@ -70,7 +66,7 @@ class _DetailScreenState extends State<DetailScreen> {
                         TextStyle(fontSize: 21, fontWeight: FontWeight.w600)),
               ),
               ApprovalProgress(approvalList: selectedDoc.approvalProgress),
-              Expanded(
+              Flexible(
                 child: Container(
                   padding: const EdgeInsets.symmetric(vertical: 12),
                   child: Column(
@@ -87,7 +83,8 @@ class _DetailScreenState extends State<DetailScreen> {
                                 children: [
                                   Text(selectedDoc.description,
                                       style: TextStyle(
-                                          fontSize: widget.isDesktop ? 20 : 14)),
+                                          fontSize:
+                                              widget.isDesktop ? 20 : 14)),
                                   Container(
                                     margin: EdgeInsets.only(top: 10),
                                     decoration: BoxDecoration(
@@ -135,20 +132,20 @@ class _DetailScreenState extends State<DetailScreen> {
                       ),
                       if (selectedDoc.status != "pending")
                         StatusMessage(selectedDoc.status),
-                      Expanded(child: SizedBox()),
-                      if (selectedDoc.status == "pending")
-                        ElevatedButton(
-                          onPressed: () => confirmWithdrawal(context),
-                          child: Text("Cancel request"),
-                          style: ElevatedButton.styleFrom(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                            primary: red,
-                            minimumSize: Size(300, 50),
-                            textStyle: TextStyle(fontSize: 20),
-                          ),
-                        ),
+                      // Flexible(child: SizedBox(), fit: FlexFit.tight),
+                      // if (selectedDoc.status == "pending")
+                      //   ElevatedButton(
+                      //     onPressed: () => confirmWithdrawal(context),
+                      //     child: Text("Cancel request"),
+                      //     style: ElevatedButton.styleFrom(
+                      //       shape: RoundedRectangleBorder(
+                      //         borderRadius: BorderRadius.circular(8),
+                      //       ),
+                      //       primary: red,
+                      //       minimumSize: Size(300, 50),
+                      //       textStyle: TextStyle(fontSize: 20),
+                      //     ),
+                      //   ),
                     ],
                   ),
                 ),
@@ -157,6 +154,20 @@ class _DetailScreenState extends State<DetailScreen> {
           ),
         ),
       ),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () => confirmWithdrawal(context),
+        label: Text(
+          "Cancel request",
+          style: TextStyle(fontSize: 20),
+        ),
+        backgroundColor: red,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10),
+        ),
+      ),
+      floatingActionButtonLocation: !widget.isDesktop
+          ? FloatingActionButtonLocation.centerFloat
+          : FloatingActionButtonLocation.endFloat,
     );
   }
 }
@@ -174,13 +185,14 @@ class StatusMessage extends StatelessWidget {
       case 'rejected':
         return light ? redLight : red;
       case 'cancelled':
-        return light ? Colors.grey[200]: Colors.grey[400];
+        return light ? Colors.grey[200] : Colors.grey[400];
     }
   }
 
   String text() {
-    if (status == "approved") return "Approval Complete";
-    else if(status == 'cancelled') return "Request Cancelled";
+    if (status == "approved")
+      return "Approval Complete";
+    else if (status == 'cancelled') return "Request Cancelled";
     return "Rejected";
   }
 

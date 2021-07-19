@@ -6,7 +6,8 @@ import 'docTypeIcon.dart';
 
 class DocTiles extends StatelessWidget {
   final Map<String, List<Doc>> section;
-  const DocTiles({Key key, this.section}) : super(key: key);
+  final isDesktop;
+  const DocTiles({Key key, this.section, this.isDesktop}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
