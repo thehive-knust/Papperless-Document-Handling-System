@@ -1,8 +1,5 @@
-__author__ = "Koffi-Cobbin"
-
 from flask import session, url_for, redirect, request
 from functools import wraps
-# import app #src.
 
 
 def requires_login(func):
