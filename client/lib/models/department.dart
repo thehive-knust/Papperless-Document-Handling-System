@@ -1,4 +1,3 @@
-import 'package:softdoc/models/portfolio.dart';
 import 'package:softdoc/models/user.dart';
 
 class Department {

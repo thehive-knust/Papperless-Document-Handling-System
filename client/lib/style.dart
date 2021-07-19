@@ -8,6 +8,8 @@ Color green = Color(0xFF7CDC78);
 Color red = Color(0xFFFF7E7E);
 Color redLight = Colors.red.shade200;
 Color yellow = Color(0xFFFFFFA8);
+double desktopFontSize = 20;
+double androidFontSize = 14;
 
 const HOMEPAGE = "/";
 const DETAILPAGE = "/detail_page";
