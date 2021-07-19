@@ -15,14 +15,10 @@ pages = PDFPage.get_pages(fp)
 
 
 def insert_sinature(margin, y1, width, y2):
-    # signature_img dimention (17, 35) 72.024  259.406
-    # pdf coordinates to insert img
-    
     input_file = "test.pdf"
     output_file = "test-with-image.pdf"
-    img = open("search.jpg", 'rb').read()
+    img = open("signature.jpg", 'rb').read()
 
-    # define the position (upper-right corner)
     # x (x-margin/padding), y1, width (x-margin + img-width), y2
     image_rectangle = fitz.Rect(margin, y1, width, y2) 
 
@@ -48,8 +44,13 @@ for page in pages:
             if match:
                 for elem in match:
                     x1, x2 = elem.span()
-                    print(x1)
-                    insert_sinature(lobj.bbox[0], lobj.bbox[3]-25, x1+lobj.bbox[0], lobj.bbox[3])
-            x, y, text = lobj.bbox[0], lobj.bbox[3], lobj.get_text()
-            print('At %r is text: %s' % ((x, y), text))
+                    p = (lobj.bbox[0] + x1) * 2
+                    y1 = (lobj.bbox[3] * 3) - 20
+                    w = p + (x2 - x1) * 3
+                    y2 = y1 + 20
+                    print(p, y1, w, y2)
+                    insert_sinature(p, y1, w, y2)
+
+            # x, y, text = lobj.bbox[0], lobj.bbox[3], lobj.get_text()
+            # print('At %r is text: %s' % ((x, y), text))
  
