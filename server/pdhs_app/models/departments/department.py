@@ -1,12 +1,9 @@
-__author__ = "Koffi Cobbin"
-import uuid
-from common.database import Database
-import models.departments.errors as DepartmentErrors
-        
+from pdhs_app import db
 
-class User(object):
-    def __init__(self, department_name, college):
-        self.department_name = department_name  # INT PRIMARY KEY
-        self.college = college                  # VARCHAR(50) NOT NULL
 
-    
+class Department(db.Model):
+    department_id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(50))
+    faculty_id = db.Column(
+        db.Integer, db.ForeignKey('Faculty'), nullable=False)
+    head = db.Column(db.Integer, db.ForeignKey('User'), nullable=False)
