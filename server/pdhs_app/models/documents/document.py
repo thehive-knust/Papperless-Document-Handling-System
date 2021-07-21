@@ -1,6 +1,5 @@
 from pdhs_app import db
 
-
 class Document(db.Model):
     document_id = db.Column(db.String(50), primary_key=True)
     email = db.Column(db.String(120), nullable=False)

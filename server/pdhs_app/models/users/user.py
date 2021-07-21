@@ -1,6 +1,7 @@
 from pdhs_app import db
 from common.utils import Utils
 import users.errors as UserErrors
+
 class User(db.Model):
     user_id = db.Column(db.Integer, primary_key=True)
     first_name = db.Column(db.String(50), nullable=False)
