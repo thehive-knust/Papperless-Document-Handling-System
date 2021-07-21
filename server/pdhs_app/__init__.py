@@ -1,7 +1,7 @@
 import os
 from pdhs_app.resources.document import DocumentResource
 from flask import Flask
-from database import db, migrate
+from database.db import db, migrate
 from flask_restful import Api
 from flask_jwt import JWT
 
@@ -18,7 +18,7 @@ from pdhs_app.resources.college import CollegeResource
 from pdhs_app.resources.document import DocumentResource
 
 # import Blue prints
-from pdhs_app.models.users.views import user_blueprint  # src.
+from pdhs_app.blueprints.user_routes import user_blueprint  # src.
 from middleware.auth import bp as auth_bp
 
 

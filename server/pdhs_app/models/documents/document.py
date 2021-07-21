@@ -1,5 +1,6 @@
-from database import db
+from database.db import db
 from datetime import datetime
+
 
 class Document(db.Model):
     id = db.Column(db.String(50), primary_key=True)
