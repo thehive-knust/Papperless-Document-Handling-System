@@ -2,15 +2,15 @@ from database import db
 
 
 class Approval(db.Model):
-    _id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
     document_id = db.Column(
-        db.Integer, db.ForeignKey('document._id'), nullable=False)
+        db.Integer, db.ForeignKey('document.id'), nullable=False)
     recipient_id = db.Column(
-        db.Integer, db.ForeignKey('user._id'), nullable=False)
+        db.Integer, db.ForeignKey('user.id'), nullable=False)
     status = db.Column(db.Boolean)
 
     def __repr__(self):
-        return '<Approval %r>' % self._id
+        return '<Approval %r>' % self.id
 
     @classmethod
     def find_by_email(cls, email):

@@ -2,14 +2,14 @@ from database import db
 
 
 class Faculty(db.Model):
-    _id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50))
     college_id = db.Column(
-        db.Integer, db.ForeignKey('college._id', use_alter=True), nullable=False)
+        db.Integer, db.ForeignKey('college.id', use_alter=True), nullable=False)
     departments = db.relationship(
         'Department', lazy='select', backref=db.backref('faculty', lazy='joined'))
     dean = db.Column(db.Integer, db.ForeignKey(
-        'user._id', use_alter=True), nullable=False)
+        'user.id', use_alter=True), nullable=False)
 
     def __repr__(self):
         return '<Faculty %r>' % self.name

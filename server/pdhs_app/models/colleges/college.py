@@ -2,12 +2,12 @@ from database import db
 
 
 class College(db.Model):
-    _id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50), nullable=False)
     faculty = db.relationship("Faculty", lazy='select',
                               backref=db.backref('college', lazy='joined'))
     provost = db.Column(db.Integer, db.ForeignKey(
-        'user._id', use_alter=True), nullable=False)
+        'user.id', use_alter=True), nullable=False)
 
     def __repr__(self):
         return '<College %r>' % self.name

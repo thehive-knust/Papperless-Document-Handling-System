@@ -37,6 +37,7 @@ def create_app(*args, **kwargs):
 
     app.config['ENV'] = env
     app.config.from_object('config.%s' % env)
+    app.config['JWT_AUTH_USERNAME_KEY'] = 'email'
     app.config['SQLALCHEMY_DATABASE_URI'] = app.config['DATABASE_URI']
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     # print(app.config)

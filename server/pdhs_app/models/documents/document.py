@@ -3,7 +3,7 @@ from datetime import datetime
 
 
 class Document(db.Model):
-    _id = db.Column(db.String(50), primary_key=True)
+    id = db.Column(db.String(50), primary_key=True)
     name = db.Column(db.String(120), nullable=False)
     created_at = db.Column(db.DateTime, nullable=False,
                            default=datetime.utcnow)
@@ -11,7 +11,7 @@ class Document(db.Model):
                            default=datetime.utcnow)
     subject = db.Column(db.String(255), nullable=False)
     user_id = db.Column(db.String(255), db.ForeignKey(
-        'user._id'), nullable=False)
+        'user.id'), nullable=False)
     filename = db.Column(db.String(255), nullable=False)
     progress = db.Column(db.String(50), nullable=False)
     description = db.Column(db.String, nullable=True)

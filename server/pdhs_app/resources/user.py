@@ -30,6 +30,18 @@ class UserResource(Resource):
         required=True,
         help='Password field cannot be blank'
     )
+    parser.add_argument(
+        'portfolio_id',
+        type=int,
+        required=True,
+        help='Portfolio field cannot be blank'
+    )
+    parser.add_argument(
+        'department_id',
+        type=int,
+        required=True,
+        help='Department field cannot be blank'
+    )
 
     def post(self):
         data = self.parser.parse_args()

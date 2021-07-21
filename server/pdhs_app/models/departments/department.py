@@ -2,12 +2,12 @@ from database import db
 
 
 class Department(db.Model):
-    _id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
     faculty_id = db.Column(
-        db.Integer, db.ForeignKey('faculty._id'), nullable=False)
-    head = db.Column(db.Integer, db.ForeignKey(
-        'user._id', use_alter=True), nullable=False)
+        db.Integer, db.ForeignKey('faculty.id'), nullable=False)
+    # head = db.Column(db.Integer, db.ForeignKey(
+    #     'user.id', use_alter=True), nullable=False)
     users = db.relationship(
         "User", lazy='select', backref=db.backref('department', lazy='joined'))
 

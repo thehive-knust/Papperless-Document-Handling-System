@@ -4,15 +4,16 @@ import pdhs_app.models.users.errors as UserErrors
 
 
 class User(db.Model):
-    _id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
+    # id = _id
     first_name = db.Column(db.String(50), nullable=False)
     last_name = db.Column(db.String(50), nullable=False)
     email = db.Column(db.String(50), nullable=False)
     password = db.Column(db.String(255), nullable=False)
     portfolio_id = db.Column(db.Integer, db.ForeignKey(
-        'portfolio._id'), nullable=False)
+        'portfolio.id'), nullable=False)
     department_id = db.Column(db.Integer, db.ForeignKey(
-        'department._id'), nullable=False)
+        'department.id'), nullable=False)
     documents = db.relationship(
         "Document", lazy='select', backref=db.backref('user', lazy='joined'))
 
@@ -23,15 +24,15 @@ class User(db.Model):
         "Approval", lazy='select', backref=db.backref('recipient', lazy='joined'))
 
     def __repr__(self):
-        return '<User %r>' % self._id
+        return '<User %r>' % self.id
 
     @classmethod
     def find_by_email(cls, email):
         return cls.query.filter_by(email=email).first()
 
     @classmethod
-    def find_by_id(cls, id):
-        return cls.query.filter_by(_id=id).first()
+    def find_by_id(cls, user_id):
+        return cls.query.filter_by(id=user_id).first()
 
     def save_to_db(self):
         db.session.add(self)
@@ -46,7 +47,8 @@ class User(db.Model):
             'first_name': self.first_name,
             'last_name': self.last_name,
             'email': self.email,
-            'department': self.department.name,
+            'department': self.department_id,
+            'portfolio': self.portfolio_id,
         }
 
     @staticmethod
