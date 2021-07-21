@@ -6,6 +6,8 @@ import pdhs_app.models.users.errors as UserErrors  # src.
 import pdhs_app.models.users.decorators as user_decorators  # src.
 import pdhs_app.models.users.constants as UserConstants
 import json
+from pdhs_app.models.documents.document import Document
+from pdhs_app.models.departments.department import Department
 
 user_blueprint = Blueprint('users', __name__)
 
@@ -18,7 +20,11 @@ def login():
         try:
             user = User.is_login_valid(user_id, password)
             if user:
-                return jsonify(user)
+                departments = Department.query.filter_by(college_id=user.colleg_id)
+                user_department_members = User.query.filter_by(department_id=user.department_id)
+                recieved_documents = Document.query.filter_by()
+                uploaded_documents = Document.query.filter_by(user_id=user.user_id)
+                return jsonify()
         except UserErrors.UserError as e:
             return jsonify({"message": f"{e.message}"})
 

@@ -1,21 +1,55 @@
-from pdhs_app import db
-from common.utils import Utils
-import users.errors as UserErrors
+from database.db import db
+from pdhs_app.common.utils import Utils
+import pdhs_app.models.users.errors as UserErrors
+
+
 class User(db.Model):
-    user_id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
+    # id = _id
     first_name = db.Column(db.String(50), nullable=False)
     last_name = db.Column(db.String(50), nullable=False)
     email = db.Column(db.String(50), nullable=False)
     password = db.Column(db.String(255), nullable=False)
-    portfolio_id = db.Column(db.Integer, db.ForeignKey('portfolio._id'), nullable=False)
-    department_id = db.Column(db.String(100), db.ForeignKey('department._id'), nullable=False)
-    faculty_id = db.Column(db.String(50),db.ForeignKey('faculty._id'), nullable=False)
-    college_id = db.Column(db.String(50),db.ForeignKey('college._id'), nullable=False)
-    documents = db.relationship("Document", lazy='select', backref = db.backref('user', lazy='joined'))
-    portfolios = db.relationship("Comment", lazy='select', backref = db.backref('user', lazy='joined'))
-    
+    portfolio_id = db.Column(db.Integer, db.ForeignKey(
+        'portfolio.id'), nullable=False)
+    department_id = db.Column(db.Integer, db.ForeignKey(
+        'department.id'), nullable=False)
+    documents = db.relationship(
+        "Document", lazy='select', backref=db.backref('user', lazy='joined'))
+
+    comments = db.relationship(
+        "Comment", lazy='select', backref=db.backref('user', lazy='joined'))
+
+    approvals = db.relationship(
+        "Approval", lazy='select', backref=db.backref('recipient', lazy='joined'))
+
     def __repr__(self):
-        return '<User %r>' % self.user_id
+        return '<User %r>' % self.id
+
+    @classmethod
+    def find_by_email(cls, email):
+        return cls.query.filter_by(email=email).first()
+
+    @classmethod
+    def find_by_id(cls, user_id):
+        return cls.query.filter_by(id=user_id).first()
+
+    def save_to_db(self):
+        db.session.add(self)
+        db.session.commit()
+
+    def delete_from_db(self):
+        db.session.delete(self)
+        db.session.commit()
+
+    def to_json(self):
+        return {
+            'first_name': self.first_name,
+            'last_name': self.last_name,
+            'email': self.email,
+            'department': self.department_id,
+            'portfolio': self.portfolio_id,
+        }
 
     @staticmethod
     def is_login_valid(user_id, password):
@@ -58,9 +92,10 @@ class User(db.Model):
         if user:
             # Tell user they already exist
             raise UserErrors.UserAlreadyRegisteredError("User already exists.")
-        
+
         # add the new user to the database
-        new_user = User(user_id, first_name, last_name, email, password, portfolio)
+        new_user = User(user_id, first_name, last_name,
+                        email, password, portfolio)
         db.session.add(new_user)
         db.session.commit()
         return True
