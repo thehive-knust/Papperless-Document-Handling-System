@@ -1,6 +1,25 @@
 import os
+from pdhs_app.resources.document import DocumentResource
 from flask import Flask
 from database import db, migrate
+from flask_restful import Api
+from flask_jwt import JWT
+
+from middleware.security import authenticate, identity
+
+# import resources
+from pdhs_app.resources.portfolio import PortfolioResource
+from pdhs_app.resources.approval import ApprovalResource
+from pdhs_app.resources.comment import CommentResource
+from pdhs_app.resources.user import UserResource
+from pdhs_app.resources.department import DepartmentResource
+from pdhs_app.resources.faculty import FacultyResource
+from pdhs_app.resources.college import CollegeResource
+from pdhs_app.resources.document import DocumentResource
+
+# import Blue prints
+from pdhs_app.models.users.views import user_blueprint  # src.
+from middleware.auth import bp as auth_bp
 
 
 def create_app(*args, **kwargs):
@@ -32,6 +51,23 @@ def create_app(*args, **kwargs):
 
     CORS(app)
 
+    # Initialize api
+    api = Api(app)
+
+    # Initialize JWT
+    jwt = JWT(app, authenticate, identity)  # /auth
+
+    # Add resources
+
+    api.add_resource(UserResource, '/user')
+    api.add_resource(PortfolioResource, '/portfolio')
+    api.add_resource(DocumentResource, '/document')
+    api.add_resource(ApprovalResource, '/approval')
+    api.add_resource(CollegeResource, '/college')
+    api.add_resource(DepartmentResource, '/department')
+    api.add_resource(FacultyResource, '/faculty')
+    api.add_resource(CommentResource, '/comment')
+
     # Initialize database
     db.init_app(app)
     migrate.init_app(app, db, render_as_batch=True)
@@ -41,12 +77,10 @@ def create_app(*args, **kwargs):
         return "Hello world"
 
     with app.app_context():
-        from pdhs_app.models.users.views import user_blueprint  # src.
-        from auth import bp as auth_bp
 
         # Register Blueprints
-        app.register_blueprint(user_blueprint, url_prefix="/users")
-        app.register_blueprint(auth_bp)
+        # app.register_blueprint(user_blueprint, url_prefix="/users")
+        # app.register_blueprint(auth_bp)
         # from models.messages.views import message_blueprint #src.
         # from models.documents.views import document_blueprint #src.
         # app.register_blueprint(message_blueprint, url_prefix="/messages")
