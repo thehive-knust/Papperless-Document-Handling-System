@@ -13,12 +13,14 @@ Widget addOrEditReciepient(bool isDesktop, Function setMainState) {
     ),
     alignment: Alignment.center,
     padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-    child: Column(
+    child: ListView(
+      shrinkWrap: isDesktop? false : true,
       children: [
         ...approvals.map(
           (id) {
             // getting the title for each user with the id.
-            String title = Department.getUsers.singleWhere((user) => user.id == id).title;
+            String title =
+                Department.getUsers.singleWhere((user) => user.id == id).title;
             return Container(
               alignment: Alignment.centerLeft,
               margin: EdgeInsets.only(bottom: 10),

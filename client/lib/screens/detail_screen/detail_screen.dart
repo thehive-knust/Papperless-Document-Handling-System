@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:softdoc/cubit/AndroidNav_cubit.dart';
+import 'package:softdoc/cubit/android_nav_cubit/AndroidNav_cubit.dart';
 import 'package:softdoc/models/doc.dart';
 import 'package:softdoc/screens/home_screen/docTypeIcon.dart';
 import 'package:softdoc/style.dart';
 import 'package:intl/intl.dart';
 import 'package:thumbnailer/thumbnailer.dart';
-
 import 'approval_progress.dart';
 
 class DetailScreen extends StatefulWidget {
-  
   Doc selectedDoc;
   final bool isDesktop;
-  DetailScreen({Key key, this.isDesktop = false, this.selectedDoc}) : super(key: key);
+  DetailScreen({Key key, this.isDesktop = false, this.selectedDoc})
+      : super(key: key);
 
   @override
   _DetailScreenState createState() => _DetailScreenState();
@@ -59,125 +58,144 @@ class _DetailScreenState extends State<DetailScreen> {
   @override
   Widget build(BuildContext context) {
     // selectedDoc = ModalRoute.of(context).settings.arguments;
-    return Scaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: ListView(
-            children: [
-              Container(
-                alignment: Alignment.centerLeft,
-                margin: EdgeInsets.only(bottom: 20),
-                width: double.infinity,
-                height: 60,
-                // color: Colors.blue,
-                child: Text(widget.selectedDoc.subject,
-                    style:
-                        TextStyle(fontSize: 21, fontWeight: FontWeight.w600)),
-              ),
-              ApprovalProgress(approvalList: widget.selectedDoc.approvalProgress),
-              Flexible(
-                child: Container(
-                  padding: const EdgeInsets.symmetric(vertical: 12),
-                  child: Column(
-                    //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Container(
-                        padding: EdgeInsets.all(12),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: primaryLight),
-                        child: widget.selectedDoc.description != null
-                            ? Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(widget.selectedDoc.description,
-                                      style: TextStyle(
-                                          fontSize:
-                                              widget.isDesktop ? 20 : 14)),
-                                  Container(
-                                    margin: EdgeInsets.only(top: 10),
-                                    decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(5),
-                                        color: Colors.white),
-                                    padding: EdgeInsets.all(4),
-                                    child: Text(DateFormat("d MMMM, y   h:m a")
-                                        .format(widget.selectedDoc.timeCreated)),
-                                  )
-                                ],
-                              )
-                            : SizedBox(),
-                      ),
-                      Card(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10)),
-                        child: Column(
-                          children: [
-                            Thumbnail(
-                              mimeType: 'application/pdf',
-                              widgetSize:
-                                  MediaQuery.of(context).size.height * 0.2,
-                              dataResolver: () async {
-                                return (await DefaultAssetBundle.of(context)
-                                        .load('assets/sample/thispdf.pdf'))
-                                    .buffer
-                                    .asUint8List();
-                              },
-                              useWrapper: true,
+    return WillPopScope(
+      onWillPop: () {
+        _androidNavCubit.navToHomeScreen();
+        return Future.value(false);
+      },
+      child: Scaffold(
+        body: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: ListView(
+              children: [
+                Container(
+                  alignment: Alignment.centerLeft,
+                  width: double.infinity,
+                  height: 60,
+                  // color: Colors.blue,
+                  child: Text(widget.selectedDoc.subject,
+                      style:
+                          TextStyle(fontSize: 21, fontWeight: FontWeight.w600)),
+                ),
+                if (!widget.isDesktop) ...[
+                  SizedBox(height: 10),
+                  ApprovalProgress(
+                      approvalList: widget.selectedDoc.approvalProgress)
+                ],
+                Flexible(
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(vertical: 12),
+                    child: Column(
+                      //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        if (widget.selectedDoc.description != null)
+                          Container(
+                            padding: EdgeInsets.all(12),
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: primaryLight),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(widget.selectedDoc.description,
+                                    style: TextStyle(
+                                        fontSize: widget.isDesktop ? 20 : 14)),
+                                Container(
+                                  margin: EdgeInsets.only(top: 10),
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(5),
+                                      color: Colors.white),
+                                  padding: EdgeInsets.all(4),
+                                  child: Text(DateFormat("d MMMM, y   h:m a")
+                                      .format(widget.selectedDoc.timeCreated)),
+                                )
+                              ],
                             ),
-                            Container(
-                              color: primaryLight,
-                              padding: EdgeInsets.all(8),
-                              child: Row(
-                                children: [
-                                  DocTypeIcon(),
-                                  SizedBox(width: 10),
-                                  //Text(basename())
-                                  Text("name of file.pdf"),
-                                ],
-                              ),
-                            )
-                          ],
+                          ),
+                        Container(
+                          height: 200,
+                          child: Card(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10)),
+                            child: Column(
+                              children: [
+                                Expanded(
+                                    child: Container(
+                                        color: Colors.white,
+                                        child: Icon(Icons.note))),
+                                // Thumbnail(
+                                //   mimeType: 'application/pdf',
+                                //   widgetSize:
+                                //       MediaQuery.of(context).size.height * 0.2,
+                                //   dataResolver: () async {
+                                //     return (await DefaultAssetBundle.of(context)
+                                //             .load('assets/sample/thispdf.pdf'))
+                                //         .buffer
+                                //         .asUint8List();
+                                //   },
+                                //   useWrapper: true,
+                                // ),
+                                Container(
+                                  color: primaryLight,
+                                  padding: EdgeInsets.all(8),
+                                  height: 50,
+                                  child: Row(
+                                    children: [
+                                      DocTypeIcon(),
+                                      SizedBox(width: 10),
+                                      //Text(basename())
+                                      Text("name of file.pdf"),
+                                    ],
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
                         ),
-                      ),
-                      if (widget.selectedDoc.status != "pending")
-                        StatusMessage(widget.selectedDoc.status),
-                      // Flexible(child: SizedBox(), fit: FlexFit.tight),
-                      // if (selectedDoc.status == "pending")
-                      //   ElevatedButton(
-                      //     onPressed: () => confirmWithdrawal(context),
-                      //     child: Text("Cancel request"),
-                      //     style: ElevatedButton.styleFrom(
-                      //       shape: RoundedRectangleBorder(
-                      //         borderRadius: BorderRadius.circular(8),
-                      //       ),
-                      //       primary: red,
-                      //       minimumSize: Size(300, 50),
-                      //       textStyle: TextStyle(fontSize: 20),
-                      //     ),
-                      //   ),
-                    ],
+                        if (widget.selectedDoc.status != "pending")
+                          StatusMessage(widget.selectedDoc.status),
+                        // Flexible(child: SizedBox(), fit: FlexFit.tight),
+                        // if (selectedDoc.status == "pending")
+                        //   ElevatedButton(
+                        //     onPressed: () => confirmWithdrawal(context),
+                        //     child: Text("Cancel request"),
+                        //     style: ElevatedButton.styleFrom(
+                        //       shape: RoundedRectangleBorder(
+                        //         borderRadius: BorderRadius.circular(8),
+                        //       ),
+                        //       primary: red,
+                        //       minimumSize: Size(300, 50),
+                        //       textStyle: TextStyle(fontSize: 20),
+                        //     ),
+                        //   ),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
-      ),
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: () => confirmWithdrawal(context),
-        label: Text(
-          "Cancel request",
-          style: TextStyle(fontSize: 20),
+        floatingActionButton: FloatingActionButton.extended(
+          // onPressed: () => confirmWithdrawal(context),
+          onPressed: () => _androidNavCubit.navToHomeScreen(),
+          label: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 40),
+            child: Text(
+              "Cancel request",
+              style: TextStyle(fontSize: 20),
+            ),
+          ),
+          backgroundColor: red,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(7),
+          ),
         ),
-        backgroundColor: red,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10),
-        ),
+        floatingActionButtonLocation: !widget.isDesktop
+            ? FloatingActionButtonLocation.centerFloat
+            : FloatingActionButtonLocation.startFloat,
       ),
-      floatingActionButtonLocation: !widget.isDesktop
-          ? FloatingActionButtonLocation.centerFloat
-          : FloatingActionButtonLocation.endFloat,
     );
   }
 }

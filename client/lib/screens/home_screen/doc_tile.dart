@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:softdoc/cubit/AndroidNav_cubit.dart';
+import 'package:softdoc/cubit/android_nav_cubit/AndroidNav_cubit.dart';
+import 'package:softdoc/cubit/desktop_nav_cubit/desktopnav_cubit.dart';
 import 'package:softdoc/models/doc.dart';
 import 'package:softdoc/style.dart';
 
@@ -8,9 +9,11 @@ import 'docTypeIcon.dart';
 
 class DocTiles extends StatelessWidget {
   final Map<String, List<Doc>> section;
-  AndroidNavCubit _androidNavCubit;
   final isDesktop;
   DocTiles({Key key, this.section, this.isDesktop}) : super(key: key);
+
+  AndroidNavCubit _androidNavCubit;
+  DesktopNavCubit _desktopNavCubit;
 
   @override
   Widget build(BuildContext context) {
@@ -32,6 +35,7 @@ class DocTiles extends StatelessWidget {
 
   docTile(doc, context) {
     _androidNavCubit = BlocProvider.of<AndroidNavCubit>(context);
+    _desktopNavCubit = BlocProvider.of<DesktopNavCubit>(context);
     Color status;
     if (doc.approved == null)
       status = yellow;
@@ -40,7 +44,9 @@ class DocTiles extends StatelessWidget {
     else if (!doc.approved) status = redLight;
     return GestureDetector(
       // onTap: () => Navigator.of(context).pushNamed(DETAILPAGE, arguments: doc),
-      onTap: () => _androidNavCubit.navToDetailScreen(doc),
+      onTap: () => isDesktop
+          ? _desktopNavCubit.navToDetailScreen(doc)
+          : _androidNavCubit.navToDetailScreen(doc),
       child: Padding(
         padding: EdgeInsets.symmetric(vertical: 3),
         child: ClipRRect(

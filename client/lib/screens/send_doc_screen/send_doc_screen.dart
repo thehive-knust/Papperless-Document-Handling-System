@@ -1,7 +1,7 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:softdoc/cubit/AndroidNav_cubit.dart';
+import 'package:softdoc/cubit/android_nav_cubit/AndroidNav_cubit.dart';
 import 'package:softdoc/models/doc.dart';
 import 'package:softdoc/screens/send_doc_screen/add_or_edit_recepient.dart';
 import 'package:softdoc/screens/send_doc_screen/select_recepient.dart';
@@ -9,7 +9,7 @@ import 'package:softdoc/style.dart';
 
 class SendDocScreen extends StatefulWidget {
   final bool isDesktop;
-  SendDocScreen({Key key, this.isDesktop}) : super(key: key);
+  SendDocScreen({Key key, this.isDesktop = false}) : super(key: key);
 
   @override
   _SendDocScreenState createState() => _SendDocScreenState();
@@ -66,9 +66,11 @@ class _SendDocScreenState extends State<SendDocScreen> {
                     ),
                   ),
                 ),
-                if (!widget.isDesktop) SizedBox(height: 10),
                 // selected recepient stuff here:--------------------------------------------------------------
-                if (!widget.isDesktop) addOrEditReciepient(false, changeState),
+                if (!widget.isDesktop) ...[
+                  SizedBox(height: 10),
+                  addOrEditReciepient(false, changeState)
+                ],
                 SizedBox(height: 10),
                 // enter description field here:--------------------------------------------------------
                 Container(

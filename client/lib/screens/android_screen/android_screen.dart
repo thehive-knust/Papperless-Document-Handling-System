@@ -1,7 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:softdoc/cubit/AndroidNav_cubit.dart';
+import 'package:softdoc/cubit/android_nav_cubit/AndroidNav_cubit.dart';
 import 'package:softdoc/models/doc.dart';
 import 'package:softdoc/screens/detail_screen/detail_screen.dart';
 import 'package:softdoc/screens/home_screen/home_screen.dart';
@@ -33,8 +33,8 @@ class _AndroidScreenState extends State<AndroidScreen> {
       else if (state is DetailScreenNav)
         return DetailScreen(selectedDoc: state.selectedDoc);
       else if (state is SendDocScreenNav)
-        return SendDocScreen(isDesktop: false);
-      return LinearProgressIndicator();
+        return SendDocScreen();
+      return CircularProgressIndicator();
     });
   }
 }

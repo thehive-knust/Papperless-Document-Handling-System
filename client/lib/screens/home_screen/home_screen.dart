@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:softdoc/cubit/AndroidNav_cubit.dart';
+import 'package:softdoc/cubit/android_nav_cubit/AndroidNav_cubit.dart';
+import 'package:softdoc/cubit/desktop_nav_cubit/desktopnav_cubit.dart';
 import 'package:softdoc/screens/home_screen/doc_tile.dart';
 import 'package:softdoc/screens/send_doc_screen/send_doc_screen.dart';
 import '../../models/doc.dart';
 import 'package:softdoc/style.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key key}) : super(key: key);
+  final bool isDesktop;
+  const HomeScreen({Key key, this.isDesktop = false}) : super(key: key);
 
   @override
   _HomeScreenState createState() => _HomeScreenState();
@@ -16,18 +18,23 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   AndroidNavCubit _androidNavCubit;
+  DesktopNavCubit _desktopNavCubit;
 
   @override
   void initState() {
     super.initState();
     _androidNavCubit = BlocProvider.of<AndroidNavCubit>(context);
+    _desktopNavCubit = BlocProvider.of<DesktopNavCubit>(context);
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         // onPressed: () => Navigator.of(context).pushNamed(SENDPAGE),
-        onPressed: () => _androidNavCubit.navToSendDocScreen(),
+        onPressed: () => widget.isDesktop
+            ? _desktopNavCubit.navToSendDocScreen()
+            : _androidNavCubit.navToSendDocScreen(),
         backgroundColor: primary,
         child: Icon(Icons.note_add_rounded),
       ),
@@ -88,8 +95,10 @@ class _HomeScreenState extends State<HomeScreen> {
             Expanded(
               child: ListView.builder(
                 padding: EdgeInsets.symmetric(vertical: 10),
-                itemBuilder: (context, index) =>
-                    DocTiles(section: Doc.docs[index]),
+                itemBuilder: (context, index) => DocTiles(
+                  section: Doc.docs[index],
+                  isDesktop: widget.isDesktop,
+                ),
                 itemCount: Doc.docs.length,
               ),
             )

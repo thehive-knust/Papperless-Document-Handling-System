@@ -1,8 +1,7 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:softdoc/style.dart';
 import 'package:crypto/crypto.dart';
-import 'package:http/http.dart' as http;
+import '../../services/flask_database.dart';
 
 class AuthForm extends StatefulWidget {
   final bool isDesktop;
@@ -21,16 +20,20 @@ class _AuthFormState extends State<AuthForm> {
 
   Digest password;
 
+  bool isLoading = false;
+
   @override
   Widget build(BuildContext context) {
     // Size screenSize = MediaQuery.of(context).size;
     return Form(
       key: _formKey,
       child: Column(
-        mainAxisAlignment:
-            widget.isDesktop ? MainAxisAlignment.center : MainAxisAlignment.start,
-        crossAxisAlignment:
-            widget.isDesktop ? CrossAxisAlignment.center : CrossAxisAlignment.start,
+        mainAxisAlignment: widget.isDesktop
+            ? MainAxisAlignment.center
+            : MainAxisAlignment.start,
+        crossAxisAlignment: widget.isDesktop
+            ? CrossAxisAlignment.center
+            : CrossAxisAlignment.start,
         children: [
           Text(
             "SoftDoc",
@@ -91,39 +94,18 @@ class _AuthFormState extends State<AuthForm> {
               )),
               onPressed: () async {
                 if (_formKey.currentState.validate()) {
-                  // print("==============================");
-                  // print("the id is: " +
-                  //     id.toString() +
-                  //     " and the password is: $password");
-                  try {
-                    Uri url = Uri.parse("https://soft-doc.herokuapp.com/users/login");
-                    // http.Response respond = await http.get(uri);
-                    // print(respond.body);
-                    http.Response response = await http.post(
-                        url,
-                        headers: <String, String>{
-                           'Content-Type': 'application/json; charset=UTF-8',
-                          // "Accept": "application/json",
-                          // "Access-Control_Allow_Origin": "*"
-                        },
-                        body: jsonEncode(<String, String>{
-                          'user_id': id,
-                          'password': testPass
-                        }));
-                    print("================================================");
-                    if (response.statusCode == 200) {
-                      print(jsonDecode(response.body));
-                    } else {
-                      print(response.statusCode);
-                    }
-                    print("================================================");
-                  } catch (e) {
-                    print("=========================================");
-                    print("This is the Error Message" + e.toString());
-                  }
+                  isLoading = true;
+                  setState(() {});
+                  // await FlaskDatabase.authenticate(userId: id, password: testPass);
+                  getMessage();
+
+                  isLoading = false;
+                  setState(() {});
                 }
               },
-              child: Text("Verify", style: TextStyle(fontSize: 20)),
+              child: isLoading
+                  ? CircularProgressIndicator(color: Colors.white)
+                  : Text("Verify", style: TextStyle(fontSize: 20)),
             ),
           )
         ],
