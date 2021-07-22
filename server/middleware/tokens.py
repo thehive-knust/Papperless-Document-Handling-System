@@ -7,3 +7,4 @@ class TokenBlocklist(db.Model):
     created_at = db.Column(db.DateTime, nullable=False)
     created_by = db.Column(
         db.Integer, db.ForeignKey('user.id'), nullable=False)
+
