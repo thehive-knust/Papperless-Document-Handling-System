@@ -1,9 +1,9 @@
 import os
 from flask import Flask
 from database.db import db, migrate
-from flask_restful import Api
 from datetime import timedelta
 from middleware.security import jwt
+from flask_cors import CORS
 
 # import Blue prints
 from middleware.auth import bp as auth_bp
@@ -53,12 +53,8 @@ def create_app(*args, **kwargs):
     except OSError:
         pass
 
-    from flask_cors import CORS
-
+    # Initialize CORS
     CORS(app)
-
-    # Initialize api
-    api = Api(app)
 
     # Initialize JWT
     jwt.init_app(app)
