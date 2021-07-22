@@ -22,6 +22,8 @@ class User(db.Model):
 
     approvals = db.relationship(
         "Approval", lazy='select', backref=db.backref('recipient', lazy='joined'))
+    tokens = db.relationship(
+        'TokenBlocklist', lazy='select', backref=db.backref('user', lazy='joined'))
 
     def __repr__(self):
         return '<User %r>' % self.id
@@ -44,6 +46,7 @@ class User(db.Model):
 
     def to_json(self):
         return {
+            'id': self.id,
             'first_name': self.first_name,
             'last_name': self.last_name,
             'email': self.email,

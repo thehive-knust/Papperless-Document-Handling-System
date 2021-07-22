@@ -1,25 +1,20 @@
 import os
-from pdhs_app.resources.document import DocumentResource
 from flask import Flask
 from database.db import db, migrate
-from flask_restful import Api
-from flask_jwt import JWT
-
-from middleware.security import authenticate, identity
-
-# import resources
-from pdhs_app.resources.portfolio import PortfolioResource
-from pdhs_app.resources.approval import ApprovalResource
-from pdhs_app.resources.comment import CommentResource
-from pdhs_app.resources.user import UserResource
-from pdhs_app.resources.department import DepartmentResource
-from pdhs_app.resources.faculty import FacultyResource
-from pdhs_app.resources.college import CollegeResource
-from pdhs_app.resources.document import DocumentResource
+from datetime import timedelta
+from middleware.security import jwt
+from flask_cors import CORS
 
 # import Blue prints
-from pdhs_app.blueprints.user_routes import user_blueprint  # src.
 from middleware.auth import bp as auth_bp
+from pdhs_app.blueprints.user_routes import bp as user_bp
+from pdhs_app.blueprints.document_routes import bp as document_bp
+from pdhs_app.blueprints.department_routes import bp as department_bp
+from pdhs_app.blueprints.college_routes import bp as college_bp
+from pdhs_app.blueprints.faculty_routes import bp as faculty_bp
+from pdhs_app.blueprints.comment_routes import bp as comment_bp
+from pdhs_app.blueprints.portfolio_routes import bp as portfolio_bp
+from pdhs_app.blueprints.approval_routes import bp as approval_bp
 
 
 def create_app(*args, **kwargs):
@@ -37,6 +32,16 @@ def create_app(*args, **kwargs):
 
     app.config['ENV'] = env
     app.config.from_object('config.%s' % env)
+
+    # If true this will only allow the cookies that contain your JWTs to be sent
+    # over https. In production, this should always be set to True
+    app.config["JWT_COOKIE_SECURE"] = False
+
+    # Change this in your code!
+    app.config["JWT_SECRET_KEY"] = "super-secret"
+    app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(hours=1)
+    app.config["JWT_REFRESH_TOKEN_EXPIRES"] = timedelta(days=30)
+
     app.config['JWT_AUTH_USERNAME_KEY'] = 'email'
     app.config['SQLALCHEMY_DATABASE_URI'] = app.config['DATABASE_URI']
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -48,26 +53,11 @@ def create_app(*args, **kwargs):
     except OSError:
         pass
 
-    from flask_cors import CORS
-
+    # Initialize CORS
     CORS(app)
 
-    # Initialize api
-    api = Api(app)
-
     # Initialize JWT
-    jwt = JWT(app, authenticate, identity)  # /auth
-
-    # Add resources
-
-    api.add_resource(UserResource, '/user')
-    api.add_resource(PortfolioResource, '/portfolio')
-    api.add_resource(DocumentResource, '/document')
-    api.add_resource(ApprovalResource, '/approval')
-    api.add_resource(CollegeResource, '/college')
-    api.add_resource(DepartmentResource, '/department')
-    api.add_resource(FacultyResource, '/faculty')
-    api.add_resource(CommentResource, '/comment')
+    jwt.init_app(app)
 
     # Initialize database
     db.init_app(app)
@@ -75,17 +65,20 @@ def create_app(*args, **kwargs):
 
     @app.route('/')
     def hello():
-        return "Hello world"
+        return "Hello from root of app /"
+
+    # Register Blueprints
+    app.register_blueprint(auth_bp)
+    app.register_blueprint(user_bp)
+    app.register_blueprint(document_bp)
+    app.register_blueprint(department_bp)
+    app.register_blueprint(comment_bp)
+    app.register_blueprint(college_bp)
+    app.register_blueprint(faculty_bp)
+    app.register_blueprint(portfolio_bp)
+    app.register_blueprint(approval_bp)
 
     with app.app_context():
-
-        # Register Blueprints
-        # app.register_blueprint(user_blueprint, url_prefix="/users")
-        # app.register_blueprint(auth_bp)
-        # from models.messages.views import message_blueprint #src.
-        # from models.documents.views import document_blueprint #src.
-        # app.register_blueprint(message_blueprint, url_prefix="/messages")
-        # app.register_blueprint(document_blueprin, url_prefix="/documents")
 
         # Reset Database
         db.drop_all()   # Comment out if you want to use flask_migrate
