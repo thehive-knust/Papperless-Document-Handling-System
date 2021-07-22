@@ -36,7 +36,7 @@ def user_lookup_callback(_jwt_header, jwt_data):
 @bp.route("/refresh", methods=["POST"])
 @jwt_required(refresh=True)
 def refresh():
-    identity = get_jwt_identity()
+    identity = current_user
     access_token = create_access_token(identity=identity, fresh=False)
     return jsonify(access_token=access_token)
 
@@ -91,9 +91,9 @@ def register():
             db.session.add(new_user)
             db.session.commit()
 
-            return {'msg': 'User created successfully'}
+            return {'msg': 'User created successfully'}, 201
 
-        return jsonify({"msg": error})
+        return jsonify({"msg": error}), 500
 
 
 @bp.route('/login', methods=['POST'])
