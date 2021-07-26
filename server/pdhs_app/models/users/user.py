@@ -4,17 +4,23 @@ import pdhs_app.models.users.errors as UserErrors
 
 
 class User(db.Model):
-    user_id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
     first_name = db.Column(db.String(50), nullable=False)
     last_name = db.Column(db.String(50), nullable=False)
     email = db.Column(db.String(50), nullable=False)
     password = db.Column(db.String(255), nullable=False)
-    portfolio_id = db.Column(db.Integer, db.ForeignKey('portfolio.portfolio_id'), nullable=False)
-    department_id = db.Column(db.Integer, db.ForeignKey('department.department_id'), nullable=False)
-    documents = db.relationship("Document", lazy='select', backref=db.backref('user', lazy='joined'))
-    comments = db.relationship("Comment", lazy='select', backref=db.backref('user', lazy='joined'))
-    approvals = db.relationship("Approval", lazy='select', backref=db.backref('recipient', lazy='joined'))
-    tokens = db.relationship('TokenBlocklist', lazy='select', backref=db.backref('user', lazy='joined'))
+    portfolio_id = db.Column(db.Integer, db.ForeignKey(
+        'portfolio.portfolio_id'), nullable=False)
+    department_id = db.Column(db.Integer, db.ForeignKey(
+        'department.department_id'), nullable=False)
+    documents = db.relationship(
+        "Document", lazy='select', backref=db.backref('user', lazy='joined'))
+    comments = db.relationship(
+        "Comment", lazy='select', backref=db.backref('user', lazy='joined'))
+    approvals = db.relationship(
+        "Approval", lazy='select', backref=db.backref('recipient', lazy='joined'))
+    tokens = db.relationship(
+        'TokenBlocklist', lazy='select', backref=db.backref('user', lazy='joined'))
 
     def __init__(self, user_id, first_name, last_name, email, password, portfolio_id, department_id):
         self.user_id = user_id
@@ -98,5 +104,6 @@ class User(db.Model):
             raise UserErrors.UserAlreadyRegisteredError("User already exists.")
 
         # add the new user to the database
-        new_user = User(user_id, first_name, last_name, email, password, portfolio_id, department_id).save_to_db()
+        new_user = User(user_id, first_name, last_name, email,
+                        password, portfolio_id, department_id).save_to_db()
         return True

@@ -2,9 +2,11 @@ from database.db import db
 
 
 class Approval(db.Model):
-    approval_id = db.Column(db.Integer, primary_key=True)
-    document_id = db.Column(db.Integer, db.ForeignKey('document.document_id'), nullable=False)
-    recipient_id = db.Column(db.Integer, db.ForeignKey('user.user_id'), nullable=False)
+    id = db.Column(db.Integer, primary_key=True)
+    document_id = db.Column(db.Integer, db.ForeignKey(
+        'document.document_id'), nullable=False)
+    recipient_id = db.Column(db.Integer, db.ForeignKey(
+        'user.user_id'), nullable=False)
     status = db.Column(db.Boolean)
 
     def __init__(self, approval_id, document_id, recipient_id, status):

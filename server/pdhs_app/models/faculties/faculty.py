@@ -2,7 +2,7 @@ from database.db import db
 
 
 class Faculty(db.Model):
-    faculty_id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50))
     college_id = db.Column(
         db.Integer, db.ForeignKey('college.id', use_alter=True), nullable=False)
