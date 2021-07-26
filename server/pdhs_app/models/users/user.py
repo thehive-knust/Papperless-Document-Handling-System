@@ -4,29 +4,29 @@ import pdhs_app.models.users.errors as UserErrors
 
 
 class User(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    # id = _id
+    user_id = db.Column(db.Integer, primary_key=True)
     first_name = db.Column(db.String(50), nullable=False)
     last_name = db.Column(db.String(50), nullable=False)
     email = db.Column(db.String(50), nullable=False)
     password = db.Column(db.String(255), nullable=False)
-    portfolio_id = db.Column(db.Integer, db.ForeignKey(
-        'portfolio.id'), nullable=False)
-    department_id = db.Column(db.Integer, db.ForeignKey(
-        'department.id'), nullable=False)
-    documents = db.relationship(
-        "Document", lazy='select', backref=db.backref('user', lazy='joined'))
+    portfolio_id = db.Column(db.Integer, db.ForeignKey('portfolio.portfolio_id'), nullable=False)
+    department_id = db.Column(db.Integer, db.ForeignKey('department.department_id'), nullable=False)
+    documents = db.relationship("Document", lazy='select', backref=db.backref('user', lazy='joined'))
+    comments = db.relationship("Comment", lazy='select', backref=db.backref('user', lazy='joined'))
+    approvals = db.relationship("Approval", lazy='select', backref=db.backref('recipient', lazy='joined'))
+    tokens = db.relationship('TokenBlocklist', lazy='select', backref=db.backref('user', lazy='joined'))
 
-    comments = db.relationship(
-        "Comment", lazy='select', backref=db.backref('user', lazy='joined'))
-
-    approvals = db.relationship(
-        "Approval", lazy='select', backref=db.backref('recipient', lazy='joined'))
-    tokens = db.relationship(
-        'TokenBlocklist', lazy='select', backref=db.backref('user', lazy='joined'))
+    def __init__(self, user_id, first_name, last_name, email, password, portfolio_id, department_id):
+        self.user_id = user_id
+        self.first_name = first_name
+        self.last_name = last_name
+        self.email = email
+        self.password = password
+        self.portfolio_id = portfolio_id
+        self.department_id = department_id
 
     def __repr__(self):
-        return '<User %r>' % self.id
+        return '<User %r>' % self.user_id
 
     @classmethod
     def find_by_email(cls, email):
@@ -34,7 +34,7 @@ class User(db.Model):
 
     @classmethod
     def find_by_id(cls, user_id):
-        return cls.query.filter_by(id=user_id).first()
+        return cls.query.filter_by(user_id=user_id).first()
 
     def save_to_db(self):
         db.session.add(self)
@@ -46,7 +46,7 @@ class User(db.Model):
 
     def to_json(self):
         return {
-            'id': self.id,
+            'user_id': self.user_id,
             'first_name': self.first_name,
             'last_name': self.last_name,
             'email': self.email,
@@ -78,7 +78,7 @@ class User(db.Model):
         return user
 
     @staticmethod
-    def register_user(user_id, first_name, last_name, email, password, portfolio):
+    def register_user(user_id, first_name, last_name, email, password, portfolio_id, department_id):
         """
         This registers a user using user_id, first_name, last_name, e-mail and password.
         :param user_id: The user's ID (ie. student ID or staff ID)
@@ -97,8 +97,5 @@ class User(db.Model):
             raise UserErrors.UserAlreadyRegisteredError("User already exists.")
 
         # add the new user to the database
-        new_user = User(user_id, first_name, last_name,
-                        email, password, portfolio)
-        db.session.add(new_user)
-        db.session.commit()
+        new_user = User(user_id, first_name, last_name, email, password, portfolio_id, department_id).save_to_db()
         return True
