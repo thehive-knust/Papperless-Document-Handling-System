@@ -1,0 +1,1663 @@
+define(['dart_sdk', 'packages/flutter/src/painting/edge_insets.dart', 'packages/flutter/src/material/colors.dart', 'packages/flutter/src/painting/colors.dart', 'packages/flutter/src/widgets/widget_span.dart', 'packages/flutter/src/widgets/icon_data.dart', 'packages/flutter/src/widgets/layout_builder.dart', 'packages/timeline_tile/src/axis.dart', 'packages/flutter/src/rendering/flex.dart', 'packages/flutter/src/rendering/layer.dart', 'packages/flutter/src/rendering/custom_paint.dart'], (function load__packages__timeline_tile__src__style_dart(dart_sdk, packages__flutter__src__painting__edge_insets$46dart, packages__flutter__src__material__colors$46dart, packages__flutter__src__painting__colors$46dart, packages__flutter__src__widgets__widget_span$46dart, packages__flutter__src__widgets__icon_data$46dart, packages__flutter__src__widgets__layout_builder$46dart, packages__timeline_tile__src__axis$46dart, packages__flutter__src__rendering__flex$46dart, packages__flutter__src__rendering__layer$46dart, packages__flutter__src__rendering__custom_paint$46dart) {
+  'use strict';
+  const core = dart_sdk.core;
+  const ui = dart_sdk.ui;
+  const _interceptors = dart_sdk._interceptors;
+  const math = dart_sdk.math;
+  const dart = dart_sdk.dart;
+  const dartx = dart_sdk.dartx;
+  const edge_insets = packages__flutter__src__painting__edge_insets$46dart.src__painting__edge_insets;
+  const colors = packages__flutter__src__material__colors$46dart.src__material__colors;
+  const colors$ = packages__flutter__src__painting__colors$46dart.src__painting__colors;
+  const framework = packages__flutter__src__widgets__widget_span$46dart.src__widgets__framework;
+  const basic = packages__flutter__src__widgets__widget_span$46dart.src__widgets__basic;
+  const widget_inspector = packages__flutter__src__widgets__widget_span$46dart.src__widgets__widget_inspector;
+  const container = packages__flutter__src__widgets__widget_span$46dart.src__widgets__container;
+  const icon_data = packages__flutter__src__widgets__icon_data$46dart.src__widgets__icon_data;
+  const layout_builder = packages__flutter__src__widgets__layout_builder$46dart.src__widgets__layout_builder;
+  const axis = packages__timeline_tile__src__axis$46dart.src__axis;
+  const flex = packages__flutter__src__rendering__flex$46dart.src__rendering__flex;
+  const box = packages__flutter__src__rendering__layer$46dart.src__rendering__box;
+  const custom_paint = packages__flutter__src__rendering__custom_paint$46dart.src__rendering__custom_paint;
+  var style = Object.create(dart.library);
+  var tile = Object.create(dart.library);
+  var $add = dartx.add;
+  var $insert = dartx.insert;
+  dart._checkModuleNullSafetyMode(false);
+  var T = {
+    intL: () => (T.intL = dart.constFn(dart.legacy(core.int)))(),
+    ColorL: () => (T.ColorL = dart.constFn(dart.legacy(ui.Color)))(),
+    TimelineAxisL: () => (T.TimelineAxisL = dart.constFn(dart.legacy(tile.TimelineAxis)))(),
+    TimelineAlignL: () => (T.TimelineAlignL = dart.constFn(dart.legacy(tile.TimelineAlign)))(),
+    JSArrayOfWidget: () => (T.JSArrayOfWidget = dart.constFn(_interceptors.JSArray$(framework.Widget)))(),
+    _LocationL: () => (T._LocationL = dart.constFn(dart.legacy(widget_inspector._Location)))(),
+    BuildContextAndBoxConstraintsToSingleChildRenderObjectWidget: () => (T.BuildContextAndBoxConstraintsToSingleChildRenderObjectWidget = dart.constFn(dart.fnType(framework.SingleChildRenderObjectWidget, [framework.BuildContext, box.BoxConstraints])))(),
+    BuildContextAndBoxConstraintsToPadding: () => (T.BuildContextAndBoxConstraintsToPadding = dart.constFn(dart.fnType(basic.Padding, [framework.BuildContext, box.BoxConstraints])))()
+  };
+  const CT = Object.create({
+    _: () => (C, CT)
+  });
+  dart.defineLazy(CT, {
+    get C0() {
+      return C[0] = dart.const({
+        __proto__: edge_insets.EdgeInsets.prototype,
+        [EdgeInsets_bottom]: 0,
+        [EdgeInsets_right]: 0,
+        [EdgeInsets_top]: 0,
+        [EdgeInsets_left]: 0
+      });
+    },
+    get C3() {
+      return C[3] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4294638330.0
+      });
+    },
+    get C4() {
+      return C[4] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4294309365.0
+      });
+    },
+    get C5() {
+      return C[5] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4293848814.0
+      });
+    },
+    get C6() {
+      return C[6] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4292927712.0
+      });
+    },
+    get C7() {
+      return C[7] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4292269782.0
+      });
+    },
+    get C8() {
+      return C[8] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4290624957.0
+      });
+    },
+    get C9() {
+      return C[9] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4288585374.0
+      });
+    },
+    get C10() {
+      return C[10] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4285887861.0
+      });
+    },
+    get C11() {
+      return C[11] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4284572001.0
+      });
+    },
+    get C12() {
+      return C[12] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4282532418.0
+      });
+    },
+    get C13() {
+      return C[13] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4281348144.0
+      });
+    },
+    get C14() {
+      return C[14] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4280361249.0
+      });
+    },
+    get C2() {
+      return C[2] = dart.constMap(T.intL(), T.ColorL(), [50, C[3] || CT.C3, 100, C[4] || CT.C4, 200, C[5] || CT.C5, 300, C[6] || CT.C6, 350, C[7] || CT.C7, 400, C[8] || CT.C8, 500, C[9] || CT.C9, 600, C[10] || CT.C10, 700, C[11] || CT.C11, 800, C[12] || CT.C12, 850, C[13] || CT.C13, 900, C[14] || CT.C14]);
+    },
+    get C1() {
+      return C[1] = dart.const({
+        __proto__: colors.MaterialColor.prototype,
+        [Color_value]: 4288585374.0,
+        [ColorSwatch__swatch]: C[2] || CT.C2
+      });
+    },
+    get C15() {
+      return C[15] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4278190080.0
+      });
+    },
+    get C16() {
+      return C[16] = dart.const({
+        __proto__: tile.TimelineAxis.prototype,
+        [_name$]: "TimelineAxis.vertical",
+        index: 0
+      });
+    },
+    get C17() {
+      return C[17] = dart.const({
+        __proto__: tile.TimelineAxis.prototype,
+        [_name$]: "TimelineAxis.horizontal",
+        index: 1
+      });
+    },
+    get C18() {
+      return C[18] = dart.constList([C[16] || CT.C16, C[17] || CT.C17], T.TimelineAxisL());
+    },
+    get C19() {
+      return C[19] = dart.const({
+        __proto__: tile.TimelineAlign.prototype,
+        [_name$]: "TimelineAlign.start",
+        index: 0
+      });
+    },
+    get C20() {
+      return C[20] = dart.const({
+        __proto__: tile.TimelineAlign.prototype,
+        [_name$]: "TimelineAlign.end",
+        index: 1
+      });
+    },
+    get C21() {
+      return C[21] = dart.const({
+        __proto__: tile.TimelineAlign.prototype,
+        [_name$]: "TimelineAlign.center",
+        index: 2
+      });
+    },
+    get C22() {
+      return C[22] = dart.const({
+        __proto__: tile.TimelineAlign.prototype,
+        [_name$]: "TimelineAlign.manual",
+        index: 3
+      });
+    },
+    get C23() {
+      return C[23] = dart.constList([C[19] || CT.C19, C[20] || CT.C20, C[21] || CT.C21, C[22] || CT.C22], T.TimelineAlignL());
+    },
+    get C24() {
+      return C[24] = dart.const({
+        __proto__: style.IndicatorStyle.prototype,
+        [drawGap$]: false,
+        [indicatorXY$]: 0.5,
+        [iconStyle$]: null,
+        [color$]: C[1] || CT.C1,
+        [padding$]: C[0] || CT.C0,
+        [indicator$]: null,
+        [height$]: 20,
+        [width$]: 25
+      });
+    },
+    get C25() {
+      return C[25] = dart.const({
+        __proto__: style.LineStyle.prototype,
+        [thickness$]: 4,
+        [color$1]: C[1] || CT.C1
+      });
+    },
+    get C28() {
+      return C[28] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "height",
+        [_Location_column]: 15,
+        [_Location_line]: 122,
+        [_Location_file]: null
+      });
+    },
+    get C29() {
+      return C[29] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "width",
+        [_Location_column]: 15,
+        [_Location_line]: 124,
+        [_Location_file]: null
+      });
+    },
+    get C27() {
+      return C[27] = dart.constList([C[28] || CT.C28, C[29] || CT.C29], T._LocationL());
+    },
+    get C26() {
+      return C[26] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[27] || CT.C27,
+        [_Location_name]: null,
+        [_Location_column]: 13,
+        [_Location_line]: 121,
+        [_Location_file]: "file:///C:/Users/Ejas/Desktop/App_files/flutter/.pub-cache/hosted/pub.dartlang.org/timeline_tile-2.0.0/lib/src/tile.dart"
+      });
+    },
+    get C32() {
+      return C[32] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "axis",
+        [_Location_column]: 13,
+        [_Location_line]: 127,
+        [_Location_file]: null
+      });
+    },
+    get C33() {
+      return C[33] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "beforeLineStyle",
+        [_Location_column]: 13,
+        [_Location_line]: 128,
+        [_Location_file]: null
+      });
+    },
+    get C34() {
+      return C[34] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "afterLineStyle",
+        [_Location_column]: 13,
+        [_Location_line]: 129,
+        [_Location_file]: null
+      });
+    },
+    get C35() {
+      return C[35] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "indicatorStyle",
+        [_Location_column]: 13,
+        [_Location_line]: 130,
+        [_Location_file]: null
+      });
+    },
+    get C36() {
+      return C[36] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "hasIndicator",
+        [_Location_column]: 13,
+        [_Location_line]: 131,
+        [_Location_file]: null
+      });
+    },
+    get C37() {
+      return C[37] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "isLast",
+        [_Location_column]: 13,
+        [_Location_line]: 132,
+        [_Location_file]: null
+      });
+    },
+    get C38() {
+      return C[38] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "isFirst",
+        [_Location_column]: 13,
+        [_Location_line]: 133,
+        [_Location_file]: null
+      });
+    },
+    get C31() {
+      return C[31] = dart.constList([C[32] || CT.C32, C[33] || CT.C33, C[34] || CT.C34, C[35] || CT.C35, C[36] || CT.C36, C[37] || CT.C37, C[38] || CT.C38], T._LocationL());
+    },
+    get C30() {
+      return C[30] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[31] || CT.C31,
+        [_Location_name]: null,
+        [_Location_column]: 11,
+        [_Location_line]: 126,
+        [_Location_file]: "file:///C:/Users/Ejas/Desktop/App_files/flutter/.pub-cache/hosted/pub.dartlang.org/timeline_tile-2.0.0/lib/src/tile.dart"
+      });
+    },
+    get C41() {
+      return C[41] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "height",
+        [_Location_column]: 15,
+        [_Location_line]: 137,
+        [_Location_file]: null
+      });
+    },
+    get C42() {
+      return C[42] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "width",
+        [_Location_column]: 15,
+        [_Location_line]: 138,
+        [_Location_file]: null
+      });
+    },
+    get C40() {
+      return C[40] = dart.constList([C[41] || CT.C41, C[42] || CT.C42], T._LocationL());
+    },
+    get C39() {
+      return C[39] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[40] || CT.C40,
+        [_Location_name]: null,
+        [_Location_column]: 13,
+        [_Location_line]: 136,
+        [_Location_file]: "file:///C:/Users/Ejas/Desktop/App_files/flutter/.pub-cache/hosted/pub.dartlang.org/timeline_tile-2.0.0/lib/src/tile.dart"
+      });
+    },
+    get C45() {
+      return C[45] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "height",
+        [_Location_column]: 25,
+        [_Location_line]: 143,
+        [_Location_file]: null
+      });
+    },
+    get C44() {
+      return C[44] = dart.constList([C[45] || CT.C45], T._LocationL());
+    },
+    get C43() {
+      return C[43] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[44] || CT.C44,
+        [_Location_name]: null,
+        [_Location_column]: 15,
+        [_Location_line]: 143,
+        [_Location_file]: "file:///C:/Users/Ejas/Desktop/App_files/flutter/.pub-cache/hosted/pub.dartlang.org/timeline_tile-2.0.0/lib/src/tile.dart"
+      });
+    },
+    get C48() {
+      return C[48] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "width",
+        [_Location_column]: 25,
+        [_Location_line]: 144,
+        [_Location_file]: null
+      });
+    },
+    get C47() {
+      return C[47] = dart.constList([C[48] || CT.C48], T._LocationL());
+    },
+    get C46() {
+      return C[46] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[47] || CT.C47,
+        [_Location_name]: null,
+        [_Location_column]: 15,
+        [_Location_line]: 144,
+        [_Location_file]: "file:///C:/Users/Ejas/Desktop/App_files/flutter/.pub-cache/hosted/pub.dartlang.org/timeline_tile-2.0.0/lib/src/tile.dart"
+      });
+    },
+    get C51() {
+      return C[51] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 33,
+        [_Location_line]: 146,
+        [_Location_file]: null
+      });
+    },
+    get C50() {
+      return C[50] = dart.constList([C[51] || CT.C51], T._LocationL());
+    },
+    get C49() {
+      return C[49] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[50] || CT.C50,
+        [_Location_name]: null,
+        [_Location_column]: 24,
+        [_Location_line]: 146,
+        [_Location_file]: "file:///C:/Users/Ejas/Desktop/App_files/flutter/.pub-cache/hosted/pub.dartlang.org/timeline_tile-2.0.0/lib/src/tile.dart"
+      });
+    },
+    get C54() {
+      return C[54] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 39,
+        [_Location_line]: 148,
+        [_Location_file]: null
+      });
+    },
+    get C53() {
+      return C[53] = dart.constList([C[54] || CT.C54], T._LocationL());
+    },
+    get C52() {
+      return C[52] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[53] || CT.C53,
+        [_Location_name]: null,
+        [_Location_column]: 30,
+        [_Location_line]: 148,
+        [_Location_file]: "file:///C:/Users/Ejas/Desktop/App_files/flutter/.pub-cache/hosted/pub.dartlang.org/timeline_tile-2.0.0/lib/src/tile.dart"
+      });
+    },
+    get C57() {
+      return C[57] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "height",
+        [_Location_column]: 17,
+        [_Location_line]: 166,
+        [_Location_file]: null
+      });
+    },
+    get C58() {
+      return C[58] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "width",
+        [_Location_column]: 17,
+        [_Location_line]: 169,
+        [_Location_file]: null
+      });
+    },
+    get C59() {
+      return C[59] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 17,
+        [_Location_line]: 172,
+        [_Location_file]: null
+      });
+    },
+    get C56() {
+      return C[56] = dart.constList([C[57] || CT.C57, C[58] || CT.C58, C[59] || CT.C59], T._LocationL());
+    },
+    get C55() {
+      return C[55] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[56] || CT.C56,
+        [_Location_name]: null,
+        [_Location_column]: 15,
+        [_Location_line]: 165,
+        [_Location_file]: "file:///C:/Users/Ejas/Desktop/App_files/flutter/.pub-cache/hosted/pub.dartlang.org/timeline_tile-2.0.0/lib/src/tile.dart"
+      });
+    },
+    get C62() {
+      return C[62] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "height",
+        [_Location_column]: 17,
+        [_Location_line]: 180,
+        [_Location_file]: null
+      });
+    },
+    get C63() {
+      return C[63] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "width",
+        [_Location_column]: 17,
+        [_Location_line]: 183,
+        [_Location_file]: null
+      });
+    },
+    get C64() {
+      return C[64] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 17,
+        [_Location_line]: 186,
+        [_Location_file]: null
+      });
+    },
+    get C61() {
+      return C[61] = dart.constList([C[62] || CT.C62, C[63] || CT.C63, C[64] || CT.C64], T._LocationL());
+    },
+    get C60() {
+      return C[60] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[61] || CT.C61,
+        [_Location_name]: null,
+        [_Location_column]: 15,
+        [_Location_line]: 179,
+        [_Location_file]: "file:///C:/Users/Ejas/Desktop/App_files/flutter/.pub-cache/hosted/pub.dartlang.org/timeline_tile-2.0.0/lib/src/tile.dart"
+      });
+    },
+    get C67() {
+      return C[67] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "mainAxisSize",
+        [_Location_column]: 19,
+        [_Location_line]: 195,
+        [_Location_file]: null
+      });
+    },
+    get C68() {
+      return C[68] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "children",
+        [_Location_column]: 19,
+        [_Location_line]: 196,
+        [_Location_file]: null
+      });
+    },
+    get C66() {
+      return C[66] = dart.constList([C[67] || CT.C67, C[68] || CT.C68], T._LocationL());
+    },
+    get C65() {
+      return C[65] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[66] || CT.C66,
+        [_Location_name]: null,
+        [_Location_column]: 24,
+        [_Location_line]: 194,
+        [_Location_file]: "file:///C:/Users/Ejas/Desktop/App_files/flutter/.pub-cache/hosted/pub.dartlang.org/timeline_tile-2.0.0/lib/src/tile.dart"
+      });
+    },
+    get C71() {
+      return C[71] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 17,
+        [_Location_line]: 194,
+        [_Location_file]: null
+      });
+    },
+    get C70() {
+      return C[70] = dart.constList([C[71] || CT.C71], T._LocationL());
+    },
+    get C69() {
+      return C[69] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[70] || CT.C70,
+        [_Location_name]: null,
+        [_Location_column]: 15,
+        [_Location_line]: 193,
+        [_Location_file]: "file:///C:/Users/Ejas/Desktop/App_files/flutter/.pub-cache/hosted/pub.dartlang.org/timeline_tile-2.0.0/lib/src/tile.dart"
+      });
+    },
+    get C74() {
+      return C[74] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "mainAxisSize",
+        [_Location_column]: 19,
+        [_Location_line]: 201,
+        [_Location_file]: null
+      });
+    },
+    get C75() {
+      return C[75] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "children",
+        [_Location_column]: 19,
+        [_Location_line]: 202,
+        [_Location_file]: null
+      });
+    },
+    get C73() {
+      return C[73] = dart.constList([C[74] || CT.C74, C[75] || CT.C75], T._LocationL());
+    },
+    get C72() {
+      return C[72] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[73] || CT.C73,
+        [_Location_name]: null,
+        [_Location_column]: 24,
+        [_Location_line]: 200,
+        [_Location_file]: "file:///C:/Users/Ejas/Desktop/App_files/flutter/.pub-cache/hosted/pub.dartlang.org/timeline_tile-2.0.0/lib/src/tile.dart"
+      });
+    },
+    get C78() {
+      return C[78] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 17,
+        [_Location_line]: 200,
+        [_Location_file]: null
+      });
+    },
+    get C77() {
+      return C[77] = dart.constList([C[78] || CT.C78], T._LocationL());
+    },
+    get C76() {
+      return C[76] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[77] || CT.C77,
+        [_Location_name]: null,
+        [_Location_column]: 15,
+        [_Location_line]: 199,
+        [_Location_file]: "file:///C:/Users/Ejas/Desktop/App_files/flutter/.pub-cache/hosted/pub.dartlang.org/timeline_tile-2.0.0/lib/src/tile.dart"
+      });
+    },
+    get C81() {
+      return C[81] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "builder",
+        [_Location_column]: 7,
+        [_Location_line]: 108,
+        [_Location_file]: null
+      });
+    },
+    get C80() {
+      return C[80] = dart.constList([C[81] || CT.C81], T._LocationL());
+    },
+    get C79() {
+      return C[79] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[80] || CT.C80,
+        [_Location_name]: null,
+        [_Location_column]: 12,
+        [_Location_line]: 107,
+        [_Location_file]: "file:///C:/Users/Ejas/Desktop/App_files/flutter/.pub-cache/hosted/pub.dartlang.org/timeline_tile-2.0.0/lib/src/tile.dart"
+      });
+    },
+    get C84() {
+      return C[84] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "height",
+        [_Location_column]: 9,
+        [_Location_line]: 273,
+        [_Location_file]: null
+      });
+    },
+    get C85() {
+      return C[85] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "width",
+        [_Location_column]: 9,
+        [_Location_line]: 274,
+        [_Location_file]: null
+      });
+    },
+    get C83() {
+      return C[83] = dart.constList([C[84] || CT.C84, C[85] || CT.C85], T._LocationL());
+    },
+    get C82() {
+      return C[82] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[83] || CT.C83,
+        [_Location_name]: null,
+        [_Location_column]: 7,
+        [_Location_line]: 272,
+        [_Location_file]: "file:///C:/Users/Ejas/Desktop/App_files/flutter/.pub-cache/hosted/pub.dartlang.org/timeline_tile-2.0.0/lib/src/tile.dart"
+      });
+    },
+    get C88() {
+      return C[88] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "children",
+        [_Location_column]: 9,
+        [_Location_line]: 299,
+        [_Location_file]: null
+      });
+    },
+    get C87() {
+      return C[87] = dart.constList([C[88] || CT.C88], T._LocationL());
+    },
+    get C86() {
+      return C[86] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[87] || CT.C87,
+        [_Location_name]: null,
+        [_Location_column]: 14,
+        [_Location_line]: 298,
+        [_Location_file]: "file:///C:/Users/Ejas/Desktop/App_files/flutter/.pub-cache/hosted/pub.dartlang.org/timeline_tile-2.0.0/lib/src/tile.dart"
+      });
+    },
+    get C91() {
+      return C[91] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "painter",
+        [_Location_column]: 7,
+        [_Location_line]: 297,
+        [_Location_file]: null
+      });
+    },
+    get C92() {
+      return C[92] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 7,
+        [_Location_line]: 298,
+        [_Location_file]: null
+      });
+    },
+    get C90() {
+      return C[90] = dart.constList([C[91] || CT.C91, C[92] || CT.C92], T._LocationL());
+    },
+    get C89() {
+      return C[89] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[90] || CT.C90,
+        [_Location_name]: null,
+        [_Location_column]: 12,
+        [_Location_line]: 296,
+        [_Location_file]: "file:///C:/Users/Ejas/Desktop/App_files/flutter/.pub-cache/hosted/pub.dartlang.org/timeline_tile-2.0.0/lib/src/tile.dart"
+      });
+    },
+    get C95() {
+      return C[95] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "height",
+        [_Location_column]: 17,
+        [_Location_line]: 346,
+        [_Location_file]: null
+      });
+    },
+    get C96() {
+      return C[96] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "width",
+        [_Location_column]: 17,
+        [_Location_line]: 347,
+        [_Location_file]: null
+      });
+    },
+    get C97() {
+      return C[97] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 17,
+        [_Location_line]: 348,
+        [_Location_file]: null
+      });
+    },
+    get C94() {
+      return C[94] = dart.constList([C[95] || CT.C95, C[96] || CT.C96, C[97] || CT.C97], T._LocationL());
+    },
+    get C93() {
+      return C[93] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[94] || CT.C94,
+        [_Location_name]: null,
+        [_Location_column]: 22,
+        [_Location_line]: 345,
+        [_Location_file]: "file:///C:/Users/Ejas/Desktop/App_files/flutter/.pub-cache/hosted/pub.dartlang.org/timeline_tile-2.0.0/lib/src/tile.dart"
+      });
+    },
+    get C100() {
+      return C[100] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "padding",
+        [_Location_column]: 15,
+        [_Location_line]: 344,
+        [_Location_file]: null
+      });
+    },
+    get C101() {
+      return C[101] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 15,
+        [_Location_line]: 345,
+        [_Location_file]: null
+      });
+    },
+    get C99() {
+      return C[99] = dart.constList([C[100] || CT.C100, C[101] || CT.C101], T._LocationL());
+    },
+    get C98() {
+      return C[98] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[99] || CT.C99,
+        [_Location_name]: null,
+        [_Location_column]: 20,
+        [_Location_line]: 343,
+        [_Location_file]: "file:///C:/Users/Ejas/Desktop/App_files/flutter/.pub-cache/hosted/pub.dartlang.org/timeline_tile-2.0.0/lib/src/tile.dart"
+      });
+    },
+    get C104() {
+      return C[104] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "padding",
+        [_Location_column]: 13,
+        [_Location_line]: 342,
+        [_Location_file]: null
+      });
+    },
+    get C105() {
+      return C[105] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 13,
+        [_Location_line]: 343,
+        [_Location_file]: null
+      });
+    },
+    get C103() {
+      return C[103] = dart.constList([C[104] || CT.C104, C[105] || CT.C105], T._LocationL());
+    },
+    get C102() {
+      return C[102] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[103] || CT.C103,
+        [_Location_name]: null,
+        [_Location_column]: 18,
+        [_Location_line]: 341,
+        [_Location_file]: "file:///C:/Users/Ejas/Desktop/App_files/flutter/.pub-cache/hosted/pub.dartlang.org/timeline_tile-2.0.0/lib/src/tile.dart"
+      });
+    },
+    get C108() {
+      return C[108] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "builder",
+        [_Location_column]: 9,
+        [_Location_line]: 307,
+        [_Location_file]: null
+      });
+    },
+    get C107() {
+      return C[107] = dart.constList([C[108] || CT.C108], T._LocationL());
+    },
+    get C106() {
+      return C[106] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[107] || CT.C107,
+        [_Location_name]: null,
+        [_Location_column]: 14,
+        [_Location_line]: 306,
+        [_Location_file]: "file:///C:/Users/Ejas/Desktop/App_files/flutter/.pub-cache/hosted/pub.dartlang.org/timeline_tile-2.0.0/lib/src/tile.dart"
+      });
+    },
+    get C111() {
+      return C[111] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 7,
+        [_Location_line]: 306,
+        [_Location_file]: null
+      });
+    },
+    get C110() {
+      return C[110] = dart.constList([C[111] || CT.C111], T._LocationL());
+    },
+    get C109() {
+      return C[109] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[110] || CT.C110,
+        [_Location_name]: null,
+        [_Location_column]: 23,
+        [_Location_line]: 305,
+        [_Location_file]: "file:///C:/Users/Ejas/Desktop/App_files/flutter/.pub-cache/hosted/pub.dartlang.org/timeline_tile-2.0.0/lib/src/tile.dart"
+      });
+    },
+    get C112() {
+      return C[112] = dart.const({
+        __proto__: ui.ParagraphConstraints.prototype,
+        [ParagraphConstraints_width]: 0
+      });
+    }
+  }, false);
+  var C = Array(113).fill(void 0);
+  var I = [
+    "file:///C:/Users/Ejas/Desktop/App_files/flutter/.pub-cache/hosted/pub.dartlang.org/timeline_tile-2.0.0/lib/src/style.dart",
+    "package:timeline_tile/src/style.dart",
+    "file:///C:/Users/Ejas/Desktop/App_files/flutter/.pub-cache/hosted/pub.dartlang.org/timeline_tile-2.0.0/lib/src/tile.dart",
+    "package:timeline_tile/src/tile.dart"
+  ];
+  var width$ = dart.privateName(style, "IndicatorStyle.width");
+  var height$ = dart.privateName(style, "IndicatorStyle.height");
+  var indicator$ = dart.privateName(style, "IndicatorStyle.indicator");
+  var padding$ = dart.privateName(style, "IndicatorStyle.padding");
+  var color$ = dart.privateName(style, "IndicatorStyle.color");
+  var iconStyle$ = dart.privateName(style, "IndicatorStyle.iconStyle");
+  var indicatorXY$ = dart.privateName(style, "IndicatorStyle.indicatorXY");
+  var drawGap$ = dart.privateName(style, "IndicatorStyle.drawGap");
+  var EdgeInsets_bottom = dart.privateName(edge_insets, "EdgeInsets.bottom");
+  var EdgeInsets_right = dart.privateName(edge_insets, "EdgeInsets.right");
+  var EdgeInsets_top = dart.privateName(edge_insets, "EdgeInsets.top");
+  var EdgeInsets_left = dart.privateName(edge_insets, "EdgeInsets.left");
+  var Color_value = dart.privateName(ui, "Color.value");
+  var ColorSwatch__swatch = dart.privateName(colors$, "ColorSwatch._swatch");
+  style.IndicatorStyle = class IndicatorStyle extends core.Object {
+    get width() {
+      return this[width$];
+    }
+    set width(value) {
+      super.width = value;
+    }
+    get height() {
+      return this[height$];
+    }
+    set height(value) {
+      super.height = value;
+    }
+    get indicator() {
+      return this[indicator$];
+    }
+    set indicator(value) {
+      super.indicator = value;
+    }
+    get padding() {
+      return this[padding$];
+    }
+    set padding(value) {
+      super.padding = value;
+    }
+    get color() {
+      return this[color$];
+    }
+    set color(value) {
+      super.color = value;
+    }
+    get iconStyle() {
+      return this[iconStyle$];
+    }
+    set iconStyle(value) {
+      super.iconStyle = value;
+    }
+    get indicatorXY() {
+      return this[indicatorXY$];
+    }
+    set indicatorXY(value) {
+      super.indicatorXY = value;
+    }
+    get drawGap() {
+      return this[drawGap$];
+    }
+    set drawGap(value) {
+      super.drawGap = value;
+    }
+    get totalHeight() {
+      return dart.notNull(this.height) + dart.notNull(this.padding.top) + dart.notNull(this.padding.bottom);
+    }
+    get totalWidth() {
+      return dart.notNull(this.width) + dart.notNull(this.padding.left) + dart.notNull(this.padding.right);
+    }
+  };
+  (style.IndicatorStyle.new = function(opts) {
+    let width = opts && 'width' in opts ? opts.width : 20;
+    if (width == null) dart.nullFailed(I[0], 7, 10, "width");
+    let height = opts && 'height' in opts ? opts.height : 20;
+    if (height == null) dart.nullFailed(I[0], 8, 10, "height");
+    let indicator = opts && 'indicator' in opts ? opts.indicator : null;
+    let padding = opts && 'padding' in opts ? opts.padding : C[0] || CT.C0;
+    if (padding == null) dart.nullFailed(I[0], 10, 10, "padding");
+    let color = opts && 'color' in opts ? opts.color : C[1] || CT.C1;
+    if (color == null) dart.nullFailed(I[0], 11, 10, "color");
+    let iconStyle = opts && 'iconStyle' in opts ? opts.iconStyle : null;
+    let indicatorXY = opts && 'indicatorXY' in opts ? opts.indicatorXY : 0.5;
+    if (indicatorXY == null) dart.nullFailed(I[0], 13, 10, "indicatorXY");
+    let drawGap = opts && 'drawGap' in opts ? opts.drawGap : false;
+    if (drawGap == null) dart.nullFailed(I[0], 14, 10, "drawGap");
+    this[width$] = width;
+    this[height$] = height;
+    this[indicator$] = indicator;
+    this[padding$] = padding;
+    this[color$] = color;
+    this[iconStyle$] = iconStyle;
+    this[indicatorXY$] = indicatorXY;
+    this[drawGap$] = drawGap;
+    if (!(dart.notNull(width) >= 0)) dart.assertFailed("The width must be provided and bigger than 0.0", I[0], 15, 16, "width >= 0");
+    if (!(dart.notNull(height) >= 0)) dart.assertFailed("The height must be provided and bigger than 0.0", I[0], 17, 16, "height >= 0");
+    ;
+  }).prototype = style.IndicatorStyle.prototype;
+  dart.addTypeTests(style.IndicatorStyle);
+  dart.addTypeCaches(style.IndicatorStyle);
+  dart.setGetterSignature(style.IndicatorStyle, () => ({
+    __proto__: dart.getGetters(style.IndicatorStyle.__proto__),
+    totalHeight: core.double,
+    totalWidth: core.double
+  }));
+  dart.setLibraryUri(style.IndicatorStyle, I[1]);
+  dart.setFieldSignature(style.IndicatorStyle, () => ({
+    __proto__: dart.getFields(style.IndicatorStyle.__proto__),
+    width: dart.finalFieldType(core.double),
+    height: dart.finalFieldType(core.double),
+    indicator: dart.finalFieldType(dart.nullable(framework.Widget)),
+    padding: dart.finalFieldType(edge_insets.EdgeInsets),
+    color: dart.finalFieldType(ui.Color),
+    iconStyle: dart.finalFieldType(dart.nullable(style.IconStyle)),
+    indicatorXY: dart.finalFieldType(core.double),
+    drawGap: dart.finalFieldType(core.bool)
+  }));
+  var iconData$ = dart.privateName(style, "IconStyle.iconData");
+  var color$0 = dart.privateName(style, "IconStyle.color");
+  var fontSize$ = dart.privateName(style, "IconStyle.fontSize");
+  style.IconStyle = class IconStyle extends core.Object {
+    get iconData() {
+      return this[iconData$];
+    }
+    set iconData(value) {
+      super.iconData = value;
+    }
+    get color() {
+      return this[color$0];
+    }
+    set color(value) {
+      super.color = value;
+    }
+    get fontSize() {
+      return this[fontSize$];
+    }
+    set fontSize(value) {
+      super.fontSize = value;
+    }
+  };
+  (style.IconStyle.new = function(opts) {
+    let iconData = opts && 'iconData' in opts ? opts.iconData : null;
+    if (iconData == null) dart.nullFailed(I[0], 67, 19, "iconData");
+    let color = opts && 'color' in opts ? opts.color : C[15] || CT.C15;
+    if (color == null) dart.nullFailed(I[0], 68, 10, "color");
+    let fontSize = opts && 'fontSize' in opts ? opts.fontSize : null;
+    this[iconData$] = iconData;
+    this[color$0] = color;
+    this[fontSize$] = fontSize;
+    ;
+  }).prototype = style.IconStyle.prototype;
+  dart.addTypeTests(style.IconStyle);
+  dart.addTypeCaches(style.IconStyle);
+  dart.setLibraryUri(style.IconStyle, I[1]);
+  dart.setFieldSignature(style.IconStyle, () => ({
+    __proto__: dart.getFields(style.IconStyle.__proto__),
+    iconData: dart.finalFieldType(icon_data.IconData),
+    color: dart.finalFieldType(ui.Color),
+    fontSize: dart.finalFieldType(dart.nullable(core.double))
+  }));
+  var color$1 = dart.privateName(style, "LineStyle.color");
+  var thickness$ = dart.privateName(style, "LineStyle.thickness");
+  style.LineStyle = class LineStyle extends core.Object {
+    get color() {
+      return this[color$1];
+    }
+    set color(value) {
+      super.color = value;
+    }
+    get thickness() {
+      return this[thickness$];
+    }
+    set thickness(value) {
+      super.thickness = value;
+    }
+  };
+  (style.LineStyle.new = function(opts) {
+    let color = opts && 'color' in opts ? opts.color : C[1] || CT.C1;
+    if (color == null) dart.nullFailed(I[0], 86, 10, "color");
+    let thickness = opts && 'thickness' in opts ? opts.thickness : 4;
+    if (thickness == null) dart.nullFailed(I[0], 87, 10, "thickness");
+    this[color$1] = color;
+    this[thickness$] = thickness;
+    ;
+  }).prototype = style.LineStyle.prototype;
+  dart.addTypeTests(style.LineStyle);
+  dart.addTypeCaches(style.LineStyle);
+  dart.setLibraryUri(style.LineStyle, I[1]);
+  dart.setFieldSignature(style.LineStyle, () => ({
+    __proto__: dart.getFields(style.LineStyle.__proto__),
+    color: dart.finalFieldType(ui.Color),
+    thickness: dart.finalFieldType(core.double)
+  }));
+  var _name$ = dart.privateName(tile, "_name");
+  tile.TimelineAxis = class TimelineAxis extends core.Object {
+    toString() {
+      return this[_name$];
+    }
+  };
+  (tile.TimelineAxis.new = function(index, _name) {
+    if (index == null) dart.nullFailed(I[2], 9, 6, "index");
+    if (_name == null) dart.nullFailed(I[2], 9, 6, "_name");
+    this.index = index;
+    this[_name$] = _name;
+    ;
+  }).prototype = tile.TimelineAxis.prototype;
+  dart.addTypeTests(tile.TimelineAxis);
+  dart.addTypeCaches(tile.TimelineAxis);
+  dart.setLibraryUri(tile.TimelineAxis, I[3]);
+  dart.setFieldSignature(tile.TimelineAxis, () => ({
+    __proto__: dart.getFields(tile.TimelineAxis.__proto__),
+    index: dart.finalFieldType(core.int),
+    [_name$]: dart.finalFieldType(core.String)
+  }));
+  dart.defineExtensionMethods(tile.TimelineAxis, ['toString']);
+  tile.TimelineAxis.vertical = C[16] || CT.C16;
+  tile.TimelineAxis.horizontal = C[17] || CT.C17;
+  tile.TimelineAxis.values = C[18] || CT.C18;
+  tile.TimelineAlign = class TimelineAlign extends core.Object {
+    toString() {
+      return this[_name$];
+    }
+  };
+  (tile.TimelineAlign.new = function(index, _name) {
+    if (index == null) dart.nullFailed(I[2], 18, 6, "index");
+    if (_name == null) dart.nullFailed(I[2], 18, 6, "_name");
+    this.index = index;
+    this[_name$] = _name;
+    ;
+  }).prototype = tile.TimelineAlign.prototype;
+  dart.addTypeTests(tile.TimelineAlign);
+  dart.addTypeCaches(tile.TimelineAlign);
+  dart.setLibraryUri(tile.TimelineAlign, I[3]);
+  dart.setFieldSignature(tile.TimelineAlign, () => ({
+    __proto__: dart.getFields(tile.TimelineAlign.__proto__),
+    index: dart.finalFieldType(core.int),
+    [_name$]: dart.finalFieldType(core.String)
+  }));
+  dart.defineExtensionMethods(tile.TimelineAlign, ['toString']);
+  tile.TimelineAlign.start = C[19] || CT.C19;
+  tile.TimelineAlign.end = C[20] || CT.C20;
+  tile.TimelineAlign.center = C[21] || CT.C21;
+  tile.TimelineAlign.manual = C[22] || CT.C22;
+  tile.TimelineAlign.values = C[23] || CT.C23;
+  var axis$ = dart.privateName(tile, "TimelineTile.axis");
+  var alignment$ = dart.privateName(tile, "TimelineTile.alignment");
+  var startChild$ = dart.privateName(tile, "TimelineTile.startChild");
+  var endChild$ = dart.privateName(tile, "TimelineTile.endChild");
+  var lineXY$ = dart.privateName(tile, "TimelineTile.lineXY");
+  var hasIndicator$ = dart.privateName(tile, "TimelineTile.hasIndicator");
+  var isFirst$ = dart.privateName(tile, "TimelineTile.isFirst");
+  var isLast$ = dart.privateName(tile, "TimelineTile.isLast");
+  var indicatorStyle$ = dart.privateName(tile, "TimelineTile.indicatorStyle");
+  var beforeLineStyle$ = dart.privateName(tile, "TimelineTile.beforeLineStyle");
+  var afterLineStyle$ = dart.privateName(tile, "TimelineTile.afterLineStyle");
+  var _Location_parameterLocations = dart.privateName(widget_inspector, "_Location.parameterLocations");
+  var _Location_name = dart.privateName(widget_inspector, "_Location.name");
+  var _Location_column = dart.privateName(widget_inspector, "_Location.column");
+  var _Location_line = dart.privateName(widget_inspector, "_Location.line");
+  var _Location_file = dart.privateName(widget_inspector, "_Location.file");
+  var _indicatorTotalSize = dart.privateName(tile, "_indicatorTotalSize");
+  tile.TimelineTile = class TimelineTile extends framework.StatelessWidget {
+    get axis() {
+      return this[axis$];
+    }
+    set axis(value) {
+      super.axis = value;
+    }
+    get alignment() {
+      return this[alignment$];
+    }
+    set alignment(value) {
+      super.alignment = value;
+    }
+    get startChild() {
+      return this[startChild$];
+    }
+    set startChild(value) {
+      super.startChild = value;
+    }
+    get endChild() {
+      return this[endChild$];
+    }
+    set endChild(value) {
+      super.endChild = value;
+    }
+    get lineXY() {
+      return this[lineXY$];
+    }
+    set lineXY(value) {
+      super.lineXY = value;
+    }
+    get hasIndicator() {
+      return this[hasIndicator$];
+    }
+    set hasIndicator(value) {
+      super.hasIndicator = value;
+    }
+    get isFirst() {
+      return this[isFirst$];
+    }
+    set isFirst(value) {
+      super.isFirst = value;
+    }
+    get isLast() {
+      return this[isLast$];
+    }
+    set isLast(value) {
+      super.isLast = value;
+    }
+    get indicatorStyle() {
+      return this[indicatorStyle$];
+    }
+    set indicatorStyle(value) {
+      super.indicatorStyle = value;
+    }
+    get beforeLineStyle() {
+      return this[beforeLineStyle$];
+    }
+    set beforeLineStyle(value) {
+      super.beforeLineStyle = value;
+    }
+    get afterLineStyle() {
+      return this[afterLineStyle$];
+    }
+    set afterLineStyle(value) {
+      super.afterLineStyle = value;
+    }
+    build(context) {
+      if (context == null) dart.nullFailed(I[2], 106, 29, "context");
+      return new layout_builder.LayoutBuilder.new({builder: dart.fn((context, constraints) => {
+          let t1, t1$, t1$0, t1$1;
+          if (context == null) dart.nullFailed(I[2], 108, 30, "context");
+          if (constraints == null) dart.nullFailed(I[2], 108, 54, "constraints");
+          let startCrossAxisSpace = 0.0;
+          let endCrossAxisSpace = 0.0;
+          if (this.axis == tile.TimelineAxis.vertical) {
+            startCrossAxisSpace = this.indicatorStyle.padding.left;
+            endCrossAxisSpace = this.indicatorStyle.padding.right;
+          } else {
+            startCrossAxisSpace = this.indicatorStyle.padding.top;
+            endCrossAxisSpace = this.indicatorStyle.padding.bottom;
+          }
+          let children = (() => {
+            let t0 = T.JSArrayOfWidget().of([]);
+            if (dart.notNull(startCrossAxisSpace) > 0) t0[$add](new basic.SizedBox.new({height: this.axis == tile.TimelineAxis.vertical ? null : startCrossAxisSpace, width: this.axis == tile.TimelineAxis.vertical ? startCrossAxisSpace : null, $creationLocationd_0dea112b090073317d4: C[26] || CT.C26}));
+            t0[$add](new tile._Indicator.new({axis: this.axis, beforeLineStyle: this.beforeLineStyle, afterLineStyle: this.afterLineStyle, indicatorStyle: this.indicatorStyle, hasIndicator: this.hasIndicator, isLast: this.isLast, isFirst: this.isFirst, $creationLocationd_0dea112b090073317d4: C[30] || CT.C30}));
+            if (dart.notNull(endCrossAxisSpace) > 0) t0[$add](new basic.SizedBox.new({height: this.axis == tile.TimelineAxis.vertical ? null : endCrossAxisSpace, width: this.axis == tile.TimelineAxis.vertical ? endCrossAxisSpace : null, $creationLocationd_0dea112b090073317d4: C[39] || CT.C39}));
+            return t0;
+          })();
+          let defaultChild = this.axis == tile.TimelineAxis.vertical ? new container.Container.new({height: 100.0, $creationLocationd_0dea112b090073317d4: C[43] || CT.C43}) : new container.Container.new({width: 100.0, $creationLocationd_0dea112b090073317d4: C[46] || CT.C46});
+          if (this.alignment == tile.TimelineAlign.start) {
+            children[$add](new basic.Expanded.new({child: (t1 = this.endChild, t1 == null ? defaultChild : t1), $creationLocationd_0dea112b090073317d4: C[49] || CT.C49}));
+          } else if (this.alignment == tile.TimelineAlign.end) {
+            children[$insert](0, new basic.Expanded.new({child: (t1$ = this.startChild, t1$ == null ? defaultChild : t1$), $creationLocationd_0dea112b090073317d4: C[52] || CT.C52}));
+          } else {
+            let indicatorAxisXY = this.alignment == tile.TimelineAlign.center ? 0.5 : dart.nullCheck(this.lineXY);
+            let indicatorTotalSize = this[_indicatorTotalSize]();
+            let positioning = axis.calculateAxisPositioning({totalSize: this.axis == tile.TimelineAxis.vertical ? constraints.maxWidth : constraints.maxHeight, objectSize: indicatorTotalSize, axisPosition: indicatorAxisXY});
+            if (dart.notNull(positioning.firstSpace.size) > 0) {
+              children[$insert](0, new basic.SizedBox.new({height: this.axis == tile.TimelineAxis.horizontal ? positioning.firstSpace.size : null, width: this.axis == tile.TimelineAxis.vertical ? positioning.firstSpace.size : null, child: (t1$0 = this.startChild, t1$0 == null ? defaultChild : t1$0), $creationLocationd_0dea112b090073317d4: C[55] || CT.C55}));
+            }
+            if (dart.notNull(positioning.secondSpace.size) > 0) {
+              children[$add](new basic.SizedBox.new({height: this.axis == tile.TimelineAxis.horizontal ? positioning.secondSpace.size : null, width: this.axis == tile.TimelineAxis.vertical ? positioning.secondSpace.size : null, child: (t1$1 = this.endChild, t1$1 == null ? defaultChild : t1$1), $creationLocationd_0dea112b090073317d4: C[60] || CT.C60}));
+            }
+          }
+          return this.axis == tile.TimelineAxis.vertical ? new basic.IntrinsicHeight.new({child: new basic.Row.new({mainAxisSize: flex.MainAxisSize.max, children: children, $creationLocationd_0dea112b090073317d4: C[65] || CT.C65}), $creationLocationd_0dea112b090073317d4: C[69] || CT.C69}) : new basic.IntrinsicWidth.new({child: new basic.Column.new({mainAxisSize: flex.MainAxisSize.max, children: children, $creationLocationd_0dea112b090073317d4: C[72] || CT.C72}), $creationLocationd_0dea112b090073317d4: C[76] || CT.C76});
+        }, T.BuildContextAndBoxConstraintsToSingleChildRenderObjectWidget()), $creationLocationd_0dea112b090073317d4: C[79] || CT.C79});
+    }
+    [_indicatorTotalSize]() {
+      if (this.axis == tile.TimelineAxis.vertical) {
+        return dart.notNull(this.indicatorStyle.padding.left) + dart.notNull(this.indicatorStyle.padding.right) + dart.notNull(dart.test(this.hasIndicator) ? this.indicatorStyle.width : math.max(core.num, this.beforeLineStyle.thickness, this.afterLineStyle.thickness));
+      }
+      return dart.notNull(this.indicatorStyle.padding.top) + dart.notNull(this.indicatorStyle.padding.bottom) + dart.notNull(dart.test(this.hasIndicator) ? this.indicatorStyle.height : math.max(core.num, this.beforeLineStyle.thickness, this.afterLineStyle.thickness));
+    }
+  };
+  (tile.TimelineTile.new = function(opts) {
+    let t0;
+    let key = opts && 'key' in opts ? opts.key : null;
+    let axis = opts && 'axis' in opts ? opts.axis : C[16] || CT.C16;
+    if (axis == null) dart.nullFailed(I[2], 41, 10, "axis");
+    let alignment = opts && 'alignment' in opts ? opts.alignment : C[19] || CT.C19;
+    if (alignment == null) dart.nullFailed(I[2], 42, 10, "alignment");
+    let startChild = opts && 'startChild' in opts ? opts.startChild : null;
+    let endChild = opts && 'endChild' in opts ? opts.endChild : null;
+    let lineXY = opts && 'lineXY' in opts ? opts.lineXY : null;
+    let hasIndicator = opts && 'hasIndicator' in opts ? opts.hasIndicator : true;
+    if (hasIndicator == null) dart.nullFailed(I[2], 46, 10, "hasIndicator");
+    let isFirst = opts && 'isFirst' in opts ? opts.isFirst : false;
+    if (isFirst == null) dart.nullFailed(I[2], 47, 10, "isFirst");
+    let isLast = opts && 'isLast' in opts ? opts.isLast : false;
+    if (isLast == null) dart.nullFailed(I[2], 48, 10, "isLast");
+    let indicatorStyle = opts && 'indicatorStyle' in opts ? opts.indicatorStyle : C[24] || CT.C24;
+    if (indicatorStyle == null) dart.nullFailed(I[2], 49, 10, "indicatorStyle");
+    let beforeLineStyle = opts && 'beforeLineStyle' in opts ? opts.beforeLineStyle : C[25] || CT.C25;
+    if (beforeLineStyle == null) dart.nullFailed(I[2], 50, 10, "beforeLineStyle");
+    let afterLineStyle = opts && 'afterLineStyle' in opts ? opts.afterLineStyle : null;
+    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
+    this[axis$] = axis;
+    this[alignment$] = alignment;
+    this[startChild$] = startChild;
+    this[endChild$] = endChild;
+    this[lineXY$] = lineXY;
+    this[hasIndicator$] = hasIndicator;
+    this[isFirst$] = isFirst;
+    this[isLast$] = isLast;
+    this[indicatorStyle$] = indicatorStyle;
+    this[beforeLineStyle$] = beforeLineStyle;
+    this[afterLineStyle$] = (t0 = afterLineStyle, t0 == null ? beforeLineStyle : t0);
+    if (!(alignment != tile.TimelineAlign.start || startChild == null)) dart.assertFailed("Cannot provide startChild with automatic alignment to the left", I[2], 53, 16, "alignment != TimelineAlign.start || startChild == null");
+    if (!(alignment != tile.TimelineAlign.end || endChild == null)) dart.assertFailed("Cannot provide endChild with automatic alignment to the right", I[2], 55, 16, "alignment != TimelineAlign.end || endChild == null");
+    if (!(alignment != tile.TimelineAlign.manual || lineXY != null && dart.notNull(lineXY) >= 0.0 && dart.notNull(lineXY) <= 1.0)) dart.assertFailed("The lineX must be provided when aligning manually, " + "and must be a value between 0.0 and 1.0 inclusive", I[2], 58, 13, "alignment != TimelineAlign.manual ||\n                (lineXY != null && lineXY >= 0.0 && lineXY <= 1.0)");
+    tile.TimelineTile.__proto__.new.call(this, {key: key, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
+    ;
+  }).prototype = tile.TimelineTile.prototype;
+  dart.addTypeTests(tile.TimelineTile);
+  dart.addTypeCaches(tile.TimelineTile);
+  dart.setMethodSignature(tile.TimelineTile, () => ({
+    __proto__: dart.getMethods(tile.TimelineTile.__proto__),
+    build: dart.fnType(framework.Widget, [framework.BuildContext]),
+    [_indicatorTotalSize]: dart.fnType(core.double, [])
+  }));
+  dart.setLibraryUri(tile.TimelineTile, I[3]);
+  dart.setFieldSignature(tile.TimelineTile, () => ({
+    __proto__: dart.getFields(tile.TimelineTile.__proto__),
+    axis: dart.finalFieldType(tile.TimelineAxis),
+    alignment: dart.finalFieldType(tile.TimelineAlign),
+    startChild: dart.finalFieldType(dart.nullable(framework.Widget)),
+    endChild: dart.finalFieldType(dart.nullable(framework.Widget)),
+    lineXY: dart.finalFieldType(dart.nullable(core.double)),
+    hasIndicator: dart.finalFieldType(core.bool),
+    isFirst: dart.finalFieldType(core.bool),
+    isLast: dart.finalFieldType(core.bool),
+    indicatorStyle: dart.finalFieldType(style.IndicatorStyle),
+    beforeLineStyle: dart.finalFieldType(style.LineStyle),
+    afterLineStyle: dart.finalFieldType(style.LineStyle)
+  }));
+  var axis$0 = dart.privateName(tile, "_Indicator.axis");
+  var beforeLineStyle$0 = dart.privateName(tile, "_Indicator.beforeLineStyle");
+  var afterLineStyle$0 = dart.privateName(tile, "_Indicator.afterLineStyle");
+  var indicatorStyle$0 = dart.privateName(tile, "_Indicator.indicatorStyle");
+  var hasIndicator$0 = dart.privateName(tile, "_Indicator.hasIndicator");
+  var isFirst$0 = dart.privateName(tile, "_Indicator.isFirst");
+  var isLast$0 = dart.privateName(tile, "_Indicator.isLast");
+  var _buildCustomIndicator = dart.privateName(tile, "_buildCustomIndicator");
+  tile._Indicator = class _Indicator extends framework.StatelessWidget {
+    get axis() {
+      return this[axis$0];
+    }
+    set axis(value) {
+      super.axis = value;
+    }
+    get beforeLineStyle() {
+      return this[beforeLineStyle$0];
+    }
+    set beforeLineStyle(value) {
+      super.beforeLineStyle = value;
+    }
+    get afterLineStyle() {
+      return this[afterLineStyle$0];
+    }
+    set afterLineStyle(value) {
+      super.afterLineStyle = value;
+    }
+    get indicatorStyle() {
+      return this[indicatorStyle$0];
+    }
+    set indicatorStyle(value) {
+      super.indicatorStyle = value;
+    }
+    get hasIndicator() {
+      return this[hasIndicator$0];
+    }
+    set hasIndicator(value) {
+      super.hasIndicator = value;
+    }
+    get isFirst() {
+      return this[isFirst$0];
+    }
+    set isFirst(value) {
+      super.isFirst = value;
+    }
+    get isLast() {
+      return this[isLast$0];
+    }
+    set isLast(value) {
+      super.isLast = value;
+    }
+    build(context) {
+      if (context == null) dart.nullFailed(I[2], 259, 29, "context");
+      let size = null;
+      if (this.axis == tile.TimelineAxis.vertical) {
+        size = dart.test(this.hasIndicator) ? this.indicatorStyle.width : math.max(core.double, this.beforeLineStyle.thickness, this.afterLineStyle.thickness);
+      } else {
+        size = dart.test(this.hasIndicator) ? this.indicatorStyle.height : math.max(core.double, this.beforeLineStyle.thickness, this.afterLineStyle.thickness);
+      }
+      let childrenStack = T.JSArrayOfWidget().of([new basic.SizedBox.new({height: this.axis == tile.TimelineAxis.vertical ? 1 / 0 : size, width: this.axis == tile.TimelineAxis.vertical ? size : 1 / 0, $creationLocationd_0dea112b090073317d4: C[82] || CT.C82})]);
+      let renderDefaultIndicator = dart.test(this.hasIndicator) && this.indicatorStyle.indicator == null;
+      if (!renderDefaultIndicator) {
+        childrenStack[$add](this[_buildCustomIndicator]());
+      }
+      let painter = new tile._TimelinePainter.new({axis: this.axis, beforeLineStyle: this.beforeLineStyle, afterLineStyle: this.afterLineStyle, indicatorStyle: this.indicatorStyle, paintIndicator: renderDefaultIndicator, isFirst: this.isFirst, isLast: this.isLast});
+      return new basic.CustomPaint.new({painter: painter, child: new basic.Stack.new({children: childrenStack, $creationLocationd_0dea112b090073317d4: C[86] || CT.C86}), $creationLocationd_0dea112b090073317d4: C[89] || CT.C89});
+    }
+    [_buildCustomIndicator]() {
+      return new basic.Positioned.fill({child: new layout_builder.LayoutBuilder.new({builder: dart.fn((context, constraints) => {
+            if (context == null) dart.nullFailed(I[2], 307, 32, "context");
+            if (constraints == null) dart.nullFailed(I[2], 307, 56, "constraints");
+            let position = null;
+            let spaceChildren = null;
+            let spacePadding = null;
+            if (this.axis == tile.TimelineAxis.vertical) {
+              position = axis.calculateAxisPositioning({totalSize: constraints.maxHeight, objectSize: this.indicatorStyle.totalHeight, axisPosition: this.indicatorStyle.indicatorXY});
+              spaceChildren = new edge_insets.EdgeInsets.only({top: position.firstSpace.size, bottom: position.secondSpace.size});
+              spacePadding = new edge_insets.EdgeInsets.only({top: this.indicatorStyle.padding.top, bottom: this.indicatorStyle.padding.bottom});
+            } else {
+              position = axis.calculateAxisPositioning({totalSize: constraints.maxWidth, objectSize: this.indicatorStyle.totalWidth, axisPosition: this.indicatorStyle.indicatorXY});
+              spaceChildren = new edge_insets.EdgeInsets.only({left: position.firstSpace.size, right: position.secondSpace.size});
+              spacePadding = new edge_insets.EdgeInsets.only({left: this.indicatorStyle.padding.left, right: this.indicatorStyle.padding.right});
+            }
+            return new basic.Padding.new({padding: spaceChildren, child: new basic.Padding.new({padding: spacePadding, child: new basic.SizedBox.new({height: this.indicatorStyle.height, width: this.indicatorStyle.width, child: this.indicatorStyle.indicator, $creationLocationd_0dea112b090073317d4: C[93] || CT.C93}), $creationLocationd_0dea112b090073317d4: C[98] || CT.C98}), $creationLocationd_0dea112b090073317d4: C[102] || CT.C102});
+          }, T.BuildContextAndBoxConstraintsToPadding()), $creationLocationd_0dea112b090073317d4: C[106] || CT.C106}), $creationLocationd_0dea112b090073317d4: C[109] || CT.C109});
+    }
+  };
+  (tile._Indicator.new = function(opts) {
+    let axis = opts && 'axis' in opts ? opts.axis : null;
+    if (axis == null) dart.nullFailed(I[2], 228, 19, "axis");
+    let beforeLineStyle = opts && 'beforeLineStyle' in opts ? opts.beforeLineStyle : null;
+    if (beforeLineStyle == null) dart.nullFailed(I[2], 229, 19, "beforeLineStyle");
+    let afterLineStyle = opts && 'afterLineStyle' in opts ? opts.afterLineStyle : null;
+    if (afterLineStyle == null) dart.nullFailed(I[2], 230, 19, "afterLineStyle");
+    let indicatorStyle = opts && 'indicatorStyle' in opts ? opts.indicatorStyle : null;
+    if (indicatorStyle == null) dart.nullFailed(I[2], 231, 19, "indicatorStyle");
+    let hasIndicator = opts && 'hasIndicator' in opts ? opts.hasIndicator : null;
+    if (hasIndicator == null) dart.nullFailed(I[2], 232, 19, "hasIndicator");
+    let isFirst = opts && 'isFirst' in opts ? opts.isFirst : null;
+    if (isFirst == null) dart.nullFailed(I[2], 233, 19, "isFirst");
+    let isLast = opts && 'isLast' in opts ? opts.isLast : null;
+    if (isLast == null) dart.nullFailed(I[2], 234, 19, "isLast");
+    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
+    this[axis$0] = axis;
+    this[beforeLineStyle$0] = beforeLineStyle;
+    this[afterLineStyle$0] = afterLineStyle;
+    this[indicatorStyle$0] = indicatorStyle;
+    this[hasIndicator$0] = hasIndicator;
+    this[isFirst$0] = isFirst;
+    this[isLast$0] = isLast;
+    tile._Indicator.__proto__.new.call(this, {$creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
+    ;
+  }).prototype = tile._Indicator.prototype;
+  dart.addTypeTests(tile._Indicator);
+  dart.addTypeCaches(tile._Indicator);
+  dart.setMethodSignature(tile._Indicator, () => ({
+    __proto__: dart.getMethods(tile._Indicator.__proto__),
+    build: dart.fnType(framework.Widget, [framework.BuildContext]),
+    [_buildCustomIndicator]: dart.fnType(framework.Widget, [])
+  }));
+  dart.setLibraryUri(tile._Indicator, I[3]);
+  dart.setFieldSignature(tile._Indicator, () => ({
+    __proto__: dart.getFields(tile._Indicator.__proto__),
+    axis: dart.finalFieldType(tile.TimelineAxis),
+    beforeLineStyle: dart.finalFieldType(style.LineStyle),
+    afterLineStyle: dart.finalFieldType(style.LineStyle),
+    indicatorStyle: dart.finalFieldType(style.IndicatorStyle),
+    hasIndicator: dart.finalFieldType(core.bool),
+    isFirst: dart.finalFieldType(core.bool),
+    isLast: dart.finalFieldType(core.bool)
+  }));
+  var _drawSingleLine = dart.privateName(tile, "_drawSingleLine");
+  var _drawBeforeLine = dart.privateName(tile, "_drawBeforeLine");
+  var _drawAfterLine = dart.privateName(tile, "_drawAfterLine");
+  var ParagraphConstraints_width = dart.privateName(ui, "ParagraphConstraints.width");
+  tile._TimelinePainter = class _TimelinePainter extends custom_paint.CustomPainter {
+    paint(canvas, size) {
+      if (canvas == null) dart.nullFailed(I[2], 461, 21, "canvas");
+      if (size == null) dart.nullFailed(I[2], 461, 34, "size");
+      let hasGap = dart.notNull(this.indicatorStartGap) > 0 || dart.notNull(this.indicatorEndGap) > 0 || dart.test(this.drawGap);
+      let centerAxis = this.axis == tile.TimelineAxis.vertical ? dart.notNull(size.width) / 2 : dart.notNull(size.height) / 2;
+      let indicatorTotalSize = dart.notNull(this.indicatorSize) + dart.notNull(this.indicatorEndGap) + dart.notNull(this.indicatorStartGap);
+      let position = axis.calculateAxisPositioning({totalSize: this.axis == tile.TimelineAxis.vertical ? size.height : size.width, objectSize: indicatorTotalSize, axisPosition: this.indicatorXY});
+      if (!hasGap) {
+        this[_drawSingleLine](canvas, centerAxis, position);
+      } else {
+        if (!dart.test(this.isFirst)) {
+          this[_drawBeforeLine](canvas, centerAxis, position);
+        }
+        if (!dart.test(this.isLast)) {
+          this[_drawAfterLine](canvas, centerAxis, position);
+        }
+      }
+      if (dart.test(this.paintIndicator)) {
+        let indicatorRadius = (dart.notNull(position.objectSpace.size) - dart.notNull(this.indicatorStartGap) - dart.notNull(this.indicatorEndGap)) / 2;
+        let indicatorCenterPoint = dart.notNull(position.objectSpace.start) + dart.notNull(this.indicatorStartGap) + indicatorRadius;
+        let indicatorCenter = this.axis == tile.TimelineAxis.vertical ? new ui.Offset.new(centerAxis, indicatorCenterPoint) : new ui.Offset.new(indicatorCenterPoint, centerAxis);
+        canvas.drawCircle(indicatorCenter, indicatorRadius, dart.nullCheck(this.indicatorPaint));
+        if (this.iconData != null) {
+          let fontSize = this.iconSize;
+          fontSize == null ? fontSize = indicatorRadius * 2 - 10 : null;
+          let builder = ui.ParagraphBuilder.new(ui.ParagraphStyle.new({fontFamily: dart.nullCheck(this.iconData).fontFamily}));
+          builder.pushStyle(ui.TextStyle.new({fontSize: fontSize, color: this.iconColor}));
+          builder.addText(core.String.fromCharCode(dart.nullCheck(this.iconData).codePoint));
+          let paragraph = builder.build();
+          paragraph.layout(C[112] || CT.C112);
+          let halfIconSize = dart.notNull(fontSize) / 2;
+          let offsetIcon = new ui.Offset.new(dart.notNull(indicatorCenter.dx) - halfIconSize, dart.notNull(indicatorCenter.dy) - halfIconSize);
+          canvas.drawParagraph(paragraph, offsetIcon);
+        }
+      }
+    }
+    shouldRepaint(oldDelegate) {
+      custom_paint.CustomPainter.as(oldDelegate);
+      if (oldDelegate == null) dart.nullFailed(I[2], 521, 36, "oldDelegate");
+      return false;
+    }
+    [_drawSingleLine](canvas, centerAxis, position) {
+      if (canvas == null) dart.nullFailed(I[2], 526, 14, "canvas");
+      if (centerAxis == null) dart.nullFailed(I[2], 526, 29, "centerAxis");
+      if (position == null) dart.nullFailed(I[2], 526, 54, "position");
+      if (!dart.test(this.isFirst)) {
+        let beginTopLine = this.axis == tile.TimelineAxis.vertical ? new ui.Offset.new(centerAxis, 0.0) : new ui.Offset.new(0.0, centerAxis);
+        let endTopLine = this.axis == tile.TimelineAxis.vertical ? new ui.Offset.new(centerAxis, dart.test(this.paintIndicator) || !dart.test(this.drawGap) ? position.objectSpace.center : position.firstSpace.end) : new ui.Offset.new(dart.test(this.paintIndicator) || !dart.test(this.drawGap) ? position.objectSpace.center : position.firstSpace.end, centerAxis);
+        canvas.drawLine(beginTopLine, endTopLine, this.beforeLinePaint);
+      }
+      if (!dart.test(this.isLast)) {
+        let beginBottomLine = this.axis == tile.TimelineAxis.vertical ? new ui.Offset.new(centerAxis, dart.test(this.paintIndicator) || !dart.test(this.drawGap) ? position.objectSpace.center : position.objectSpace.end) : new ui.Offset.new(dart.test(this.paintIndicator) || !dart.test(this.drawGap) ? position.objectSpace.center : position.objectSpace.end, centerAxis);
+        let endBottomLine = this.axis == tile.TimelineAxis.vertical ? new ui.Offset.new(centerAxis, position.secondSpace.end) : new ui.Offset.new(position.secondSpace.end, centerAxis);
+        canvas.drawLine(beginBottomLine, endBottomLine, this.afterLinePaint);
+      }
+    }
+    [_drawBeforeLine](canvas, centerAxis, position) {
+      if (canvas == null) dart.nullFailed(I[2], 569, 14, "canvas");
+      if (centerAxis == null) dart.nullFailed(I[2], 569, 29, "centerAxis");
+      if (position == null) dart.nullFailed(I[2], 569, 54, "position");
+      let beginTopLine = this.axis == tile.TimelineAxis.vertical ? new ui.Offset.new(centerAxis, 0.0) : new ui.Offset.new(0.0, centerAxis);
+      let endTopLine = this.axis == tile.TimelineAxis.vertical ? new ui.Offset.new(centerAxis, position.firstSpace.end) : new ui.Offset.new(position.firstSpace.end, centerAxis);
+      let lineSize = this.axis == tile.TimelineAxis.vertical ? endTopLine.dy : endTopLine.dx;
+      if (dart.notNull(lineSize) > 0) {
+        canvas.drawLine(beginTopLine, endTopLine, this.beforeLinePaint);
+      }
+    }
+    [_drawAfterLine](canvas, centerAxis, position) {
+      if (canvas == null) dart.nullFailed(I[2], 585, 30, "canvas");
+      if (centerAxis == null) dart.nullFailed(I[2], 585, 45, "centerAxis");
+      if (position == null) dart.nullFailed(I[2], 585, 70, "position");
+      let beginBottomLine = this.axis == tile.TimelineAxis.vertical ? new ui.Offset.new(centerAxis, position.secondSpace.start) : new ui.Offset.new(position.secondSpace.start, centerAxis);
+      let endBottomLine = this.axis == tile.TimelineAxis.vertical ? new ui.Offset.new(centerAxis, position.secondSpace.end) : new ui.Offset.new(position.secondSpace.end, centerAxis);
+      let lineSize = this.axis == tile.TimelineAxis.vertical ? dart.notNull(endBottomLine.dy) - dart.notNull(beginBottomLine.dy) : dart.notNull(endBottomLine.dx) - dart.notNull(beginBottomLine.dx);
+      if (lineSize > 0) {
+        canvas.drawLine(beginBottomLine, endBottomLine, this.afterLinePaint);
+      }
+    }
+  };
+  (tile._TimelinePainter.new = function(opts) {
+    let t1, t1$, t1$0, t1$1, t1$2, t1$3;
+    let axis = opts && 'axis' in opts ? opts.axis : null;
+    if (axis == null) dart.nullFailed(I[2], 361, 19, "axis");
+    let paintIndicator = opts && 'paintIndicator' in opts ? opts.paintIndicator : true;
+    if (paintIndicator == null) dart.nullFailed(I[2], 362, 10, "paintIndicator");
+    let isFirst = opts && 'isFirst' in opts ? opts.isFirst : false;
+    if (isFirst == null) dart.nullFailed(I[2], 363, 10, "isFirst");
+    let isLast = opts && 'isLast' in opts ? opts.isLast : false;
+    if (isLast == null) dart.nullFailed(I[2], 364, 10, "isLast");
+    let indicatorStyle = opts && 'indicatorStyle' in opts ? opts.indicatorStyle : null;
+    if (indicatorStyle == null) dart.nullFailed(I[2], 365, 29, "indicatorStyle");
+    let beforeLineStyle = opts && 'beforeLineStyle' in opts ? opts.beforeLineStyle : null;
+    if (beforeLineStyle == null) dart.nullFailed(I[2], 366, 24, "beforeLineStyle");
+    let afterLineStyle = opts && 'afterLineStyle' in opts ? opts.afterLineStyle : null;
+    if (afterLineStyle == null) dart.nullFailed(I[2], 367, 24, "afterLineStyle");
+    this.axis = axis;
+    this.paintIndicator = paintIndicator;
+    this.isFirst = isFirst;
+    this.isLast = isLast;
+    this.beforeLinePaint = (t1 = ui.Paint.new(), (() => {
+      t1.color = beforeLineStyle.color;
+      t1.strokeWidth = beforeLineStyle.thickness;
+      return t1;
+    })());
+    this.afterLinePaint = (t1$ = ui.Paint.new(), (() => {
+      t1$.color = afterLineStyle.color;
+      t1$.strokeWidth = afterLineStyle.thickness;
+      return t1$;
+    })());
+    this.indicatorPaint = !dart.test(paintIndicator) ? null : (t1$0 = ui.Paint.new(), (() => {
+      t1$0.color = indicatorStyle.color;
+      return t1$0;
+    })());
+    this.indicatorXY = indicatorStyle.indicatorXY;
+    this.indicatorSize = axis == tile.TimelineAxis.vertical ? dart.test(paintIndicator) ? indicatorStyle.width : indicatorStyle.indicator != null ? indicatorStyle.height : 0.0 : dart.test(paintIndicator) ? indicatorStyle.height : indicatorStyle.indicator != null ? indicatorStyle.width : 0.0;
+    this.indicatorStartGap = axis == tile.TimelineAxis.vertical ? indicatorStyle.padding.top : indicatorStyle.padding.left;
+    this.indicatorEndGap = axis == tile.TimelineAxis.vertical ? indicatorStyle.padding.bottom : indicatorStyle.padding.right;
+    this.drawGap = indicatorStyle.drawGap;
+    this.iconData = indicatorStyle.iconStyle != null ? (t1$1 = indicatorStyle.iconStyle, t1$1 == null ? null : t1$1.iconData) : null;
+    this.iconColor = indicatorStyle.iconStyle != null ? (t1$2 = indicatorStyle.iconStyle, t1$2 == null ? null : t1$2.color) : null;
+    this.iconSize = indicatorStyle.iconStyle != null ? (t1$3 = indicatorStyle.iconStyle, t1$3 == null ? null : t1$3.fontSize) : null;
+    tile._TimelinePainter.__proto__.new.call(this);
+    ;
+  }).prototype = tile._TimelinePainter.prototype;
+  dart.addTypeTests(tile._TimelinePainter);
+  dart.addTypeCaches(tile._TimelinePainter);
+  dart.setMethodSignature(tile._TimelinePainter, () => ({
+    __proto__: dart.getMethods(tile._TimelinePainter.__proto__),
+    paint: dart.fnType(dart.void, [ui.Canvas, ui.Size]),
+    shouldRepaint: dart.fnType(core.bool, [dart.nullable(core.Object)]),
+    [_drawSingleLine]: dart.fnType(dart.void, [ui.Canvas, core.double, axis.AxisPosition]),
+    [_drawBeforeLine]: dart.fnType(dart.void, [ui.Canvas, core.double, axis.AxisPosition]),
+    [_drawAfterLine]: dart.fnType(dart.void, [ui.Canvas, core.double, axis.AxisPosition])
+  }));
+  dart.setLibraryUri(tile._TimelinePainter, I[3]);
+  dart.setFieldSignature(tile._TimelinePainter, () => ({
+    __proto__: dart.getFields(tile._TimelinePainter.__proto__),
+    axis: dart.finalFieldType(tile.TimelineAxis),
+    indicatorXY: dart.finalFieldType(core.double),
+    indicatorStartGap: dart.finalFieldType(core.double),
+    indicatorEndGap: dart.finalFieldType(core.double),
+    indicatorSize: dart.finalFieldType(core.double),
+    beforeLinePaint: dart.finalFieldType(ui.Paint),
+    afterLinePaint: dart.finalFieldType(ui.Paint),
+    indicatorPaint: dart.finalFieldType(dart.nullable(ui.Paint)),
+    paintIndicator: dart.finalFieldType(core.bool),
+    isFirst: dart.finalFieldType(core.bool),
+    isLast: dart.finalFieldType(core.bool),
+    drawGap: dart.finalFieldType(core.bool),
+    iconData: dart.finalFieldType(dart.nullable(icon_data.IconData)),
+    iconColor: dart.finalFieldType(dart.nullable(ui.Color)),
+    iconSize: dart.finalFieldType(dart.nullable(core.double))
+  }));
+  dart.trackLibraries("packages/timeline_tile/src/style.dart", {
+    "package:timeline_tile/src/style.dart": style,
+    "package:timeline_tile/src/tile.dart": tile
+  }, {
+  }, '{"version":3,"sourceRoot":"","sources":["style.dart","tile.dart"],"names":[],"mappings":"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","file":"../../../../../../../../../../../packages/timeline_tile/src/style.dart.lib.js"}');
+  // Exports:
+  return {
+    src__style: style,
+    src__tile: tile
+  };
+}));
+
+//# sourceMappingURL=style.dart.lib.js.map
