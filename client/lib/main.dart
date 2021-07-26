@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:softdoc/cubit/android_nav_cubit/AndroidNav_cubit.dart';
+import 'package:softdoc/cubit/auth_cubit/auth_cubit.dart';
 import 'package:softdoc/platformSelect.dart';
 import 'package:softdoc/screens/auth_screen/auth_screen.dart';
 import 'package:softdoc/screens/desktop_screen/desktop_auth_screen.dart';
@@ -24,7 +25,8 @@ class MyApp extends StatelessWidget {
       home: MultiBlocProvider(
         providers: [
           BlocProvider<AndroidNavCubit>(create: (context) => AndroidNavCubit()),
-          BlocProvider<DesktopNavCubit>(create: (context) => DesktopNavCubit())
+          BlocProvider<DesktopNavCubit>(create: (context) => DesktopNavCubit()),
+          BlocProvider<AuthCubit>(create: (context) => AuthCubit())
         ],
         child: PlatformSelect(),
       ),
@@ -36,7 +38,7 @@ class MyApp extends StatelessWidget {
       //   AUTHPAGE: (context) => AuthScreen(),
       // },
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'SoftDoc',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),

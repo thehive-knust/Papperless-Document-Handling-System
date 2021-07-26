@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:softdoc/models/department.dart';
 import 'package:softdoc/style.dart';
-import 'utills.dart';
+import '../../utills.dart';
 
 // List<Department> departments = Department.departments;
 // Department selectedDept = departments[0];

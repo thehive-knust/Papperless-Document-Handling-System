@@ -37,11 +37,14 @@ class DocTiles extends StatelessWidget {
     _androidNavCubit = BlocProvider.of<AndroidNavCubit>(context);
     _desktopNavCubit = BlocProvider.of<DesktopNavCubit>(context);
     Color status;
-    if (doc.approved == null)
+    if (doc.status == 'pending')
       status = yellow;
-    else if (doc.approved)
+    else if (doc.status == 'approved')
       status = green;
-    else if (!doc.approved) status = redLight;
+    else if (doc.status == 'rejected')
+      status = redLight;
+    else
+      status = Colors.grey[300];
     return GestureDetector(
       // onTap: () => Navigator.of(context).pushNamed(DETAILPAGE, arguments: doc),
       onTap: () => isDesktop

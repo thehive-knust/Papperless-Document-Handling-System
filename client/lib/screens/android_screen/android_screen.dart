@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:softdoc/cubit/android_nav_cubit/AndroidNav_cubit.dart';
 import 'package:softdoc/models/doc.dart';
+import 'package:softdoc/screens/auth_screen/auth_screen.dart';
 import 'package:softdoc/screens/detail_screen/detail_screen.dart';
 import 'package:softdoc/screens/home_screen/home_screen.dart';
 import 'package:softdoc/screens/send_doc_screen/send_doc_screen.dart';
@@ -15,13 +16,13 @@ class AndroidScreen extends StatefulWidget {
 }
 
 class _AndroidScreenState extends State<AndroidScreen> {
-  AndroidNavCubit _androidNavCubit;
+  // AndroidNavCubit _androidNavCubit;
 
   @override
   void initState() {
     super.initState();
-    _androidNavCubit = BlocProvider.of<AndroidNavCubit>(context);
-    _androidNavCubit.navToHomeScreen();
+    // _androidNavCubit = BlocProvider.of<AndroidNavCubit>(context);
+    // _androidNavCubit.navToHomeScreen();
   }
 
   @override

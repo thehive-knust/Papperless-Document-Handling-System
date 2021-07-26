@@ -1,4 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:softdoc/cubit/android_nav_cubit/AndroidNav_cubit.dart';
+import 'package:softdoc/cubit/auth_cubit/auth_cubit.dart';
+import 'package:softdoc/cubit/desktop_nav_cubit/desktopnav_cubit.dart';
+import 'package:softdoc/screens/android_screen/android_screen.dart';
+import 'package:softdoc/screens/desktop_screen/desktop_screen.dart';
 import 'package:softdoc/style.dart';
 import 'package:crypto/crypto.dart';
 import '../../services/flask_database.dart';
@@ -13,14 +19,23 @@ class AuthForm extends StatefulWidget {
 
 class _AuthFormState extends State<AuthForm> {
   final _formKey = GlobalKey<FormState>();
-
   String id;
-
   String testPass;
-
   Digest password;
-
   bool isLoading = false;
+
+  AndroidNavCubit _androidNavCubit;
+  DesktopNavCubit _desktopNavCubit;
+  AuthCubit _authCubit;
+
+  @override
+  void initState() {
+    // -TODO: implement initState
+    super.initState();
+    _androidNavCubit = BlocProvider.of<AndroidNavCubit>(context);
+    _desktopNavCubit = BlocProvider.of<DesktopNavCubit>(context);
+    _authCubit = BlocProvider.of<AuthCubit>(context);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -96,8 +111,15 @@ class _AuthFormState extends State<AuthForm> {
                 if (_formKey.currentState.validate()) {
                   isLoading = true;
                   setState(() {});
-                  // await FlaskDatabase.authenticate(userId: id, password: testPass);
-                  getMessage();
+                  bool verified = await FlaskDatabase.authenticate(
+                      userId: id, password: testPass);
+                  // await FlaskDatabase.getLocal();
+                  // FlaskDatabase.getMessage();
+                  verified
+                      ? _authCubit.verify()
+                      : ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          content: Text("invalid user"),
+                        ));
 
                   isLoading = false;
                   setState(() {});

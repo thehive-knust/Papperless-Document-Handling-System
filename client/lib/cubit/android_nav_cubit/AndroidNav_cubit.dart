@@ -5,7 +5,7 @@ import 'package:softdoc/models/doc.dart';
 part 'AndroidNav_state.dart';
 
 class AndroidNavCubit extends Cubit<AndroidNavState> {
-  AndroidNavCubit() : super(AndroidNavInitial());
+  AndroidNavCubit() : super(HomeScreenNav());
 
   void navToHomeScreen() {
     emit(HomeScreenNav());

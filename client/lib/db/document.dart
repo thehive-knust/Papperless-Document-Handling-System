@@ -14,7 +14,7 @@ class DocumentFields {
 }
 
 class Document {
-  final int? id;
+  final int id;
   final String size;
   final String name;
   final String type;
@@ -22,18 +22,18 @@ class Document {
 
   const Document({
     this.id,
-    required this.size,
-    required this.name,
-    required this.type,
-    required this.dateModified,
+    this.size,
+    this.name,
+    this.type,
+    this.dateModified,
   });
 
   Document copy({
-    int? id,
-    String? size,
-    String? name,
-    String? type,
-    DateTime? dateModified,
+    int id,
+    String size,
+    String name,
+    String type,
+    DateTime dateModified,
   }) =>
       Document(
         id: id ?? this.id,
@@ -43,15 +43,15 @@ class Document {
         dateModified: dateModified ?? this.dateModified,
       );
 
-  static Document fromJson(Map<String, Object?> json) => Document(
-        id: json[DocumentFields.id] as int?,
+  static Document fromJson(Map<String, Object> json) => Document(
+        id: json[DocumentFields.id] as int,
         size: json[DocumentFields.size] as String,
         name: json[DocumentFields.name] as String,
         type: json[DocumentFields.type] as String,
         dateModified: DateTime.parse(json[DocumentFields.dateModified] as String),
       );
 
-  Map<String, Object?> toJson() => {
+  Map<String, Object> toJson() => {
         DocumentFields.id: id,
         DocumentFields.name: name,
         DocumentFields.size: size,

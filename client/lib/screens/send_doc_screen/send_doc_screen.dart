@@ -1,7 +1,11 @@
+import 'dart:io';
+
 import 'package:dotted_border/dotted_border.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:softdoc/cubit/android_nav_cubit/AndroidNav_cubit.dart';
+import 'package:softdoc/cubit/desktop_nav_cubit/desktopnav_cubit.dart';
 import 'package:softdoc/models/doc.dart';
 import 'package:softdoc/screens/send_doc_screen/add_or_edit_recepient.dart';
 import 'package:softdoc/screens/send_doc_screen/select_recepient.dart';
@@ -18,6 +22,8 @@ class SendDocScreen extends StatefulWidget {
 class _SendDocScreenState extends State<SendDocScreen> {
   Doc doc;
   AndroidNavCubit _androidNavCubit;
+  DesktopNavCubit _desktopNavCubit;
+  File pdf;
 
   void changeState() {
     setState(() {});
@@ -28,6 +34,19 @@ class _SendDocScreenState extends State<SendDocScreen> {
     super.initState();
     doc = Doc();
     _androidNavCubit = BlocProvider.of<AndroidNavCubit>(context);
+    _desktopNavCubit = BlocProvider.of<DesktopNavCubit>(context);
+  }
+
+  void pickFile() async {
+    debugPrint('opening file picker');
+    FilePickerResult result =
+        await FilePicker.platform.pickFiles(allowedExtensions: ['pdf']);
+
+    if (result != null) {
+      pdf = File(result.files.single.path);
+    } else {
+      debugPrint('file not found');
+    }
   }
 
   @override
@@ -41,9 +60,9 @@ class _SendDocScreenState extends State<SendDocScreen> {
         resizeToAvoidBottomInset: false,
         floatingActionButton: FloatingActionButton(
           backgroundColor: primary,
-          onPressed: () {
-            _androidNavCubit.navToHomeScreen();
-          },
+          onPressed: () => widget.isDesktop
+              ? _desktopNavCubit.navToHomeScreen()
+              : _androidNavCubit.navToHomeScreen(),
           child: Icon(Icons.send),
         ),
         body: SafeArea(
@@ -91,24 +110,30 @@ class _SendDocScreenState extends State<SendDocScreen> {
                 ),
                 SizedBox(height: 10),
                 // pick pdf from here:------------------------------------------------------------------
-                Container(
-                  height: 170,
-                  width: double.infinity,
-                  child: DottedBorder(
-                    dashPattern: [8],
-                    color: primary,
-                    borderType: BorderType.RRect,
-                    radius: Radius.circular(10),
-                    child: Center(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(Icons.note, size: 30),
-                          SizedBox(height: 20),
-                          Text("Upload File"),
-                        ],
-                      ),
-                    ),
+                InkWell(
+                  onTap: () => pickFile,
+                  child: Container(
+                    height: 170,
+                    color: Colors.transparent,
+                    width: double.infinity,
+                    child: pdf == null
+                        ? DottedBorder(
+                            dashPattern: [8],
+                            color: primary,
+                            borderType: BorderType.RRect,
+                            radius: Radius.circular(10),
+                            child: Center(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Icon(Icons.note, size: 30),
+                                  SizedBox(height: 20),
+                                  Text("Upload File"),
+                                ],
+                              ),
+                            ),
+                          )
+                        : SizedBox(),
                   ),
                 )
               ],
