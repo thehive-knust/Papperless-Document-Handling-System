@@ -3,15 +3,12 @@ from datetime import datetime
 
 
 class Document(db.Model):
-    id = db.Column(db.String(50), primary_key=True)
+    document_id = db.Column(db.String(50), primary_key=True)
     name = db.Column(db.String(120), nullable=False)
-    created_at = db.Column(db.DateTime, nullable=False,
-                           default=datetime.utcnow)
-    updated_at = db.Column(db.DateTime, nullable=False,
-                           default=datetime.utcnow)
+    created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    updated_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     subject = db.Column(db.String(255), nullable=False)
-    user_id = db.Column(db.String(255), db.ForeignKey(
-        'user.id'), nullable=False)
+    user_id = db.Column(db.String(255), db.ForeignKey('user.user_id'), nullable=False)
     filename = db.Column(db.String(255), nullable=False)
     progress = db.Column(db.String(50), nullable=False)
     description = db.Column(db.String, nullable=True)
@@ -26,7 +23,7 @@ class Document(db.Model):
 
     @classmethod
     def find_by_id(cls, id):
-        return cls.query.filter_by(_id=id).first()
+        return cls.query.filter_by(document_id=id).first()
 
     def save_to_db(self):
         db.session.add(self)
