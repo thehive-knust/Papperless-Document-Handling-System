@@ -36,7 +36,7 @@ class Document(db.Model):
         by the id column.
         :return: A Document object or None
         """
-        return cls.query.filter_by(id=id).first()
+        return cls.query.get(id)
 
     def save_to_db(self):
         """

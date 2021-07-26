@@ -5,7 +5,7 @@ class Department(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
     faculty_id = db.Column(db.Integer, db.ForeignKey(
-        'faculty.faculty_id'), nullable=False)
+        'faculty.id'), nullable=False)
     # head = db.Column(db.Integer, db.ForeignKey('user.user_id', use_alter=True), nullable=False)
     users = db.relationship("User", lazy='select',
                             backref=db.backref('department', lazy='joined'))
@@ -19,7 +19,7 @@ class Department(db.Model):
 
     @classmethod
     def find_by_id(cls, id):
-        return cls.query.filter_by(department_id=id).first()
+        return cls.query.get(id)
 
     @classmethod
     def find_by_head(cls, head):
