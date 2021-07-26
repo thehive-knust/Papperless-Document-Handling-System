@@ -8,7 +8,7 @@ class Faculty(db.Model):
         db.Integer, db.ForeignKey('college.id', use_alter=True), nullable=False)
     departments = db.relationship(
         'Department', lazy='select', backref=db.backref('faculty', lazy='joined'))
-    dean = db.Column(db.Integer, db.ForeignKey(
+    dean_id = db.Column(db.Integer, db.ForeignKey(
         'user.id', use_alter=True), nullable=False)
 
     def __repr__(self):
@@ -20,7 +20,7 @@ class Faculty(db.Model):
 
     @classmethod
     def find_by_id(cls, id):
-        return cls.query.filter_by(_id=id).first()
+        return cls.query.filter_by(id=id).first()
 
     def save_to_db(self):
         db.session.add(self)
@@ -29,3 +29,12 @@ class Faculty(db.Model):
     def delete_from_db(self):
         db.session.delete(self)
         db.session.commit()
+
+    def to_json(self):
+        faculty = {
+            'id': self.id,
+            'name': self.name,
+            'college_id': self.college_id,
+            'dean_id': self.dean_id,
+        }
+        return faculty

@@ -6,25 +6,39 @@ import pdhs_app.models.users.constants as UserConstants
 from pdhs_app.models.documents.document import Document
 from pdhs_app.models.departments.department import Department
 
-bp = Blueprint('users', __name__, url_prefix='/user')
+bp = Blueprint('users', __name__, url_prefix='/users')
 
 
 @bp.route('/hello', methods=['GET'])
 def hello():
     if request.method == 'GET':
-        return "Hello from /user"
+        return "Hello from /users"
 
 
 @bp.route('/', methods=['GET'])
 def get_all_users():
+    """
+    Return all the users in the user table
+    """
     if request.method == 'GET':
-        result = User.query.all()
-        users = [user.to_json() for user in result]
-        return {'users': users}
+        result = []
+        users = []
+        try:
+            result = User.query.all()
+        except:
+            return jsonify({'msg': 'There was an error retrieving the items requested'}), 500
+        for user in result:
+            users.append(user.to_json())
+        if len(users) == 0 or len(result) == 0:
+            return jsonify({'msg': 'Ther are no registered users'}), 404
+        return jsonify({'users': users})
 
 
 @bp.route('/<int:user_id>', methods=['GET'])
 def get_user_by_id(user_id):
+    """
+    Query the database and return a single user that matches the specified id
+    """
     if request.method == 'GET':
         user = User.find_by_id(user_id)
     if user is not None:

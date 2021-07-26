@@ -23,3 +23,12 @@ class Comment(db.Model):
     def delete_from_db(self):
         db.session.delete(self)
         db.session.commit()
+
+    def to_json(self):
+        comment = {
+            'id': self.id,
+            'sender_id': self.sender_id,
+            'document_id': self.document_id,
+            'content': self.content
+        }
+        return comment

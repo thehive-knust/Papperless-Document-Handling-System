@@ -51,6 +51,7 @@ class User(db.Model):
             'email': self.email,
             'department': self.department_id,
             'portfolio': self.portfolio_id,
+            'password': self.password,
         }
 
     @staticmethod

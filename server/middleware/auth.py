@@ -75,7 +75,7 @@ def register():
             error = 'Password is required.'
 
         elif User.query.filter_by(email=email).first() is not None:
-            error = f"This {email} is already registered."
+            error = f"The email {email} is already registered."
 
         if error is None:
             password = generate_password_hash(password)
@@ -88,10 +88,12 @@ def register():
                 portfolio_id=portfolio_id,
                 department_id=department_id
             )
-            db.session.add(new_user)
-            db.session.commit()
+            try:
+                new_user.save_to_db()
+            except:
+                return jsonify(msg="Could not save new user to database"), 500
 
-            return {'msg': 'User created successfully'}, 201
+            return jsonify({'msg': 'User created successfully'}), 201
 
         return jsonify({"msg": error}), 500
 

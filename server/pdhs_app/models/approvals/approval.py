@@ -27,3 +27,12 @@ class Approval(db.Model):
     def delete_from_db(self):
         db.session.delete(self)
         db.session.commit()
+
+    def to_json(self):
+        approval = {
+            'id': self.id,
+            'document_id': self.document_id,
+            'recipient_id': self.recipient_id,
+            'status': self.status
+        }
+        return approval

@@ -33,3 +33,11 @@ class Department(db.Model):
     def delete_from_db(self):
         db.session.delete(self)
         db.session.commit()
+
+    def to_json(self):
+        department = {
+            'id': self.id,
+            'name': self.name,
+            'faculty_id': self.faculty_id
+        }
+        return department
