@@ -1,0 +1,371 @@
+define(['dart_sdk', 'packages/bloc/src/transition.dart'], (function load__packages__bloc__src__bloc_observer_dart(dart_sdk, packages__bloc__src__transition$46dart) {
+  'use strict';
+  const core = dart_sdk.core;
+  const async = dart_sdk.async;
+  const _internal = dart_sdk._internal;
+  const dart = dart_sdk.dart;
+  const dartx = dart_sdk.dartx;
+  const transition = packages__bloc__src__transition$46dart.src__transition;
+  var bloc_observer = Object.create(dart.library);
+  var bloc = Object.create(dart.library);
+  var bloc$ = Object.create(dart.library);
+  dart._checkModuleNullSafetyMode(false);
+  var T = {
+    VoidToNever: () => (T.VoidToNever = dart.constFn(dart.fnType(dart.Never, [])))()
+  };
+  const CT = Object.create({
+    _: () => (C, CT)
+  });
+  dart.defineLazy(CT, {
+    get C0() {
+      return C[0] = dart.const({
+        __proto__: core._StringStackTrace.prototype,
+        [_StringStackTrace__stackTrace]: ""
+      });
+    }
+  }, false);
+  var C = [void 0];
+  var I = [
+    "file:///C:/Users/Ejas/Desktop/App_files/flutter/.pub-cache/hosted/pub.dartlang.org/bloc-7.0.0/lib/src/bloc_observer.dart",
+    "package:bloc/src/bloc_observer.dart",
+    "file:///C:/Users/Ejas/Desktop/App_files/flutter/.pub-cache/hosted/pub.dartlang.org/bloc-7.0.0/lib/src/bloc.dart",
+    "package:bloc/src/bloc.dart"
+  ];
+  bloc_observer.BlocObserver = class BlocObserver extends core.Object {
+    onCreate(bloc) {
+      if (bloc == null) dart.nullFailed(I[0], 12, 26, "bloc");
+    }
+    onEvent(bloc, event) {
+      if (bloc == null) dart.nullFailed(I[0], 18, 21, "bloc");
+    }
+    onChange(bloc, change) {
+      if (bloc == null) dart.nullFailed(I[0], 25, 26, "bloc");
+      if (change == null) dart.nullFailed(I[0], 25, 39, "change");
+    }
+    onTransition(bloc, transition) {
+      if (bloc == null) dart.nullFailed(I[0], 34, 26, "bloc");
+      if (transition == null) dart.nullFailed(I[0], 34, 43, "transition");
+    }
+    onError(bloc, error, stackTrace) {
+      if (bloc == null) dart.nullFailed(I[0], 41, 25, "bloc");
+      if (error == null) dart.nullFailed(I[0], 41, 38, "error");
+      if (stackTrace == null) dart.nullFailed(I[0], 41, 56, "stackTrace");
+    }
+    onClose(bloc) {
+      if (bloc == null) dart.nullFailed(I[0], 49, 25, "bloc");
+    }
+  };
+  (bloc_observer.BlocObserver.new = function() {
+    ;
+  }).prototype = bloc_observer.BlocObserver.prototype;
+  dart.addTypeTests(bloc_observer.BlocObserver);
+  dart.addTypeCaches(bloc_observer.BlocObserver);
+  dart.setMethodSignature(bloc_observer.BlocObserver, () => ({
+    __proto__: dart.getMethods(bloc_observer.BlocObserver.__proto__),
+    onCreate: dart.fnType(dart.void, [bloc.BlocBase]),
+    onEvent: dart.fnType(dart.void, [bloc.Bloc, dart.nullable(core.Object)]),
+    onChange: dart.fnType(dart.void, [bloc.BlocBase, transition.Change]),
+    onTransition: dart.fnType(dart.void, [bloc.Bloc, transition.Transition]),
+    onError: dart.fnType(dart.void, [bloc.BlocBase, core.Object, core.StackTrace]),
+    onClose: dart.fnType(dart.void, [bloc.BlocBase])
+  }));
+  dart.setLibraryUri(bloc_observer.BlocObserver, I[1]);
+  var bloc$0 = dart.privateName(bloc, "BlocUnhandledErrorException.bloc");
+  var error$ = dart.privateName(bloc, "BlocUnhandledErrorException.error");
+  var stackTrace$ = dart.privateName(bloc, "BlocUnhandledErrorException.stackTrace");
+  var _StringStackTrace__stackTrace = dart.privateName(core, "_StringStackTrace._stackTrace");
+  bloc.BlocUnhandledErrorException = class BlocUnhandledErrorException extends core.Object {
+    get bloc() {
+      return this[bloc$0];
+    }
+    set bloc(value) {
+      super.bloc = value;
+    }
+    get error() {
+      return this[error$];
+    }
+    set error(value) {
+      super.error = value;
+    }
+    get stackTrace() {
+      return this[stackTrace$];
+    }
+    set stackTrace(value) {
+      super.stackTrace = value;
+    }
+    toString() {
+      return "Unhandled error " + dart.str(this.error) + " occurred in " + dart.str(this.bloc) + ".\n" + dart.str(this.stackTrace);
+    }
+  };
+  (bloc.BlocUnhandledErrorException.new = function(bloc, error, stackTrace = C[0] || CT.C0) {
+    if (bloc == null) dart.nullFailed(I[2], 19, 10, "bloc");
+    if (error == null) dart.nullFailed(I[2], 20, 10, "error");
+    if (stackTrace == null) dart.nullFailed(I[2], 21, 10, "stackTrace");
+    this[bloc$0] = bloc;
+    this[error$] = error;
+    this[stackTrace$] = stackTrace;
+    ;
+  }).prototype = bloc.BlocUnhandledErrorException.prototype;
+  dart.addTypeTests(bloc.BlocUnhandledErrorException);
+  dart.addTypeCaches(bloc.BlocUnhandledErrorException);
+  bloc.BlocUnhandledErrorException[dart.implements] = () => [core.Exception];
+  dart.setLibraryUri(bloc.BlocUnhandledErrorException, I[3]);
+  dart.setFieldSignature(bloc.BlocUnhandledErrorException, () => ({
+    __proto__: dart.getFields(bloc.BlocUnhandledErrorException.__proto__),
+    bloc: dart.finalFieldType(bloc.BlocBase),
+    error: dart.finalFieldType(core.Object),
+    stackTrace: dart.finalFieldType(core.StackTrace)
+  }));
+  dart.defineExtensionMethods(bloc.BlocUnhandledErrorException, ['toString']);
+  var _transitionSubscription = dart.privateName(bloc, "_transitionSubscription");
+  var __eventController = dart.privateName(bloc, "__eventController");
+  var _bindEventsToStates = dart.privateName(bloc, "_bindEventsToStates");
+  var _eventController = dart.privateName(bloc, "_eventController");
+  var _emitted = dart.privateName(bloc, "_emitted");
+  var __stateController = dart.privateName(bloc, "__stateController");
+  var _state$ = dart.privateName(bloc, "_state");
+  var _stateController = dart.privateName(bloc, "_stateController");
+  const _is_BlocBase_default = Symbol('_is_BlocBase_default');
+  bloc.BlocBase$ = dart.generic(State => {
+    var StreamControllerOfState = () => (StreamControllerOfState = dart.constFn(async.StreamController$(State)))();
+    var ChangeOfState = () => (ChangeOfState = dart.constFn(transition.Change$(State)))();
+    class BlocBase extends core.Object {
+      get [_stateController]() {
+        let t2;
+        t2 = this[__stateController];
+        return t2 == null ? this[__stateController] = StreamControllerOfState().broadcast() : t2;
+      }
+      get state() {
+        return this[_state$];
+      }
+      get stream() {
+        return this[_stateController].stream;
+      }
+      listen(onData, opts) {
+        let onError = opts && 'onError' in opts ? opts.onError : null;
+        let onDone = opts && 'onDone' in opts ? opts.onDone : null;
+        let cancelOnError = opts && 'cancelOnError' in opts ? opts.cancelOnError : null;
+        return this.stream.listen(onData, {onError: onError, onDone: onDone, cancelOnError: cancelOnError});
+      }
+      emit(state) {
+        State.as(state);
+        if (dart.test(this[_stateController].isClosed)) return;
+        if (dart.equals(state, this[_state$]) && dart.test(this[_emitted])) return;
+        this.onChange(new (ChangeOfState()).new({currentState: this.state, nextState: state}));
+        this[_state$] = state;
+        this[_stateController].add(this[_state$]);
+        this[_emitted] = true;
+      }
+      onChange(change) {
+        ChangeOfState().as(change);
+        if (change == null) dart.nullFailed(I[2], 354, 31, "change");
+        bloc.Bloc.observer.onChange(this, change);
+      }
+      addError(error, stackTrace = null) {
+        let t2;
+        if (error == null) dart.nullFailed(I[2], 361, 24, "error");
+        this.onError(error, (t2 = stackTrace, t2 == null ? core.StackTrace.current : t2));
+      }
+      onError(error, stackTrace) {
+        if (error == null) dart.nullFailed(I[2], 385, 23, "error");
+        if (stackTrace == null) dart.nullFailed(I[2], 385, 41, "stackTrace");
+        bloc.Bloc.observer.onError(this, error, stackTrace);
+        if (!dart.dtest((dart.fn(() => {
+          dart.throw(new bloc.BlocUnhandledErrorException.new(this, error, stackTrace));
+        }, T.VoidToNever())(), dart.throw(new _internal.ReachabilityError.new("`null` encountered as the result from expression with type `Never`."))))) dart.assertFailed(null, I[2], 388, 12, "() {\n      throw BlocUnhandledErrorException(this, error, stackTrace);\n    }()");
+      }
+      close() {
+        return async.async(dart.void, (function* close() {
+          bloc.Bloc.observer.onClose(this);
+          yield this[_stateController].close();
+        }).bind(this));
+      }
+    }
+    (BlocBase.new = function(_state) {
+      this[__stateController] = null;
+      this[_emitted] = false;
+      this[_state$] = _state;
+      bloc.Bloc.observer.onCreate(this);
+    }).prototype = BlocBase.prototype;
+    dart.addTypeTests(BlocBase);
+    BlocBase.prototype[_is_BlocBase_default] = true;
+    dart.addTypeCaches(BlocBase);
+    dart.setMethodSignature(BlocBase, () => ({
+      __proto__: dart.getMethods(BlocBase.__proto__),
+      listen: dart.fnType(async.StreamSubscription$(State), [dart.nullable(dart.fnType(dart.void, [State]))], {cancelOnError: dart.nullable(core.bool), onDone: dart.nullable(dart.fnType(dart.void, [])), onError: dart.nullable(core.Function)}, {}),
+      emit: dart.fnType(dart.void, [dart.nullable(core.Object)]),
+      onChange: dart.fnType(dart.void, [dart.nullable(core.Object)]),
+      addError: dart.fnType(dart.void, [core.Object], [dart.nullable(core.StackTrace)]),
+      onError: dart.fnType(dart.void, [core.Object, core.StackTrace]),
+      close: dart.fnType(async.Future$(dart.void), [])
+    }));
+    dart.setGetterSignature(BlocBase, () => ({
+      __proto__: dart.getGetters(BlocBase.__proto__),
+      [_stateController]: async.StreamController$(State),
+      state: State,
+      stream: async.Stream$(State)
+    }));
+    dart.setLibraryUri(BlocBase, I[3]);
+    dart.setFieldSignature(BlocBase, () => ({
+      __proto__: dart.getFields(BlocBase.__proto__),
+      [__stateController]: dart.fieldType(dart.nullable(async.StreamController$(State))),
+      [_state$]: dart.fieldType(State),
+      [_emitted]: dart.fieldType(core.bool)
+    }));
+    return BlocBase;
+  });
+  bloc.BlocBase = bloc.BlocBase$();
+  dart.addTypeTests(bloc.BlocBase, _is_BlocBase_default);
+  const _is_Bloc_default = Symbol('_is_Bloc_default');
+  bloc.Bloc$ = dart.generic((Event, State) => {
+    var StreamControllerOfEvent = () => (StreamControllerOfEvent = dart.constFn(async.StreamController$(Event)))();
+    var StreamOfEvent = () => (StreamOfEvent = dart.constFn(async.Stream$(Event)))();
+    var TransitionOfEvent$State = () => (TransitionOfEvent$State = dart.constFn(transition.Transition$(Event, State)))();
+    var StreamOfTransitionOfEvent$State = () => (StreamOfTransitionOfEvent$State = dart.constFn(async.Stream$(TransitionOfEvent$State())))();
+    var EventToStreamOfTransitionOfEvent$State = () => (EventToStreamOfTransitionOfEvent$State = dart.constFn(dart.fnType(StreamOfTransitionOfEvent$State(), [Event])))();
+    var StateToTransitionOfEvent$State = () => (StateToTransitionOfEvent$State = dart.constFn(dart.fnType(TransitionOfEvent$State(), [State])))();
+    var TransitionOfEvent$StateTovoid = () => (TransitionOfEvent$StateTovoid = dart.constFn(dart.fnType(dart.void, [TransitionOfEvent$State()])))();
+    const close = Symbol("close");
+    class Bloc extends bloc.BlocBase$(State) {
+      get [_eventController]() {
+        let t0;
+        t0 = this[__eventController];
+        return t0 == null ? this[__eventController] = StreamControllerOfEvent().broadcast() : t0;
+      }
+      add(event) {
+        Event.as(event);
+        if (dart.test(this[_eventController].isClosed)) return;
+        try {
+          this.onEvent(event);
+          this[_eventController].add(event);
+        } catch (e) {
+          let error = dart.getThrown(e);
+          let stackTrace = dart.stackTrace(e);
+          if (core.Object.is(error)) {
+            this.onError(error, stackTrace);
+          } else
+            throw e;
+        }
+      }
+      onEvent(event) {
+        Event.as(event);
+        bloc.Bloc.observer.onEvent(this, event);
+      }
+      transformEvents(events, transitionFn) {
+        StreamOfEvent().as(events);
+        if (events == null) dart.nullFailed(I[2], 132, 19, "events");
+        EventToStreamOfTransitionOfEvent$State().as(transitionFn);
+        if (transitionFn == null) dart.nullFailed(I[2], 133, 38, "transitionFn");
+        return events.asyncExpand(TransitionOfEvent$State(), transitionFn);
+      }
+      emit(state) {
+        State.as(state);
+        return super.emit(state);
+      }
+      onTransition(transition) {
+        TransitionOfEvent$State().as(transition);
+        if (transition == null) dart.nullFailed(I[2], 179, 46, "transition");
+        bloc.Bloc.observer.onTransition(this, transition);
+      }
+      transformTransitions(transitions) {
+        StreamOfTransitionOfEvent$State().as(transitions);
+        if (transitions == null) dart.nullFailed(I[2], 202, 38, "transitions");
+        return transitions;
+      }
+      close() {
+        return async.async(dart.void, (function* close$() {
+          let t1;
+          yield this[_eventController].close();
+          yield (t1 = this[_transitionSubscription], t1 == null ? null : t1.cancel());
+          return this[close]();
+        }).bind(this));
+      }
+      [_bindEventsToStates]() {
+        this[_transitionSubscription] = this.transformTransitions(this.transformEvents(this[_eventController].stream, dart.fn(event => this.mapEventToState(event).map(TransitionOfEvent$State(), dart.fn(nextState => new (TransitionOfEvent$State()).new({currentState: this.state, event: event, nextState: nextState}), StateToTransitionOfEvent$State())), EventToStreamOfTransitionOfEvent$State()))).listen(dart.fn(transition => {
+          if (transition == null) dart.nullFailed(I[2], 234, 8, "transition");
+          if (dart.equals(transition.nextState, this.state) && dart.test(this[_emitted])) return;
+          try {
+            this.onTransition(transition);
+            this.emit(transition.nextState);
+          } catch (e) {
+            let error = dart.getThrown(e);
+            let stackTrace = dart.stackTrace(e);
+            if (core.Object.is(error)) {
+              this.onError(error, stackTrace);
+            } else
+              throw e;
+          }
+        }, TransitionOfEvent$StateTovoid()), {onError: dart.bind(this, 'onError')});
+      }
+      [close]() {
+        return super.close();
+      }
+    }
+    (Bloc.new = function(initialState) {
+      this[_transitionSubscription] = null;
+      this[__eventController] = null;
+      Bloc.__proto__.new.call(this, initialState);
+      this[_bindEventsToStates]();
+    }).prototype = Bloc.prototype;
+    dart.addTypeTests(Bloc);
+    Bloc.prototype[_is_Bloc_default] = true;
+    dart.addTypeCaches(Bloc);
+    dart.setMethodSignature(Bloc, () => ({
+      __proto__: dart.getMethods(Bloc.__proto__),
+      add: dart.fnType(dart.void, [dart.nullable(core.Object)]),
+      onEvent: dart.fnType(dart.void, [dart.nullable(core.Object)]),
+      transformEvents: dart.fnType(async.Stream$(transition.Transition$(Event, State)), [dart.nullable(core.Object), dart.nullable(core.Object)]),
+      onTransition: dart.fnType(dart.void, [dart.nullable(core.Object)]),
+      transformTransitions: dart.fnType(async.Stream$(transition.Transition$(Event, State)), [dart.nullable(core.Object)]),
+      [_bindEventsToStates]: dart.fnType(dart.void, [])
+    }));
+    dart.setGetterSignature(Bloc, () => ({
+      __proto__: dart.getGetters(Bloc.__proto__),
+      [_eventController]: async.StreamController$(Event)
+    }));
+    dart.setLibraryUri(Bloc, I[3]);
+    dart.setFieldSignature(Bloc, () => ({
+      __proto__: dart.getFields(Bloc.__proto__),
+      [_transitionSubscription]: dart.fieldType(dart.nullable(async.StreamSubscription$(transition.Transition$(Event, State)))),
+      [__eventController]: dart.fieldType(dart.nullable(async.StreamController$(Event)))
+    }));
+    return Bloc;
+  });
+  bloc.Bloc = bloc.Bloc$();
+  dart.defineLazy(bloc.Bloc, {
+    /*bloc.Bloc.observer*/get observer() {
+      return new bloc_observer.BlocObserver.new();
+    },
+    set observer(_) {}
+  }, false);
+  dart.addTypeTests(bloc.Bloc, _is_Bloc_default);
+  const _is_Cubit_default = Symbol('_is_Cubit_default');
+  bloc.Cubit$ = dart.generic(State => {
+    class Cubit extends bloc.BlocBase$(State) {}
+    (Cubit.new = function(initialState) {
+      Cubit.__proto__.new.call(this, initialState);
+      ;
+    }).prototype = Cubit.prototype;
+    dart.addTypeTests(Cubit);
+    Cubit.prototype[_is_Cubit_default] = true;
+    dart.addTypeCaches(Cubit);
+    dart.setLibraryUri(Cubit, I[3]);
+    return Cubit;
+  });
+  bloc.Cubit = bloc.Cubit$();
+  dart.addTypeTests(bloc.Cubit, _is_Cubit_default);
+  dart.trackLibraries("packages/bloc/src/bloc_observer.dart", {
+    "package:bloc/src/bloc_observer.dart": bloc_observer,
+    "package:bloc/src/bloc.dart": bloc,
+    "package:bloc/bloc.dart": bloc$
+  }, {
+  }, '{"version":3,"sourceRoot":"","sources":["bloc_observer.dart","bloc.dart"],"names":[],"mappings":"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","file":"../../../../../../../../../../../packages/bloc/src/bloc_observer.dart.lib.js"}');
+  // Exports:
+  return {
+    src__bloc_observer: bloc_observer,
+    src__bloc: bloc,
+    bloc: bloc$
+  };
+}));
+
+//# sourceMappingURL=bloc_observer.dart.lib.js.map

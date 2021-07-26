@@ -3,7 +3,7 @@ from datetime import datetime
 
 
 class Document(db.Model):
-    id = db.Column(db.String(50), primary_key=True)
+    document_id = db.Column(db.String(50), primary_key=True)
     name = db.Column(db.String(120), nullable=False)
     created_at = db.Column(db.DateTime, nullable=False,
                            default=datetime.utcnow)
@@ -28,7 +28,6 @@ class Document(db.Model):
         :return: A Document object or None
         """
         return cls.query.filter_by(name=name).first()
-
 
     @classmethod
     def find_by_id(cls, id):
