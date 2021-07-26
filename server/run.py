@@ -1,5 +1,7 @@
-__author__ = "Koffi-Cobbin"
+from pdhs_app import create_app
 
-from app import app #src
+app = create_app(env='development')
 
-app.run(debug=app.config['DEBUG'])
+if __name__ == '__main__':
+    # app.run(host='0.0.0.0')
+    app.run()
