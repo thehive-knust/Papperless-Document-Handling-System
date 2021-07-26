@@ -1,297 +1,340 @@
-define(['dart_sdk', 'packages/typed_data/src/typed_buffer.dart'], (function load__packages__flutter__src__foundation__serialization_dart(dart_sdk, packages__typed_data__src__typed_buffer$46dart) {
+define(['dart_sdk', 'packages/flutter/src/widgets/widget_span.dart', 'packages/flutter/src/cupertino/route.dart', 'packages/flutter/src/foundation/debug.dart', 'packages/flutter/src/material/icon_button.dart', 'packages/flutter/src/animation/listener_helpers.dart'], (function load__packages__flutter__src__material__page_dart(dart_sdk, packages__flutter__src__widgets__widget_span$46dart, packages__flutter__src__cupertino__route$46dart, packages__flutter__src__foundation__debug$46dart, packages__flutter__src__material__icon_button$46dart, packages__flutter__src__animation__listener_helpers$46dart) {
   'use strict';
   const core = dart_sdk.core;
-  const _native_typed_data = dart_sdk._native_typed_data;
-  const _internal = dart_sdk._internal;
-  const typed_data = dart_sdk.typed_data;
+  const ui = dart_sdk.ui;
   const dart = dart_sdk.dart;
   const dartx = dart_sdk.dartx;
-  const typed_buffer = packages__typed_data__src__typed_buffer$46dart.src__typed_buffer;
-  var serialization = Object.create(dart.library);
-  var $buffer = dartx.buffer;
-  var $asUint8List = dartx.asUint8List;
-  var $setUint16 = dartx.setUint16;
-  var $setUint32 = dartx.setUint32;
-  var $setInt32 = dartx.setInt32;
-  var $setInt64 = dartx.setInt64;
-  var $setFloat64 = dartx.setFloat64;
-  var $offsetInBytes = dartx.offsetInBytes;
-  var $length = dartx.length;
-  var $modulo = dartx['%'];
-  var $asByteData = dartx.asByteData;
-  var $lengthInBytes = dartx.lengthInBytes;
-  var $getUint8 = dartx.getUint8;
-  var $getUint16 = dartx.getUint16;
-  var $getUint32 = dartx.getUint32;
-  var $getInt32 = dartx.getInt32;
-  var $getInt64 = dartx.getInt64;
-  var $getFloat64 = dartx.getFloat64;
-  var $asInt32List = dartx.asInt32List;
-  var $asInt64List = dartx.asInt64List;
-  var $asFloat64List = dartx.asFloat64List;
+  const pages = packages__flutter__src__widgets__widget_span$46dart.src__widgets__pages;
+  const basic = packages__flutter__src__widgets__widget_span$46dart.src__widgets__basic;
+  const widget_inspector = packages__flutter__src__widgets__widget_span$46dart.src__widgets__widget_inspector;
+  const framework = packages__flutter__src__widgets__widget_span$46dart.src__widgets__framework;
+  const navigator = packages__flutter__src__widgets__widget_span$46dart.src__widgets__navigator;
+  const route = packages__flutter__src__cupertino__route$46dart.src__cupertino__route;
+  const assertions = packages__flutter__src__foundation__debug$46dart.src__foundation__assertions;
+  const theme$ = packages__flutter__src__material__icon_button$46dart.src__material__theme;
+  const animation = packages__flutter__src__animation__listener_helpers$46dart.src__animation__animation;
+  var page = Object.create(dart.library);
   dart._checkModuleNullSafetyMode(false);
+  var T$ = {
+    VoidTobool: () => (T$.VoidTobool = dart.constFn(dart.fnType(core.bool, [])))(),
+    _LocationL: () => (T$._LocationL = dart.constFn(dart.legacy(widget_inspector._Location)))()
+  };
   const CT = Object.create({
     _: () => (C, CT)
   });
+  dart.defineLazy(CT, {
+    get C0() {
+      return C[0] = dart.const({
+        __proto__: core.Duration.prototype,
+        [Duration__duration]: 300000
+      });
+    },
+    get C3() {
+      return C[3] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "scopesRoute",
+        [_Location_column]: 7,
+        [_Location_line]: 117,
+        [_Location_file]: null
+      });
+    },
+    get C4() {
+      return C[4] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "explicitChildNodes",
+        [_Location_column]: 7,
+        [_Location_line]: 118,
+        [_Location_file]: null
+      });
+    },
+    get C5() {
+      return C[5] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 7,
+        [_Location_line]: 119,
+        [_Location_file]: null
+      });
+    },
+    get C2() {
+      return C[2] = dart.constList([C[3] || CT.C3, C[4] || CT.C4, C[5] || CT.C5], T$._LocationL());
+    },
+    get C1() {
+      return C[1] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[2] || CT.C2,
+        [_Location_name]: null,
+        [_Location_column]: 12,
+        [_Location_line]: 116,
+        [_Location_file]: "file:///C:/Users/Ejas/Desktop/App_files/flutter/packages/flutter/lib/src/material/page.dart"
+      });
+    }
+  }, false);
+  var C = Array(6).fill(void 0);
   var I = [
-    "file:///C:/Users/Ejas/Desktop/App_files/flutter/packages/flutter/lib/src/foundation/serialization.dart",
-    "package:flutter/src/foundation/serialization.dart"
+    "file:///C:/Users/Ejas/Desktop/App_files/flutter/packages/flutter/lib/src/material/page.dart",
+    "package:flutter/src/material/page.dart"
   ];
-  var __WriteBuffer__eightBytesAsList = dart.privateName(serialization, "_#WriteBuffer#_eightBytesAsList");
-  var __WriteBuffer__eightBytesAsList_isSet = dart.privateName(serialization, "_#WriteBuffer#_eightBytesAsList#isSet");
-  var _buffer = dart.privateName(serialization, "_buffer");
-  var _eightBytes = dart.privateName(serialization, "_eightBytes");
-  var _eightBytesAsList = dart.privateName(serialization, "_eightBytesAsList");
-  var _alignTo = dart.privateName(serialization, "_alignTo");
-  serialization.WriteBuffer = class WriteBuffer extends core.Object {
-    get [_eightBytesAsList]() {
-      let t0;
-      return dart.test(this[__WriteBuffer__eightBytesAsList_isSet]) ? (t0 = this[__WriteBuffer__eightBytesAsList], t0) : dart.throw(new _internal.LateError.fieldNI("_eightBytesAsList"));
-    }
-    set [_eightBytesAsList](t0) {
-      if (t0 == null) dart.nullFailed(I[0], 25, 18, "null");
-      this[__WriteBuffer__eightBytesAsList_isSet] = true;
-      this[__WriteBuffer__eightBytesAsList] = t0;
-    }
-    putUint8(byte) {
-      if (byte == null) dart.nullFailed(I[0], 28, 21, "byte");
-      dart.nullCheck(this[_buffer]).add(byte);
-    }
-    putUint16(value, opts) {
-      let t1;
-      if (value == null) dart.nullFailed(I[0], 33, 22, "value");
-      let endian = opts && 'endian' in opts ? opts.endian : null;
-      this[_eightBytes][$setUint16](0, value, (t1 = endian, t1 == null ? typed_data.Endian.host : t1));
-      dart.nullCheck(this[_buffer]).addAll(this[_eightBytesAsList], 0, 2);
-    }
-    putUint32(value, opts) {
-      let t1;
-      if (value == null) dart.nullFailed(I[0], 39, 22, "value");
-      let endian = opts && 'endian' in opts ? opts.endian : null;
-      this[_eightBytes][$setUint32](0, value, (t1 = endian, t1 == null ? typed_data.Endian.host : t1));
-      dart.nullCheck(this[_buffer]).addAll(this[_eightBytesAsList], 0, 4);
-    }
-    putInt32(value, opts) {
-      let t1;
-      if (value == null) dart.nullFailed(I[0], 45, 21, "value");
-      let endian = opts && 'endian' in opts ? opts.endian : null;
-      this[_eightBytes][$setInt32](0, value, (t1 = endian, t1 == null ? typed_data.Endian.host : t1));
-      dart.nullCheck(this[_buffer]).addAll(this[_eightBytesAsList], 0, 4);
-    }
-    putInt64(value, opts) {
-      let t1;
-      if (value == null) dart.nullFailed(I[0], 51, 21, "value");
-      let endian = opts && 'endian' in opts ? opts.endian : null;
-      this[_eightBytes][$setInt64](0, value, (t1 = endian, t1 == null ? typed_data.Endian.host : t1));
-      dart.nullCheck(this[_buffer]).addAll(this[_eightBytesAsList], 0, 8);
-    }
-    putFloat64(value, opts) {
-      let t1;
-      if (value == null) dart.nullFailed(I[0], 57, 26, "value");
-      let endian = opts && 'endian' in opts ? opts.endian : null;
-      this[_alignTo](8);
-      this[_eightBytes][$setFloat64](0, value, (t1 = endian, t1 == null ? typed_data.Endian.host : t1));
-      dart.nullCheck(this[_buffer]).addAll(this[_eightBytesAsList]);
-    }
-    putUint8List(list) {
-      if (list == null) dart.nullFailed(I[0], 64, 31, "list");
-      dart.nullCheck(this[_buffer]).addAll(list);
-    }
-    putInt32List(list) {
-      if (list == null) dart.nullFailed(I[0], 69, 31, "list");
-      this[_alignTo](4);
-      dart.nullCheck(this[_buffer]).addAll(list[$buffer][$asUint8List](list[$offsetInBytes], 4 * dart.notNull(list[$length])));
-    }
-    putInt64List(list) {
-      if (list == null) dart.nullFailed(I[0], 75, 31, "list");
-      this[_alignTo](8);
-      dart.nullCheck(this[_buffer]).addAll(list[$buffer][$asUint8List](list[$offsetInBytes], 8 * dart.notNull(list[$length])));
-    }
-    putFloat64List(list) {
-      if (list == null) dart.nullFailed(I[0], 81, 35, "list");
-      this[_alignTo](8);
-      dart.nullCheck(this[_buffer]).addAll(list[$buffer][$asUint8List](list[$offsetInBytes], 8 * dart.notNull(list[$length])));
-    }
-    [_alignTo](alignment) {
-      if (alignment == null) dart.nullFailed(I[0], 86, 21, "alignment");
-      let mod = dart.nullCheck(this[_buffer]).length[$modulo](alignment);
-      if (mod !== 0) {
-        for (let i = 0; i < dart.notNull(alignment) - mod; i = i + 1)
-          dart.nullCheck(this[_buffer]).add(0);
+  var builder$ = dart.privateName(page, "MaterialPageRoute.builder");
+  var maintainState$ = dart.privateName(page, "MaterialPageRoute.maintainState");
+  var Duration__duration = dart.privateName(core, "Duration._duration");
+  var _Location_parameterLocations = dart.privateName(widget_inspector, "_Location.parameterLocations");
+  var _Location_name = dart.privateName(widget_inspector, "_Location.name");
+  var _Location_column = dart.privateName(widget_inspector, "_Location.column");
+  var _Location_line = dart.privateName(widget_inspector, "_Location.line");
+  var _Location_file = dart.privateName(widget_inspector, "_Location.file");
+  const _is_MaterialRouteTransitionMixin_default = Symbol('_is_MaterialRouteTransitionMixin_default');
+  page.MaterialRouteTransitionMixin$ = dart.generic(T => {
+    class MaterialRouteTransitionMixin extends pages.PageRoute$(T) {}
+    MaterialRouteTransitionMixin[dart.mixinOn] = PageRoute => class MaterialRouteTransitionMixin extends PageRoute {
+      get transitionDuration() {
+        return C[0] || CT.C0;
+      }
+      get barrierColor() {
+        return null;
+      }
+      get barrierLabel() {
+        return null;
+      }
+      canTransitionTo(nextRoute) {
+        if (nextRoute == null) dart.nullFailed(I[0], 94, 49, "nextRoute");
+        return page.MaterialRouteTransitionMixin.is(nextRoute) && !dart.test(nextRoute.fullscreenDialog) || route.CupertinoRouteTransitionMixin.is(nextRoute) && !dart.test(nextRoute.fullscreenDialog);
+      }
+      buildPage(context, animation, secondaryAnimation) {
+        if (context == null) dart.nullFailed(I[0], 102, 18, "context");
+        if (animation == null) dart.nullFailed(I[0], 103, 23, "animation");
+        if (secondaryAnimation == null) dart.nullFailed(I[0], 104, 23, "secondaryAnimation");
+        let result = this.buildContent(context);
+        if (!dart.test(dart.fn(() => {
+          if (result == null) {
+            dart.throw(assertions.FlutterError.new("The builder for route \"" + dart.str(this.settings.name) + "\" returned null.\n" + "Route builders must never return null."));
+          }
+          return true;
+        }, T$.VoidTobool())())) dart.assertFailed(null, I[0], 107, 12, "() {\r\n      if (result == null) {\r\n        throw FlutterError(\r\n          'The builder for route \"${settings.name}\" returned null.\\n'\r\n          'Route builders must never return null.',\r\n        );\r\n      }\r\n      return true;\r\n    }()");
+        return new basic.Semantics.new({scopesRoute: true, explicitChildNodes: true, child: result, $creationLocationd_0dea112b090073317d4: C[1] || CT.C1});
+      }
+      buildTransitions(context, animation, secondaryAnimation, child) {
+        if (context == null) dart.nullFailed(I[0], 124, 40, "context");
+        if (animation == null) dart.nullFailed(I[0], 124, 67, "animation");
+        if (secondaryAnimation == null) dart.nullFailed(I[0], 124, 96, "secondaryAnimation");
+        if (child == null) dart.nullFailed(I[0], 124, 123, "child");
+        let theme = theme$.Theme.of(context).pageTransitionsTheme;
+        return theme.buildTransitions(T, this, context, animation, secondaryAnimation, child);
+      }
+    };
+    dart.addTypeTests(MaterialRouteTransitionMixin);
+    MaterialRouteTransitionMixin.prototype[_is_MaterialRouteTransitionMixin_default] = true;
+    dart.addTypeCaches(MaterialRouteTransitionMixin);
+    MaterialRouteTransitionMixin[dart.implements] = () => [pages.PageRoute$(T)];
+    dart.setMethodSignature(MaterialRouteTransitionMixin, () => ({
+      __proto__: dart.getMethods(MaterialRouteTransitionMixin.__proto__),
+      buildPage: dart.fnType(framework.Widget, [framework.BuildContext, animation.Animation$(core.double), animation.Animation$(core.double)])
+    }));
+    dart.setGetterSignature(MaterialRouteTransitionMixin, () => ({
+      __proto__: dart.getGetters(MaterialRouteTransitionMixin.__proto__),
+      transitionDuration: core.Duration,
+      barrierColor: dart.nullable(ui.Color),
+      barrierLabel: dart.nullable(core.String)
+    }));
+    dart.setLibraryUri(MaterialRouteTransitionMixin, I[1]);
+    return MaterialRouteTransitionMixin;
+  });
+  page.MaterialRouteTransitionMixin = page.MaterialRouteTransitionMixin$();
+  dart.addTypeTests(page.MaterialRouteTransitionMixin, _is_MaterialRouteTransitionMixin_default);
+  const _is_MaterialPageRoute_default = Symbol('_is_MaterialPageRoute_default');
+  page.MaterialPageRoute$ = dart.generic(T => {
+    const PageRoute_MaterialRouteTransitionMixin$36 = class PageRoute_MaterialRouteTransitionMixin extends pages.PageRoute$(T) {};
+    (PageRoute_MaterialRouteTransitionMixin$36.new = function(opts) {
+      PageRoute_MaterialRouteTransitionMixin$36.__proto__.new.call(this, opts);
+    }).prototype = PageRoute_MaterialRouteTransitionMixin$36.prototype;
+    dart.applyMixin(PageRoute_MaterialRouteTransitionMixin$36, page.MaterialRouteTransitionMixin$(T));
+    class MaterialPageRoute extends PageRoute_MaterialRouteTransitionMixin$36 {
+      get builder() {
+        return this[builder$];
+      }
+      set builder(value) {
+        super.builder = value;
+      }
+      get maintainState() {
+        return this[maintainState$];
+      }
+      set maintainState(value) {
+        super.maintainState = value;
+      }
+      buildContent(context) {
+        let t0;
+        if (context == null) dart.nullFailed(I[0], 53, 36, "context");
+        t0 = context;
+        return this.builder(t0);
+      }
+      get debugLabel() {
+        return dart.str(super.debugLabel) + "(" + dart.str(this.settings.name) + ")";
       }
     }
-    done() {
-      let result = dart.nullCheck(this[_buffer]).buffer[$asByteData](0, dart.nullCheck(this[_buffer]).lengthInBytes);
-      this[_buffer] = null;
-      return result;
+    (MaterialPageRoute.new = function(opts) {
+      let builder = opts && 'builder' in opts ? opts.builder : null;
+      if (builder == null) dart.nullFailed(I[0], 38, 19, "builder");
+      let settings = opts && 'settings' in opts ? opts.settings : null;
+      let maintainState = opts && 'maintainState' in opts ? opts.maintainState : true;
+      if (maintainState == null) dart.nullFailed(I[0], 40, 10, "maintainState");
+      let fullscreenDialog = opts && 'fullscreenDialog' in opts ? opts.fullscreenDialog : false;
+      if (fullscreenDialog == null) dart.nullFailed(I[0], 41, 10, "fullscreenDialog");
+      this[builder$] = builder;
+      this[maintainState$] = maintainState;
+      if (!(builder != null)) dart.assertFailed(null, I[0], 42, 15, "builder != null");
+      if (!(maintainState != null)) dart.assertFailed(null, I[0], 43, 15, "maintainState != null");
+      if (!(fullscreenDialog != null)) dart.assertFailed(null, I[0], 44, 15, "fullscreenDialog != null");
+      MaterialPageRoute.__proto__.new.call(this, {settings: settings, fullscreenDialog: fullscreenDialog});
+      if (!dart.test(this.opaque)) dart.assertFailed(null, I[0], 46, 12, "opaque");
+    }).prototype = MaterialPageRoute.prototype;
+    dart.addTypeTests(MaterialPageRoute);
+    MaterialPageRoute.prototype[_is_MaterialPageRoute_default] = true;
+    dart.addTypeCaches(MaterialPageRoute);
+    dart.setMethodSignature(MaterialPageRoute, () => ({
+      __proto__: dart.getMethods(MaterialPageRoute.__proto__),
+      buildContent: dart.fnType(framework.Widget, [framework.BuildContext])
+    }));
+    dart.setLibraryUri(MaterialPageRoute, I[1]);
+    dart.setFieldSignature(MaterialPageRoute, () => ({
+      __proto__: dart.getFields(MaterialPageRoute.__proto__),
+      builder: dart.finalFieldType(dart.fnType(framework.Widget, [framework.BuildContext])),
+      maintainState: dart.finalFieldType(core.bool)
+    }));
+    return MaterialPageRoute;
+  });
+  page.MaterialPageRoute = page.MaterialPageRoute$();
+  dart.addTypeTests(page.MaterialPageRoute, _is_MaterialPageRoute_default);
+  var child$ = dart.privateName(page, "MaterialPage.child");
+  var maintainState$0 = dart.privateName(page, "MaterialPage.maintainState");
+  var fullscreenDialog$ = dart.privateName(page, "MaterialPage.fullscreenDialog");
+  const _is_MaterialPage_default = Symbol('_is_MaterialPage_default');
+  page.MaterialPage$ = dart.generic(T => {
+    var _PageBasedMaterialPageRouteOfT = () => (_PageBasedMaterialPageRouteOfT = dart.constFn(page._PageBasedMaterialPageRoute$(T)))();
+    class MaterialPage extends navigator.Page$(T) {
+      get child() {
+        return this[child$];
+      }
+      set child(value) {
+        super.child = value;
+      }
+      get maintainState() {
+        return this[maintainState$0];
+      }
+      set maintainState(value) {
+        super.maintainState = value;
+      }
+      get fullscreenDialog() {
+        return this[fullscreenDialog$];
+      }
+      set fullscreenDialog(value) {
+        super.fullscreenDialog = value;
+      }
+      createRoute(context) {
+        if (context == null) dart.nullFailed(I[0], 175, 37, "context");
+        return new (_PageBasedMaterialPageRouteOfT()).new({page: this});
+      }
     }
-  };
-  (serialization.WriteBuffer.new = function() {
-    this[__WriteBuffer__eightBytesAsList] = null;
-    this[__WriteBuffer__eightBytesAsList_isSet] = false;
-    this[_buffer] = new typed_buffer.Uint8Buffer.new();
-    this[_eightBytes] = _native_typed_data.NativeByteData.new(8);
-    this[_eightBytesAsList] = this[_eightBytes][$buffer][$asUint8List]();
-  }).prototype = serialization.WriteBuffer.prototype;
-  dart.addTypeTests(serialization.WriteBuffer);
-  dart.addTypeCaches(serialization.WriteBuffer);
-  dart.setMethodSignature(serialization.WriteBuffer, () => ({
-    __proto__: dart.getMethods(serialization.WriteBuffer.__proto__),
-    putUint8: dart.fnType(dart.void, [core.int]),
-    putUint16: dart.fnType(dart.void, [core.int], {endian: dart.nullable(typed_data.Endian)}, {}),
-    putUint32: dart.fnType(dart.void, [core.int], {endian: dart.nullable(typed_data.Endian)}, {}),
-    putInt32: dart.fnType(dart.void, [core.int], {endian: dart.nullable(typed_data.Endian)}, {}),
-    putInt64: dart.fnType(dart.void, [core.int], {endian: dart.nullable(typed_data.Endian)}, {}),
-    putFloat64: dart.fnType(dart.void, [core.double], {endian: dart.nullable(typed_data.Endian)}, {}),
-    putUint8List: dart.fnType(dart.void, [typed_data.Uint8List]),
-    putInt32List: dart.fnType(dart.void, [typed_data.Int32List]),
-    putInt64List: dart.fnType(dart.void, [typed_data.Int64List]),
-    putFloat64List: dart.fnType(dart.void, [typed_data.Float64List]),
-    [_alignTo]: dart.fnType(dart.void, [core.int]),
-    done: dart.fnType(typed_data.ByteData, [])
-  }));
-  dart.setGetterSignature(serialization.WriteBuffer, () => ({
-    __proto__: dart.getGetters(serialization.WriteBuffer.__proto__),
-    [_eightBytesAsList]: typed_data.Uint8List
-  }));
-  dart.setSetterSignature(serialization.WriteBuffer, () => ({
-    __proto__: dart.getSetters(serialization.WriteBuffer.__proto__),
-    [_eightBytesAsList]: typed_data.Uint8List
-  }));
-  dart.setLibraryUri(serialization.WriteBuffer, I[1]);
-  dart.setFieldSignature(serialization.WriteBuffer, () => ({
-    __proto__: dart.getFields(serialization.WriteBuffer.__proto__),
-    [_buffer]: dart.fieldType(dart.nullable(typed_buffer.Uint8Buffer)),
-    [_eightBytes]: dart.finalFieldType(typed_data.ByteData),
-    [__WriteBuffer__eightBytesAsList]: dart.fieldType(dart.nullable(typed_data.Uint8List)),
-    [__WriteBuffer__eightBytesAsList_isSet]: dart.fieldType(core.bool)
-  }));
-  var data$ = dart.privateName(serialization, "ReadBuffer.data");
-  var _position = dart.privateName(serialization, "_position");
-  serialization.ReadBuffer = class ReadBuffer extends core.Object {
-    get data() {
-      return this[data$];
+    (MaterialPage.new = function(opts) {
+      let child = opts && 'child' in opts ? opts.child : null;
+      if (child == null) dart.nullFailed(I[0], 153, 19, "child");
+      let maintainState = opts && 'maintainState' in opts ? opts.maintainState : true;
+      if (maintainState == null) dart.nullFailed(I[0], 154, 10, "maintainState");
+      let fullscreenDialog = opts && 'fullscreenDialog' in opts ? opts.fullscreenDialog : false;
+      if (fullscreenDialog == null) dart.nullFailed(I[0], 155, 10, "fullscreenDialog");
+      let key = opts && 'key' in opts ? opts.key : null;
+      let name = opts && 'name' in opts ? opts.name : null;
+      let $arguments = opts && 'arguments' in opts ? opts.arguments : null;
+      let restorationId = opts && 'restorationId' in opts ? opts.restorationId : null;
+      this[child$] = child;
+      this[maintainState$0] = maintainState;
+      this[fullscreenDialog$] = fullscreenDialog;
+      if (!(child != null)) dart.assertFailed(null, I[0], 160, 15, "child != null");
+      if (!(maintainState != null)) dart.assertFailed(null, I[0], 161, 15, "maintainState != null");
+      if (!(fullscreenDialog != null)) dart.assertFailed(null, I[0], 162, 15, "fullscreenDialog != null");
+      MaterialPage.__proto__.new.call(this, {key: key, name: name, arguments: $arguments, restorationId: restorationId});
+      ;
+    }).prototype = MaterialPage.prototype;
+    dart.addTypeTests(MaterialPage);
+    MaterialPage.prototype[_is_MaterialPage_default] = true;
+    dart.addTypeCaches(MaterialPage);
+    dart.setMethodSignature(MaterialPage, () => ({
+      __proto__: dart.getMethods(MaterialPage.__proto__),
+      createRoute: dart.fnType(navigator.Route$(T), [framework.BuildContext])
+    }));
+    dart.setLibraryUri(MaterialPage, I[1]);
+    dart.setFieldSignature(MaterialPage, () => ({
+      __proto__: dart.getFields(MaterialPage.__proto__),
+      child: dart.finalFieldType(framework.Widget),
+      maintainState: dart.finalFieldType(core.bool),
+      fullscreenDialog: dart.finalFieldType(core.bool)
+    }));
+    return MaterialPage;
+  });
+  page.MaterialPage = page.MaterialPage$();
+  dart.addTypeTests(page.MaterialPage, _is_MaterialPage_default);
+  var _page = dart.privateName(page, "_page");
+  const _is__PageBasedMaterialPageRoute_default = Symbol('_is__PageBasedMaterialPageRoute_default');
+  page._PageBasedMaterialPageRoute$ = dart.generic(T => {
+    var MaterialPageOfT = () => (MaterialPageOfT = dart.constFn(page.MaterialPage$(T)))();
+    const PageRoute_MaterialRouteTransitionMixin$36 = class PageRoute_MaterialRouteTransitionMixin extends pages.PageRoute$(T) {};
+    (PageRoute_MaterialRouteTransitionMixin$36.new = function(opts) {
+      PageRoute_MaterialRouteTransitionMixin$36.__proto__.new.call(this, opts);
+    }).prototype = PageRoute_MaterialRouteTransitionMixin$36.prototype;
+    dart.applyMixin(PageRoute_MaterialRouteTransitionMixin$36, page.MaterialRouteTransitionMixin$(T));
+    class _PageBasedMaterialPageRoute extends PageRoute_MaterialRouteTransitionMixin$36 {
+      get [_page]() {
+        return MaterialPageOfT().as(this.settings);
+      }
+      buildContent(context) {
+        if (context == null) dart.nullFailed(I[0], 195, 36, "context");
+        return this[_page].child;
+      }
+      get maintainState() {
+        return this[_page].maintainState;
+      }
+      get fullscreenDialog() {
+        return this[_page].fullscreenDialog;
+      }
+      get debugLabel() {
+        return dart.str(super.debugLabel) + "(" + dart.str(this[_page].name) + ")";
+      }
     }
-    set data(value) {
-      super.data = value;
-    }
-    get hasRemaining() {
-      return dart.notNull(this[_position]) < dart.notNull(this.data[$lengthInBytes]);
-    }
-    getUint8() {
-      let t1;
-      return this.data[$getUint8]((t1 = this[_position], this[_position] = dart.notNull(t1) + 1, t1));
-    }
-    getUint16(opts) {
-      let t1;
-      let endian = opts && 'endian' in opts ? opts.endian : null;
-      let value = this.data[$getUint16](this[_position], (t1 = endian, t1 == null ? typed_data.Endian.host : t1));
-      this[_position] = dart.notNull(this[_position]) + 2;
-      return value;
-    }
-    getUint32(opts) {
-      let t1;
-      let endian = opts && 'endian' in opts ? opts.endian : null;
-      let value = this.data[$getUint32](this[_position], (t1 = endian, t1 == null ? typed_data.Endian.host : t1));
-      this[_position] = dart.notNull(this[_position]) + 4;
-      return value;
-    }
-    getInt32(opts) {
-      let t1;
-      let endian = opts && 'endian' in opts ? opts.endian : null;
-      let value = this.data[$getInt32](this[_position], (t1 = endian, t1 == null ? typed_data.Endian.host : t1));
-      this[_position] = dart.notNull(this[_position]) + 4;
-      return value;
-    }
-    getInt64(opts) {
-      let t1;
-      let endian = opts && 'endian' in opts ? opts.endian : null;
-      let value = this.data[$getInt64](this[_position], (t1 = endian, t1 == null ? typed_data.Endian.host : t1));
-      this[_position] = dart.notNull(this[_position]) + 8;
-      return value;
-    }
-    getFloat64(opts) {
-      let t1;
-      let endian = opts && 'endian' in opts ? opts.endian : null;
-      this[_alignTo](8);
-      let value = this.data[$getFloat64](this[_position], (t1 = endian, t1 == null ? typed_data.Endian.host : t1));
-      this[_position] = dart.notNull(this[_position]) + 8;
-      return value;
-    }
-    getUint8List(length) {
-      if (length == null) dart.nullFailed(I[0], 161, 30, "length");
-      let list = this.data[$buffer][$asUint8List](dart.notNull(this.data[$offsetInBytes]) + dart.notNull(this[_position]), length);
-      this[_position] = dart.notNull(this[_position]) + dart.notNull(length);
-      return list;
-    }
-    getInt32List(length) {
-      if (length == null) dart.nullFailed(I[0], 168, 30, "length");
-      this[_alignTo](4);
-      let list = this.data[$buffer][$asInt32List](dart.notNull(this.data[$offsetInBytes]) + dart.notNull(this[_position]), length);
-      this[_position] = dart.notNull(this[_position]) + 4 * dart.notNull(length);
-      return list;
-    }
-    getInt64List(length) {
-      if (length == null) dart.nullFailed(I[0], 176, 30, "length");
-      this[_alignTo](8);
-      let list = this.data[$buffer][$asInt64List](dart.notNull(this.data[$offsetInBytes]) + dart.notNull(this[_position]), length);
-      this[_position] = dart.notNull(this[_position]) + 8 * dart.notNull(length);
-      return list;
-    }
-    getFloat64List(length) {
-      if (length == null) dart.nullFailed(I[0], 184, 34, "length");
-      this[_alignTo](8);
-      let list = this.data[$buffer][$asFloat64List](dart.notNull(this.data[$offsetInBytes]) + dart.notNull(this[_position]), length);
-      this[_position] = dart.notNull(this[_position]) + 8 * dart.notNull(length);
-      return list;
-    }
-    [_alignTo](alignment) {
-      if (alignment == null) dart.nullFailed(I[0], 191, 21, "alignment");
-      let mod = this[_position][$modulo](alignment);
-      if (mod !== 0) this[_position] = dart.notNull(this[_position]) + (dart.notNull(alignment) - mod);
-    }
-  };
-  (serialization.ReadBuffer.new = function(data) {
-    if (data == null) dart.nullFailed(I[0], 107, 19, "data");
-    this[_position] = 0;
-    this[data$] = data;
-    if (!(data != null)) dart.assertFailed(null, I[0], 108, 14, "data != null");
-    ;
-  }).prototype = serialization.ReadBuffer.prototype;
-  dart.addTypeTests(serialization.ReadBuffer);
-  dart.addTypeCaches(serialization.ReadBuffer);
-  dart.setMethodSignature(serialization.ReadBuffer, () => ({
-    __proto__: dart.getMethods(serialization.ReadBuffer.__proto__),
-    getUint8: dart.fnType(core.int, []),
-    getUint16: dart.fnType(core.int, [], {endian: dart.nullable(typed_data.Endian)}, {}),
-    getUint32: dart.fnType(core.int, [], {endian: dart.nullable(typed_data.Endian)}, {}),
-    getInt32: dart.fnType(core.int, [], {endian: dart.nullable(typed_data.Endian)}, {}),
-    getInt64: dart.fnType(core.int, [], {endian: dart.nullable(typed_data.Endian)}, {}),
-    getFloat64: dart.fnType(core.double, [], {endian: dart.nullable(typed_data.Endian)}, {}),
-    getUint8List: dart.fnType(typed_data.Uint8List, [core.int]),
-    getInt32List: dart.fnType(typed_data.Int32List, [core.int]),
-    getInt64List: dart.fnType(typed_data.Int64List, [core.int]),
-    getFloat64List: dart.fnType(typed_data.Float64List, [core.int]),
-    [_alignTo]: dart.fnType(dart.void, [core.int])
-  }));
-  dart.setGetterSignature(serialization.ReadBuffer, () => ({
-    __proto__: dart.getGetters(serialization.ReadBuffer.__proto__),
-    hasRemaining: core.bool
-  }));
-  dart.setLibraryUri(serialization.ReadBuffer, I[1]);
-  dart.setFieldSignature(serialization.ReadBuffer, () => ({
-    __proto__: dart.getFields(serialization.ReadBuffer.__proto__),
-    data: dart.finalFieldType(typed_data.ByteData),
-    [_position]: dart.fieldType(core.int)
-  }));
-  dart.trackLibraries("packages/flutter/src/foundation/serialization.dart", {
-    "package:flutter/src/foundation/serialization.dart": serialization
+    (_PageBasedMaterialPageRoute.new = function(opts) {
+      let page = opts && 'page' in opts ? opts.page : null;
+      if (page == null) dart.nullFailed(I[0], 186, 30, "page");
+      if (!(page != null)) dart.assertFailed(null, I[0], 187, 15, "page != null");
+      _PageBasedMaterialPageRoute.__proto__.new.call(this, {settings: page});
+      if (!dart.test(this.opaque)) dart.assertFailed(null, I[0], 189, 12, "opaque");
+    }).prototype = _PageBasedMaterialPageRoute.prototype;
+    dart.addTypeTests(_PageBasedMaterialPageRoute);
+    _PageBasedMaterialPageRoute.prototype[_is__PageBasedMaterialPageRoute_default] = true;
+    dart.addTypeCaches(_PageBasedMaterialPageRoute);
+    dart.setMethodSignature(_PageBasedMaterialPageRoute, () => ({
+      __proto__: dart.getMethods(_PageBasedMaterialPageRoute.__proto__),
+      buildContent: dart.fnType(framework.Widget, [framework.BuildContext])
+    }));
+    dart.setGetterSignature(_PageBasedMaterialPageRoute, () => ({
+      __proto__: dart.getGetters(_PageBasedMaterialPageRoute.__proto__),
+      [_page]: page.MaterialPage$(T),
+      maintainState: core.bool,
+      fullscreenDialog: core.bool
+    }));
+    dart.setLibraryUri(_PageBasedMaterialPageRoute, I[1]);
+    return _PageBasedMaterialPageRoute;
+  });
+  page._PageBasedMaterialPageRoute = page._PageBasedMaterialPageRoute$();
+  dart.addTypeTests(page._PageBasedMaterialPageRoute, _is__PageBasedMaterialPageRoute_default);
+  dart.trackLibraries("packages/flutter/src/material/page.dart", {
+    "package:flutter/src/material/page.dart": page
   }, {
-  }, '{"version":3,"sourceRoot":"","sources":["serialization.dart"],"names":[],"mappings":"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","file":"../../../../../../../../../../packages/flutter/src/foundation/serialization.dart.lib.js"}');
+  }, '{"version":3,"sourceRoot":"","sources":["page.dart"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AAoFqC;MAAiC;;AAGzC;MAAI;;AAGH;MAAI;;YAGc;AAE5C,cAAkB,AAChB,sCADM,SAAS,gBAAqC,AAAU,SAAD,sBAC/C,uCAAV,SAAS,gBAAsC,AAAU,SAAD;MAChE;gBAIe,SACK,WACA;YAFL;YACK;YACA;AAEL,qBAAS,kBAAa,OAAO;AAC1C,uBAAO,AAQN;AAPC,cAAI,AAAO,MAAD;AAIP,YAHD,WAAM,4BAAY,AAChB,sCAA0B,AAAS,sBAAK,wBACxC;;AAGJ,gBAAO;;AAET,cAAO,uCACQ,0BACO,aACb,MAAM;MAEjB;uBAGqC,SAA2B,WAA6B,oBAA2B;YAAnF;YAA2B;YAA6B;YAA2B;AAC3F,oBAAc,AAAY,gBAAT,OAAO;AACnD,cAAO,AAAM,MAAD,qBAAqB,MAAM,OAAO,EAAE,SAAS,EAAE,kBAAkB,EAAE,KAAK;MACtF;;;;;;;;;;;;;;;;;;;;;;;;;;;;;MA7EoB;;;;;;MAMT;;;;;;mBAHsB;;;AAAY,aAAQ,OAAO;cAAf,AAAO;MAAS;;AAMpC,cAAuC,UAA9B,oBAAW,eAAG,AAAS,sBAAK;MAAE;;;UArBhD;;UACC;UACV;;UACA;;MAHS;MAET;YAEK,AAAQ,OAAD;YACP,AAAc,aAAD;YACb,AAAiB,gBAAD;AACvB,4DAAgB,QAAQ,oBAAoB,gBAAgB;AAC/D,qBAAO;IACT;;;;;;;;;;;;;;;;;;;;;;;;;MAuHa;;;;;;MAGF;;;;;;MAGA;;;;;;;YAGuB;AAChC,cAAO,mDAAqC;MAC9C;;;UAxBgB;;UACT;;UACA;;UACK;UACF;UACA;UACA;MANM;MACT;MACA;YAKK,AAAM,KAAD;YACL,AAAc,aAAD;YACb,AAAiB,gBAAD;AACvB,kDAAW,GAAG,QAAQ,IAAI,aAAa,2BAA0B,aAAa;;IAAC;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AA6BvD,cAAS,sBAAT;MAA2B;;YAGvB;AAC/B,cAAO,AAAM;MACf;;AAG0B,cAAA,AAAM;MAAa;;AAGhB,cAAA,AAAM;MAAgB;;AAG1B,cAAoC,UAA3B,oBAAW,eAAG,AAAM,oBAAK;MAAE;;;UApBlC;;YACf,AAAK,IAAD;AACX,sEAAgB,IAAI;AACvB,qBAAO;IACT","file":"../../../../../../../../../../packages/flutter/src/material/page.dart.lib.js"}');
   // Exports:
   return {
-    src__foundation__serialization: serialization
+    src__material__page: page
   };
 }));
 
-//# sourceMappingURL=serialization.dart.lib.js.map
+//# sourceMappingURL=page.dart.lib.js.map

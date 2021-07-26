@@ -1,24 +1,37 @@
-define(['dart_sdk', 'packages/flutter/src/foundation/object.dart', 'packages/flutter/src/animation/listener_helpers.dart'], (function load__packages__flutter__src__material__arc_dart(dart_sdk, packages__flutter__src__foundation__object$46dart, packages__flutter__src__animation__listener_helpers$46dart) {
+define(['dart_sdk', 'packages/flutter/src/services/system_channels.dart', 'packages/flutter/src/foundation/debug.dart', 'packages/file_picker/src/platform_file.dart', 'packages/file_picker/src/file_picker_result.dart', 'packages/plugin_platform_interface/plugin_platform_interface.dart'], (function load__packages__file_picker__src__file_picker_io_dart(dart_sdk, packages__flutter__src__services__system_channels$46dart, packages__flutter__src__foundation__debug$46dart, packages__file_picker__src__platform_file$46dart, packages__file_picker__src__file_picker_result$46dart, packages__plugin_platform_interface__plugin_platform_interface$46dart) {
   'use strict';
   const core = dart_sdk.core;
-  const ui = dart_sdk.ui;
-  const math = dart_sdk.math;
-  const _internal = dart_sdk._internal;
+  const async = dart_sdk.async;
+  const _js_helper = dart_sdk._js_helper;
+  const _interceptors = dart_sdk._interceptors;
+  const io = dart_sdk.io;
   const dart = dart_sdk.dart;
   const dartx = dart_sdk.dartx;
-  const object = packages__flutter__src__foundation__object$46dart.src__foundation__object;
-  const tween = packages__flutter__src__animation__listener_helpers$46dart.src__animation__tween;
-  var arc = Object.create(dart.library);
-  var $abs = dartx.abs;
-  var $sign = dartx.sign;
+  const message_codec = packages__flutter__src__services__system_channels$46dart.src__services__message_codec;
+  const platform_channel = packages__flutter__src__services__system_channels$46dart.src__services__platform_channel;
+  const message_codecs = packages__flutter__src__services__system_channels$46dart.src__services__message_codecs;
+  const diagnostics = packages__flutter__src__foundation__debug$46dart.src__foundation__diagnostics;
+  const platform_file = packages__file_picker__src__platform_file$46dart.src__platform_file;
+  const file_picker_result = packages__file_picker__src__file_picker_result$46dart.src__file_picker_result;
+  const plugin_platform_interface = packages__plugin_platform_interface__plugin_platform_interface$46dart.plugin_platform_interface;
+  var file_picker_io = Object.create(dart.library);
+  var file_picker = Object.create(dart.library);
+  var file_picker$ = Object.create(dart.library);
+  var $isNotEmpty = dartx.isNotEmpty;
+  var $_get = dartx._get;
+  var $add = dartx.add;
   dart._checkModuleNullSafetyMode(false);
   var T = {
-    VoidTodouble: () => (T.VoidTodouble = dart.constFn(dart.fnType(core.double, [])))(),
-    OffsetN: () => (T.OffsetN = dart.constFn(dart.nullable(ui.Offset)))(),
-    _CornerIdL: () => (T._CornerIdL = dart.constFn(dart.legacy(arc._CornerId)))(),
-    _DiagonalTodouble: () => (T._DiagonalTodouble = dart.constFn(dart.fnType(core.double, [arc._Diagonal])))(),
-    RectN: () => (T.RectN = dart.constFn(dart.nullable(ui.Rect)))(),
-    _DiagonalL: () => (T._DiagonalL = dart.constFn(dart.legacy(arc._Diagonal)))()
+    boolN: () => (T.boolN = dart.constFn(dart.nullable(core.bool)))(),
+    StringN: () => (T.StringN = dart.constFn(dart.nullable(core.String)))(),
+    dynamicTovoid: () => (T.dynamicTovoid = dart.constFn(dart.fnType(dart.void, [dart.dynamic])))(),
+    dynamicToNever: () => (T.dynamicToNever = dart.constFn(dart.fnType(dart.Never, [dart.dynamic])))(),
+    ObjectN: () => (T.ObjectN = dart.constFn(dart.nullable(core.Object)))(),
+    IdentityMapOfString$ObjectN: () => (T.IdentityMapOfString$ObjectN = dart.constFn(_js_helper.IdentityMap$(core.String, T.ObjectN())))(),
+    JSArrayOfPlatformFile: () => (T.JSArrayOfPlatformFile = dart.constFn(_interceptors.JSArray$(platform_file.PlatformFile)))(),
+    FilePickerResultN: () => (T.FilePickerResultN = dart.constFn(dart.nullable(file_picker_result.FilePickerResult)))(),
+    FileTypeL: () => (T.FileTypeL = dart.constFn(dart.legacy(file_picker.FileType)))(),
+    FilePickerStatusL: () => (T.FilePickerStatusL = dart.constFn(dart.legacy(file_picker.FilePickerStatus)))()
   };
   const CT = Object.create({
     _: () => (C, CT)
@@ -26,565 +39,330 @@ define(['dart_sdk', 'packages/flutter/src/foundation/object.dart', 'packages/flu
   dart.defineLazy(CT, {
     get C0() {
       return C[0] = dart.const({
-        __proto__: arc._CornerId.prototype,
-        [_name$]: "_CornerId.topLeft",
+        __proto__: file_picker.FileType.prototype,
+        [_name$]: "FileType.any",
         index: 0
       });
     },
     get C1() {
       return C[1] = dart.const({
-        __proto__: arc._CornerId.prototype,
-        [_name$]: "_CornerId.topRight",
-        index: 1
-      });
-    },
-    get C2() {
-      return C[2] = dart.const({
-        __proto__: arc._CornerId.prototype,
-        [_name$]: "_CornerId.bottomLeft",
-        index: 2
+        __proto__: message_codecs.JSONMethodCodec.prototype
       });
     },
     get C3() {
       return C[3] = dart.const({
-        __proto__: arc._CornerId.prototype,
-        [_name$]: "_CornerId.bottomRight",
-        index: 3
+        __proto__: message_codecs.StandardMessageCodec.prototype
+      });
+    },
+    get C2() {
+      return C[2] = dart.const({
+        __proto__: message_codecs.StandardMethodCodec.prototype,
+        [StandardMethodCodec_messageCodec]: C[3] || CT.C3
       });
     },
     get C4() {
-      return C[4] = dart.constList([C[0] || CT.C0, C[1] || CT.C1, C[2] || CT.C2, C[3] || CT.C3], T._CornerIdL());
+      return C[4] = dart.const({
+        __proto__: platform_channel.EventChannel.prototype,
+        [EventChannel__binaryMessenger]: null,
+        [EventChannel_codec]: C[2] || CT.C2,
+        [EventChannel_name]: "miguelruivo.flutter.plugins.filepickerevent"
+      });
+    },
+    get C5() {
+      return C[5] = dart.const({
+        __proto__: file_picker.FileType.prototype,
+        [_name$]: "FileType.media",
+        index: 1
+      });
     },
     get C6() {
       return C[6] = dart.const({
-        __proto__: arc._Diagonal.prototype,
-        [endId$]: C[3] || CT.C3,
-        [beginId$]: C[0] || CT.C0
+        __proto__: file_picker.FileType.prototype,
+        [_name$]: "FileType.image",
+        index: 2
       });
     },
     get C7() {
       return C[7] = dart.const({
-        __proto__: arc._Diagonal.prototype,
-        [endId$]: C[0] || CT.C0,
-        [beginId$]: C[3] || CT.C3
+        __proto__: file_picker.FileType.prototype,
+        [_name$]: "FileType.video",
+        index: 3
       });
     },
     get C8() {
       return C[8] = dart.const({
-        __proto__: arc._Diagonal.prototype,
-        [endId$]: C[2] || CT.C2,
-        [beginId$]: C[1] || CT.C1
+        __proto__: file_picker.FileType.prototype,
+        [_name$]: "FileType.audio",
+        index: 4
       });
     },
     get C9() {
       return C[9] = dart.const({
-        __proto__: arc._Diagonal.prototype,
-        [endId$]: C[1] || CT.C1,
-        [beginId$]: C[2] || CT.C2
+        __proto__: file_picker.FileType.prototype,
+        [_name$]: "FileType.custom",
+        index: 5
       });
     },
-    get C5() {
-      return C[5] = dart.constList([C[6] || CT.C6, C[7] || CT.C7, C[8] || CT.C8, C[9] || CT.C9], T._DiagonalL());
+    get C10() {
+      return C[10] = dart.constList([C[0] || CT.C0, C[5] || CT.C5, C[6] || CT.C6, C[7] || CT.C7, C[8] || CT.C8, C[9] || CT.C9], T.FileTypeL());
+    },
+    get C11() {
+      return C[11] = dart.const({
+        __proto__: file_picker.FilePickerStatus.prototype,
+        [_name$]: "FilePickerStatus.picking",
+        index: 0
+      });
+    },
+    get C12() {
+      return C[12] = dart.const({
+        __proto__: file_picker.FilePickerStatus.prototype,
+        [_name$]: "FilePickerStatus.done",
+        index: 1
+      });
+    },
+    get C13() {
+      return C[13] = dart.constList([C[11] || CT.C11, C[12] || CT.C12], T.FilePickerStatusL());
     }
   }, false);
-  var C = Array(10).fill(void 0);
+  var C = Array(14).fill(void 0);
   var I = [
-    "file:///C:/Users/Ejas/Desktop/App_files/flutter/packages/flutter/lib/src/material/arc.dart",
-    "package:flutter/src/material/arc.dart"
+    "file:///C:/Users/Ejas/Desktop/App_files/flutter/.pub-cache/hosted/pub.dartlang.org/file_picker-3.0.3/lib/src/file_picker_io.dart",
+    "file:///C:/Users/Ejas/Desktop/App_files/flutter/.pub-cache/hosted/pub.dartlang.org/file_picker-3.0.3/lib/src/file_picker.dart",
+    "package:file_picker/src/file_picker.dart",
+    "package:file_picker/src/file_picker_io.dart"
   ];
-  var _dirty = dart.privateName(arc, "_dirty");
-  var _center = dart.privateName(arc, "_center");
-  var _radius = dart.privateName(arc, "_radius");
-  var _beginAngle = dart.privateName(arc, "_beginAngle");
-  var _endAngle = dart.privateName(arc, "_endAngle");
-  var _initialize = dart.privateName(arc, "_initialize");
-  arc.MaterialPointArcTween = class MaterialPointArcTween extends tween.Tween$(ui.Offset) {
-    [_initialize]() {
-      if (!(this.begin != null)) dart.assertFailed(null, I[0], 46, 12, "this.begin != null");
-      if (!(this.end != null)) dart.assertFailed(null, I[0], 47, 12, "this.end != null");
-      let begin = dart.nullCheck(this.begin);
-      let end = dart.nullCheck(this.end);
-      let delta = end['-'](begin);
-      let deltaX = delta.dx[$abs]();
-      let deltaY = delta.dy[$abs]();
-      let distanceFromAtoB = delta.distance;
-      let c = new ui.Offset.new(end.dx, begin.dy);
-      const sweepAngle = () => {
-        return 2.0 * math.asin(dart.notNull(distanceFromAtoB) / (2.0 * dart.nullCheck(this[_radius])));
-      };
-      dart.fn(sweepAngle, T.VoidTodouble());
-      if (deltaX > 2 && deltaY > 2) {
-        if (deltaX < deltaY) {
-          this[_radius] = dart.notNull(distanceFromAtoB) * dart.notNull(distanceFromAtoB) / dart.notNull(c['-'](begin).distance) / 2.0;
-          this[_center] = new ui.Offset.new(dart.notNull(end.dx) + dart.nullCheck(this[_radius]) * (dart.notNull(begin.dx) - dart.notNull(end.dx))[$sign], end.dy);
-          if (dart.notNull(begin.dx) < dart.notNull(end.dx)) {
-            this[_beginAngle] = dart.notNull(sweepAngle()) * (dart.notNull(begin.dy) - dart.notNull(end.dy))[$sign];
-            this[_endAngle] = 0.0;
-          } else {
-            this[_beginAngle] = 3.141592653589793 + dart.notNull(sweepAngle()) * (dart.notNull(end.dy) - dart.notNull(begin.dy))[$sign];
-            this[_endAngle] = 3.141592653589793;
-          }
-        } else {
-          this[_radius] = dart.notNull(distanceFromAtoB) * dart.notNull(distanceFromAtoB) / dart.notNull(c['-'](end).distance) / 2.0;
-          this[_center] = new ui.Offset.new(begin.dx, dart.notNull(begin.dy) + (dart.notNull(end.dy) - dart.notNull(begin.dy))[$sign] * dart.nullCheck(this[_radius]));
-          if (dart.notNull(begin.dy) < dart.notNull(end.dy)) {
-            this[_beginAngle] = -3.141592653589793 / 2.0;
-            this[_endAngle] = dart.nullCheck(this[_beginAngle]) + dart.notNull(sweepAngle()) * (dart.notNull(end.dx) - dart.notNull(begin.dx))[$sign];
-          } else {
-            this[_beginAngle] = 3.141592653589793 / 2.0;
-            this[_endAngle] = dart.nullCheck(this[_beginAngle]) + dart.notNull(sweepAngle()) * (dart.notNull(begin.dx) - dart.notNull(end.dx))[$sign];
-          }
-        }
-        if (!(this[_beginAngle] != null)) dart.assertFailed(null, I[0], 83, 14, "_beginAngle != null");
-        if (!(this[_endAngle] != null)) dart.assertFailed(null, I[0], 84, 14, "_endAngle != null");
-      } else {
-        this[_beginAngle] = null;
-        this[_endAngle] = null;
-      }
-      this[_dirty] = false;
+  var _name$ = dart.privateName(file_picker, "_name");
+  var _getPath = dart.privateName(file_picker_io, "_getPath");
+  file_picker.FilePicker = class FilePicker extends plugin_platform_interface.PlatformInterface {
+    static get platform() {
+      return file_picker.FilePicker._instance;
     }
-    get center() {
-      if (this.begin == null || this.end == null) return null;
-      if (dart.test(this[_dirty])) this[_initialize]();
-      return this[_center];
+    static set platform(instance) {
+      if (instance == null) dart.nullFailed(I[1], 39, 34, "instance");
+      plugin_platform_interface.PlatformInterface.verifyToken(instance, file_picker.FilePicker._token);
+      file_picker.FilePicker._instance = instance;
     }
-    get radius() {
-      if (this.begin == null || this.end == null) return null;
-      if (dart.test(this[_dirty])) this[_initialize]();
-      return this[_radius];
+    pickFiles(opts) {
+      let type = opts && 'type' in opts ? opts.type : C[0] || CT.C0;
+      if (type == null) dart.nullFailed(I[1], 71, 14, "type");
+      let allowedExtensions = opts && 'allowedExtensions' in opts ? opts.allowedExtensions : null;
+      let onFileLoading = opts && 'onFileLoading' in opts ? opts.onFileLoading : null;
+      let allowCompression = opts && 'allowCompression' in opts ? opts.allowCompression : true;
+      if (allowCompression == null) dart.nullFailed(I[1], 74, 10, "allowCompression");
+      let allowMultiple = opts && 'allowMultiple' in opts ? opts.allowMultiple : false;
+      if (allowMultiple == null) dart.nullFailed(I[1], 75, 10, "allowMultiple");
+      let withData = opts && 'withData' in opts ? opts.withData : false;
+      if (withData == null) dart.nullFailed(I[1], 76, 10, "withData");
+      let withReadStream = opts && 'withReadStream' in opts ? opts.withReadStream : false;
+      if (withReadStream == null) dart.nullFailed(I[1], 77, 10, "withReadStream");
+      return async.async(T.FilePickerResultN(), function* pickFiles() {
+        return dart.throw(new core.UnimplementedError.new("pickFiles() has not been implemented."));
+      });
     }
-    get beginAngle() {
-      if (this.begin == null || this.end == null) return null;
-      if (dart.test(this[_dirty])) this[_initialize]();
-      return this[_beginAngle];
+    clearTemporaryFiles() {
+      return async.async(T.boolN(), function* clearTemporaryFiles() {
+        return dart.throw(new core.UnimplementedError.new("clearTemporaryFiles() has not been implemented."));
+      });
     }
-    get endAngle() {
-      if (this.begin == null || this.end == null) return null;
-      if (dart.test(this[_dirty])) this[_initialize]();
-      return this[_beginAngle];
-    }
-    set begin(value) {
-      T.OffsetN().as(value);
-      if (!dart.equals(value, this.begin)) {
-        super.begin = value;
-        this[_dirty] = true;
-      }
-    }
-    get begin() {
-      return super.begin;
-    }
-    set end(value) {
-      T.OffsetN().as(value);
-      if (!dart.equals(value, this.end)) {
-        super.end = value;
-        this[_dirty] = true;
-      }
-    }
-    get end() {
-      return super.end;
-    }
-    lerp(t) {
-      if (t == null) dart.nullFailed(I[0], 159, 22, "t");
-      if (dart.test(this[_dirty])) this[_initialize]();
-      if (t === 0.0) return dart.nullCheck(this.begin);
-      if (t === 1.0) return dart.nullCheck(this.end);
-      if (this[_beginAngle] == null || this[_endAngle] == null) return dart.nullCheck(ui.Offset.lerp(this.begin, this.end, t));
-      let angle = dart.nullCheck(ui.lerpDouble(this[_beginAngle], this[_endAngle], t));
-      let x = math.cos(angle) * dart.nullCheck(this[_radius]);
-      let y = math.sin(angle) * dart.nullCheck(this[_radius]);
-      return dart.nullCheck(this[_center])['+'](new ui.Offset.new(x, y));
-    }
-    toString() {
-      return dart.str(object.objectRuntimeType(this, "MaterialPointArcTween")) + "(" + dart.str(this.begin) + " → " + dart.str(this.end) + "; center=" + dart.str(this.center) + ", radius=" + dart.str(this.radius) + ", beginAngle=" + dart.str(this.beginAngle) + ", endAngle=" + dart.str(this.endAngle) + ")";
+    getDirectoryPath() {
+      return async.async(T.StringN(), function* getDirectoryPath() {
+        return dart.throw(new core.UnimplementedError.new("getDirectoryPath() has not been implemented."));
+      });
     }
   };
-  (arc.MaterialPointArcTween.new = function(opts) {
-    let begin = opts && 'begin' in opts ? opts.begin : null;
-    let end = opts && 'end' in opts ? opts.end : null;
-    this[_dirty] = true;
-    this[_center] = null;
-    this[_radius] = null;
-    this[_beginAngle] = null;
-    this[_endAngle] = null;
-    arc.MaterialPointArcTween.__proto__.new.call(this, {begin: begin, end: end});
+  (file_picker.FilePicker.new = function() {
+    file_picker.FilePicker.__proto__.new.call(this, {token: file_picker.FilePicker._token});
     ;
-  }).prototype = arc.MaterialPointArcTween.prototype;
-  dart.addTypeTests(arc.MaterialPointArcTween);
-  dart.addTypeCaches(arc.MaterialPointArcTween);
-  dart.setMethodSignature(arc.MaterialPointArcTween, () => ({
-    __proto__: dart.getMethods(arc.MaterialPointArcTween.__proto__),
-    [_initialize]: dart.fnType(dart.void, [])
+  }).prototype = file_picker.FilePicker.prototype;
+  dart.addTypeTests(file_picker.FilePicker);
+  dart.addTypeCaches(file_picker.FilePicker);
+  dart.setMethodSignature(file_picker.FilePicker, () => ({
+    __proto__: dart.getMethods(file_picker.FilePicker.__proto__),
+    pickFiles: dart.fnType(async.Future$(dart.nullable(file_picker_result.FilePickerResult)), [], {allowCompression: core.bool, allowMultiple: core.bool, allowedExtensions: dart.nullable(core.List$(core.String)), onFileLoading: dart.nullable(dart.fnType(dart.dynamic, [file_picker.FilePickerStatus])), type: file_picker.FileType, withData: core.bool, withReadStream: core.bool}, {}),
+    clearTemporaryFiles: dart.fnType(async.Future$(dart.nullable(core.bool)), []),
+    getDirectoryPath: dart.fnType(async.Future$(dart.nullable(core.String)), [])
   }));
-  dart.setGetterSignature(arc.MaterialPointArcTween, () => ({
-    __proto__: dart.getGetters(arc.MaterialPointArcTween.__proto__),
-    center: dart.nullable(ui.Offset),
-    radius: dart.nullable(core.double),
-    beginAngle: dart.nullable(core.double),
-    endAngle: dart.nullable(core.double)
+  dart.setLibraryUri(file_picker.FilePicker, I[2]);
+  dart.defineLazy(file_picker.FilePicker, {
+    /*file_picker.FilePicker._token*/get _token() {
+      return new core.Object.new();
+    },
+    /*file_picker.FilePicker._instance*/get _instance() {
+      return new file_picker_io.FilePickerIO.new();
+    },
+    set _instance(_) {}
+  }, false);
+  file_picker_io.FilePickerIO = class FilePickerIO extends file_picker.FilePicker {
+    pickFiles(opts) {
+      let type = opts && 'type' in opts ? opts.type : C[0] || CT.C0;
+      if (type == null) dart.nullFailed(I[0], 28, 14, "type");
+      let allowedExtensions = opts && 'allowedExtensions' in opts ? opts.allowedExtensions : null;
+      let onFileLoading = opts && 'onFileLoading' in opts ? opts.onFileLoading : null;
+      let allowCompression = opts && 'allowCompression' in opts ? opts.allowCompression : true;
+      let allowMultiple = opts && 'allowMultiple' in opts ? opts.allowMultiple : false;
+      if (allowMultiple == null) dart.nullFailed(I[0], 32, 10, "allowMultiple");
+      let withData = opts && 'withData' in opts ? opts.withData : false;
+      let withReadStream = opts && 'withReadStream' in opts ? opts.withReadStream : false;
+      return this[_getPath](type, allowMultiple, allowCompression, allowedExtensions, onFileLoading, withData, withReadStream);
+    }
+    clearTemporaryFiles() {
+      return async.async(T.boolN(), function* clearTemporaryFiles() {
+        return file_picker_io._channel.invokeMethod(core.bool, "clear");
+      });
+    }
+    getDirectoryPath() {
+      return async.async(T.StringN(), function* getDirectoryPath() {
+        try {
+          return yield file_picker_io._channel.invokeMethod(core.String, "dir", new _js_helper.LinkedMap.new());
+        } catch (e) {
+          let ex = dart.getThrown(e);
+          if (message_codec.PlatformException.is(ex)) {
+            if (ex.code === "unknown_path") {
+              core.print("[" + "MethodChannelFilePicker" + "] Could not resolve directory path. Maybe it's a protected one or unsupported (such as Downloads folder). If you are on Android, make sure that you are on SDK 21 or above.");
+            }
+          } else
+            throw e;
+        }
+        return null;
+      });
+    }
+    [_getPath](fileType, allowMultipleSelection, allowCompression, allowedExtensions, onFileLoading, withData, withReadStream) {
+      if (fileType == null) dart.nullFailed(I[0], 64, 14, "fileType");
+      if (allowMultipleSelection == null) dart.nullFailed(I[0], 65, 10, "allowMultipleSelection");
+      return async.async(T.FilePickerResultN(), function* _getPath() {
+        let t1, t1$, t1$0;
+        let type = diagnostics.describeEnum(fileType);
+        if (type !== "custom" && dart.test((t1$ = (t1 = allowedExtensions, t1 == null ? null : t1[$isNotEmpty]), t1$ == null ? false : t1$))) {
+          dart.throw(core.Exception.new("You are setting a type [" + dart.str(fileType) + "]. Custom extension filters are only allowed with FileType.custom, please change it or remove filters."));
+        }
+        try {
+          t1$0 = file_picker_io.FilePickerIO._eventSubscription;
+          t1$0 == null ? null : t1$0.cancel();
+          if (onFileLoading != null) {
+            file_picker_io.FilePickerIO._eventSubscription = file_picker_io._eventChannel.receiveBroadcastStream().listen(dart.fn(data => onFileLoading(dart.test(core.bool.as(data)) ? file_picker.FilePickerStatus.picking : file_picker.FilePickerStatus.done), T.dynamicTovoid()), {onError: dart.fn(error => dart.throw(core.Exception.new(error)), T.dynamicToNever())});
+          }
+          let result = (yield file_picker_io._channel.invokeListMethod(core.Map, type, new (T.IdentityMapOfString$ObjectN()).from(["allowMultipleSelection", allowMultipleSelection, "allowedExtensions", allowedExtensions, "allowCompression", allowCompression, "withData", withData])));
+          if (result == null) {
+            return null;
+          }
+          let platformFiles = T.JSArrayOfPlatformFile().of([]);
+          for (let platformFileMap of result) {
+            platformFiles[$add](new platform_file.PlatformFile.fromMap(platformFileMap, {readStream: dart.nullCheck(withReadStream) ? io.File.new(core.String.as(platformFileMap[$_get]("path"))).openRead() : null}));
+          }
+          return new file_picker_result.FilePickerResult.new(platformFiles);
+        } catch (e$) {
+          let ex = dart.getThrown(e$);
+          if (message_codec.PlatformException.is(ex)) {
+            let e = ex;
+            core.print("[" + "MethodChannelFilePicker" + "] Platform exception: " + dart.str(e));
+            dart.rethrow(e$);
+          } else if (core.Object.is(ex)) {
+            let e = ex;
+            core.print("[" + "MethodChannelFilePicker" + "] Unsupported operation. Method not found. The exception thrown was: " + dart.str(e));
+            dart.rethrow(e$);
+          } else
+            throw e$;
+        }
+      });
+    }
+  };
+  (file_picker_io.FilePickerIO.new = function() {
+    file_picker_io.FilePickerIO.__proto__.new.call(this);
+    ;
+  }).prototype = file_picker_io.FilePickerIO.prototype;
+  dart.addTypeTests(file_picker_io.FilePickerIO);
+  dart.addTypeCaches(file_picker_io.FilePickerIO);
+  dart.setMethodSignature(file_picker_io.FilePickerIO, () => ({
+    __proto__: dart.getMethods(file_picker_io.FilePickerIO.__proto__),
+    pickFiles: dart.fnType(async.Future$(dart.nullable(file_picker_result.FilePickerResult)), [], {allowCompression: dart.nullable(core.bool), allowMultiple: core.bool, allowedExtensions: dart.nullable(core.List$(core.String)), onFileLoading: dart.nullable(dart.fnType(dart.dynamic, [file_picker.FilePickerStatus])), type: file_picker.FileType, withData: dart.nullable(core.bool), withReadStream: dart.nullable(core.bool)}, {}),
+    [_getPath]: dart.fnType(async.Future$(dart.nullable(file_picker_result.FilePickerResult)), [file_picker.FileType, core.bool, dart.nullable(core.bool), dart.nullable(core.List$(core.String)), dart.nullable(dart.fnType(dart.dynamic, [file_picker.FilePickerStatus])), dart.nullable(core.bool), dart.nullable(core.bool)])
   }));
-  dart.setSetterSignature(arc.MaterialPointArcTween, () => ({
-    __proto__: dart.getSetters(arc.MaterialPointArcTween.__proto__),
-    begin: dart.nullable(core.Object),
-    end: dart.nullable(core.Object)
-  }));
-  dart.setLibraryUri(arc.MaterialPointArcTween, I[1]);
-  dart.setFieldSignature(arc.MaterialPointArcTween, () => ({
-    __proto__: dart.getFields(arc.MaterialPointArcTween.__proto__),
-    [_dirty]: dart.fieldType(core.bool),
-    [_center]: dart.fieldType(dart.nullable(ui.Offset)),
-    [_radius]: dart.fieldType(dart.nullable(core.double)),
-    [_beginAngle]: dart.fieldType(dart.nullable(core.double)),
-    [_endAngle]: dart.fieldType(dart.nullable(core.double))
-  }));
-  dart.defineExtensionMethods(arc.MaterialPointArcTween, ['toString']);
-  var _name$ = dart.privateName(arc, "_name");
-  arc._CornerId = class _CornerId extends core.Object {
+  dart.setLibraryUri(file_picker_io.FilePickerIO, I[3]);
+  dart.defineLazy(file_picker_io.FilePickerIO, {
+    /*file_picker_io.FilePickerIO._tag*/get _tag() {
+      return "MethodChannelFilePicker";
+    },
+    /*file_picker_io.FilePickerIO._eventSubscription*/get _eventSubscription() {
+      return null;
+    },
+    set _eventSubscription(_) {}
+  }, false);
+  var StandardMethodCodec_messageCodec = dart.privateName(message_codecs, "StandardMethodCodec.messageCodec");
+  var EventChannel__binaryMessenger = dart.privateName(platform_channel, "EventChannel._binaryMessenger");
+  var EventChannel_codec = dart.privateName(platform_channel, "EventChannel.codec");
+  var EventChannel_name = dart.privateName(platform_channel, "EventChannel.name");
+  dart.defineLazy(file_picker_io, {
+    /*file_picker_io._channel*/get _channel() {
+      return new platform_channel.MethodChannel.new("miguelruivo.flutter.plugins.filepicker", dart.test(io.Platform.isLinux) || dart.test(io.Platform.isWindows) || dart.test(io.Platform.isMacOS) ? C[1] || CT.C1 : C[2] || CT.C2);
+    },
+    /*file_picker_io._eventChannel*/get _eventChannel() {
+      return C[4] || CT.C4;
+    }
+  }, false);
+  file_picker.FileType = class FileType extends core.Object {
     toString() {
       return this[_name$];
     }
   };
-  (arc._CornerId.new = function(index, _name) {
-    if (index == null) dart.nullFailed(I[0], 180, 6, "index");
-    if (_name == null) dart.nullFailed(I[0], 180, 6, "_name");
+  (file_picker.FileType.new = function(index, _name) {
+    if (index == null) dart.nullFailed(I[1], 9, 6, "index");
+    if (_name == null) dart.nullFailed(I[1], 9, 6, "_name");
     this.index = index;
     this[_name$] = _name;
     ;
-  }).prototype = arc._CornerId.prototype;
-  dart.addTypeTests(arc._CornerId);
-  dart.addTypeCaches(arc._CornerId);
-  dart.setLibraryUri(arc._CornerId, I[1]);
-  dart.setFieldSignature(arc._CornerId, () => ({
-    __proto__: dart.getFields(arc._CornerId.__proto__),
+  }).prototype = file_picker.FileType.prototype;
+  dart.addTypeTests(file_picker.FileType);
+  dart.addTypeCaches(file_picker.FileType);
+  dart.setLibraryUri(file_picker.FileType, I[2]);
+  dart.setFieldSignature(file_picker.FileType, () => ({
+    __proto__: dart.getFields(file_picker.FileType.__proto__),
     index: dart.finalFieldType(core.int),
     [_name$]: dart.finalFieldType(core.String)
   }));
-  dart.defineExtensionMethods(arc._CornerId, ['toString']);
-  arc._CornerId.topLeft = C[0] || CT.C0;
-  arc._CornerId.topRight = C[1] || CT.C1;
-  arc._CornerId.bottomLeft = C[2] || CT.C2;
-  arc._CornerId.bottomRight = C[3] || CT.C3;
-  arc._CornerId.values = C[4] || CT.C4;
-  var beginId$ = dart.privateName(arc, "_Diagonal.beginId");
-  var endId$ = dart.privateName(arc, "_Diagonal.endId");
-  arc._Diagonal = class _Diagonal extends core.Object {
-    get beginId() {
-      return this[beginId$];
-    }
-    set beginId(value) {
-      super.beginId = value;
-    }
-    get endId() {
-      return this[endId$];
-    }
-    set endId(value) {
-      super.endId = value;
-    }
-  };
-  (arc._Diagonal.new = function(beginId, endId) {
-    if (beginId == null) dart.nullFailed(I[0], 188, 24, "beginId");
-    if (endId == null) dart.nullFailed(I[0], 188, 38, "endId");
-    this[beginId$] = beginId;
-    this[endId$] = endId;
-    ;
-  }).prototype = arc._Diagonal.prototype;
-  dart.addTypeTests(arc._Diagonal);
-  dart.addTypeCaches(arc._Diagonal);
-  dart.setLibraryUri(arc._Diagonal, I[1]);
-  dart.setFieldSignature(arc._Diagonal, () => ({
-    __proto__: dart.getFields(arc._Diagonal.__proto__),
-    beginId: dart.finalFieldType(arc._CornerId),
-    endId: dart.finalFieldType(arc._CornerId)
-  }));
-  var __MaterialRectArcTween__beginArc = dart.privateName(arc, "_#MaterialRectArcTween#_beginArc");
-  var __MaterialRectArcTween__beginArc_isSet = dart.privateName(arc, "_#MaterialRectArcTween#_beginArc#isSet");
-  var __MaterialRectArcTween__endArc = dart.privateName(arc, "_#MaterialRectArcTween#_endArc");
-  var __MaterialRectArcTween__endArc_isSet = dart.privateName(arc, "_#MaterialRectArcTween#_endArc#isSet");
-  var _diagonalSupport = dart.privateName(arc, "_diagonalSupport");
-  var _beginArc = dart.privateName(arc, "_beginArc");
-  var _cornerFor = dart.privateName(arc, "_cornerFor");
-  var _endArc = dart.privateName(arc, "_endArc");
-  arc.MaterialRectArcTween = class MaterialRectArcTween extends tween.RectTween {
-    [_initialize]() {
-      if (!(this.begin != null)) dart.assertFailed(null, I[0], 249, 12, "begin != null");
-      if (!(this.end != null)) dart.assertFailed(null, I[0], 250, 12, "end != null");
-      let centersVector = dart.nullCheck(this.end).center['-'](dart.nullCheck(this.begin).center);
-      let diagonal = arc._maxBy(arc._Diagonal, arc._allDiagonals, dart.fn(d => {
-        if (d == null) dart.nullFailed(I[0], 252, 76, "d");
-        return this[_diagonalSupport](centersVector, d);
-      }, T._DiagonalTodouble()));
-      this[_beginArc] = new arc.MaterialPointArcTween.new({begin: this[_cornerFor](dart.nullCheck(this.begin), diagonal.beginId), end: this[_cornerFor](dart.nullCheck(this.end), diagonal.beginId)});
-      this[_endArc] = new arc.MaterialPointArcTween.new({begin: this[_cornerFor](dart.nullCheck(this.begin), diagonal.endId), end: this[_cornerFor](dart.nullCheck(this.end), diagonal.endId)});
-      this[_dirty] = false;
-    }
-    [_diagonalSupport](centersVector, diagonal) {
-      if (centersVector == null) dart.nullFailed(I[0], 264, 34, "centersVector");
-      if (diagonal == null) dart.nullFailed(I[0], 264, 59, "diagonal");
-      let delta = this[_cornerFor](dart.nullCheck(this.begin), diagonal.endId)['-'](this[_cornerFor](dart.nullCheck(this.begin), diagonal.beginId));
-      let length = delta.distance;
-      return dart.notNull(centersVector.dx) * dart.notNull(delta.dx) / dart.notNull(length) + dart.notNull(centersVector.dy) * dart.notNull(delta.dy) / dart.notNull(length);
-    }
-    [_cornerFor](rect, id) {
-      if (rect == null) dart.nullFailed(I[0], 270, 26, "rect");
-      if (id == null) dart.nullFailed(I[0], 270, 42, "id");
-      switch (id) {
-        case C[0] || CT.C0:
-        {
-          return rect.topLeft;
-        }
-        case C[1] || CT.C1:
-        {
-          return rect.topRight;
-        }
-        case C[2] || CT.C2:
-        {
-          return rect.bottomLeft;
-        }
-        case C[3] || CT.C3:
-        {
-          return rect.bottomRight;
-        }
-        default:
-        {
-          dart.throw(new _internal.ReachabilityError.new("`null` encountered as case in a switch expression with a non-nullable enum type."));
-        }
-      }
-    }
-    get beginArc() {
-      if (this.begin == null) return null;
-      if (dart.test(this[_dirty])) this[_initialize]();
-      return this[_beginArc];
-    }
-    get [_beginArc]() {
-      let t0;
-      return dart.test(this[__MaterialRectArcTween__beginArc_isSet]) ? (t0 = this[__MaterialRectArcTween__beginArc], t0) : dart.throw(new _internal.LateError.fieldNI("_beginArc"));
-    }
-    set [_beginArc](t0) {
-      if (t0 == null) dart.nullFailed(I[0], 288, 30, "null");
-      this[__MaterialRectArcTween__beginArc_isSet] = true;
-      this[__MaterialRectArcTween__beginArc] = t0;
-    }
-    get endArc() {
-      if (this.end == null) return null;
-      if (dart.test(this[_dirty])) this[_initialize]();
-      return this[_endArc];
-    }
-    get [_endArc]() {
-      let t1;
-      return dart.test(this[__MaterialRectArcTween__endArc_isSet]) ? (t1 = this[__MaterialRectArcTween__endArc], t1) : dart.throw(new _internal.LateError.fieldNI("_endArc"));
-    }
-    set [_endArc](t1) {
-      if (t1 == null) dart.nullFailed(I[0], 299, 30, "null");
-      this[__MaterialRectArcTween__endArc_isSet] = true;
-      this[__MaterialRectArcTween__endArc] = t1;
-    }
-    set begin(value) {
-      T.RectN().as(value);
-      if (!dart.equals(value, this.begin)) {
-        super.begin = value;
-        this[_dirty] = true;
-      }
-    }
-    get begin() {
-      return super.begin;
-    }
-    set end(value) {
-      T.RectN().as(value);
-      if (!dart.equals(value, this.end)) {
-        super.end = value;
-        this[_dirty] = true;
-      }
-    }
-    get end() {
-      return super.end;
-    }
-    lerp(t) {
-      if (t == null) dart.nullFailed(I[0], 318, 20, "t");
-      if (dart.test(this[_dirty])) this[_initialize]();
-      if (t === 0.0) return dart.nullCheck(this.begin);
-      if (t === 1.0) return dart.nullCheck(this.end);
-      return new ui.Rect.fromPoints(this[_beginArc].lerp(t), this[_endArc].lerp(t));
-    }
+  dart.defineExtensionMethods(file_picker.FileType, ['toString']);
+  file_picker.FileType.any = C[0] || CT.C0;
+  file_picker.FileType.media = C[5] || CT.C5;
+  file_picker.FileType.image = C[6] || CT.C6;
+  file_picker.FileType.video = C[7] || CT.C7;
+  file_picker.FileType.audio = C[8] || CT.C8;
+  file_picker.FileType.custom = C[9] || CT.C9;
+  file_picker.FileType.values = C[10] || CT.C10;
+  file_picker.FilePickerStatus = class FilePickerStatus extends core.Object {
     toString() {
-      return dart.str(object.objectRuntimeType(this, "MaterialRectArcTween")) + "(" + dart.str(this.begin) + " → " + dart.str(this.end) + "; beginArc=" + dart.str(this.beginArc) + ", endArc=" + dart.str(this.endArc) + ")";
+      return this[_name$];
     }
   };
-  (arc.MaterialRectArcTween.new = function(opts) {
-    let begin = opts && 'begin' in opts ? opts.begin : null;
-    let end = opts && 'end' in opts ? opts.end : null;
-    this[_dirty] = true;
-    this[__MaterialRectArcTween__beginArc] = null;
-    this[__MaterialRectArcTween__beginArc_isSet] = false;
-    this[__MaterialRectArcTween__endArc] = null;
-    this[__MaterialRectArcTween__endArc_isSet] = false;
-    arc.MaterialRectArcTween.__proto__.new.call(this, {begin: begin, end: end});
+  (file_picker.FilePickerStatus.new = function(index, _name) {
+    if (index == null) dart.nullFailed(I[1], 18, 6, "index");
+    if (_name == null) dart.nullFailed(I[1], 18, 6, "_name");
+    this.index = index;
+    this[_name$] = _name;
     ;
-  }).prototype = arc.MaterialRectArcTween.prototype;
-  dart.addTypeTests(arc.MaterialRectArcTween);
-  dart.addTypeCaches(arc.MaterialRectArcTween);
-  dart.setMethodSignature(arc.MaterialRectArcTween, () => ({
-    __proto__: dart.getMethods(arc.MaterialRectArcTween.__proto__),
-    [_initialize]: dart.fnType(dart.void, []),
-    [_diagonalSupport]: dart.fnType(core.double, [ui.Offset, arc._Diagonal]),
-    [_cornerFor]: dart.fnType(ui.Offset, [ui.Rect, arc._CornerId]),
-    lerp: dart.fnType(ui.Rect, [core.double])
+  }).prototype = file_picker.FilePickerStatus.prototype;
+  dart.addTypeTests(file_picker.FilePickerStatus);
+  dart.addTypeCaches(file_picker.FilePickerStatus);
+  dart.setLibraryUri(file_picker.FilePickerStatus, I[2]);
+  dart.setFieldSignature(file_picker.FilePickerStatus, () => ({
+    __proto__: dart.getFields(file_picker.FilePickerStatus.__proto__),
+    index: dart.finalFieldType(core.int),
+    [_name$]: dart.finalFieldType(core.String)
   }));
-  dart.setGetterSignature(arc.MaterialRectArcTween, () => ({
-    __proto__: dart.getGetters(arc.MaterialRectArcTween.__proto__),
-    beginArc: dart.nullable(arc.MaterialPointArcTween),
-    [_beginArc]: arc.MaterialPointArcTween,
-    endArc: dart.nullable(arc.MaterialPointArcTween),
-    [_endArc]: arc.MaterialPointArcTween
-  }));
-  dart.setSetterSignature(arc.MaterialRectArcTween, () => ({
-    __proto__: dart.getSetters(arc.MaterialRectArcTween.__proto__),
-    [_beginArc]: arc.MaterialPointArcTween,
-    [_endArc]: arc.MaterialPointArcTween,
-    begin: dart.nullable(core.Object),
-    end: dart.nullable(core.Object)
-  }));
-  dart.setLibraryUri(arc.MaterialRectArcTween, I[1]);
-  dart.setFieldSignature(arc.MaterialRectArcTween, () => ({
-    __proto__: dart.getFields(arc.MaterialRectArcTween.__proto__),
-    [_dirty]: dart.fieldType(core.bool),
-    [__MaterialRectArcTween__beginArc]: dart.fieldType(dart.nullable(arc.MaterialPointArcTween)),
-    [__MaterialRectArcTween__beginArc_isSet]: dart.fieldType(core.bool),
-    [__MaterialRectArcTween__endArc]: dart.fieldType(dart.nullable(arc.MaterialPointArcTween)),
-    [__MaterialRectArcTween__endArc_isSet]: dart.fieldType(core.bool)
-  }));
-  dart.defineExtensionMethods(arc.MaterialRectArcTween, ['toString']);
-  var __MaterialRectCenterArcTween__centerArc = dart.privateName(arc, "_#MaterialRectCenterArcTween#_centerArc");
-  var __MaterialRectCenterArcTween__centerArc_isSet = dart.privateName(arc, "_#MaterialRectCenterArcTween#_centerArc#isSet");
-  var _centerArc = dart.privateName(arc, "_centerArc");
-  arc.MaterialRectCenterArcTween = class MaterialRectCenterArcTween extends tween.RectTween {
-    [_initialize]() {
-      if (!(this.begin != null)) dart.assertFailed(null, I[0], 364, 12, "begin != null");
-      if (!(this.end != null)) dart.assertFailed(null, I[0], 365, 12, "end != null");
-      this[_centerArc] = new arc.MaterialPointArcTween.new({begin: dart.nullCheck(this.begin).center, end: dart.nullCheck(this.end).center});
-      this[_dirty] = false;
-    }
-    get centerArc() {
-      if (this.begin == null || this.end == null) return null;
-      if (dart.test(this[_dirty])) this[_initialize]();
-      return this[_centerArc];
-    }
-    get [_centerArc]() {
-      let t2;
-      return dart.test(this[__MaterialRectCenterArcTween__centerArc_isSet]) ? (t2 = this[__MaterialRectCenterArcTween__centerArc], t2) : dart.throw(new _internal.LateError.fieldNI("_centerArc"));
-    }
-    set [_centerArc](t2) {
-      if (t2 == null) dart.nullFailed(I[0], 382, 30, "null");
-      this[__MaterialRectCenterArcTween__centerArc_isSet] = true;
-      this[__MaterialRectCenterArcTween__centerArc] = t2;
-    }
-    set begin(value) {
-      T.RectN().as(value);
-      if (!dart.equals(value, this.begin)) {
-        super.begin = value;
-        this[_dirty] = true;
-      }
-    }
-    get begin() {
-      return super.begin;
-    }
-    set end(value) {
-      T.RectN().as(value);
-      if (!dart.equals(value, this.end)) {
-        super.end = value;
-        this[_dirty] = true;
-      }
-    }
-    get end() {
-      return super.end;
-    }
-    lerp(t) {
-      if (t == null) dart.nullFailed(I[0], 401, 20, "t");
-      if (dart.test(this[_dirty])) this[_initialize]();
-      if (t === 0.0) return dart.nullCheck(this.begin);
-      if (t === 1.0) return dart.nullCheck(this.end);
-      let center = this[_centerArc].lerp(t);
-      let width = dart.nullCheck(ui.lerpDouble(dart.nullCheck(this.begin).width, dart.nullCheck(this.end).width, t));
-      let height = dart.nullCheck(ui.lerpDouble(dart.nullCheck(this.begin).height, dart.nullCheck(this.end).height, t));
-      return new ui.Rect.fromLTWH(dart.notNull(center.dx) - width / 2.0, dart.notNull(center.dy) - height / 2.0, width, height);
-    }
-    toString() {
-      return dart.str(object.objectRuntimeType(this, "MaterialRectCenterArcTween")) + "(" + dart.str(this.begin) + " → " + dart.str(this.end) + "; centerArc=" + dart.str(this.centerArc) + ")";
-    }
-  };
-  (arc.MaterialRectCenterArcTween.new = function(opts) {
-    let begin = opts && 'begin' in opts ? opts.begin : null;
-    let end = opts && 'end' in opts ? opts.end : null;
-    this[_dirty] = true;
-    this[__MaterialRectCenterArcTween__centerArc] = null;
-    this[__MaterialRectCenterArcTween__centerArc_isSet] = false;
-    arc.MaterialRectCenterArcTween.__proto__.new.call(this, {begin: begin, end: end});
-    ;
-  }).prototype = arc.MaterialRectCenterArcTween.prototype;
-  dart.addTypeTests(arc.MaterialRectCenterArcTween);
-  dart.addTypeCaches(arc.MaterialRectCenterArcTween);
-  dart.setMethodSignature(arc.MaterialRectCenterArcTween, () => ({
-    __proto__: dart.getMethods(arc.MaterialRectCenterArcTween.__proto__),
-    [_initialize]: dart.fnType(dart.void, []),
-    lerp: dart.fnType(ui.Rect, [core.double])
-  }));
-  dart.setGetterSignature(arc.MaterialRectCenterArcTween, () => ({
-    __proto__: dart.getGetters(arc.MaterialRectCenterArcTween.__proto__),
-    centerArc: dart.nullable(arc.MaterialPointArcTween),
-    [_centerArc]: arc.MaterialPointArcTween
-  }));
-  dart.setSetterSignature(arc.MaterialRectCenterArcTween, () => ({
-    __proto__: dart.getSetters(arc.MaterialRectCenterArcTween.__proto__),
-    [_centerArc]: arc.MaterialPointArcTween,
-    begin: dart.nullable(core.Object),
-    end: dart.nullable(core.Object)
-  }));
-  dart.setLibraryUri(arc.MaterialRectCenterArcTween, I[1]);
-  dart.setFieldSignature(arc.MaterialRectCenterArcTween, () => ({
-    __proto__: dart.getFields(arc.MaterialRectCenterArcTween.__proto__),
-    [_dirty]: dart.fieldType(core.bool),
-    [__MaterialRectCenterArcTween__centerArc]: dart.fieldType(dart.nullable(arc.MaterialPointArcTween)),
-    [__MaterialRectCenterArcTween__centerArc_isSet]: dart.fieldType(core.bool)
-  }));
-  dart.defineExtensionMethods(arc.MaterialRectCenterArcTween, ['toString']);
-  arc._maxBy = function _maxBy(T, input, keyFunc) {
-    if (input == null) dart.nullFailed(I[0], 203, 25, "input");
-    if (keyFunc == null) dart.nullFailed(I[0], 203, 44, "keyFunc");
-    let maxValue = null;
-    let maxValue$35isSet = false;
-    function maxValue$35get() {
-      return maxValue$35isSet ? maxValue : dart.throw(new _internal.LateError.localNI("maxValue"));
-    }
-    dart.fn(maxValue$35get, dart.fnType(T, []));
-    function maxValue$35set(t6) {
-      maxValue$35isSet = true;
-      return maxValue = t6;
-    }
-    dart.fn(maxValue$35set, dart.fnType(dart.dynamic, [T]));
-    let maxKey = null;
-    for (let value of input) {
-      let key = keyFunc(value);
-      if (maxKey == null || dart.notNull(key) > dart.notNull(maxKey)) {
-        maxValue$35set(value);
-        maxKey = key;
-      }
-    }
-    return maxValue$35get();
-  };
-  dart.defineLazy(arc, {
-    /*arc._kOnAxisDelta*/get _kOnAxisDelta() {
-      return 2;
-    },
-    /*arc._allDiagonals*/get _allDiagonals() {
-      return C[5] || CT.C5;
-    }
-  }, false);
-  dart.trackLibraries("packages/flutter/src/material/arc.dart", {
-    "package:flutter/src/material/arc.dart": arc
+  dart.defineExtensionMethods(file_picker.FilePickerStatus, ['toString']);
+  file_picker.FilePickerStatus.picking = C[11] || CT.C11;
+  file_picker.FilePickerStatus.done = C[12] || CT.C12;
+  file_picker.FilePickerStatus.values = C[13] || CT.C13;
+  dart.trackLibraries("packages/file_picker/src/file_picker_io.dart", {
+    "package:file_picker/src/file_picker_io.dart": file_picker_io,
+    "package:file_picker/src/file_picker.dart": file_picker,
+    "package:file_picker/file_picker.dart": file_picker$
   }, {
-  }, '{"version":3,"sourceRoot":"","sources":["arc.dart"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AA6CI,YAAY,AAAM;AAClB,YAAY,AAAI;AAEH,kBAAkB,eAAL;AACb,gBAAc,eAAH;AAGX,kBAAQ,AAAI,GAAD,MAAG,KAAK;AACnB,mBAAS,AAAM,AAAG,KAAJ;AACd,mBAAS,AAAM,AAAG,KAAJ;AACd,6BAAmB,AAAM,KAAD;AACxB,cAAI,kBAAO,AAAI,GAAD,KAAK,AAAM,KAAD;AAErC,YAAO;AAAgB,cAAA,AAAI,OAAE,UAA2B,aAAjB,gBAAgB,KAAI,AAAI,MAAS,eAAP;;;AAEjE,UAAI,AAAO,MAAD,QAAoB,AAAO,MAAD;AAClC,YAAI,AAAO,MAAD,GAAG,MAAM;AACyD,UAA1E,gBAA2B,AAAmB,AAAuB,aAA3D,gBAAgB,iBAAG,gBAAgB,iBAAI,AAAE,AAAS,CAAV,MAAG,KAAK,cAAa;AACD,UAAtE,gBAAU,kBAAc,aAAP,AAAI,GAAD,OAAa,AAAE,eAAT,iBAA+B,CAAV,aAAT,AAAM,KAAD,oBAAM,AAAI,GAAD,cAAW,AAAI,GAAD;AAClE,cAAa,aAAT,AAAM,KAAD,oBAAM,AAAI,GAAD;AACqC,YAArD,oBAA2B,aAAb,UAAU,MAAyB,CAAV,aAAT,AAAM,KAAD,oBAAM,AAAI,GAAD;AAC7B,YAAf,kBAAY;;AAEmD,YAA/D,oBAAsB,oBAAe,aAAb,UAAU,MAAyB,CAAZ,aAAP,AAAI,GAAD,oBAAM,AAAM,KAAD;AACnC,YAAnB;;;AAGsE,UAAxE,gBAA2B,AAAmB,AAAqB,aAAzD,gBAAgB,iBAAG,gBAAgB,iBAAI,AAAE,AAAO,CAAR,MAAG,GAAG,cAAa;AACK,UAA1E,gBAAU,kBAAO,AAAM,KAAD,KAAc,aAAT,AAAM,KAAD,OAA0B,AAAK,CAAjB,aAAP,AAAI,GAAD,oBAAM,AAAM,KAAD,eAAmB,eAAP;AACjE,cAAa,aAAT,AAAM,KAAD,oBAAM,AAAI,GAAD;AACY,YAA5B,oBAAc,AAAS,qBAAE;AACyC,YAAlE,kBAAuB,AAAE,eAAb,qBAA4B,aAAb,UAAU,MAAyB,CAAZ,aAAP,AAAI,GAAD,oBAAM,AAAM,KAAD;;AAE9B,YAA3B,oBAAsB,oBAAE;AAC0C,YAAlE,kBAAuB,AAAE,eAAb,qBAA4B,aAAb,UAAU,MAAyB,CAAV,aAAT,AAAM,KAAD,oBAAM,AAAI,GAAD;;;AAG7D,cAAO,AAAY;AACnB,cAAO,AAAU;;AAEC,QAAlB,oBAAc;AACE,QAAhB,kBAAY;;AAEA,MAAd,eAAS;IACX;;AAKE,UAAI,AAAM,sBAAW,AAAI,kBACvB,MAAO;AACT,oBAAI,eACF,AAAa;AACf,YAAO;IACT;;AAME,UAAI,AAAM,sBAAW,AAAI,kBACvB,MAAO;AACT,oBAAI,eACF,AAAa;AACf,YAAO;IACT;;AASE,UAAI,AAAM,sBAAW,AAAI,kBACvB,MAAO;AACT,oBAAI,eACF,AAAa;AACf,YAAO;IACT;;AASE,UAAI,AAAM,sBAAW,AAAI,kBACvB,MAAO;AACT,oBAAI,eACF,AAAa;AACf,YAAO;IACT;;qBAIkB;AAChB,uBAAI,KAAK,EAAI;AACQ,QAAb,cAAQ,KAAK;AACN,QAAb,eAAS;;IAEb;;;;;qBAGgB;AACd,uBAAI,KAAK,EAAI;AACM,QAAX,YAAM,KAAK;AACJ,QAAb,eAAS;;IAEb;;;;;UAGmB;AACjB,oBAAI,eACF,AAAa;AACf,UAAI,AAAE,CAAD,KAAI,KACP,MAAY,gBAAL;AACT,UAAI,AAAE,CAAD,KAAI,KACP,MAAU,gBAAH;AACT,UAAI,AAAY,6BAAW,AAAU,yBACnC,MAAiC,gBAAnB,eAAK,YAAO,UAAK,CAAC;AACrB,kBAA6C,eAArC,cAAW,mBAAa,iBAAW,CAAC;AAC5C,cAAI,AAAgB,SAAP,KAAK,IAAW,eAAP;AACtB,cAAI,AAAgB,SAAP,KAAK,IAAW,eAAP;AACnC,YAAc,AAAE,gBAAT,oBAAW,kBAAO,CAAC,EAAE,CAAC;IAC/B;;AAIE,YAA4J,UAAlJ,yBAAkB,MAAM,4BAAyB,eAAE,cAAK,iBAAS,YAAG,uBAAU,eAAM,uBAAU,eAAM,2BAAc,mBAAU,yBAAY,iBAAQ;IAC5J;;;QA1IU;QACA;IAGL,eAAS;IA0DN;IAWA;IAcA;IAcA;AAnGH,+DAAa,KAAK,OAAO,GAAG;;EAAC;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;IAgJpC;;;QALK;;;;;EAKL;;;;;;;;;;;;;;;;;;IAIkB;;;;;;IACA;;;;;;;gCAFK,SAAc;QAAd;QAAc;IAAd;IAAc;;EAAM;;;;;;;;;;;;;;;;;;;AA6DvC,YAAO,AAAM;AACb,YAAO,AAAI;AACE,0BAAmB,AAAE,AAAO,eAAZ,sBAAmB,AAAE,eAAP;AAC3B,qBAAW,0BAAkB,mBAAe;YAAW;AAAM,sCAAiB,aAAa,EAAE,CAAC;;AAI7G,MAHD,kBAAY,0CACH,iBAAgB,eAAL,aAAQ,AAAS,QAAD,gBAC7B,iBAAc,eAAH,WAAM,AAAS,QAAD;AAK/B,MAHD,gBAAU,0CACD,iBAAgB,eAAL,aAAQ,AAAS,QAAD,cAC7B,iBAAc,eAAH,WAAM,AAAS,QAAD;AAElB,MAAd,eAAS;IACX;uBAE+B,eAAyB;UAAzB;UAAyB;AACzC,kBAAQ,AAAmC,iBAAnB,eAAL,aAAQ,AAAS,QAAD,aAAU,iBAAgB,eAAL,aAAQ,AAAS,QAAD;AACxE,mBAAS,AAAM,KAAD;AAC3B,YAAwB,AAAW,AAAS,cAArC,AAAc,aAAD,oBAAM,AAAM,KAAD,oBAAM,MAAM,IAAoB,AAAW,aAA5B,AAAc,aAAD,oBAAM,AAAM,KAAD,oBAAM,MAAM;IACpF;iBAEuB,MAAgB;UAAhB;UAAgB;AACrC,cAAQ,EAAE;;;AACgB,gBAAO,AAAK,KAAD;;;;AACV,gBAAO,AAAK,KAAD;;;;AACT,gBAAO,AAAK,KAAD;;;;AACV,gBAAO,AAAK,KAAD;;;;AAJzC;;;IAMF;;AAKE,UAAI,AAAM,oBACR,MAAO;AACT,oBAAI,eACF,AAAa;AACf,YAAO;IACT;;;AAC2B;IAAS;;;AAAT;;IAAS;;AAKlC,UAAI,AAAI,kBACN,MAAO;AACT,oBAAI,eACF,AAAa;AACf,YAAO;IACT;;;AAC2B;IAAO;;;AAAP;;IAAO;;mBAGlB;AACd,uBAAI,KAAK,EAAI;AACQ,QAAb,cAAQ,KAAK;AACN,QAAb,eAAS;;IAEb;;;;;mBAGc;AACZ,uBAAI,KAAK,EAAI;AACM,QAAX,YAAM,KAAK;AACJ,QAAb,eAAS;;IAEb;;;;;UAGiB;AACf,oBAAI,eACF,AAAa;AACf,UAAI,AAAE,CAAD,KAAI,KACP,MAAY,gBAAL;AACT,UAAI,AAAE,CAAD,KAAI,KACP,MAAU,gBAAH;AACT,YAAY,wBAAW,AAAU,qBAAK,CAAC,GAAG,AAAQ,mBAAK,CAAC;IAC1D;;AAIE,YAAmH,UAAzG,yBAAkB,MAAM,2BAAwB,eAAE,cAAK,iBAAS,YAAG,yBAAY,iBAAQ,uBAAU,eAAM;IACnH;;;QAzFQ;QACA;IAGH,eAAS;6CA0Ca;;2CAWA;;AAvDtB,8DAAa,KAAK,OAAO,GAAG;;EAAC;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AAwHhC,YAAO,AAAM;AACb,YAAO,AAAI;AAIV,MAHD,mBAAa,0CACC,AAAE,eAAP,yBACC,AAAE,eAAL;AAEO,MAAd,eAAS;IACX;;AAKE,UAAI,AAAM,sBAAW,AAAI,kBACvB,MAAO;AACT,oBAAI,eACF,AAAa;AACf,YAAO;IACT;;;AAC2B;IAAU;;;AAAV;;IAAU;;mBAGrB;AACd,uBAAI,KAAK,EAAI;AACQ,QAAb,cAAQ,KAAK;AACN,QAAb,eAAS;;IAEb;;;;;mBAGc;AACZ,uBAAI,KAAK,EAAI;AACM,QAAX,YAAM,KAAK;AACJ,QAAb,eAAS;;IAEb;;;;;UAGiB;AACf,oBAAI,eACF,AAAa;AACf,UAAI,AAAE,CAAD,KAAI,KACP,MAAY,gBAAL;AACT,UAAI,AAAE,CAAD,KAAI,KACP,MAAU,gBAAH;AACI,mBAAS,AAAW,sBAAK,CAAC;AAC1B,kBAA+C,eAAvC,cAAgB,AAAE,eAAP,mBAAiB,AAAE,eAAL,iBAAY,CAAC;AAC9C,mBAAkD,eAAzC,cAAgB,AAAE,eAAP,oBAAkB,AAAE,eAAL,kBAAa,CAAC;AAC9D,YAAY,sBAAmB,aAAV,AAAO,MAAD,OAAM,AAAM,KAAD,GAAG,KAAe,aAAV,AAAO,MAAD,OAAM,AAAO,MAAD,GAAG,KAAK,KAAK,EAAE,MAAM;IACvF;;AAIE,YAA2G,UAAjG,yBAAkB,MAAM,iCAA8B,eAAE,cAAK,iBAAS,YAAG,0BAAa,kBAAS;IAC3G;;;QA5DQ;QACA;IAGH,eAAS;oDAqBa;;AAvBtB,oEAAa,KAAK,OAAO,GAAG;;EAAC;;;;;;;;;;;;;;;;;;;;;;;;;;;kCA5JZ,OAAmB;QAAnB;QAAmB;AAClC;;;;;;;;;;;AACC;AACR,aAAa,QAAS,MAAK;AACZ,gBAAM,AAAO,OAAA,CAAC,KAAK;AAChC,UAAI,AAAO,MAAD,YAAgB,aAAJ,GAAG,iBAAG,MAAM;AAChB,QAAhB,eAAW,KAAK;AACJ,QAAZ,SAAS,GAAG;;;AAGhB,UAAO;EACT;;MAxMa,iBAAa;;;MAmLJ,iBAAa","file":"../../../../../../../../../../packages/flutter/src/material/arc.dart.lib.js"}');
+  }, '{"version":3,"sourceRoot":"","sources":["file_picker.dart","file_picker_io.dart"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AAoCoC;IAAS;;UAEZ;AACkB,MAA7B,wDAAY,QAAQ,EAAE;AACpB,MAApB,mCAAY,QAAQ;IACtB;;UA6BW;;UACK;UACc;UACvB;;UACA;;UACA;;UACA;;AAP4B;AAS/B,0BAAM,gCAAmB;MAAwC;;;AASpC;AAAY,0BAAM,gCAC/C;MAAkD;;;AAQtB;AAC5B,0BAAM,gCAAmB;MAA+C;;;;AAnE7D,4DAAa;;EAAO;;;;;;;;;;;MAEf,6BAAM;YAAG;;MAEX,gCAAS;YAAG;;;;;;UCPnB;;UACK;UACc;UACtB;UACD;;UACC;UACA;AAEJ,4BACE,IAAI,EACJ,aAAa,EACb,gBAAgB,EAChB,iBAAiB,EACjB,aAAa,EACb,QAAQ,EACR,cAAc;IACf;;AAG4B;AAC7B,cAAA,AAAS,iDAAmB;MAAQ;;;AAGR;AAC9B;AACE,gBAAO,OAAM,AAAS,kDAAa,OAAO;;cACd;AAA5B;AACA,gBAAI,AAAG,AAAK,EAAN,UAAS;AAE4K,cADzL,WACI,AAAoL,kCAA7K;;;;;AAGf,cAAO;MACT;;eAGW,UACJ,wBACC,kBACQ,mBACc,eACtB,UACA;UANG;UACJ;AAF2B;;AASnB,mBAAO,yBAAa,QAAQ;AACzC,YAAI,IAAI,KAAI,uBAA2C,YAA9B,iBAAiB,eAAjB,OAAmB,kBAAnB,cAAiC;AAEsF,UAD9I,WAAM,mBACF,AAAyI,sCAA/G,QAAQ;;AAExC;AAC8B,iBAA5B;gCAAoB;AACpB,cAAI,aAAa;AAMV,YALL,iDAAqB,AAAc,AAAyB,6DACtD,QAAC,QAAS,AAAa,aAAA,WAAO,aAAL,IAAI,KACN,uCACA,kEACd,QAAC,SAAU,WAAM,mBAAU,KAAK;;AAIhC,wBAAS,MAAM,AAAS,mDAAiB,IAAI,EAAE,4CAC9D,0BAA0B,sBAAsB,EAChD,qBAAqB,iBAAiB,EACtC,oBAAoB,gBAAgB,EACpC,YAAY,QAAQ;AAGtB,cAAI,AAAO,MAAD;AACR,kBAAO;;AAGgB,8BAA8B;AAEvD,mBAAe,kBAAmB,OAAM;AAQrC,YAPD,AAAc,aAAD,OACE,uCACX,eAAe,eACW,eAAd,cAAc,IACpB,AAA8B,2BAAzB,AAAe,eAAA,QAAC,uBACrB;;AAKZ,gBAAO,6CAAiB,aAAa;;;AACrC;gBAA4B;AACW,YAAvC,WAAM,AAAgC,kCAAzB,oCAAuB,CAAC;AAC9B,YAAP;gBACA;gBAAO;AAE6E,YADpF,WACI,AAA+E,kCAAxE,mFAAsE,CAAC;AAC3E,YAAP;;;;MAEJ;;;;;;EACF;;;;;;;;;;MAnGsB,gCAAI;;;MACG,8CAAkB;;;;;;;;;;MAb3B,uBAAQ;YAAG,wCAC7B,0CACuC,UAA9B,kCAAoB,oCAAsB;;MAKlC,4BAAa;;;;;;;IDFhC;;;QAPK;;;;;EAOL;;;;;;;;;;;;;;;;;;;;IAKA;;;QAHK;;;;;EAGL","file":"../../../../../../../../../../../packages/file_picker/src/file_picker_io.dart.lib.js"}');
   // Exports:
   return {
-    src__material__arc: arc
+    src__file_picker_io: file_picker_io,
+    src__file_picker: file_picker,
+    file_picker: file_picker$
   };
 }));
 
-//# sourceMappingURL=arc.dart.lib.js.map
+//# sourceMappingURL=file_picker_io.dart.lib.js.map
