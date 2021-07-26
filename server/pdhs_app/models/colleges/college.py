@@ -18,7 +18,7 @@ class College(db.Model):
 
     @classmethod
     def find_by_id(cls, id):
-        return cls.query.filter_by(id=id).first()
+        return cls.query.get(id)
 
     def save_to_db(self):
         db.session.add(self)

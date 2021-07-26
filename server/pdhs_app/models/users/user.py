@@ -10,9 +10,9 @@ class User(db.Model):
     email = db.Column(db.String(50), nullable=False)
     password = db.Column(db.String(255), nullable=False)
     portfolio_id = db.Column(db.Integer, db.ForeignKey(
-        'portfolio.portfolio_id'), nullable=False)
+        'portfolio.id'), nullable=False)
     department_id = db.Column(db.Integer, db.ForeignKey(
-        'department.department_id'), nullable=False)
+        'department.id'), nullable=False)
     documents = db.relationship(
         "Document", lazy='select', backref=db.backref('user', lazy='joined'))
     comments = db.relationship(
@@ -22,14 +22,15 @@ class User(db.Model):
     tokens = db.relationship(
         'TokenBlocklist', lazy='select', backref=db.backref('user', lazy='joined'))
 
-    def __init__(self, user_id, first_name, last_name, email, password, portfolio_id, department_id):
-        self.user_id = user_id
-        self.first_name = first_name
-        self.last_name = last_name
-        self.email = email
-        self.password = password
-        self.portfolio_id = portfolio_id
-        self.department_id = department_id
+    # def __init__(self, user_id, first_name, last_name, email, password, portfolio_id, department_id):
+    #     self.user_id = user_id
+    #     self.first_name = first_name
+    #     self.last_name = last_name
+    #     self.email = email
+    #     self.password = password
+    #     self.portfolio_id = portfolio_id
+    #     self.department_id = department_id
+    # We don't need to define a constructor. It's done for us
 
     def __repr__(self):
         return '<User %r>' % self.user_id
@@ -40,7 +41,7 @@ class User(db.Model):
 
     @classmethod
     def find_by_id(cls, user_id):
-        return cls.query.filter_by(user_id=user_id).first()
+        return cls.query.get(user_id)
 
     def save_to_db(self):
         db.session.add(self)
@@ -52,13 +53,12 @@ class User(db.Model):
 
     def to_json(self):
         return {
-            'user_id': self.user_id,
+            'id': self.id,
             'first_name': self.first_name,
             'last_name': self.last_name,
             'email': self.email,
             'department': self.department_id,
-            'portfolio': self.portfolio_id,
-            'password': self.password,
+            'portfolio': self.portfolio_id
         }
 
     @staticmethod

@@ -4,9 +4,9 @@ from database.db import db
 class Approval(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     document_id = db.Column(db.Integer, db.ForeignKey(
-        'document.document_id'), nullable=False)
+        'document.id'), nullable=False)
     recipient_id = db.Column(db.Integer, db.ForeignKey(
-        'user.user_id'), nullable=False)
+        'user.id'), nullable=False)
     status = db.Column(db.Boolean)
 
     def __init__(self, approval_id, document_id, recipient_id, status):
@@ -20,7 +20,7 @@ class Approval(db.Model):
 
     @classmethod
     def find_by_id(cls, id):
-        return cls.query.filter_by(approval_id=id).first()
+        return cls.query.get(id)
 
     def save_to_db(self):
         db.session.add(self)
