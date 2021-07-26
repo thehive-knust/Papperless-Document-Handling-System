@@ -28,9 +28,21 @@ def upload():
         return jsonify(message="Done!")
 
 
-@bp.route('/get_new_docs/<int:user_id>', methods=['GET'])
-def get_new_docs(user_id):
+@bp.route('/new/<int:user_id>', methods=['GET'])
+def new(user_id):
     if request.method == 'GET':
         inbox_documents = Approval.query.filter_by(recipient_id=user_id, status="Pending")
-        return jsonify(inbox_documents)      
+        return jsonify(inbox_documents)    
+
+@bp.route('/approved/<int:user_id>', methods=['GET'])
+def new(user_id):
+    if request.method == 'GET':
+        approved_documents = Approval.query.filter_by(recipient_id=user_id, status="Approved")
+        return jsonify(approved_documents)  
+
+@bp.route('/rejected/<int:user_id>', methods=['GET'])
+def new(user_id):
+    if request.method == 'GET':
+        rejected_documents = Approval.query.filter_by(recipient_id=user_id, status="Rejected")
+        return jsonify(rejected_documents)        
         

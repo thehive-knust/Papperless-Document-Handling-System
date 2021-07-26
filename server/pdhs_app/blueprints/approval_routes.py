@@ -11,4 +11,4 @@ def new():
         result = request.get_json()
         approval_id = request['approval_id']
         document_id = result['document_id']
-        return "Hello from /approval"
+        return {"message": "Done"}

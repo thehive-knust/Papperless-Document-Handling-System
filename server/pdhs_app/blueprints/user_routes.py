@@ -28,7 +28,7 @@ def get_user_by_id(user_id):
     return jsonify(msg="User not found"), 404
 
 
-@bp.route('/<int:email>', methods=['GET'])
+@bp.route('/<String:email>', methods=['GET'])
 def get_user_by_email(email):
     if request.method == 'GET':
         user = User.find_by_email(email)
