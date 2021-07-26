@@ -22,9 +22,8 @@ def upload():
 
         # Handling the associated people to approve the document
         recepients = request_data['recepients']
-
         for recepient in recepients:
-            new_approval = Approval(id=id, document_id=doc_id, recipient_id=id, status=None).save_to_db()
+            new_approval = Approval(id=id, document_id=doc_id, recipient_id=id, status=doc_status).save_to_db()
         return jsonify(message="Done!")
 
 
@@ -35,14 +34,25 @@ def new(user_id):
         return jsonify(inbox_documents)    
 
 @bp.route('/approved/<int:user_id>', methods=['GET'])
-def new(user_id):
+def approved(user_id):
     if request.method == 'GET':
         approved_documents = Approval.query.filter_by(recipient_id=user_id, status="Approved")
         return jsonify(approved_documents)  
 
 @bp.route('/rejected/<int:user_id>', methods=['GET'])
-def new(user_id):
+def rejected(user_id):
     if request.method == 'GET':
         rejected_documents = Approval.query.filter_by(recipient_id=user_id, status="Rejected")
         return jsonify(rejected_documents)        
+        
+@bp.route('/cancel', methods=['GET'])
+def cancel():
+    if request.method == 'GET':
+        result = request.get_json()
+        document_id = result['document_id']
+        all_approvals = Approval.query.filter_by(document_id=document_id)
+        for approval in all_approvals:
+            approval.delete_from_db()
+        Document.query.filter_by(id=document_id).delete_from_db()
+        return {"message": "Done"}   
         
