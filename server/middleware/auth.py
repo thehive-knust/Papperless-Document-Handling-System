@@ -65,6 +65,8 @@ def register():
             error = 'Email is required.'
         elif not first_name:
             error = 'First name is required.'
+        elif not id:
+            error = 'ID is required.'
         elif not last_name:
             error = 'Last name is required.'
         elif not portfolio_id:
@@ -73,11 +75,14 @@ def register():
             error = 'Department is required.'
         elif not password:
             error = 'Password is required.'
+        elif User.find_by_id(id) is not None:
+            error = f"The ID {id} is already registered."
+        elif User.find_by_email(email) is not None:
+            error = f"The email address {email} is already registered."
 
-        elif User.query.filter_by(email=email).first() is not None:
-            error = f"The email {email} is already registered."
-
-        if error is None:
+        if error is not None:
+            return jsonify({"msg": error}), 500
+        else:
             password = generate_password_hash(password)
             new_user = User(
                 id=id,
@@ -92,10 +97,7 @@ def register():
                 new_user.save_to_db()
             except:
                 return jsonify(msg="Could not save new user to database"), 500
-
             return jsonify({'msg': 'User created successfully'}), 201
-
-        return jsonify({"msg": error}), 500
 
 
 @bp.route('/login', methods=['POST'])

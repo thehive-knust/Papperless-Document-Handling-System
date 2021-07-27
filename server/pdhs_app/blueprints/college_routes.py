@@ -41,11 +41,9 @@ def get_college_by_id(college_id):
     Get a particular college by id
     """
     if request.method == 'GET':
-        college = None
         error_msg = None
         try:
             college = College.find_by_id(college_id)
-            print(college)
         except:
             error_msg = 'Error occured finding college'
         if error_msg is not None:
@@ -63,7 +61,6 @@ def create_college():
         id = request.json.get('id', None)
         name = request.json.get('name', None)
         provost_id = request.json.get('provost_id', None)
-
         error_msg = None
         if not id:
             error_msg = 'Id is required.'
@@ -72,15 +69,60 @@ def create_college():
         elif not provost_id:
             provost_id = 0
         if error_msg is not None:
-            return jsonify(msg=error_msg)
+            return jsonify(msg=error_msg), 500
         else:
-            new_collge = College(
+            new_college = College(
                 id=id,
                 name=name,
                 provost_id=provost_id
             )
             try:
-                new_collge.save_to_db()
+                new_college.save_to_db()
             except:
-                return jsonify(msg='Error saving College to database')
-            return jsonify(new_collge.to_json())
+                return jsonify(msg='Error saving College to database'), 500
+            return jsonify(new_college.to_json()), 201
+
+
+@bp.route('/update/<int:college_id>', methods=['PUT'])
+def update_college(college_id):
+    """
+    Update a College
+    """
+    if request.method == 'PUT':
+        college_id = request.json.get('id', None)
+        name = request.json.get('name', None)
+        provost_id = request.json.get('provost_id', None)
+
+        if not college_id:
+            return jsonify(msg='Id is required.'), 500
+        else:
+            try:
+                new_college = College.find_by_id(college_id)
+                if new_college is not None:
+                    if name is not None:
+                        new_college.name = name
+                    if provost_id is not None:
+                        new_college.provost_id = provost_id
+                    new_college.save_to_db()
+            except:
+                return jsonify(msg='Error updating College'), 500
+            return jsonify(new_college.to_json()), 201
+
+
+@bp.route('/delete/<int:college_id>', methods=['DELETE'])
+def delete_college(college_id):
+    if request.method == 'DELETE':
+        error_msg = None
+        try:
+            college = College.find_by_id(college_id)
+        except:
+            error_msg = 'Error occured finding college'
+        if college is not None:
+            try:
+                college.delete_from_db()
+            except:
+                error_msg = 'Error occured deleting College'
+        if error_msg is not None:
+            return jsonify(msg=error_msg), 404
+        else:
+            return jsonify(msg='College deleted successfully')

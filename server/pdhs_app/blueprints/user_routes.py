@@ -56,6 +56,24 @@ def get_user_by_email(email):
     return jsonify(msg="User not found"), 404
 
 
+@bp.route('delete/<int:user_id>', methods=['DELETE'])
+def delete_user(user_id):
+    if request.method == 'DELETE':
+        user = User.find_by_id(user_id)
+    if user is not None:
+        try:
+            user.delete_from_db()
+        except:
+            return jsonify(msg="Error deleting user."), 500
+
+    return jsonify(msg="User not found"), 404
+
+
+@bp.route('/update/<int:user_id>', methods=['POST'])
+def update_user(user_id):
+    pass
+
+
 @bp.route('/login', methods=['POST'])
 def login():
     if request.method == 'POST':
@@ -102,18 +120,6 @@ def register_user(user_id):
         if User.register_user(user_id, first_name, last_name, email, password, portfolio_id, department_id):
             return jsonify({"message": f"Sucessfully registered {user_id}"})
 
-
-@bp.route('delete/<int:user_id>', methods=['DELETE'])
-def delete_user(user_id):
-    if request.method == 'DELETE':
-        user = User.find_by_id(user_id)
-    if user is not None:
-        try:
-            user.delete_from_db()
-        except:
-            return jsonify(msg="Error deleting user."), 500
-
-    return jsonify(msg="User not found"), 404
 
 # # The profile page section
 # @bp.route('/profile')
