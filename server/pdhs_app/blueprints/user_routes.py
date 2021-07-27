@@ -7,20 +7,39 @@ from pdhs_app.models.documents.document import Document
 from pdhs_app.models.departments.department import Department
 from pdhs_app.blueprints.document_routes import get_new_docs
 
-bp = Blueprint('users', __name__, url_prefix='/user')
+bp = Blueprint('users', __name__, url_prefix='/users')
 
 
-@bp.route('/all', methods=['GET'])
-def get_all_users():
+@bp.route('/hello', methods=['GET'])
+def hello():
     if request.method == 'GET':
-        result = User.query.all()
-        print(result)
-        users = [user.to_json() for user in result]
-        return {'users': users}
+        return "Hello from /users"
+
+
+@bp.route('/', methods=['GET'])
+def get_all_users():
+    """
+    Return all the users in the user table
+    """
+    if request.method == 'GET':
+        result = []
+        users = []
+        try:
+            result = User.query.all()
+        except:
+            return jsonify({'msg': 'There was an error retrieving the items requested'}), 500
+        for user in result:
+            users.append(user.to_json())
+        if len(users) == 0 or len(result) == 0:
+            return jsonify({'msg': 'Ther are no registered users'}), 404
+        return jsonify({'users': users})
 
 
 @bp.route('/<int:user_id>', methods=['GET'])
 def get_user_by_id(user_id):
+    """
+    Query the database and return a single user that matches the specified id
+    """
     if request.method == 'GET':
         user = User.find_by_id(user_id)
     if user is not None:
@@ -46,15 +65,17 @@ def login():
         try:
             user = User.is_login_valid(user_id, password)
             if user:
-                departments = Department.query.filter_by(college_id=user.colleg_id)
-                user_department_members = User.query.filter_by(department_id=user.department_id)
+                departments = Department.query.filter_by(
+                    college_id=user.colleg_id)
+                user_department_members = User.query.filter_by(
+                    department_id=user.department_id)
                 recieved_documents = get_new_docs(user_id)
                 return jsonify(
                     user=user,
-                    departments=departments, 
+                    departments=departments,
                     user_department_members=user_department_members,
                     recieved_documents=recieved_documents
-                    )
+                )
         except UserErrors.UserError as e:
             return jsonify({"message": f"{e.message}"})
 
@@ -79,7 +100,7 @@ def register_user(user_id):
             return jsonify({"message": f"{e.message}"})
 
         if User.register_user(user_id, first_name, last_name, email, password, portfolio_id, department_id):
-            return jsonify({"message":f"Sucessfully registered {user_id}"})
+            return jsonify({"message": f"Sucessfully registered {user_id}"})
 
 
 @bp.route('delete/<int:user_id>', methods=['DELETE'])

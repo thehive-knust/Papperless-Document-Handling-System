@@ -1,0 +1,129 @@
+import 'dart:io';
+
+class Doc {
+  String id;
+  String status;
+  String subject;
+  String description;
+  File file;
+  String senderId;
+  DateTime createdAt;
+  DateTime updatedAt;
+  Map<String, String> approvalProgress;
+  Doc({
+    this.id,
+    this.subject,
+    this.description,
+    this.file,
+    this.senderId,
+    this.createdAt,
+    this.updatedAt,
+    this.approvalProgress,
+    this.status,
+  });
+
+  factory Doc.fromJson(Map<String, dynamic> json) {
+    return Doc(
+      id: json['id'],
+      status: json['status'],
+      subject: json['subject'],
+      description: json['description'],
+      senderId: json['senderId'],
+      createdAt: json['createdAt'],
+      updatedAt: json['updatedAt'],
+      file: json['file']
+    );
+  }
+
+  Map<String, dynamic> toMap() {
+    return {
+      'id': this.id,
+      'status': this.status,
+      'subject': this.subject,
+      'description': this.description,
+      'senderId': this.senderId,
+      'createdAt': this.createdAt,
+      'updatedAt': this.updatedAt,
+      'file': this.file
+    };
+  }
+
+  static List<Map<String, List<Doc>>> docs = [
+    {
+      "Today": [
+        Doc(
+          id: "1",
+          subject: "Request for Classroom",
+          approvalProgress: {
+            "PATRON": 'approved',
+            "HDO": 'pending',
+            "Student Affairs": 'pending',
+            "President": 'pending'
+          },
+          createdAt: DateTime.now(),
+          status: "cancelled",
+          description:
+              "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat 'pending'a pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+        ),
+        Doc(
+            id: "2",
+            subject: "Request for Classroom",
+            approvalProgress: {"1": 'approved', "2": 'approved', "3": 'rejected', "4": 'pending'},
+            status: 'rejected'),
+        Doc(
+            id: "3",
+            subject: "Request for Classroom",
+            approvalProgress: {"1": 'approved', "2": 'approved', "3": 'approved', "4": 'approved'},
+            status: 'approved'),
+      ],
+    },
+    {
+      "Yesturday": [
+        Doc(
+            id: "4",
+            subject: "Request for Classroom",
+            approvalProgress: {"1": 'pending', "2": 'pending', "3": 'pending', "4": 'pending'},
+            status: 'pending'),
+        Doc(
+            id: "5",
+            subject: "Request for Classroom",
+            approvalProgress: {"1": 'pending', "2": 'pending', "3": 'pending', "4": 'pending'},
+            status: 'pending'),
+        Doc(
+            id: "6",
+            subject: "Request for Classroom",
+            approvalProgress: {"1": 'pending', "2": 'pending', "3": 'pending', "4": 'pending'},
+            status: 'pending'),
+        Doc(
+            id: "7",
+            subject: "Request for Classroom",
+            approvalProgress: {"1": 'pending', "2": 'pending', "3": 'pending', "4": 'pending'},
+            status: 'pending'),
+      ],
+    },
+    {
+      "Last Week": [
+        Doc(
+            id: "8",
+            subject: "Request for Classroom",
+            approvalProgress: {"1": 'pending', "2": 'pending', "3": 'pending', "4": 'pending'},
+            status: 'peinding'),
+        Doc(
+            id: "9",
+            subject: "Request for Classroom",
+            approvalProgress: {"1": 'pending', "2": 'pending', "3": 'pending', "4": 'pending'},
+            status: 'pending'),
+        Doc(
+            id: "10",
+            subject: "Request for Classroom",
+            approvalProgress: {"1": 'pending', "2": 'pending', "3": 'pending', "4": 'pending'},
+            status: 'pending'),
+        Doc(
+            id: "11",
+            subject: "Request for Classroom",
+            approvalProgress: {"1": 'pending', "2": 'pending', "3": 'pending', "4": 'pending'},
+            status: 'pending'),
+      ]
+    }
+  ];
+}
