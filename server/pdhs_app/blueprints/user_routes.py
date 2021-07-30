@@ -5,7 +5,7 @@ import pdhs_app.models.users.decorators as user_decorators  # src.
 import pdhs_app.models.users.constants as UserConstants
 from pdhs_app.models.documents.document import Document
 from pdhs_app.models.departments.department import Department
-from pdhs_app.blueprints.document_routes import get_new_docs
+from pdhs_app.blueprints.document_routes import new as get_new_docs
 
 bp = Blueprint('users', __name__, url_prefix='/users')
 
@@ -22,7 +22,7 @@ def get_user_by_id(user_id):
     return jsonify(msg="User not found"), 404
 
 
-@bp.route('/<String:email>', methods=['GET'])
+@bp.route('/<string:email>', methods=['GET'])
 def get_user_by_email(email):
     if request.method == 'GET':
         user = User.find_by_email(email)
@@ -95,6 +95,7 @@ def register_user(user_id):
         if User.register_user(user_id, first_name, last_name, email, password, portfolio_id, department_id):
             return jsonify({"message": f"Sucessfully registered {user_id}"})
 
+
 @bp.route('/', methods=['GET'])
 def get_all_users():
     """
@@ -127,17 +128,3 @@ def get_all_users():
 #     if request.method == 'POST':
 #         user = User.query.filter_by(user_id=user_id).first()
 #         return jsonify({"message":"Done"})
-
-@bp.route('delete/<int:user_id>', methods=['DELETE'])
-def delete_user(user_id):
-    if request.method == 'DELETE':
-        user = User.find_by_id(user_id)
-    if user is not None:
-        try:
-            user.delete_from_db()
-        except:
-            return jsonify(msg="Error deleting user."), 500
-
-    return jsonify(msg="User not found"), 404
-
-
