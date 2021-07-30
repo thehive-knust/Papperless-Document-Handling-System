@@ -1,7 +1,6 @@
 import os
 from flask import Flask
 from database.db import db, migrate
-from datetime import timedelta
 from middleware.security import jwt
 from flask_cors import CORS
 
@@ -33,19 +32,8 @@ def create_app(*args, **kwargs):
     app.config['ENV'] = env
     app.config.from_object('config.%s' % env)
 
-    # If true this will only allow the cookies that contain your JWTs to be sent
-    # over https. In production, this should always be set to True
-    app.config["JWT_COOKIE_SECURE"] = False
-
-    # Change this in your code!
-    app.config["JWT_SECRET_KEY"] = "super-secret"
-    app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(hours=1)
-    app.config["JWT_REFRESH_TOKEN_EXPIRES"] = timedelta(days=30)
-
-    app.config['JWT_AUTH_USERNAME_KEY'] = 'email'
     app.config['SQLALCHEMY_DATABASE_URI'] = app.config['DATABASE_URI']
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-    # print(app.config)
 
     # ensure the instance folder exists
     try:

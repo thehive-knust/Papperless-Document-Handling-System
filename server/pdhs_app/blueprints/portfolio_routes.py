@@ -28,7 +28,7 @@ def get_all_portfolios():
         if len(result) == 0:
             error_msg = 'No portfolios available'
         if error_msg is not None:
-            return jsonify(msg=error_msg)
+            return jsonify(msg=error_msg), 404
         else:
             for portfolio in result:
                 portfolios.append(portfolio.to_json())
