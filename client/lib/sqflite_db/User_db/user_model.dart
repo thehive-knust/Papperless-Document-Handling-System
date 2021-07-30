@@ -7,14 +7,14 @@ class User {
 
 
   const User({
-    required this.id,
-    required this.name,
+    this.id,
+    this.name,
 
   });
 
   User copy({
-    int? id,
-    String? name,
+    int id,
+    String name,
   }) =>
       User(
         id: id ?? this.id,
@@ -23,14 +23,14 @@ class User {
 
 
   /// converts map data values to object type data
-  static User fromMapTo(Map<String, Object?> mapData) => User(
+  static User fromMapTo(Map<String, Object> mapData) => User(
         id: mapData[UserFields.id] as int,
         name: mapData[UserFields.name] as String,
 
       );
 
   /// converts object type values to map  data  type
-  Map<String, Object?> toMap() => {
+  Map<String, Object> toMap() => {
         UserFields.id: id,
         UserFields.name: name,
       };

@@ -6,15 +6,15 @@ import 'approval_fields.dart';
 class ApprovalDatabase {
   static final ApprovalDatabase instance = ApprovalDatabase._init();
 
-  static Database? _database;
+  static Database _database;
 
   ApprovalDatabase._init();
 
   Future<Database> get database async {
-    if (_database != null) return _database!;
+    if (_database != null) return _database;
 
     _database = await _initDB('users.db');
-    return _database!;
+    return _database;
   }
 
 

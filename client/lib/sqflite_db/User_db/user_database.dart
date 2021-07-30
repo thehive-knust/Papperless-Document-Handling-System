@@ -6,15 +6,15 @@ import 'user_fields.dart';
 class UserDatabase {
   static final UserDatabase instance = UserDatabase._init();
 
-  static Database? _database;
+  static Database _database;
 
   UserDatabase._init();
 
   Future<Database> get database async {
-    if (_database != null) return _database!;
+    if (_database != null) return _database;
 
     _database = await _initDB('users.db');
-    return _database!;
+    return _database;
   }
 
 

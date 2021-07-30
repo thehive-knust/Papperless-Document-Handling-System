@@ -7,14 +7,14 @@ class Approval {
 
 
   const Approval({
-    required this.id,
-    required this.status,
+    this.id,
+    this.status,
 
   });
 
   Approval copy({
-    int? id,
-    String? status,
+    int id,
+    String status,
   }) =>
       Approval(
         id: id ?? this.id,
@@ -23,14 +23,14 @@ class Approval {
 
 
   /// converts map data values to object type data
-  static Approval fromMapTo(Map<String, Object?> mapData) => Approval(
+  static Approval fromMapTo(Map<String, Object> mapData) => Approval(
         id: mapData[ApprovalFields.id] as int,
         status: mapData[ApprovalFields.status] as String,
 
       );
 
   /// converts object type values to map  data  type
-  Map<String, Object?> toMap() => {
+  Map<String, Object> toMap() => {
         ApprovalFields.id: id,
         ApprovalFields.status: status,
       };

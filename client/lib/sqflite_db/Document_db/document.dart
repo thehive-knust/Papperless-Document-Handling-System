@@ -12,23 +12,23 @@ class Document {
 
 
   const Document({
-    required this.id,
-    required this.subject,
-    required this.filepath,
-    required this.description,
-    required this.updatedAt,
-    required this.status,
-    required this.createdAt,
+    this.id,
+    this.subject,
+    this.filepath,
+    this.description,
+    this.updatedAt,
+    this.status,
+    this.createdAt,
   });
 
   Document copy({
-    int? id,
-    String? subject,
-    String? filepath,
-    String? description,
-    DateTime? updatedAt,
-    String? status,
-    DateTime? createdAt,
+    int id,
+    String subject,
+    String filepath,
+    String description,
+    DateTime updatedAt,
+    String status,
+    DateTime createdAt,
   }) =>
       Document(
         id: id ?? this.id,
@@ -42,7 +42,7 @@ class Document {
 
 
   /// converts map data values to object type data
-  static Document fromMapTo(Map<String, Object?> mapData) => Document(
+  static Document fromMapTo(Map<String, Object> mapData) => Document(
         id: mapData[DocumentFields.id] as int,
         subject: mapData[DocumentFields.subject] as String,
         filepath: mapData[DocumentFields.filepath] as String,
@@ -55,7 +55,7 @@ class Document {
       );
 
   /// converts object type values to map  data  type
-  Map<String, Object?> toMap() => {
+  Map<String, Object> toMap() => {
         DocumentFields.id: id,
         DocumentFields.filepath: filepath,
         DocumentFields.subject: subject,

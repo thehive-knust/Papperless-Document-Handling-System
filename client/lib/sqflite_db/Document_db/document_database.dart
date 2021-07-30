@@ -6,15 +6,15 @@ import 'document_fields.dart';
 class DocumentDatabase {
   static final DocumentDatabase instance = DocumentDatabase._init();
 
-  static Database? _database;
+  static Database _database;
 
   DocumentDatabase._init();
 
   Future<Database> get database async {
-    if (_database != null) return _database!;
+    if (_database != null) return _database;
 
     _database = await _initDB('documents.db');
-    return _database!;
+    return _database;
   }
 
 
