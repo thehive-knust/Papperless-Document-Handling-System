@@ -8,9 +8,10 @@ internal document approvals.
 # Contributors - Name (Index No. - Role)
 
 - __[Ayarma Emmanuel John](https://github.com/EJAyarma)__ - (3581418 - __Quality Assurance Officer__)\
-OCUPUALOR ELIJAH (3591218 - __Project Manager__)\
-Saeed Abdul-Mateen Demah (3587518 - __System Analyst__)\
-Alidu abukari baba(3590218)\
-Sackey Emmanuel James Ato Sackey (3587418 - __Head of Frontend__)\
-Andrews Tang (3587618 - __Head of Backend__)\
-Obed Ansah (3579718)-Member. Osei-Bonsu Alexander Kwasi Tweneboah- ( __Head of Multimedia__)
+- __[OCUPUALOR ELIJAH](https://github.com/Koffi-Cobbin)__ - (3591218 - __Project Manager__)\
+- __[Saeed Abdul-Mateen Demah](https://github.com/kin-saga)__ - (3587518 - __System Analyst__)\
+- __[Alidu abukari Baba](https://github.com/khalid753)__ - (3590218)\
+- __[Sackey Emmanuel James Ato Sackey](https://github.com/Ejasackey)__ - (3587418 - __Head of Frontend__)\
+- __[Andrews Tang](https://github.com/cocastic8590)__ - (3587618 - __Head of Backend__)\
+- __[Obed Ansah](https://github.com/obedansah)__ - (3579718)-Member\
+- __[Osei-Bonsu Alexander Kwasi Tweneboah](https://github.com/TKJNR)__ - - ( __Head of Multimedia__)
