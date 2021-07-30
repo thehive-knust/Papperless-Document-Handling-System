@@ -7,23 +7,23 @@ Also, the relational database used is Microsoft SQL.
 
 The virtual environment is set up using virtualenv. virtualenv is a tool to create isolated Python environments. virtualenv creates a folder which contains all the necessary executables to use the packages that a Python project would need.
 
-It can be used standalone, in place of Pipenv.\
+It can be used standalone, in place of Pipenv.
 
--- Install virtualenv via pip: `pip install virtualenv`\
+-- Install virtualenv via pip: `pip install virtualenv`
 
--- Test your installation: `virtualenv --version`\
+-- Test your installation: `virtualenv --version`
 
 ### Basic Usage
 
 **Create a virtual environment for a project:**\
 -- `cd project_folder`\
--- `virtualenv venv`\
+-- `virtualenv venv`
 
 **Install project dependencies using pip:**\
--- `pip install -r requirements.txt`\
+-- `pip install -r requirements.txt`
 
 **Save project dependencies using pip:**\
--- `pip freeze > requirements.txt`\
+-- `pip freeze > requirements.txt`
 
 ### Read more about virtual environment here
 
