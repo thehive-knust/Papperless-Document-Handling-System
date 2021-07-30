@@ -47,8 +47,10 @@ class User(db.Model):
             'first_name': self.first_name,
             'last_name': self.last_name,
             'email': self.email,
-            'department': self.department_id,
-            'portfolio': self.portfolio_id
+            'department': self.department.to_json(),
+            'faculty': self.faculty.to_json(),
+            'college': self.college.to_json(),
+            'portfolio': self.portfolio.to_json()
         }
 
     @staticmethod

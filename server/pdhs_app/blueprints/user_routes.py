@@ -31,6 +31,24 @@ def get_user_by_email(email):
     return jsonify(msg="User not found"), 404
 
 
+@bp.route('delete/<int:user_id>', methods=['DELETE'])
+def delete_user(user_id):
+    if request.method == 'DELETE':
+        user = User.find_by_id(user_id)
+    if user is not None:
+        try:
+            user.delete_from_db()
+        except:
+            return jsonify(msg="Error deleting user."), 500
+
+    return jsonify(msg="User not found"), 404
+
+
+@bp.route('/update/<int:user_id>', methods=['POST'])
+def update_user(user_id):
+    pass
+
+
 @bp.route('/login', methods=['POST'])
 def login():
     if request.method == 'POST':
@@ -94,6 +112,21 @@ def get_all_users():
         if len(users) == 0 or len(result) == 0:
             return jsonify({'msg': 'Ther are no registered users'}), 404
         return jsonify({'users': users})
+
+# # The profile page section
+# @bp.route('/profile')
+# @user_decorators.requires_login
+# def profile():
+#     # checking if user actually exists
+#     user = User.query.filter_by(user_id=user_id).first()
+#     return jsonify(user)
+
+# @bp.route('/edit_profile/<int: user_id>', methods=['POST'])
+# @user_decorators.requires_login
+# def edit_profile(user_id):
+#     if request.method == 'POST':
+#         user = User.query.filter_by(user_id=user_id).first()
+#         return jsonify({"message":"Done"})
 
 @bp.route('delete/<int:user_id>', methods=['DELETE'])
 def delete_user(user_id):
