@@ -22,7 +22,7 @@ def get_user_by_id(user_id):
     return jsonify(msg="User not found"), 404
 
 
-@bp.route('/<String:email>', methods=['GET'])
+@bp.route('/<string:email>', methods=['GET'])
 def get_user_by_email(email):
     if request.method == 'GET':
         user = User.find_by_email(email)
@@ -48,28 +48,6 @@ def delete_user(user_id):
 def update_user(user_id):
     pass
 
-
-@bp.route('/register/<int:user_id>', methods=['POST'])
-def register_user(user_id):
-    if request.method == 'POST':
-        # Find out if the user is uthorized to add a user
-        # user = User.query.filter_by(user_id=user_id)
-        request_data = request.get_json()
-        user_id = request_data['user_id']
-        first_name = request_data['first_name']
-        last_name = request_data['last_name']
-        email = request_data['email']
-        password = request_data['password']
-        portfolio_id = request_data['portfolio_id']
-        department_id = request_data['department_id']
-        try:
-            if User.query.filter_by(user_id=user_id).first():
-                return jsonify({"message": "User already exists"})
-        except UserErrors.UserError as e:
-            return jsonify({"message": f"{e.message}"})
-
-        if User.register_user(user_id, first_name, last_name, email, password, portfolio_id, department_id):
-            return jsonify({"message": f"Sucessfully registered {user_id}"})
 
 @bp.route('/', methods=['GET'])
 def get_all_users():
@@ -101,5 +79,3 @@ def delete_user(user_id):
             return jsonify(msg="Error deleting user."), 500
 
     return jsonify(msg="User not found"), 404
-
-

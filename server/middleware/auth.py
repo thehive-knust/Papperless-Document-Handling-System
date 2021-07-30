@@ -51,13 +51,14 @@ def check_if_token_revoked(jwt_header, jwt_payload):
 @bp.route('/register', methods=['POST'])
 def register():
     if request.method == 'POST':
-        id = request.json.get('id', None)
-        first_name = request.json.get('first_name', None)
-        last_name = request.json.get('last_name', None)
-        email = request.json.get('email', None)
-        password = request.json.get('password', None)
-        portfolio_id = request.json.get('portfolio_id', None)
-        department_id = request.json.get('department_id', None)
+        request_data = request.get_json()
+        id = request_data['user_id']
+        first_name = request_data['first_name']
+        last_name = request_data['last_name']
+        email = request_data['email']
+        password = request_data['password']
+        portfolio_id = request_data['portfolio_id']
+        department_id = request_data['department_id']
 
         error = None
 
