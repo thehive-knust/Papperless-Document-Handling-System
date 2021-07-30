@@ -89,16 +89,3 @@ def get_all_users():
         if len(users) == 0 or len(result) == 0:
             return jsonify({'msg': 'Ther are no registered users'}), 404
         return jsonify({'users': users})
-      
-
-@bp.route('delete/<int:user_id>', methods=['DELETE'])
-def delete_user(user_id):
-    if request.method == 'DELETE':
-        user = User.find_by_id(user_id)
-    if user is not None:
-        try:
-            user.delete_from_db()
-        except:
-            return jsonify(msg="Error deleting user."), 500
-
-    return jsonify(msg="User not found"), 404
