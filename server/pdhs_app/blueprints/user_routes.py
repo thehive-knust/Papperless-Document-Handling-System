@@ -115,25 +115,4 @@ def delete_user(user_id):
 
     return jsonify(msg="User not found"), 404
 
-# # The profile page section
-# @bp.route('/profile')
-# @user_decorators.requires_login
-# def profile():
-#     # checking if user actually exists
-#     user = User.query.filter_by(user_id=user_id).first()
-#     return jsonify(user)
 
-# @bp.route('/edit_profile/<int: user_id>', methods=['POST'])
-# @user_decorators.requires_login
-# def edit_profile(user_id):
-#     if request.method == 'POST':
-#         user = User.query.filter_by(user_id=user_id).first()
-#         return jsonify({"message":"Done"})
-
-
-# # The Delete User section
-# @bp.route('/delete_user/<int: user_id>')
-# @user_decorators.requires_login
-# def delete_user(user_id):
-#     User.query.filter(User.user_id == user_id).delete()
-#     return jsonify({"message":"User Deleted"})

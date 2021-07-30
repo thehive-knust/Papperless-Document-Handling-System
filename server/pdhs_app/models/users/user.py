@@ -22,16 +22,6 @@ class User(db.Model):
     tokens = db.relationship(
         'TokenBlocklist', lazy='select', backref=db.backref('user', lazy='joined'))
 
-    # def __init__(self, user_id, first_name, last_name, email, password, portfolio_id, department_id):
-    #     self.user_id = user_id
-    #     self.first_name = first_name
-    #     self.last_name = last_name
-    #     self.email = email
-    #     self.password = password
-    #     self.portfolio_id = portfolio_id
-    #     self.department_id = department_id
-    # We don't need to define a constructor. It's done for us
-
     def __repr__(self):
         return '<User %r>' % self.user_id
 
@@ -41,7 +31,11 @@ class User(db.Model):
 
     @classmethod
     def find_by_id(cls, user_id):
-        return cls.query.get(user_id)
+        try:
+            user = cls.query.get(user_id)
+        except:
+            raise UserErrors.UserDontExistError("User Don't Exist")
+        return user
 
     def save_to_db(self):
         db.session.add(self)

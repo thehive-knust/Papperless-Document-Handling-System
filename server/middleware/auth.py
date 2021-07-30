@@ -103,7 +103,6 @@ def login():
     if request.method == 'POST':
         id = request.json.get('id', None)
         password = request.json.get('password', None)
-
         user = User.find_by_id(id)
         correct_password = check_password_hash(user.password, password)
         if id is not None and correct_password:
