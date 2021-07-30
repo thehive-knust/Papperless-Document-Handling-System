@@ -2,35 +2,43 @@ import 'package:flutter/material.dart';
 import 'package:softdoc/style.dart';
 // import 'package:timeline_tile/timeline_tile.dart';
 
-class ApprovalProgress extends StatelessWidget {
-  Map<String, bool> approvalList;
+class ApprovalProgress extends StatefulWidget {
+  final Map<String, String> approvalList;
+  final String docStatus;
+
+  ApprovalProgress({Key key, this.approvalList, this.docStatus})
+      : super(key: key);
+
+  @override
+  _ApprovalProgressState createState() => _ApprovalProgressState();
+}
+
+class _ApprovalProgressState extends State<ApprovalProgress> {
   Color previousColor;
   bool nextIsAsh;
   bool lastColoredLine = false;
 
-  ApprovalProgress({Key key, this.approvalList}) : super(key: key);
-
-  checkcolor() {
-    approvalList.values.forEach((value) {});
-  }
+  // checkcolor() {
+  //   widget.approvalList.values.forEach((value) {});
+  // }
 
   @override
   Widget build(BuildContext context) {
-    List<String> approvalListKeys = approvalList.keys.toList();
+    List<String> approvalListKeys = widget.approvalList.keys.toList();
     return Container(
       alignment: Alignment.topCenter,
       height: 80,
-      child: approvalList.length == 1
+      child: widget.approvalList.length == 1
           ? Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                progressDot(approvalList.values.first),
+                progressDot(widget.approvalList.values.first),
                 SizedBox(height: 12),
                 Text(approvalListKeys[0]),
               ],
             )
           : Row(
-              children: approvalList.entries.map((e) {
+              children: widget.approvalList.entries.map((e) {
                 bool isFirst = false;
                 bool isLast = false;
                 if (approvalListKeys.first == e.key) isFirst = true;
@@ -42,9 +50,9 @@ class ApprovalProgress extends StatelessWidget {
                         children: [
                           progressLine(
                             isFirst: isFirst,
-                            start: approvalList[approvalListKeys[
+                            start: widget.approvalList[approvalListKeys[
                                 (approvalListKeys.indexOf(e.key) - 1) %
-                                    approvalList.length]],
+                                    widget.approvalList.length]],
                             end: e.value,
                             beforeLine: true,
                           ),
@@ -52,9 +60,9 @@ class ApprovalProgress extends StatelessWidget {
                           progressLine(
                             isLast: isLast,
                             start: e.value,
-                            end: approvalList[approvalListKeys[
+                            end: widget.approvalList[approvalListKeys[
                                 (approvalListKeys.indexOf(e.key) + 1) %
-                                    approvalList.length]],
+                                    widget.approvalList.length]],
                             afterLine: true,
                           ),
                         ],
@@ -72,10 +80,10 @@ class ApprovalProgress extends StatelessWidget {
     );
   }
 
-  Color approvalStateColor(bool approvalState) {
-    if (approvalState == null)
+  Color approvalStateColor(String approvalState) {
+    if (approvalState == 'pending')
       return yellow;
-    else if (approvalState == true)
+    else if (approvalState == 'approved')
       return green;
     else
       return red;
@@ -89,12 +97,12 @@ class ApprovalProgress extends StatelessWidget {
         (startColor.opacity + endColor.opacity) / 2);
   }
 
-  Widget progressDot(bool isApproved) {
+  Widget progressDot(String approvalStatus) {
     Color color;
-    if (nextIsAsh == true)
+    if (nextIsAsh == true || widget.docStatus == 'cancelled')
       color = Colors.grey[400];
     else
-      color = approvalStateColor(isApproved);
+      color = approvalStateColor(approvalStatus);
 
     if (color == red || color == yellow) {
       nextIsAsh = true;
@@ -118,21 +126,23 @@ class ApprovalProgress extends StatelessWidget {
   Widget progressLine(
       {bool isFirst = false,
       bool isLast = false,
-      bool start,
-      bool end,
+      String start,
+      String end,
       bool beforeLine = false,
       bool afterLine = false}) {
     Color startColor = approvalStateColor(start);
     Color endColor = approvalStateColor(end);
 
-    if (nextIsAsh == true) {
-      startColor =
-          lastColoredLine ? approvalStateColor(start) : Colors.grey[400];
+    if (widget.docStatus == 'cancelled')
+      startColor = endColor = Colors.grey[400];
+    else if (nextIsAsh == true) {
+      startColor = lastColoredLine ? startColor : Colors.grey[400];
 
       if (lastColoredLine) lastColoredLine = false;
 
-      if (afterLine) endColor = colorMix(startColor, Colors.grey[400]);
-      if (beforeLine) {
+      if (afterLine)
+        endColor = colorMix(startColor, Colors.grey[400]);
+      else {
         startColor = colorMix(startColor, Colors.grey[400]);
         endColor = Colors.grey[400];
       }

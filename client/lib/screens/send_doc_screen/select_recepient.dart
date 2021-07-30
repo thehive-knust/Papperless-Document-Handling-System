@@ -32,13 +32,13 @@ selectRecepient(Function setMainState, [Function setModalState]) {
                 icon: Icon(Icons.arrow_drop_down, color: primaryDark),
                 items: departments
                     .map(
-                      (e) => DropdownMenuItem<String>(
+                      (dept) => DropdownMenuItem<String>(
                         child: Text(
-                          e.name,
+                          dept.name,
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                         ),
-                        value: e.id,
+                        value: dept.id,
                       ),
                     )
                     .toList(),
@@ -46,6 +46,7 @@ selectRecepient(Function setMainState, [Function setModalState]) {
                   print(newVal);
                   selectedDept =
                       departments.singleWhere((dept) => dept.id == newVal);
+                  // get users in selected department
                   setMainState();
                   if (setModalState != null) setModalState(() {});
                 },
@@ -57,38 +58,40 @@ selectRecepient(Function setMainState, [Function setModalState]) {
       // listview:-------------------------------------------------------------------------------------
       Expanded(
         child: ListView.builder(
-            padding: EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-            itemCount: selectedDept.users.length,
-            itemBuilder: (context, index) {
-              // checking if approvals contains this user's id
-              bool selected = approvals.contains(selectedDept.users[index].id);
+          padding: EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+          itemCount: selectedDept.users.length,
+          itemBuilder: (context, index) {
+            // checking if approvals contains this user's id
+            bool selected = approvals.contains(selectedDept.users[index].id);
 
-              return Container(
-                margin: EdgeInsets.symmetric(vertical: 5),
-                decoration: BoxDecoration(
-                    color: primaryLight,
+            return Container(
+              margin: EdgeInsets.symmetric(vertical: 5),
+              decoration: BoxDecoration(
+                  color: primaryLight, borderRadius: BorderRadius.circular(7)),
+              child: CheckboxListTile(
+                value: selected,
+                shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(7)),
-                child: CheckboxListTile(
-                    value: selected,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(7)),
-                    title: Text(selectedDept.users[index].title),
-                    activeColor: primary,
-                    onChanged: (newVal) {
-                      if (selected) {
-                        // remove id if already selected
-                        approvals.remove(selectedDept.users[index].id);
-                        setMainState();
-                        if (setModalState != null) setModalState(() {});
-                      } else {
-                        // add id to approval list if not selected
-                        approvals.add(selectedDept.users[index].id);
-                        setMainState(); // setState for the send screen to update approval ui
-                        if (setModalState != null) setModalState(() {}); // only needed in android
-                      }
-                    }),
-              );
-            }),
+                title: Text(selectedDept.users[index].title),
+                activeColor: primary,
+                onChanged: (newVal) {
+                  if (selected) {
+                    // remove id if already selected
+                    approvals.remove(selectedDept.users[index].id);
+                    setMainState();
+                    if (setModalState != null) setModalState(() {});
+                  } else {
+                    // add id to approval list if not selected
+                    approvals.add(selectedDept.users[index].id);
+                    setMainState(); // setState for the send screen to update approval ui
+                    if (setModalState != null)
+                      setModalState(() {}); // only needed in android
+                  }
+                },
+              ),
+            );
+          },
+        ),
       )
     ],
   );

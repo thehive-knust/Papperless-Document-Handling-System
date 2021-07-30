@@ -10,4 +10,9 @@ class DetailScreenNav extends DesktopNavState {
   DetailScreenNav(this.selectedDoc);
 }
 
+class ReveivedDetailScreenNav extends DesktopNavState {
+  final Doc selectedDoc;
+  ReveivedDetailScreenNav(this.selectedDoc);
+}
+
 class SendDocScreenNav extends DesktopNavState {}

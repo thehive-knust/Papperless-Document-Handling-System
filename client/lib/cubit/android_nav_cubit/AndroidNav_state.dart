@@ -8,6 +8,11 @@ class DetailScreenNav extends AndroidNavState {
   DetailScreenNav(this.selectedDoc);
 }
 
+class ReveivedDetailScreenNav extends AndroidNavState {
+  final Doc selectedDoc;
+  ReveivedDetailScreenNav(this.selectedDoc);
+}
+
 class SendDocScreenNav extends AndroidNavState {}
 
 class HomeScreenNav extends AndroidNavState {}

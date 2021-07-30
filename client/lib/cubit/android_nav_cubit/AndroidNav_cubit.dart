@@ -18,4 +18,9 @@ class AndroidNavCubit extends Cubit<AndroidNavState> {
   void navToDetailScreen(Doc selectedDoc) {
     emit(DetailScreenNav(selectedDoc));
   }
+
+  void navToReveivedDetailScreen(Doc selectedDoc) {
+    emit(ReveivedDetailScreenNav(selectedDoc));
+  }
+  
 }

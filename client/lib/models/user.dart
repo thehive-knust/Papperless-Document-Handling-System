@@ -6,10 +6,10 @@ class User {
   String name;
   String password;
   String email;
-  String dept_id;
-  String fac_id;
-  String col_id;
-  String port_id;
+  String deptId;
+  String facId;
+  String colId;
+  String portId;
   String title;
   bool canApprove;
 
@@ -18,11 +18,26 @@ class User {
     this.name,
     this.password,
     this.email,
-    this.dept_id,
-    this.fac_id,
-    this.col_id,
-    this.port_id,
+    this.deptId,
+    this.facId,
+    this.colId,
+    this.portId,
     this.title,
     this.canApprove,
   });
+
+  static List<Map<String, dynamic>> dumyJson() {
+    return [
+      {
+        "id": "1",
+        "name": "His/Her name",
+        "email": "something@gmail.com",
+        "dept_id": "111",
+        "position": "HOD",
+      },
+      {},
+      {},
+      {},
+    ];
+  }
 }

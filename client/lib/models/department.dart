@@ -6,7 +6,7 @@ class Department {
   List<User> users;
   String facultyId;
 
-  Department({this.id, this.name, this.users});
+  Department({this.id, this.name, this.users, this.facultyId});
 
   static List<User> get getUsers {
     List<User> users = [];
@@ -26,7 +26,7 @@ class Department {
             User(id: "31", title: "Facility manageer"),
             User(id: "32", title: "Financial manager"),
             User(id: "33", title: "General Secretary"),
-            User(id: "34",title: "Aces President"),
+            User(id: "34", title: "Aces President"),
           ],
         ),
         Department(
@@ -80,4 +80,29 @@ class Department {
           ],
         ),
       ];
+
+  static List<Map<String, dynamic>> dumyJson() {
+    return [
+      {
+        "id": "111",
+        "name": "Department of Computer Engineering",
+        "facultyId": "101"
+      },
+      {
+        "id": "222",
+        "name": "Department of Petroleum Engineering",
+        "facultyId": "202"
+      },
+      {
+        "id": "333",
+        "name": "Department of Mechanical Engineering",
+        "facultyId": "303"
+      },
+      {
+        "id": "444",
+        "name": "Department of Marine Engineering",
+        "facultyId": "404"
+      },
+    ];
+  }
 }

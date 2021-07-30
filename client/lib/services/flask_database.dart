@@ -4,11 +4,7 @@ import 'package:http/http.dart' as http;
 // import 'package:softdoc/utills.dart';
 
 class FlaskDatabase {
-  // -TODO: upload document:------------------------------
-
-// -TODO: download document:----------------------------
-
-// -TODO: authentication:-------------------------------
+  // -TODO: authentication:-------------------------------
   static Future<bool> authenticate({String userId, String password}) async {
     Uri url = Uri.parse("https://soft-doc.herokuapp.com/users/login");
     http.Response response;
@@ -37,7 +33,7 @@ class FlaskDatabase {
     }
   }
 
-// test get request:-----------------------
+  // test get request:-----------------------
   static Future<http.Response> getMessage() async {
     http.Response response;
 
@@ -50,7 +46,7 @@ class FlaskDatabase {
     }
     if (response.statusCode == 200) {
       print(response.body);
-      jsonDecode("source");
+      // jsonDecode("source");
     }
     return response;
   }
@@ -71,4 +67,17 @@ class FlaskDatabase {
       print(response.statusCode);
     }
   }
+
+
+  //TODO: implement get departments here:
+
+  //TODO: implement get users in deparment here:
+
+  //TODO: implement get send docs here:
+
+  //TODO: implement get received docs here:
+
+  //TODO: implement post document
+
+  //TODO: implement approval stuff here:--------
 }

@@ -19,16 +19,16 @@ define("main_module.bootstrap", ["web_entrypoint.dart", "dart_sdk"], function(ap
          main();
       });
     }
-    window.$dartAppId = "bVFnvR1QY99fLGT7lrey9w==";
+    window.$dartAppId = "d/IHztfkkwCXkQj+rFo6oA==";
 window.$dartReloadConfiguration = "ReloadConfiguration.none";
 window.$dartModuleStrategy = "require-js";
 window.$loadModuleConfig = require;
 window.$dwdsVersion = "11.0.2";
-window.$dwdsDevHandlerPath = "http://localhost:53244/$dwdsSseHandler";
+window.$dwdsDevHandlerPath = "http://localhost:52987/$dwdsSseHandler";
 window.$dwdsEnableDevtoolsLaunch = true;
 window.$dartEntrypointPath = "main_module.bootstrap.js";
 window.$requireLoader.forceLoadModule("dwds/src/injected/client");
-window.$dartExtensionUri = "http://127.0.0.1:53246/$debug";
+window.$dartExtensionUri = "http://127.0.0.1:52989/$debug";
 
   } else {
     if(window.$dartMainExecuted){
@@ -216,6 +216,7 @@ let modulePaths = {
  "packages/file_picker/src/file_picker_io.dart": "packages/file_picker/src/file_picker_io.dart.lib",
  "packages/plugin_platform_interface/plugin_platform_interface.dart": "packages/plugin_platform_interface/plugin_platform_interface.dart.lib",
  "packages/softdoc/main.dart": "packages/softdoc/main.dart.lib",
+ "packages/softdoc/screens/send_doc_screen/send_doc_screen.dart": "packages/softdoc/screens/send_doc_screen/send_doc_screen.dart.lib",
  "packages/softdoc/style.dart": "packages/softdoc/style.dart.lib",
  "packages/flutter/material.dart": "packages/flutter/material.dart.lib",
  "packages/flutter/widgets.dart": "packages/flutter/widgets.dart.lib",
@@ -475,13 +476,14 @@ let modulePaths = {
  "packages/flutter/src/material/app.dart": "packages/flutter/src/material/app.dart.lib",
  "packages/flutter/src/material/animated_icons.dart": "packages/flutter/src/material/animated_icons.dart.lib",
  "packages/flutter/src/material/about.dart": "packages/flutter/src/material/about.dart.lib",
- "packages/softdoc/screens/send_doc_screen/send_doc_screen.dart": "packages/softdoc/screens/send_doc_screen/send_doc_screen.dart.lib",
  "packages/softdoc/models/doc.dart": "packages/softdoc/models/doc.dart.lib",
- "packages/softdoc/screens/send_doc_screen/select_recepient.dart": "packages/softdoc/screens/send_doc_screen/select_recepient.dart.lib",
+ "packages/softdoc/shared/pdf_card.dart": "packages/softdoc/shared/pdf_card.dart.lib",
+ "packages/softdoc/shared/docTypeIcon.dart": "packages/softdoc/shared/docTypeIcon.dart.lib",
+ "packages/softdoc/screens/send_doc_screen/add_or_edit_recepient.dart": "packages/softdoc/screens/send_doc_screen/add_or_edit_recepient.dart.lib",
  "packages/softdoc/utills.dart": "packages/softdoc/utills.dart.lib",
  "packages/softdoc/models/department.dart": "packages/softdoc/models/department.dart.lib",
  "packages/softdoc/models/user.dart": "packages/softdoc/models/user.dart.lib",
- "packages/softdoc/screens/send_doc_screen/add_or_edit_recepient.dart": "packages/softdoc/screens/send_doc_screen/add_or_edit_recepient.dart.lib",
+ "packages/softdoc/screens/send_doc_screen/select_recepient.dart": "packages/softdoc/screens/send_doc_screen/select_recepient.dart.lib",
  "packages/dotted_border/dotted_border.dart": "packages/dotted_border/dotted_border.dart.lib",
  "packages/path_drawing/path_drawing.dart": "packages/path_drawing/path_drawing.dart.lib",
  "packages/path_drawing/src/trim_path.dart": "packages/path_drawing/src/trim_path.dart.lib",
@@ -509,7 +511,10 @@ let modulePaths = {
  "packages/flutter_bloc/src/multi_repository_provider.dart": "packages/flutter_bloc/src/multi_repository_provider.dart.lib",
  "packages/flutter_bloc/src/multi_bloc_provider.dart": "packages/flutter_bloc/src/multi_bloc_provider.dart.lib",
  "packages/flutter_bloc/src/bloc_provider.dart": "packages/flutter_bloc/src/bloc_provider.dart.lib",
- "packages/softdoc/screens/home_screen/docTypeIcon.dart": "packages/softdoc/screens/home_screen/docTypeIcon.dart.lib",
+ "packages/softdoc/screens/home_screen/transition_animation.dart": "packages/softdoc/screens/home_screen/transition_animation.dart.lib",
+ "packages/softdoc/cubit/data_cubit/data_cubit.dart": "packages/softdoc/cubit/data_cubit/data_cubit.dart.lib",
+ "packages/softdoc/platformSelect.dart": "packages/softdoc/platformSelect.dart.lib",
+ "packages/softdoc/screens/desktop_screen/desktop_screen.dart": "packages/softdoc/screens/desktop_screen/desktop_screen.dart.lib",
  "packages/softdoc/screens/detail_screen/detail_screen.dart": "packages/softdoc/screens/detail_screen/detail_screen.dart.lib",
  "packages/softdoc/screens/detail_screen/approval_progress.dart": "packages/softdoc/screens/detail_screen/approval_progress.dart.lib",
  "packages/intl/intl.dart": "packages/intl/intl.dart.lib",
@@ -536,6 +541,7 @@ let modulePaths = {
  "packages/intl/src/intl/bidi.dart": "packages/intl/src/intl/bidi.dart.lib",
  "packages/intl/src/plural_rules.dart": "packages/intl/src/plural_rules.dart.lib",
  "packages/softdoc/screens/desktop_screen/desktop_auth_screen.dart": "packages/softdoc/screens/desktop_screen/desktop_auth_screen.dart.lib",
+ "packages/softdoc/screens/auth_screen/auth_form.dart": "packages/softdoc/screens/auth_screen/auth_form.dart.lib",
  "packages/softdoc/services/flask_database.dart": "packages/softdoc/services/flask_database.dart.lib",
  "packages/http/src/multipart_request.dart": "packages/http/src/multipart_request.dart.lib",
  "packages/http/src/utils.dart": "packages/http/src/utils.dart.lib",
@@ -574,7 +580,9 @@ let modulePaths = {
  "packages/pedantic/pedantic.dart": "packages/pedantic/pedantic.dart.lib",
  "packages/http/src/boundary_characters.dart": "packages/http/src/boundary_characters.dart.lib",
  "packages/softdoc/cubit/auth_cubit/auth_cubit.dart": "packages/softdoc/cubit/auth_cubit/auth_cubit.dart.lib",
- "packages/softdoc/platformSelect.dart": "packages/softdoc/platformSelect.dart.lib"
+ "packages/softdoc/screens/auth_screen/auth_screen.dart": "packages/softdoc/screens/auth_screen/auth_screen.dart.lib",
+ "packages/softdoc/screens/android_screen/android_screen.dart": "packages/softdoc/screens/android_screen/android_screen.dart.lib",
+ "packages/softdoc/screens/reveived_detail_screen/reveived_detail_screen.dart": "packages/softdoc/screens/reveived_detail_screen/reveived_detail_screen.dart.lib"
 };
 let moduleNames = {
  "web_entrypoint.dart.lib": "web_entrypoint.dart",
@@ -712,6 +720,7 @@ let moduleNames = {
  "packages/file_picker/src/file_picker_io.dart.lib": "packages/file_picker/src/file_picker_io.dart",
  "packages/plugin_platform_interface/plugin_platform_interface.dart.lib": "packages/plugin_platform_interface/plugin_platform_interface.dart",
  "packages/softdoc/main.dart.lib": "packages/softdoc/main.dart",
+ "packages/softdoc/screens/send_doc_screen/send_doc_screen.dart.lib": "packages/softdoc/screens/send_doc_screen/send_doc_screen.dart",
  "packages/softdoc/style.dart.lib": "packages/softdoc/style.dart",
  "packages/flutter/material.dart.lib": "packages/flutter/material.dart",
  "packages/flutter/widgets.dart.lib": "packages/flutter/widgets.dart",
@@ -971,13 +980,14 @@ let moduleNames = {
  "packages/flutter/src/material/app.dart.lib": "packages/flutter/src/material/app.dart",
  "packages/flutter/src/material/animated_icons.dart.lib": "packages/flutter/src/material/animated_icons.dart",
  "packages/flutter/src/material/about.dart.lib": "packages/flutter/src/material/about.dart",
- "packages/softdoc/screens/send_doc_screen/send_doc_screen.dart.lib": "packages/softdoc/screens/send_doc_screen/send_doc_screen.dart",
  "packages/softdoc/models/doc.dart.lib": "packages/softdoc/models/doc.dart",
- "packages/softdoc/screens/send_doc_screen/select_recepient.dart.lib": "packages/softdoc/screens/send_doc_screen/select_recepient.dart",
+ "packages/softdoc/shared/pdf_card.dart.lib": "packages/softdoc/shared/pdf_card.dart",
+ "packages/softdoc/shared/docTypeIcon.dart.lib": "packages/softdoc/shared/docTypeIcon.dart",
+ "packages/softdoc/screens/send_doc_screen/add_or_edit_recepient.dart.lib": "packages/softdoc/screens/send_doc_screen/add_or_edit_recepient.dart",
  "packages/softdoc/utills.dart.lib": "packages/softdoc/utills.dart",
  "packages/softdoc/models/department.dart.lib": "packages/softdoc/models/department.dart",
  "packages/softdoc/models/user.dart.lib": "packages/softdoc/models/user.dart",
- "packages/softdoc/screens/send_doc_screen/add_or_edit_recepient.dart.lib": "packages/softdoc/screens/send_doc_screen/add_or_edit_recepient.dart",
+ "packages/softdoc/screens/send_doc_screen/select_recepient.dart.lib": "packages/softdoc/screens/send_doc_screen/select_recepient.dart",
  "packages/dotted_border/dotted_border.dart.lib": "packages/dotted_border/dotted_border.dart",
  "packages/path_drawing/path_drawing.dart.lib": "packages/path_drawing/path_drawing.dart",
  "packages/path_drawing/src/trim_path.dart.lib": "packages/path_drawing/src/trim_path.dart",
@@ -1005,7 +1015,10 @@ let moduleNames = {
  "packages/flutter_bloc/src/multi_repository_provider.dart.lib": "packages/flutter_bloc/src/multi_repository_provider.dart",
  "packages/flutter_bloc/src/multi_bloc_provider.dart.lib": "packages/flutter_bloc/src/multi_bloc_provider.dart",
  "packages/flutter_bloc/src/bloc_provider.dart.lib": "packages/flutter_bloc/src/bloc_provider.dart",
- "packages/softdoc/screens/home_screen/docTypeIcon.dart.lib": "packages/softdoc/screens/home_screen/docTypeIcon.dart",
+ "packages/softdoc/screens/home_screen/transition_animation.dart.lib": "packages/softdoc/screens/home_screen/transition_animation.dart",
+ "packages/softdoc/cubit/data_cubit/data_cubit.dart.lib": "packages/softdoc/cubit/data_cubit/data_cubit.dart",
+ "packages/softdoc/platformSelect.dart.lib": "packages/softdoc/platformSelect.dart",
+ "packages/softdoc/screens/desktop_screen/desktop_screen.dart.lib": "packages/softdoc/screens/desktop_screen/desktop_screen.dart",
  "packages/softdoc/screens/detail_screen/detail_screen.dart.lib": "packages/softdoc/screens/detail_screen/detail_screen.dart",
  "packages/softdoc/screens/detail_screen/approval_progress.dart.lib": "packages/softdoc/screens/detail_screen/approval_progress.dart",
  "packages/intl/intl.dart.lib": "packages/intl/intl.dart",
@@ -1032,6 +1045,7 @@ let moduleNames = {
  "packages/intl/src/intl/bidi.dart.lib": "packages/intl/src/intl/bidi.dart",
  "packages/intl/src/plural_rules.dart.lib": "packages/intl/src/plural_rules.dart",
  "packages/softdoc/screens/desktop_screen/desktop_auth_screen.dart.lib": "packages/softdoc/screens/desktop_screen/desktop_auth_screen.dart",
+ "packages/softdoc/screens/auth_screen/auth_form.dart.lib": "packages/softdoc/screens/auth_screen/auth_form.dart",
  "packages/softdoc/services/flask_database.dart.lib": "packages/softdoc/services/flask_database.dart",
  "packages/http/src/multipart_request.dart.lib": "packages/http/src/multipart_request.dart",
  "packages/http/src/utils.dart.lib": "packages/http/src/utils.dart",
@@ -1070,7 +1084,9 @@ let moduleNames = {
  "packages/pedantic/pedantic.dart.lib": "packages/pedantic/pedantic.dart",
  "packages/http/src/boundary_characters.dart.lib": "packages/http/src/boundary_characters.dart",
  "packages/softdoc/cubit/auth_cubit/auth_cubit.dart.lib": "packages/softdoc/cubit/auth_cubit/auth_cubit.dart",
- "packages/softdoc/platformSelect.dart.lib": "packages/softdoc/platformSelect.dart"
+ "packages/softdoc/screens/auth_screen/auth_screen.dart.lib": "packages/softdoc/screens/auth_screen/auth_screen.dart",
+ "packages/softdoc/screens/android_screen/android_screen.dart.lib": "packages/softdoc/screens/android_screen/android_screen.dart",
+ "packages/softdoc/screens/reveived_detail_screen/reveived_detail_screen.dart.lib": "packages/softdoc/screens/reveived_detail_screen/reveived_detail_screen.dart"
 };
 if(!window.$requireLoader) {
    window.$requireLoader = {

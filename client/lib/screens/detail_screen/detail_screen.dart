@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:softdoc/cubit/android_nav_cubit/AndroidNav_cubit.dart';
 import 'package:softdoc/cubit/desktop_nav_cubit/desktopnav_cubit.dart';
 import 'package:softdoc/models/doc.dart';
-import 'package:softdoc/screens/home_screen/docTypeIcon.dart';
+import 'package:softdoc/shared/docTypeIcon.dart';
 import 'package:softdoc/style.dart';
 import 'package:intl/intl.dart';
 import 'approval_progress.dart';
@@ -84,8 +84,10 @@ class _DetailScreenState extends State<DetailScreen> {
                 ),
                 if (!widget.isDesktop) ...[
                   SizedBox(height: 10),
-                  // ApprovalProgress(
-                  //     approvalList: widget.selectedDoc.approvalProgress)
+                  ApprovalProgress(
+                    approvalList: widget.selectedDoc.approvalProgress,
+                    docStatus: widget.selectedDoc.status,
+                  )
                 ],
                 Container(
                   // flexible was here

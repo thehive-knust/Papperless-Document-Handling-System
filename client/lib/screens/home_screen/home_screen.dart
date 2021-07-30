@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:softdoc/cubit/android_nav_cubit/AndroidNav_cubit.dart';
+import 'package:softdoc/cubit/data_cubit/data_cubit.dart';
 import 'package:softdoc/cubit/desktop_nav_cubit/desktopnav_cubit.dart';
 import 'package:softdoc/screens/home_screen/doc_tile.dart';
+import 'package:softdoc/screens/home_screen/transition_animation.dart';
 import 'package:softdoc/screens/send_doc_screen/send_doc_screen.dart';
 import '../../models/doc.dart';
 import 'package:softdoc/style.dart';
@@ -19,17 +21,21 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   AndroidNavCubit _androidNavCubit;
   DesktopNavCubit _desktopNavCubit;
+  DataCubit _dataCubit;
+  String bottomNavSelector = "Sent";
 
   @override
   void initState() {
     super.initState();
     _androidNavCubit = BlocProvider.of<AndroidNavCubit>(context);
     _desktopNavCubit = BlocProvider.of<DesktopNavCubit>(context);
+    _dataCubit = BlocProvider.of<DataCubit>(context);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBody: true,
       floatingActionButton: FloatingActionButton(
         // onPressed: () => Navigator.of(context).pushNamed(SENDPAGE),
         onPressed: () => widget.isDesktop
@@ -39,6 +45,8 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Icon(Icons.note_add_rounded),
       ),
       backgroundColor: Colors.blueGrey[50],
+      bottomNavigationBar: bottomNavBar(),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
       // appbar:---------------------------------------------------------------------------------
       appBar: AppBar(
         title: Text(
@@ -93,15 +101,80 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             // listView:-----------------------------------------------------------
             Expanded(
-              child: ListView.builder(
-                padding: EdgeInsets.symmetric(vertical: 10),
-                itemBuilder: (context, index) => DocTiles(
-                  section: Doc.docs[index],
-                  isDesktop: widget.isDesktop,
-                ),
-                itemCount: Doc.docs.length,
+              child: BlocBuilder<DataCubit, DataState>(
+                builder: (context, state) {
+                  if (state is SentDoc) {
+                    return DocTiles(
+                      docs: state.docs,
+                      isDesktop: widget.isDesktop,
+                      isSent: true,
+                    );
+                  } else if (state is ReveivedDoc) {
+                    return DocTiles(
+                      docs: state.docs,
+                      isDesktop: widget.isDesktop,
+                      isSent: false,
+                    );
+                  } else
+                    return LinearProgressIndicator();
+                },
               ),
             )
+          ],
+        ),
+      ),
+    );
+  }
+
+  //BottomNavBar widget:----------------------------
+  Widget bottomNavBar() {
+    Map<String, dynamic> buttons = {
+      "Sent": Icons.send,
+      "Reveived": Icons.receipt,
+      "space": "_",
+    };
+
+    return BottomAppBar(
+      shape: CircularNotchedRectangle(),
+      clipBehavior: Clip.antiAlias,
+      child: Container(
+        height: 60,
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            ...buttons.entries.map(
+              (map) {
+                return map.value == '_'
+                    ? SizedBox(width: 50)
+                    : Expanded(
+                        child: InkWell(
+                          splashColor: Color(0xFF6D95E6).withOpacity(0.5),
+                          borderRadius: BorderRadius.circular(70),
+                          onTap: () {
+                            if (map.key == 'Sent')
+                              _dataCubit.getSent();
+                            else
+                              _dataCubit.getReceived();
+                            bottomNavSelector = map.key;
+                            setState(() {});
+                          },
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(
+                                map.value,
+                                size: 30,
+                                color: bottomNavSelector == map.key
+                                    ? primary
+                                    : Colors.grey,
+                              ),
+                              Text(map.key, style: TextStyle(fontSize: 12))
+                            ],
+                          ),
+                        ),
+                      );
+              },
+            ).toList(),
           ],
         ),
       ),

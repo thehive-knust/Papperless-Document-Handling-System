@@ -1,482 +1,764 @@
-define(['dart_sdk', 'packages/flutter/src/foundation/object.dart', 'packages/flutter/src/foundation/collections.dart', 'packages/flutter/src/foundation/debug.dart'], (function load__packages__flutter__src__painting__colors_dart(dart_sdk, packages__flutter__src__foundation__object$46dart, packages__flutter__src__foundation__collections$46dart, packages__flutter__src__foundation__debug$46dart) {
+define(['dart_sdk', 'packages/flutter/src/painting/basic_types.dart'], (function load__packages__flutter__src__painting__edge_insets_dart(dart_sdk, packages__flutter__src__painting__basic_types$46dart) {
   'use strict';
   const core = dart_sdk.core;
-  const math = dart_sdk.math;
-  const ui = dart_sdk.ui;
-  const _js_helper = dart_sdk._js_helper;
   const _internal = dart_sdk._internal;
+  const ui = dart_sdk.ui;
   const dart = dart_sdk.dart;
   const dartx = dart_sdk.dartx;
-  const object = packages__flutter__src__foundation__object$46dart.src__foundation__object;
-  const collections = packages__flutter__src__foundation__collections$46dart.src__foundation__collections;
-  const diagnostics = packages__flutter__src__foundation__debug$46dart.src__foundation__diagnostics;
-  var colors = Object.create(dart.library);
-  var $modulo = dartx['%'];
-  var $abs = dartx.abs;
+  const basic_types = packages__flutter__src__painting__basic_types$46dart.src__painting__basic_types;
+  var edge_insets = Object.create(dart.library);
   var $clamp = dartx.clamp;
-  var $_get = dartx._get;
-  var $runtimeType = dartx.runtimeType;
-  var $_set = dartx._set;
-  var $isNaN = dartx.isNaN;
-  var $round = dartx.round;
+  var $toStringAsFixed = dartx.toStringAsFixed;
+  var $truncate = dartx.truncate;
+  var $toDouble = dartx.toDouble;
+  var $modulo = dartx['%'];
   dart._checkModuleNullSafetyMode(false);
-  var T = {
-    IdentityMapOfString$Object: () => (T.IdentityMapOfString$Object = dart.constFn(_js_helper.IdentityMap$(core.String, core.Object)))(),
-    VoidTodouble: () => (T.VoidTodouble = dart.constFn(dart.fnType(core.double, [])))(),
-    doubleTodynamic: () => (T.doubleTodynamic = dart.constFn(dart.fnType(dart.dynamic, [core.double])))()
-  };
   const CT = Object.create({
     _: () => (C, CT)
   });
   dart.defineLazy(CT, {
     get C0() {
       return C[0] = dart.const({
-        __proto__: diagnostics._NoDefaultValue.prototype
+        __proto__: basic_types.Axis.prototype,
+        [_name]: "Axis.horizontal",
+        index: 0
       });
     },
     get C1() {
       return C[1] = dart.const({
-        __proto__: diagnostics.DiagnosticsTreeStyle.prototype,
-        [_name]: "DiagnosticsTreeStyle.singleLine",
-        index: 8
+        __proto__: basic_types.Axis.prototype,
+        [_name]: "Axis.vertical",
+        index: 1
       });
     },
     get C2() {
       return C[2] = dart.const({
-        __proto__: diagnostics.DiagnosticLevel.prototype,
-        [_name]: "DiagnosticLevel.info",
-        index: 3
+        __proto__: edge_insets._MixedEdgeInsets.prototype,
+        [_MixedEdgeInsets__bottom]: 1 / 0,
+        [_MixedEdgeInsets__top]: 1 / 0,
+        [_MixedEdgeInsets__end]: 1 / 0,
+        [_MixedEdgeInsets__start]: 1 / 0,
+        [_MixedEdgeInsets__right]: 1 / 0,
+        [_MixedEdgeInsets__left]: 1 / 0
+      });
+    },
+    get C3() {
+      return C[3] = dart.const({
+        __proto__: edge_insets.EdgeInsets.prototype,
+        [bottom$]: 0,
+        [right$]: 0,
+        [top$]: 0,
+        [left$]: 0
+      });
+    },
+    get C4() {
+      return C[4] = dart.const({
+        __proto__: ui.TextDirection.prototype,
+        [_name$]: "TextDirection.rtl",
+        index: 0
+      });
+    },
+    get C5() {
+      return C[5] = dart.const({
+        __proto__: ui.TextDirection.prototype,
+        [_name$]: "TextDirection.ltr",
+        index: 1
+      });
+    },
+    get C6() {
+      return C[6] = dart.const({
+        __proto__: edge_insets.EdgeInsetsDirectional.prototype,
+        [bottom$0]: 0,
+        [end$]: 0,
+        [top$0]: 0,
+        [start$]: 0
       });
     }
   }, false);
-  var C = Array(3).fill(void 0);
+  var C = Array(7).fill(void 0);
   var I = [
-    "file:///C:/Users/Ejas/Desktop/App_files/flutter/packages/flutter/lib/src/painting/colors.dart",
-    "package:flutter/src/painting/colors.dart"
+    "file:///C:/Users/Ejas/Desktop/App_files/flutter/packages/flutter/lib/src/painting/edge_insets.dart",
+    "package:flutter/src/painting/edge_insets.dart"
   ];
-  var alpha$ = dart.privateName(colors, "HSVColor.alpha");
-  var hue$ = dart.privateName(colors, "HSVColor.hue");
-  var saturation$ = dart.privateName(colors, "HSVColor.saturation");
-  var value$ = dart.privateName(colors, "HSVColor.value");
-  var _scaleAlpha = dart.privateName(colors, "_scaleAlpha");
-  colors.HSVColor = class HSVColor extends core.Object {
-    get alpha() {
-      return this[alpha$];
+  var _left = dart.privateName(edge_insets, "_left");
+  var _right = dart.privateName(edge_insets, "_right");
+  var _start = dart.privateName(edge_insets, "_start");
+  var _end = dart.privateName(edge_insets, "_end");
+  var _top = dart.privateName(edge_insets, "_top");
+  var _bottom = dart.privateName(edge_insets, "_bottom");
+  var _name = dart.privateName(basic_types, "_name");
+  var _MixedEdgeInsets__bottom = dart.privateName(edge_insets, "_MixedEdgeInsets._bottom");
+  var _MixedEdgeInsets__top = dart.privateName(edge_insets, "_MixedEdgeInsets._top");
+  var _MixedEdgeInsets__end = dart.privateName(edge_insets, "_MixedEdgeInsets._end");
+  var _MixedEdgeInsets__start = dart.privateName(edge_insets, "_MixedEdgeInsets._start");
+  var _MixedEdgeInsets__right = dart.privateName(edge_insets, "_MixedEdgeInsets._right");
+  var _MixedEdgeInsets__left = dart.privateName(edge_insets, "_MixedEdgeInsets._left");
+  edge_insets.EdgeInsetsGeometry = class EdgeInsetsGeometry extends core.Object {
+    get isNonNegative() {
+      return dart.notNull(this[_left]) >= 0.0 && dart.notNull(this[_right]) >= 0.0 && dart.notNull(this[_start]) >= 0.0 && dart.notNull(this[_end]) >= 0.0 && dart.notNull(this[_top]) >= 0.0 && dart.notNull(this[_bottom]) >= 0.0;
     }
-    set alpha(value) {
-      super.alpha = value;
+    get horizontal() {
+      return dart.notNull(this[_left]) + dart.notNull(this[_right]) + dart.notNull(this[_start]) + dart.notNull(this[_end]);
     }
-    get hue() {
-      return this[hue$];
+    get vertical() {
+      return dart.notNull(this[_top]) + dart.notNull(this[_bottom]);
     }
-    set hue(value) {
-      super.hue = value;
+    along(axis) {
+      if (axis == null) dart.nullFailed(I[0], 67, 21, "axis");
+      if (!(axis != null)) dart.assertFailed(null, I[0], 68, 12, "axis != null");
+      switch (axis) {
+        case C[0] || CT.C0:
+        {
+          return this.horizontal;
+        }
+        case C[1] || CT.C1:
+        {
+          return this.vertical;
+        }
+        default:
+        {
+          dart.throw(new _internal.ReachabilityError.new("`null` encountered as case in a switch expression with a non-nullable enum type."));
+        }
+      }
     }
-    get saturation() {
-      return this[saturation$];
+    get collapsedSize() {
+      return new ui.Size.new(this.horizontal, this.vertical);
     }
-    set saturation(value) {
-      super.saturation = value;
+    get flipped() {
+      return new edge_insets._MixedEdgeInsets.fromLRSETB(this[_right], this[_left], this[_end], this[_start], this[_bottom], this[_top]);
     }
-    get value() {
-      return this[value$];
+    inflateSize(size) {
+      if (size == null) dart.nullFailed(I[0], 92, 25, "size");
+      return new ui.Size.new(dart.notNull(size.width) + dart.notNull(this.horizontal), dart.notNull(size.height) + dart.notNull(this.vertical));
     }
-    set value(value) {
-      super.value = value;
+    deflateSize(size) {
+      if (size == null) dart.nullFailed(I[0], 108, 25, "size");
+      return new ui.Size.new(dart.notNull(size.width) - dart.notNull(this.horizontal), dart.notNull(size.height) - dart.notNull(this.vertical));
     }
-    static fromColor(color) {
-      if (color == null) dart.nullFailed(I[0], 110, 36, "color");
-      let red = dart.notNull(color.red) / 255;
-      let green = dart.notNull(color.green) / 255;
-      let blue = dart.notNull(color.blue) / 255;
-      let max = math.max(core.double, red, math.max(core.double, green, blue));
-      let min = math.min(core.double, red, math.min(core.double, green, blue));
-      let delta = max - min;
-      let alpha = dart.notNull(color.alpha) / 255;
-      let hue = colors._getHue(red, green, blue, max, delta);
-      let saturation = max === 0.0 ? 0.0 : delta / max;
-      return new colors.HSVColor.fromAHSV(alpha, hue, saturation, max);
+    subtract(other) {
+      if (other == null) dart.nullFailed(I[0], 128, 50, "other");
+      return new edge_insets._MixedEdgeInsets.fromLRSETB(dart.notNull(this[_left]) - dart.notNull(other[_left]), dart.notNull(this[_right]) - dart.notNull(other[_right]), dart.notNull(this[_start]) - dart.notNull(other[_start]), dart.notNull(this[_end]) - dart.notNull(other[_end]), dart.notNull(this[_top]) - dart.notNull(other[_top]), dart.notNull(this[_bottom]) - dart.notNull(other[_bottom]));
     }
-    withAlpha(alpha) {
-      if (alpha == null) dart.nullFailed(I[0], 150, 29, "alpha");
-      return new colors.HSVColor.fromAHSV(alpha, this.hue, this.saturation, this.value);
+    add(other) {
+      if (other == null) dart.nullFailed(I[0], 150, 45, "other");
+      return new edge_insets._MixedEdgeInsets.fromLRSETB(dart.notNull(this[_left]) + dart.notNull(other[_left]), dart.notNull(this[_right]) + dart.notNull(other[_right]), dart.notNull(this[_start]) + dart.notNull(other[_start]), dart.notNull(this[_end]) + dart.notNull(other[_end]), dart.notNull(this[_top]) + dart.notNull(other[_top]), dart.notNull(this[_bottom]) + dart.notNull(other[_bottom]));
     }
-    withHue(hue) {
-      if (hue == null) dart.nullFailed(I[0], 156, 27, "hue");
-      return new colors.HSVColor.fromAHSV(this.alpha, hue, this.saturation, this.value);
-    }
-    withSaturation(saturation) {
-      if (saturation == null) dart.nullFailed(I[0], 162, 34, "saturation");
-      return new colors.HSVColor.fromAHSV(this.alpha, this.hue, saturation, this.value);
-    }
-    withValue(value) {
-      if (value == null) dart.nullFailed(I[0], 168, 29, "value");
-      return new colors.HSVColor.fromAHSV(this.alpha, this.hue, this.saturation, value);
-    }
-    toColor() {
-      let chroma = dart.notNull(this.saturation) * dart.notNull(this.value);
-      let secondary = chroma * (1.0 - ((dart.notNull(this.hue) / 60.0)[$modulo](2.0) - 1.0)[$abs]());
-      let match = dart.notNull(this.value) - chroma;
-      return colors._colorFromHue(this.alpha, this.hue, chroma, secondary, match);
-    }
-    [_scaleAlpha](factor) {
-      if (factor == null) dart.nullFailed(I[0], 181, 31, "factor");
-      return this.withAlpha(dart.notNull(this.alpha) * dart.notNull(factor));
+    clamp(min, max) {
+      if (min == null) dart.nullFailed(I[0], 163, 47, "min");
+      if (max == null) dart.nullFailed(I[0], 163, 71, "max");
+      return new edge_insets._MixedEdgeInsets.fromLRSETB(this[_left][$clamp](min[_left], max[_left]), this[_right][$clamp](min[_right], max[_right]), this[_start][$clamp](min[_start], max[_start]), this[_end][$clamp](min[_end], max[_end]), this[_top][$clamp](min[_top], max[_top]), this[_bottom][$clamp](min[_bottom], max[_bottom]));
     }
     static lerp(a, b, t) {
-      if (t == null) dart.nullFailed(I[0], 201, 58, "t");
-      if (!(t != null)) dart.assertFailed(null, I[0], 202, 12, "t != null");
+      if (t == null) dart.nullFailed(I[0], 219, 88, "t");
+      if (!(t != null)) dart.assertFailed(null, I[0], 220, 12, "t != null");
       if (a == null && b == null) return null;
-      if (a == null) return dart.nullCheck(b)[_scaleAlpha](t);
-      if (b == null) return a[_scaleAlpha](1.0 - dart.notNull(t));
-      return new colors.HSVColor.fromAHSV(dart.nullCheck(ui.lerpDouble(a.alpha, b.alpha, t))[$clamp](0.0, 1.0), dart.nullCheck(ui.lerpDouble(a.hue, b.hue, t))[$modulo](360.0), dart.nullCheck(ui.lerpDouble(a.saturation, b.saturation, t))[$clamp](0.0, 1.0), dart.nullCheck(ui.lerpDouble(a.value, b.value, t))[$clamp](0.0, 1.0));
+      if (a == null) return dart.nullCheck(b)['*'](t);
+      if (b == null) return a['*'](1.0 - dart.notNull(t));
+      if (edge_insets.EdgeInsets.is(a) && edge_insets.EdgeInsets.is(b)) return edge_insets.EdgeInsets.lerp(a, b, t);
+      if (edge_insets.EdgeInsetsDirectional.is(a) && edge_insets.EdgeInsetsDirectional.is(b)) return edge_insets.EdgeInsetsDirectional.lerp(a, b, t);
+      return new edge_insets._MixedEdgeInsets.fromLRSETB(dart.nullCheck(ui.lerpDouble(a[_left], b[_left], t)), dart.nullCheck(ui.lerpDouble(a[_right], b[_right], t)), dart.nullCheck(ui.lerpDouble(a[_start], b[_start], t)), dart.nullCheck(ui.lerpDouble(a[_end], b[_end], t)), dart.nullCheck(ui.lerpDouble(a[_top], b[_top], t)), dart.nullCheck(ui.lerpDouble(a[_bottom], b[_bottom], t)));
+    }
+    toString() {
+      if (this[_start] === 0.0 && this[_end] === 0.0) {
+        if (this[_left] === 0.0 && this[_right] === 0.0 && this[_top] === 0.0 && this[_bottom] === 0.0) return "EdgeInsets.zero";
+        if (this[_left] == this[_right] && this[_right] == this[_top] && this[_top] == this[_bottom]) return "EdgeInsets.all(" + this[_left][$toStringAsFixed](1) + ")";
+        return "EdgeInsets(" + this[_left][$toStringAsFixed](1) + ", " + this[_top][$toStringAsFixed](1) + ", " + this[_right][$toStringAsFixed](1) + ", " + this[_bottom][$toStringAsFixed](1) + ")";
+      }
+      if (this[_left] === 0.0 && this[_right] === 0.0) {
+        return "EdgeInsetsDirectional(" + this[_start][$toStringAsFixed](1) + ", " + this[_top][$toStringAsFixed](1) + ", " + this[_end][$toStringAsFixed](1) + ", " + this[_bottom][$toStringAsFixed](1) + ")";
+      }
+      return "EdgeInsets(" + this[_left][$toStringAsFixed](1) + ", " + this[_top][$toStringAsFixed](1) + ", " + this[_right][$toStringAsFixed](1) + ", " + this[_bottom][$toStringAsFixed](1) + ")" + " + " + "EdgeInsetsDirectional(" + this[_start][$toStringAsFixed](1) + ", " + "0.0, " + this[_end][$toStringAsFixed](1) + ", " + "0.0)";
     }
     _equals(other) {
       if (other == null) return false;
-      if (this === other) return true;
-      return colors.HSVColor.is(other) && other.alpha == this.alpha && other.hue == this.hue && other.saturation == this.saturation && other.value == this.value;
+      return edge_insets.EdgeInsetsGeometry.is(other) && other[_left] == this[_left] && other[_right] == this[_right] && other[_start] == this[_start] && other[_end] == this[_end] && other[_top] == this[_top] && other[_bottom] == this[_bottom];
     }
     get hashCode() {
-      return ui.hashValues(this.alpha, this.hue, this.saturation, this.value);
-    }
-    toString() {
-      return dart.str(object.objectRuntimeType(this, "HSVColor")) + "(" + dart.str(this.alpha) + ", " + dart.str(this.hue) + ", " + dart.str(this.saturation) + ", " + dart.str(this.value) + ")";
+      return ui.hashValues(this[_left], this[_right], this[_start], this[_end], this[_top], this[_bottom]);
     }
   };
-  (colors.HSVColor.fromAHSV = function(alpha, hue, saturation, value) {
-    if (alpha == null) dart.nullFailed(I[0], 92, 32, "alpha");
-    if (hue == null) dart.nullFailed(I[0], 92, 44, "hue");
-    if (saturation == null) dart.nullFailed(I[0], 92, 54, "saturation");
-    if (value == null) dart.nullFailed(I[0], 92, 71, "value");
-    this[alpha$] = alpha;
-    this[hue$] = hue;
-    this[saturation$] = saturation;
-    this[value$] = value;
-    if (!(alpha != null)) dart.assertFailed(null, I[0], 93, 14, "alpha != null");
-    if (!(hue != null)) dart.assertFailed(null, I[0], 94, 14, "hue != null");
-    if (!(saturation != null)) dart.assertFailed(null, I[0], 95, 14, "saturation != null");
-    if (!(value != null)) dart.assertFailed(null, I[0], 96, 14, "value != null");
-    if (!(dart.notNull(alpha) >= 0.0)) dart.assertFailed(null, I[0], 97, 14, "alpha >= 0.0");
-    if (!(dart.notNull(alpha) <= 1.0)) dart.assertFailed(null, I[0], 98, 14, "alpha <= 1.0");
-    if (!(dart.notNull(hue) >= 0.0)) dart.assertFailed(null, I[0], 99, 14, "hue >= 0.0");
-    if (!(dart.notNull(hue) <= 360.0)) dart.assertFailed(null, I[0], 100, 14, "hue <= 360.0");
-    if (!(dart.notNull(saturation) >= 0.0)) dart.assertFailed(null, I[0], 101, 14, "saturation >= 0.0");
-    if (!(dart.notNull(saturation) <= 1.0)) dart.assertFailed(null, I[0], 102, 14, "saturation <= 1.0");
-    if (!(dart.notNull(value) >= 0.0)) dart.assertFailed(null, I[0], 103, 14, "value >= 0.0");
-    if (!(dart.notNull(value) <= 1.0)) dart.assertFailed(null, I[0], 104, 14, "value <= 1.0");
+  (edge_insets.EdgeInsetsGeometry.new = function() {
     ;
-  }).prototype = colors.HSVColor.prototype;
-  dart.addTypeTests(colors.HSVColor);
-  dart.addTypeCaches(colors.HSVColor);
-  dart.setMethodSignature(colors.HSVColor, () => ({
-    __proto__: dart.getMethods(colors.HSVColor.__proto__),
-    withAlpha: dart.fnType(colors.HSVColor, [core.double]),
-    withHue: dart.fnType(colors.HSVColor, [core.double]),
-    withSaturation: dart.fnType(colors.HSVColor, [core.double]),
-    withValue: dart.fnType(colors.HSVColor, [core.double]),
-    toColor: dart.fnType(ui.Color, []),
-    [_scaleAlpha]: dart.fnType(colors.HSVColor, [core.double])
+  }).prototype = edge_insets.EdgeInsetsGeometry.prototype;
+  dart.addTypeTests(edge_insets.EdgeInsetsGeometry);
+  dart.addTypeCaches(edge_insets.EdgeInsetsGeometry);
+  dart.setMethodSignature(edge_insets.EdgeInsetsGeometry, () => ({
+    __proto__: dart.getMethods(edge_insets.EdgeInsetsGeometry.__proto__),
+    along: dart.fnType(core.double, [basic_types.Axis]),
+    inflateSize: dart.fnType(ui.Size, [ui.Size]),
+    deflateSize: dart.fnType(ui.Size, [ui.Size]),
+    subtract: dart.fnType(edge_insets.EdgeInsetsGeometry, [edge_insets.EdgeInsetsGeometry]),
+    add: dart.fnType(edge_insets.EdgeInsetsGeometry, [edge_insets.EdgeInsetsGeometry]),
+    clamp: dart.fnType(edge_insets.EdgeInsetsGeometry, [edge_insets.EdgeInsetsGeometry, edge_insets.EdgeInsetsGeometry])
   }));
-  dart.setLibraryUri(colors.HSVColor, I[1]);
-  dart.setFieldSignature(colors.HSVColor, () => ({
-    __proto__: dart.getFields(colors.HSVColor.__proto__),
-    alpha: dart.finalFieldType(core.double),
-    hue: dart.finalFieldType(core.double),
-    saturation: dart.finalFieldType(core.double),
-    value: dart.finalFieldType(core.double)
+  dart.setGetterSignature(edge_insets.EdgeInsetsGeometry, () => ({
+    __proto__: dart.getGetters(edge_insets.EdgeInsetsGeometry.__proto__),
+    isNonNegative: core.bool,
+    horizontal: core.double,
+    vertical: core.double,
+    collapsedSize: ui.Size,
+    flipped: edge_insets.EdgeInsetsGeometry
   }));
-  dart.defineExtensionMethods(colors.HSVColor, ['_equals', 'toString']);
-  dart.defineExtensionAccessors(colors.HSVColor, ['hashCode']);
-  var alpha$0 = dart.privateName(colors, "HSLColor.alpha");
-  var hue$0 = dart.privateName(colors, "HSLColor.hue");
-  var saturation$0 = dart.privateName(colors, "HSLColor.saturation");
-  var lightness$ = dart.privateName(colors, "HSLColor.lightness");
-  colors.HSLColor = class HSLColor extends core.Object {
-    get alpha() {
-      return this[alpha$0];
+  dart.setLibraryUri(edge_insets.EdgeInsetsGeometry, I[1]);
+  dart.defineExtensionMethods(edge_insets.EdgeInsetsGeometry, ['toString', '_equals']);
+  dart.defineExtensionAccessors(edge_insets.EdgeInsetsGeometry, ['hashCode']);
+  dart.defineLazy(edge_insets.EdgeInsetsGeometry, {
+    /*edge_insets.EdgeInsetsGeometry.infinity*/get infinity() {
+      return C[2] || CT.C2;
     }
-    set alpha(value) {
-      super.alpha = value;
+  }, false);
+  var left$ = dart.privateName(edge_insets, "EdgeInsets.left");
+  var top$ = dart.privateName(edge_insets, "EdgeInsets.top");
+  var right$ = dart.privateName(edge_insets, "EdgeInsets.right");
+  var bottom$ = dart.privateName(edge_insets, "EdgeInsets.bottom");
+  edge_insets.EdgeInsets = class EdgeInsets extends edge_insets.EdgeInsetsGeometry {
+    get left() {
+      return this[left$];
     }
-    get hue() {
-      return this[hue$0];
+    set left(value) {
+      super.left = value;
     }
-    set hue(value) {
-      super.hue = value;
+    get top() {
+      return this[top$];
     }
-    get saturation() {
-      return this[saturation$0];
+    set top(value) {
+      super.top = value;
     }
-    set saturation(value) {
-      super.saturation = value;
+    get right() {
+      return this[right$];
     }
-    get lightness() {
-      return this[lightness$];
+    set right(value) {
+      super.right = value;
     }
-    set lightness(value) {
-      super.lightness = value;
+    get bottom() {
+      return this[bottom$];
     }
-    static fromColor(color) {
-      if (color == null) dart.nullFailed(I[0], 279, 36, "color");
-      let red = dart.notNull(color.red) / 255;
-      let green = dart.notNull(color.green) / 255;
-      let blue = dart.notNull(color.blue) / 255;
-      let max = math.max(core.double, red, math.max(core.double, green, blue));
-      let min = math.min(core.double, red, math.min(core.double, green, blue));
-      let delta = max - min;
-      let alpha = dart.notNull(color.alpha) / 255;
-      let hue = colors._getHue(red, green, blue, max, delta);
-      let lightness = (max + min) / 2.0;
-      let saturation = lightness === 1.0 ? 0.0 : (delta / (1.0 - (2.0 * lightness - 1.0)[$abs]()))[$clamp](0.0, 1.0);
-      return new colors.HSLColor.fromAHSL(alpha, hue, saturation, lightness);
+    set bottom(value) {
+      super.bottom = value;
     }
-    withAlpha(alpha) {
-      if (alpha == null) dart.nullFailed(I[0], 324, 29, "alpha");
-      return new colors.HSLColor.fromAHSL(alpha, this.hue, this.saturation, this.lightness);
+    get [_left]() {
+      return this.left;
     }
-    withHue(hue) {
-      if (hue == null) dart.nullFailed(I[0], 330, 27, "hue");
-      return new colors.HSLColor.fromAHSL(this.alpha, hue, this.saturation, this.lightness);
+    get [_top]() {
+      return this.top;
     }
-    withSaturation(saturation) {
-      if (saturation == null) dart.nullFailed(I[0], 336, 34, "saturation");
-      return new colors.HSLColor.fromAHSL(this.alpha, this.hue, saturation, this.lightness);
+    get [_right]() {
+      return this.right;
     }
-    withLightness(lightness) {
-      if (lightness == null) dart.nullFailed(I[0], 342, 33, "lightness");
-      return new colors.HSLColor.fromAHSL(this.alpha, this.hue, this.saturation, lightness);
+    get [_bottom]() {
+      return this.bottom;
     }
-    toColor() {
-      let chroma = (1.0 - (2.0 * dart.notNull(this.lightness) - 1.0)[$abs]()) * dart.notNull(this.saturation);
-      let secondary = chroma * (1.0 - ((dart.notNull(this.hue) / 60.0)[$modulo](2.0) - 1.0)[$abs]());
-      let match = dart.notNull(this.lightness) - chroma / 2.0;
-      return colors._colorFromHue(this.alpha, this.hue, chroma, secondary, match);
+    get [_start]() {
+      return 0.0;
     }
-    [_scaleAlpha](factor) {
-      if (factor == null) dart.nullFailed(I[0], 355, 31, "factor");
-      return this.withAlpha(dart.notNull(this.alpha) * dart.notNull(factor));
+    get [_end]() {
+      return 0.0;
+    }
+    get topLeft() {
+      return new ui.Offset.new(this.left, this.top);
+    }
+    get topRight() {
+      return new ui.Offset.new(-dart.notNull(this.right), this.top);
+    }
+    get bottomLeft() {
+      return new ui.Offset.new(this.left, -dart.notNull(this.bottom));
+    }
+    get bottomRight() {
+      return new ui.Offset.new(-dart.notNull(this.right), -dart.notNull(this.bottom));
+    }
+    get flipped() {
+      return new edge_insets.EdgeInsets.fromLTRB(this.right, this.bottom, this.left, this.top);
+    }
+    inflateRect(rect) {
+      if (rect == null) dart.nullFailed(I[0], 471, 25, "rect");
+      return new ui.Rect.fromLTRB(dart.notNull(rect.left) - dart.notNull(this.left), dart.notNull(rect.top) - dart.notNull(this.top), dart.notNull(rect.right) + dart.notNull(this.right), dart.notNull(rect.bottom) + dart.notNull(this.bottom));
+    }
+    deflateRect(rect) {
+      if (rect == null) dart.nullFailed(I[0], 488, 25, "rect");
+      return new ui.Rect.fromLTRB(dart.notNull(rect.left) + dart.notNull(this.left), dart.notNull(rect.top) + dart.notNull(this.top), dart.notNull(rect.right) - dart.notNull(this.right), dart.notNull(rect.bottom) - dart.notNull(this.bottom));
+    }
+    subtract(other) {
+      if (other == null) dart.nullFailed(I[0], 493, 50, "other");
+      if (edge_insets.EdgeInsets.is(other)) return this['-'](other);
+      return super.subtract(other);
+    }
+    add(other) {
+      if (other == null) dart.nullFailed(I[0], 500, 45, "other");
+      if (edge_insets.EdgeInsets.is(other)) return this['+'](other);
+      return super.add(other);
+    }
+    clamp(min, max) {
+      if (min == null) dart.nullFailed(I[0], 507, 47, "min");
+      if (max == null) dart.nullFailed(I[0], 507, 71, "max");
+      return new edge_insets.EdgeInsets.fromLTRB(this[_left][$clamp](min[_left], max[_left]), this[_top][$clamp](min[_top], max[_top]), this[_right][$clamp](min[_right], max[_right]), this[_bottom][$clamp](min[_bottom], max[_bottom]));
+    }
+    ['-'](other) {
+      if (other == null) dart.nullFailed(I[0], 517, 36, "other");
+      return new edge_insets.EdgeInsets.fromLTRB(dart.notNull(this.left) - dart.notNull(other.left), dart.notNull(this.top) - dart.notNull(other.top), dart.notNull(this.right) - dart.notNull(other.right), dart.notNull(this.bottom) - dart.notNull(other.bottom));
+    }
+    ['+'](other) {
+      if (other == null) dart.nullFailed(I[0], 527, 36, "other");
+      return new edge_insets.EdgeInsets.fromLTRB(dart.notNull(this.left) + dart.notNull(other.left), dart.notNull(this.top) + dart.notNull(other.top), dart.notNull(this.right) + dart.notNull(other.right), dart.notNull(this.bottom) + dart.notNull(other.bottom));
+    }
+    _negate() {
+      return new edge_insets.EdgeInsets.fromLTRB(-dart.notNull(this.left), -dart.notNull(this.top), -dart.notNull(this.right), -dart.notNull(this.bottom));
+    }
+    ['*'](other) {
+      if (other == null) dart.nullFailed(I[0], 551, 32, "other");
+      return new edge_insets.EdgeInsets.fromLTRB(dart.notNull(this.left) * dart.notNull(other), dart.notNull(this.top) * dart.notNull(other), dart.notNull(this.right) * dart.notNull(other), dart.notNull(this.bottom) * dart.notNull(other));
+    }
+    ['/'](other) {
+      if (other == null) dart.nullFailed(I[0], 562, 32, "other");
+      return new edge_insets.EdgeInsets.fromLTRB(dart.notNull(this.left) / dart.notNull(other), dart.notNull(this.top) / dart.notNull(other), dart.notNull(this.right) / dart.notNull(other), dart.notNull(this.bottom) / dart.notNull(other));
+    }
+    ['~/'](other) {
+      if (other == null) dart.nullFailed(I[0], 573, 33, "other");
+      return new edge_insets.EdgeInsets.fromLTRB((dart.notNull(this.left) / dart.notNull(other))[$truncate]()[$toDouble](), (dart.notNull(this.top) / dart.notNull(other))[$truncate]()[$toDouble](), (dart.notNull(this.right) / dart.notNull(other))[$truncate]()[$toDouble](), (dart.notNull(this.bottom) / dart.notNull(other))[$truncate]()[$toDouble]());
+    }
+    ['%'](other) {
+      if (other == null) dart.nullFailed(I[0], 584, 32, "other");
+      return new edge_insets.EdgeInsets.fromLTRB(this.left[$modulo](other), this.top[$modulo](other), this.right[$modulo](other), this.bottom[$modulo](other));
     }
     static lerp(a, b, t) {
-      if (t == null) dart.nullFailed(I[0], 385, 58, "t");
-      if (!(t != null)) dart.assertFailed(null, I[0], 386, 12, "t != null");
+      if (t == null) dart.nullFailed(I[0], 598, 64, "t");
+      if (!(t != null)) dart.assertFailed(null, I[0], 599, 12, "t != null");
       if (a == null && b == null) return null;
-      if (a == null) return dart.nullCheck(b)[_scaleAlpha](t);
-      if (b == null) return a[_scaleAlpha](1.0 - dart.notNull(t));
-      return new colors.HSLColor.fromAHSL(dart.nullCheck(ui.lerpDouble(a.alpha, b.alpha, t))[$clamp](0.0, 1.0), dart.nullCheck(ui.lerpDouble(a.hue, b.hue, t))[$modulo](360.0), dart.nullCheck(ui.lerpDouble(a.saturation, b.saturation, t))[$clamp](0.0, 1.0), dart.nullCheck(ui.lerpDouble(a.lightness, b.lightness, t))[$clamp](0.0, 1.0));
+      if (a == null) return dart.nullCheck(b)['*'](t);
+      if (b == null) return a['*'](1.0 - dart.notNull(t));
+      return new edge_insets.EdgeInsets.fromLTRB(dart.nullCheck(ui.lerpDouble(a.left, b.left, t)), dart.nullCheck(ui.lerpDouble(a.top, b.top, t)), dart.nullCheck(ui.lerpDouble(a.right, b.right, t)), dart.nullCheck(ui.lerpDouble(a.bottom, b.bottom, t)));
     }
-    _equals(other) {
-      if (other == null) return false;
-      if (this === other) return true;
-      return colors.HSLColor.is(other) && other.alpha == this.alpha && other.hue == this.hue && other.saturation == this.saturation && other.lightness == this.lightness;
+    resolve(direction) {
+      return this;
     }
-    get hashCode() {
-      return ui.hashValues(this.alpha, this.hue, this.saturation, this.lightness);
-    }
-    toString() {
-      return dart.str(object.objectRuntimeType(this, "HSLColor")) + "(" + dart.str(this.alpha) + ", " + dart.str(this.hue) + ", " + dart.str(this.saturation) + ", " + dart.str(this.lightness) + ")";
+    copyWith(opts) {
+      let t0, t0$, t0$0, t0$1;
+      let left = opts && 'left' in opts ? opts.left : null;
+      let top = opts && 'top' in opts ? opts.top : null;
+      let right = opts && 'right' in opts ? opts.right : null;
+      let bottom = opts && 'bottom' in opts ? opts.bottom : null;
+      return new edge_insets.EdgeInsets.only({left: (t0 = left, t0 == null ? this.left : t0), top: (t0$ = top, t0$ == null ? this.top : t0$), right: (t0$0 = right, t0$0 == null ? this.right : t0$0), bottom: (t0$1 = bottom, t0$1 == null ? this.bottom : t0$1)});
     }
   };
-  (colors.HSLColor.fromAHSL = function(alpha, hue, saturation, lightness) {
-    if (alpha == null) dart.nullFailed(I[0], 261, 32, "alpha");
-    if (hue == null) dart.nullFailed(I[0], 261, 44, "hue");
-    if (saturation == null) dart.nullFailed(I[0], 261, 54, "saturation");
-    if (lightness == null) dart.nullFailed(I[0], 261, 71, "lightness");
-    this[alpha$0] = alpha;
-    this[hue$0] = hue;
-    this[saturation$0] = saturation;
-    this[lightness$] = lightness;
-    if (!(alpha != null)) dart.assertFailed(null, I[0], 262, 14, "alpha != null");
-    if (!(hue != null)) dart.assertFailed(null, I[0], 263, 14, "hue != null");
-    if (!(saturation != null)) dart.assertFailed(null, I[0], 264, 14, "saturation != null");
-    if (!(lightness != null)) dart.assertFailed(null, I[0], 265, 14, "lightness != null");
-    if (!(dart.notNull(alpha) >= 0.0)) dart.assertFailed(null, I[0], 266, 14, "alpha >= 0.0");
-    if (!(dart.notNull(alpha) <= 1.0)) dart.assertFailed(null, I[0], 267, 14, "alpha <= 1.0");
-    if (!(dart.notNull(hue) >= 0.0)) dart.assertFailed(null, I[0], 268, 14, "hue >= 0.0");
-    if (!(dart.notNull(hue) <= 360.0)) dart.assertFailed(null, I[0], 269, 14, "hue <= 360.0");
-    if (!(dart.notNull(saturation) >= 0.0)) dart.assertFailed(null, I[0], 270, 14, "saturation >= 0.0");
-    if (!(dart.notNull(saturation) <= 1.0)) dart.assertFailed(null, I[0], 271, 14, "saturation <= 1.0");
-    if (!(dart.notNull(lightness) >= 0.0)) dart.assertFailed(null, I[0], 272, 14, "lightness >= 0.0");
-    if (!(dart.notNull(lightness) <= 1.0)) dart.assertFailed(null, I[0], 273, 14, "lightness <= 1.0");
+  (edge_insets.EdgeInsets.fromLTRB = function(left, top, right, bottom) {
+    if (left == null) dart.nullFailed(I[0], 343, 34, "left");
+    if (top == null) dart.nullFailed(I[0], 343, 45, "top");
+    if (right == null) dart.nullFailed(I[0], 343, 55, "right");
+    if (bottom == null) dart.nullFailed(I[0], 343, 67, "bottom");
+    this[left$] = left;
+    this[top$] = top;
+    this[right$] = right;
+    this[bottom$] = bottom;
+    edge_insets.EdgeInsets.__proto__.new.call(this);
     ;
-  }).prototype = colors.HSLColor.prototype;
-  dart.addTypeTests(colors.HSLColor);
-  dart.addTypeCaches(colors.HSLColor);
-  dart.setMethodSignature(colors.HSLColor, () => ({
-    __proto__: dart.getMethods(colors.HSLColor.__proto__),
-    withAlpha: dart.fnType(colors.HSLColor, [core.double]),
-    withHue: dart.fnType(colors.HSLColor, [core.double]),
-    withSaturation: dart.fnType(colors.HSLColor, [core.double]),
-    withLightness: dart.fnType(colors.HSLColor, [core.double]),
-    toColor: dart.fnType(ui.Color, []),
-    [_scaleAlpha]: dart.fnType(colors.HSLColor, [core.double])
-  }));
-  dart.setLibraryUri(colors.HSLColor, I[1]);
-  dart.setFieldSignature(colors.HSLColor, () => ({
-    __proto__: dart.getFields(colors.HSLColor.__proto__),
-    alpha: dart.finalFieldType(core.double),
-    hue: dart.finalFieldType(core.double),
-    saturation: dart.finalFieldType(core.double),
-    lightness: dart.finalFieldType(core.double)
-  }));
-  dart.defineExtensionMethods(colors.HSLColor, ['_equals', 'toString']);
-  dart.defineExtensionAccessors(colors.HSLColor, ['hashCode']);
-  var _swatch$ = dart.privateName(colors, "ColorSwatch._swatch");
-  var _swatch = dart.privateName(colors, "_swatch");
-  const _is_ColorSwatch_default = Symbol('_is_ColorSwatch_default');
-  colors.ColorSwatch$ = dart.generic(T => {
-    var ColorSwatchOfT = () => (ColorSwatchOfT = dart.constFn(colors.ColorSwatch$(T)))();
-    class ColorSwatch extends ui.Color {
-      get [_swatch]() {
-        return this[_swatch$];
-      }
-      set [_swatch](value) {
-        super[_swatch] = value;
-      }
-      _get(index) {
-        T.as(index);
-        return this[_swatch][$_get](index);
-      }
-      _equals(other) {
-        if (other == null) return false;
-        if (this === other) return true;
-        if (!dart.equals(dart.runtimeType(other), this[$runtimeType])) return false;
-        return super._equals(other) && ColorSwatchOfT().is(other) && dart.test(collections.mapEquals(T, ui.Color, other[_swatch], this[_swatch]));
-      }
-      get hashCode() {
-        return ui.hashValues(this[$runtimeType], this.value, this[_swatch]);
-      }
-      toString() {
-        return dart.str(object.objectRuntimeType(this, "ColorSwatch")) + "(primary value: " + dart.str(super.toString()) + ")";
-      }
-    }
-    (ColorSwatch.new = function(primary, _swatch) {
-      if (primary == null) dart.nullFailed(I[0], 437, 25, "primary");
-      if (_swatch == null) dart.nullFailed(I[0], 437, 39, "_swatch");
-      this[_swatch$] = _swatch;
-      ColorSwatch.__proto__.new.call(this, primary);
-      ;
-    }).prototype = ColorSwatch.prototype;
-    dart.addTypeTests(ColorSwatch);
-    ColorSwatch.prototype[_is_ColorSwatch_default] = true;
-    dart.addTypeCaches(ColorSwatch);
-    dart.setMethodSignature(ColorSwatch, () => ({
-      __proto__: dart.getMethods(ColorSwatch.__proto__),
-      _get: dart.fnType(dart.nullable(ui.Color), [dart.nullable(core.Object)])
-    }));
-    dart.setLibraryUri(ColorSwatch, I[1]);
-    dart.setFieldSignature(ColorSwatch, () => ({
-      __proto__: dart.getFields(ColorSwatch.__proto__),
-      [_swatch]: dart.finalFieldType(core.Map$(T, ui.Color))
-    }));
-    dart.defineExtensionMethods(ColorSwatch, ['_equals', 'toString']);
-    dart.defineExtensionAccessors(ColorSwatch, ['hashCode']);
-    return ColorSwatch;
-  });
-  colors.ColorSwatch = colors.ColorSwatch$();
-  dart.addTypeTests(colors.ColorSwatch, _is_ColorSwatch_default);
-  var _name = dart.privateName(diagnostics, "_name");
-  colors.ColorProperty = class ColorProperty extends diagnostics.DiagnosticsProperty$(ui.Color) {
-    toJsonMap(delegate) {
-      if (delegate == null) dart.nullFailed(I[0], 486, 67, "delegate");
-      let json = super.toJsonMap(delegate);
-      if (this.value != null) {
-        json[$_set]("valueProperties", new (T.IdentityMapOfString$Object()).from(["red", dart.nullCheck(this.value).red, "green", dart.nullCheck(this.value).green, "blue", dart.nullCheck(this.value).blue, "alpha", dart.nullCheck(this.value).alpha]));
-      }
-      return json;
-    }
-  };
-  (colors.ColorProperty.new = function(name, value, opts) {
-    if (name == null) dart.nullFailed(I[0], 469, 12, "name");
-    let showName = opts && 'showName' in opts ? opts.showName : true;
-    if (showName == null) dart.nullFailed(I[0], 471, 10, "showName");
-    let defaultValue = opts && 'defaultValue' in opts ? opts.defaultValue : C[0] || CT.C0;
-    let style = opts && 'style' in opts ? opts.style : C[1] || CT.C1;
-    if (style == null) dart.nullFailed(I[0], 473, 26, "style");
-    let level = opts && 'level' in opts ? opts.level : C[2] || CT.C2;
-    if (level == null) dart.nullFailed(I[0], 474, 21, "level");
-    if (!(showName != null)) dart.assertFailed(null, I[0], 475, 15, "showName != null");
-    if (!(style != null)) dart.assertFailed(null, I[0], 476, 15, "style != null");
-    if (!(level != null)) dart.assertFailed(null, I[0], 477, 15, "level != null");
-    colors.ColorProperty.__proto__.new.call(this, name, value, {defaultValue: defaultValue, showName: showName, style: style, level: level});
+  }).prototype = edge_insets.EdgeInsets.prototype;
+  (edge_insets.EdgeInsets.all = function(value) {
+    if (value == null) dart.nullFailed(I[0], 355, 31, "value");
+    this[left$] = value;
+    this[top$] = value;
+    this[right$] = value;
+    this[bottom$] = value;
+    edge_insets.EdgeInsets.__proto__.new.call(this);
     ;
-  }).prototype = colors.ColorProperty.prototype;
-  dart.addTypeTests(colors.ColorProperty);
-  dart.addTypeCaches(colors.ColorProperty);
-  dart.setLibraryUri(colors.ColorProperty, I[1]);
-  colors._getHue = function _getHue(red, green, blue, max, delta) {
-    if (red == null) dart.nullFailed(I[0], 11, 23, "red");
-    if (green == null) dart.nullFailed(I[0], 11, 35, "green");
-    if (blue == null) dart.nullFailed(I[0], 11, 49, "blue");
-    if (max == null) dart.nullFailed(I[0], 11, 62, "max");
-    if (delta == null) dart.nullFailed(I[0], 11, 74, "delta");
-    let hue = null;
-    let hue$35isSet = false;
-    function hue$35get() {
-      return hue$35isSet ? hue : dart.throw(new _internal.LateError.localNI("hue"));
+  }).prototype = edge_insets.EdgeInsets.prototype;
+  (edge_insets.EdgeInsets.only = function(opts) {
+    let left = opts && 'left' in opts ? opts.left : 0;
+    if (left == null) dart.nullFailed(I[0], 372, 10, "left");
+    let top = opts && 'top' in opts ? opts.top : 0;
+    if (top == null) dart.nullFailed(I[0], 373, 10, "top");
+    let right = opts && 'right' in opts ? opts.right : 0;
+    if (right == null) dart.nullFailed(I[0], 374, 10, "right");
+    let bottom = opts && 'bottom' in opts ? opts.bottom : 0;
+    if (bottom == null) dart.nullFailed(I[0], 375, 10, "bottom");
+    this[left$] = left;
+    this[top$] = top;
+    this[right$] = right;
+    this[bottom$] = bottom;
+    edge_insets.EdgeInsets.__proto__.new.call(this);
+    ;
+  }).prototype = edge_insets.EdgeInsets.prototype;
+  (edge_insets.EdgeInsets.symmetric = function(opts) {
+    let vertical = opts && 'vertical' in opts ? opts.vertical : 0;
+    if (vertical == null) dart.nullFailed(I[0], 389, 12, "vertical");
+    let horizontal = opts && 'horizontal' in opts ? opts.horizontal : 0;
+    if (horizontal == null) dart.nullFailed(I[0], 390, 12, "horizontal");
+    this[left$] = horizontal;
+    this[top$] = vertical;
+    this[right$] = horizontal;
+    this[bottom$] = vertical;
+    edge_insets.EdgeInsets.__proto__.new.call(this);
+    ;
+  }).prototype = edge_insets.EdgeInsets.prototype;
+  (edge_insets.EdgeInsets.fromWindowPadding = function(padding, devicePixelRatio) {
+    if (padding == null) dart.nullFailed(I[0], 402, 49, "padding");
+    if (devicePixelRatio == null) dart.nullFailed(I[0], 402, 65, "devicePixelRatio");
+    this[left$] = dart.notNull(padding.left) / dart.notNull(devicePixelRatio);
+    this[top$] = dart.notNull(padding.top) / dart.notNull(devicePixelRatio);
+    this[right$] = dart.notNull(padding.right) / dart.notNull(devicePixelRatio);
+    this[bottom$] = dart.notNull(padding.bottom) / dart.notNull(devicePixelRatio);
+    edge_insets.EdgeInsets.__proto__.new.call(this);
+    ;
+  }).prototype = edge_insets.EdgeInsets.prototype;
+  dart.addTypeTests(edge_insets.EdgeInsets);
+  dart.addTypeCaches(edge_insets.EdgeInsets);
+  dart.setMethodSignature(edge_insets.EdgeInsets, () => ({
+    __proto__: dart.getMethods(edge_insets.EdgeInsets.__proto__),
+    inflateRect: dart.fnType(ui.Rect, [ui.Rect]),
+    deflateRect: dart.fnType(ui.Rect, [ui.Rect]),
+    '-': dart.fnType(edge_insets.EdgeInsets, [edge_insets.EdgeInsets]),
+    '+': dart.fnType(edge_insets.EdgeInsets, [edge_insets.EdgeInsets]),
+    _negate: dart.fnType(edge_insets.EdgeInsets, []),
+    '*': dart.fnType(edge_insets.EdgeInsets, [core.double]),
+    '/': dart.fnType(edge_insets.EdgeInsets, [core.double]),
+    '~/': dart.fnType(edge_insets.EdgeInsets, [core.double]),
+    '%': dart.fnType(edge_insets.EdgeInsets, [core.double]),
+    resolve: dart.fnType(edge_insets.EdgeInsets, [dart.nullable(ui.TextDirection)]),
+    copyWith: dart.fnType(edge_insets.EdgeInsets, [], {bottom: dart.nullable(core.double), left: dart.nullable(core.double), right: dart.nullable(core.double), top: dart.nullable(core.double)}, {})
+  }));
+  dart.setGetterSignature(edge_insets.EdgeInsets, () => ({
+    __proto__: dart.getGetters(edge_insets.EdgeInsets.__proto__),
+    [_left]: core.double,
+    [_top]: core.double,
+    [_right]: core.double,
+    [_bottom]: core.double,
+    [_start]: core.double,
+    [_end]: core.double,
+    topLeft: ui.Offset,
+    topRight: ui.Offset,
+    bottomLeft: ui.Offset,
+    bottomRight: ui.Offset,
+    flipped: edge_insets.EdgeInsets
+  }));
+  dart.setLibraryUri(edge_insets.EdgeInsets, I[1]);
+  dart.setFieldSignature(edge_insets.EdgeInsets, () => ({
+    __proto__: dart.getFields(edge_insets.EdgeInsets.__proto__),
+    left: dart.finalFieldType(core.double),
+    top: dart.finalFieldType(core.double),
+    right: dart.finalFieldType(core.double),
+    bottom: dart.finalFieldType(core.double)
+  }));
+  dart.defineLazy(edge_insets.EdgeInsets, {
+    /*edge_insets.EdgeInsets.zero*/get zero() {
+      return C[3] || CT.C3;
     }
-    dart.fn(hue$35get, T.VoidTodouble());
-    function hue$35set(t3) {
-      if (t3 == null) dart.nullFailed(I[0], 12, 15, "null");
-      hue$35isSet = true;
-      return hue = t3;
+  }, false);
+  var start$ = dart.privateName(edge_insets, "EdgeInsetsDirectional.start");
+  var top$0 = dart.privateName(edge_insets, "EdgeInsetsDirectional.top");
+  var end$ = dart.privateName(edge_insets, "EdgeInsetsDirectional.end");
+  var bottom$0 = dart.privateName(edge_insets, "EdgeInsetsDirectional.bottom");
+  var _name$ = dart.privateName(ui, "_name");
+  edge_insets.EdgeInsetsDirectional = class EdgeInsetsDirectional extends edge_insets.EdgeInsetsGeometry {
+    get start() {
+      return this[start$];
     }
-    dart.fn(hue$35set, T.doubleTodynamic());
-    if (max === 0.0) {
-      hue$35set(0.0);
-    } else if (max == red) {
-      hue$35set(60.0 * ((dart.notNull(green) - dart.notNull(blue)) / dart.notNull(delta))[$modulo](6));
-    } else if (max == green) {
-      hue$35set(60.0 * ((dart.notNull(blue) - dart.notNull(red)) / dart.notNull(delta) + 2));
-    } else if (max == blue) {
-      hue$35set(60.0 * ((dart.notNull(red) - dart.notNull(green)) / dart.notNull(delta) + 4));
+    set start(value) {
+      super.start = value;
     }
-    hue$35set(hue$35get()[$isNaN] ? 0.0 : hue$35get());
-    return hue$35get();
+    get top() {
+      return this[top$0];
+    }
+    set top(value) {
+      super.top = value;
+    }
+    get end() {
+      return this[end$];
+    }
+    set end(value) {
+      super.end = value;
+    }
+    get bottom() {
+      return this[bottom$0];
+    }
+    set bottom(value) {
+      super.bottom = value;
+    }
+    get [_start]() {
+      return this.start;
+    }
+    get [_top]() {
+      return this.top;
+    }
+    get [_end]() {
+      return this.end;
+    }
+    get [_bottom]() {
+      return this.bottom;
+    }
+    get [_left]() {
+      return 0.0;
+    }
+    get [_right]() {
+      return 0.0;
+    }
+    get isNonNegative() {
+      return dart.notNull(this.start) >= 0.0 && dart.notNull(this.top) >= 0.0 && dart.notNull(this.end) >= 0.0 && dart.notNull(this.bottom) >= 0.0;
+    }
+    get flipped() {
+      return new edge_insets.EdgeInsetsDirectional.fromSTEB(this.end, this.bottom, this.start, this.top);
+    }
+    subtract(other) {
+      if (other == null) dart.nullFailed(I[0], 740, 50, "other");
+      if (edge_insets.EdgeInsetsDirectional.is(other)) return this['-'](other);
+      return super.subtract(other);
+    }
+    add(other) {
+      if (other == null) dart.nullFailed(I[0], 747, 45, "other");
+      if (edge_insets.EdgeInsetsDirectional.is(other)) return this['+'](other);
+      return super.add(other);
+    }
+    ['-'](other) {
+      if (other == null) dart.nullFailed(I[0], 754, 58, "other");
+      return new edge_insets.EdgeInsetsDirectional.fromSTEB(dart.notNull(this.start) - dart.notNull(other.start), dart.notNull(this.top) - dart.notNull(other.top), dart.notNull(this.end) - dart.notNull(other.end), dart.notNull(this.bottom) - dart.notNull(other.bottom));
+    }
+    ['+'](other) {
+      if (other == null) dart.nullFailed(I[0], 764, 58, "other");
+      return new edge_insets.EdgeInsetsDirectional.fromSTEB(dart.notNull(this.start) + dart.notNull(other.start), dart.notNull(this.top) + dart.notNull(other.top), dart.notNull(this.end) + dart.notNull(other.end), dart.notNull(this.bottom) + dart.notNull(other.bottom));
+    }
+    _negate() {
+      return new edge_insets.EdgeInsetsDirectional.fromSTEB(-dart.notNull(this.start), -dart.notNull(this.top), -dart.notNull(this.end), -dart.notNull(this.bottom));
+    }
+    ['*'](other) {
+      if (other == null) dart.nullFailed(I[0], 788, 43, "other");
+      return new edge_insets.EdgeInsetsDirectional.fromSTEB(dart.notNull(this.start) * dart.notNull(other), dart.notNull(this.top) * dart.notNull(other), dart.notNull(this.end) * dart.notNull(other), dart.notNull(this.bottom) * dart.notNull(other));
+    }
+    ['/'](other) {
+      if (other == null) dart.nullFailed(I[0], 799, 43, "other");
+      return new edge_insets.EdgeInsetsDirectional.fromSTEB(dart.notNull(this.start) / dart.notNull(other), dart.notNull(this.top) / dart.notNull(other), dart.notNull(this.end) / dart.notNull(other), dart.notNull(this.bottom) / dart.notNull(other));
+    }
+    ['~/'](other) {
+      if (other == null) dart.nullFailed(I[0], 810, 44, "other");
+      return new edge_insets.EdgeInsetsDirectional.fromSTEB((dart.notNull(this.start) / dart.notNull(other))[$truncate]()[$toDouble](), (dart.notNull(this.top) / dart.notNull(other))[$truncate]()[$toDouble](), (dart.notNull(this.end) / dart.notNull(other))[$truncate]()[$toDouble](), (dart.notNull(this.bottom) / dart.notNull(other))[$truncate]()[$toDouble]());
+    }
+    ['%'](other) {
+      if (other == null) dart.nullFailed(I[0], 821, 43, "other");
+      return new edge_insets.EdgeInsetsDirectional.fromSTEB(this.start[$modulo](other), this.top[$modulo](other), this.end[$modulo](other), this.bottom[$modulo](other));
+    }
+    static lerp(a, b, t) {
+      if (t == null) dart.nullFailed(I[0], 839, 97, "t");
+      if (!(t != null)) dart.assertFailed(null, I[0], 840, 12, "t != null");
+      if (a == null && b == null) return null;
+      if (a == null) return dart.nullCheck(b)['*'](t);
+      if (b == null) return a['*'](1.0 - dart.notNull(t));
+      return new edge_insets.EdgeInsetsDirectional.fromSTEB(dart.nullCheck(ui.lerpDouble(a.start, b.start, t)), dart.nullCheck(ui.lerpDouble(a.top, b.top, t)), dart.nullCheck(ui.lerpDouble(a.end, b.end, t)), dart.nullCheck(ui.lerpDouble(a.bottom, b.bottom, t)));
+    }
+    resolve(direction) {
+      if (!(direction != null)) dart.assertFailed(null, I[0], 857, 12, "direction != null");
+      switch (dart.nullCheck(direction)) {
+        case C[4] || CT.C4:
+        {
+          return new edge_insets.EdgeInsets.fromLTRB(this.end, this.top, this.start, this.bottom);
+        }
+        case C[5] || CT.C5:
+        {
+          return new edge_insets.EdgeInsets.fromLTRB(this.start, this.top, this.end, this.bottom);
+        }
+        default:
+        {
+          dart.throw(new _internal.ReachabilityError.new("`null` encountered as case in a switch expression with a non-nullable enum type."));
+        }
+      }
+    }
   };
-  colors._colorFromHue = function _colorFromHue(alpha, hue, chroma, secondary, match) {
-    if (alpha == null) dart.nullFailed(I[0], 29, 10, "alpha");
-    if (hue == null) dart.nullFailed(I[0], 30, 10, "hue");
-    if (chroma == null) dart.nullFailed(I[0], 31, 10, "chroma");
-    if (secondary == null) dart.nullFailed(I[0], 32, 10, "secondary");
-    if (match == null) dart.nullFailed(I[0], 33, 10, "match");
-    let red = null;
-    let green = null;
-    let blue = null;
-    if (dart.notNull(hue) < 60.0) {
-      red = chroma;
-      green = secondary;
-      blue = 0.0;
-    } else if (dart.notNull(hue) < 120.0) {
-      red = secondary;
-      green = chroma;
-      blue = 0.0;
-    } else if (dart.notNull(hue) < 180.0) {
-      red = 0.0;
-      green = chroma;
-      blue = secondary;
-    } else if (dart.notNull(hue) < 240.0) {
-      red = 0.0;
-      green = secondary;
-      blue = chroma;
-    } else if (dart.notNull(hue) < 300.0) {
-      red = secondary;
-      green = 0.0;
-      blue = chroma;
-    } else {
-      red = chroma;
-      green = 0.0;
-      blue = secondary;
+  (edge_insets.EdgeInsetsDirectional.fromSTEB = function(start, top, end, bottom) {
+    if (start == null) dart.nullFailed(I[0], 647, 45, "start");
+    if (top == null) dart.nullFailed(I[0], 647, 57, "top");
+    if (end == null) dart.nullFailed(I[0], 647, 67, "end");
+    if (bottom == null) dart.nullFailed(I[0], 647, 77, "bottom");
+    this[start$] = start;
+    this[top$0] = top;
+    this[end$] = end;
+    this[bottom$0] = bottom;
+    edge_insets.EdgeInsetsDirectional.__proto__.new.call(this);
+    ;
+  }).prototype = edge_insets.EdgeInsetsDirectional.prototype;
+  (edge_insets.EdgeInsetsDirectional.only = function(opts) {
+    let start = opts && 'start' in opts ? opts.start : 0;
+    if (start == null) dart.nullFailed(I[0], 660, 10, "start");
+    let top = opts && 'top' in opts ? opts.top : 0;
+    if (top == null) dart.nullFailed(I[0], 661, 10, "top");
+    let end = opts && 'end' in opts ? opts.end : 0;
+    if (end == null) dart.nullFailed(I[0], 662, 10, "end");
+    let bottom = opts && 'bottom' in opts ? opts.bottom : 0;
+    if (bottom == null) dart.nullFailed(I[0], 663, 10, "bottom");
+    this[start$] = start;
+    this[top$0] = top;
+    this[end$] = end;
+    this[bottom$0] = bottom;
+    edge_insets.EdgeInsetsDirectional.__proto__.new.call(this);
+    ;
+  }).prototype = edge_insets.EdgeInsetsDirectional.prototype;
+  (edge_insets.EdgeInsetsDirectional.all = function(value) {
+    if (value == null) dart.nullFailed(I[0], 676, 42, "value");
+    this[start$] = value;
+    this[top$0] = value;
+    this[end$] = value;
+    this[bottom$0] = value;
+    edge_insets.EdgeInsetsDirectional.__proto__.new.call(this);
+    ;
+  }).prototype = edge_insets.EdgeInsetsDirectional.prototype;
+  dart.addTypeTests(edge_insets.EdgeInsetsDirectional);
+  dart.addTypeCaches(edge_insets.EdgeInsetsDirectional);
+  dart.setMethodSignature(edge_insets.EdgeInsetsDirectional, () => ({
+    __proto__: dart.getMethods(edge_insets.EdgeInsetsDirectional.__proto__),
+    '-': dart.fnType(edge_insets.EdgeInsetsDirectional, [edge_insets.EdgeInsetsDirectional]),
+    '+': dart.fnType(edge_insets.EdgeInsetsDirectional, [edge_insets.EdgeInsetsDirectional]),
+    _negate: dart.fnType(edge_insets.EdgeInsetsDirectional, []),
+    '*': dart.fnType(edge_insets.EdgeInsetsDirectional, [core.double]),
+    '/': dart.fnType(edge_insets.EdgeInsetsDirectional, [core.double]),
+    '~/': dart.fnType(edge_insets.EdgeInsetsDirectional, [core.double]),
+    '%': dart.fnType(edge_insets.EdgeInsetsDirectional, [core.double]),
+    resolve: dart.fnType(edge_insets.EdgeInsets, [dart.nullable(ui.TextDirection)])
+  }));
+  dart.setGetterSignature(edge_insets.EdgeInsetsDirectional, () => ({
+    __proto__: dart.getGetters(edge_insets.EdgeInsetsDirectional.__proto__),
+    [_start]: core.double,
+    [_top]: core.double,
+    [_end]: core.double,
+    [_bottom]: core.double,
+    [_left]: core.double,
+    [_right]: core.double,
+    flipped: edge_insets.EdgeInsetsDirectional
+  }));
+  dart.setLibraryUri(edge_insets.EdgeInsetsDirectional, I[1]);
+  dart.setFieldSignature(edge_insets.EdgeInsetsDirectional, () => ({
+    __proto__: dart.getFields(edge_insets.EdgeInsetsDirectional.__proto__),
+    start: dart.finalFieldType(core.double),
+    top: dart.finalFieldType(core.double),
+    end: dart.finalFieldType(core.double),
+    bottom: dart.finalFieldType(core.double)
+  }));
+  dart.defineLazy(edge_insets.EdgeInsetsDirectional, {
+    /*edge_insets.EdgeInsetsDirectional.zero*/get zero() {
+      return C[6] || CT.C6;
     }
-    return new ui.Color.fromARGB((dart.notNull(alpha) * 255)[$round](), ((dart.notNull(red) + dart.notNull(match)) * 255)[$round](), ((dart.notNull(green) + dart.notNull(match)) * 255)[$round](), ((dart.notNull(blue) + dart.notNull(match)) * 255)[$round]());
+  }, false);
+  const _left$ = _MixedEdgeInsets__left;
+  const _right$ = _MixedEdgeInsets__right;
+  const _start$ = _MixedEdgeInsets__start;
+  const _end$ = _MixedEdgeInsets__end;
+  const _top$ = _MixedEdgeInsets__top;
+  const _bottom$ = _MixedEdgeInsets__bottom;
+  edge_insets._MixedEdgeInsets = class _MixedEdgeInsets extends edge_insets.EdgeInsetsGeometry {
+    get [_left]() {
+      return this[_left$];
+    }
+    set [_left](value) {
+      super[_left] = value;
+    }
+    get [_right]() {
+      return this[_right$];
+    }
+    set [_right](value) {
+      super[_right] = value;
+    }
+    get [_start]() {
+      return this[_start$];
+    }
+    set [_start](value) {
+      super[_start] = value;
+    }
+    get [_end]() {
+      return this[_end$];
+    }
+    set [_end](value) {
+      super[_end] = value;
+    }
+    get [_top]() {
+      return this[_top$];
+    }
+    set [_top](value) {
+      super[_top] = value;
+    }
+    get [_bottom]() {
+      return this[_bottom$];
+    }
+    set [_bottom](value) {
+      super[_bottom] = value;
+    }
+    get isNonNegative() {
+      return dart.notNull(this[_left]) >= 0.0 && dart.notNull(this[_right]) >= 0.0 && dart.notNull(this[_start]) >= 0.0 && dart.notNull(this[_end]) >= 0.0 && dart.notNull(this[_top]) >= 0.0 && dart.notNull(this[_bottom]) >= 0.0;
+    }
+    _negate() {
+      return new edge_insets._MixedEdgeInsets.fromLRSETB(-dart.notNull(this[_left]), -dart.notNull(this[_right]), -dart.notNull(this[_start]), -dart.notNull(this[_end]), -dart.notNull(this[_top]), -dart.notNull(this[_bottom]));
+    }
+    ['*'](other) {
+      if (other == null) dart.nullFailed(I[0], 911, 38, "other");
+      return new edge_insets._MixedEdgeInsets.fromLRSETB(dart.notNull(this[_left]) * dart.notNull(other), dart.notNull(this[_right]) * dart.notNull(other), dart.notNull(this[_start]) * dart.notNull(other), dart.notNull(this[_end]) * dart.notNull(other), dart.notNull(this[_top]) * dart.notNull(other), dart.notNull(this[_bottom]) * dart.notNull(other));
+    }
+    ['/'](other) {
+      if (other == null) dart.nullFailed(I[0], 923, 38, "other");
+      return new edge_insets._MixedEdgeInsets.fromLRSETB(dart.notNull(this[_left]) / dart.notNull(other), dart.notNull(this[_right]) / dart.notNull(other), dart.notNull(this[_start]) / dart.notNull(other), dart.notNull(this[_end]) / dart.notNull(other), dart.notNull(this[_top]) / dart.notNull(other), dart.notNull(this[_bottom]) / dart.notNull(other));
+    }
+    ['~/'](other) {
+      if (other == null) dart.nullFailed(I[0], 935, 39, "other");
+      return new edge_insets._MixedEdgeInsets.fromLRSETB((dart.notNull(this[_left]) / dart.notNull(other))[$truncate]()[$toDouble](), (dart.notNull(this[_right]) / dart.notNull(other))[$truncate]()[$toDouble](), (dart.notNull(this[_start]) / dart.notNull(other))[$truncate]()[$toDouble](), (dart.notNull(this[_end]) / dart.notNull(other))[$truncate]()[$toDouble](), (dart.notNull(this[_top]) / dart.notNull(other))[$truncate]()[$toDouble](), (dart.notNull(this[_bottom]) / dart.notNull(other))[$truncate]()[$toDouble]());
+    }
+    ['%'](other) {
+      if (other == null) dart.nullFailed(I[0], 947, 38, "other");
+      return new edge_insets._MixedEdgeInsets.fromLRSETB(this[_left][$modulo](other), this[_right][$modulo](other), this[_start][$modulo](other), this[_end][$modulo](other), this[_top][$modulo](other), this[_bottom][$modulo](other));
+    }
+    resolve(direction) {
+      if (!(direction != null)) dart.assertFailed(null, I[0], 960, 12, "direction != null");
+      switch (dart.nullCheck(direction)) {
+        case C[4] || CT.C4:
+        {
+          return new edge_insets.EdgeInsets.fromLTRB(dart.notNull(this[_end]) + dart.notNull(this[_left]), this[_top], dart.notNull(this[_start]) + dart.notNull(this[_right]), this[_bottom]);
+        }
+        case C[5] || CT.C5:
+        {
+          return new edge_insets.EdgeInsets.fromLTRB(dart.notNull(this[_start]) + dart.notNull(this[_left]), this[_top], dart.notNull(this[_end]) + dart.notNull(this[_right]), this[_bottom]);
+        }
+        default:
+        {
+          dart.throw(new _internal.ReachabilityError.new("`null` encountered as case in a switch expression with a non-nullable enum type."));
+        }
+      }
+    }
   };
-  dart.trackLibraries("packages/flutter/src/painting/colors.dart", {
-    "package:flutter/src/painting/colors.dart": colors
+  (edge_insets._MixedEdgeInsets.fromLRSETB = function(_left, _right, _start, _end, _top, _bottom) {
+    if (_left == null) dart.nullFailed(I[0], 868, 42, "_left");
+    if (_right == null) dart.nullFailed(I[0], 868, 54, "_right");
+    if (_start == null) dart.nullFailed(I[0], 868, 67, "_start");
+    if (_end == null) dart.nullFailed(I[0], 868, 80, "_end");
+    if (_top == null) dart.nullFailed(I[0], 868, 91, "_top");
+    if (_bottom == null) dart.nullFailed(I[0], 868, 102, "_bottom");
+    this[_left$] = _left;
+    this[_right$] = _right;
+    this[_start$] = _start;
+    this[_end$] = _end;
+    this[_top$] = _top;
+    this[_bottom$] = _bottom;
+    edge_insets._MixedEdgeInsets.__proto__.new.call(this);
+    ;
+  }).prototype = edge_insets._MixedEdgeInsets.prototype;
+  dart.addTypeTests(edge_insets._MixedEdgeInsets);
+  dart.addTypeCaches(edge_insets._MixedEdgeInsets);
+  dart.setMethodSignature(edge_insets._MixedEdgeInsets, () => ({
+    __proto__: dart.getMethods(edge_insets._MixedEdgeInsets.__proto__),
+    _negate: dart.fnType(edge_insets._MixedEdgeInsets, []),
+    '*': dart.fnType(edge_insets._MixedEdgeInsets, [core.double]),
+    '/': dart.fnType(edge_insets._MixedEdgeInsets, [core.double]),
+    '~/': dart.fnType(edge_insets._MixedEdgeInsets, [core.double]),
+    '%': dart.fnType(edge_insets._MixedEdgeInsets, [core.double]),
+    resolve: dart.fnType(edge_insets.EdgeInsets, [dart.nullable(ui.TextDirection)])
+  }));
+  dart.setLibraryUri(edge_insets._MixedEdgeInsets, I[1]);
+  dart.setFieldSignature(edge_insets._MixedEdgeInsets, () => ({
+    __proto__: dart.getFields(edge_insets._MixedEdgeInsets.__proto__),
+    [_left]: dart.finalFieldType(core.double),
+    [_right]: dart.finalFieldType(core.double),
+    [_start]: dart.finalFieldType(core.double),
+    [_end]: dart.finalFieldType(core.double),
+    [_top]: dart.finalFieldType(core.double),
+    [_bottom]: dart.finalFieldType(core.double)
+  }));
+  dart.trackLibraries("packages/flutter/src/painting/edge_insets.dart", {
+    "package:flutter/src/painting/edge_insets.dart": edge_insets
   }, {
-  }, '{"version":3,"sourceRoot":"","sources":["colors.dart"],"names":[],"mappings":"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","file":"../../../../../../../../../../packages/flutter/src/painting/colors.dart.lib.js"}');
+  }, '{"version":3,"sourceRoot":"","sources":["edge_insets.dart"],"names":[],"mappings":"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","file":"../../../../../../../../../../packages/flutter/src/painting/edge_insets.dart.lib.js"}');
   // Exports:
   return {
-    src__painting__colors: colors
+    src__painting__edge_insets: edge_insets
   };
 }));
 
-//# sourceMappingURL=colors.dart.lib.js.map
+//# sourceMappingURL=edge_insets.dart.lib.js.map

@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:softdoc/cubit/android_nav_cubit/AndroidNav_cubit.dart';
 import 'package:softdoc/cubit/auth_cubit/auth_cubit.dart';
+import 'package:softdoc/cubit/data_cubit/data_cubit.dart';
 import 'package:softdoc/cubit/desktop_nav_cubit/desktopnav_cubit.dart';
-import 'package:softdoc/screens/android_screen/android_screen.dart';
-import 'package:softdoc/screens/desktop_screen/desktop_screen.dart';
 import 'package:softdoc/style.dart';
 import 'package:crypto/crypto.dart';
 import '../../services/flask_database.dart';
@@ -27,6 +26,7 @@ class _AuthFormState extends State<AuthForm> {
   AndroidNavCubit _androidNavCubit;
   DesktopNavCubit _desktopNavCubit;
   AuthCubit _authCubit;
+  DataCubit _dataCubit;
 
   @override
   void initState() {
@@ -34,7 +34,10 @@ class _AuthFormState extends State<AuthForm> {
     super.initState();
     _androidNavCubit = BlocProvider.of<AndroidNavCubit>(context);
     _desktopNavCubit = BlocProvider.of<DesktopNavCubit>(context);
-    _authCubit = BlocProvider.of<AuthCubit>(context);
+    _dataCubit = BlocProvider.of<DataCubit>(context);
+    _dataCubit.authenticate();
+    // _authCubit = BlocProvider.of<AuthCubit>(context);
+    // _authCubit.verify();
   }
 
   @override
@@ -104,9 +107,11 @@ class _AuthFormState extends State<AuthForm> {
             // margin: EdgeInsets.symmetric(horizontal: 30),
             child: ElevatedButton(
               style: ButtonStyle(
-                  shape: MaterialStateProperty.all(
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
-              )),
+                shape: MaterialStateProperty.all(
+                  RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(6)),
+                ),
+              ),
               onPressed: () async {
                 if (_formKey.currentState.validate()) {
                   isLoading = true;
@@ -116,10 +121,12 @@ class _AuthFormState extends State<AuthForm> {
                   // await FlaskDatabase.getLocal();
                   // FlaskDatabase.getMessage();
                   verified
-                      ? _authCubit.verify()
-                      : ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                          content: Text("invalid user"),
-                        ));
+                      ? _dataCubit.authenticate()
+                      : ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text("invalid user"),
+                          ),
+                        );
 
                   isLoading = false;
                   setState(() {});

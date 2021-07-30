@@ -1,6 +1,8 @@
-import 'dart:io';
+import 'dart:html';
+import 'dart:typed_data';
 
 import 'package:dotted_border/dotted_border.dart';
+import 'package:file_picker/_internal/file_picker_web.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -8,7 +10,7 @@ import 'package:softdoc/cubit/android_nav_cubit/AndroidNav_cubit.dart';
 import 'package:softdoc/cubit/desktop_nav_cubit/desktopnav_cubit.dart';
 import 'package:softdoc/models/doc.dart';
 import 'package:softdoc/screens/send_doc_screen/add_or_edit_recepient.dart';
-import 'package:softdoc/screens/send_doc_screen/select_recepient.dart';
+import 'package:softdoc/shared/pdf_card.dart';
 import 'package:softdoc/style.dart';
 
 class SendDocScreen extends StatefulWidget {
@@ -23,6 +25,8 @@ class _SendDocScreenState extends State<SendDocScreen> {
   Doc doc;
   AndroidNavCubit _androidNavCubit;
   DesktopNavCubit _desktopNavCubit;
+  Uint8List bytes;
+  String filename;
   File pdf;
 
   void changeState() {
@@ -38,12 +42,14 @@ class _SendDocScreenState extends State<SendDocScreen> {
   }
 
   void pickFile() async {
-    debugPrint('opening file picker');
-    FilePickerResult result =
-        await FilePicker.platform.pickFiles(allowedExtensions: ['pdf']);
+    FilePickerResult result = await FilePickerWeb.platform
+        .pickFiles(allowedExtensions: ['pdf'], type: FileType.custom);
 
     if (result != null) {
-      pdf = File(result.files.single.path);
+      bytes = result.files.single.bytes;
+      filename = result.files.single.name;
+      pdf = File(bytes, filename);
+      setState(() {});
     } else {
       debugPrint('file not found');
     }
@@ -60,9 +66,12 @@ class _SendDocScreenState extends State<SendDocScreen> {
         resizeToAvoidBottomInset: false,
         floatingActionButton: FloatingActionButton(
           backgroundColor: primary,
-          onPressed: () => widget.isDesktop
-              ? _desktopNavCubit.navToHomeScreen()
-              : _androidNavCubit.navToHomeScreen(),
+          onPressed: () {
+            widget.isDesktop
+                ? _desktopNavCubit.navToHomeScreen()
+                : _androidNavCubit.navToHomeScreen();
+            // call api to post this document.
+          },
           child: Icon(Icons.send),
         ),
         body: SafeArea(
@@ -70,7 +79,7 @@ class _SendDocScreenState extends State<SendDocScreen> {
             padding: EdgeInsets.symmetric(horizontal: 12, vertical: 12),
             child: Column(
               children: [
-                // subject field here:---------------------------------------------------------------------------
+                // subject field here:-----------------------------------------------------------------
                 Container(
                   height: 50,
                   child: TextField(
@@ -96,8 +105,9 @@ class _SendDocScreenState extends State<SendDocScreen> {
                   height: 150,
                   width: double.infinity,
                   decoration: BoxDecoration(
-                      color: primaryLight,
-                      borderRadius: BorderRadius.circular(10)),
+                    color: primaryLight,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
                   child: TextField(
                     maxLines: 6,
                     decoration: InputDecoration(
@@ -111,30 +121,28 @@ class _SendDocScreenState extends State<SendDocScreen> {
                 SizedBox(height: 10),
                 // pick pdf from here:------------------------------------------------------------------
                 InkWell(
-                  onTap: () => pickFile,
+                  onTap: pickFile,
                   child: Container(
-                    height: 170,
-                    color: Colors.transparent,
-                    width: double.infinity,
-                    child: pdf == null
-                        ? DottedBorder(
-                            dashPattern: [8],
-                            color: primary,
-                            borderType: BorderType.RRect,
-                            radius: Radius.circular(10),
-                            child: Center(
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Icon(Icons.note, size: 30),
-                                  SizedBox(height: 20),
-                                  Text("Upload File"),
-                                ],
+                      height: 200,
+                      width: double.infinity,
+                      child: pdf == null
+                          ? DottedBorder(
+                              dashPattern: [8],
+                              color: primary,
+                              borderType: BorderType.RRect,
+                              radius: Radius.circular(10),
+                              child: Center(
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Icon(Icons.note, size: 30),
+                                    SizedBox(height: 20),
+                                    Text("Upload File"),
+                                  ],
+                                ),
                               ),
-                            ),
-                          )
-                        : SizedBox(),
-                  ),
+                            )
+                          : pdfCard(filename)),
                 )
               ],
             ),

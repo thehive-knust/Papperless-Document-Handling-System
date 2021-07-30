@@ -19,4 +19,8 @@ class DesktopNavCubit extends Cubit<DesktopNavState> {
   void navToHomeScreen() {
     emit(HomeScreenNav());
   }
+
+  void natToReveivedDetailScreen(Doc selectedDoc) {
+    emit(ReveivedDetailScreenNav(selectedDoc));
+  }
 }
