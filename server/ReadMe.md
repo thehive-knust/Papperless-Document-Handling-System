@@ -65,16 +65,16 @@ You can learn more here: https://flask-migrate.readthedocs.io/
 -- This project utilizes sqlite database for local development and an SQL server for production
 
 # APIs
-**User APIs**
-Login : /user/login
-Sign-Up : /user/register/{user_id}
-Delete User : /user/delete/{user_id}
-Get User by mail    : /user/{email}
-Get User by ID  : /user/{user_id}
+**User APIs**\
+Login : /user/login\
+Sign-Up : /user/register/{user_id}\
+Delete User : /user/delete/{user_id}\
+Get User by mail    : /user/{email}\
+Get User by ID  : /user/{user_id}\
 Get All Users : /user/all
 
-**Document APIs**
-Upload document : /document/upload
-Get new documents : /document/new/{user_id}
-Get approved docs : /document/approved/{user_id}
+**Document APIs**\
+Upload document : /document/upload\
+Get new documents : /document/new/{user_id}\
+Get approved docs : /document/approved/{user_id}\
 Get rejected docs : /document/rejected/{user_id}
