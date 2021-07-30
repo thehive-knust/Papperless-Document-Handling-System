@@ -1,56 +1,50 @@
-define(['dart_sdk', 'packages/flutter/src/widgets/widget_span.dart', 'packages/flutter/src/painting/border_radius.dart', 'packages/softdoc/style.dart', 'packages/flutter/src/painting/edge_insets.dart', 'packages/flutter/src/material/dropdown.dart', 'packages/softdoc/screens/send_doc_screen/utills.dart', 'packages/flutter/src/widgets/icon.dart', 'packages/flutter/src/material/icons.dart', 'packages/flutter/src/rendering/paragraph.dart', 'packages/softdoc/models/department.dart', 'packages/flutter/src/widgets/scroll_view.dart', 'packages/flutter/src/painting/box_decoration.dart', 'packages/flutter/src/material/checkbox_list_tile.dart', 'packages/flutter/src/painting/rounded_rectangle_border.dart'], (function load__packages__softdoc__screens__send_doc_screen__select_recepient_dart(dart_sdk, packages__flutter__src__widgets__widget_span$46dart, packages__flutter__src__painting__border_radius$46dart, packages__softdoc__style$46dart, packages__flutter__src__painting__edge_insets$46dart, packages__flutter__src__material__dropdown$46dart, packages__softdoc__screens__send_doc_screen__utills$46dart, packages__flutter__src__widgets__icon$46dart, packages__flutter__src__material__icons$46dart, packages__flutter__src__rendering__paragraph$46dart, packages__softdoc__models__department$46dart, packages__flutter__src__widgets__scroll_view$46dart, packages__flutter__src__painting__box_decoration$46dart, packages__flutter__src__material__checkbox_list_tile$46dart, packages__flutter__src__painting__rounded_rectangle_border$46dart) {
+define(['dart_sdk', 'packages/flutter/src/widgets/widget_span.dart', 'packages/flutter/src/painting/alignment.dart', 'packages/flutter/src/rendering/flex.dart', 'packages/softdoc/style.dart', 'packages/flutter/src/material/colors.dart', 'packages/flutter/src/painting/box_decoration.dart', 'packages/flutter/src/painting/box_border.dart', 'packages/flutter/src/painting/box_shadow.dart', 'packages/flutter/src/painting/gradient.dart'], (function load__packages__softdoc__screens__detail_screen__approval_progress_dart(dart_sdk, packages__flutter__src__widgets__widget_span$46dart, packages__flutter__src__painting__alignment$46dart, packages__flutter__src__rendering__flex$46dart, packages__softdoc__style$46dart, packages__flutter__src__material__colors$46dart, packages__flutter__src__painting__box_decoration$46dart, packages__flutter__src__painting__box_border$46dart, packages__flutter__src__painting__box_shadow$46dart, packages__flutter__src__painting__gradient$46dart) {
   'use strict';
   const core = dart_sdk.core;
   const _interceptors = dart_sdk._interceptors;
+  const ui = dart_sdk.ui;
   const dart = dart_sdk.dart;
   const dartx = dart_sdk.dartx;
-  const basic = packages__flutter__src__widgets__widget_span$46dart.src__widgets__basic;
   const framework = packages__flutter__src__widgets__widget_span$46dart.src__widgets__framework;
   const container = packages__flutter__src__widgets__widget_span$46dart.src__widgets__container;
+  const basic = packages__flutter__src__widgets__widget_span$46dart.src__widgets__basic;
   const widget_inspector = packages__flutter__src__widgets__widget_span$46dart.src__widgets__widget_inspector;
   const text = packages__flutter__src__widgets__widget_span$46dart.src__widgets__text;
-  const border_radius = packages__flutter__src__painting__border_radius$46dart.src__painting__border_radius;
+  const alignment = packages__flutter__src__painting__alignment$46dart.src__painting__alignment;
+  const flex = packages__flutter__src__rendering__flex$46dart.src__rendering__flex;
   const style = packages__softdoc__style$46dart.style;
-  const edge_insets = packages__flutter__src__painting__edge_insets$46dart.src__painting__edge_insets;
-  const dropdown = packages__flutter__src__material__dropdown$46dart.src__material__dropdown;
-  const utills = packages__softdoc__screens__send_doc_screen__utills$46dart.screens__send_doc_screen__utills;
-  const icon = packages__flutter__src__widgets__icon$46dart.src__widgets__icon;
-  const icons = packages__flutter__src__material__icons$46dart.src__material__icons;
-  const paragraph = packages__flutter__src__rendering__paragraph$46dart.src__rendering__paragraph;
-  const department = packages__softdoc__models__department$46dart.models__department;
-  const scroll_view = packages__flutter__src__widgets__scroll_view$46dart.src__widgets__scroll_view;
+  const colors = packages__flutter__src__material__colors$46dart.src__material__colors;
   const box_decoration = packages__flutter__src__painting__box_decoration$46dart.src__painting__box_decoration;
-  const checkbox_list_tile = packages__flutter__src__material__checkbox_list_tile$46dart.src__material__checkbox_list_tile;
-  const rounded_rectangle_border = packages__flutter__src__painting__rounded_rectangle_border$46dart.src__painting__rounded_rectangle_border;
-  var select_recepient = Object.create(dart.library);
-  var $add = dartx.add;
-  var $map = dartx.map;
+  const box_border = packages__flutter__src__painting__box_border$46dart.src__painting__box_border;
+  const box_shadow = packages__flutter__src__painting__box_shadow$46dart.src__painting__box_shadow;
+  const gradient = packages__flutter__src__painting__gradient$46dart.src__painting__gradient;
+  var approval_progress = Object.create(dart.library);
+  var $keys = dartx.keys;
   var $toList = dartx.toList;
-  var $singleWhere = dartx.singleWhere;
   var $length = dartx.length;
+  var $first = dartx.first;
+  var $values = dartx.values;
   var $_get = dartx._get;
-  var $contains = dartx.contains;
-  var $remove = dartx.remove;
+  var $entries = dartx.entries;
+  var $last = dartx.last;
+  var $modulo = dartx['%'];
+  var $indexOf = dartx.indexOf;
+  var $map = dartx.map;
+  var $truncate = dartx.truncate;
   dart._checkModuleNullSafetyMode(false);
   var T = {
+    _LocationL: () => (T._LocationL = dart.constFn(dart.legacy(widget_inspector._Location)))(),
     WidgetL: () => (T.WidgetL = dart.constFn(dart.legacy(framework.Widget)))(),
     JSArrayOfWidgetL: () => (T.JSArrayOfWidgetL = dart.constFn(_interceptors.JSArray$(T.WidgetL())))(),
-    _LocationL: () => (T._LocationL = dart.constFn(dart.legacy(widget_inspector._Location)))(),
+    ExpandedL: () => (T.ExpandedL = dart.constFn(dart.legacy(basic.Expanded)))(),
     StringL: () => (T.StringL = dart.constFn(dart.legacy(core.String)))(),
-    DropdownButtonOfStringL: () => (T.DropdownButtonOfStringL = dart.constFn(dropdown.DropdownButton$(T.StringL())))(),
-    DropdownMenuItemOfStringL: () => (T.DropdownMenuItemOfStringL = dart.constFn(dropdown.DropdownMenuItem$(T.StringL())))(),
-    DropdownMenuItemLOfStringL: () => (T.DropdownMenuItemLOfStringL = dart.constFn(dart.legacy(T.DropdownMenuItemOfStringL())))(),
-    DepartmentL: () => (T.DepartmentL = dart.constFn(dart.legacy(department.Department)))(),
-    DepartmentLToDropdownMenuItemLOfStringL: () => (T.DepartmentLToDropdownMenuItemLOfStringL = dart.constFn(dart.fnType(T.DropdownMenuItemLOfStringL(), [T.DepartmentL()])))(),
-    boolL: () => (T.boolL = dart.constFn(dart.legacy(core.bool)))(),
-    DepartmentLToboolL: () => (T.DepartmentLToboolL = dart.constFn(dart.fnType(T.boolL(), [T.DepartmentL()])))(),
-    VoidToNull: () => (T.VoidToNull = dart.constFn(dart.fnType(core.Null, [])))(),
-    StringLToNull: () => (T.StringLToNull = dart.constFn(dart.fnType(core.Null, [T.StringL()])))(),
-    boolLToNull: () => (T.boolLToNull = dart.constFn(dart.fnType(core.Null, [T.boolL()])))(),
-    ContainerL: () => (T.ContainerL = dart.constFn(dart.legacy(container.Container)))(),
-    BuildContextL: () => (T.BuildContextL = dart.constFn(dart.legacy(framework.BuildContext)))(),
-    intL: () => (T.intL = dart.constFn(dart.legacy(core.int)))(),
-    BuildContextLAndintLToContainerL: () => (T.BuildContextLAndintLToContainerL = dart.constFn(dart.fnType(T.ContainerL(), [T.BuildContextL(), T.intL()])))()
+    MapEntryOfStringL$StringL: () => (T.MapEntryOfStringL$StringL = dart.constFn(core.MapEntry$(T.StringL(), T.StringL())))(),
+    MapEntryLOfStringL$StringL: () => (T.MapEntryLOfStringL$StringL = dart.constFn(dart.legacy(T.MapEntryOfStringL$StringL())))(),
+    MapEntryLOfStringL$StringLToExpandedL: () => (T.MapEntryLOfStringL$StringLToExpandedL = dart.constFn(dart.fnType(T.ExpandedL(), [T.MapEntryLOfStringL$StringL()])))(),
+    BoxShadowL: () => (T.BoxShadowL = dart.constFn(dart.legacy(box_shadow.BoxShadow)))(),
+    JSArrayOfBoxShadowL: () => (T.JSArrayOfBoxShadowL = dart.constFn(_interceptors.JSArray$(T.BoxShadowL())))(),
+    ColorL: () => (T.ColorL = dart.constFn(dart.legacy(ui.Color)))(),
+    JSArrayOfColorL: () => (T.JSArrayOfColorL = dart.constFn(_interceptors.JSArray$(T.ColorL())))()
   };
   const CT = Object.create({
     _: () => (C, CT)
@@ -61,54 +55,54 @@ define(['dart_sdk', 'packages/flutter/src/widgets/widget_span.dart', 'packages/f
         __proto__: widget_inspector._Location.prototype,
         [_Location_parameterLocations]: null,
         [_Location_name]: "height",
-        [_Location_column]: 17,
-        [_Location_line]: 19,
-        [_Location_file]: null
-      });
-    },
-    get C3() {
-      return C[3] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "color",
-        [_Location_column]: 17,
-        [_Location_line]: 20,
+        [_Location_column]: 26,
+        [_Location_line]: 32,
         [_Location_file]: null
       });
     },
     get C1() {
-      return C[1] = dart.constList([C[2] || CT.C2, C[3] || CT.C3], T._LocationL());
+      return C[1] = dart.constList([C[2] || CT.C2], T._LocationL());
     },
     get C0() {
       return C[0] = dart.const({
         __proto__: widget_inspector._Location.prototype,
         [_Location_parameterLocations]: C[1] || CT.C1,
         [_Location_name]: null,
-        [_Location_column]: 15,
-        [_Location_line]: 18,
-        [_Location_file]: "file:///C:/Users/Ejas/Desktop/App_files/Papperless-Document-Handling-System/client/lib/screens/send_doc_screen/select_recepient.dart"
+        [_Location_column]: 17,
+        [_Location_line]: 32,
+        [_Location_file]: "file:///D:/Abdul-Mateen/Edu/curricular/Year%203%20sem%202/COE%20356%20Intro%20to%20Software%20engineering/Project/Papperless-Document-Handling-System/client/lib/screens/detail_screen/approval_progress.dart"
       });
     },
     get C5() {
-      return C[5] = dart.constList([], T._LocationL());
+      return C[5] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "data",
+        [_Location_column]: 38,
+        [_Location_line]: 33,
+        [_Location_file]: null
+      });
     },
     get C4() {
-      return C[4] = dart.const({
+      return C[4] = dart.constList([C[5] || CT.C5], T._LocationL());
+    },
+    get C3() {
+      return C[3] = dart.const({
         __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[5] || CT.C5,
+        [_Location_parameterLocations]: C[4] || CT.C4,
         [_Location_name]: null,
-        [_Location_column]: 37,
-        [_Location_line]: 31,
-        [_Location_file]: "file:///C:/Users/Ejas/Desktop/App_files/Papperless-Document-Handling-System/client/lib/screens/send_doc_screen/select_recepient.dart"
+        [_Location_column]: 17,
+        [_Location_line]: 33,
+        [_Location_file]: "file:///D:/Abdul-Mateen/Edu/curricular/Year%203%20sem%202/COE%20356%20Intro%20to%20Software%20engineering/Project/Papperless-Document-Handling-System/client/lib/screens/detail_screen/approval_progress.dart"
       });
     },
     get C8() {
       return C[8] = dart.const({
         __proto__: widget_inspector._Location.prototype,
         [_Location_parameterLocations]: null,
-        [_Location_name]: "icon",
-        [_Location_column]: 34,
-        [_Location_line]: 32,
+        [_Location_name]: "mainAxisAlignment",
+        [_Location_column]: 15,
+        [_Location_line]: 29,
         [_Location_file]: null
       });
     },
@@ -116,9 +110,9 @@ define(['dart_sdk', 'packages/flutter/src/widgets/widget_span.dart', 'packages/f
       return C[9] = dart.const({
         __proto__: widget_inspector._Location.prototype,
         [_Location_parameterLocations]: null,
-        [_Location_name]: "color",
-        [_Location_column]: 51,
-        [_Location_line]: 32,
+        [_Location_name]: "children",
+        [_Location_column]: 15,
+        [_Location_line]: 30,
         [_Location_file]: null
       });
     },
@@ -130,187 +124,166 @@ define(['dart_sdk', 'packages/flutter/src/widgets/widget_span.dart', 'packages/f
         __proto__: widget_inspector._Location.prototype,
         [_Location_parameterLocations]: C[7] || CT.C7,
         [_Location_name]: null,
-        [_Location_column]: 23,
-        [_Location_line]: 32,
-        [_Location_file]: "file:///C:/Users/Ejas/Desktop/App_files/Papperless-Document-Handling-System/client/lib/screens/send_doc_screen/select_recepient.dart"
+        [_Location_column]: 13,
+        [_Location_line]: 28,
+        [_Location_file]: "file:///D:/Abdul-Mateen/Edu/curricular/Year%203%20sem%202/COE%20356%20Intro%20to%20Software%20engineering/Project/Papperless-Document-Handling-System/client/lib/screens/detail_screen/approval_progress.dart"
       });
     },
     get C12() {
       return C[12] = dart.const({
         __proto__: widget_inspector._Location.prototype,
         [_Location_parameterLocations]: null,
-        [_Location_name]: "data",
-        [_Location_column]: 29,
-        [_Location_line]: 37,
-        [_Location_file]: null
-      });
-    },
-    get C13() {
-      return C[13] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "maxLines",
-        [_Location_column]: 27,
-        [_Location_line]: 38,
-        [_Location_file]: null
-      });
-    },
-    get C14() {
-      return C[14] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "overflow",
-        [_Location_column]: 27,
-        [_Location_line]: 39,
+        [_Location_name]: "children",
+        [_Location_column]: 25,
+        [_Location_line]: 46,
         [_Location_file]: null
       });
     },
     get C11() {
-      return C[11] = dart.constList([C[12] || CT.C12, C[13] || CT.C13, C[14] || CT.C14], T._LocationL());
+      return C[11] = dart.constList([C[12] || CT.C12], T._LocationL());
     },
     get C10() {
       return C[10] = dart.const({
         __proto__: widget_inspector._Location.prototype,
         [_Location_parameterLocations]: C[11] || CT.C11,
         [_Location_name]: null,
-        [_Location_column]: 32,
-        [_Location_line]: 36,
-        [_Location_file]: "file:///C:/Users/Ejas/Desktop/App_files/Papperless-Document-Handling-System/client/lib/screens/send_doc_screen/select_recepient.dart"
+        [_Location_column]: 23,
+        [_Location_line]: 45,
+        [_Location_file]: "file:///D:/Abdul-Mateen/Edu/curricular/Year%203%20sem%202/COE%20356%20Intro%20to%20Software%20engineering/Project/Papperless-Document-Handling-System/client/lib/screens/detail_screen/approval_progress.dart"
       });
     },
-    get C17() {
-      return C[17] = dart.const({
+    get C15() {
+      return C[15] = dart.const({
         __proto__: widget_inspector._Location.prototype,
         [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 25,
-        [_Location_line]: 36,
+        [_Location_name]: "height",
+        [_Location_column]: 32,
+        [_Location_line]: 66,
         [_Location_file]: null
+      });
+    },
+    get C14() {
+      return C[14] = dart.constList([C[15] || CT.C15], T._LocationL());
+    },
+    get C13() {
+      return C[13] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[14] || CT.C14,
+        [_Location_name]: null,
+        [_Location_column]: 23,
+        [_Location_line]: 66,
+        [_Location_file]: "file:///D:/Abdul-Mateen/Edu/curricular/Year%203%20sem%202/COE%20356%20Intro%20to%20Software%20engineering/Project/Papperless-Document-Handling-System/client/lib/screens/detail_screen/approval_progress.dart"
       });
     },
     get C18() {
       return C[18] = dart.const({
         __proto__: widget_inspector._Location.prototype,
         [_Location_parameterLocations]: null,
-        [_Location_name]: "value",
-        [_Location_column]: 25,
-        [_Location_line]: 41,
+        [_Location_name]: "data",
+        [_Location_column]: 27,
+        [_Location_line]: 68,
         [_Location_file]: null
       });
     },
-    get C16() {
-      return C[16] = dart.constList([C[17] || CT.C17, C[18] || CT.C18], T._LocationL());
-    },
-    get C15() {
-      return C[15] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[16] || CT.C16,
-        [_Location_name]: null,
-        [_Location_column]: 30,
-        [_Location_line]: 35,
-        [_Location_file]: "file:///C:/Users/Ejas/Desktop/App_files/Papperless-Document-Handling-System/client/lib/screens/send_doc_screen/select_recepient.dart"
-      });
-    },
-    get C21() {
-      return C[21] = dart.const({
+    get C19() {
+      return C[19] = dart.const({
         __proto__: widget_inspector._Location.prototype,
         [_Location_parameterLocations]: null,
-        [_Location_name]: "value",
-        [_Location_column]: 17,
-        [_Location_line]: 29,
+        [_Location_name]: "textAlign",
+        [_Location_column]: 25,
+        [_Location_line]: 69,
         [_Location_file]: null
+      });
+    },
+    get C17() {
+      return C[17] = dart.constList([C[18] || CT.C18, C[19] || CT.C19], T._LocationL());
+    },
+    get C16() {
+      return C[16] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[17] || CT.C17,
+        [_Location_name]: null,
+        [_Location_column]: 23,
+        [_Location_line]: 67,
+        [_Location_file]: "file:///D:/Abdul-Mateen/Edu/curricular/Year%203%20sem%202/COE%20356%20Intro%20to%20Software%20engineering/Project/Papperless-Document-Handling-System/client/lib/screens/detail_screen/approval_progress.dart"
       });
     },
     get C22() {
       return C[22] = dart.const({
         __proto__: widget_inspector._Location.prototype,
         [_Location_parameterLocations]: null,
-        [_Location_name]: "isExpanded",
-        [_Location_column]: 17,
-        [_Location_line]: 30,
+        [_Location_name]: "children",
+        [_Location_column]: 21,
+        [_Location_line]: 44,
         [_Location_file]: null
       });
     },
-    get C23() {
-      return C[23] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "underline",
-        [_Location_column]: 17,
-        [_Location_line]: 31,
-        [_Location_file]: null
-      });
+    get C21() {
+      return C[21] = dart.constList([C[22] || CT.C22], T._LocationL());
     },
-    get C24() {
-      return C[24] = dart.const({
+    get C20() {
+      return C[20] = dart.const({
         __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "icon",
-        [_Location_column]: 17,
-        [_Location_line]: 32,
-        [_Location_file]: null
+        [_Location_parameterLocations]: C[21] || CT.C21,
+        [_Location_name]: null,
+        [_Location_column]: 26,
+        [_Location_line]: 43,
+        [_Location_file]: "file:///D:/Abdul-Mateen/Edu/curricular/Year%203%20sem%202/COE%20356%20Intro%20to%20Software%20engineering/Project/Papperless-Document-Handling-System/client/lib/screens/detail_screen/approval_progress.dart"
       });
     },
     get C25() {
       return C[25] = dart.const({
         __proto__: widget_inspector._Location.prototype,
         [_Location_parameterLocations]: null,
-        [_Location_name]: "items",
-        [_Location_column]: 17,
-        [_Location_line]: 33,
+        [_Location_name]: "child",
+        [_Location_column]: 19,
+        [_Location_line]: 43,
         [_Location_file]: null
       });
+    },
+    get C24() {
+      return C[24] = dart.constList([C[25] || CT.C25], T._LocationL());
+    },
+    get C23() {
+      return C[23] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[24] || CT.C24,
+        [_Location_name]: null,
+        [_Location_column]: 24,
+        [_Location_line]: 42,
+        [_Location_file]: "file:///D:/Abdul-Mateen/Edu/curricular/Year%203%20sem%202/COE%20356%20Intro%20to%20Software%20engineering/Project/Papperless-Document-Handling-System/client/lib/screens/detail_screen/approval_progress.dart"
+      });
+    },
+    get C28() {
+      return C[28] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "children",
+        [_Location_column]: 15,
+        [_Location_line]: 37,
+        [_Location_file]: null
+      });
+    },
+    get C27() {
+      return C[27] = dart.constList([C[28] || CT.C28], T._LocationL());
     },
     get C26() {
       return C[26] = dart.const({
         __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "onChanged",
-        [_Location_column]: 17,
-        [_Location_line]: 45,
-        [_Location_file]: null
-      });
-    },
-    get C20() {
-      return C[20] = dart.constList([C[21] || CT.C21, C[22] || CT.C22, C[23] || CT.C23, C[24] || CT.C24, C[25] || CT.C25, C[26] || CT.C26], T._LocationL());
-    },
-    get C19() {
-      return C[19] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[20] || CT.C20,
+        [_Location_parameterLocations]: C[27] || CT.C27,
         [_Location_name]: null,
-        [_Location_column]: 22,
-        [_Location_line]: 28,
-        [_Location_file]: "file:///C:/Users/Ejas/Desktop/App_files/Papperless-Document-Handling-System/client/lib/screens/send_doc_screen/select_recepient.dart"
-      });
-    },
-    get C29() {
-      return C[29] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "height",
-        [_Location_column]: 15,
-        [_Location_line]: 23,
-        [_Location_file]: null
-      });
-    },
-    get C30() {
-      return C[30] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "padding",
-        [_Location_column]: 15,
-        [_Location_line]: 25,
-        [_Location_file]: null
+        [_Location_column]: 13,
+        [_Location_line]: 36,
+        [_Location_file]: "file:///D:/Abdul-Mateen/Edu/curricular/Year%203%20sem%202/COE%20356%20Intro%20to%20Software%20engineering/Project/Papperless-Document-Handling-System/client/lib/screens/detail_screen/approval_progress.dart"
       });
     },
     get C31() {
       return C[31] = dart.const({
         __proto__: widget_inspector._Location.prototype,
         [_Location_parameterLocations]: null,
-        [_Location_name]: "width",
-        [_Location_column]: 15,
-        [_Location_line]: 26,
+        [_Location_name]: "alignment",
+        [_Location_column]: 7,
+        [_Location_line]: 25,
         [_Location_file]: null
       });
     },
@@ -318,9 +291,9 @@ define(['dart_sdk', 'packages/flutter/src/widgets/widget_span.dart', 'packages/f
       return C[32] = dart.const({
         __proto__: widget_inspector._Location.prototype,
         [_Location_parameterLocations]: null,
-        [_Location_name]: "color",
-        [_Location_column]: 15,
-        [_Location_line]: 27,
+        [_Location_name]: "height",
+        [_Location_column]: 7,
+        [_Location_line]: 26,
         [_Location_file]: null
       });
     },
@@ -329,342 +302,277 @@ define(['dart_sdk', 'packages/flutter/src/widgets/widget_span.dart', 'packages/f
         __proto__: widget_inspector._Location.prototype,
         [_Location_parameterLocations]: null,
         [_Location_name]: "child",
-        [_Location_column]: 15,
-        [_Location_line]: 28,
+        [_Location_column]: 7,
+        [_Location_line]: 27,
         [_Location_file]: null
       });
     },
-    get C28() {
-      return C[28] = dart.constList([C[29] || CT.C29, C[30] || CT.C30, C[31] || CT.C31, C[32] || CT.C32, C[33] || CT.C33], T._LocationL());
+    get C30() {
+      return C[30] = dart.constList([C[31] || CT.C31, C[32] || CT.C32, C[33] || CT.C33], T._LocationL());
     },
-    get C27() {
-      return C[27] = dart.const({
+    get C29() {
+      return C[29] = dart.const({
         __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[28] || CT.C28,
+        [_Location_parameterLocations]: C[30] || CT.C30,
         [_Location_name]: null,
-        [_Location_column]: 13,
-        [_Location_line]: 22,
-        [_Location_file]: "file:///C:/Users/Ejas/Desktop/App_files/Papperless-Document-Handling-System/client/lib/screens/send_doc_screen/select_recepient.dart"
+        [_Location_column]: 12,
+        [_Location_line]: 24,
+        [_Location_file]: "file:///D:/Abdul-Mateen/Edu/curricular/Year%203%20sem%202/COE%20356%20Intro%20to%20Software%20engineering/Project/Papperless-Document-Handling-System/client/lib/screens/detail_screen/approval_progress.dart"
       });
     },
     get C36() {
       return C[36] = dart.const({
         __proto__: widget_inspector._Location.prototype,
         [_Location_parameterLocations]: null,
-        [_Location_name]: "children",
-        [_Location_column]: 11,
-        [_Location_line]: 16,
+        [_Location_name]: "width",
+        [_Location_column]: 7,
+        [_Location_line]: 109,
+        [_Location_file]: null
+      });
+    },
+    get C37() {
+      return C[37] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "height",
+        [_Location_column]: 7,
+        [_Location_line]: 110,
+        [_Location_file]: null
+      });
+    },
+    get C38() {
+      return C[38] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "decoration",
+        [_Location_column]: 7,
+        [_Location_line]: 111,
         [_Location_file]: null
       });
     },
     get C35() {
-      return C[35] = dart.constList([C[36] || CT.C36], T._LocationL());
+      return C[35] = dart.constList([C[36] || CT.C36, C[37] || CT.C37, C[38] || CT.C38], T._LocationL());
     },
     get C34() {
       return C[34] = dart.const({
         __proto__: widget_inspector._Location.prototype,
         [_Location_parameterLocations]: C[35] || CT.C35,
         [_Location_name]: null,
-        [_Location_column]: 16,
-        [_Location_line]: 15,
-        [_Location_file]: "file:///C:/Users/Ejas/Desktop/App_files/Papperless-Document-Handling-System/client/lib/screens/send_doc_screen/select_recepient.dart"
+        [_Location_column]: 12,
+        [_Location_line]: 108,
+        [_Location_file]: "file:///D:/Abdul-Mateen/Edu/curricular/Year%203%20sem%202/COE%20356%20Intro%20to%20Software%20engineering/Project/Papperless-Document-Handling-System/client/lib/screens/detail_screen/approval_progress.dart"
       });
+    },
+    get C40() {
+      return C[40] = dart.constList([], T._LocationL());
     },
     get C39() {
       return C[39] = dart.const({
         __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "borderRadius",
-        [_Location_column]: 9,
-        [_Location_line]: 14,
-        [_Location_file]: null
-      });
-    },
-    get C40() {
-      return C[40] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 9,
-        [_Location_line]: 15,
-        [_Location_file]: null
-      });
-    },
-    get C38() {
-      return C[38] = dart.constList([C[39] || CT.C39, C[40] || CT.C40], T._LocationL());
-    },
-    get C37() {
-      return C[37] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[38] || CT.C38,
+        [_Location_parameterLocations]: C[40] || CT.C40,
         [_Location_name]: null,
-        [_Location_column]: 7,
-        [_Location_line]: 13,
-        [_Location_file]: "file:///C:/Users/Ejas/Desktop/App_files/Papperless-Document-Handling-System/client/lib/screens/send_doc_screen/select_recepient.dart"
+        [_Location_column]: 13,
+        [_Location_line]: 151,
+        [_Location_file]: "file:///D:/Abdul-Mateen/Edu/curricular/Year%203%20sem%202/COE%20356%20Intro%20to%20Software%20engineering/Project/Papperless-Document-Handling-System/client/lib/screens/detail_screen/approval_progress.dart"
       });
     },
     get C43() {
       return C[43] = dart.const({
         __proto__: widget_inspector._Location.prototype,
         [_Location_parameterLocations]: null,
-        [_Location_name]: "data",
-        [_Location_column]: 59,
-        [_Location_line]: 75,
+        [_Location_name]: "height",
+        [_Location_column]: 15,
+        [_Location_line]: 153,
+        [_Location_file]: null
+      });
+    },
+    get C44() {
+      return C[44] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "decoration",
+        [_Location_column]: 15,
+        [_Location_line]: 154,
         [_Location_file]: null
       });
     },
     get C42() {
-      return C[42] = dart.constList([C[43] || CT.C43], T._LocationL());
+      return C[42] = dart.constList([C[43] || CT.C43, C[44] || CT.C44], T._LocationL());
     },
     get C41() {
       return C[41] = dart.const({
         __proto__: widget_inspector._Location.prototype,
         [_Location_parameterLocations]: C[42] || CT.C42,
         [_Location_name]: null,
-        [_Location_column]: 28,
-        [_Location_line]: 75,
-        [_Location_file]: "file:///C:/Users/Ejas/Desktop/App_files/Papperless-Document-Handling-System/client/lib/screens/send_doc_screen/select_recepient.dart"
-      });
-    },
-    get C46() {
-      return C[46] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "value",
-        [_Location_column]: 21,
-        [_Location_line]: 72,
-        [_Location_file]: null
+        [_Location_column]: 13,
+        [_Location_line]: 152,
+        [_Location_file]: "file:///D:/Abdul-Mateen/Edu/curricular/Year%203%20sem%202/COE%20356%20Intro%20to%20Software%20engineering/Project/Papperless-Document-Handling-System/client/lib/screens/detail_screen/approval_progress.dart"
       });
     },
     get C47() {
       return C[47] = dart.const({
         __proto__: widget_inspector._Location.prototype,
         [_Location_parameterLocations]: null,
-        [_Location_name]: "shape",
-        [_Location_column]: 21,
-        [_Location_line]: 73,
+        [_Location_name]: "child",
+        [_Location_column]: 7,
+        [_Location_line]: 150,
         [_Location_file]: null
       });
     },
-    get C48() {
-      return C[48] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "title",
-        [_Location_column]: 21,
-        [_Location_line]: 75,
-        [_Location_file]: null
-      });
-    },
-    get C49() {
-      return C[49] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "activeColor",
-        [_Location_column]: 21,
-        [_Location_line]: 76,
-        [_Location_file]: null
-      });
-    },
-    get C50() {
-      return C[50] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "onChanged",
-        [_Location_column]: 21,
-        [_Location_line]: 77,
-        [_Location_file]: null
-      });
+    get C46() {
+      return C[46] = dart.constList([C[47] || CT.C47], T._LocationL());
     },
     get C45() {
-      return C[45] = dart.constList([C[46] || CT.C46, C[47] || CT.C47, C[48] || CT.C48, C[49] || CT.C49, C[50] || CT.C50], T._LocationL());
-    },
-    get C44() {
-      return C[44] = dart.const({
+      return C[45] = dart.const({
         __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[45] || CT.C45,
+        [_Location_parameterLocations]: C[46] || CT.C46,
         [_Location_name]: null,
-        [_Location_column]: 24,
-        [_Location_line]: 71,
-        [_Location_file]: "file:///C:/Users/Ejas/Desktop/App_files/Papperless-Document-Handling-System/client/lib/screens/send_doc_screen/select_recepient.dart"
-      });
-    },
-    get C53() {
-      return C[53] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "margin",
-        [_Location_column]: 17,
-        [_Location_line]: 67,
-        [_Location_file]: null
-      });
-    },
-    get C54() {
-      return C[54] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "decoration",
-        [_Location_column]: 17,
-        [_Location_line]: 68,
-        [_Location_file]: null
-      });
-    },
-    get C55() {
-      return C[55] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 17,
-        [_Location_line]: 71,
-        [_Location_file]: null
-      });
-    },
-    get C52() {
-      return C[52] = dart.constList([C[53] || CT.C53, C[54] || CT.C54, C[55] || CT.C55], T._LocationL());
-    },
-    get C51() {
-      return C[51] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[52] || CT.C52,
-        [_Location_name]: null,
-        [_Location_column]: 22,
-        [_Location_line]: 66,
-        [_Location_file]: "file:///C:/Users/Ejas/Desktop/App_files/Papperless-Document-Handling-System/client/lib/screens/send_doc_screen/select_recepient.dart"
-      });
-    },
-    get C58() {
-      return C[58] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "padding",
-        [_Location_column]: 13,
-        [_Location_line]: 60,
-        [_Location_file]: null
-      });
-    },
-    get C59() {
-      return C[59] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "itemCount",
-        [_Location_column]: 13,
-        [_Location_line]: 61,
-        [_Location_file]: null
-      });
-    },
-    get C60() {
-      return C[60] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "itemBuilder",
-        [_Location_column]: 13,
-        [_Location_line]: 62,
-        [_Location_file]: null
-      });
-    },
-    get C57() {
-      return C[57] = dart.constList([C[58] || CT.C58, C[59] || CT.C59, C[60] || CT.C60], T._LocationL());
-    },
-    get C56() {
-      return C[56] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[57] || CT.C57,
-        [_Location_name]: null,
-        [_Location_column]: 25,
-        [_Location_line]: 59,
-        [_Location_file]: "file:///C:/Users/Ejas/Desktop/App_files/Papperless-Document-Handling-System/client/lib/screens/send_doc_screen/select_recepient.dart"
-      });
-    },
-    get C63() {
-      return C[63] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 9,
-        [_Location_line]: 59,
-        [_Location_file]: null
-      });
-    },
-    get C62() {
-      return C[62] = dart.constList([C[63] || CT.C63], T._LocationL());
-    },
-    get C61() {
-      return C[61] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[62] || CT.C62,
-        [_Location_name]: null,
-        [_Location_column]: 7,
-        [_Location_line]: 58,
-        [_Location_file]: "file:///C:/Users/Ejas/Desktop/App_files/Papperless-Document-Handling-System/client/lib/screens/send_doc_screen/select_recepient.dart"
-      });
-    },
-    get C66() {
-      return C[66] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "children",
-        [_Location_column]: 5,
-        [_Location_line]: 12,
-        [_Location_file]: null
-      });
-    },
-    get C65() {
-      return C[65] = dart.constList([C[66] || CT.C66], T._LocationL());
-    },
-    get C64() {
-      return C[64] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[65] || CT.C65,
-        [_Location_name]: null,
-        [_Location_column]: 10,
-        [_Location_line]: 11,
-        [_Location_file]: "file:///C:/Users/Ejas/Desktop/App_files/Papperless-Document-Handling-System/client/lib/screens/send_doc_screen/select_recepient.dart"
+        [_Location_column]: 12,
+        [_Location_line]: 149,
+        [_Location_file]: "file:///D:/Abdul-Mateen/Edu/curricular/Year%203%20sem%202/COE%20356%20Intro%20to%20Software%20engineering/Project/Papperless-Document-Handling-System/client/lib/screens/detail_screen/approval_progress.dart"
       });
     }
   }, false);
-  var C = Array(67).fill(void 0);
+  var C = Array(48).fill(void 0);
+  var I = ["package:softdoc/screens/detail_screen/approval_progress.dart"];
+  var approvalList$ = dart.privateName(approval_progress, "ApprovalProgress.approvalList");
+  var docStatus$ = dart.privateName(approval_progress, "ApprovalProgress.docStatus");
+  approval_progress.ApprovalProgress = class ApprovalProgress extends framework.StatefulWidget {
+    get approvalList() {
+      return this[approvalList$];
+    }
+    set approvalList(value) {
+      super.approvalList = value;
+    }
+    get docStatus() {
+      return this[docStatus$];
+    }
+    set docStatus(value) {
+      super.docStatus = value;
+    }
+    createState() {
+      return new approval_progress._ApprovalProgressState.new();
+    }
+  };
+  (approval_progress.ApprovalProgress.new = function(opts) {
+    let key = opts && 'key' in opts ? opts.key : null;
+    let approvalList = opts && 'approvalList' in opts ? opts.approvalList : null;
+    let docStatus = opts && 'docStatus' in opts ? opts.docStatus : null;
+    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
+    this[approvalList$] = approvalList;
+    this[docStatus$] = docStatus;
+    approval_progress.ApprovalProgress.__proto__.new.call(this, {key: key, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
+    ;
+  }).prototype = approval_progress.ApprovalProgress.prototype;
+  dart.addTypeTests(approval_progress.ApprovalProgress);
+  dart.addTypeCaches(approval_progress.ApprovalProgress);
+  dart.setMethodSignature(approval_progress.ApprovalProgress, () => ({
+    __proto__: dart.getMethods(approval_progress.ApprovalProgress.__proto__),
+    createState: dart.fnType(dart.legacy(approval_progress._ApprovalProgressState), [])
+  }));
+  dart.setLibraryUri(approval_progress.ApprovalProgress, I[0]);
+  dart.setFieldSignature(approval_progress.ApprovalProgress, () => ({
+    __proto__: dart.getFields(approval_progress.ApprovalProgress.__proto__),
+    approvalList: dart.finalFieldType(dart.legacy(core.Map$(dart.legacy(core.String), dart.legacy(core.String)))),
+    docStatus: dart.finalFieldType(dart.legacy(core.String))
+  }));
   var _Location_parameterLocations = dart.privateName(widget_inspector, "_Location.parameterLocations");
   var _Location_name = dart.privateName(widget_inspector, "_Location.name");
   var _Location_column = dart.privateName(widget_inspector, "_Location.column");
   var _Location_line = dart.privateName(widget_inspector, "_Location.line");
   var _Location_file = dart.privateName(widget_inspector, "_Location.file");
-  select_recepient.selectRecepient = function selectRecepient(setMainState, setModalState = null) {
-    return new basic.Column.new({children: T.JSArrayOfWidgetL().of([new basic.ClipRRect.new({borderRadius: new border_radius.BorderRadius.circular(7.0), child: new basic.Column.new({children: (() => {
-              let t0 = T.JSArrayOfWidgetL().of([]);
-              if (setModalState == null) t0[$add](new container.Container.new({height: 4.0, color: style.primary, $creationLocationd_0dea112b090073317d4: C[0] || CT.C0}));
-              t0[$add](new container.Container.new({height: 55.0, padding: new edge_insets.EdgeInsets.symmetric({horizontal: 15.0}), width: 1 / 0, color: style.primaryLight, child: new (T.DropdownButtonOfStringL()).new({value: utills.selectedDept.id, isExpanded: true, underline: new basic.SizedBox.shrink({$creationLocationd_0dea112b090073317d4: C[4] || CT.C4}), icon: new icon.Icon.new(icons.Icons.arrow_drop_down, {color: style.primaryDark, $creationLocationd_0dea112b090073317d4: C[6] || CT.C6}), items: utills.departments[$map](T.DropdownMenuItemLOfStringL(), dart.fn(e => new (T.DropdownMenuItemOfStringL()).new({child: new text.Text.new(e.name, {maxLines: 1, overflow: paragraph.TextOverflow.ellipsis, $creationLocationd_0dea112b090073317d4: C[10] || CT.C10}), value: e.id, $creationLocationd_0dea112b090073317d4: C[15] || CT.C15}), T.DepartmentLToDropdownMenuItemLOfStringL()))[$toList](), onChanged: dart.fn(newVal => {
-                    core.print(newVal);
-                    utills.selectedDept = utills.departments[$singleWhere](dart.fn(dept => dept.id == newVal, T.DepartmentLToboolL()));
-                    dart.dcall(setMainState, []);
-                    if (setModalState != null) dart.dcall(setModalState, [dart.fn(() => {
-                      }, T.VoidToNull())]);
-                  }, T.StringLToNull()), $creationLocationd_0dea112b090073317d4: C[19] || CT.C19}), $creationLocationd_0dea112b090073317d4: C[27] || CT.C27}));
-              return t0;
-            })(), $creationLocationd_0dea112b090073317d4: C[34] || CT.C34}), $creationLocationd_0dea112b090073317d4: C[37] || CT.C37}), new basic.Expanded.new({child: new scroll_view.ListView.builder({padding: new edge_insets.EdgeInsets.symmetric({horizontal: 12.0, vertical: 10.0}), itemCount: utills.selectedDept.users[$length], itemBuilder: dart.fn((context, index) => {
-              let selected = utills.approvals[$contains](utills.selectedDept.users[$_get](index).id);
-              return new container.Container.new({margin: new edge_insets.EdgeInsets.symmetric({vertical: 5.0}), decoration: new box_decoration.BoxDecoration.new({color: style.primaryLight, borderRadius: new border_radius.BorderRadius.circular(7.0)}), child: new checkbox_list_tile.CheckboxListTile.new({value: selected, shape: new rounded_rectangle_border.RoundedRectangleBorder.new({borderRadius: new border_radius.BorderRadius.circular(7.0)}), title: new text.Text.new(utills.selectedDept.users[$_get](index).title, {$creationLocationd_0dea112b090073317d4: C[41] || CT.C41}), activeColor: style.primary, onChanged: dart.fn(newVal => {
-                    if (dart.test(selected)) {
-                      utills.approvals[$remove](utills.selectedDept.users[$_get](index).id);
-                      dart.dcall(setMainState, []);
-                      if (setModalState != null) dart.dcall(setModalState, [dart.fn(() => {
-                        }, T.VoidToNull())]);
-                    } else {
-                      utills.approvals[$add](utills.selectedDept.users[$_get](index).id);
-                      dart.dcall(setMainState, []);
-                      if (setModalState != null) dart.dcall(setModalState, [dart.fn(() => {
-                        }, T.VoidToNull())]);
-                    }
-                  }, T.boolLToNull()), $creationLocationd_0dea112b090073317d4: C[44] || CT.C44}), $creationLocationd_0dea112b090073317d4: C[51] || CT.C51});
-            }, T.BuildContextLAndintLToContainerL()), $creationLocationd_0dea112b090073317d4: C[56] || CT.C56}), $creationLocationd_0dea112b090073317d4: C[61] || CT.C61})]), $creationLocationd_0dea112b090073317d4: C[64] || CT.C64});
+  approval_progress._ApprovalProgressState = class _ApprovalProgressState extends framework.State$(dart.legacy(approval_progress.ApprovalProgress)) {
+    build(context) {
+      let approvalListKeys = this.widget.approvalList[$keys][$toList]();
+      return new container.Container.new({alignment: alignment.Alignment.topCenter, height: 80.0, child: this.widget.approvalList[$length] === 1 ? new basic.Column.new({mainAxisAlignment: flex.MainAxisAlignment.center, children: T.JSArrayOfWidgetL().of([this.progressDot(this.widget.approvalList[$values][$first]), new basic.SizedBox.new({height: 12.0, $creationLocationd_0dea112b090073317d4: C[0] || CT.C0}), new text.Text.new(approvalListKeys[$_get](0), {$creationLocationd_0dea112b090073317d4: C[3] || CT.C3})]), $creationLocationd_0dea112b090073317d4: C[6] || CT.C6}) : new basic.Row.new({children: this.widget.approvalList[$entries][$map](T.ExpandedL(), dart.fn(e => {
+            let isFirst = false;
+            let isLast = false;
+            if (approvalListKeys[$first] == e.key) isFirst = true;
+            if (approvalListKeys[$last] == e.key) isLast = true;
+            return new basic.Expanded.new({child: new basic.Column.new({children: T.JSArrayOfWidgetL().of([new basic.Row.new({children: T.JSArrayOfWidgetL().of([this.progressLine({isFirst: isFirst, start: this.widget.approvalList[$_get](approvalListKeys[$_get]((dart.notNull(approvalListKeys[$indexOf](e.key)) - 1)[$modulo](this.widget.approvalList[$length]))), end: e.value, beforeLine: true}), this.progressDot(e.value), this.progressLine({isLast: isLast, start: e.value, end: this.widget.approvalList[$_get](approvalListKeys[$_get]((dart.notNull(approvalListKeys[$indexOf](e.key)) + 1)[$modulo](this.widget.approvalList[$length]))), afterLine: true})]), $creationLocationd_0dea112b090073317d4: C[10] || CT.C10}), new basic.SizedBox.new({height: 12.0, $creationLocationd_0dea112b090073317d4: C[13] || CT.C13}), new text.Text.new(e.key, {textAlign: ui.TextAlign.center, $creationLocationd_0dea112b090073317d4: C[16] || CT.C16})]), $creationLocationd_0dea112b090073317d4: C[20] || CT.C20}), $creationLocationd_0dea112b090073317d4: C[23] || CT.C23});
+          }, T.MapEntryLOfStringL$StringLToExpandedL()))[$toList](), $creationLocationd_0dea112b090073317d4: C[26] || CT.C26}), $creationLocationd_0dea112b090073317d4: C[29] || CT.C29});
+    }
+    approvalStateColor(approvalState) {
+      if (approvalState === "pending")
+        return style.yellow;
+      else if (approvalState === "approved")
+        return style.green;
+      else
+        return style.red;
+    }
+    colorMix(startColor, endColor) {
+      return new ui.Color.fromRGBO(((dart.notNull(startColor.red) + dart.notNull(endColor.red)) / 2)[$truncate](), ((dart.notNull(startColor.green) + dart.notNull(endColor.green)) / 2)[$truncate](), ((dart.notNull(startColor.blue) + dart.notNull(endColor.blue)) / 2)[$truncate](), (dart.notNull(startColor.opacity) + dart.notNull(endColor.opacity)) / 2);
+    }
+    progressDot(approvalStatus) {
+      let color = null;
+      if (this.nextIsAsh === true || this.widget.docStatus === "cancelled")
+        color = colors.Colors.grey._get(400);
+      else
+        color = this.approvalStateColor(approvalStatus);
+      if (dart.equals(color, style.red) || dart.equals(color, style.yellow)) {
+        this.nextIsAsh = true;
+        this.lastColoredLine = true;
+      }
+      return new container.Container.new({width: 20.0, height: 20.0, decoration: new box_decoration.BoxDecoration.new({color: color, shape: box_border.BoxShape.circle, boxShadow: T.JSArrayOfBoxShadowL().of([new box_shadow.BoxShadow.new({color: colors.Colors.black26, offset: new ui.Offset.new(0.0, 3.0), blurRadius: 4.0})])}), $creationLocationd_0dea112b090073317d4: C[34] || CT.C34});
+    }
+    progressLine(opts) {
+      let isFirst = opts && 'isFirst' in opts ? opts.isFirst : false;
+      let isLast = opts && 'isLast' in opts ? opts.isLast : false;
+      let start = opts && 'start' in opts ? opts.start : null;
+      let end = opts && 'end' in opts ? opts.end : null;
+      let beforeLine = opts && 'beforeLine' in opts ? opts.beforeLine : false;
+      let afterLine = opts && 'afterLine' in opts ? opts.afterLine : false;
+      let startColor = this.approvalStateColor(start);
+      let endColor = this.approvalStateColor(end);
+      if (this.widget.docStatus === "cancelled")
+        startColor = endColor = colors.Colors.grey._get(400);
+      else if (this.nextIsAsh === true) {
+        startColor = dart.test(this.lastColoredLine) ? startColor : colors.Colors.grey._get(400);
+        if (dart.test(this.lastColoredLine)) this.lastColoredLine = false;
+        if (dart.test(afterLine))
+          endColor = this.colorMix(startColor, colors.Colors.grey._get(400));
+        else {
+          startColor = this.colorMix(startColor, colors.Colors.grey._get(400));
+          endColor = colors.Colors.grey._get(400);
+        }
+      } else if (dart.test(beforeLine))
+        startColor = this.colorMix(startColor, endColor);
+      else if (dart.test(afterLine)) endColor = this.colorMix(startColor, endColor);
+      return new basic.Expanded.new({child: dart.test(isFirst) || dart.test(isLast) ? new basic.SizedBox.new({$creationLocationd_0dea112b090073317d4: C[39] || CT.C39}) : new container.Container.new({height: 3.0, decoration: new box_decoration.BoxDecoration.new({gradient: new gradient.LinearGradient.new({colors: T.JSArrayOfColorL().of([startColor, endColor])})}), $creationLocationd_0dea112b090073317d4: C[41] || CT.C41}), $creationLocationd_0dea112b090073317d4: C[45] || CT.C45});
+    }
   };
-  dart.trackLibraries("packages/softdoc/screens/send_doc_screen/select_recepient.dart", {
-    "package:softdoc/screens/send_doc_screen/select_recepient.dart": select_recepient
+  (approval_progress._ApprovalProgressState.new = function() {
+    this.previousColor = null;
+    this.nextIsAsh = null;
+    this.lastColoredLine = false;
+    approval_progress._ApprovalProgressState.__proto__.new.call(this);
+    ;
+  }).prototype = approval_progress._ApprovalProgressState.prototype;
+  dart.addTypeTests(approval_progress._ApprovalProgressState);
+  dart.addTypeCaches(approval_progress._ApprovalProgressState);
+  dart.setMethodSignature(approval_progress._ApprovalProgressState, () => ({
+    __proto__: dart.getMethods(approval_progress._ApprovalProgressState.__proto__),
+    build: dart.fnType(dart.legacy(framework.Widget), [dart.legacy(framework.BuildContext)]),
+    approvalStateColor: dart.fnType(dart.legacy(ui.Color), [dart.legacy(core.String)]),
+    colorMix: dart.fnType(dart.legacy(ui.Color), [dart.legacy(ui.Color), dart.legacy(ui.Color)]),
+    progressDot: dart.fnType(dart.legacy(framework.Widget), [dart.legacy(core.String)]),
+    progressLine: dart.fnType(dart.legacy(framework.Widget), [], {afterLine: dart.legacy(core.bool), beforeLine: dart.legacy(core.bool), end: dart.legacy(core.String), isFirst: dart.legacy(core.bool), isLast: dart.legacy(core.bool), start: dart.legacy(core.String)}, {})
+  }));
+  dart.setLibraryUri(approval_progress._ApprovalProgressState, I[0]);
+  dart.setFieldSignature(approval_progress._ApprovalProgressState, () => ({
+    __proto__: dart.getFields(approval_progress._ApprovalProgressState.__proto__),
+    previousColor: dart.fieldType(dart.legacy(ui.Color)),
+    nextIsAsh: dart.fieldType(dart.legacy(core.bool)),
+    lastColoredLine: dart.fieldType(dart.legacy(core.bool))
+  }));
+  dart.trackLibraries("packages/softdoc/screens/detail_screen/approval_progress.dart", {
+    "package:softdoc/screens/detail_screen/approval_progress.dart": approval_progress
   }, {
-  }, '{"version":3,"sourceRoot":"","sources":["select_recepient.dart"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;8DASyB,cAAwB;AAC/C,UAAO,iCACK,yBACR,uCAC6B,wCAAS,aAC7B,gCACK;;AACR,kBAAI,AAAc,aAAD,UACf,8CACU,YACD;AAEX,4DACU,eAEY,kDAAsB,6BAEnC,2BACA,8CACE,AAAa,oCACR,iBACQ,0FACd,kBAAW,qCAAwB,mFAClC,AACF,AAUA,yDATC,QAAC,KAAM,gDACE,kBACL,AAAE,CAAD,kBACS,aACa,mGAElB,AAAE,CAAD,qIAIL,QAAC;AACG,oBAAb,WAAM,MAAM;AAE4C,oBADxD,sBACI,AAAY,iCAAY,QAAC,QAAS,AAAK,AAAG,IAAJ,OAAO,MAAM;AACzC,oBAAF,WAAZ,YAAY;AACZ,wBAAI,aAAa,UAAuB,AAAO,WAApB,aAAa,GAAC;;;;wIAQrD,+BACkB,2CACQ,kDAAsB,gBAAc,mBAC7C,AAAa,AAAM,iDACjB,SAAC,SAAS;AAEhB,6BAAW,AAAU,4BAAS,AAAa,AAAK,AAAQ,iCAAP,KAAK;AAE3D,oBAAO,sCACc,gDAAoB,mBAC3B,6CACD,kCACoB,wCAAS,eACjC,oDACI,QAAQ,SACR,uEACwB,wCAAS,eACjC,kBAAK,AAAa,AAAK,AAAQ,iCAAP,KAAK,kFACvB,0BACF,QAAC;AACV,kCAAI,QAAQ;AAEoC,sBAA9C,AAAU,0BAAO,AAAa,AAAK,AAAQ,iCAAP,KAAK;AAC3B,sBAAF,WAAZ,YAAY;AACZ,0BAAI,aAAa,UAAuB,AAAO,WAApB,aAAa,GAAC;;;AAGE,sBAA3C,AAAU,uBAAI,AAAa,AAAK,AAAQ,iCAAP,KAAK;AACxB,sBAAF,WAAZ,YAAY;AACZ,0BAAI,aAAa,UAAuB,AAAO,WAApB,aAAa,GAAC;;;;;EAQjE","file":"../../../../../../../../../packages/softdoc/screens/send_doc_screen/select_recepient.dart.lib.js"}');
+  }, '{"version":3,"sourceRoot":"","sources":["approval_progress.dart"],"names":[],"mappings":"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","file":"../../../../../../../../../../../packages/softdoc/screens/detail_screen/approval_progress.dart.lib.js"}');
   // Exports:
   return {
-    screens__send_doc_screen__select_recepient: select_recepient
+    screens__detail_screen__approval_progress: approval_progress
   };
 }));
 
-//# sourceMappingURL=select_recepient.dart.lib.js.map
+//# sourceMappingURL=approval_progress.dart.lib.js.map

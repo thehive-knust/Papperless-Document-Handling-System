@@ -1,490 +1,426 @@
-define(['dart_sdk', 'packages/uuid/uuid_util.dart', 'packages/crypto/src/sha1.dart'], (function load__packages__uuid__uuid_dart(dart_sdk, packages__uuid__uuid_util$46dart, packages__crypto__src__sha1$46dart) {
+define(['dart_sdk', 'packages/flutter/src/foundation/_platform_web.dart', 'packages/flutter/src/foundation/debug.dart', 'packages/flutter/src/foundation/print.dart', 'packages/flutter/src/foundation/object.dart'], (function load__packages__flutter__src__foundation__binding_dart(dart_sdk, packages__flutter__src__foundation___platform_web$46dart, packages__flutter__src__foundation__debug$46dart, packages__flutter__src__foundation__print$46dart, packages__flutter__src__foundation__object$46dart) {
   'use strict';
   const core = dart_sdk.core;
-  const _native_typed_data = dart_sdk._native_typed_data;
-  const typed_data = dart_sdk.typed_data;
-  const _interceptors = dart_sdk._interceptors;
+  const developer = dart_sdk.developer;
   const _js_helper = dart_sdk._js_helper;
+  const ui = dart_sdk.ui;
+  const async = dart_sdk.async;
+  const _internal = dart_sdk._internal;
+  const convert = dart_sdk.convert;
+  const io = dart_sdk.io;
   const dart = dart_sdk.dart;
   const dartx = dart_sdk.dartx;
-  const uuid_util = packages__uuid__uuid_util$46dart.uuid_util;
-  const sha1 = packages__crypto__src__sha1$46dart.src__sha1;
-  var uuid$ = Object.create(dart.library);
-  var $toLowerCase = dartx.toLowerCase;
-  var $substring = dartx.substring;
-  var $_set = dartx._set;
-  var $length = dartx.length;
+  const platform = packages__flutter__src__foundation___platform_web$46dart.src__foundation__platform;
+  const debug = packages__flutter__src__foundation__debug$46dart.src__foundation__debug;
+  const assertions = packages__flutter__src__foundation__debug$46dart.src__foundation__assertions;
+  const print = packages__flutter__src__foundation__print$46dart.src__foundation__print;
+  const object = packages__flutter__src__foundation__object$46dart.src__foundation__object;
+  var binding = Object.create(dart.library);
+  var $containsKey = dartx.containsKey;
   var $_get = dartx._get;
-  var $codeUnits = dartx.codeUnits;
-  var $add = dartx.add;
-  var $addAll = dartx.addAll;
-  var $sublist = dartx.sublist;
-  var $toRadixString = dartx.toRadixString;
-  var $padLeft = dartx.padLeft;
-  var $hashCode = dartx.hashCode;
+  var $substring = dartx.substring;
+  var $toString = dartx.toString;
+  var $_set = dartx._set;
   dart._checkModuleNullSafetyMode(false);
   var T = {
-    StringL: () => (T.StringL = dart.constFn(dart.legacy(core.String)))(),
-    MapOfSymbol$dynamic: () => (T.MapOfSymbol$dynamic = dart.constFn(core.Map$(core.Symbol, dart.dynamic)))(),
-    SymbolL: () => (T.SymbolL = dart.constFn(dart.legacy(core.Symbol)))(),
-    ListN: () => (T.ListN = dart.constFn(dart.nullable(core.List)))(),
-    JSArrayOfint: () => (T.JSArrayOfint = dart.constFn(_interceptors.JSArray$(core.int)))(),
+    IdentityMapOfString$String: () => (T.IdentityMapOfString$String = dart.constFn(_js_helper.IdentityMap$(core.String, core.String)))(),
+    VoidTobool: () => (T.VoidTobool = dart.constFn(dart.fnType(core.bool, [])))(),
+    FutureOfvoid: () => (T.FutureOfvoid = dart.constFn(async.Future$(dart.void)))(),
+    VoidToFutureOfvoid: () => (T.VoidToFutureOfvoid = dart.constFn(dart.fnType(T.FutureOfvoid(), [])))(),
     IdentityMapOfString$dynamic: () => (T.IdentityMapOfString$dynamic = dart.constFn(_js_helper.IdentityMap$(core.String, dart.dynamic)))(),
-    VoidTodynamic: () => (T.VoidTodynamic = dart.constFn(dart.fnType(dart.dynamic, [])))(),
-    __ToUint8List: () => (T.__ToUint8List = dart.constFn(dart.fnType(typed_data.Uint8List, [], {seed: core.int}, {})))(),
-    ListOfint: () => (T.ListOfint = dart.constFn(core.List$(core.int)))(),
-    ListOfString: () => (T.ListOfString = dart.constFn(core.List$(core.String)))(),
-    intToString: () => (T.intToString = dart.constFn(dart.fnType(core.String, [core.int])))(),
-    ObjectN: () => (T.ObjectN = dart.constFn(dart.nullable(core.Object)))(),
-    IdentityMapOfString$ObjectN: () => (T.IdentityMapOfString$ObjectN = dart.constFn(_js_helper.IdentityMap$(core.String, T.ObjectN())))(),
-    ValidationModeL: () => (T.ValidationModeL = dart.constFn(dart.legacy(uuid$.ValidationMode)))()
+    MapOfString$dynamic: () => (T.MapOfString$dynamic = dart.constFn(core.Map$(core.String, dart.dynamic)))(),
+    FutureOfMapOfString$dynamic: () => (T.FutureOfMapOfString$dynamic = dart.constFn(async.Future$(T.MapOfString$dynamic())))(),
+    MapOfString$String: () => (T.MapOfString$String = dart.constFn(core.Map$(core.String, core.String)))(),
+    MapOfString$StringToFutureOfMapOfString$dynamic: () => (T.MapOfString$StringToFutureOfMapOfString$dynamic = dart.constFn(dart.fnType(T.FutureOfMapOfString$dynamic(), [T.MapOfString$String()])))(),
+    FutureOfString: () => (T.FutureOfString = dart.constFn(async.Future$(core.String)))(),
+    VoidToFutureOfString: () => (T.VoidToFutureOfString = dart.constFn(dart.fnType(T.FutureOfString(), [])))(),
+    StringToFutureOfvoid: () => (T.StringToFutureOfvoid = dart.constFn(dart.fnType(T.FutureOfvoid(), [core.String])))(),
+    VoidToNull: () => (T.VoidToNull = dart.constFn(dart.fnType(core.Null, [])))(),
+    VoidToMapOfString$dynamic: () => (T.VoidToMapOfString$dynamic = dart.constFn(dart.fnType(T.MapOfString$dynamic(), [])))(),
+    MapOfString$dynamicTodynamic: () => (T.MapOfString$dynamicTodynamic = dart.constFn(dart.fnType(dart.dynamic, [T.MapOfString$dynamic()])))(),
+    FutureOfServiceExtensionResponse: () => (T.FutureOfServiceExtensionResponse = dart.constFn(async.Future$(developer.ServiceExtensionResponse)))(),
+    StringAndMapOfString$StringToFutureOfServiceExtensionResponse: () => (T.StringAndMapOfString$StringToFutureOfServiceExtensionResponse = dart.constFn(dart.fnType(T.FutureOfServiceExtensionResponse(), [core.String, T.MapOfString$String()])))()
   };
   const CT = Object.create({
     _: () => (C, CT)
   });
   dart.defineLazy(CT, {
     get C0() {
-      return C[0] = dart.const({
-        __proto__: uuid$.ValidationMode.prototype,
-        [_name$]: "ValidationMode.strictRFC4122",
-        index: 1
-      });
-    },
-    get C1() {
-      return C[1] = dart.const({
-        __proto__: uuid$.ValidationMode.prototype,
-        [_name$]: "ValidationMode.nonStrict",
-        index: 0
-      });
-    },
-    get C2() {
-      return C[2] = dart.constMap(T.StringL(), dart.dynamic, []);
-    },
-    get C3() {
-      return C[3] = dart.constMap(T.SymbolL(), dart.dynamic, []);
-    },
-    get C4() {
-      return C[4] = dart.fn(uuid_util.UuidUtil.mathRNG, T.__ToUint8List());
-    },
-    get C5() {
-      return C[5] = dart.constList([C[1] || CT.C1, C[0] || CT.C0], T.ValidationModeL());
+      return C[0] = dart.fn(binding._exitApplication, T.VoidToFutureOfvoid());
     }
   }, false);
-  var C = Array(6).fill(void 0);
+  var C = [void 0];
   var I = [
-    "file:///C:/Users/Ejas/Desktop/App_files/flutter/.pub-cache/hosted/pub.dartlang.org/uuid-3.0.4/lib/uuid.dart",
-    "package:uuid/uuid.dart"
+    "file:///C:/src/flutter/packages/flutter/lib/src/foundation/binding.dart",
+    "package:flutter/src/foundation/binding.dart"
   ];
-  var options$ = dart.privateName(uuid$, "Uuid.options");
-  var _name$ = dart.privateName(uuid$, "_name");
-  var _initV1 = dart.privateName(uuid$, "_initV1");
-  var _initV4 = dart.privateName(uuid$, "_initV4");
-  uuid$.Uuid = class Uuid extends core.Object {
-    get options() {
-      return this[options$];
+  var _lockCount = dart.privateName(binding, "_lockCount");
+  var _postExtensionStateChangedEvent = dart.privateName(binding, "_postExtensionStateChangedEvent");
+  binding.BindingBase = class BindingBase extends core.Object {
+    get window() {
+      return ui.window;
     }
-    set options(value) {
-      super.options = value;
+    get platformDispatcher() {
+      return ui.PlatformDispatcher.instance;
     }
-    static isValidUUID(opts) {
-      let fromString = opts && 'fromString' in opts ? opts.fromString : "";
-      if (fromString == null) dart.nullFailed(I[0], 44, 15, "fromString");
-      let fromByteList = opts && 'fromByteList' in opts ? opts.fromByteList : null;
-      let validationMode = opts && 'validationMode' in opts ? opts.validationMode : C[0] || CT.C0;
-      if (validationMode == null) dart.nullFailed(I[0], 46, 22, "validationMode");
-      if (fromByteList != null) {
-        fromString = uuid$.Uuid.unparse(fromByteList);
-      }
-      if (fromString == uuid$.Uuid.NAMESPACE_NIL) {
+    initInstances() {
+      if (!!dart.test(binding.BindingBase._debugInitialized)) dart.assertFailed(null, I[0], 134, 12, "!_debugInitialized");
+      if (!dart.test(dart.fn(() => {
+        binding.BindingBase._debugInitialized = true;
         return true;
+      }, T.VoidTobool())())) dart.assertFailed(null, I[0], 135, 12, "() {\r\n      _debugInitialized = true;\r\n      return true;\r\n    }()");
+    }
+    initServiceExtensions() {
+      if (!!dart.test(binding.BindingBase._debugServiceExtensionsRegistered)) dart.assertFailed(null, I[0], 162, 12, "!_debugServiceExtensionsRegistered");
+      if (!dart.test(dart.fn(() => {
+        this.registerSignalServiceExtension({name: "reassemble", callback: dart.bind(this, 'reassembleApplication')});
+        return true;
+      }, T.VoidTobool())())) dart.assertFailed(null, I[0], 164, 12, "() {\r\n      registerSignalServiceExtension(\r\n        name: 'reassemble',\r\n        callback: reassembleApplication,\r\n      );\r\n      return true;\r\n    }()");
+      if (!false && !true) {
+        this.registerSignalServiceExtension({name: "exit", callback: C[0] || CT.C0});
       }
-      if (fromString.length !== 36) {
-        return false;
-      }
-      switch (validationMode) {
-        case C[0] || CT.C0:
-        {
-          {
-            let pattern = "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$";
-            let regex = core.RegExp.new(pattern, {caseSensitive: false, multiLine: true});
-            let match = regex.hasMatch(fromString);
-            return match;
+      if (!dart.test(dart.fn(() => {
+        this.registerServiceExtension({name: "platformOverride", callback: dart.fn(parameters => {
+            if (parameters == null) dart.nullFailed(I[0], 183, 40, "parameters");
+            return async.async(T.MapOfString$dynamic(), (function*() {
+              if (dart.test(parameters[$containsKey]("value"))) {
+                switch (parameters[$_get]("value")) {
+                  case "android":
+                  {
+                    platform.debugDefaultTargetPlatformOverride = platform.TargetPlatform.android;
+                    break;
+                  }
+                  case "fuchsia":
+                  {
+                    platform.debugDefaultTargetPlatformOverride = platform.TargetPlatform.fuchsia;
+                    break;
+                  }
+                  case "iOS":
+                  {
+                    platform.debugDefaultTargetPlatformOverride = platform.TargetPlatform.iOS;
+                    break;
+                  }
+                  case "linux":
+                  {
+                    platform.debugDefaultTargetPlatformOverride = platform.TargetPlatform.linux;
+                    break;
+                  }
+                  case "macOS":
+                  {
+                    platform.debugDefaultTargetPlatformOverride = platform.TargetPlatform.macOS;
+                    break;
+                  }
+                  case "windows":
+                  {
+                    platform.debugDefaultTargetPlatformOverride = platform.TargetPlatform.windows;
+                    break;
+                  }
+                  case "default":
+                  default:
+                  {
+                    platform.debugDefaultTargetPlatformOverride = null;
+                  }
+                }
+                this[_postExtensionStateChangedEvent]("platformOverride", dart.toString(platform.defaultTargetPlatform)[$substring]((dart.str(dart.wrapType(platform.TargetPlatform)) + ".").length));
+                yield this.reassembleApplication();
+              }
+              return new (T.IdentityMapOfString$dynamic()).from(["value", dart.toString(platform.defaultTargetPlatform)[$substring]((dart.str(dart.wrapType(platform.TargetPlatform)) + ".").length)]);
+            }).bind(this));
+          }, T.MapOfString$StringToFutureOfMapOfString$dynamic())});
+        this.registerServiceExtension({name: "brightnessOverride", callback: dart.fn(parameters => {
+            if (parameters == null) dart.nullFailed(I[0], 225, 40, "parameters");
+            return async.async(T.MapOfString$dynamic(), (function*() {
+              let t0, t0$;
+              if (dart.test(parameters[$containsKey]("value"))) {
+                switch (parameters[$_get]("value")) {
+                  case "Brightness.light":
+                  {
+                    debug.debugBrightnessOverride = ui.Brightness.light;
+                    break;
+                  }
+                  case "Brightness.dark":
+                  {
+                    debug.debugBrightnessOverride = ui.Brightness.dark;
+                    break;
+                  }
+                  default:
+                  {
+                    debug.debugBrightnessOverride = null;
+                  }
+                }
+                this[_postExtensionStateChangedEvent]("brightnessOverride", dart.toString((t0 = debug.debugBrightnessOverride, t0 == null ? this.window.platformBrightness : t0)));
+                yield this.reassembleApplication();
+              }
+              return new (T.IdentityMapOfString$dynamic()).from(["value", dart.toString((t0$ = debug.debugBrightnessOverride, t0$ == null ? this.window.platformBrightness : t0$))]);
+            }).bind(this));
+          }, T.MapOfString$StringToFutureOfMapOfString$dynamic())});
+        this.registerStringServiceExtension({name: "connectedVmServiceUri", getter: dart.fn(() => async.async(core.String, function*() {
+            let t0;
+            t0 = debug.connectedVmServiceUri;
+            return t0 == null ? "" : t0;
+          }), T.VoidToFutureOfString()), setter: dart.fn(uri => {
+            if (uri == null) dart.nullFailed(I[0], 252, 25, "uri");
+            return async.async(dart.void, function*() {
+              debug.connectedVmServiceUri = uri;
+            });
+          }, T.StringToFutureOfvoid())});
+        this.registerStringServiceExtension({name: "activeDevToolsServerAddress", getter: dart.fn(() => async.async(core.String, function*() {
+            let t0;
+            t0 = debug.activeDevToolsServerAddress;
+            return t0 == null ? "" : t0;
+          }), T.VoidToFutureOfString()), setter: dart.fn(serverAddress => {
+            if (serverAddress == null) dart.nullFailed(I[0], 260, 25, "serverAddress");
+            return async.async(dart.void, function*() {
+              debug.activeDevToolsServerAddress = serverAddress;
+            });
+          }, T.StringToFutureOfvoid())});
+        return true;
+      }, T.VoidTobool())())) dart.assertFailed(null, I[0], 179, 12, "() {\r\n      const String platformOverrideExtensionName = 'platformOverride';\r\n      registerServiceExtension(\r\n        name: platformOverrideExtensionName,\r\n        callback: (Map<String, String> parameters) async {\r\n          if (parameters.containsKey('value')) {\r\n            switch (parameters['value']) {\r\n              case 'android':\r\n                debugDefaultTargetPlatformOverride = TargetPlatform.android;\r\n                break;\r\n              case 'fuchsia':\r\n                debugDefaultTargetPlatformOverride = TargetPlatform.fuchsia;\r\n                break;\r\n              case 'iOS':\r\n                debugDefaultTargetPlatformOverride = TargetPlatform.iOS;\r\n                break;\r\n              case 'linux':\r\n                debugDefaultTargetPlatformOverride = TargetPlatform.linux;\r\n                break;\r\n              case 'macOS':\r\n                debugDefaultTargetPlatformOverride = TargetPlatform.macOS;\r\n                break;\r\n              case 'windows':\r\n                debugDefaultTargetPlatformOverride = TargetPlatform.windows;\r\n                break;\r\n              case 'default':\r\n              default:\r\n                debugDefaultTargetPlatformOverride = null;\r\n            }\r\n            _postExtensionStateChangedEvent(\r\n              platformOverrideExtensionName,\r\n              defaultTargetPlatform.toString().substring('$TargetPlatform.'.length),\r\n            );\r\n            await reassembleApplication();\r\n          }\r\n          return <String, dynamic>{\r\n            'value': defaultTargetPlatform\r\n                     .toString()\r\n                     .substring('$TargetPlatform.'.length),\r\n          };\r\n        },\r\n      );\r\n\r\n      const String brightnessOverrideExtensionName = 'brightnessOverride';\r\n      registerServiceExtension(\r\n        name: brightnessOverrideExtensionName,\r\n        callback: (Map<String, String> parameters) async {\r\n          if (parameters.containsKey('value')) {\r\n            switch (parameters['value']) {\r\n              case 'Brightness.light':\r\n                debugBrightnessOverride = ui.Brightness.light;\r\n                break;\r\n              case 'Brightness.dark':\r\n                debugBrightnessOverride = ui.Brightness.dark;\r\n                break;\r\n              default:\r\n                debugBrightnessOverride = null;\r\n            }\r\n            _postExtensionStateChangedEvent(\r\n              brightnessOverrideExtensionName,\r\n              (debugBrightnessOverride ?? window.platformBrightness).toString(),\r\n            );\r\n            await reassembleApplication();\r\n          }\r\n          return <String, dynamic>{\r\n            'value': (debugBrightnessOverride ?? window.platformBrightness).toString(),\r\n          };\r\n        },\r\n      );\r\n\r\n      registerStringServiceExtension(\r\n        name: 'connectedVmServiceUri',\r\n        getter: () async => connectedVmServiceUri ?? '',\r\n        setter: (String uri) async {\r\n          connectedVmServiceUri = uri;\r\n        },\r\n      );\r\n\r\n      registerStringServiceExtension(\r\n        name: 'activeDevToolsServerAddress',\r\n        getter: () async => activeDevToolsServerAddress ?? '',\r\n        setter: (String serverAddress) async {\r\n          activeDevToolsServerAddress = serverAddress;\r\n        },\r\n      );\r\n\r\n      return true;\r\n    }()");
+      if (!dart.test(dart.fn(() => {
+        binding.BindingBase._debugServiceExtensionsRegistered = true;
+        return true;
+      }, T.VoidTobool())())) dart.assertFailed(null, I[0], 267, 12, "() {\r\n      _debugServiceExtensionsRegistered = true;\r\n      return true;\r\n    }()");
+    }
+    get locked() {
+      return dart.notNull(this[_lockCount]) > 0;
+    }
+    lockEvents(callback) {
+      if (callback == null) dart.nullFailed(I[0], 293, 51, "callback");
+      developer.Timeline.startSync("Lock events");
+      if (!(callback != null)) dart.assertFailed(null, I[0], 296, 12, "callback != null");
+      this[_lockCount] = dart.notNull(this[_lockCount]) + 1;
+      let future = callback();
+      if (!(future != null)) dart.assertFailed("The lockEvents() callback returned null; it should return a Future<void> that completes when the lock is to expire.", I[0], 299, 12, "future != null");
+      future.whenComplete(dart.fn(() => {
+        this[_lockCount] = dart.notNull(this[_lockCount]) - 1;
+        if (!dart.test(this.locked)) {
+          developer.Timeline.finishSync();
+          this.unlocked();
+        }
+      }, T.VoidToNull()));
+      return future;
+    }
+    unlocked() {
+      if (!!dart.test(this.locked)) dart.assertFailed(null, I[0], 316, 12, "!locked");
+    }
+    reassembleApplication() {
+      return this.lockEvents(dart.bind(this, 'performReassemble'));
+    }
+    performReassemble() {
+      assertions.FlutterError.resetErrorCount();
+      return T.FutureOfvoid().value();
+    }
+    registerSignalServiceExtension(opts) {
+      let name = opts && 'name' in opts ? opts.name : null;
+      if (name == null) dart.nullFailed(I[0], 367, 21, "name");
+      let callback = opts && 'callback' in opts ? opts.callback : null;
+      if (callback == null) dart.nullFailed(I[0], 368, 28, "callback");
+      if (!(name != null)) dart.assertFailed(null, I[0], 370, 12, "name != null");
+      if (!(callback != null)) dart.assertFailed(null, I[0], 371, 12, "callback != null");
+      this.registerServiceExtension({name: name, callback: dart.fn(parameters => {
+          if (parameters == null) dart.nullFailed(I[0], 374, 38, "parameters");
+          return async.async(T.MapOfString$dynamic(), function*() {
+            yield callback();
+            return new (T.IdentityMapOfString$dynamic()).new();
+          });
+        }, T.MapOfString$StringToFutureOfMapOfString$dynamic())});
+    }
+    registerBoolServiceExtension(opts) {
+      let name = opts && 'name' in opts ? opts.name : null;
+      if (name == null) dart.nullFailed(I[0], 397, 21, "name");
+      let getter = opts && 'getter' in opts ? opts.getter : null;
+      if (getter == null) dart.nullFailed(I[0], 398, 37, "getter");
+      let setter = opts && 'setter' in opts ? opts.setter : null;
+      if (setter == null) dart.nullFailed(I[0], 399, 37, "setter");
+      if (!(name != null)) dart.assertFailed(null, I[0], 401, 12, "name != null");
+      if (!(getter != null)) dart.assertFailed(null, I[0], 402, 12, "getter != null");
+      if (!(setter != null)) dart.assertFailed(null, I[0], 403, 12, "setter != null");
+      this.registerServiceExtension({name: name, callback: dart.fn(parameters => {
+          if (parameters == null) dart.nullFailed(I[0], 406, 38, "parameters");
+          return async.async(T.MapOfString$dynamic(), (function*() {
+            if (dart.test(parameters[$containsKey]("enabled"))) {
+              yield setter(parameters[$_get]("enabled") === "true");
+              this[_postExtensionStateChangedEvent](name, dart.test(yield getter()) ? "true" : "false");
+            }
+            return new (T.IdentityMapOfString$dynamic()).from(["enabled", dart.test(yield getter()) ? "true" : "false"]);
+          }).bind(this));
+        }, T.MapOfString$StringToFutureOfMapOfString$dynamic())});
+    }
+    registerNumericServiceExtension(opts) {
+      let name = opts && 'name' in opts ? opts.name : null;
+      if (name == null) dart.nullFailed(I[0], 431, 21, "name");
+      let getter = opts && 'getter' in opts ? opts.getter : null;
+      if (getter == null) dart.nullFailed(I[0], 432, 39, "getter");
+      let setter = opts && 'setter' in opts ? opts.setter : null;
+      if (setter == null) dart.nullFailed(I[0], 433, 39, "setter");
+      if (!(name != null)) dart.assertFailed(null, I[0], 435, 12, "name != null");
+      if (!(getter != null)) dart.assertFailed(null, I[0], 436, 12, "getter != null");
+      if (!(setter != null)) dart.assertFailed(null, I[0], 437, 12, "setter != null");
+      this.registerServiceExtension({name: name, callback: dart.fn(parameters => {
+          if (parameters == null) dart.nullFailed(I[0], 440, 38, "parameters");
+          return async.async(T.MapOfString$dynamic(), (function*() {
+            if (dart.test(parameters[$containsKey](name))) {
+              yield setter(core.double.parse(dart.nullCheck(parameters[$_get](name))));
+              this[_postExtensionStateChangedEvent](name, dart.toString(yield getter()));
+            }
+            return new (T.IdentityMapOfString$dynamic()).from([name, dart.toString(yield getter())]);
+          }).bind(this));
+        }, T.MapOfString$StringToFutureOfMapOfString$dynamic())});
+    }
+    [_postExtensionStateChangedEvent](name, value) {
+      if (name == null) dart.nullFailed(I[0], 461, 47, "name");
+      this.postEvent("Flutter.ServiceExtensionStateChanged", new (T.IdentityMapOfString$dynamic()).from(["extension", "ext.flutter." + dart.str(name), "value", value]));
+    }
+    postEvent(eventKind, eventData) {
+      if (eventKind == null) dart.nullFailed(I[0], 475, 25, "eventKind");
+      if (eventData == null) dart.nullFailed(I[0], 475, 57, "eventData");
+      developer.postEvent(eventKind, eventData);
+    }
+    registerStringServiceExtension(opts) {
+      let name = opts && 'name' in opts ? opts.name : null;
+      if (name == null) dart.nullFailed(I[0], 493, 21, "name");
+      let getter = opts && 'getter' in opts ? opts.getter : null;
+      if (getter == null) dart.nullFailed(I[0], 494, 39, "getter");
+      let setter = opts && 'setter' in opts ? opts.setter : null;
+      if (setter == null) dart.nullFailed(I[0], 495, 39, "setter");
+      if (!(name != null)) dart.assertFailed(null, I[0], 497, 12, "name != null");
+      if (!(getter != null)) dart.assertFailed(null, I[0], 498, 12, "getter != null");
+      if (!(setter != null)) dart.assertFailed(null, I[0], 499, 12, "setter != null");
+      this.registerServiceExtension({name: name, callback: dart.fn(parameters => {
+          if (parameters == null) dart.nullFailed(I[0], 502, 38, "parameters");
+          return async.async(T.MapOfString$dynamic(), (function*() {
+            if (dart.test(parameters[$containsKey]("value"))) {
+              yield setter(dart.nullCheck(parameters[$_get]("value")));
+              this[_postExtensionStateChangedEvent](name, yield getter());
+            }
+            return new (T.IdentityMapOfString$dynamic()).from(["value", (yield getter())]);
+          }).bind(this));
+        }, T.MapOfString$StringToFutureOfMapOfString$dynamic())});
+    }
+    registerServiceExtension(opts) {
+      let name = opts && 'name' in opts ? opts.name : null;
+      if (name == null) dart.nullFailed(I[0], 565, 21, "name");
+      let callback = opts && 'callback' in opts ? opts.callback : null;
+      if (callback == null) dart.nullFailed(I[0], 566, 39, "callback");
+      if (!(name != null)) dart.assertFailed(null, I[0], 568, 12, "name != null");
+      if (!(callback != null)) dart.assertFailed(null, I[0], 569, 12, "callback != null");
+      let methodName = "ext.flutter." + dart.str(name);
+      developer.registerExtension(methodName, dart.fn((method, parameters) => {
+        if (method == null) dart.nullFailed(I[0], 571, 53, "method");
+        if (parameters == null) dart.nullFailed(I[0], 571, 81, "parameters");
+        return async.async(developer.ServiceExtensionResponse, function*() {
+          if (!(method === methodName)) dart.assertFailed(null, I[0], 572, 14, "method == methodName");
+          if (!dart.test(dart.fn(() => {
+            if (dart.test(debug.debugInstrumentationEnabled)) print.debugPrint("service extension method received: " + dart.str(method) + "(" + dart.str(parameters) + ")");
+            return true;
+          }, T.VoidTobool())())) dart.assertFailed(null, I[0], 573, 14, "() {\r\n        if (debugInstrumentationEnabled)\r\n          debugPrint('service extension method received: $method($parameters)');\r\n        return true;\r\n      }()");
+          yield debug.debugInstrumentAction(dart.void, "Wait for outer event loop", dart.fn(() => T.FutureOfvoid().delayed(core.Duration.zero), T.VoidToFutureOfvoid()));
+          let caughtException = null;
+          let caughtStack = null;
+          let result = null;
+          let result$35isSet = false;
+          function result$35get() {
+            return result$35isSet ? result : dart.throw(new _internal.LateError.localNI("result"));
           }
-        }
-        case C[1] || CT.C1:
-        {
-          {
-            let pattern = "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[0-9a-f]{4}-[0-9a-f]{12}$";
-            let regex = core.RegExp.new(pattern, {caseSensitive: false, multiLine: true});
-            let match = regex.hasMatch(fromString);
-            return match;
+          dart.fn(result$35get, T.VoidToMapOfString$dynamic());
+          function result$35set(t3) {
+            if (t3 == null) dart.nullFailed(I[0], 595, 33, "null");
+            result$35isSet = true;
+            return result = t3;
           }
-        }
-        default:
-        {
-          {
-            dart.throw(core.Exception.new("`" + dart.str(validationMode) + "` is an invalid ValidationMode."));
+          dart.fn(result$35set, T.MapOfString$dynamicTodynamic());
+          try {
+            result$35set(yield callback(parameters));
+          } catch (e) {
+            let exception = dart.getThrown(e);
+            let stack = dart.stackTrace(e);
+            if (core.Object.is(exception)) {
+              caughtException = exception;
+              caughtStack = stack;
+            } else
+              throw e;
           }
-        }
-      }
-    }
-    static isValidOrThrow(opts) {
-      let fromString = opts && 'fromString' in opts ? opts.fromString : "";
-      if (fromString == null) dart.nullFailed(I[0], 86, 15, "fromString");
-      let fromByteList = opts && 'fromByteList' in opts ? opts.fromByteList : null;
-      let validationMode = opts && 'validationMode' in opts ? opts.validationMode : C[0] || CT.C0;
-      if (validationMode == null) dart.nullFailed(I[0], 88, 22, "validationMode");
-      let isValid = uuid$.Uuid.isValidUUID({fromString: fromString, fromByteList: fromByteList, validationMode: validationMode});
-      if (!dart.test(isValid)) {
-        if (validationMode != uuid$.ValidationMode.nonStrict) {
-          let isValidNonStrict = uuid$.Uuid.isValidUUID({fromString: fromString, fromByteList: fromByteList, validationMode: uuid$.ValidationMode.nonStrict});
-          if (dart.test(isValidNonStrict)) {
-            dart.throw(new core.FormatException.new("The provided UUID is not RFC4122 compliant. It seems you might be using a Microsoft GUID. Try setting `validationMode = ValidationMode.nonStrict`", fromString));
+          if (caughtException == null) {
+            result$35get()[$_set]("type", "_extensionType");
+            result$35get()[$_set]("method", method);
+            return new developer.ServiceExtensionResponse.result(convert.json.encode(result$35get()));
+          } else {
+            assertions.FlutterError.reportError(new assertions.FlutterErrorDetails.new({exception: caughtException, stack: caughtStack, context: new assertions.ErrorDescription.new("during a service extension callback for \"" + dart.str(method) + "\"")}));
+            return new developer.ServiceExtensionResponse.error(-32000, convert.json.encode(new (T.IdentityMapOfString$String()).from(["exception", dart.toString(caughtException), "stack", dart.toString(caughtStack), "method", method])));
           }
-        }
-        dart.throw(new core.FormatException.new("The provided UUID is invalid.", fromString));
-      }
+        });
+      }, T.StringAndMapOfString$StringToFutureOfServiceExtensionResponse()));
     }
-    static parse(uuid, opts) {
-      let t0, t0$;
-      if (uuid == null) dart.nullFailed(I[0], 119, 12, "uuid");
-      let buffer = opts && 'buffer' in opts ? opts.buffer : null;
-      let offset = opts && 'offset' in opts ? opts.offset : 0;
-      if (offset == null) dart.nullFailed(I[0], 121, 9, "offset");
-      let validate = opts && 'validate' in opts ? opts.validate : true;
-      if (validate == null) dart.nullFailed(I[0], 122, 10, "validate");
-      let validationMode = opts && 'validationMode' in opts ? opts.validationMode : C[0] || CT.C0;
-      if (validationMode == null) dart.nullFailed(I[0], 123, 20, "validationMode");
-      if (dart.test(validate)) {
-        uuid$.Uuid.isValidOrThrow({fromString: uuid, validationMode: validationMode});
-      }
-      let i = offset;
-      let ii = 0;
-      buffer = buffer != null ? buffer : _native_typed_data.NativeUint8List.new(16);
-      let regex = core.RegExp.new("[0-9a-f]{2}");
-      for (let match of regex.allMatches(uuid[$toLowerCase]())) {
-        if (ii < 16) {
-          let hex = uuid[$toLowerCase]()[$substring](match.start, match.end);
-          buffer[$_set](dart.notNull(i) + (t0 = ii, ii = t0 + 1, t0), core.int.parse(hex, {radix: 16}));
-        }
-      }
-      while (ii < 16) {
-        buffer[$_set](dart.notNull(i) + (t0$ = ii, ii = t0$ + 1, t0$), 0);
-      }
-      return buffer;
-    }
-    static parseAsByteList(uuid, opts) {
-      if (uuid == null) dart.nullFailed(I[0], 157, 43, "uuid");
-      let buffer = opts && 'buffer' in opts ? opts.buffer : null;
-      let offset = opts && 'offset' in opts ? opts.offset : 0;
-      if (offset == null) dart.nullFailed(I[0], 159, 11, "offset");
-      let validate = opts && 'validate' in opts ? opts.validate : true;
-      if (validate == null) dart.nullFailed(I[0], 160, 12, "validate");
-      let validationMode = opts && 'validationMode' in opts ? opts.validationMode : C[0] || CT.C0;
-      if (validationMode == null) dart.nullFailed(I[0], 161, 22, "validationMode");
-      return _native_typed_data.NativeUint8List.fromList(uuid$.Uuid.parse(uuid, {buffer: buffer, offset: offset, validate: validate, validationMode: validationMode}));
-    }
-    static unparse(buffer, opts) {
-      let t0, t0$, t0$0, t0$1, t0$2, t0$3, t0$4, t0$5, t0$6, t0$7, t0$8, t0$9, t0$10, t0$11, t0$12, t0$13;
-      if (buffer == null) dart.nullFailed(I[0], 173, 35, "buffer");
-      let offset = opts && 'offset' in opts ? opts.offset : 0;
-      if (offset == null) dart.nullFailed(I[0], 173, 48, "offset");
-      if (buffer[$length] !== 16) {
-        dart.throw(core.Exception.new("The provided buffer needs to have a length of 16."));
-      }
-      let i = offset;
-      return dart.str(uuid$.Uuid._byteToHex[$_get](buffer[$_get]((t0 = i, i = dart.notNull(t0) + 1, t0)))) + dart.str(uuid$.Uuid._byteToHex[$_get](buffer[$_get]((t0$ = i, i = dart.notNull(t0$) + 1, t0$)))) + dart.str(uuid$.Uuid._byteToHex[$_get](buffer[$_get]((t0$0 = i, i = dart.notNull(t0$0) + 1, t0$0)))) + dart.str(uuid$.Uuid._byteToHex[$_get](buffer[$_get]((t0$1 = i, i = dart.notNull(t0$1) + 1, t0$1)))) + "-" + dart.str(uuid$.Uuid._byteToHex[$_get](buffer[$_get]((t0$2 = i, i = dart.notNull(t0$2) + 1, t0$2)))) + dart.str(uuid$.Uuid._byteToHex[$_get](buffer[$_get]((t0$3 = i, i = dart.notNull(t0$3) + 1, t0$3)))) + "-" + dart.str(uuid$.Uuid._byteToHex[$_get](buffer[$_get]((t0$4 = i, i = dart.notNull(t0$4) + 1, t0$4)))) + dart.str(uuid$.Uuid._byteToHex[$_get](buffer[$_get]((t0$5 = i, i = dart.notNull(t0$5) + 1, t0$5)))) + "-" + dart.str(uuid$.Uuid._byteToHex[$_get](buffer[$_get]((t0$6 = i, i = dart.notNull(t0$6) + 1, t0$6)))) + dart.str(uuid$.Uuid._byteToHex[$_get](buffer[$_get]((t0$7 = i, i = dart.notNull(t0$7) + 1, t0$7)))) + "-" + dart.str(uuid$.Uuid._byteToHex[$_get](buffer[$_get]((t0$8 = i, i = dart.notNull(t0$8) + 1, t0$8)))) + dart.str(uuid$.Uuid._byteToHex[$_get](buffer[$_get]((t0$9 = i, i = dart.notNull(t0$9) + 1, t0$9)))) + dart.str(uuid$.Uuid._byteToHex[$_get](buffer[$_get]((t0$10 = i, i = dart.notNull(t0$10) + 1, t0$10)))) + dart.str(uuid$.Uuid._byteToHex[$_get](buffer[$_get]((t0$11 = i, i = dart.notNull(t0$11) + 1, t0$11)))) + dart.str(uuid$.Uuid._byteToHex[$_get](buffer[$_get]((t0$12 = i, i = dart.notNull(t0$12) + 1, t0$12)))) + dart.str(uuid$.Uuid._byteToHex[$_get](buffer[$_get]((t0$13 = i, i = dart.notNull(t0$13) + 1, t0$13))));
-    }
-    [_initV1](options) {
-      let t2, t1, t0, t2$, t1$, t0$, t1$0, t0$0;
-      options == null ? options = C[2] || CT.C2 : null;
-      if (!core.bool.as(dart.nullCheck(uuid$.Uuid._state[$_get]("hasInitV1")))) {
-        let v1PositionalArgs = options[$_get]("v1rngPositionalArgs") != null ? options[$_get]("v1rngPositionalArgs") : [];
-        let v1NamedArgs = options[$_get]("v1rngNamedArgs") != null ? T.MapOfSymbol$dynamic().as(options[$_get]("v1rngNamedArgs")) : C[3] || CT.C3;
-        let seedBytes = typed_data.Uint8List.as(options[$_get]("v1rng") != null ? core.Function.apply(core.Function.as(options[$_get]("v1rng")), T.ListN().as(v1PositionalArgs), v1NamedArgs) : uuid_util.UuidUtil.mathRNG());
-        uuid$.Uuid._state[$_get]("seedBytes") != null ? uuid$.Uuid._state[$_get]("seedBytes") : (t0 = uuid$.Uuid._state, t1 = "seedBytes", t2 = seedBytes, t0[$_set](t1, t2), t2);
-        let nodeId = T.JSArrayOfint().of([(dart.notNull(seedBytes[$_get](0)) | 1) >>> 0, seedBytes[$_get](1), seedBytes[$_get](2), seedBytes[$_get](3), seedBytes[$_get](4), seedBytes[$_get](5)]);
-        uuid$.Uuid._state[$_get]("node") != null ? uuid$.Uuid._state[$_get]("node") : (t0$ = uuid$.Uuid._state, t1$ = "node", t2$ = nodeId, t0$[$_set](t1$, t2$), t2$);
-        let clockSeq = (dart.notNull(seedBytes[$_get](6)) << 8 | dart.notNull(seedBytes[$_get](7))) & 262143;
-        t0$0 = uuid$.Uuid._state;
-        t1$0 = "clockSeq";
-        t0$0[$_get](t1$0) == null ? t0$0[$_set](t1$0, clockSeq) : null;
-        uuid$.Uuid._state[$_set]("mSecs", 0);
-        uuid$.Uuid._state[$_set]("nSecs", 0);
-        uuid$.Uuid._state[$_set]("hasInitV1", true);
-      }
-    }
-    [_initV4](options) {
-      options == null ? options = new (T.IdentityMapOfString$dynamic()).new() : null;
-      if (!core.bool.as(dart.nullCheck(uuid$.Uuid._state[$_get]("hasInitV4")))) {
-        let gPositionalArgs = options[$_get]("grngPositionalArgs") != null ? options[$_get]("grngPositionalArgs") : [];
-        let gNamedArgs = options[$_get]("grngNamedArgs") != null ? T.MapOfSymbol$dynamic().as(options[$_get]("grngNamedArgs")) : C[3] || CT.C3;
-        let grng = options[$_get]("grng");
-        uuid$.Uuid._state[$_set]("globalRNG", grng != null ? dart.fn(() => core.Function.apply(core.Function.as(grng), T.ListN().as(gPositionalArgs), gNamedArgs), T.VoidTodynamic()) : C[4] || CT.C4);
-        uuid$.Uuid._state[$_set]("hasInitV4", true);
-      }
-    }
-    v1(opts) {
-      let t0, t0$, t0$0, t0$1, t0$2, t0$3, t0$4, t0$5, t0$6, t0$7;
-      let options = opts && 'options' in opts ? opts.options : null;
-      let i = 0;
-      let buf = _native_typed_data.NativeUint8List.new(16);
-      options == null ? options = new (T.IdentityMapOfString$dynamic()).new() : null;
-      this[_initV1](options);
-      let clockSeq = options[$_get]("clockSeq") != null ? options[$_get]("clockSeq") : core.int.as(uuid$.Uuid._state[$_get]("clockSeq"));
-      let mSecs = options[$_get]("mSecs") != null ? options[$_get]("mSecs") : new core.DateTime.now().millisecondsSinceEpoch;
-      let nSecs = options[$_get]("nSecs") != null ? options[$_get]("nSecs") : core.int.as(dart.nullCheck(uuid$.Uuid._state[$_get]("nSecs"))) + 1;
-      let dt = dart.dsend(dart.dsend(mSecs, '-', [uuid$.Uuid._state[$_get]("mSecs")]), '+', [dart.dsend(dart.dsend(nSecs, '-', [uuid$.Uuid._state[$_get]("nSecs")]), '/', [10000])]);
-      if (dart.dtest(dart.dsend(dt, '<', [0])) && options[$_get]("clockSeq") == null) {
-        clockSeq = dart.dsend(dart.dsend(clockSeq, '+', [1]), '&', [16383]);
-      }
-      if ((dart.dtest(dart.dsend(dt, '<', [0])) || dart.dtest(dart.dsend(mSecs, '>', [uuid$.Uuid._state[$_get]("mSecs")]))) && options[$_get]("nSecs") == null) {
-        nSecs = 0;
-      }
-      if (dart.dtest(dart.dsend(nSecs, '>=', [10000]))) {
-        dart.throw(core.Exception.new("uuid.v1(): Can't create more than 10M uuids/sec"));
-      }
-      uuid$.Uuid._state[$_set]("mSecs", mSecs);
-      uuid$.Uuid._state[$_set]("nSecs", nSecs);
-      uuid$.Uuid._state[$_set]("clockSeq", clockSeq);
-      mSecs = dart.dsend(mSecs, '+', [12219292800000]);
-      let tl = dart.dsend(dart.dsend(dart.dsend(dart.dsend(mSecs, '&', [268435455]), '*', [10000]), '+', [nSecs]), '%', [4294967296]);
-      buf[$_set]((t0 = i, i = t0 + 1, t0), core.int.as(dart.dsend(dart.dsend(tl, '>>', [24]), '&', [255])));
-      buf[$_set]((t0$ = i, i = t0$ + 1, t0$), core.int.as(dart.dsend(dart.dsend(tl, '>>', [16]), '&', [255])));
-      buf[$_set]((t0$0 = i, i = t0$0 + 1, t0$0), core.int.as(dart.dsend(dart.dsend(tl, '>>', [8]), '&', [255])));
-      buf[$_set]((t0$1 = i, i = t0$1 + 1, t0$1), core.int.as(dart.dsend(tl, '&', [255])));
-      let tmh = dart.dsend(dart.dsend(dart.dsend(dart.dsend(mSecs, '/', [4294967296]), '*', [10000]), 'floor', []), '&', [268435455]);
-      buf[$_set]((t0$2 = i, i = t0$2 + 1, t0$2), core.int.as(dart.dsend(dart.dsend(tmh, '>>', [8]), '&', [255])));
-      buf[$_set]((t0$3 = i, i = t0$3 + 1, t0$3), core.int.as(dart.dsend(tmh, '&', [255])));
-      buf[$_set]((t0$4 = i, i = t0$4 + 1, t0$4), core.int.as(dart.dsend(dart.dsend(dart.dsend(tmh, '>>', [24]), '&', [15]), '|', [16])));
-      buf[$_set]((t0$5 = i, i = t0$5 + 1, t0$5), core.int.as(dart.dsend(dart.dsend(tmh, '>>', [16]), '&', [255])));
-      buf[$_set]((t0$6 = i, i = t0$6 + 1, t0$6), core.int.as(dart.dsend(dart.dsend(dart.dsend(clockSeq, '&', [16128]), '>>', [8]), '|', [128])));
-      buf[$_set]((t0$7 = i, i = t0$7 + 1, t0$7), core.int.as(dart.dsend(clockSeq, '&', [255])));
-      let node = options[$_get]("node") != null ? options[$_get]("node") : uuid$.Uuid._state[$_get]("node");
-      for (let n = 0; n < 6; n = n + 1) {
-        buf[$_set](i + n, core.int.as(dart.dsend(node, '_get', [n])));
-      }
-      return uuid$.Uuid.unparse(buf);
-    }
-    v1buffer(buffer, opts) {
-      if (buffer == null) dart.nullFailed(I[0], 350, 15, "buffer");
-      let options = opts && 'options' in opts ? opts.options : null;
-      let offset = opts && 'offset' in opts ? opts.offset : 0;
-      if (offset == null) dart.nullFailed(I[0], 352, 9, "offset");
-      return uuid$.Uuid.parse(this.v1({options: options}), {buffer: buffer, offset: offset});
-    }
-    v1obj(opts) {
-      let options = opts && 'options' in opts ? opts.options : null;
-      let uuid = this.v1({options: options});
-      return uuid$.UuidValue.new(uuid);
-    }
-    v4(opts) {
-      let options = opts && 'options' in opts ? opts.options : null;
-      options = options != null ? options : new (T.IdentityMapOfString$dynamic()).new();
-      this[_initV4](options);
-      let positionalArgs = options[$_get]("positionalArgs") != null ? options[$_get]("positionalArgs") : [];
-      let namedArgs = options[$_get]("namedArgs") != null ? T.MapOfSymbol$dynamic().as(options[$_get]("namedArgs")) : C[3] || CT.C3;
-      let rng = options[$_get]("rng") != null ? core.Function.apply(core.Function.as(options[$_get]("rng")), T.ListN().as(positionalArgs), namedArgs) : dart.dcall(core.Function.as(dart.nullCheck(uuid$.Uuid._state[$_get]("globalRNG"))), []);
-      let rnds = options[$_get]("random") != null ? options[$_get]("random") : rng;
-      dart.dsend(rnds, '_set', [6, dart.dsend(dart.dsend(dart.dsend(rnds, '_get', [6]), '&', [15]), '|', [64])]);
-      dart.dsend(rnds, '_set', [8, dart.dsend(dart.dsend(dart.dsend(rnds, '_get', [8]), '&', [63]), '|', [128])]);
-      return uuid$.Uuid.unparse(T.ListOfint().as(rnds));
-    }
-    v4buffer(buffer, opts) {
-      if (buffer == null) dart.nullFailed(I[0], 417, 15, "buffer");
-      let options = opts && 'options' in opts ? opts.options : null;
-      let offset = opts && 'offset' in opts ? opts.offset : 0;
-      if (offset == null) dart.nullFailed(I[0], 419, 9, "offset");
-      return uuid$.Uuid.parse(this.v4({options: options}), {buffer: buffer, offset: offset});
-    }
-    v4obj(opts) {
-      let options = opts && 'options' in opts ? opts.options : null;
-      let uuid = this.v4({options: options});
-      return uuid$.UuidValue.new(uuid);
-    }
-    v5(namespace, name, opts) {
-      let options = opts && 'options' in opts ? opts.options : null;
-      options = options != null ? options : new (T.IdentityMapOfString$dynamic()).new();
-      let useRandom = options[$_get]("randomNamespace") != null ? options[$_get]("randomNamespace") : true;
-      let blankNS = dart.dtest(useRandom) ? this.v4() : uuid$.Uuid.NAMESPACE_NIL;
-      namespace = namespace != null ? namespace : blankNS;
-      name = name != null ? name : "";
-      let bytes = uuid$.Uuid.parse(namespace);
-      let nameBytes = T.JSArrayOfint().of([]);
-      for (let singleChar of name[$codeUnits]) {
-        nameBytes[$add](singleChar);
-      }
-      let hashBytes = sha1.sha1.convert((() => {
-        let t0 = T.ListOfint().of(bytes);
-        t0[$addAll](nameBytes);
-        return t0;
-      })()).bytes;
-      hashBytes[$_set](6, dart.notNull(hashBytes[$_get](6)) & 15 | 80);
-      hashBytes[$_set](8, dart.notNull(hashBytes[$_get](8)) & 63 | 128);
-      return uuid$.Uuid.unparse(hashBytes[$sublist](0, 16));
-    }
-    v5buffer(namespace, name, buffer, opts) {
-      let options = opts && 'options' in opts ? opts.options : null;
-      let offset = opts && 'offset' in opts ? opts.offset : 0;
-      if (offset == null) dart.nullFailed(I[0], 499, 9, "offset");
-      return uuid$.Uuid.parse(this.v5(namespace, name, {options: options}), {buffer: buffer, offset: offset});
-    }
-    v5obj(namespace, name, opts) {
-      let options = opts && 'options' in opts ? opts.options : null;
-      let uuid = this.v5(namespace, name, {options: options});
-      return uuid$.UuidValue.new(uuid);
+    toString() {
+      return "<" + dart.str(object.objectRuntimeType(this, "BindingBase")) + ">";
     }
   };
-  (uuid$.Uuid.new = function(opts) {
-    let options = opts && 'options' in opts ? opts.options : null;
-    this[options$] = options;
-    ;
-  }).prototype = uuid$.Uuid.prototype;
-  dart.addTypeTests(uuid$.Uuid);
-  dart.addTypeCaches(uuid$.Uuid);
-  dart.setMethodSignature(uuid$.Uuid, () => ({
-    __proto__: dart.getMethods(uuid$.Uuid.__proto__),
-    [_initV1]: dart.fnType(dart.void, [dart.nullable(core.Map$(core.String, dart.dynamic))]),
-    [_initV4]: dart.fnType(dart.void, [dart.nullable(core.Map$(core.String, dart.dynamic))]),
-    v1: dart.fnType(core.String, [], {options: dart.nullable(core.Map$(core.String, dart.dynamic))}, {}),
-    v1buffer: dart.fnType(core.List$(core.int), [core.List$(core.int)], {offset: core.int, options: dart.nullable(core.Map$(core.String, dart.dynamic))}, {}),
-    v1obj: dart.fnType(uuid$.UuidValue, [], {options: dart.nullable(core.Map$(core.String, dart.dynamic))}, {}),
-    v4: dart.fnType(core.String, [], {options: dart.nullable(core.Map$(core.String, dart.dynamic))}, {}),
-    v4buffer: dart.fnType(core.List$(core.int), [core.List$(core.int)], {offset: core.int, options: dart.nullable(core.Map$(core.String, dart.dynamic))}, {}),
-    v4obj: dart.fnType(uuid$.UuidValue, [], {options: dart.nullable(core.Map$(core.String, dart.dynamic))}, {}),
-    v5: dart.fnType(core.String, [dart.nullable(core.String), dart.nullable(core.String)], {options: dart.nullable(core.Map$(core.String, dart.dynamic))}, {}),
-    v5buffer: dart.fnType(core.List$(core.int), [dart.nullable(core.String), dart.nullable(core.String), dart.nullable(core.List$(core.int))], {offset: core.int, options: dart.nullable(core.Map$(core.String, dart.dynamic))}, {}),
-    v5obj: dart.fnType(uuid$.UuidValue, [dart.nullable(core.String), dart.nullable(core.String)], {options: dart.nullable(core.Map$(core.String, dart.dynamic))}, {})
+  (binding.BindingBase.new = function() {
+    this[_lockCount] = 0;
+    developer.Timeline.startSync("Framework initialization");
+    if (!!dart.test(binding.BindingBase._debugInitialized)) dart.assertFailed(null, I[0], 55, 12, "!_debugInitialized");
+    this.initInstances();
+    if (!dart.test(binding.BindingBase._debugInitialized)) dart.assertFailed(null, I[0], 57, 12, "_debugInitialized");
+    if (!!dart.test(binding.BindingBase._debugServiceExtensionsRegistered)) dart.assertFailed(null, I[0], 59, 12, "!_debugServiceExtensionsRegistered");
+    this.initServiceExtensions();
+    if (!dart.test(binding.BindingBase._debugServiceExtensionsRegistered)) dart.assertFailed(null, I[0], 61, 12, "_debugServiceExtensionsRegistered");
+    developer.postEvent("Flutter.FrameworkInitialization", new (T.IdentityMapOfString$String()).new());
+    developer.Timeline.finishSync();
+  }).prototype = binding.BindingBase.prototype;
+  dart.addTypeTests(binding.BindingBase);
+  dart.addTypeCaches(binding.BindingBase);
+  dart.setMethodSignature(binding.BindingBase, () => ({
+    __proto__: dart.getMethods(binding.BindingBase.__proto__),
+    initInstances: dart.fnType(dart.void, []),
+    initServiceExtensions: dart.fnType(dart.void, []),
+    lockEvents: dart.fnType(async.Future$(dart.void), [dart.fnType(async.Future$(dart.void), [])]),
+    unlocked: dart.fnType(dart.void, []),
+    reassembleApplication: dart.fnType(async.Future$(dart.void), []),
+    performReassemble: dart.fnType(async.Future$(dart.void), []),
+    registerSignalServiceExtension: dart.fnType(dart.void, [], {}, {callback: dart.fnType(async.Future$(dart.void), []), name: core.String}),
+    registerBoolServiceExtension: dart.fnType(dart.void, [], {}, {getter: dart.fnType(async.Future$(core.bool), []), name: core.String, setter: dart.fnType(async.Future$(dart.void), [core.bool])}),
+    registerNumericServiceExtension: dart.fnType(dart.void, [], {}, {getter: dart.fnType(async.Future$(core.double), []), name: core.String, setter: dart.fnType(async.Future$(dart.void), [core.double])}),
+    [_postExtensionStateChangedEvent]: dart.fnType(dart.void, [core.String, dart.dynamic]),
+    postEvent: dart.fnType(dart.void, [core.String, core.Map$(core.String, dart.dynamic)]),
+    registerStringServiceExtension: dart.fnType(dart.void, [], {}, {getter: dart.fnType(async.Future$(core.String), []), name: core.String, setter: dart.fnType(async.Future$(dart.void), [core.String])}),
+    registerServiceExtension: dart.fnType(dart.void, [], {}, {callback: dart.fnType(async.Future$(core.Map$(core.String, dart.dynamic)), [core.Map$(core.String, core.String)]), name: core.String})
   }));
-  dart.setLibraryUri(uuid$.Uuid, I[1]);
-  dart.setFieldSignature(uuid$.Uuid, () => ({
-    __proto__: dart.getFields(uuid$.Uuid.__proto__),
-    options: dart.finalFieldType(dart.dynamic)
+  dart.setGetterSignature(binding.BindingBase, () => ({
+    __proto__: dart.getGetters(binding.BindingBase.__proto__),
+    window: ui.SingletonFlutterWindow,
+    platformDispatcher: ui.PlatformDispatcher,
+    locked: core.bool
   }));
-  dart.defineLazy(uuid$.Uuid, {
-    /*uuid$.Uuid.NAMESPACE_DNS*/get NAMESPACE_DNS() {
-      return "6ba7b810-9dad-11d1-80b4-00c04fd430c8";
+  dart.setLibraryUri(binding.BindingBase, I[1]);
+  dart.setFieldSignature(binding.BindingBase, () => ({
+    __proto__: dart.getFields(binding.BindingBase.__proto__),
+    [_lockCount]: dart.fieldType(core.int)
+  }));
+  dart.defineExtensionMethods(binding.BindingBase, ['toString']);
+  dart.defineLazy(binding.BindingBase, {
+    /*binding.BindingBase._debugInitialized*/get _debugInitialized() {
+      return false;
     },
-    /*uuid$.Uuid.NAMESPACE_URL*/get NAMESPACE_URL() {
-      return "6ba7b811-9dad-11d1-80b4-00c04fd430c8";
+    set _debugInitialized(_) {},
+    /*binding.BindingBase._debugServiceExtensionsRegistered*/get _debugServiceExtensionsRegistered() {
+      return false;
     },
-    /*uuid$.Uuid.NAMESPACE_OID*/get NAMESPACE_OID() {
-      return "6ba7b812-9dad-11d1-80b4-00c04fd430c8";
-    },
-    /*uuid$.Uuid.NAMESPACE_X500*/get NAMESPACE_X500() {
-      return "6ba7b814-9dad-11d1-80b4-00c04fd430c8";
-    },
-    /*uuid$.Uuid.NAMESPACE_NIL*/get NAMESPACE_NIL() {
-      return "00000000-0000-0000-0000-000000000000";
-    },
-    /*uuid$.Uuid._byteToHex*/get _byteToHex() {
-      return T.ListOfString().generate(256, dart.fn(i => {
-        if (i == null) dart.nullFailed(I[0], 22, 70, "i");
-        return i[$toRadixString](16)[$padLeft](2, "0");
-      }, T.intToString()));
-    },
-    /*uuid$.Uuid._state*/get _state() {
-      return new (T.IdentityMapOfString$ObjectN()).from(["seedBytes", null, "node", null, "clockSeq", null, "mSecs", 0, "nSecs", 0, "hasInitV1", false, "hasInitV4", false]);
-    }
+    set _debugServiceExtensionsRegistered(_) {}
   }, false);
-  uuid$.ValidationMode = class ValidationMode extends core.Object {
-    toString() {
-      return this[_name$];
-    }
+  binding._exitApplication = function _exitApplication() {
+    return async.async(dart.void, function* _exitApplication() {
+      io.exit(0);
+      dart.throw(new _internal.ReachabilityError.new("`null` encountered as the result from expression with type `Never`."));
+    });
   };
-  (uuid$.ValidationMode.new = function(index, _name) {
-    if (index == null) dart.nullFailed(I[0], 521, 6, "index");
-    if (_name == null) dart.nullFailed(I[0], 521, 6, "_name");
-    this.index = index;
-    this[_name$] = _name;
-    ;
-  }).prototype = uuid$.ValidationMode.prototype;
-  dart.addTypeTests(uuid$.ValidationMode);
-  dart.addTypeCaches(uuid$.ValidationMode);
-  dart.setLibraryUri(uuid$.ValidationMode, I[1]);
-  dart.setFieldSignature(uuid$.ValidationMode, () => ({
-    __proto__: dart.getFields(uuid$.ValidationMode.__proto__),
-    index: dart.finalFieldType(core.int),
-    [_name$]: dart.finalFieldType(core.String)
-  }));
-  dart.defineExtensionMethods(uuid$.ValidationMode, ['toString']);
-  uuid$.ValidationMode.nonStrict = C[1] || CT.C1;
-  uuid$.ValidationMode.strictRFC4122 = C[0] || CT.C0;
-  uuid$.ValidationMode.values = C[5] || CT.C5;
-  var uuid$0 = dart.privateName(uuid$, "UuidValue.uuid");
-  uuid$.UuidValue = class UuidValue extends core.Object {
-    get uuid() {
-      return this[uuid$0];
-    }
-    set uuid(value) {
-      super.uuid = value;
-    }
-    static new(uuid, validate = true, validationMode = C[0] || CT.C0) {
-      if (uuid == null) dart.nullFailed(I[0], 532, 28, "uuid");
-      if (validate == null) dart.nullFailed(I[0], 533, 13, "validate");
-      if (validationMode == null) dart.nullFailed(I[0], 534, 22, "validationMode");
-      if (dart.test(validate)) {
-        uuid$.Uuid.isValidOrThrow({fromString: uuid, validationMode: validationMode});
-      }
-      return new uuid$.UuidValue.__(uuid[$toLowerCase]());
-    }
-    static fromByteList(byteList, opts) {
-      let t1;
-      if (byteList == null) dart.nullFailed(I[0], 542, 44, "byteList");
-      let offset = opts && 'offset' in opts ? opts.offset : null;
-      return uuid$.UuidValue.new(uuid$.Uuid.unparse(byteList, {offset: (t1 = offset, t1 == null ? 0 : t1)}));
-    }
-    static fromList(byteList, opts) {
-      let t1;
-      if (byteList == null) dart.nullFailed(I[0], 546, 40, "byteList");
-      let offset = opts && 'offset' in opts ? opts.offset : null;
-      return uuid$.UuidValue.new(uuid$.Uuid.unparse(byteList, {offset: (t1 = offset, t1 == null ? 0 : t1)}));
-    }
-    toBytes() {
-      return uuid$.Uuid.parseAsByteList(this.uuid);
-    }
-    toString() {
-      return this.uuid;
-    }
-    equals(other) {
-      if (other == null) dart.nullFailed(I[0], 564, 25, "other");
-      return this.uuid == other.uuid;
-    }
-    _equals(other) {
-      if (other == null) return false;
-      return uuid$.UuidValue.is(other) && this.uuid == other.uuid;
-    }
-    get hashCode() {
-      return dart.hashCode(this.uuid);
-    }
-  };
-  (uuid$.UuidValue.__ = function(uuid) {
-    if (uuid == null) dart.nullFailed(I[0], 550, 20, "uuid");
-    this[uuid$0] = uuid;
-    ;
-  }).prototype = uuid$.UuidValue.prototype;
-  dart.addTypeTests(uuid$.UuidValue);
-  dart.addTypeCaches(uuid$.UuidValue);
-  dart.setMethodSignature(uuid$.UuidValue, () => ({
-    __proto__: dart.getMethods(uuid$.UuidValue.__proto__),
-    toBytes: dart.fnType(typed_data.Uint8List, []),
-    equals: dart.fnType(core.bool, [uuid$.UuidValue])
-  }));
-  dart.setLibraryUri(uuid$.UuidValue, I[1]);
-  dart.setFieldSignature(uuid$.UuidValue, () => ({
-    __proto__: dart.getFields(uuid$.UuidValue.__proto__),
-    uuid: dart.finalFieldType(core.String)
-  }));
-  dart.defineExtensionMethods(uuid$.UuidValue, ['toString', '_equals']);
-  dart.defineExtensionAccessors(uuid$.UuidValue, ['hashCode']);
-  dart.trackLibraries("packages/uuid/uuid.dart", {
-    "package:uuid/uuid.dart": uuid$
+  dart.trackLibraries("packages/flutter/src/foundation/binding.dart", {
+    "package:flutter/src/foundation/binding.dart": binding
   }, {
-  }, '{"version":3,"sourceRoot":"","sources":["uuid.dart"],"names":[],"mappings":"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","file":"../../../../../../../../../../packages/uuid/uuid.dart.lib.js"}');
+  }, '{"version":3,"sourceRoot":"","sources":["binding.dart"],"names":[],"mappings":"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","file":"../../../../../../../../D:/packages/flutter/src/foundation/binding.dart.lib.js"}');
   // Exports:
   return {
-    uuid: uuid$
+    src__foundation__binding: binding
   };
 }));
 
-//# sourceMappingURL=uuid.dart.lib.js.map
+//# sourceMappingURL=binding.dart.lib.js.map

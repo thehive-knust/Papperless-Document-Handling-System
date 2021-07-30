@@ -1,1 +1,568 @@
-{"web_entrypoint.dart":"160068046","packages/softdoc/main.dart":"208717350","packages/softdoc/style.dart":"926193498","packages/flutter/material.dart":"973360735","packages/flutter/widgets.dart":"690860585","packages/flutter/src/widgets/will_pop_scope.dart":"477720309","packages/flutter/src/widgets/widget_span.dart":"303700058","packages/flutter/rendering.dart":"19039833","packages/flutter/src/rendering/wrap.dart":"42174718","packages/flutter/src/rendering/layer.dart":"372780087","packages/flutter/painting.dart":"523490411","packages/flutter/src/painting/strut_style.dart":"507680311","packages/flutter/src/painting/basic_types.dart":"504094910","packages/flutter/foundation.dart":"395576904","packages/flutter/src/foundation/unicode.dart":"926598168","packages/flutter/src/foundation/synchronous_future.dart":"302804733","packages/flutter/src/foundation/stack_frame.dart":"173743648","packages/flutter/src/foundation/object.dart":"659846599","packages/flutter/src/foundation/constants.dart":"895101863","packages/meta/meta.dart":"140798013","packages/meta/meta_meta.dart":"516364830","packages/flutter/src/foundation/serialization.dart":"977067887","packages/typed_data/typed_buffers.dart":"766686869","packages/typed_data/src/typed_buffer.dart":"975867534","packages/flutter/src/foundation/print.dart":"945693092","packages/flutter/src/foundation/_platform_web.dart":"80750374","packages/flutter/src/foundation/observer_list.dart":"608653957","packages/flutter/src/foundation/node.dart":"49804015","packages/flutter/src/foundation/licenses.dart":"567366810","packages/flutter/src/foundation/key.dart":"419318525","packages/flutter/src/foundation/_isolates_web.dart":"322910612","packages/flutter/src/foundation/debug.dart":"232909775","packages/flutter/src/foundation/basic_types.dart":"242064226","packages/flutter/src/foundation/consolidate_response.dart":"1007898253","packages/flutter/src/foundation/collections.dart":"123090630","packages/flutter/src/foundation/change_notifier.dart":"1050051066","packages/flutter/src/foundation/_bitfield_web.dart":"282848039","packages/flutter/src/foundation/binding.dart":"933941926","packages/flutter/src/foundation/annotations.dart":"665399735","packages/flutter/src/painting/colors.dart":"925758926","packages/flutter/src/painting/placeholder_span.dart":"392084110","packages/flutter/services.dart":"261579594","packages/flutter/src/services/text_input.dart":"556664607","packages/flutter/src/services/text_editing.dart":"666993585","packages/flutter/src/services/system_chrome.dart":"419964772","packages/flutter/src/services/system_channels.dart":"889846011","packages/flutter/scheduler.dart":"808565145","packages/flutter/src/scheduler/ticker.dart":"933547687","packages/flutter/src/scheduler/binding.dart":"404430879","packages/flutter/src/scheduler/priority.dart":"119361488","packages/flutter/src/scheduler/debug.dart":"226475850","packages/collection/src/union_set_controller.dart":"1057513200","packages/collection/src/queue_list.dart":"459021598","packages/collection/src/priority_queue.dart":"893580921","packages/collection/src/utils.dart":"338384774","packages/collection/src/list_extensions.dart":"359769697","packages/collection/src/equality.dart":"913649333","packages/collection/src/comparators.dart":"483643658","packages/collection/src/algorithms.dart":"24651587","packages/collection/src/iterable_zip.dart":"314173195","packages/collection/src/iterable_extensions.dart":"952688335","packages/collection/src/functions.dart":"154775952","packages/collection/src/combined_wrappers/combined_map.dart":"460244605","packages/collection/src/combined_wrappers/combined_iterable.dart":"236133720","packages/collection/src/combined_wrappers/combined_iterator.dart":"578896423","packages/collection/src/combined_wrappers/combined_list.dart":"277673299","packages/collection/src/canonicalized_map.dart":"787980483","packages/vector_math/vector_math_64.dart":"754026253","packages/vector_math/hash.dart":"239586625","packages/flutter/src/services/text_formatter.dart":"663659434","packages/characters/characters.dart":"10924749","packages/characters/src/extensions.dart":"884542150","packages/characters/src/characters_impl.dart":"308697614","packages/characters/src/grapheme_clusters/breaks.dart":"60689513","packages/characters/src/grapheme_clusters/table.dart":"546736702","packages/characters/src/grapheme_clusters/constants.dart":"754471041","packages/flutter/src/services/system_sound.dart":"945460723","packages/flutter/src/services/system_navigator.dart":"946742347","packages/flutter/src/services/raw_keyboard_windows.dart":"1042615792","packages/flutter/src/services/keyboard_maps.dart":"623093783","packages/flutter/src/services/keyboard_key.dart":"663656386","packages/flutter/src/services/platform_views.dart":"324815319","packages/flutter/gestures.dart":"888057237","packages/flutter/src/gestures/velocity_tracker.dart":"1061267431","packages/flutter/src/gestures/lsq_solver.dart":"484622429","packages/flutter/src/gestures/events.dart":"905795358","packages/flutter/src/gestures/constants.dart":"543830109","packages/flutter/src/gestures/team.dart":"292781547","packages/flutter/src/gestures/binding.dart":"486526949","packages/flutter/src/gestures/resampler.dart":"280038242","packages/flutter/src/gestures/pointer_signal_resolver.dart":"586897240","packages/flutter/src/gestures/pointer_router.dart":"106519546","packages/flutter/src/gestures/hit_test.dart":"268732267","packages/flutter/src/gestures/debug.dart":"1039452000","packages/flutter/src/gestures/converter.dart":"252521949","packages/flutter/src/gestures/arena.dart":"35225416","packages/flutter/src/gestures/tap.dart":"435021681","packages/flutter/src/gestures/recognizer.dart":"134467398","packages/flutter/src/gestures/scale.dart":"1022533966","packages/flutter/src/gestures/multitap.dart":"634168404","packages/flutter/src/gestures/multidrag.dart":"938642149","packages/flutter/src/gestures/drag_details.dart":"342059433","packages/flutter/src/gestures/drag.dart":"98221157","packages/flutter/src/gestures/monodrag.dart":"659839691","packages/flutter/src/gestures/long_press.dart":"140210597","packages/flutter/src/gestures/force_press.dart":"271852220","packages/flutter/src/gestures/eager.dart":"949669273","packages/flutter/src/services/mouse_tracking.dart":"796161918","packages/flutter/src/services/mouse_cursor.dart":"813080399","packages/flutter/src/services/haptic_feedback.dart":"265772884","packages/flutter/src/services/font_loader.dart":"368512684","packages/flutter/src/services/deferred_component.dart":"882236903","packages/flutter/src/services/clipboard.dart":"98050207","packages/flutter/src/painting/stadium_border.dart":"463920255","packages/flutter/src/painting/rounded_rectangle_border.dart":"680216825","packages/flutter/src/painting/edge_insets.dart":"48543227","packages/flutter/src/painting/circle_border.dart":"235923786","packages/flutter/src/painting/borders.dart":"653733934","packages/flutter/src/painting/border_radius.dart":"734242379","packages/flutter/src/painting/shape_decoration.dart":"478399985","packages/flutter/src/painting/_network_image_web.dart":"802960769","packages/flutter/src/painting/image_stream.dart":"130573773","packages/flutter/src/painting/image_cache.dart":"367116932","packages/flutter/src/painting/binding.dart":"687992063","packages/flutter/src/painting/shader_warm_up.dart":"174878493","packages/flutter/src/painting/gradient.dart":"960040868","packages/flutter/src/painting/alignment.dart":"507341851","packages/flutter/src/painting/decoration_image.dart":"924286966","packages/flutter/src/painting/debug.dart":"922809480","packages/flutter/src/painting/box_fit.dart":"550231412","packages/flutter/src/painting/decoration.dart":"672220678","packages/flutter/src/painting/box_shadow.dart":"534378198","packages/flutter/src/painting/box_decoration.dart":"609557271","packages/flutter/src/painting/box_border.dart":"209878463","packages/flutter/src/painting/paint_utilities.dart":"221925113","packages/flutter/src/painting/notched_shapes.dart":"377075900","packages/flutter/src/painting/matrix_utils.dart":"47632925","packages/flutter/src/painting/image_resolution.dart":"202935328","packages/flutter/src/painting/image_decoder.dart":"721083355","packages/flutter/src/painting/geometry.dart":"634090754","packages/flutter/src/painting/fractional_offset.dart":"279622279","packages/flutter/src/painting/flutter_logo.dart":"74887786","packages/flutter/src/painting/continuous_rectangle_border.dart":"250088618","packages/flutter/src/painting/clip.dart":"513804051","packages/flutter/src/painting/beveled_rectangle_border.dart":"652558370","packages/flutter/semantics.dart":"278495579","packages/flutter/src/semantics/semantics_service.dart":"81896742","packages/flutter/src/semantics/semantics_event.dart":"293650884","packages/flutter/src/semantics/semantics.dart":"415699808","packages/flutter/src/semantics/binding.dart":"358734689","packages/flutter/src/semantics/debug.dart":"694425448","packages/flutter/animation.dart":"1046599464","packages/flutter/src/animation/tween_sequence.dart":"1054629191","packages/flutter/src/animation/listener_helpers.dart":"971353263","packages/flutter/src/animation/curves.dart":"245438750","packages/flutter/src/animation/animation_controller.dart":"586004701","packages/flutter/physics.dart":"327743854","packages/flutter/src/physics/utils.dart":"81623544","packages/flutter/src/physics/tolerance.dart":"764842088","packages/flutter/src/physics/spring_simulation.dart":"704440249","packages/flutter/src/physics/simulation.dart":"224557909","packages/flutter/src/physics/gravity_simulation.dart":"439022808","packages/flutter/src/physics/friction_simulation.dart":"1005332543","packages/flutter/src/physics/clamped_simulation.dart":"833006226","packages/flutter/src/rendering/layout_helper.dart":"792176241","packages/flutter/src/rendering/viewport_offset.dart":"595772512","packages/flutter/src/rendering/sliver.dart":"60235724","packages/flutter/src/rendering/tweens.dart":"275630629","packages/flutter/src/rendering/texture.dart":"288427804","packages/flutter/src/rendering/table_border.dart":"768447654","packages/flutter/src/rendering/table.dart":"554962850","packages/flutter/src/rendering/stack.dart":"349180221","packages/flutter/src/rendering/sliver_persistent_header.dart":"173542192","packages/flutter/src/rendering/sliver_padding.dart":"645780494","packages/flutter/src/rendering/sliver_multi_box_adaptor.dart":"600577875","packages/flutter/src/rendering/sliver_list.dart":"836819114","packages/flutter/src/rendering/sliver_grid.dart":"999774886","packages/flutter/src/rendering/sliver_fixed_extent_list.dart":"91745410","packages/flutter/src/rendering/sliver_fill.dart":"754563430","packages/flutter/src/rendering/shifted_box.dart":"455207803","packages/flutter/src/rendering/debug_overflow_indicator.dart":"1063409903","packages/flutter/src/rendering/rotated_box.dart":"269700708","packages/flutter/src/rendering/proxy_sliver.dart":"832513564","packages/flutter/src/rendering/proxy_box.dart":"375016536","packages/flutter/src/rendering/platform_view.dart":"455184560","packages/flutter/src/rendering/performance_overlay.dart":"477302675","packages/flutter/src/rendering/paragraph.dart":"894838570","packages/flutter/src/rendering/list_wheel_viewport.dart":"454321754","packages/flutter/src/rendering/list_body.dart":"769257473","packages/flutter/src/rendering/image.dart":"320444693","packages/flutter/src/rendering/flow.dart":"308366965","packages/flutter/src/rendering/flex.dart":"207697296","packages/flutter/src/rendering/error.dart":"393207010","packages/flutter/src/rendering/editable.dart":"741291265","packages/flutter/src/rendering/custom_paint.dart":"98902765","packages/flutter/src/rendering/custom_layout.dart":"625146182","packages/flutter/src/rendering/animated_size.dart":"954075510","packages/flutter/src/widgets/constants.dart":"229980219","packages/flutter/src/widgets/scroll_simulation.dart":"360130037","packages/flutter/src/widgets/scroll_metrics.dart":"308580089","packages/flutter/src/widgets/value_listenable_builder.dart":"27312076","packages/flutter/src/widgets/unique_widget.dart":"272108580","packages/flutter/src/widgets/tween_animation_builder.dart":"1011551456","packages/flutter/src/widgets/implicit_animations.dart":"356103538","packages/flutter/src/widgets/texture.dart":"799136724","packages/flutter/src/widgets/text_selection_toolbar_layout_delegate.dart":"707291870","packages/flutter/src/widgets/status_transitions.dart":"51150265","packages/flutter/src/widgets/spacer.dart":"534252346","packages/flutter/src/widgets/sliver_prototype_extent_list.dart":"294815498","packages/flutter/src/widgets/sliver_persistent_header.dart":"208677389","packages/flutter/src/widgets/sliver_layout_builder.dart":"625146706","packages/flutter/src/widgets/layout_builder.dart":"1067932203","packages/flutter/src/widgets/sliver_fill.dart":"118440016","packages/flutter/src/widgets/size_changed_layout_notifier.dart":"513130448","packages/flutter/src/widgets/single_child_scroll_view.dart":"934505203","packages/flutter/src/widgets/scroll_view.dart":"621637402","packages/flutter/src/widgets/safe_area.dart":"1035669407","packages/flutter/src/widgets/reorderable_list.dart":"118334834","packages/flutter/src/widgets/raw_keyboard_listener.dart":"230434957","packages/flutter/src/widgets/preferred_size.dart":"81232057","packages/flutter/src/widgets/platform_view.dart":"897414509","packages/flutter/src/widgets/page_view.dart":"700379286","packages/flutter/src/widgets/overflow_bar.dart":"163318433","packages/flutter/src/widgets/orientation_builder.dart":"675599556","packages/flutter/src/widgets/nested_scroll_view.dart":"348910108","packages/flutter/src/widgets/navigation_toolbar.dart":"82234440","packages/flutter/src/widgets/list_wheel_scroll_view.dart":"564011833","packages/flutter/src/widgets/interactive_viewer.dart":"632243920","packages/flutter/src/widgets/image_icon.dart":"1062810018","packages/flutter/src/widgets/icon_theme_data.dart":"454468700","packages/flutter/src/widgets/icon_theme.dart":"679052444","packages/flutter/src/widgets/icon.dart":"1029286923","packages/flutter/src/widgets/icon_data.dart":"430865373","packages/flutter/src/widgets/image_filter.dart":"819555370","packages/flutter/src/widgets/grid_paper.dart":"897573021","packages/flutter/src/widgets/form.dart":"169456565","packages/flutter/src/widgets/fade_in_image.dart":"531455188","packages/flutter/src/widgets/dual_transition_builder.dart":"165519467","packages/flutter/src/widgets/draggable_scrollable_sheet.dart":"77834391","packages/flutter/src/widgets/drag_target.dart":"546470719","packages/flutter/src/widgets/dismissible.dart":"549660220","packages/flutter/src/widgets/desktop_text_selection_toolbar_layout_delegate.dart":"50708164","packages/flutter/src/widgets/color_filter.dart":"392828689","packages/flutter/src/widgets/bottom_navigation_bar_item.dart":"254417315","packages/flutter/src/widgets/autocomplete.dart":"588265627","packages/flutter/src/widgets/async.dart":"476326687","packages/flutter/src/widgets/annotated_region.dart":"165796549","packages/flutter/src/widgets/animated_switcher.dart":"114610452","packages/flutter/src/widgets/animated_size.dart":"989009424","packages/flutter/src/widgets/animated_list.dart":"608518783","packages/flutter/src/widgets/animated_cross_fade.dart":"66350464","packages/flutter/src/material/user_accounts_drawer_header.dart":"640294913","packages/flutter/src/material/icon_button.dart":"785503655","packages/flutter/src/material/typography.dart":"366909073","packages/flutter/src/material/colors.dart":"1032430891","packages/flutter/src/material/input_border.dart":"245139373","packages/flutter/src/material/constants.dart":"549094739","packages/flutter/src/material/material_state.dart":"746830172","packages/flutter/src/material/floating_action_button_theme.dart":"540905993","packages/flutter/src/material/curves.dart":"1039140236","packages/flutter/src/material/bottom_sheet_theme.dart":"1025410220","packages/flutter/src/material/tab_indicator.dart":"612885958","packages/flutter/src/material/tab_controller.dart":"459999087","packages/flutter/src/material/icons.dart":"522053134","packages/flutter/cupertino.dart":"989986754","packages/flutter/src/cupertino/thumb_painter.dart":"828461688","packages/flutter/src/cupertino/text_theme.dart":"749967173","packages/flutter/src/cupertino/interface_level.dart":"943067868","packages/flutter/src/cupertino/text_selection_toolbar_button.dart":"1045594703","packages/flutter/src/cupertino/button.dart":"583613092","packages/flutter/src/cupertino/constants.dart":"284219245","packages/flutter/src/cupertino/text_selection_toolbar.dart":"232821174","packages/flutter/src/cupertino/text_selection.dart":"436702342","packages/flutter/src/cupertino/debug.dart":"453510481","packages/flutter/src/cupertino/text_form_field_row.dart":"656842234","packages/flutter/src/cupertino/text_field.dart":"785345954","packages/flutter/src/cupertino/icons.dart":"164725601","packages/flutter/src/cupertino/desktop_text_selection.dart":"1051086160","packages/flutter/src/cupertino/form_row.dart":"825870010","packages/flutter/src/cupertino/tab_view.dart":"182719238","packages/flutter/src/cupertino/route.dart":"736596563","packages/flutter/src/cupertino/app.dart":"195032949","packages/flutter/src/cupertino/scrollbar.dart":"879891060","packages/flutter/src/cupertino/tab_scaffold.dart":"556439001","packages/flutter/src/cupertino/bottom_tab_bar.dart":"932882612","packages/flutter/src/cupertino/switch.dart":"603346714","packages/flutter/src/cupertino/sliding_segmented_control.dart":"274020965","packages/flutter/src/cupertino/slider.dart":"551736003","packages/flutter/src/cupertino/segmented_control.dart":"770202672","packages/flutter/src/cupertino/search_field.dart":"113388555","packages/flutter/src/cupertino/refresh.dart":"728750114","packages/flutter/src/cupertino/activity_indicator.dart":"689480014","packages/flutter/src/cupertino/picker.dart":"894439710","packages/flutter/src/cupertino/page_scaffold.dart":"375649464","packages/flutter/src/cupertino/nav_bar.dart":"501636368","packages/flutter/src/cupertino/form_section.dart":"91889577","packages/flutter/src/cupertino/dialog.dart":"228248599","packages/flutter/src/cupertino/date_picker.dart":"612769703","packages/flutter/src/cupertino/context_menu_action.dart":"384338418","packages/flutter/src/cupertino/context_menu.dart":"967318858","packages/flutter/src/cupertino/action_sheet.dart":"103243102","packages/flutter/src/material/drawer_header.dart":"294383821","packages/flutter/src/material/toggleable.dart":"848530504","packages/flutter/src/material/toggle_buttons.dart":"341704030","packages/flutter/src/material/time_picker.dart":"404038036","packages/flutter/src/material/text_form_field.dart":"634255365","packages/flutter/src/material/text_field.dart":"706710746","packages/flutter/src/material/text_selection.dart":"340058480","packages/flutter/src/material/text_selection_toolbar_text_button.dart":"123038236","packages/flutter/src/material/text_selection_toolbar.dart":"586950808","packages/flutter/src/material/selectable_text.dart":"781666139","packages/flutter/src/material/desktop_text_selection.dart":"129013104","packages/flutter/src/material/button_bar.dart":"540613625","packages/flutter/src/material/switch_list_tile.dart":"119288108","packages/flutter/src/material/switch.dart":"161637426","packages/flutter/src/material/shadows.dart":"848553581","packages/flutter/src/material/stepper.dart":"981956901","packages/flutter/src/material/slider.dart":"337736763","packages/flutter/src/material/search.dart":"274712487","packages/flutter/src/material/scrollbar.dart":"566590264","packages/flutter/src/material/reorderable_list.dart":"549155608","packages/flutter/src/material/refresh_indicator.dart":"686678405","packages/flutter/src/material/progress_indicator.dart":"434038874","packages/flutter/src/material/range_slider.dart":"893734300","packages/flutter/src/material/radio_list_tile.dart":"119538596","packages/flutter/src/material/radio.dart":"451783789","packages/flutter/src/material/popup_menu.dart":"37234625","packages/flutter/src/material/paginated_data_table.dart":"547855668","packages/flutter/src/material/dropdown.dart":"636348026","packages/flutter/src/material/data_table_source.dart":"947523785","packages/flutter/src/material/data_table.dart":"518032276","packages/flutter/src/material/checkbox.dart":"1007545333","packages/flutter/src/material/card.dart":"579462987","packages/flutter/src/material/page.dart":"764890047","packages/flutter/src/material/outlined_button.dart":"132412150","packages/flutter/src/material/no_splash.dart":"209078303","packages/flutter/src/material/mergeable_material.dart":"76867634","packages/flutter/src/material/input_date_picker_form_field.dart":"226996268","packages/flutter/src/material/date.dart":"919376020","packages/flutter/src/material/grid_tile_bar.dart":"621955771","packages/flutter/src/material/grid_tile.dart":"581751318","packages/flutter/src/material/flutter_logo.dart":"672378607","packages/flutter/src/material/expansion_tile.dart":"387481853","packages/flutter/src/material/expansion_panel.dart":"346418092","packages/flutter/src/material/expand_icon.dart":"317693160","packages/flutter/src/material/elevated_button.dart":"25851494","packages/flutter/src/material/date_picker_deprecated.dart":"591273238","packages/flutter/src/material/date_picker.dart":"929137516","packages/flutter/src/material/calendar_date_picker.dart":"1061905455","packages/flutter/src/material/circle_avatar.dart":"692991319","packages/flutter/src/material/chip.dart":"814101481","packages/flutter/src/material/checkbox_list_tile.dart":"518371937","packages/flutter/src/material/bottom_app_bar.dart":"1056819009","packages/flutter/src/material/banner.dart":"863389038","packages/flutter/src/material/autocomplete.dart":"529843814","packages/flutter/src/material/arc.dart":"489006452","packages/flutter/src/material/app.dart":"216994787","packages/flutter/src/material/animated_icons.dart":"477093538","packages/flutter/src/material/about.dart":"602682854","packages/softdoc/screens/send_doc_screen/send_doc_screen.dart":"892458781","packages/softdoc/screens/send_doc_screen/select_recepient.dart":"541877517","packages/softdoc/screens/send_doc_screen/utills.dart":"925548212","packages/softdoc/models/department.dart":"824356368","packages/softdoc/models/user.dart":"167059391","packages/softdoc/models/portfolio.dart":"370413355","packages/softdoc/screens/send_doc_screen/add_or_edit_recepient.dart":"1018576585","packages/dotted_border/dotted_border.dart":"731408789","packages/path_drawing/path_drawing.dart":"785404619","packages/path_drawing/src/trim_path.dart":"1023834435","packages/path_drawing/src/dash_path.dart":"199959565","packages/path_drawing/src/parse_path.dart":"872657778","packages/path_parsing/path_parsing.dart":"956360218","packages/path_parsing/src/path_parsing.dart":"579046198","packages/path_parsing/src/path_segment_type.dart":"62969425","packages/vector_math/vector_math.dart":"518239348","packages/softdoc/models/doc.dart":"1007555229","packages/softdoc/cubit/AndroidNav_cubit.dart":"434297440","packages/bloc/src/bloc_observer.dart":"60415495","packages/bloc/src/transition.dart":"104742231","packages/flutter_bloc/src/multi_bloc_listener.dart":"799859565","packages/flutter_bloc/src/repository_provider.dart":"162932262","packages/provider/single_child_widget.dart":"879612871","packages/nested/nested.dart":"942002106","packages/provider/provider.dart":"1057938574","packages/provider/src/value_listenable_provider.dart":"89637463","packages/provider/src/provider.dart":"792129826","packages/provider/src/reassemble_handler.dart":"728761311","packages/provider/src/selector.dart":"256666524","packages/provider/src/proxy_provider.dart":"253725739","packages/provider/src/listenable_provider.dart":"309110915","packages/provider/src/async_provider.dart":"1073470190","packages/flutter_bloc/src/multi_repository_provider.dart":"473566980","packages/flutter_bloc/src/multi_bloc_provider.dart":"952545299","packages/flutter_bloc/src/bloc_provider.dart":"691346556","packages/softdoc/screens/detail_screen/detail_screen.dart":"581574694","packages/softdoc/screens/detail_screen/approval_progress.dart":"738472724","packages/timeline_tile/timeline_tile.dart":"743146316","packages/timeline_tile/src/timeline_divider.dart":"68031709","packages/timeline_tile/src/style.dart":"377774292","packages/timeline_tile/src/axis.dart":"475092238","packages/softdoc/screens/desktop_screen/desktop_auth_screen.dart":"349959514","packages/softdoc/screens/auth_screen/auth_form.dart":"166708142","packages/http/src/multipart_request.dart":"1062695685","packages/http/src/utils.dart":"123522629","packages/http/src/byte_stream.dart":"585221778","packages/http_parser/http_parser.dart":"965769143","packages/http_parser/src/media_type.dart":"356660439","packages/http_parser/src/utils.dart":"232856143","packages/source_span/source_span.dart":"205623903","packages/source_span/src/location_mixin.dart":"536387432","packages/source_span/src/colors.dart":"562452503","packages/source_span/src/charcode.dart":"9085630","packages/term_glyph/src/generated/top_level.dart":"950664036","packages/term_glyph/src/generated/unicode_glyph_set.dart":"576832656","packages/term_glyph/src/generated/glyph_set.dart":"208023670","packages/term_glyph/src/generated/ascii_glyph_set.dart":"249880449","packages/path/src/path_set.dart":"471881567","packages/path/src/utils.dart":"717434731","packages/path/src/characters.dart":"730132204","packages/path/src/path_exception.dart":"158501058","packages/source_span/src/span_exception.dart":"282387579","packages/http_parser/src/scan.dart":"509140332","packages/string_scanner/string_scanner.dart":"1011633185","packages/string_scanner/src/utils.dart":"426413513","packages/charcode/charcode.dart":"889731031","packages/charcode/html_entity.dart":"74442610","packages/charcode/ascii.dart":"754520652","packages/string_scanner/src/relative_span_scanner.dart":"48588840","packages/string_scanner/src/line_scanner.dart":"485035581","packages/http_parser/src/case_insensitive_map.dart":"365689774","packages/http_parser/src/http_date.dart":"1071038183","packages/http_parser/src/chunked_coding.dart":"271914966","packages/http_parser/src/chunked_coding/encoder.dart":"479856068","packages/http_parser/src/chunked_coding/decoder.dart":"249090341","packages/typed_data/typed_data.dart":"7442228","packages/typed_data/src/typed_queue.dart":"507185283","packages/http_parser/src/authentication_challenge.dart":"537485023","packages/http/src/exception.dart":"665766226","packages/pedantic/pedantic.dart":"947647864","packages/http/src/boundary_characters.dart":"158692648","packages/crypto/crypto.dart":"766005270","packages/crypto/src/sha512.dart":"84024707","packages/crypto/src/utils.dart":"24133038","packages/crypto/src/sha512_slowsinks.dart":"409434567","packages/crypto/src/hash_sink.dart":"98681404","packages/crypto/src/digest.dart":"460138914","packages/crypto/src/hash.dart":"75903289","packages/crypto/src/digest_sink.dart":"253135103","packages/crypto/src/sha256.dart":"842981505","packages/crypto/src/sha1.dart":"1035494479","packages/crypto/src/md5.dart":"617655722","packages/crypto/src/hmac.dart":"853867586","packages/softdoc/screens/auth_screen/auth_screen.dart":"686416599","packages/softdoc/platformSelect.dart":"1034644644","packages/softdoc/screens/desktop_screen/desktop_screen.dart":"771474363","packages/softdoc/screens/home_screen/home_screen.dart":"937053294","packages/softdoc/screens/home_screen/doc_tile.dart":"288881701","packages/softdoc/screens/android_screen/android_screen.dart":"479386918"}
+define(['dart_sdk', 'packages/flutter/src/material/icon_button.dart', 'packages/flutter/src/material/material_state.dart', 'packages/flutter/src/painting/strut_style.dart', 'packages/flutter/src/painting/edge_insets.dart', 'packages/flutter/src/painting/borders.dart', 'packages/flutter/src/widgets/widget_span.dart', 'packages/flutter/src/painting/rounded_rectangle_border.dart', 'packages/flutter/src/painting/border_radius.dart', 'packages/flutter/src/services/mouse_cursor.dart', 'packages/flutter/src/material/constants.dart', 'packages/flutter/src/painting/alignment.dart', 'packages/flutter/src/foundation/debug.dart', 'packages/flutter/src/rendering/flex.dart'], (function load__packages__flutter__src__material__elevated_button_dart(dart_sdk, packages__flutter__src__material__icon_button$46dart, packages__flutter__src__material__material_state$46dart, packages__flutter__src__painting__strut_style$46dart, packages__flutter__src__painting__edge_insets$46dart, packages__flutter__src__painting__borders$46dart, packages__flutter__src__widgets__widget_span$46dart, packages__flutter__src__painting__rounded_rectangle_border$46dart, packages__flutter__src__painting__border_radius$46dart, packages__flutter__src__services__mouse_cursor$46dart, packages__flutter__src__material__constants$46dart, packages__flutter__src__painting__alignment$46dart, packages__flutter__src__foundation__debug$46dart, packages__flutter__src__rendering__flex$46dart) {
+  'use strict';
+  const core = dart_sdk.core;
+  const ui = dart_sdk.ui;
+  const math = dart_sdk.math;
+  const _interceptors = dart_sdk._interceptors;
+  const dart = dart_sdk.dart;
+  const dartx = dart_sdk.dartx;
+  const button_style = packages__flutter__src__material__icon_button$46dart.src__material__button_style;
+  const button_style_button = packages__flutter__src__material__icon_button$46dart.src__material__button_style_button;
+  const theme$ = packages__flutter__src__material__icon_button$46dart.src__material__theme;
+  const ink_ripple = packages__flutter__src__material__icon_button$46dart.src__material__ink_ripple;
+  const elevated_button_theme = packages__flutter__src__material__icon_button$46dart.src__material__elevated_button_theme;
+  const material_state = packages__flutter__src__material__material_state$46dart.src__material__material_state;
+  const text_style = packages__flutter__src__painting__strut_style$46dart.src__painting__text_style;
+  const edge_insets = packages__flutter__src__painting__edge_insets$46dart.src__painting__edge_insets;
+  const borders = packages__flutter__src__painting__borders$46dart.src__painting__borders;
+  const media_query = packages__flutter__src__widgets__widget_span$46dart.src__widgets__media_query;
+  const framework = packages__flutter__src__widgets__widget_span$46dart.src__widgets__framework;
+  const widget_inspector = packages__flutter__src__widgets__widget_span$46dart.src__widgets__widget_inspector;
+  const basic = packages__flutter__src__widgets__widget_span$46dart.src__widgets__basic;
+  const rounded_rectangle_border = packages__flutter__src__painting__rounded_rectangle_border$46dart.src__painting__rounded_rectangle_border;
+  const border_radius = packages__flutter__src__painting__border_radius$46dart.src__painting__border_radius;
+  const mouse_cursor = packages__flutter__src__services__mouse_cursor$46dart.src__services__mouse_cursor;
+  const constants = packages__flutter__src__material__constants$46dart.src__material__constants;
+  const alignment = packages__flutter__src__painting__alignment$46dart.src__painting__alignment;
+  const diagnostics = packages__flutter__src__foundation__debug$46dart.src__foundation__diagnostics;
+  const flex = packages__flutter__src__rendering__flex$46dart.src__rendering__flex;
+  var elevated_button = Object.create(dart.library);
+  dart._checkModuleNullSafetyMode(false);
+  var T = {
+    TextStyleN: () => (T.TextStyleN = dart.constFn(dart.nullable(text_style.TextStyle)))(),
+    _LocationL: () => (T._LocationL = dart.constFn(dart.legacy(widget_inspector._Location)))(),
+    JSArrayOfWidget: () => (T.JSArrayOfWidget = dart.constFn(_interceptors.JSArray$(framework.Widget)))()
+  };
+  const CT = Object.create({
+    _: () => (C, CT)
+  });
+  dart.defineLazy(CT, {
+    get C0() {
+      return C[0] = dart.const({
+        __proto__: ui.Clip.prototype,
+        [_name]: "Clip.none",
+        index: 0
+      });
+    },
+    get C1() {
+      return C[1] = dart.const({
+        __proto__: edge_insets.EdgeInsets.prototype,
+        [EdgeInsets_bottom]: 0,
+        [EdgeInsets_right]: 16,
+        [EdgeInsets_top]: 0,
+        [EdgeInsets_left]: 16
+      });
+    },
+    get C2() {
+      return C[2] = dart.const({
+        __proto__: edge_insets.EdgeInsets.prototype,
+        [EdgeInsets_bottom]: 0,
+        [EdgeInsets_right]: 8,
+        [EdgeInsets_top]: 0,
+        [EdgeInsets_left]: 8
+      });
+    },
+    get C3() {
+      return C[3] = dart.const({
+        __proto__: edge_insets.EdgeInsets.prototype,
+        [EdgeInsets_bottom]: 0,
+        [EdgeInsets_right]: 4,
+        [EdgeInsets_top]: 0,
+        [EdgeInsets_left]: 4
+      });
+    },
+    get C4() {
+      return C[4] = dart.const({
+        __proto__: ui.Size.prototype,
+        [OffsetBase__dy]: 36,
+        [OffsetBase__dx]: 64
+      });
+    },
+    get C7() {
+      return C[7] = dart.const({
+        __proto__: borders.BorderStyle.prototype,
+        [_name$]: "BorderStyle.none",
+        index: 0
+      });
+    },
+    get C8() {
+      return C[8] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4278190080.0
+      });
+    },
+    get C6() {
+      return C[6] = dart.const({
+        __proto__: borders.BorderSide.prototype,
+        [BorderSide_style]: C[7] || CT.C7,
+        [BorderSide_width]: 0,
+        [BorderSide_color]: C[8] || CT.C8
+      });
+    },
+    get C10() {
+      return C[10] = dart.const({
+        __proto__: ui.Radius.prototype,
+        [Radius_y]: 4,
+        [Radius_x]: 4
+      });
+    },
+    get C9() {
+      return C[9] = dart.const({
+        __proto__: border_radius.BorderRadius.prototype,
+        [BorderRadius_bottomRight]: C[10] || CT.C10,
+        [BorderRadius_bottomLeft]: C[10] || CT.C10,
+        [BorderRadius_topRight]: C[10] || CT.C10,
+        [BorderRadius_topLeft]: C[10] || CT.C10
+      });
+    },
+    get C5() {
+      return C[5] = dart.const({
+        __proto__: rounded_rectangle_border.RoundedRectangleBorder.prototype,
+        [OutlinedBorder_side]: C[6] || CT.C6,
+        [RoundedRectangleBorder_borderRadius]: C[9] || CT.C9
+      });
+    },
+    get C13() {
+      return C[13] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "icon",
+        [_Location_column]: 46,
+        [_Location_line]: 441,
+        [_Location_file]: null
+      });
+    },
+    get C14() {
+      return C[14] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "label",
+        [_Location_column]: 58,
+        [_Location_line]: 441,
+        [_Location_file]: null
+      });
+    },
+    get C12() {
+      return C[12] = dart.constList([C[13] || CT.C13, C[14] || CT.C14], T._LocationL());
+    },
+    get C11() {
+      return C[11] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[12] || CT.C12,
+        [_Location_name]: null,
+        [_Location_column]: 17,
+        [_Location_line]: 441,
+        [_Location_file]: "file:///C:/src/flutter/packages/flutter/lib/src/material/elevated_button.dart"
+      });
+    },
+    get C15() {
+      return C[15] = dart.const({
+        __proto__: edge_insets.EdgeInsetsDirectional.prototype,
+        [EdgeInsetsDirectional_bottom]: 0,
+        [EdgeInsetsDirectional_end]: 16,
+        [EdgeInsetsDirectional_top]: 0,
+        [EdgeInsetsDirectional_start]: 12
+      });
+    },
+    get C16() {
+      return C[16] = dart.const({
+        __proto__: edge_insets.EdgeInsetsDirectional.prototype,
+        [EdgeInsetsDirectional_bottom]: 0,
+        [EdgeInsetsDirectional_end]: 4,
+        [EdgeInsetsDirectional_top]: 0,
+        [EdgeInsetsDirectional_start]: 8
+      });
+    },
+    get C19() {
+      return C[19] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "width",
+        [_Location_column]: 41,
+        [_Location_line]: 470,
+        [_Location_file]: null
+      });
+    },
+    get C18() {
+      return C[18] = dart.constList([C[19] || CT.C19], T._LocationL());
+    },
+    get C17() {
+      return C[17] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[18] || CT.C18,
+        [_Location_name]: null,
+        [_Location_column]: 32,
+        [_Location_line]: 470,
+        [_Location_file]: "file:///C:/src/flutter/packages/flutter/lib/src/material/elevated_button.dart"
+      });
+    },
+    get C22() {
+      return C[22] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "mainAxisSize",
+        [_Location_column]: 7,
+        [_Location_line]: 469,
+        [_Location_file]: null
+      });
+    },
+    get C23() {
+      return C[23] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "children",
+        [_Location_column]: 7,
+        [_Location_line]: 470,
+        [_Location_file]: null
+      });
+    },
+    get C21() {
+      return C[21] = dart.constList([C[22] || CT.C22, C[23] || CT.C23], T._LocationL());
+    },
+    get C20() {
+      return C[20] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[21] || CT.C21,
+        [_Location_name]: null,
+        [_Location_column]: 12,
+        [_Location_line]: 468,
+        [_Location_file]: "file:///C:/src/flutter/packages/flutter/lib/src/material/elevated_button.dart"
+      });
+    }
+  }, false);
+  var C = Array(24).fill(void 0);
+  var I = [
+    "file:///C:/src/flutter/packages/flutter/lib/src/material/elevated_button.dart",
+    "package:flutter/src/material/elevated_button.dart"
+  ];
+  var _name = dart.privateName(ui, "_name");
+  var EdgeInsets_bottom = dart.privateName(edge_insets, "EdgeInsets.bottom");
+  var EdgeInsets_right = dart.privateName(edge_insets, "EdgeInsets.right");
+  var EdgeInsets_top = dart.privateName(edge_insets, "EdgeInsets.top");
+  var EdgeInsets_left = dart.privateName(edge_insets, "EdgeInsets.left");
+  var OffsetBase__dy = dart.privateName(ui, "OffsetBase._dy");
+  var OffsetBase__dx = dart.privateName(ui, "OffsetBase._dx");
+  var _name$ = dart.privateName(borders, "_name");
+  var BorderSide_style = dart.privateName(borders, "BorderSide.style");
+  var BorderSide_width = dart.privateName(borders, "BorderSide.width");
+  var Color_value = dart.privateName(ui, "Color.value");
+  var BorderSide_color = dart.privateName(borders, "BorderSide.color");
+  var OutlinedBorder_side = dart.privateName(borders, "OutlinedBorder.side");
+  var Radius_y = dart.privateName(ui, "Radius.y");
+  var Radius_x = dart.privateName(ui, "Radius.x");
+  var BorderRadius_bottomRight = dart.privateName(border_radius, "BorderRadius.bottomRight");
+  var BorderRadius_bottomLeft = dart.privateName(border_radius, "BorderRadius.bottomLeft");
+  var BorderRadius_topRight = dart.privateName(border_radius, "BorderRadius.topRight");
+  var BorderRadius_topLeft = dart.privateName(border_radius, "BorderRadius.topLeft");
+  var RoundedRectangleBorder_borderRadius = dart.privateName(rounded_rectangle_border, "RoundedRectangleBorder.borderRadius");
+  elevated_button.ElevatedButton = class ElevatedButton extends button_style_button.ButtonStyleButton {
+    static styleFrom(opts) {
+      let primary = opts && 'primary' in opts ? opts.primary : null;
+      let onPrimary = opts && 'onPrimary' in opts ? opts.onPrimary : null;
+      let onSurface = opts && 'onSurface' in opts ? opts.onSurface : null;
+      let shadowColor = opts && 'shadowColor' in opts ? opts.shadowColor : null;
+      let elevation = opts && 'elevation' in opts ? opts.elevation : null;
+      let textStyle = opts && 'textStyle' in opts ? opts.textStyle : null;
+      let padding = opts && 'padding' in opts ? opts.padding : null;
+      let minimumSize = opts && 'minimumSize' in opts ? opts.minimumSize : null;
+      let fixedSize = opts && 'fixedSize' in opts ? opts.fixedSize : null;
+      let side = opts && 'side' in opts ? opts.side : null;
+      let shape = opts && 'shape' in opts ? opts.shape : null;
+      let enabledMouseCursor = opts && 'enabledMouseCursor' in opts ? opts.enabledMouseCursor : null;
+      let disabledMouseCursor = opts && 'disabledMouseCursor' in opts ? opts.disabledMouseCursor : null;
+      let visualDensity = opts && 'visualDensity' in opts ? opts.visualDensity : null;
+      let tapTargetSize = opts && 'tapTargetSize' in opts ? opts.tapTargetSize : null;
+      let animationDuration = opts && 'animationDuration' in opts ? opts.animationDuration : null;
+      let enableFeedback = opts && 'enableFeedback' in opts ? opts.enableFeedback : null;
+      let alignment = opts && 'alignment' in opts ? opts.alignment : null;
+      let splashFactory = opts && 'splashFactory' in opts ? opts.splashFactory : null;
+      let backgroundColor = onSurface == null && primary == null ? null : new elevated_button._ElevatedButtonDefaultBackground.new(primary, onSurface);
+      let foregroundColor = onSurface == null && onPrimary == null ? null : new elevated_button._ElevatedButtonDefaultForeground.new(onPrimary, onSurface);
+      let overlayColor = onPrimary == null ? null : new elevated_button._ElevatedButtonDefaultOverlay.new(onPrimary);
+      let elevationValue = elevation == null ? null : new elevated_button._ElevatedButtonDefaultElevation.new(elevation);
+      let mouseCursor = enabledMouseCursor == null && disabledMouseCursor == null ? null : new elevated_button._ElevatedButtonDefaultMouseCursor.new(enabledMouseCursor, disabledMouseCursor);
+      return new button_style.ButtonStyle.new({textStyle: material_state.MaterialStateProperty.all(T.TextStyleN(), textStyle), backgroundColor: backgroundColor, foregroundColor: foregroundColor, overlayColor: overlayColor, shadowColor: button_style_button.ButtonStyleButton.allOrNull(ui.Color, shadowColor), elevation: elevationValue, padding: button_style_button.ButtonStyleButton.allOrNull(edge_insets.EdgeInsetsGeometry, padding), minimumSize: button_style_button.ButtonStyleButton.allOrNull(ui.Size, minimumSize), fixedSize: button_style_button.ButtonStyleButton.allOrNull(ui.Size, fixedSize), side: button_style_button.ButtonStyleButton.allOrNull(borders.BorderSide, side), shape: button_style_button.ButtonStyleButton.allOrNull(borders.OutlinedBorder, shape), mouseCursor: mouseCursor, visualDensity: visualDensity, tapTargetSize: tapTargetSize, animationDuration: animationDuration, enableFeedback: enableFeedback, alignment: alignment, splashFactory: splashFactory});
+    }
+    defaultStyleOf(context) {
+      let t0, t0$;
+      if (context == null) dart.nullFailed(I[0], 298, 43, "context");
+      let theme = theme$.Theme.of(context);
+      let colorScheme = theme.colorScheme;
+      let scaledPadding = button_style_button.ButtonStyleButton.scaledPadding(C[1] || CT.C1, C[2] || CT.C2, C[3] || CT.C3, (t0$ = (t0 = media_query.MediaQuery.maybeOf(context), t0 == null ? null : t0.textScaleFactor), t0$ == null ? 1.0 : t0$));
+      return elevated_button.ElevatedButton.styleFrom({primary: colorScheme.primary, onPrimary: colorScheme.onPrimary, onSurface: colorScheme.onSurface, shadowColor: theme.shadowColor, elevation: 2.0, textStyle: theme.textTheme.button, padding: scaledPadding, minimumSize: C[4] || CT.C4, side: null, shape: C[5] || CT.C5, enabledMouseCursor: mouse_cursor.SystemMouseCursors.click, disabledMouseCursor: mouse_cursor.SystemMouseCursors.forbidden, visualDensity: theme.visualDensity, tapTargetSize: theme.materialTapTargetSize, animationDuration: constants.kThemeChangeDuration, enableFeedback: true, alignment: alignment.Alignment.center, splashFactory: ink_ripple.InkRipple.splashFactory});
+    }
+    themeStyleOf(context) {
+      if (context == null) dart.nullFailed(I[0], 334, 42, "context");
+      return elevated_button_theme.ElevatedButtonTheme.of(context).style;
+    }
+  };
+  (elevated_button.ElevatedButton.new = function(opts) {
+    let key = opts && 'key' in opts ? opts.key : null;
+    let onPressed = opts && 'onPressed' in opts ? opts.onPressed : null;
+    let onLongPress = opts && 'onLongPress' in opts ? opts.onLongPress : null;
+    let style = opts && 'style' in opts ? opts.style : null;
+    let focusNode = opts && 'focusNode' in opts ? opts.focusNode : null;
+    let autofocus = opts && 'autofocus' in opts ? opts.autofocus : false;
+    if (autofocus == null) dart.nullFailed(I[0], 97, 10, "autofocus");
+    let clipBehavior = opts && 'clipBehavior' in opts ? opts.clipBehavior : C[0] || CT.C0;
+    if (clipBehavior == null) dart.nullFailed(I[0], 98, 10, "clipBehavior");
+    let child = opts && 'child' in opts ? opts.child : null;
+    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
+    elevated_button.ElevatedButton.__proto__.new.call(this, {key: key, onPressed: onPressed, onLongPress: onLongPress, style: style, focusNode: focusNode, autofocus: autofocus, clipBehavior: clipBehavior, child: child, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
+    ;
+  }).prototype = elevated_button.ElevatedButton.prototype;
+  dart.addTypeTests(elevated_button.ElevatedButton);
+  dart.addTypeCaches(elevated_button.ElevatedButton);
+  dart.setMethodSignature(elevated_button.ElevatedButton, () => ({
+    __proto__: dart.getMethods(elevated_button.ElevatedButton.__proto__),
+    defaultStyleOf: dart.fnType(button_style.ButtonStyle, [framework.BuildContext]),
+    themeStyleOf: dart.fnType(dart.nullable(button_style.ButtonStyle), [framework.BuildContext])
+  }));
+  dart.setLibraryUri(elevated_button.ElevatedButton, I[1]);
+  const MaterialStateProperty_Diagnosticable$36 = class MaterialStateProperty_Diagnosticable extends material_state.MaterialStateProperty$(dart.nullable(ui.Color)) {};
+  (MaterialStateProperty_Diagnosticable$36.new = function() {
+  }).prototype = MaterialStateProperty_Diagnosticable$36.prototype;
+  dart.applyMixin(MaterialStateProperty_Diagnosticable$36, diagnostics.Diagnosticable);
+  elevated_button._ElevatedButtonDefaultBackground = class _ElevatedButtonDefaultBackground extends MaterialStateProperty_Diagnosticable$36 {
+    resolve(states) {
+      let t0;
+      if (states == null) dart.nullFailed(I[0], 347, 37, "states");
+      if (dart.test(states.contains(material_state.MaterialState.disabled))) {
+        t0 = this.onSurface;
+        return t0 == null ? null : t0.withOpacity(0.12);
+      }
+      return this.primary;
+    }
+  };
+  (elevated_button._ElevatedButtonDefaultBackground.new = function(primary, onSurface) {
+    this.primary = primary;
+    this.onSurface = onSurface;
+    ;
+  }).prototype = elevated_button._ElevatedButtonDefaultBackground.prototype;
+  dart.addTypeTests(elevated_button._ElevatedButtonDefaultBackground);
+  dart.addTypeCaches(elevated_button._ElevatedButtonDefaultBackground);
+  dart.setMethodSignature(elevated_button._ElevatedButtonDefaultBackground, () => ({
+    __proto__: dart.getMethods(elevated_button._ElevatedButtonDefaultBackground.__proto__),
+    resolve: dart.fnType(dart.nullable(ui.Color), [core.Set$(material_state.MaterialState)])
+  }));
+  dart.setLibraryUri(elevated_button._ElevatedButtonDefaultBackground, I[1]);
+  dart.setFieldSignature(elevated_button._ElevatedButtonDefaultBackground, () => ({
+    __proto__: dart.getFields(elevated_button._ElevatedButtonDefaultBackground.__proto__),
+    primary: dart.finalFieldType(dart.nullable(ui.Color)),
+    onSurface: dart.finalFieldType(dart.nullable(ui.Color))
+  }));
+  const MaterialStateProperty_Diagnosticable$36$ = class MaterialStateProperty_Diagnosticable extends material_state.MaterialStateProperty$(dart.nullable(ui.Color)) {};
+  (MaterialStateProperty_Diagnosticable$36$.new = function() {
+  }).prototype = MaterialStateProperty_Diagnosticable$36$.prototype;
+  dart.applyMixin(MaterialStateProperty_Diagnosticable$36$, diagnostics.Diagnosticable);
+  elevated_button._ElevatedButtonDefaultForeground = class _ElevatedButtonDefaultForeground extends MaterialStateProperty_Diagnosticable$36$ {
+    resolve(states) {
+      let t0;
+      if (states == null) dart.nullFailed(I[0], 362, 37, "states");
+      if (dart.test(states.contains(material_state.MaterialState.disabled))) {
+        t0 = this.onSurface;
+        return t0 == null ? null : t0.withOpacity(0.38);
+      }
+      return this.onPrimary;
+    }
+  };
+  (elevated_button._ElevatedButtonDefaultForeground.new = function(onPrimary, onSurface) {
+    this.onPrimary = onPrimary;
+    this.onSurface = onSurface;
+    ;
+  }).prototype = elevated_button._ElevatedButtonDefaultForeground.prototype;
+  dart.addTypeTests(elevated_button._ElevatedButtonDefaultForeground);
+  dart.addTypeCaches(elevated_button._ElevatedButtonDefaultForeground);
+  dart.setMethodSignature(elevated_button._ElevatedButtonDefaultForeground, () => ({
+    __proto__: dart.getMethods(elevated_button._ElevatedButtonDefaultForeground.__proto__),
+    resolve: dart.fnType(dart.nullable(ui.Color), [core.Set$(material_state.MaterialState)])
+  }));
+  dart.setLibraryUri(elevated_button._ElevatedButtonDefaultForeground, I[1]);
+  dart.setFieldSignature(elevated_button._ElevatedButtonDefaultForeground, () => ({
+    __proto__: dart.getFields(elevated_button._ElevatedButtonDefaultForeground.__proto__),
+    onPrimary: dart.finalFieldType(dart.nullable(ui.Color)),
+    onSurface: dart.finalFieldType(dart.nullable(ui.Color))
+  }));
+  const MaterialStateProperty_Diagnosticable$36$0 = class MaterialStateProperty_Diagnosticable extends material_state.MaterialStateProperty$(dart.nullable(ui.Color)) {};
+  (MaterialStateProperty_Diagnosticable$36$0.new = function() {
+  }).prototype = MaterialStateProperty_Diagnosticable$36$0.prototype;
+  dart.applyMixin(MaterialStateProperty_Diagnosticable$36$0, diagnostics.Diagnosticable);
+  elevated_button._ElevatedButtonDefaultOverlay = class _ElevatedButtonDefaultOverlay extends MaterialStateProperty_Diagnosticable$36$0 {
+    resolve(states) {
+      if (states == null) dart.nullFailed(I[0], 376, 37, "states");
+      if (dart.test(states.contains(material_state.MaterialState.hovered))) return this.onPrimary.withOpacity(0.08);
+      if (dart.test(states.contains(material_state.MaterialState.focused)) || dart.test(states.contains(material_state.MaterialState.pressed))) return this.onPrimary.withOpacity(0.24);
+      return null;
+    }
+  };
+  (elevated_button._ElevatedButtonDefaultOverlay.new = function(onPrimary) {
+    if (onPrimary == null) dart.nullFailed(I[0], 371, 38, "onPrimary");
+    this.onPrimary = onPrimary;
+    ;
+  }).prototype = elevated_button._ElevatedButtonDefaultOverlay.prototype;
+  dart.addTypeTests(elevated_button._ElevatedButtonDefaultOverlay);
+  dart.addTypeCaches(elevated_button._ElevatedButtonDefaultOverlay);
+  dart.setMethodSignature(elevated_button._ElevatedButtonDefaultOverlay, () => ({
+    __proto__: dart.getMethods(elevated_button._ElevatedButtonDefaultOverlay.__proto__),
+    resolve: dart.fnType(dart.nullable(ui.Color), [core.Set$(material_state.MaterialState)])
+  }));
+  dart.setLibraryUri(elevated_button._ElevatedButtonDefaultOverlay, I[1]);
+  dart.setFieldSignature(elevated_button._ElevatedButtonDefaultOverlay, () => ({
+    __proto__: dart.getFields(elevated_button._ElevatedButtonDefaultOverlay.__proto__),
+    onPrimary: dart.finalFieldType(ui.Color)
+  }));
+  const MaterialStateProperty_Diagnosticable$36$1 = class MaterialStateProperty_Diagnosticable extends material_state.MaterialStateProperty$(core.double) {};
+  (MaterialStateProperty_Diagnosticable$36$1.new = function() {
+  }).prototype = MaterialStateProperty_Diagnosticable$36$1.prototype;
+  dart.applyMixin(MaterialStateProperty_Diagnosticable$36$1, diagnostics.Diagnosticable);
+  elevated_button._ElevatedButtonDefaultElevation = class _ElevatedButtonDefaultElevation extends MaterialStateProperty_Diagnosticable$36$1 {
+    resolve(states) {
+      if (states == null) dart.nullFailed(I[0], 392, 37, "states");
+      if (dart.test(states.contains(material_state.MaterialState.disabled))) return 0.0;
+      if (dart.test(states.contains(material_state.MaterialState.hovered))) return dart.notNull(this.elevation) + 2;
+      if (dart.test(states.contains(material_state.MaterialState.focused))) return dart.notNull(this.elevation) + 2;
+      if (dart.test(states.contains(material_state.MaterialState.pressed))) return dart.notNull(this.elevation) + 6;
+      return this.elevation;
+    }
+  };
+  (elevated_button._ElevatedButtonDefaultElevation.new = function(elevation) {
+    if (elevation == null) dart.nullFailed(I[0], 387, 40, "elevation");
+    this.elevation = elevation;
+    ;
+  }).prototype = elevated_button._ElevatedButtonDefaultElevation.prototype;
+  dart.addTypeTests(elevated_button._ElevatedButtonDefaultElevation);
+  dart.addTypeCaches(elevated_button._ElevatedButtonDefaultElevation);
+  dart.setMethodSignature(elevated_button._ElevatedButtonDefaultElevation, () => ({
+    __proto__: dart.getMethods(elevated_button._ElevatedButtonDefaultElevation.__proto__),
+    resolve: dart.fnType(core.double, [core.Set$(material_state.MaterialState)])
+  }));
+  dart.setLibraryUri(elevated_button._ElevatedButtonDefaultElevation, I[1]);
+  dart.setFieldSignature(elevated_button._ElevatedButtonDefaultElevation, () => ({
+    __proto__: dart.getFields(elevated_button._ElevatedButtonDefaultElevation.__proto__),
+    elevation: dart.finalFieldType(core.double)
+  }));
+  const MaterialStateProperty_Diagnosticable$36$2 = class MaterialStateProperty_Diagnosticable extends material_state.MaterialStateProperty$(dart.nullable(mouse_cursor.MouseCursor)) {};
+  (MaterialStateProperty_Diagnosticable$36$2.new = function() {
+  }).prototype = MaterialStateProperty_Diagnosticable$36$2.prototype;
+  dart.applyMixin(MaterialStateProperty_Diagnosticable$36$2, diagnostics.Diagnosticable);
+  elevated_button._ElevatedButtonDefaultMouseCursor = class _ElevatedButtonDefaultMouseCursor extends MaterialStateProperty_Diagnosticable$36$2 {
+    resolve(states) {
+      if (states == null) dart.nullFailed(I[0], 413, 43, "states");
+      if (dart.test(states.contains(material_state.MaterialState.disabled))) return this.disabledCursor;
+      return this.enabledCursor;
+    }
+  };
+  (elevated_button._ElevatedButtonDefaultMouseCursor.new = function(enabledCursor, disabledCursor) {
+    this.enabledCursor = enabledCursor;
+    this.disabledCursor = disabledCursor;
+    ;
+  }).prototype = elevated_button._ElevatedButtonDefaultMouseCursor.prototype;
+  dart.addTypeTests(elevated_button._ElevatedButtonDefaultMouseCursor);
+  dart.addTypeCaches(elevated_button._ElevatedButtonDefaultMouseCursor);
+  dart.setMethodSignature(elevated_button._ElevatedButtonDefaultMouseCursor, () => ({
+    __proto__: dart.getMethods(elevated_button._ElevatedButtonDefaultMouseCursor.__proto__),
+    resolve: dart.fnType(dart.nullable(mouse_cursor.MouseCursor), [core.Set$(material_state.MaterialState)])
+  }));
+  dart.setLibraryUri(elevated_button._ElevatedButtonDefaultMouseCursor, I[1]);
+  dart.setFieldSignature(elevated_button._ElevatedButtonDefaultMouseCursor, () => ({
+    __proto__: dart.getFields(elevated_button._ElevatedButtonDefaultMouseCursor.__proto__),
+    enabledCursor: dart.finalFieldType(dart.nullable(mouse_cursor.MouseCursor)),
+    disabledCursor: dart.finalFieldType(dart.nullable(mouse_cursor.MouseCursor))
+  }));
+  var _Location_parameterLocations = dart.privateName(widget_inspector, "_Location.parameterLocations");
+  var _Location_name = dart.privateName(widget_inspector, "_Location.name");
+  var _Location_column = dart.privateName(widget_inspector, "_Location.column");
+  var _Location_line = dart.privateName(widget_inspector, "_Location.line");
+  var _Location_file = dart.privateName(widget_inspector, "_Location.file");
+  var EdgeInsetsDirectional_bottom = dart.privateName(edge_insets, "EdgeInsetsDirectional.bottom");
+  var EdgeInsetsDirectional_end = dart.privateName(edge_insets, "EdgeInsetsDirectional.end");
+  var EdgeInsetsDirectional_top = dart.privateName(edge_insets, "EdgeInsetsDirectional.top");
+  var EdgeInsetsDirectional_start = dart.privateName(edge_insets, "EdgeInsetsDirectional.start");
+  elevated_button._ElevatedButtonWithIcon = class _ElevatedButtonWithIcon extends elevated_button.ElevatedButton {
+    defaultStyleOf(context) {
+      let t0, t0$;
+      if (context == null) dart.nullFailed(I[0], 445, 43, "context");
+      let scaledPadding = button_style_button.ButtonStyleButton.scaledPadding(C[15] || CT.C15, C[2] || CT.C2, C[16] || CT.C16, (t0$ = (t0 = media_query.MediaQuery.maybeOf(context), t0 == null ? null : t0.textScaleFactor), t0$ == null ? 1.0 : t0$));
+      return super.defaultStyleOf(context).copyWith({padding: material_state.MaterialStateProperty.all(edge_insets.EdgeInsetsGeometry, scaledPadding)});
+    }
+  };
+  (elevated_button._ElevatedButtonWithIcon.new = function(opts) {
+    let t0, t0$;
+    let key = opts && 'key' in opts ? opts.key : null;
+    let onPressed = opts && 'onPressed' in opts ? opts.onPressed : null;
+    let onLongPress = opts && 'onLongPress' in opts ? opts.onLongPress : null;
+    let style = opts && 'style' in opts ? opts.style : null;
+    let focusNode = opts && 'focusNode' in opts ? opts.focusNode : null;
+    let autofocus = opts && 'autofocus' in opts ? opts.autofocus : null;
+    let clipBehavior = opts && 'clipBehavior' in opts ? opts.clipBehavior : null;
+    let icon = opts && 'icon' in opts ? opts.icon : null;
+    if (icon == null) dart.nullFailed(I[0], 429, 21, "icon");
+    let label = opts && 'label' in opts ? opts.label : null;
+    if (label == null) dart.nullFailed(I[0], 430, 21, "label");
+    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
+    if (!(icon != null)) dart.assertFailed(null, I[0], 431, 15, "icon != null");
+    if (!(label != null)) dart.assertFailed(null, I[0], 432, 15, "label != null");
+    elevated_button._ElevatedButtonWithIcon.__proto__.new.call(this, {key: key, onPressed: onPressed, onLongPress: onLongPress, style: style, focusNode: focusNode, autofocus: (t0 = autofocus, t0 == null ? false : t0), clipBehavior: (t0$ = clipBehavior, t0$ == null ? ui.Clip.none : t0$), child: new elevated_button._ElevatedButtonWithIconChild.new({icon: icon, label: label, $creationLocationd_0dea112b090073317d4: C[11] || CT.C11}), $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
+    ;
+  }).prototype = elevated_button._ElevatedButtonWithIcon.prototype;
+  dart.addTypeTests(elevated_button._ElevatedButtonWithIcon);
+  dart.addTypeCaches(elevated_button._ElevatedButtonWithIcon);
+  dart.setLibraryUri(elevated_button._ElevatedButtonWithIcon, I[1]);
+  var label$ = dart.privateName(elevated_button, "_ElevatedButtonWithIconChild.label");
+  var icon$ = dart.privateName(elevated_button, "_ElevatedButtonWithIconChild.icon");
+  elevated_button._ElevatedButtonWithIconChild = class _ElevatedButtonWithIconChild extends framework.StatelessWidget {
+    get label() {
+      return this[label$];
+    }
+    set label(value) {
+      super.label = value;
+    }
+    get icon() {
+      return this[icon$];
+    }
+    set icon(value) {
+      super.icon = value;
+    }
+    build(context) {
+      let t0, t0$;
+      if (context == null) dart.nullFailed(I[0], 465, 29, "context");
+      let scale = (t0$ = (t0 = media_query.MediaQuery.maybeOf(context), t0 == null ? null : t0.textScaleFactor), t0$ == null ? 1.0 : t0$);
+      let gap = dart.notNull(scale) <= 1 ? 8.0 : dart.nullCheck(ui.lerpDouble(8, 4, math.min(core.double, dart.notNull(scale) - 1, 1.0)));
+      return new basic.Row.new({mainAxisSize: flex.MainAxisSize.min, children: T.JSArrayOfWidget().of([this.icon, new basic.SizedBox.new({width: gap, $creationLocationd_0dea112b090073317d4: C[17] || CT.C17}), this.label]), $creationLocationd_0dea112b090073317d4: C[20] || CT.C20});
+    }
+  };
+  (elevated_button._ElevatedButtonWithIconChild.new = function(opts) {
+    let key = opts && 'key' in opts ? opts.key : null;
+    let label = opts && 'label' in opts ? opts.label : null;
+    if (label == null) dart.nullFailed(I[0], 459, 64, "label");
+    let icon = opts && 'icon' in opts ? opts.icon : null;
+    if (icon == null) dart.nullFailed(I[0], 459, 85, "icon");
+    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
+    this[label$] = label;
+    this[icon$] = icon;
+    elevated_button._ElevatedButtonWithIconChild.__proto__.new.call(this, {key: key, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
+    ;
+  }).prototype = elevated_button._ElevatedButtonWithIconChild.prototype;
+  dart.addTypeTests(elevated_button._ElevatedButtonWithIconChild);
+  dart.addTypeCaches(elevated_button._ElevatedButtonWithIconChild);
+  dart.setMethodSignature(elevated_button._ElevatedButtonWithIconChild, () => ({
+    __proto__: dart.getMethods(elevated_button._ElevatedButtonWithIconChild.__proto__),
+    build: dart.fnType(framework.Widget, [framework.BuildContext])
+  }));
+  dart.setLibraryUri(elevated_button._ElevatedButtonWithIconChild, I[1]);
+  dart.setFieldSignature(elevated_button._ElevatedButtonWithIconChild, () => ({
+    __proto__: dart.getFields(elevated_button._ElevatedButtonWithIconChild.__proto__),
+    label: dart.finalFieldType(framework.Widget),
+    icon: dart.finalFieldType(framework.Widget)
+  }));
+  dart.trackLibraries("packages/flutter/src/material/elevated_button.dart", {
+    "package:flutter/src/material/elevated_button.dart": elevated_button
+  }, {
+  }, '{"version":3,"sourceRoot":"","sources":["elevated_button.dart"],"names":[],"mappings":"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","file":"../../../../../../../../D:/packages/flutter/src/material/elevated_button.dart.lib.js"}');
+  // Exports:
+  return {
+    src__material__elevated_button: elevated_button
+  };
+}));
+
+//# sourceMappingURL=elevated_button.dart.lib.js.map

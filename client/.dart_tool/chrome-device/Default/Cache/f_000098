@@ -1,1341 +1,1013 @@
-define(['dart_sdk', 'packages/flutter/src/widgets/widget_span.dart', 'packages/flutter/src/painting/edge_insets.dart', 'packages/flutter/src/widgets/text_selection_toolbar_layout_delegate.dart', 'packages/flutter/src/foundation/collections.dart', 'packages/flutter/src/material/icon_button.dart', 'packages/flutter/src/widgets/animated_size.dart', 'packages/flutter/src/widgets/icon.dart', 'packages/flutter/src/material/icons.dart', 'packages/flutter/src/rendering/layer.dart', 'packages/flutter/src/rendering/proxy_box.dart', 'packages/flutter/src/painting/border_radius.dart'], (function load__packages__flutter__src__material__text_selection_toolbar_dart(dart_sdk, packages__flutter__src__widgets__widget_span$46dart, packages__flutter__src__painting__edge_insets$46dart, packages__flutter__src__widgets__text_selection_toolbar_layout_delegate$46dart, packages__flutter__src__foundation__collections$46dart, packages__flutter__src__material__icon_button$46dart, packages__flutter__src__widgets__animated_size$46dart, packages__flutter__src__widgets__icon$46dart, packages__flutter__src__material__icons$46dart, packages__flutter__src__rendering__layer$46dart, packages__flutter__src__rendering__proxy_box$46dart, packages__flutter__src__painting__border_radius$46dart) {
+define(['dart_sdk', 'packages/flutter/src/rendering/layer.dart', 'packages/flutter/src/painting/basic_types.dart', 'packages/flutter/src/rendering/layout_helper.dart', 'packages/flutter/src/foundation/debug.dart'], (function load__packages__flutter__src__rendering__wrap_dart(dart_sdk, packages__flutter__src__rendering__layer$46dart, packages__flutter__src__painting__basic_types$46dart, packages__flutter__src__rendering__layout_helper$46dart, packages__flutter__src__foundation__debug$46dart) {
   'use strict';
   const core = dart_sdk.core;
   const ui = dart_sdk.ui;
-  const _interceptors = dart_sdk._interceptors;
+  const _internal = dart_sdk._internal;
   const math = dart_sdk.math;
+  const _interceptors = dart_sdk._interceptors;
   const dart = dart_sdk.dart;
   const dartx = dart_sdk.dartx;
-  const framework = packages__flutter__src__widgets__widget_span$46dart.src__widgets__framework;
-  const widget_inspector = packages__flutter__src__widgets__widget_span$46dart.src__widgets__widget_inspector;
-  const media_query = packages__flutter__src__widgets__widget_span$46dart.src__widgets__media_query;
-  const basic = packages__flutter__src__widgets__widget_span$46dart.src__widgets__basic;
-  const ticker_provider = packages__flutter__src__widgets__widget_span$46dart.src__widgets__ticker_provider;
-  const text_selection = packages__flutter__src__widgets__widget_span$46dart.src__widgets__text_selection;
-  const edge_insets = packages__flutter__src__painting__edge_insets$46dart.src__painting__edge_insets;
-  const text_selection_toolbar_layout_delegate = packages__flutter__src__widgets__text_selection_toolbar_layout_delegate$46dart.src__widgets__text_selection_toolbar_layout_delegate;
-  const collections = packages__flutter__src__foundation__collections$46dart.src__foundation__collections;
-  const debug = packages__flutter__src__material__icon_button$46dart.src__material__debug;
-  const material_localizations = packages__flutter__src__material__icon_button$46dart.src__material__material_localizations;
-  const material = packages__flutter__src__material__icon_button$46dart.src__material__material;
-  const icon_button = packages__flutter__src__material__icon_button$46dart.src__material__icon_button;
-  const animated_size = packages__flutter__src__widgets__animated_size$46dart.src__widgets__animated_size;
-  const icon = packages__flutter__src__widgets__icon$46dart.src__widgets__icon;
-  const icons = packages__flutter__src__material__icons$46dart.src__material__icons;
   const box = packages__flutter__src__rendering__layer$46dart.src__rendering__box;
   const object = packages__flutter__src__rendering__layer$46dart.src__rendering__object;
-  const proxy_box = packages__flutter__src__rendering__proxy_box$46dart.src__rendering__proxy_box;
-  const border_radius = packages__flutter__src__painting__border_radius$46dart.src__painting__border_radius;
-  var text_selection_toolbar = Object.create(dart.library);
+  const layer = packages__flutter__src__rendering__layer$46dart.src__rendering__layer;
+  const basic_types = packages__flutter__src__painting__basic_types$46dart.src__painting__basic_types;
+  const layout_helper = packages__flutter__src__rendering__layout_helper$46dart.src__rendering__layout_helper;
+  const diagnostics = packages__flutter__src__foundation__debug$46dart.src__foundation__diagnostics;
+  var wrap = Object.create(dart.library);
+  var $runtimeType = dartx.runtimeType;
+  var $isNotEmpty = dartx.isNotEmpty;
+  var $add = dartx.add;
   var $length = dartx.length;
-  var $addAll = dartx.addAll;
-  var $where = dartx.where;
-  var $forEach = dartx.forEach;
+  var $_get = dartx._get;
   dart._checkModuleNullSafetyMode(false);
   var T = {
-    BuildContextAndWidgetToWidget: () => (T.BuildContextAndWidgetToWidget = dart.constFn(dart.fnType(framework.Widget, [framework.BuildContext, framework.Widget])))(),
-    _LocationL: () => (T._LocationL = dart.constFn(dart.legacy(widget_inspector._Location)))(),
-    JSArrayOfWidget: () => (T.JSArrayOfWidget = dart.constFn(_interceptors.JSArray$(framework.Widget)))(),
-    VoidTovoid: () => (T.VoidTovoid = dart.constFn(dart.fnType(dart.void, [])))(),
-    BoxHitTestResultAndOffsetTobool: () => (T.BoxHitTestResultAndOffsetTobool = dart.constFn(dart.fnType(core.bool, [box.BoxHitTestResult, ui.Offset])))(),
-    ElementTobool: () => (T.ElementTobool = dart.constFn(dart.fnType(core.bool, [framework.Element])))(),
-    RenderObjectTovoid: () => (T.RenderObjectTovoid = dart.constFn(dart.fnType(dart.void, [object.RenderObject])))()
+    WrapAlignmentL: () => (T.WrapAlignmentL = dart.constFn(dart.legacy(wrap.WrapAlignment)))(),
+    WrapCrossAlignmentL: () => (T.WrapCrossAlignmentL = dart.constFn(dart.legacy(wrap.WrapCrossAlignment)))(),
+    RenderBoxAndBoxConstraintsToSize: () => (T.RenderBoxAndBoxConstraintsToSize = dart.constFn(dart.fnType(ui.Size, [box.RenderBox, box.BoxConstraints])))(),
+    JSArrayOf_RunMetrics: () => (T.JSArrayOf_RunMetrics = dart.constFn(_interceptors.JSArray$(wrap._RunMetrics)))(),
+    EnumPropertyOfAxis: () => (T.EnumPropertyOfAxis = dart.constFn(diagnostics.EnumProperty$(basic_types.Axis)))(),
+    EnumPropertyOfWrapAlignment: () => (T.EnumPropertyOfWrapAlignment = dart.constFn(diagnostics.EnumProperty$(wrap.WrapAlignment)))(),
+    EnumPropertyOfTextDirection: () => (T.EnumPropertyOfTextDirection = dart.constFn(diagnostics.EnumProperty$(ui.TextDirection)))(),
+    EnumPropertyOfVerticalDirection: () => (T.EnumPropertyOfVerticalDirection = dart.constFn(diagnostics.EnumProperty$(basic_types.VerticalDirection)))()
   };
   const CT = Object.create({
     _: () => (C, CT)
   });
   dart.defineLazy(CT, {
     get C0() {
-      return C[0] = dart.fn(text_selection_toolbar.TextSelectionToolbar._defaultToolbarBuilder, T.BuildContextAndWidgetToWidget());
-    },
-    get C3() {
-      return C[3] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 7,
-        [_Location_line]: 85,
-        [_Location_file]: null
+      return C[0] = dart.const({
+        __proto__: wrap.WrapAlignment.prototype,
+        [_name$]: "WrapAlignment.start",
+        index: 0
       });
-    },
-    get C2() {
-      return C[2] = dart.constList([C[3] || CT.C3], T._LocationL());
     },
     get C1() {
       return C[1] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[2] || CT.C2,
-        [_Location_name]: null,
-        [_Location_column]: 12,
-        [_Location_line]: 84,
-        [_Location_file]: "file:///C:/Users/Ejas/Desktop/App_files/flutter/packages/flutter/lib/src/material/text_selection_toolbar.dart"
+        __proto__: wrap.WrapAlignment.prototype,
+        [_name$]: "WrapAlignment.end",
+        index: 1
+      });
+    },
+    get C2() {
+      return C[2] = dart.const({
+        __proto__: wrap.WrapAlignment.prototype,
+        [_name$]: "WrapAlignment.center",
+        index: 2
+      });
+    },
+    get C3() {
+      return C[3] = dart.const({
+        __proto__: wrap.WrapAlignment.prototype,
+        [_name$]: "WrapAlignment.spaceBetween",
+        index: 3
+      });
+    },
+    get C4() {
+      return C[4] = dart.const({
+        __proto__: wrap.WrapAlignment.prototype,
+        [_name$]: "WrapAlignment.spaceAround",
+        index: 4
+      });
+    },
+    get C5() {
+      return C[5] = dart.const({
+        __proto__: wrap.WrapAlignment.prototype,
+        [_name$]: "WrapAlignment.spaceEvenly",
+        index: 5
       });
     },
     get C6() {
-      return C[6] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "isAbove",
-        [_Location_column]: 15,
-        [_Location_line]: 113,
-        [_Location_file]: null
-      });
+      return C[6] = dart.constList([C[0] || CT.C0, C[1] || CT.C1, C[2] || CT.C2, C[3] || CT.C3, C[4] || CT.C4, C[5] || CT.C5], T.WrapAlignmentL());
     },
     get C7() {
       return C[7] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "toolbarBuilder",
-        [_Location_column]: 15,
-        [_Location_line]: 114,
-        [_Location_file]: null
+        __proto__: wrap.WrapCrossAlignment.prototype,
+        [_name$]: "WrapCrossAlignment.start",
+        index: 0
       });
     },
     get C8() {
       return C[8] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "children",
-        [_Location_column]: 15,
-        [_Location_line]: 115,
-        [_Location_file]: null
+        __proto__: wrap.WrapCrossAlignment.prototype,
+        [_name$]: "WrapCrossAlignment.end",
+        index: 1
       });
     },
-    get C5() {
-      return C[5] = dart.constList([C[6] || CT.C6, C[7] || CT.C7, C[8] || CT.C8], T._LocationL());
-    },
-    get C4() {
-      return C[4] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[5] || CT.C5,
-        [_Location_name]: null,
-        [_Location_column]: 20,
-        [_Location_line]: 112,
-        [_Location_file]: "file:///C:/Users/Ejas/Desktop/App_files/flutter/packages/flutter/lib/src/material/text_selection_toolbar.dart"
+    get C9() {
+      return C[9] = dart.const({
+        __proto__: wrap.WrapCrossAlignment.prototype,
+        [_name$]: "WrapCrossAlignment.center",
+        index: 2
       });
+    },
+    get C10() {
+      return C[10] = dart.constList([C[7] || CT.C7, C[8] || CT.C8, C[9] || CT.C9], T.WrapCrossAlignmentL());
     },
     get C11() {
       return C[11] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "delegate",
-        [_Location_column]: 13,
-        [_Location_line]: 107,
-        [_Location_file]: null
+        __proto__: basic_types.Axis.prototype,
+        [_name]: "Axis.horizontal",
+        index: 0
       });
     },
     get C12() {
       return C[12] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 13,
-        [_Location_line]: 112,
-        [_Location_file]: null
+        __proto__: basic_types.VerticalDirection.prototype,
+        [_name]: "VerticalDirection.down",
+        index: 1
       });
-    },
-    get C10() {
-      return C[10] = dart.constList([C[11] || CT.C11, C[12] || CT.C12], T._LocationL());
-    },
-    get C9() {
-      return C[9] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[10] || CT.C10,
-        [_Location_name]: null,
-        [_Location_column]: 11,
-        [_Location_line]: 106,
-        [_Location_file]: "file:///C:/Users/Ejas/Desktop/App_files/flutter/packages/flutter/lib/src/material/text_selection_toolbar.dart"
-      });
-    },
-    get C15() {
-      return C[15] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "children",
-        [_Location_column]: 9,
-        [_Location_line]: 105,
-        [_Location_file]: null
-      });
-    },
-    get C14() {
-      return C[14] = dart.constList([C[15] || CT.C15], T._LocationL());
     },
     get C13() {
       return C[13] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[14] || CT.C14,
-        [_Location_name]: null,
-        [_Location_column]: 14,
-        [_Location_line]: 104,
-        [_Location_file]: "file:///C:/Users/Ejas/Desktop/App_files/flutter/packages/flutter/lib/src/material/text_selection_toolbar.dart"
+        __proto__: ui.Clip.prototype,
+        [_name$0]: "Clip.none",
+        index: 0
       });
     },
-    get C18() {
-      return C[18] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "padding",
-        [_Location_column]: 7,
-        [_Location_line]: 98,
-        [_Location_file]: null
+    get C14() {
+      return C[14] = dart.const({
+        __proto__: basic_types.Axis.prototype,
+        [_name]: "Axis.vertical",
+        index: 1
       });
     },
-    get C19() {
-      return C[19] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 7,
-        [_Location_line]: 104,
-        [_Location_file]: null
-      });
-    },
-    get C17() {
-      return C[17] = dart.constList([C[18] || CT.C18, C[19] || CT.C19], T._LocationL());
-    },
-    get C16() {
-      return C[16] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[17] || CT.C17,
-        [_Location_name]: null,
-        [_Location_column]: 12,
-        [_Location_line]: 97,
-        [_Location_file]: "file:///C:/Users/Ejas/Desktop/App_files/flutter/packages/flutter/lib/src/material/text_selection_toolbar.dart"
-      });
-    },
-    get C20() {
-      return C[20] = dart.const({
-        __proto__: core.Duration.prototype,
-        [Duration__duration]: 140000
-      });
-    },
-    get C23() {
-      return C[23] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "icon",
-        [_Location_column]: 40,
-        [_Location_line]: 207,
-        [_Location_file]: null
-      });
-    },
-    get C22() {
-      return C[22] = dart.constList([C[23] || CT.C23], T._LocationL());
-    },
-    get C21() {
-      return C[21] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[22] || CT.C22,
-        [_Location_name]: null,
-        [_Location_column]: 21,
-        [_Location_line]: 207,
-        [_Location_file]: "file:///C:/Users/Ejas/Desktop/App_files/flutter/packages/flutter/lib/src/material/text_selection_toolbar.dart"
-      });
-    },
-    get C26() {
-      return C[26] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "icon",
-        [_Location_column]: 15,
-        [_Location_line]: 207,
-        [_Location_file]: null
-      });
-    },
-    get C27() {
-      return C[27] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "onPressed",
-        [_Location_column]: 15,
-        [_Location_line]: 208,
-        [_Location_file]: null
-      });
-    },
-    get C28() {
-      return C[28] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "tooltip",
-        [_Location_column]: 15,
-        [_Location_line]: 213,
-        [_Location_file]: null
-      });
-    },
-    get C25() {
-      return C[25] = dart.constList([C[26] || CT.C26, C[27] || CT.C27, C[28] || CT.C28], T._LocationL());
-    },
-    get C24() {
-      return C[24] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[25] || CT.C25,
-        [_Location_name]: null,
-        [_Location_column]: 13,
-        [_Location_line]: 206,
-        [_Location_file]: "file:///C:/Users/Ejas/Desktop/App_files/flutter/packages/flutter/lib/src/material/text_selection_toolbar.dart"
-      });
-    },
-    get C31() {
-      return C[31] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "isAbove",
-        [_Location_column]: 11,
-        [_Location_line]: 197,
-        [_Location_file]: null
-      });
-    },
-    get C32() {
-      return C[32] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "overflowOpen",
-        [_Location_column]: 11,
-        [_Location_line]: 198,
-        [_Location_file]: null
-      });
-    },
-    get C33() {
-      return C[33] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "children",
-        [_Location_column]: 11,
-        [_Location_line]: 199,
-        [_Location_file]: null
-      });
-    },
-    get C30() {
-      return C[30] = dart.constList([C[31] || CT.C31, C[32] || CT.C32, C[33] || CT.C33], T._LocationL());
-    },
-    get C29() {
-      return C[29] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[30] || CT.C30,
-        [_Location_name]: null,
-        [_Location_column]: 47,
-        [_Location_line]: 196,
-        [_Location_file]: "file:///C:/Users/Ejas/Desktop/App_files/flutter/packages/flutter/lib/src/material/text_selection_toolbar.dart"
-      });
-    },
-    get C36() {
-      return C[36] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "vsync",
-        [_Location_column]: 9,
-        [_Location_line]: 192,
-        [_Location_file]: null
-      });
-    },
-    get C37() {
-      return C[37] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "duration",
-        [_Location_column]: 9,
-        [_Location_line]: 195,
-        [_Location_file]: null
-      });
-    },
-    get C38() {
-      return C[38] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 9,
-        [_Location_line]: 196,
-        [_Location_file]: null
-      });
-    },
-    get C35() {
-      return C[35] = dart.constList([C[36] || CT.C36, C[37] || CT.C37, C[38] || CT.C38], T._LocationL());
-    },
-    get C34() {
-      return C[34] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[35] || CT.C35,
-        [_Location_name]: null,
-        [_Location_column]: 14,
-        [_Location_line]: 191,
-        [_Location_file]: "file:///C:/Users/Ejas/Desktop/App_files/flutter/packages/flutter/lib/src/material/text_selection_toolbar.dart"
-      });
-    },
-    get C41() {
-      return C[41] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "key",
-        [_Location_column]: 7,
-        [_Location_line]: 188,
-        [_Location_file]: null
-      });
-    },
-    get C42() {
-      return C[42] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "overflowOpen",
-        [_Location_column]: 7,
-        [_Location_line]: 189,
-        [_Location_file]: null
-      });
-    },
-    get C43() {
-      return C[43] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "textDirection",
-        [_Location_column]: 7,
-        [_Location_line]: 190,
-        [_Location_file]: null
-      });
-    },
-    get C44() {
-      return C[44] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 7,
-        [_Location_line]: 191,
-        [_Location_file]: null
-      });
-    },
-    get C40() {
-      return C[40] = dart.constList([C[41] || CT.C41, C[42] || CT.C42, C[43] || CT.C43, C[44] || CT.C44], T._LocationL());
-    },
-    get C39() {
-      return C[39] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[40] || CT.C40,
-        [_Location_name]: null,
-        [_Location_column]: 12,
-        [_Location_line]: 187,
-        [_Location_file]: "file:///C:/Users/Ejas/Desktop/App_files/flutter/packages/flutter/lib/src/material/text_selection_toolbar.dart"
-      });
-    },
-    get C45() {
-      return C[45] = dart.fn(text_selection_toolbar._TextSelectionToolbarItemsLayoutElement._shouldPaint, T.ElementTobool());
-    },
-    get C47() {
-      return C[47] = dart.const({
-        __proto__: ui.Radius.prototype,
-        [Radius_y]: 7,
-        [Radius_x]: 7
-      });
-    },
-    get C46() {
-      return C[46] = dart.const({
-        __proto__: border_radius.BorderRadius.prototype,
-        [BorderRadius_bottomRight]: C[47] || CT.C47,
-        [BorderRadius_bottomLeft]: C[47] || CT.C47,
-        [BorderRadius_topRight]: C[47] || CT.C47,
-        [BorderRadius_topLeft]: C[47] || CT.C47
-      });
-    },
-    get C50() {
-      return C[50] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "borderRadius",
-        [_Location_column]: 7,
-        [_Location_line]: 657,
-        [_Location_file]: null
-      });
-    },
-    get C51() {
-      return C[51] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "clipBehavior",
-        [_Location_column]: 7,
-        [_Location_line]: 658,
-        [_Location_file]: null
-      });
-    },
-    get C52() {
-      return C[52] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "elevation",
-        [_Location_column]: 7,
-        [_Location_line]: 659,
-        [_Location_file]: null
-      });
-    },
-    get C53() {
-      return C[53] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "type",
-        [_Location_column]: 7,
-        [_Location_line]: 660,
-        [_Location_file]: null
-      });
-    },
-    get C54() {
-      return C[54] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 7,
-        [_Location_line]: 661,
-        [_Location_file]: null
-      });
-    },
-    get C49() {
-      return C[49] = dart.constList([C[50] || CT.C50, C[51] || CT.C51, C[52] || CT.C52, C[53] || CT.C53, C[54] || CT.C54], T._LocationL());
-    },
-    get C48() {
-      return C[48] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[49] || CT.C49,
-        [_Location_name]: null,
-        [_Location_column]: 12,
-        [_Location_line]: 654,
-        [_Location_file]: "file:///C:/Users/Ejas/Desktop/App_files/flutter/packages/flutter/lib/src/material/text_selection_toolbar.dart"
-      });
-    },
-    get C55() {
-      return C[55] = dart.const({
-        __proto__: ui.Color.prototype,
-        [Color_value]: 0
-      });
-    },
-    get C58() {
-      return C[58] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "icon",
-        [_Location_column]: 9,
-        [_Location_line]: 689,
-        [_Location_file]: null
-      });
-    },
-    get C59() {
-      return C[59] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "onPressed",
-        [_Location_column]: 9,
-        [_Location_line]: 690,
-        [_Location_file]: null
-      });
-    },
-    get C60() {
-      return C[60] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "tooltip",
-        [_Location_column]: 9,
-        [_Location_line]: 691,
-        [_Location_file]: null
-      });
-    },
-    get C57() {
-      return C[57] = dart.constList([C[58] || CT.C58, C[59] || CT.C59, C[60] || CT.C60], T._LocationL());
-    },
-    get C56() {
-      return C[56] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[57] || CT.C57,
-        [_Location_name]: null,
-        [_Location_column]: 14,
-        [_Location_line]: 685,
-        [_Location_file]: "file:///C:/Users/Ejas/Desktop/App_files/flutter/packages/flutter/lib/src/material/text_selection_toolbar.dart"
-      });
-    },
-    get C63() {
-      return C[63] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "type",
-        [_Location_column]: 7,
-        [_Location_line]: 683,
-        [_Location_file]: null
-      });
-    },
-    get C64() {
-      return C[64] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "color",
-        [_Location_column]: 7,
-        [_Location_line]: 684,
-        [_Location_file]: null
-      });
-    },
-    get C65() {
-      return C[65] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 7,
-        [_Location_line]: 685,
-        [_Location_file]: null
-      });
-    },
-    get C62() {
-      return C[62] = dart.constList([C[63] || CT.C63, C[64] || CT.C64, C[65] || CT.C65], T._LocationL());
-    },
-    get C61() {
-      return C[61] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[62] || CT.C62,
-        [_Location_name]: null,
-        [_Location_column]: 12,
-        [_Location_line]: 682,
-        [_Location_file]: "file:///C:/Users/Ejas/Desktop/App_files/flutter/packages/flutter/lib/src/material/text_selection_toolbar.dart"
-      });
+    get C15() {
+      return C[15] = dart.fn(layout_helper.ChildLayoutHelper.dryLayoutChild, T.RenderBoxAndBoxConstraintsToSize());
     }
   }, false);
-  var C = Array(66).fill(void 0);
+  var C = Array(16).fill(void 0);
   var I = [
-    "file:///C:/Users/Ejas/Desktop/App_files/flutter/packages/flutter/lib/src/material/text_selection_toolbar.dart",
-    "package:flutter/src/material/text_selection_toolbar.dart"
+    "file:///C:/src/flutter/packages/flutter/lib/src/rendering/wrap.dart",
+    "package:flutter/src/rendering/wrap.dart"
   ];
-  var anchorAbove$ = dart.privateName(text_selection_toolbar, "TextSelectionToolbar.anchorAbove");
-  var anchorBelow$ = dart.privateName(text_selection_toolbar, "TextSelectionToolbar.anchorBelow");
-  var children$ = dart.privateName(text_selection_toolbar, "TextSelectionToolbar.children");
-  var toolbarBuilder$ = dart.privateName(text_selection_toolbar, "TextSelectionToolbar.toolbarBuilder");
-  var _Location_parameterLocations = dart.privateName(widget_inspector, "_Location.parameterLocations");
-  var _Location_name = dart.privateName(widget_inspector, "_Location.name");
-  var _Location_column = dart.privateName(widget_inspector, "_Location.column");
-  var _Location_line = dart.privateName(widget_inspector, "_Location.line");
-  var _Location_file = dart.privateName(widget_inspector, "_Location.file");
-  text_selection_toolbar.TextSelectionToolbar = class TextSelectionToolbar extends framework.StatelessWidget {
-    get anchorAbove() {
-      return this[anchorAbove$];
-    }
-    set anchorAbove(value) {
-      super.anchorAbove = value;
-    }
-    get anchorBelow() {
-      return this[anchorBelow$];
-    }
-    set anchorBelow(value) {
-      super.anchorBelow = value;
-    }
-    get children() {
-      return this[children$];
-    }
-    set children(value) {
-      super.children = value;
-    }
-    get toolbarBuilder() {
-      return this[toolbarBuilder$];
-    }
-    set toolbarBuilder(value) {
-      super.toolbarBuilder = value;
-    }
-    static _defaultToolbarBuilder(context, child) {
-      if (context == null) dart.nullFailed(I[0], 83, 53, "context");
-      if (child == null) dart.nullFailed(I[0], 83, 69, "child");
-      return new text_selection_toolbar._TextSelectionToolbarContainer.new({child: child, $creationLocationd_0dea112b090073317d4: C[1] || CT.C1});
-    }
-    build(context) {
-      if (context == null) dart.nullFailed(I[0], 90, 29, "context");
-      let paddingAbove = dart.notNull(media_query.MediaQuery.of(context).padding.top) + 8;
-      let availableHeight = dart.notNull(this.anchorAbove.dy) - paddingAbove;
-      let fitsAbove = 44 <= availableHeight;
-      let localAdjustment = new ui.Offset.new(8, paddingAbove);
-      return new basic.Padding.new({padding: new edge_insets.EdgeInsets.fromLTRB(8, paddingAbove, 8, 8), child: new basic.Stack.new({children: T.JSArrayOfWidget().of([new basic.CustomSingleChildLayout.new({delegate: new text_selection_toolbar_layout_delegate.TextSelectionToolbarLayoutDelegate.new({anchorAbove: this.anchorAbove['-'](localAdjustment), anchorBelow: this.anchorBelow['-'](localAdjustment), fitsAbove: fitsAbove}), child: new text_selection_toolbar._TextSelectionToolbarOverflowable.new({isAbove: fitsAbove, toolbarBuilder: this.toolbarBuilder, children: this.children, $creationLocationd_0dea112b090073317d4: C[4] || CT.C4}), $creationLocationd_0dea112b090073317d4: C[9] || CT.C9})]), $creationLocationd_0dea112b090073317d4: C[13] || CT.C13}), $creationLocationd_0dea112b090073317d4: C[16] || CT.C16});
+  var _name$ = dart.privateName(wrap, "_name");
+  wrap.WrapAlignment = class WrapAlignment extends core.Object {
+    toString() {
+      return this[_name$];
     }
   };
-  (text_selection_toolbar.TextSelectionToolbar.new = function(opts) {
-    let key = opts && 'key' in opts ? opts.key : null;
-    let anchorAbove = opts && 'anchorAbove' in opts ? opts.anchorAbove : null;
-    if (anchorAbove == null) dart.nullFailed(I[0], 40, 19, "anchorAbove");
-    let anchorBelow = opts && 'anchorBelow' in opts ? opts.anchorBelow : null;
-    if (anchorBelow == null) dart.nullFailed(I[0], 41, 19, "anchorBelow");
-    let toolbarBuilder = opts && 'toolbarBuilder' in opts ? opts.toolbarBuilder : C[0] || CT.C0;
-    if (toolbarBuilder == null) dart.nullFailed(I[0], 42, 10, "toolbarBuilder");
-    let children = opts && 'children' in opts ? opts.children : null;
-    if (children == null) dart.nullFailed(I[0], 43, 19, "children");
-    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
-    this[anchorAbove$] = anchorAbove;
-    this[anchorBelow$] = anchorBelow;
-    this[toolbarBuilder$] = toolbarBuilder;
-    this[children$] = children;
-    if (!(dart.notNull(children[$length]) > 0)) dart.assertFailed(null, I[0], 44, 15, "children.length > 0");
-    text_selection_toolbar.TextSelectionToolbar.__proto__.new.call(this, {key: key, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
+  (wrap.WrapAlignment.new = function(index, _name) {
+    if (index == null) dart.nullFailed(I[0], 16, 6, "index");
+    if (_name == null) dart.nullFailed(I[0], 16, 6, "_name");
+    this.index = index;
+    this[_name$] = _name;
     ;
-  }).prototype = text_selection_toolbar.TextSelectionToolbar.prototype;
-  dart.addTypeTests(text_selection_toolbar.TextSelectionToolbar);
-  dart.addTypeCaches(text_selection_toolbar.TextSelectionToolbar);
-  dart.setMethodSignature(text_selection_toolbar.TextSelectionToolbar, () => ({
-    __proto__: dart.getMethods(text_selection_toolbar.TextSelectionToolbar.__proto__),
-    build: dart.fnType(framework.Widget, [framework.BuildContext])
+  }).prototype = wrap.WrapAlignment.prototype;
+  dart.addTypeTests(wrap.WrapAlignment);
+  dart.addTypeCaches(wrap.WrapAlignment);
+  dart.setLibraryUri(wrap.WrapAlignment, I[1]);
+  dart.setFieldSignature(wrap.WrapAlignment, () => ({
+    __proto__: dart.getFields(wrap.WrapAlignment.__proto__),
+    index: dart.finalFieldType(core.int),
+    [_name$]: dart.finalFieldType(core.String)
   }));
-  dart.setLibraryUri(text_selection_toolbar.TextSelectionToolbar, I[1]);
-  dart.setFieldSignature(text_selection_toolbar.TextSelectionToolbar, () => ({
-    __proto__: dart.getFields(text_selection_toolbar.TextSelectionToolbar.__proto__),
-    anchorAbove: dart.finalFieldType(ui.Offset),
-    anchorBelow: dart.finalFieldType(ui.Offset),
-    children: dart.finalFieldType(core.List$(framework.Widget)),
-    toolbarBuilder: dart.finalFieldType(dart.fnType(framework.Widget, [framework.BuildContext, framework.Widget]))
-  }));
-  var children$0 = dart.privateName(text_selection_toolbar, "_TextSelectionToolbarOverflowable.children");
-  var isAbove$ = dart.privateName(text_selection_toolbar, "_TextSelectionToolbarOverflowable.isAbove");
-  var toolbarBuilder$0 = dart.privateName(text_selection_toolbar, "_TextSelectionToolbarOverflowable.toolbarBuilder");
-  text_selection_toolbar._TextSelectionToolbarOverflowable = class _TextSelectionToolbarOverflowable extends framework.StatefulWidget {
-    get children() {
-      return this[children$0];
-    }
-    set children(value) {
-      super.children = value;
-    }
-    get isAbove() {
-      return this[isAbove$];
-    }
-    set isAbove(value) {
-      super.isAbove = value;
-    }
-    get toolbarBuilder() {
-      return this[toolbarBuilder$0];
-    }
-    set toolbarBuilder(value) {
-      super.toolbarBuilder = value;
-    }
-    createState() {
-      return new text_selection_toolbar._TextSelectionToolbarOverflowableState.new();
+  dart.defineExtensionMethods(wrap.WrapAlignment, ['toString']);
+  wrap.WrapAlignment.start = C[0] || CT.C0;
+  wrap.WrapAlignment.end = C[1] || CT.C1;
+  wrap.WrapAlignment.center = C[2] || CT.C2;
+  wrap.WrapAlignment.spaceBetween = C[3] || CT.C3;
+  wrap.WrapAlignment.spaceAround = C[4] || CT.C4;
+  wrap.WrapAlignment.spaceEvenly = C[5] || CT.C5;
+  wrap.WrapAlignment.values = C[6] || CT.C6;
+  wrap.WrapCrossAlignment = class WrapCrossAlignment extends core.Object {
+    toString() {
+      return this[_name$];
     }
   };
-  (text_selection_toolbar._TextSelectionToolbarOverflowable.new = function(opts) {
-    let key = opts && 'key' in opts ? opts.key : null;
-    let isAbove = opts && 'isAbove' in opts ? opts.isAbove : null;
-    if (isAbove == null) dart.nullFailed(I[0], 130, 19, "isAbove");
-    let toolbarBuilder = opts && 'toolbarBuilder' in opts ? opts.toolbarBuilder : null;
-    if (toolbarBuilder == null) dart.nullFailed(I[0], 131, 19, "toolbarBuilder");
-    let children = opts && 'children' in opts ? opts.children : null;
-    if (children == null) dart.nullFailed(I[0], 132, 19, "children");
-    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
-    this[isAbove$] = isAbove;
-    this[toolbarBuilder$0] = toolbarBuilder;
-    this[children$0] = children;
-    if (!(dart.notNull(children[$length]) > 0)) dart.assertFailed(null, I[0], 133, 15, "children.length > 0");
-    text_selection_toolbar._TextSelectionToolbarOverflowable.__proto__.new.call(this, {key: key, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
+  (wrap.WrapCrossAlignment.new = function(index, _name) {
+    if (index == null) dart.nullFailed(I[0], 51, 6, "index");
+    if (_name == null) dart.nullFailed(I[0], 51, 6, "_name");
+    this.index = index;
+    this[_name$] = _name;
     ;
-  }).prototype = text_selection_toolbar._TextSelectionToolbarOverflowable.prototype;
-  dart.addTypeTests(text_selection_toolbar._TextSelectionToolbarOverflowable);
-  dart.addTypeCaches(text_selection_toolbar._TextSelectionToolbarOverflowable);
-  dart.setMethodSignature(text_selection_toolbar._TextSelectionToolbarOverflowable, () => ({
-    __proto__: dart.getMethods(text_selection_toolbar._TextSelectionToolbarOverflowable.__proto__),
-    createState: dart.fnType(text_selection_toolbar._TextSelectionToolbarOverflowableState, [])
+  }).prototype = wrap.WrapCrossAlignment.prototype;
+  dart.addTypeTests(wrap.WrapCrossAlignment);
+  dart.addTypeCaches(wrap.WrapCrossAlignment);
+  dart.setLibraryUri(wrap.WrapCrossAlignment, I[1]);
+  dart.setFieldSignature(wrap.WrapCrossAlignment, () => ({
+    __proto__: dart.getFields(wrap.WrapCrossAlignment.__proto__),
+    index: dart.finalFieldType(core.int),
+    [_name$]: dart.finalFieldType(core.String)
   }));
-  dart.setLibraryUri(text_selection_toolbar._TextSelectionToolbarOverflowable, I[1]);
-  dart.setFieldSignature(text_selection_toolbar._TextSelectionToolbarOverflowable, () => ({
-    __proto__: dart.getFields(text_selection_toolbar._TextSelectionToolbarOverflowable.__proto__),
-    children: dart.finalFieldType(core.List$(framework.Widget)),
-    isAbove: dart.finalFieldType(core.bool),
-    toolbarBuilder: dart.finalFieldType(dart.fnType(framework.Widget, [framework.BuildContext, framework.Widget]))
-  }));
-  var _overflowOpen = dart.privateName(text_selection_toolbar, "_overflowOpen");
-  var _containerKey = dart.privateName(text_selection_toolbar, "_containerKey");
-  var _reset = dart.privateName(text_selection_toolbar, "_reset");
-  var Duration__duration = dart.privateName(core, "Duration._duration");
-  const State_TickerProviderStateMixin$36 = class State_TickerProviderStateMixin extends framework.State$(text_selection_toolbar._TextSelectionToolbarOverflowable) {};
-  (State_TickerProviderStateMixin$36.new = function() {
-    ticker_provider.TickerProviderStateMixin$(text_selection_toolbar._TextSelectionToolbarOverflowable)[dart.mixinNew].call(this);
-    State_TickerProviderStateMixin$36.__proto__.new.call(this);
-  }).prototype = State_TickerProviderStateMixin$36.prototype;
-  dart.applyMixin(State_TickerProviderStateMixin$36, ticker_provider.TickerProviderStateMixin$(text_selection_toolbar._TextSelectionToolbarOverflowable));
-  text_selection_toolbar._TextSelectionToolbarOverflowableState = class _TextSelectionToolbarOverflowableState extends State_TickerProviderStateMixin$36 {
-    [_reset]() {
-      this[_containerKey] = new framework.UniqueKey.new();
-      this[_overflowOpen] = false;
-    }
-    didUpdateWidget(oldWidget) {
-      text_selection_toolbar._TextSelectionToolbarOverflowable.as(oldWidget);
-      if (oldWidget == null) dart.nullFailed(I[0], 174, 58, "oldWidget");
-      super.didUpdateWidget(oldWidget);
-      if (!dart.test(collections.listEquals(framework.Widget, this.widget.children, oldWidget.children))) {
-        this[_reset]();
-      }
-    }
-    build(context) {
-      let t3, t2, t1;
-      if (context == null) dart.nullFailed(I[0], 183, 29, "context");
-      if (!dart.test(debug.debugCheckHasMaterialLocalizations(context))) dart.assertFailed(null, I[0], 184, 12, "debugCheckHasMaterialLocalizations(context)");
-      let localizations = material_localizations.MaterialLocalizations.of(context);
-      return new text_selection_toolbar._TextSelectionToolbarTrailingEdgeAlign.new({key: this[_containerKey], overflowOpen: this[_overflowOpen], textDirection: basic.Directionality.of(context), child: new animated_size.AnimatedSize.new({vsync: this, duration: C[20] || CT.C20, child: (t1 = this.widget, t2 = context, t3 = new text_selection_toolbar._TextSelectionToolbarItemsLayout.new({isAbove: this.widget.isAbove, overflowOpen: this[_overflowOpen], children: (() => {
-              let t0 = T.JSArrayOfWidget().of([new text_selection_toolbar._TextSelectionToolbarOverflowButton.new({icon: new icon.Icon.new(dart.test(this[_overflowOpen]) ? icons.Icons.arrow_back : icons.Icons.more_vert, {$creationLocationd_0dea112b090073317d4: C[21] || CT.C21}), onPressed: dart.fn(() => {
-                    this.setState(dart.fn(() => {
-                      this[_overflowOpen] = !dart.test(this[_overflowOpen]);
-                    }, T.VoidTovoid()));
-                  }, T.VoidTovoid()), tooltip: dart.test(this[_overflowOpen]) ? localizations.backButtonTooltip : localizations.moreButtonTooltip, $creationLocationd_0dea112b090073317d4: C[24] || CT.C24})]);
-              t0[$addAll](this.widget.children);
-              return t0;
-            })(), $creationLocationd_0dea112b090073317d4: C[29] || CT.C29}), t1.toolbarBuilder(t2, t3)), $creationLocationd_0dea112b090073317d4: C[34] || CT.C34}), $creationLocationd_0dea112b090073317d4: C[39] || CT.C39});
-    }
-  };
-  (text_selection_toolbar._TextSelectionToolbarOverflowableState.new = function() {
-    this[_overflowOpen] = false;
-    this[_containerKey] = new framework.UniqueKey.new();
-    text_selection_toolbar._TextSelectionToolbarOverflowableState.__proto__.new.call(this);
+  dart.defineExtensionMethods(wrap.WrapCrossAlignment, ['toString']);
+  wrap.WrapCrossAlignment.start = C[7] || CT.C7;
+  wrap.WrapCrossAlignment.end = C[8] || CT.C8;
+  wrap.WrapCrossAlignment.center = C[9] || CT.C9;
+  wrap.WrapCrossAlignment.values = C[10] || CT.C10;
+  wrap._RunMetrics = class _RunMetrics extends core.Object {};
+  (wrap._RunMetrics.new = function(mainAxisExtent, crossAxisExtent, childCount) {
+    if (mainAxisExtent == null) dart.nullFailed(I[0], 80, 20, "mainAxisExtent");
+    if (crossAxisExtent == null) dart.nullFailed(I[0], 80, 41, "crossAxisExtent");
+    if (childCount == null) dart.nullFailed(I[0], 80, 63, "childCount");
+    this.mainAxisExtent = mainAxisExtent;
+    this.crossAxisExtent = crossAxisExtent;
+    this.childCount = childCount;
     ;
-  }).prototype = text_selection_toolbar._TextSelectionToolbarOverflowableState.prototype;
-  dart.addTypeTests(text_selection_toolbar._TextSelectionToolbarOverflowableState);
-  dart.addTypeCaches(text_selection_toolbar._TextSelectionToolbarOverflowableState);
-  dart.setMethodSignature(text_selection_toolbar._TextSelectionToolbarOverflowableState, () => ({
-    __proto__: dart.getMethods(text_selection_toolbar._TextSelectionToolbarOverflowableState.__proto__),
-    [_reset]: dart.fnType(dart.void, []),
-    build: dart.fnType(framework.Widget, [framework.BuildContext])
+  }).prototype = wrap._RunMetrics.prototype;
+  dart.addTypeTests(wrap._RunMetrics);
+  dart.addTypeCaches(wrap._RunMetrics);
+  dart.setLibraryUri(wrap._RunMetrics, I[1]);
+  dart.setFieldSignature(wrap._RunMetrics, () => ({
+    __proto__: dart.getFields(wrap._RunMetrics.__proto__),
+    mainAxisExtent: dart.finalFieldType(core.double),
+    crossAxisExtent: dart.finalFieldType(core.double),
+    childCount: dart.finalFieldType(core.int)
   }));
-  dart.setLibraryUri(text_selection_toolbar._TextSelectionToolbarOverflowableState, I[1]);
-  dart.setFieldSignature(text_selection_toolbar._TextSelectionToolbarOverflowableState, () => ({
-    __proto__: dart.getFields(text_selection_toolbar._TextSelectionToolbarOverflowableState.__proto__),
-    [_overflowOpen]: dart.fieldType(core.bool),
-    [_containerKey]: dart.fieldType(framework.UniqueKey)
-  }));
-  var overflowOpen$ = dart.privateName(text_selection_toolbar, "_TextSelectionToolbarTrailingEdgeAlign.overflowOpen");
-  var textDirection$ = dart.privateName(text_selection_toolbar, "_TextSelectionToolbarTrailingEdgeAlign.textDirection");
-  text_selection_toolbar._TextSelectionToolbarTrailingEdgeAlign = class _TextSelectionToolbarTrailingEdgeAlign extends framework.SingleChildRenderObjectWidget {
-    get overflowOpen() {
-      return this[overflowOpen$];
-    }
-    set overflowOpen(value) {
-      super.overflowOpen = value;
-    }
-    get textDirection() {
-      return this[textDirection$];
-    }
-    set textDirection(value) {
-      super.textDirection = value;
-    }
-    createRenderObject(context) {
-      if (context == null) dart.nullFailed(I[0], 243, 83, "context");
-      return new text_selection_toolbar._TextSelectionToolbarTrailingEdgeAlignRenderBox.new({overflowOpen: this.overflowOpen, textDirection: this.textDirection});
-    }
-    updateRenderObject(context, renderObject) {
-      let t1;
-      if (context == null) dart.nullFailed(I[0], 251, 40, "context");
-      text_selection_toolbar._TextSelectionToolbarTrailingEdgeAlignRenderBox.as(renderObject);
-      if (renderObject == null) dart.nullFailed(I[0], 251, 97, "renderObject");
-      t1 = renderObject;
-      (() => {
-        t1.overflowOpen = this.overflowOpen;
-        t1.textDirection = this.textDirection;
-        return t1;
-      })();
-    }
-  };
-  (text_selection_toolbar._TextSelectionToolbarTrailingEdgeAlign.new = function(opts) {
-    let key = opts && 'key' in opts ? opts.key : null;
-    let child = opts && 'child' in opts ? opts.child : null;
-    if (child == null) dart.nullFailed(I[0], 232, 21, "child");
-    let overflowOpen = opts && 'overflowOpen' in opts ? opts.overflowOpen : null;
-    if (overflowOpen == null) dart.nullFailed(I[0], 233, 19, "overflowOpen");
-    let textDirection = opts && 'textDirection' in opts ? opts.textDirection : null;
-    if (textDirection == null) dart.nullFailed(I[0], 234, 19, "textDirection");
-    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
-    this[overflowOpen$] = overflowOpen;
-    this[textDirection$] = textDirection;
-    if (!(child != null)) dart.assertFailed(null, I[0], 235, 15, "child != null");
-    if (!(overflowOpen != null)) dart.assertFailed(null, I[0], 236, 15, "overflowOpen != null");
-    text_selection_toolbar._TextSelectionToolbarTrailingEdgeAlign.__proto__.new.call(this, {key: key, child: child, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
+  var _runIndex = dart.privateName(wrap, "_runIndex");
+  wrap.WrapParentData = class WrapParentData extends box.ContainerBoxParentData$(box.RenderBox) {};
+  (wrap.WrapParentData.new = function() {
+    this[_runIndex] = 0;
+    wrap.WrapParentData.__proto__.new.call(this);
     ;
-  }).prototype = text_selection_toolbar._TextSelectionToolbarTrailingEdgeAlign.prototype;
-  dart.addTypeTests(text_selection_toolbar._TextSelectionToolbarTrailingEdgeAlign);
-  dart.addTypeCaches(text_selection_toolbar._TextSelectionToolbarTrailingEdgeAlign);
-  dart.setMethodSignature(text_selection_toolbar._TextSelectionToolbarTrailingEdgeAlign, () => ({
-    __proto__: dart.getMethods(text_selection_toolbar._TextSelectionToolbarTrailingEdgeAlign.__proto__),
-    createRenderObject: dart.fnType(text_selection_toolbar._TextSelectionToolbarTrailingEdgeAlignRenderBox, [framework.BuildContext])
+  }).prototype = wrap.WrapParentData.prototype;
+  dart.addTypeTests(wrap.WrapParentData);
+  dart.addTypeCaches(wrap.WrapParentData);
+  dart.setLibraryUri(wrap.WrapParentData, I[1]);
+  dart.setFieldSignature(wrap.WrapParentData, () => ({
+    __proto__: dart.getFields(wrap.WrapParentData.__proto__),
+    [_runIndex]: dart.fieldType(core.int)
   }));
-  dart.setLibraryUri(text_selection_toolbar._TextSelectionToolbarTrailingEdgeAlign, I[1]);
-  dart.setFieldSignature(text_selection_toolbar._TextSelectionToolbarTrailingEdgeAlign, () => ({
-    __proto__: dart.getFields(text_selection_toolbar._TextSelectionToolbarTrailingEdgeAlign.__proto__),
-    overflowOpen: dart.finalFieldType(core.bool),
-    textDirection: dart.finalFieldType(ui.TextDirection)
-  }));
-  var _closedWidth = dart.privateName(text_selection_toolbar, "_closedWidth");
-  var _textDirection = dart.privateName(text_selection_toolbar, "_textDirection");
-  text_selection_toolbar._TextSelectionToolbarTrailingEdgeAlignRenderBox = class _TextSelectionToolbarTrailingEdgeAlignRenderBox extends proxy_box.RenderProxyBox {
-    get overflowOpen() {
-      return this[_overflowOpen];
+  var _name = dart.privateName(basic_types, "_name");
+  var _name$0 = dart.privateName(ui, "_name");
+  var _clipBehavior = dart.privateName(wrap, "_clipBehavior");
+  var _hasVisualOverflow = dart.privateName(wrap, "_hasVisualOverflow");
+  var _clipRectLayer = dart.privateName(wrap, "_clipRectLayer");
+  var _direction = dart.privateName(wrap, "_direction");
+  var _alignment = dart.privateName(wrap, "_alignment");
+  var _spacing = dart.privateName(wrap, "_spacing");
+  var _runAlignment = dart.privateName(wrap, "_runAlignment");
+  var _runSpacing = dart.privateName(wrap, "_runSpacing");
+  var _crossAxisAlignment = dart.privateName(wrap, "_crossAxisAlignment");
+  var _textDirection = dart.privateName(wrap, "_textDirection");
+  var _verticalDirection = dart.privateName(wrap, "_verticalDirection");
+  var _debugHasNecessaryDirections = dart.privateName(wrap, "_debugHasNecessaryDirections");
+  var _getMainAxisExtent = dart.privateName(wrap, "_getMainAxisExtent");
+  var _getCrossAxisExtent = dart.privateName(wrap, "_getCrossAxisExtent");
+  var _getOffset = dart.privateName(wrap, "_getOffset");
+  var _getChildCrossAxisOffset = dart.privateName(wrap, "_getChildCrossAxisOffset");
+  var _computeDryLayout = dart.privateName(wrap, "_computeDryLayout");
+  const RenderBox_ContainerRenderObjectMixin$36 = class RenderBox_ContainerRenderObjectMixin extends box.RenderBox {};
+  (RenderBox_ContainerRenderObjectMixin$36.new = function() {
+    object.ContainerRenderObjectMixin$(box.RenderBox, wrap.WrapParentData)[dart.mixinNew].call(this);
+    RenderBox_ContainerRenderObjectMixin$36.__proto__.new.call(this);
+  }).prototype = RenderBox_ContainerRenderObjectMixin$36.prototype;
+  dart.applyMixin(RenderBox_ContainerRenderObjectMixin$36, object.ContainerRenderObjectMixin$(box.RenderBox, wrap.WrapParentData));
+  const RenderBox_RenderBoxContainerDefaultsMixin$36 = class RenderBox_RenderBoxContainerDefaultsMixin extends RenderBox_ContainerRenderObjectMixin$36 {};
+  (RenderBox_RenderBoxContainerDefaultsMixin$36.new = function() {
+    RenderBox_RenderBoxContainerDefaultsMixin$36.__proto__.new.call(this);
+  }).prototype = RenderBox_RenderBoxContainerDefaultsMixin$36.prototype;
+  dart.applyMixin(RenderBox_RenderBoxContainerDefaultsMixin$36, box.RenderBoxContainerDefaultsMixin$(box.RenderBox, wrap.WrapParentData));
+  wrap.RenderWrap = class RenderWrap extends RenderBox_RenderBoxContainerDefaultsMixin$36 {
+    get direction() {
+      return this[_direction];
     }
-    set overflowOpen(value) {
-      if (value == null) dart.nullFailed(I[0], 273, 25, "value");
-      if (value == this.overflowOpen) {
-        return;
-      }
-      this[_overflowOpen] = value;
+    set direction(value) {
+      if (value == null) dart.nullFailed(I[0], 151, 23, "value");
+      if (!(value != null)) dart.assertFailed(null, I[0], 152, 12, "value != null");
+      if (this[_direction] == value) return;
+      this[_direction] = value;
+      this.markNeedsLayout();
+    }
+    get alignment() {
+      return this[_alignment];
+    }
+    set alignment(value) {
+      if (value == null) dart.nullFailed(I[0], 174, 32, "value");
+      if (!(value != null)) dart.assertFailed(null, I[0], 175, 12, "value != null");
+      if (this[_alignment] == value) return;
+      this[_alignment] = value;
+      this.markNeedsLayout();
+    }
+    get spacing() {
+      return this[_spacing];
+    }
+    set spacing(value) {
+      if (value == null) dart.nullFailed(I[0], 195, 23, "value");
+      if (!(value != null)) dart.assertFailed(null, I[0], 196, 12, "value != null");
+      if (this[_spacing] == value) return;
+      this[_spacing] = value;
+      this.markNeedsLayout();
+    }
+    get runAlignment() {
+      return this[_runAlignment];
+    }
+    set runAlignment(value) {
+      if (value == null) dart.nullFailed(I[0], 219, 35, "value");
+      if (!(value != null)) dart.assertFailed(null, I[0], 220, 12, "value != null");
+      if (this[_runAlignment] == value) return;
+      this[_runAlignment] = value;
+      this.markNeedsLayout();
+    }
+    get runSpacing() {
+      return this[_runSpacing];
+    }
+    set runSpacing(value) {
+      if (value == null) dart.nullFailed(I[0], 239, 26, "value");
+      if (!(value != null)) dart.assertFailed(null, I[0], 240, 12, "value != null");
+      if (this[_runSpacing] == value) return;
+      this[_runSpacing] = value;
+      this.markNeedsLayout();
+    }
+    get crossAxisAlignment() {
+      return this[_crossAxisAlignment];
+    }
+    set crossAxisAlignment(value) {
+      if (value == null) dart.nullFailed(I[0], 264, 46, "value");
+      if (!(value != null)) dart.assertFailed(null, I[0], 265, 12, "value != null");
+      if (this[_crossAxisAlignment] == value) return;
+      this[_crossAxisAlignment] = value;
       this.markNeedsLayout();
     }
     get textDirection() {
       return this[_textDirection];
     }
     set textDirection(value) {
-      if (value == null) dart.nullFailed(I[0], 283, 35, "value");
-      if (value == this.textDirection) {
-        return;
+      if (this[_textDirection] != value) {
+        this[_textDirection] = value;
+        this.markNeedsLayout();
       }
-      this[_textDirection] = value;
-      this.markNeedsLayout();
     }
-    performLayout() {
-      dart.nullCheck(this.child).layout(this.constraints.loosen(), {parentUsesSize: true});
-      if (!dart.test(this.overflowOpen) && this[_closedWidth] == null) {
-        this[_closedWidth] = dart.nullCheck(this.child).size.width;
+    get verticalDirection() {
+      return this[_verticalDirection];
+    }
+    set verticalDirection(value) {
+      if (value == null) dart.nullFailed(I[0], 328, 43, "value");
+      if (this[_verticalDirection] != value) {
+        this[_verticalDirection] = value;
+        this.markNeedsLayout();
       }
-      this.size = this.constraints.constrain(new ui.Size.new(this[_closedWidth] == null || dart.notNull(dart.nullCheck(this.child).size.width) > dart.nullCheck(this[_closedWidth]) ? dart.nullCheck(this.child).size.width : dart.nullCheck(this[_closedWidth]), dart.nullCheck(this.child).size.height));
-      let childParentData = text_selection.ToolbarItemsParentData.as(dart.nullCheck(dart.nullCheck(this.child).parentData));
-      childParentData.offset = new ui.Offset.new(this.textDirection == ui.TextDirection.rtl ? 0.0 : dart.notNull(this.size.width) - dart.notNull(dart.nullCheck(this.child).size.width), 0.0);
     }
-    paint(context, offset) {
-      if (context == null) dart.nullFailed(I[0], 323, 30, "context");
-      if (offset == null) dart.nullFailed(I[0], 323, 46, "offset");
-      let childParentData = text_selection.ToolbarItemsParentData.as(dart.nullCheck(dart.nullCheck(this.child).parentData));
-      context.paintChild(dart.nullCheck(this.child), childParentData.offset['+'](offset));
+    get clipBehavior() {
+      return this[_clipBehavior];
     }
-    hitTestChildren(result, opts) {
-      if (result == null) dart.nullFailed(I[0], 330, 41, "result");
-      let position = opts && 'position' in opts ? opts.position : null;
-      if (position == null) dart.nullFailed(I[0], 330, 67, "position");
-      let childParentData = text_selection.ToolbarItemsParentData.as(dart.nullCheck(dart.nullCheck(this.child).parentData));
-      return result.addWithPaintOffset({offset: childParentData.offset, position: position, hitTest: dart.fn((result, transformed) => {
-          if (result == null) dart.nullFailed(I[0], 336, 34, "result");
-          if (transformed == null) dart.nullFailed(I[0], 336, 49, "transformed");
-          if (!dart.equals(transformed, position['-'](childParentData.offset))) dart.assertFailed(null, I[0], 337, 16, "transformed == position - childParentData.offset");
-          return dart.nullCheck(this.child).hitTest(result, {position: transformed});
-        }, T.BoxHitTestResultAndOffsetTobool())});
+    set clipBehavior(value) {
+      if (value == null) dart.nullFailed(I[0], 340, 25, "value");
+      if (!(value != null)) dart.assertFailed(null, I[0], 341, 12, "value != null");
+      if (value != this[_clipBehavior]) {
+        this[_clipBehavior] = value;
+        this.markNeedsPaint();
+        this.markNeedsSemanticsUpdate();
+      }
+    }
+    get [_debugHasNecessaryDirections]() {
+      if (!(this.direction != null)) dart.assertFailed(null, I[0], 350, 12, "direction != null");
+      if (!(this.alignment != null)) dart.assertFailed(null, I[0], 351, 12, "alignment != null");
+      if (!(this.runAlignment != null)) dart.assertFailed(null, I[0], 352, 12, "runAlignment != null");
+      if (!(this.crossAxisAlignment != null)) dart.assertFailed(null, I[0], 353, 12, "crossAxisAlignment != null");
+      if (this.firstChild != null && !dart.equals(this.lastChild, this.firstChild)) {
+        switch (this.direction) {
+          case C[11] || CT.C11:
+          {
+            if (!(this.textDirection != null)) dart.assertFailed("Horizontal " + dart.str(this[$runtimeType]) + " with multiple children has a null textDirection, so the layout order is undefined.", I[0], 358, 18, "textDirection != null");
+            break;
+          }
+          case C[14] || CT.C14:
+          {
+            if (!(this.verticalDirection != null)) dart.assertFailed("Vertical " + dart.str(this[$runtimeType]) + " with multiple children has a null verticalDirection, so the layout order is undefined.", I[0], 361, 18, "verticalDirection != null");
+            break;
+          }
+          default:
+          {
+            dart.throw(new _internal.ReachabilityError.new("`null` encountered as case in a switch expression with a non-nullable enum type."));
+          }
+        }
+      }
+      if (this.alignment == wrap.WrapAlignment.start || this.alignment == wrap.WrapAlignment.end) {
+        switch (this.direction) {
+          case C[11] || CT.C11:
+          {
+            if (!(this.textDirection != null)) dart.assertFailed("Horizontal " + dart.str(this[$runtimeType]) + " with alignment " + dart.str(this.alignment) + " has a null textDirection, so the alignment cannot be resolved.", I[0], 368, 18, "textDirection != null");
+            break;
+          }
+          case C[14] || CT.C14:
+          {
+            if (!(this.verticalDirection != null)) dart.assertFailed("Vertical " + dart.str(this[$runtimeType]) + " with alignment " + dart.str(this.alignment) + " has a null verticalDirection, so the alignment cannot be resolved.", I[0], 371, 18, "verticalDirection != null");
+            break;
+          }
+          default:
+          {
+            dart.throw(new _internal.ReachabilityError.new("`null` encountered as case in a switch expression with a non-nullable enum type."));
+          }
+        }
+      }
+      if (this.runAlignment == wrap.WrapAlignment.start || this.runAlignment == wrap.WrapAlignment.end) {
+        switch (this.direction) {
+          case C[11] || CT.C11:
+          {
+            if (!(this.verticalDirection != null)) dart.assertFailed("Horizontal " + dart.str(this[$runtimeType]) + " with runAlignment " + dart.str(this.runAlignment) + " has a null verticalDirection, so the alignment cannot be resolved.", I[0], 378, 18, "verticalDirection != null");
+            break;
+          }
+          case C[14] || CT.C14:
+          {
+            if (!(this.textDirection != null)) dart.assertFailed("Vertical " + dart.str(this[$runtimeType]) + " with runAlignment " + dart.str(this.runAlignment) + " has a null textDirection, so the alignment cannot be resolved.", I[0], 381, 18, "textDirection != null");
+            break;
+          }
+          default:
+          {
+            dart.throw(new _internal.ReachabilityError.new("`null` encountered as case in a switch expression with a non-nullable enum type."));
+          }
+        }
+      }
+      if (this.crossAxisAlignment == wrap.WrapCrossAlignment.start || this.crossAxisAlignment == wrap.WrapCrossAlignment.end) {
+        switch (this.direction) {
+          case C[11] || CT.C11:
+          {
+            if (!(this.verticalDirection != null)) dart.assertFailed("Horizontal " + dart.str(this[$runtimeType]) + " with crossAxisAlignment " + dart.str(this.crossAxisAlignment) + " has a null verticalDirection, so the alignment cannot be resolved.", I[0], 388, 18, "verticalDirection != null");
+            break;
+          }
+          case C[14] || CT.C14:
+          {
+            if (!(this.textDirection != null)) dart.assertFailed("Vertical " + dart.str(this[$runtimeType]) + " with crossAxisAlignment " + dart.str(this.crossAxisAlignment) + " has a null textDirection, so the alignment cannot be resolved.", I[0], 391, 18, "textDirection != null");
+            break;
+          }
+          default:
+          {
+            dart.throw(new _internal.ReachabilityError.new("`null` encountered as case in a switch expression with a non-nullable enum type."));
+          }
+        }
+      }
+      return true;
     }
     setupParentData(child) {
       box.RenderBox.as(child);
-      if (child == null) dart.nullFailed(I[0], 344, 34, "child");
-      if (!text_selection.ToolbarItemsParentData.is(child.parentData)) {
-        child.parentData = new text_selection.ToolbarItemsParentData.new();
-      }
+      if (child == null) dart.nullFailed(I[0], 399, 34, "child");
+      if (!wrap.WrapParentData.is(child.parentData)) child.parentData = new wrap.WrapParentData.new();
     }
-    applyPaintTransform(child, transform) {
-      object.RenderObject.as(child);
-      if (child == null) dart.nullFailed(I[0], 351, 41, "child");
-      if (transform == null) dart.nullFailed(I[0], 351, 56, "transform");
-      let childParentData = text_selection.ToolbarItemsParentData.as(dart.nullCheck(child.parentData));
-      transform.translate(childParentData.offset.dx, childParentData.offset.dy);
-      super.applyPaintTransform(child, transform);
-    }
-  };
-  (text_selection_toolbar._TextSelectionToolbarTrailingEdgeAlignRenderBox.new = function(opts) {
-    let overflowOpen = opts && 'overflowOpen' in opts ? opts.overflowOpen : null;
-    if (overflowOpen == null) dart.nullFailed(I[0], 260, 19, "overflowOpen");
-    let textDirection = opts && 'textDirection' in opts ? opts.textDirection : null;
-    if (textDirection == null) dart.nullFailed(I[0], 261, 28, "textDirection");
-    this[_closedWidth] = null;
-    this[_textDirection] = textDirection;
-    this[_overflowOpen] = overflowOpen;
-    text_selection_toolbar._TextSelectionToolbarTrailingEdgeAlignRenderBox.__proto__.new.call(this);
-    ;
-  }).prototype = text_selection_toolbar._TextSelectionToolbarTrailingEdgeAlignRenderBox.prototype;
-  dart.addTypeTests(text_selection_toolbar._TextSelectionToolbarTrailingEdgeAlignRenderBox);
-  dart.addTypeCaches(text_selection_toolbar._TextSelectionToolbarTrailingEdgeAlignRenderBox);
-  dart.setGetterSignature(text_selection_toolbar._TextSelectionToolbarTrailingEdgeAlignRenderBox, () => ({
-    __proto__: dart.getGetters(text_selection_toolbar._TextSelectionToolbarTrailingEdgeAlignRenderBox.__proto__),
-    overflowOpen: core.bool,
-    textDirection: ui.TextDirection
-  }));
-  dart.setSetterSignature(text_selection_toolbar._TextSelectionToolbarTrailingEdgeAlignRenderBox, () => ({
-    __proto__: dart.getSetters(text_selection_toolbar._TextSelectionToolbarTrailingEdgeAlignRenderBox.__proto__),
-    overflowOpen: core.bool,
-    textDirection: ui.TextDirection
-  }));
-  dart.setLibraryUri(text_selection_toolbar._TextSelectionToolbarTrailingEdgeAlignRenderBox, I[1]);
-  dart.setFieldSignature(text_selection_toolbar._TextSelectionToolbarTrailingEdgeAlignRenderBox, () => ({
-    __proto__: dart.getFields(text_selection_toolbar._TextSelectionToolbarTrailingEdgeAlignRenderBox.__proto__),
-    [_closedWidth]: dart.fieldType(dart.nullable(core.double)),
-    [_overflowOpen]: dart.fieldType(core.bool),
-    [_textDirection]: dart.fieldType(ui.TextDirection)
-  }));
-  text_selection_toolbar._TextSelectionToolbarItemsLayout = class _TextSelectionToolbarItemsLayout extends framework.MultiChildRenderObjectWidget {
-    createRenderObject(context) {
-      if (context == null) dart.nullFailed(I[0], 375, 74, "context");
-      return new text_selection_toolbar._RenderTextSelectionToolbarItemsLayout.new({isAbove: this.isAbove, overflowOpen: this.overflowOpen});
-    }
-    updateRenderObject(context, renderObject) {
-      let t1;
-      if (context == null) dart.nullFailed(I[0], 383, 40, "context");
-      text_selection_toolbar._RenderTextSelectionToolbarItemsLayout.as(renderObject);
-      if (renderObject == null) dart.nullFailed(I[0], 383, 88, "renderObject");
-      t1 = renderObject;
-      (() => {
-        t1.isAbove = this.isAbove;
-        t1.overflowOpen = this.overflowOpen;
-        return t1;
-      })();
-    }
-    createElement() {
-      return new text_selection_toolbar._TextSelectionToolbarItemsLayoutElement.new(this);
-    }
-  };
-  (text_selection_toolbar._TextSelectionToolbarItemsLayout.new = function(opts) {
-    let key = opts && 'key' in opts ? opts.key : null;
-    let isAbove = opts && 'isAbove' in opts ? opts.isAbove : null;
-    if (isAbove == null) dart.nullFailed(I[0], 363, 19, "isAbove");
-    let overflowOpen = opts && 'overflowOpen' in opts ? opts.overflowOpen : null;
-    if (overflowOpen == null) dart.nullFailed(I[0], 364, 19, "overflowOpen");
-    let children = opts && 'children' in opts ? opts.children : null;
-    if (children == null) dart.nullFailed(I[0], 365, 27, "children");
-    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
-    this.isAbove = isAbove;
-    this.overflowOpen = overflowOpen;
-    if (!(children != null)) dart.assertFailed(null, I[0], 366, 15, "children != null");
-    if (!(isAbove != null)) dart.assertFailed(null, I[0], 367, 15, "isAbove != null");
-    if (!(overflowOpen != null)) dart.assertFailed(null, I[0], 368, 15, "overflowOpen != null");
-    text_selection_toolbar._TextSelectionToolbarItemsLayout.__proto__.new.call(this, {key: key, children: children, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
-    ;
-  }).prototype = text_selection_toolbar._TextSelectionToolbarItemsLayout.prototype;
-  dart.addTypeTests(text_selection_toolbar._TextSelectionToolbarItemsLayout);
-  dart.addTypeCaches(text_selection_toolbar._TextSelectionToolbarItemsLayout);
-  dart.setMethodSignature(text_selection_toolbar._TextSelectionToolbarItemsLayout, () => ({
-    __proto__: dart.getMethods(text_selection_toolbar._TextSelectionToolbarItemsLayout.__proto__),
-    createRenderObject: dart.fnType(text_selection_toolbar._RenderTextSelectionToolbarItemsLayout, [framework.BuildContext]),
-    createElement: dart.fnType(text_selection_toolbar._TextSelectionToolbarItemsLayoutElement, [])
-  }));
-  dart.setLibraryUri(text_selection_toolbar._TextSelectionToolbarItemsLayout, I[1]);
-  dart.setFieldSignature(text_selection_toolbar._TextSelectionToolbarItemsLayout, () => ({
-    __proto__: dart.getFields(text_selection_toolbar._TextSelectionToolbarItemsLayout.__proto__),
-    isAbove: dart.finalFieldType(core.bool),
-    overflowOpen: dart.finalFieldType(core.bool)
-  }));
-  text_selection_toolbar._TextSelectionToolbarItemsLayoutElement = class _TextSelectionToolbarItemsLayoutElement extends framework.MultiChildRenderObjectElement {
-    static _shouldPaint(child) {
-      if (child == null) dart.nullFailed(I[0], 398, 36, "child");
-      return text_selection.ToolbarItemsParentData.as(dart.nullCheck(dart.nullCheck(child.renderObject).parentData)).shouldPaint;
-    }
-    debugVisitOnstageChildren(visitor) {
-      if (visitor == null) dart.nullFailed(I[0], 403, 49, "visitor");
-      this.children[$where](C[45] || CT.C45)[$forEach](visitor);
-    }
-  };
-  (text_selection_toolbar._TextSelectionToolbarItemsLayoutElement.new = function(widget) {
-    if (widget == null) dart.nullFailed(I[0], 395, 34, "widget");
-    text_selection_toolbar._TextSelectionToolbarItemsLayoutElement.__proto__.new.call(this, widget);
-    ;
-  }).prototype = text_selection_toolbar._TextSelectionToolbarItemsLayoutElement.prototype;
-  dart.addTypeTests(text_selection_toolbar._TextSelectionToolbarItemsLayoutElement);
-  dart.addTypeCaches(text_selection_toolbar._TextSelectionToolbarItemsLayoutElement);
-  dart.setLibraryUri(text_selection_toolbar._TextSelectionToolbarItemsLayoutElement, I[1]);
-  var _lastIndexThatFits = dart.privateName(text_selection_toolbar, "_lastIndexThatFits");
-  var _isAbove = dart.privateName(text_selection_toolbar, "_isAbove");
-  var _layoutChildren = dart.privateName(text_selection_toolbar, "_layoutChildren");
-  var _shouldPaintChild = dart.privateName(text_selection_toolbar, "_shouldPaintChild");
-  var _placeChildren = dart.privateName(text_selection_toolbar, "_placeChildren");
-  const RenderBox_ContainerRenderObjectMixin$36 = class RenderBox_ContainerRenderObjectMixin extends box.RenderBox {};
-  (RenderBox_ContainerRenderObjectMixin$36.new = function() {
-    object.ContainerRenderObjectMixin$(box.RenderBox, text_selection.ToolbarItemsParentData)[dart.mixinNew].call(this);
-    RenderBox_ContainerRenderObjectMixin$36.__proto__.new.call(this);
-  }).prototype = RenderBox_ContainerRenderObjectMixin$36.prototype;
-  dart.applyMixin(RenderBox_ContainerRenderObjectMixin$36, object.ContainerRenderObjectMixin$(box.RenderBox, text_selection.ToolbarItemsParentData));
-  text_selection_toolbar._RenderTextSelectionToolbarItemsLayout = class _RenderTextSelectionToolbarItemsLayout extends RenderBox_ContainerRenderObjectMixin$36 {
-    get isAbove() {
-      return this[_isAbove];
-    }
-    set isAbove(value) {
-      if (value == null) dart.nullFailed(I[0], 423, 20, "value");
-      if (value == this.isAbove) {
-        return;
-      }
-      this[_isAbove] = value;
-      this.markNeedsLayout();
-    }
-    get overflowOpen() {
-      return this[_overflowOpen];
-    }
-    set overflowOpen(value) {
-      if (value == null) dart.nullFailed(I[0], 433, 25, "value");
-      if (value == this.overflowOpen) {
-        return;
-      }
-      this[_overflowOpen] = value;
-      this.markNeedsLayout();
-    }
-    [_layoutChildren]() {
-      let sizedConstraints = dart.test(this[_overflowOpen]) ? this.constraints : new box.BoxConstraints.loose(new ui.Size.new(this.constraints.maxWidth, 44));
-      let i = -1;
-      let width = 0.0;
-      this.visitChildren(dart.fn(renderObjectChild => {
-        if (renderObjectChild == null) dart.nullFailed(I[0], 454, 33, "renderObjectChild");
-        i = i + 1;
-        if (this[_lastIndexThatFits] !== -1 && !dart.test(this.overflowOpen)) {
-          return;
+    computeMinIntrinsicWidth(height) {
+      if (height == null) dart.nullFailed(I[0], 405, 42, "height");
+      switch (this.direction) {
+        case C[11] || CT.C11:
+        {
+          let width = 0.0;
+          let child = this.firstChild;
+          while (child != null) {
+            width = math.max(core.double, width, child.getMinIntrinsicWidth(1 / 0));
+            child = this.childAfter(child);
+          }
+          return width;
         }
-        let child = box.RenderBox.as(renderObjectChild);
-        child.layout(sizedConstraints.loosen(), {parentUsesSize: true});
-        width = width + dart.notNull(child.size.width);
-        if (width > dart.notNull(sizedConstraints.maxWidth) && this[_lastIndexThatFits] === -1) {
-          this[_lastIndexThatFits] = i - 1;
+        case C[14] || CT.C14:
+        {
+          return this.computeDryLayout(new box.BoxConstraints.new({maxHeight: height})).width;
         }
-      }, T.RenderObjectTovoid()));
-      let navButton = dart.nullCheck(this.firstChild);
-      if (this[_lastIndexThatFits] !== -1 && this[_lastIndexThatFits] === dart.notNull(this.childCount) - 2 && width - dart.notNull(navButton.size.width) <= dart.notNull(sizedConstraints.maxWidth)) {
-        this[_lastIndexThatFits] = -1;
+        default:
+        {
+          dart.throw(new _internal.ReachabilityError.new("`null` encountered as case in a switch expression with a non-nullable enum type."));
+        }
       }
     }
-    [_shouldPaintChild](renderObjectChild, index) {
-      if (renderObjectChild == null) dart.nullFailed(I[0], 485, 39, "renderObjectChild");
-      if (index == null) dart.nullFailed(I[0], 485, 62, "index");
-      if (dart.equals(renderObjectChild, this.firstChild)) {
-        return this[_lastIndexThatFits] !== -1;
-      }
-      if (this[_lastIndexThatFits] === -1) {
-        return true;
-      }
-      return dart.notNull(index) > dart.notNull(this[_lastIndexThatFits]) === this.overflowOpen;
-    }
-    [_placeChildren]() {
-      let i = -1;
-      let nextSize = ui.Size.zero;
-      let fitWidth = 0.0;
-      let navButton = dart.nullCheck(this.firstChild);
-      let overflowHeight = dart.test(this.overflowOpen) && !dart.test(this.isAbove) ? navButton.size.height : 0.0;
-      this.visitChildren(dart.fn(renderObjectChild => {
-        if (renderObjectChild == null) dart.nullFailed(I[0], 511, 33, "renderObjectChild");
-        i = i + 1;
-        let child = box.RenderBox.as(renderObjectChild);
-        let childParentData = text_selection.ToolbarItemsParentData.as(dart.nullCheck(child.parentData));
-        if (dart.equals(renderObjectChild, navButton)) {
-          return;
+    computeMaxIntrinsicWidth(height) {
+      if (height == null) dart.nullFailed(I[0], 421, 42, "height");
+      switch (this.direction) {
+        case C[11] || CT.C11:
+        {
+          let width = 0.0;
+          let child = this.firstChild;
+          while (child != null) {
+            width = width + dart.notNull(child.getMaxIntrinsicWidth(1 / 0));
+            child = this.childAfter(child);
+          }
+          return width;
         }
-        if (!dart.test(this[_shouldPaintChild](renderObjectChild, i))) {
-          childParentData.shouldPaint = false;
-          return;
+        case C[14] || CT.C14:
+        {
+          return this.computeDryLayout(new box.BoxConstraints.new({maxHeight: height})).width;
         }
-        childParentData.shouldPaint = true;
-        if (!dart.test(this.overflowOpen)) {
-          childParentData.offset = new ui.Offset.new(fitWidth, 0.0);
-          fitWidth = fitWidth + dart.notNull(child.size.width);
-          nextSize = new ui.Size.new(fitWidth, math.max(core.double, child.size.height, nextSize.height));
-        } else {
-          childParentData.offset = new ui.Offset.new(0.0, overflowHeight);
-          overflowHeight = dart.notNull(overflowHeight) + dart.notNull(child.size.height);
-          nextSize = new ui.Size.new(math.max(core.double, child.size.width, nextSize.width), overflowHeight);
+        default:
+        {
+          dart.throw(new _internal.ReachabilityError.new("`null` encountered as case in a switch expression with a non-nullable enum type."));
         }
-      }, T.RenderObjectTovoid()));
-      let navButtonParentData = text_selection.ToolbarItemsParentData.as(dart.nullCheck(navButton.parentData));
-      if (dart.test(this[_shouldPaintChild](dart.nullCheck(this.firstChild), 0))) {
-        navButtonParentData.shouldPaint = true;
-        if (dart.test(this.overflowOpen)) {
-          navButtonParentData.offset = dart.test(this.isAbove) ? new ui.Offset.new(0.0, overflowHeight) : ui.Offset.zero;
-          nextSize = new ui.Size.new(nextSize.width, dart.test(this.isAbove) ? dart.notNull(nextSize.height) + dart.notNull(navButton.size.height) : nextSize.height);
-        } else {
-          navButtonParentData.offset = new ui.Offset.new(fitWidth, 0.0);
-          nextSize = new ui.Size.new(dart.notNull(nextSize.width) + dart.notNull(navButton.size.width), nextSize.height);
-        }
-      } else {
-        navButtonParentData.shouldPaint = false;
-      }
-      this.size = nextSize;
-    }
-    performLayout() {
-      this[_lastIndexThatFits] = -1;
-      if (this.firstChild == null) {
-        this.size = this.constraints.smallest;
-        return;
-      }
-      this[_layoutChildren]();
-      this[_placeChildren]();
-    }
-    paint(context, offset) {
-      if (context == null) dart.nullFailed(I[0], 582, 30, "context");
-      if (offset == null) dart.nullFailed(I[0], 582, 46, "offset");
-      this.visitChildren(dart.fn(renderObjectChild => {
-        if (renderObjectChild == null) dart.nullFailed(I[0], 583, 33, "renderObjectChild");
-        let child = box.RenderBox.as(renderObjectChild);
-        let childParentData = text_selection.ToolbarItemsParentData.as(dart.nullCheck(child.parentData));
-        if (!dart.test(childParentData.shouldPaint)) {
-          return;
-        }
-        context.paintChild(child, childParentData.offset['+'](offset));
-      }, T.RenderObjectTovoid()));
-    }
-    setupParentData(child) {
-      box.RenderBox.as(child);
-      if (child == null) dart.nullFailed(I[0], 595, 34, "child");
-      if (!text_selection.ToolbarItemsParentData.is(child.parentData)) {
-        child.parentData = new text_selection.ToolbarItemsParentData.new();
       }
     }
-    hitTestChildren(result, opts) {
-      if (result == null) dart.nullFailed(I[0], 602, 41, "result");
-      let position = opts && 'position' in opts ? opts.position : null;
-      if (position == null) dart.nullFailed(I[0], 602, 67, "position");
-      let child = this.lastChild;
+    computeMinIntrinsicHeight(width) {
+      if (width == null) dart.nullFailed(I[0], 437, 43, "width");
+      switch (this.direction) {
+        case C[11] || CT.C11:
+        {
+          return this.computeDryLayout(new box.BoxConstraints.new({maxWidth: width})).height;
+        }
+        case C[14] || CT.C14:
+        {
+          let height = 0.0;
+          let child = this.firstChild;
+          while (child != null) {
+            height = math.max(core.double, height, child.getMinIntrinsicHeight(1 / 0));
+            child = this.childAfter(child);
+          }
+          return height;
+        }
+        default:
+        {
+          dart.throw(new _internal.ReachabilityError.new("`null` encountered as case in a switch expression with a non-nullable enum type."));
+        }
+      }
+    }
+    computeMaxIntrinsicHeight(width) {
+      if (width == null) dart.nullFailed(I[0], 453, 43, "width");
+      switch (this.direction) {
+        case C[11] || CT.C11:
+        {
+          return this.computeDryLayout(new box.BoxConstraints.new({maxWidth: width})).height;
+        }
+        case C[14] || CT.C14:
+        {
+          let height = 0.0;
+          let child = this.firstChild;
+          while (child != null) {
+            height = height + dart.notNull(child.getMaxIntrinsicHeight(1 / 0));
+            child = this.childAfter(child);
+          }
+          return height;
+        }
+        default:
+        {
+          dart.throw(new _internal.ReachabilityError.new("`null` encountered as case in a switch expression with a non-nullable enum type."));
+        }
+      }
+    }
+    computeDistanceToActualBaseline(baseline) {
+      if (baseline == null) dart.nullFailed(I[0], 469, 56, "baseline");
+      return this.defaultComputeDistanceToHighestActualBaseline(baseline);
+    }
+    [_getMainAxisExtent](childSize) {
+      if (childSize == null) dart.nullFailed(I[0], 473, 34, "childSize");
+      switch (this.direction) {
+        case C[11] || CT.C11:
+        {
+          return childSize.width;
+        }
+        case C[14] || CT.C14:
+        {
+          return childSize.height;
+        }
+        default:
+        {
+          dart.throw(new _internal.ReachabilityError.new("`null` encountered as case in a switch expression with a non-nullable enum type."));
+        }
+      }
+    }
+    [_getCrossAxisExtent](childSize) {
+      if (childSize == null) dart.nullFailed(I[0], 482, 35, "childSize");
+      switch (this.direction) {
+        case C[11] || CT.C11:
+        {
+          return childSize.height;
+        }
+        case C[14] || CT.C14:
+        {
+          return childSize.width;
+        }
+        default:
+        {
+          dart.throw(new _internal.ReachabilityError.new("`null` encountered as case in a switch expression with a non-nullable enum type."));
+        }
+      }
+    }
+    [_getOffset](mainAxisOffset, crossAxisOffset) {
+      if (mainAxisOffset == null) dart.nullFailed(I[0], 491, 28, "mainAxisOffset");
+      if (crossAxisOffset == null) dart.nullFailed(I[0], 491, 51, "crossAxisOffset");
+      switch (this.direction) {
+        case C[11] || CT.C11:
+        {
+          return new ui.Offset.new(mainAxisOffset, crossAxisOffset);
+        }
+        case C[14] || CT.C14:
+        {
+          return new ui.Offset.new(crossAxisOffset, mainAxisOffset);
+        }
+        default:
+        {
+          dart.throw(new _internal.ReachabilityError.new("`null` encountered as case in a switch expression with a non-nullable enum type."));
+        }
+      }
+    }
+    [_getChildCrossAxisOffset](flipCrossAxis, runCrossAxisExtent, childCrossAxisExtent) {
+      if (flipCrossAxis == null) dart.nullFailed(I[0], 500, 40, "flipCrossAxis");
+      if (runCrossAxisExtent == null) dart.nullFailed(I[0], 500, 62, "runCrossAxisExtent");
+      if (childCrossAxisExtent == null) dart.nullFailed(I[0], 500, 89, "childCrossAxisExtent");
+      let freeSpace = dart.notNull(runCrossAxisExtent) - dart.notNull(childCrossAxisExtent);
+      switch (this.crossAxisAlignment) {
+        case C[7] || CT.C7:
+        {
+          return dart.test(flipCrossAxis) ? freeSpace : 0.0;
+        }
+        case C[8] || CT.C8:
+        {
+          return dart.test(flipCrossAxis) ? 0.0 : freeSpace;
+        }
+        case C[9] || CT.C9:
+        {
+          return freeSpace / 2.0;
+        }
+        default:
+        {
+          dart.throw(new _internal.ReachabilityError.new("`null` encountered as case in a switch expression with a non-nullable enum type."));
+        }
+      }
+    }
+    computeDryLayout(constraints) {
+      if (constraints == null) dart.nullFailed(I[0], 515, 40, "constraints");
+      return this[_computeDryLayout](constraints);
+    }
+    [_computeDryLayout](constraints, layoutChild = C[15] || CT.C15) {
+      if (constraints == null) dart.nullFailed(I[0], 519, 41, "constraints");
+      if (layoutChild == null) dart.nullFailed(I[0], 519, 69, "layoutChild");
+      let childConstraints = null;
+      let mainAxisLimit = 0.0;
+      switch (this.direction) {
+        case C[11] || CT.C11:
+        {
+          childConstraints = new box.BoxConstraints.new({maxWidth: constraints.maxWidth});
+          mainAxisLimit = constraints.maxWidth;
+          break;
+        }
+        case C[14] || CT.C14:
+        {
+          childConstraints = new box.BoxConstraints.new({maxHeight: constraints.maxHeight});
+          mainAxisLimit = constraints.maxHeight;
+          break;
+        }
+        default:
+        {
+          dart.throw(new _internal.ReachabilityError.new("`null` encountered as case in a switch expression with a non-nullable enum type."));
+        }
+      }
+      let mainAxisExtent = 0.0;
+      let crossAxisExtent = 0.0;
+      let runMainAxisExtent = 0.0;
+      let runCrossAxisExtent = 0.0;
+      let childCount = 0;
+      let child = this.firstChild;
       while (child != null) {
-        let childParentData = text_selection.ToolbarItemsParentData.as(dart.nullCheck(child.parentData));
-        if (!dart.test(childParentData.shouldPaint)) {
-          child = childParentData.previousSibling;
-          continue;
+        let childSize = layoutChild(child, childConstraints);
+        let childMainAxisExtent = this[_getMainAxisExtent](childSize);
+        let childCrossAxisExtent = this[_getCrossAxisExtent](childSize);
+        if (childCount > 0 && runMainAxisExtent + dart.notNull(childMainAxisExtent) + dart.notNull(this.spacing) > dart.notNull(mainAxisLimit)) {
+          mainAxisExtent = math.max(core.double, mainAxisExtent, runMainAxisExtent);
+          crossAxisExtent = crossAxisExtent + (runCrossAxisExtent + dart.notNull(this.runSpacing));
+          runMainAxisExtent = 0.0;
+          runCrossAxisExtent = 0.0;
+          childCount = 0;
         }
-        let isHit = result.addWithPaintOffset({offset: childParentData.offset, position: position, hitTest: dart.fn((result, transformed) => {
-            if (result == null) dart.nullFailed(I[0], 617, 36, "result");
-            if (transformed == null) dart.nullFailed(I[0], 617, 51, "transformed");
-            if (!dart.equals(transformed, position['-'](childParentData.offset))) dart.assertFailed(null, I[0], 618, 18, "transformed == position - childParentData.offset");
-            return dart.nullCheck(child).hitTest(result, {position: transformed});
-          }, T.BoxHitTestResultAndOffsetTobool())});
-        if (dart.test(isHit)) return true;
-        child = childParentData.previousSibling;
+        runMainAxisExtent = runMainAxisExtent + dart.notNull(childMainAxisExtent);
+        runCrossAxisExtent = math.max(core.double, runCrossAxisExtent, childCrossAxisExtent);
+        if (childCount > 0) runMainAxisExtent = runMainAxisExtent + dart.notNull(this.spacing);
+        childCount = childCount + 1;
+        child = this.childAfter(child);
       }
-      return false;
-    }
-    visitChildrenForSemantics(visitor) {
-      if (visitor == null) dart.nullFailed(I[0], 631, 54, "visitor");
-      this.visitChildren(dart.fn(renderObjectChild => {
-        if (renderObjectChild == null) dart.nullFailed(I[0], 632, 33, "renderObjectChild");
-        let child = box.RenderBox.as(renderObjectChild);
-        let childParentData = text_selection.ToolbarItemsParentData.as(dart.nullCheck(child.parentData));
-        if (dart.test(childParentData.shouldPaint)) {
-          visitor(renderObjectChild);
+      crossAxisExtent = crossAxisExtent + runCrossAxisExtent;
+      mainAxisExtent = math.max(core.double, mainAxisExtent, runMainAxisExtent);
+      switch (this.direction) {
+        case C[11] || CT.C11:
+        {
+          return constraints.constrain(new ui.Size.new(mainAxisExtent, crossAxisExtent));
         }
-      }, T.RenderObjectTovoid()));
+        case C[14] || CT.C14:
+        {
+          return constraints.constrain(new ui.Size.new(crossAxisExtent, mainAxisExtent));
+        }
+        default:
+        {
+          dart.throw(new _internal.ReachabilityError.new("`null` encountered as case in a switch expression with a non-nullable enum type."));
+        }
+      }
+    }
+    performLayout() {
+      let constraints = this.constraints;
+      if (!dart.test(this[_debugHasNecessaryDirections])) dart.assertFailed(null, I[0], 572, 12, "_debugHasNecessaryDirections");
+      this[_hasVisualOverflow] = false;
+      let child = this.firstChild;
+      if (child == null) {
+        this.size = constraints.smallest;
+        return;
+      }
+      let childConstraints = null;
+      let mainAxisLimit = 0.0;
+      let flipMainAxis = false;
+      let flipCrossAxis = false;
+      switch (this.direction) {
+        case C[11] || CT.C11:
+        {
+          childConstraints = new box.BoxConstraints.new({maxWidth: constraints.maxWidth});
+          mainAxisLimit = constraints.maxWidth;
+          if (this.textDirection == ui.TextDirection.rtl) flipMainAxis = true;
+          if (this.verticalDirection == basic_types.VerticalDirection.up) flipCrossAxis = true;
+          break;
+        }
+        case C[14] || CT.C14:
+        {
+          childConstraints = new box.BoxConstraints.new({maxHeight: constraints.maxHeight});
+          mainAxisLimit = constraints.maxHeight;
+          if (this.verticalDirection == basic_types.VerticalDirection.up) flipMainAxis = true;
+          if (this.textDirection == ui.TextDirection.rtl) flipCrossAxis = true;
+          break;
+        }
+        default:
+        {
+          dart.throw(new _internal.ReachabilityError.new("`null` encountered as case in a switch expression with a non-nullable enum type."));
+        }
+      }
+      if (!(childConstraints != null)) dart.assertFailed(null, I[0], 601, 12, "childConstraints != null");
+      if (!(mainAxisLimit != null)) dart.assertFailed(null, I[0], 602, 12, "mainAxisLimit != null");
+      let spacing = this.spacing;
+      let runSpacing = this.runSpacing;
+      let runMetrics = T.JSArrayOf_RunMetrics().of([]);
+      let mainAxisExtent = 0.0;
+      let crossAxisExtent = 0.0;
+      let runMainAxisExtent = 0.0;
+      let runCrossAxisExtent = 0.0;
+      let childCount = 0;
+      while (child != null) {
+        child.layout(childConstraints, {parentUsesSize: true});
+        let childMainAxisExtent = this[_getMainAxisExtent](child.size);
+        let childCrossAxisExtent = this[_getCrossAxisExtent](child.size);
+        if (childCount > 0 && runMainAxisExtent + dart.notNull(spacing) + dart.notNull(childMainAxisExtent) > dart.notNull(mainAxisLimit)) {
+          mainAxisExtent = math.max(core.double, mainAxisExtent, runMainAxisExtent);
+          crossAxisExtent = crossAxisExtent + runCrossAxisExtent;
+          if (dart.test(runMetrics[$isNotEmpty])) crossAxisExtent = crossAxisExtent + dart.notNull(runSpacing);
+          runMetrics[$add](new wrap._RunMetrics.new(runMainAxisExtent, runCrossAxisExtent, childCount));
+          runMainAxisExtent = 0.0;
+          runCrossAxisExtent = 0.0;
+          childCount = 0;
+        }
+        runMainAxisExtent = runMainAxisExtent + dart.notNull(childMainAxisExtent);
+        if (childCount > 0) runMainAxisExtent = runMainAxisExtent + dart.notNull(spacing);
+        runCrossAxisExtent = math.max(core.double, runCrossAxisExtent, childCrossAxisExtent);
+        childCount = childCount + 1;
+        let childParentData = wrap.WrapParentData.as(dart.nullCheck(child.parentData));
+        childParentData[_runIndex] = runMetrics[$length];
+        child = childParentData.nextSibling;
+      }
+      if (childCount > 0) {
+        mainAxisExtent = math.max(core.double, mainAxisExtent, runMainAxisExtent);
+        crossAxisExtent = crossAxisExtent + runCrossAxisExtent;
+        if (dart.test(runMetrics[$isNotEmpty])) crossAxisExtent = crossAxisExtent + dart.notNull(runSpacing);
+        runMetrics[$add](new wrap._RunMetrics.new(runMainAxisExtent, runCrossAxisExtent, childCount));
+      }
+      let runCount = runMetrics[$length];
+      if (!(dart.notNull(runCount) > 0)) dart.assertFailed(null, I[0], 643, 12, "runCount > 0");
+      let containerMainAxisExtent = 0.0;
+      let containerCrossAxisExtent = 0.0;
+      switch (this.direction) {
+        case C[11] || CT.C11:
+        {
+          this.size = constraints.constrain(new ui.Size.new(mainAxisExtent, crossAxisExtent));
+          containerMainAxisExtent = this.size.width;
+          containerCrossAxisExtent = this.size.height;
+          break;
+        }
+        case C[14] || CT.C14:
+        {
+          this.size = constraints.constrain(new ui.Size.new(crossAxisExtent, mainAxisExtent));
+          containerMainAxisExtent = this.size.height;
+          containerCrossAxisExtent = this.size.width;
+          break;
+        }
+        default:
+        {
+          dart.throw(new _internal.ReachabilityError.new("`null` encountered as case in a switch expression with a non-nullable enum type."));
+        }
+      }
+      this[_hasVisualOverflow] = dart.notNull(containerMainAxisExtent) < mainAxisExtent || dart.notNull(containerCrossAxisExtent) < crossAxisExtent;
+      let crossAxisFreeSpace = math.max(core.double, 0.0, dart.notNull(containerCrossAxisExtent) - crossAxisExtent);
+      let runLeadingSpace = 0.0;
+      let runBetweenSpace = 0.0;
+      switch (this.runAlignment) {
+        case C[0] || CT.C0:
+        {
+          break;
+        }
+        case C[1] || CT.C1:
+        {
+          runLeadingSpace = crossAxisFreeSpace;
+          break;
+        }
+        case C[2] || CT.C2:
+        {
+          runLeadingSpace = crossAxisFreeSpace / 2.0;
+          break;
+        }
+        case C[3] || CT.C3:
+        {
+          runBetweenSpace = dart.notNull(runCount) > 1 ? crossAxisFreeSpace / (dart.notNull(runCount) - 1) : 0.0;
+          break;
+        }
+        case C[4] || CT.C4:
+        {
+          runBetweenSpace = crossAxisFreeSpace / dart.notNull(runCount);
+          runLeadingSpace = runBetweenSpace / 2.0;
+          break;
+        }
+        case C[5] || CT.C5:
+        {
+          runBetweenSpace = crossAxisFreeSpace / (dart.notNull(runCount) + 1);
+          runLeadingSpace = runBetweenSpace;
+          break;
+        }
+        default:
+        {
+          dart.throw(new _internal.ReachabilityError.new("`null` encountered as case in a switch expression with a non-nullable enum type."));
+        }
+      }
+      runBetweenSpace = runBetweenSpace + dart.notNull(runSpacing);
+      let crossAxisOffset = flipCrossAxis ? dart.notNull(containerCrossAxisExtent) - runLeadingSpace : runLeadingSpace;
+      child = this.firstChild;
+      for (let i = 0; i < dart.notNull(runCount); i = i + 1) {
+        let metrics = runMetrics[$_get](i);
+        let runMainAxisExtent = metrics.mainAxisExtent;
+        let runCrossAxisExtent = metrics.crossAxisExtent;
+        let childCount = metrics.childCount;
+        let mainAxisFreeSpace = math.max(core.double, 0.0, dart.notNull(containerMainAxisExtent) - dart.notNull(runMainAxisExtent));
+        let childLeadingSpace = 0.0;
+        let childBetweenSpace = 0.0;
+        switch (this.alignment) {
+          case C[0] || CT.C0:
+          {
+            break;
+          }
+          case C[1] || CT.C1:
+          {
+            childLeadingSpace = mainAxisFreeSpace;
+            break;
+          }
+          case C[2] || CT.C2:
+          {
+            childLeadingSpace = mainAxisFreeSpace / 2.0;
+            break;
+          }
+          case C[3] || CT.C3:
+          {
+            childBetweenSpace = dart.notNull(childCount) > 1 ? mainAxisFreeSpace / (dart.notNull(childCount) - 1) : 0.0;
+            break;
+          }
+          case C[4] || CT.C4:
+          {
+            childBetweenSpace = mainAxisFreeSpace / dart.notNull(childCount);
+            childLeadingSpace = childBetweenSpace / 2.0;
+            break;
+          }
+          case C[5] || CT.C5:
+          {
+            childBetweenSpace = mainAxisFreeSpace / (dart.notNull(childCount) + 1);
+            childLeadingSpace = childBetweenSpace;
+            break;
+          }
+          default:
+          {
+            dart.throw(new _internal.ReachabilityError.new("`null` encountered as case in a switch expression with a non-nullable enum type."));
+          }
+        }
+        childBetweenSpace = childBetweenSpace + dart.notNull(spacing);
+        let childMainPosition = flipMainAxis ? dart.notNull(containerMainAxisExtent) - childLeadingSpace : childLeadingSpace;
+        if (flipCrossAxis) crossAxisOffset = crossAxisOffset - dart.notNull(runCrossAxisExtent);
+        while (child != null) {
+          let childParentData = wrap.WrapParentData.as(dart.nullCheck(child.parentData));
+          if (childParentData[_runIndex] !== i) break;
+          let childMainAxisExtent = this[_getMainAxisExtent](child.size);
+          let childCrossAxisExtent = this[_getCrossAxisExtent](child.size);
+          let childCrossAxisOffset = this[_getChildCrossAxisOffset](flipCrossAxis, runCrossAxisExtent, childCrossAxisExtent);
+          if (flipMainAxis) childMainPosition = childMainPosition - dart.notNull(childMainAxisExtent);
+          childParentData.offset = this[_getOffset](childMainPosition, crossAxisOffset + dart.notNull(childCrossAxisOffset));
+          if (flipMainAxis)
+            childMainPosition = childMainPosition - childBetweenSpace;
+          else
+            childMainPosition = childMainPosition + (dart.notNull(childMainAxisExtent) + childBetweenSpace);
+          child = childParentData.nextSibling;
+        }
+        if (flipCrossAxis)
+          crossAxisOffset = crossAxisOffset - runBetweenSpace;
+        else
+          crossAxisOffset = crossAxisOffset + (dart.notNull(runCrossAxisExtent) + runBetweenSpace);
+      }
+    }
+    hitTestChildren(result, opts) {
+      if (result == null) dart.nullFailed(I[0], 755, 41, "result");
+      let position = opts && 'position' in opts ? opts.position : null;
+      if (position == null) dart.nullFailed(I[0], 755, 67, "position");
+      return this.defaultHitTestChildren(result, {position: position});
+    }
+    paint(context, offset) {
+      if (context == null) dart.nullFailed(I[0], 760, 30, "context");
+      if (offset == null) dart.nullFailed(I[0], 760, 46, "offset");
+      if (dart.test(this[_hasVisualOverflow]) && this.clipBehavior != ui.Clip.none) {
+        this[_clipRectLayer] = context.pushClipRect(this.needsCompositing, offset, ui.Offset.zero['&'](this.size), dart.bind(this, 'defaultPaint'), {clipBehavior: this.clipBehavior, oldLayer: this[_clipRectLayer]});
+      } else {
+        this[_clipRectLayer] = null;
+        this.defaultPaint(context, offset);
+      }
+    }
+    debugFillProperties(properties) {
+      if (properties == null) dart.nullFailed(I[0], 781, 56, "properties");
+      super.debugFillProperties(properties);
+      properties.add(new (T.EnumPropertyOfAxis()).new("direction", this.direction));
+      properties.add(new (T.EnumPropertyOfWrapAlignment()).new("alignment", this.alignment));
+      properties.add(new diagnostics.DoubleProperty.new("spacing", this.spacing));
+      properties.add(new (T.EnumPropertyOfWrapAlignment()).new("runAlignment", this.runAlignment));
+      properties.add(new diagnostics.DoubleProperty.new("runSpacing", this.runSpacing));
+      properties.add(new diagnostics.DoubleProperty.new("crossAxisAlignment", this.runSpacing));
+      properties.add(new (T.EnumPropertyOfTextDirection()).new("textDirection", this.textDirection, {defaultValue: null}));
+      properties.add(new (T.EnumPropertyOfVerticalDirection()).new("verticalDirection", this.verticalDirection, {defaultValue: basic_types.VerticalDirection.down}));
     }
   };
-  (text_selection_toolbar._RenderTextSelectionToolbarItemsLayout.new = function(opts) {
-    let isAbove = opts && 'isAbove' in opts ? opts.isAbove : null;
-    if (isAbove == null) dart.nullFailed(I[0], 410, 19, "isAbove");
-    let overflowOpen = opts && 'overflowOpen' in opts ? opts.overflowOpen : null;
-    if (overflowOpen == null) dart.nullFailed(I[0], 411, 19, "overflowOpen");
-    this[_lastIndexThatFits] = -1;
-    if (!(overflowOpen != null)) dart.assertFailed(null, I[0], 412, 15, "overflowOpen != null");
-    if (!(isAbove != null)) dart.assertFailed(null, I[0], 413, 15, "isAbove != null");
-    this[_isAbove] = isAbove;
-    this[_overflowOpen] = overflowOpen;
-    text_selection_toolbar._RenderTextSelectionToolbarItemsLayout.__proto__.new.call(this);
-    ;
-  }).prototype = text_selection_toolbar._RenderTextSelectionToolbarItemsLayout.prototype;
-  dart.addTypeTests(text_selection_toolbar._RenderTextSelectionToolbarItemsLayout);
-  dart.addTypeCaches(text_selection_toolbar._RenderTextSelectionToolbarItemsLayout);
-  dart.setMethodSignature(text_selection_toolbar._RenderTextSelectionToolbarItemsLayout, () => ({
-    __proto__: dart.getMethods(text_selection_toolbar._RenderTextSelectionToolbarItemsLayout.__proto__),
-    [_layoutChildren]: dart.fnType(dart.void, []),
-    [_shouldPaintChild]: dart.fnType(core.bool, [object.RenderObject, core.int]),
-    [_placeChildren]: dart.fnType(dart.void, [])
+  (wrap.RenderWrap.new = function(opts) {
+    let children = opts && 'children' in opts ? opts.children : null;
+    let direction = opts && 'direction' in opts ? opts.direction : C[11] || CT.C11;
+    if (direction == null) dart.nullFailed(I[0], 115, 10, "direction");
+    let alignment = opts && 'alignment' in opts ? opts.alignment : C[0] || CT.C0;
+    if (alignment == null) dart.nullFailed(I[0], 116, 19, "alignment");
+    let spacing = opts && 'spacing' in opts ? opts.spacing : 0;
+    if (spacing == null) dart.nullFailed(I[0], 117, 12, "spacing");
+    let runAlignment = opts && 'runAlignment' in opts ? opts.runAlignment : C[0] || CT.C0;
+    if (runAlignment == null) dart.nullFailed(I[0], 118, 19, "runAlignment");
+    let runSpacing = opts && 'runSpacing' in opts ? opts.runSpacing : 0;
+    if (runSpacing == null) dart.nullFailed(I[0], 119, 12, "runSpacing");
+    let crossAxisAlignment = opts && 'crossAxisAlignment' in opts ? opts.crossAxisAlignment : C[7] || CT.C7;
+    if (crossAxisAlignment == null) dart.nullFailed(I[0], 120, 24, "crossAxisAlignment");
+    let textDirection = opts && 'textDirection' in opts ? opts.textDirection : null;
+    let verticalDirection = opts && 'verticalDirection' in opts ? opts.verticalDirection : C[12] || CT.C12;
+    if (verticalDirection == null) dart.nullFailed(I[0], 122, 23, "verticalDirection");
+    let clipBehavior = opts && 'clipBehavior' in opts ? opts.clipBehavior : C[13] || CT.C13;
+    if (clipBehavior == null) dart.nullFailed(I[0], 123, 10, "clipBehavior");
+    this[_clipBehavior] = ui.Clip.none;
+    this[_hasVisualOverflow] = false;
+    this[_clipRectLayer] = null;
+    if (!(direction != null)) dart.assertFailed(null, I[0], 124, 15, "direction != null");
+    if (!(alignment != null)) dart.assertFailed(null, I[0], 125, 15, "alignment != null");
+    if (!(spacing != null)) dart.assertFailed(null, I[0], 126, 15, "spacing != null");
+    if (!(runAlignment != null)) dart.assertFailed(null, I[0], 127, 15, "runAlignment != null");
+    if (!(runSpacing != null)) dart.assertFailed(null, I[0], 128, 15, "runSpacing != null");
+    if (!(crossAxisAlignment != null)) dart.assertFailed(null, I[0], 129, 15, "crossAxisAlignment != null");
+    if (!(clipBehavior != null)) dart.assertFailed(null, I[0], 130, 15, "clipBehavior != null");
+    this[_direction] = direction;
+    this[_alignment] = alignment;
+    this[_spacing] = spacing;
+    this[_runAlignment] = runAlignment;
+    this[_runSpacing] = runSpacing;
+    this[_crossAxisAlignment] = crossAxisAlignment;
+    this[_textDirection] = textDirection;
+    this[_verticalDirection] = verticalDirection;
+    this[_clipBehavior] = clipBehavior;
+    wrap.RenderWrap.__proto__.new.call(this);
+    this.addAll(children);
+  }).prototype = wrap.RenderWrap.prototype;
+  dart.addTypeTests(wrap.RenderWrap);
+  dart.addTypeCaches(wrap.RenderWrap);
+  dart.setMethodSignature(wrap.RenderWrap, () => ({
+    __proto__: dart.getMethods(wrap.RenderWrap.__proto__),
+    [_getMainAxisExtent]: dart.fnType(core.double, [ui.Size]),
+    [_getCrossAxisExtent]: dart.fnType(core.double, [ui.Size]),
+    [_getOffset]: dart.fnType(ui.Offset, [core.double, core.double]),
+    [_getChildCrossAxisOffset]: dart.fnType(core.double, [core.bool, core.double, core.double]),
+    [_computeDryLayout]: dart.fnType(ui.Size, [box.BoxConstraints], [dart.fnType(ui.Size, [box.RenderBox, box.BoxConstraints])])
   }));
-  dart.setGetterSignature(text_selection_toolbar._RenderTextSelectionToolbarItemsLayout, () => ({
-    __proto__: dart.getGetters(text_selection_toolbar._RenderTextSelectionToolbarItemsLayout.__proto__),
-    isAbove: core.bool,
-    overflowOpen: core.bool
+  dart.setGetterSignature(wrap.RenderWrap, () => ({
+    __proto__: dart.getGetters(wrap.RenderWrap.__proto__),
+    direction: basic_types.Axis,
+    alignment: wrap.WrapAlignment,
+    spacing: core.double,
+    runAlignment: wrap.WrapAlignment,
+    runSpacing: core.double,
+    crossAxisAlignment: wrap.WrapCrossAlignment,
+    textDirection: dart.nullable(ui.TextDirection),
+    verticalDirection: basic_types.VerticalDirection,
+    clipBehavior: ui.Clip,
+    [_debugHasNecessaryDirections]: core.bool
   }));
-  dart.setSetterSignature(text_selection_toolbar._RenderTextSelectionToolbarItemsLayout, () => ({
-    __proto__: dart.getSetters(text_selection_toolbar._RenderTextSelectionToolbarItemsLayout.__proto__),
-    isAbove: core.bool,
-    overflowOpen: core.bool
+  dart.setSetterSignature(wrap.RenderWrap, () => ({
+    __proto__: dart.getSetters(wrap.RenderWrap.__proto__),
+    direction: basic_types.Axis,
+    alignment: wrap.WrapAlignment,
+    spacing: core.double,
+    runAlignment: wrap.WrapAlignment,
+    runSpacing: core.double,
+    crossAxisAlignment: wrap.WrapCrossAlignment,
+    textDirection: dart.nullable(ui.TextDirection),
+    verticalDirection: basic_types.VerticalDirection,
+    clipBehavior: ui.Clip
   }));
-  dart.setLibraryUri(text_selection_toolbar._RenderTextSelectionToolbarItemsLayout, I[1]);
-  dart.setFieldSignature(text_selection_toolbar._RenderTextSelectionToolbarItemsLayout, () => ({
-    __proto__: dart.getFields(text_selection_toolbar._RenderTextSelectionToolbarItemsLayout.__proto__),
-    [_lastIndexThatFits]: dart.fieldType(core.int),
-    [_isAbove]: dart.fieldType(core.bool),
-    [_overflowOpen]: dart.fieldType(core.bool)
+  dart.setLibraryUri(wrap.RenderWrap, I[1]);
+  dart.setFieldSignature(wrap.RenderWrap, () => ({
+    __proto__: dart.getFields(wrap.RenderWrap.__proto__),
+    [_direction]: dart.fieldType(basic_types.Axis),
+    [_alignment]: dart.fieldType(wrap.WrapAlignment),
+    [_spacing]: dart.fieldType(core.double),
+    [_runAlignment]: dart.fieldType(wrap.WrapAlignment),
+    [_runSpacing]: dart.fieldType(core.double),
+    [_crossAxisAlignment]: dart.fieldType(wrap.WrapCrossAlignment),
+    [_textDirection]: dart.fieldType(dart.nullable(ui.TextDirection)),
+    [_verticalDirection]: dart.fieldType(basic_types.VerticalDirection),
+    [_clipBehavior]: dart.fieldType(ui.Clip),
+    [_hasVisualOverflow]: dart.fieldType(core.bool),
+    [_clipRectLayer]: dart.fieldType(dart.nullable(layer.ClipRectLayer))
   }));
-  var child$ = dart.privateName(text_selection_toolbar, "_TextSelectionToolbarContainer.child");
-  var Radius_y = dart.privateName(ui, "Radius.y");
-  var Radius_x = dart.privateName(ui, "Radius.x");
-  var BorderRadius_bottomRight = dart.privateName(border_radius, "BorderRadius.bottomRight");
-  var BorderRadius_bottomLeft = dart.privateName(border_radius, "BorderRadius.bottomLeft");
-  var BorderRadius_topRight = dart.privateName(border_radius, "BorderRadius.topRight");
-  var BorderRadius_topLeft = dart.privateName(border_radius, "BorderRadius.topLeft");
-  text_selection_toolbar._TextSelectionToolbarContainer = class _TextSelectionToolbarContainer extends framework.StatelessWidget {
-    get child() {
-      return this[child$];
-    }
-    set child(value) {
-      super.child = value;
-    }
-    build(context) {
-      if (context == null) dart.nullFailed(I[0], 653, 29, "context");
-      return new material.Material.new({borderRadius: C[46] || CT.C46, clipBehavior: ui.Clip.antiAlias, elevation: 1.0, type: material.MaterialType.card, child: this.child, $creationLocationd_0dea112b090073317d4: C[48] || CT.C48});
-    }
-  };
-  (text_selection_toolbar._TextSelectionToolbarContainer.new = function(opts) {
-    let key = opts && 'key' in opts ? opts.key : null;
-    let child = opts && 'child' in opts ? opts.child : null;
-    if (child == null) dart.nullFailed(I[0], 647, 19, "child");
-    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
-    this[child$] = child;
-    text_selection_toolbar._TextSelectionToolbarContainer.__proto__.new.call(this, {key: key, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
-    ;
-  }).prototype = text_selection_toolbar._TextSelectionToolbarContainer.prototype;
-  dart.addTypeTests(text_selection_toolbar._TextSelectionToolbarContainer);
-  dart.addTypeCaches(text_selection_toolbar._TextSelectionToolbarContainer);
-  dart.setMethodSignature(text_selection_toolbar._TextSelectionToolbarContainer, () => ({
-    __proto__: dart.getMethods(text_selection_toolbar._TextSelectionToolbarContainer.__proto__),
-    build: dart.fnType(framework.Widget, [framework.BuildContext])
-  }));
-  dart.setLibraryUri(text_selection_toolbar._TextSelectionToolbarContainer, I[1]);
-  dart.setFieldSignature(text_selection_toolbar._TextSelectionToolbarContainer, () => ({
-    __proto__: dart.getFields(text_selection_toolbar._TextSelectionToolbarContainer.__proto__),
-    child: dart.finalFieldType(framework.Widget)
-  }));
-  var icon$ = dart.privateName(text_selection_toolbar, "_TextSelectionToolbarOverflowButton.icon");
-  var onPressed$ = dart.privateName(text_selection_toolbar, "_TextSelectionToolbarOverflowButton.onPressed");
-  var tooltip$ = dart.privateName(text_selection_toolbar, "_TextSelectionToolbarOverflowButton.tooltip");
-  var Color_value = dart.privateName(ui, "Color.value");
-  text_selection_toolbar._TextSelectionToolbarOverflowButton = class _TextSelectionToolbarOverflowButton extends framework.StatelessWidget {
-    get icon() {
-      return this[icon$];
-    }
-    set icon(value) {
-      super.icon = value;
-    }
-    get onPressed() {
-      return this[onPressed$];
-    }
-    set onPressed(value) {
-      super.onPressed = value;
-    }
-    get tooltip() {
-      return this[tooltip$];
-    }
-    set tooltip(value) {
-      super.tooltip = value;
-    }
-    build(context) {
-      if (context == null) dart.nullFailed(I[0], 681, 29, "context");
-      return new material.Material.new({type: material.MaterialType.card, color: C[55] || CT.C55, child: new icon_button.IconButton.new({icon: this.icon, onPressed: this.onPressed, tooltip: this.tooltip, $creationLocationd_0dea112b090073317d4: C[56] || CT.C56}), $creationLocationd_0dea112b090073317d4: C[61] || CT.C61});
-    }
-  };
-  (text_selection_toolbar._TextSelectionToolbarOverflowButton.new = function(opts) {
-    let key = opts && 'key' in opts ? opts.key : null;
-    let icon = opts && 'icon' in opts ? opts.icon : null;
-    if (icon == null) dart.nullFailed(I[0], 671, 19, "icon");
-    let onPressed = opts && 'onPressed' in opts ? opts.onPressed : null;
-    let tooltip = opts && 'tooltip' in opts ? opts.tooltip : null;
-    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
-    this[icon$] = icon;
-    this[onPressed$] = onPressed;
-    this[tooltip$] = tooltip;
-    text_selection_toolbar._TextSelectionToolbarOverflowButton.__proto__.new.call(this, {key: key, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
-    ;
-  }).prototype = text_selection_toolbar._TextSelectionToolbarOverflowButton.prototype;
-  dart.addTypeTests(text_selection_toolbar._TextSelectionToolbarOverflowButton);
-  dart.addTypeCaches(text_selection_toolbar._TextSelectionToolbarOverflowButton);
-  dart.setMethodSignature(text_selection_toolbar._TextSelectionToolbarOverflowButton, () => ({
-    __proto__: dart.getMethods(text_selection_toolbar._TextSelectionToolbarOverflowButton.__proto__),
-    build: dart.fnType(framework.Widget, [framework.BuildContext])
-  }));
-  dart.setLibraryUri(text_selection_toolbar._TextSelectionToolbarOverflowButton, I[1]);
-  dart.setFieldSignature(text_selection_toolbar._TextSelectionToolbarOverflowButton, () => ({
-    __proto__: dart.getFields(text_selection_toolbar._TextSelectionToolbarOverflowButton.__proto__),
-    icon: dart.finalFieldType(icon.Icon),
-    onPressed: dart.finalFieldType(dart.nullable(dart.fnType(dart.void, []))),
-    tooltip: dart.finalFieldType(dart.nullable(core.String))
-  }));
-  dart.defineLazy(text_selection_toolbar, {
-    /*text_selection_toolbar._kToolbarScreenPadding*/get _kToolbarScreenPadding() {
-      return 8;
-    },
-    /*text_selection_toolbar._kToolbarHeight*/get _kToolbarHeight() {
-      return 44;
-    }
-  }, false);
-  dart.trackLibraries("packages/flutter/src/material/text_selection_toolbar.dart", {
-    "package:flutter/src/material/text_selection_toolbar.dart": text_selection_toolbar
+  dart.trackLibraries("packages/flutter/src/rendering/wrap.dart", {
+    "package:flutter/src/rendering/wrap.dart": wrap
   }, {
-  }, '{"version":3,"sourceRoot":"","sources":["text_selection_toolbar.dart"],"names":[],"mappings":"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","file":"../../../../../../../../../../packages/flutter/src/material/text_selection_toolbar.dart.lib.js"}');
+  }, '{"version":3,"sourceRoot":"","sources":["wrap.dart"],"names":[],"mappings":"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","file":"../../../../../../../../D:/packages/flutter/src/rendering/wrap.dart.lib.js"}');
   // Exports:
   return {
-    src__material__text_selection_toolbar: text_selection_toolbar
+    src__rendering__wrap: wrap
   };
 }));
 
-//# sourceMappingURL=text_selection_toolbar.dart.lib.js.map
+//# sourceMappingURL=wrap.dart.lib.js.map

@@ -1,41 +1,34 @@
-define(['dart_sdk', 'packages/flutter/src/widgets/widget_span.dart', 'packages/flutter/src/services/mouse_cursor.dart', 'packages/flutter/src/material/material_state.dart', 'packages/flutter/src/material/icon_button.dart', 'packages/flutter/src/painting/borders.dart', 'packages/flutter/src/painting/rounded_rectangle_border.dart', 'packages/flutter/src/painting/border_radius.dart', 'packages/flutter/src/material/toggleable.dart', 'packages/flutter/src/animation/listener_helpers.dart', 'packages/flutter/src/foundation/change_notifier.dart', 'packages/flutter/src/rendering/custom_paint.dart'], (function load__packages__flutter__src__material__checkbox_dart(dart_sdk, packages__flutter__src__widgets__widget_span$46dart, packages__flutter__src__services__mouse_cursor$46dart, packages__flutter__src__material__material_state$46dart, packages__flutter__src__material__icon_button$46dart, packages__flutter__src__painting__borders$46dart, packages__flutter__src__painting__rounded_rectangle_border$46dart, packages__flutter__src__painting__border_radius$46dart, packages__flutter__src__material__toggleable$46dart, packages__flutter__src__animation__listener_helpers$46dart, packages__flutter__src__foundation__change_notifier$46dart, packages__flutter__src__rendering__custom_paint$46dart) {
+define(['dart_sdk', 'packages/flutter/src/gestures/binding.dart', 'packages/flutter/src/gestures/events.dart', 'packages/vector_math/vector_math_64.dart', 'packages/flutter/src/gestures/arena.dart', 'packages/flutter/src/gestures/tap.dart', 'packages/flutter/src/gestures/constants.dart', 'packages/flutter/src/gestures/recognizer.dart'], (function load__packages__flutter__src__gestures__multitap_dart(dart_sdk, packages__flutter__src__gestures__binding$46dart, packages__flutter__src__gestures__events$46dart, packages__vector_math__vector_math_64$46dart, packages__flutter__src__gestures__arena$46dart, packages__flutter__src__gestures__tap$46dart, packages__flutter__src__gestures__constants$46dart, packages__flutter__src__gestures__recognizer$46dart) {
   'use strict';
   const core = dart_sdk.core;
+  const async = dart_sdk.async;
   const ui = dart_sdk.ui;
-  const _internal = dart_sdk._internal;
   const _js_helper = dart_sdk._js_helper;
   const dart = dart_sdk.dart;
   const dartx = dart_sdk.dartx;
-  const framework = packages__flutter__src__widgets__widget_span$46dart.src__widgets__framework;
-  const focus_manager = packages__flutter__src__widgets__widget_span$46dart.src__widgets__focus_manager;
-  const basic = packages__flutter__src__widgets__widget_span$46dart.src__widgets__basic;
-  const widget_inspector = packages__flutter__src__widgets__widget_span$46dart.src__widgets__widget_inspector;
-  const ticker_provider = packages__flutter__src__widgets__widget_span$46dart.src__widgets__ticker_provider;
-  const mouse_cursor = packages__flutter__src__services__mouse_cursor$46dart.src__services__mouse_cursor;
-  const material_state = packages__flutter__src__material__material_state$46dart.src__material__material_state;
-  const theme_data = packages__flutter__src__material__icon_button$46dart.src__material__theme_data;
-  const theme = packages__flutter__src__material__icon_button$46dart.src__material__theme;
-  const debug = packages__flutter__src__material__icon_button$46dart.src__material__debug;
-  const borders = packages__flutter__src__painting__borders$46dart.src__painting__borders;
-  const rounded_rectangle_border = packages__flutter__src__painting__rounded_rectangle_border$46dart.src__painting__rounded_rectangle_border;
-  const border_radius = packages__flutter__src__painting__border_radius$46dart.src__painting__border_radius;
-  const toggleable = packages__flutter__src__material__toggleable$46dart.src__material__toggleable;
-  const animation = packages__flutter__src__animation__listener_helpers$46dart.src__animation__animation;
-  const change_notifier = packages__flutter__src__foundation__change_notifier$46dart.src__foundation__change_notifier;
-  const custom_paint = packages__flutter__src__rendering__custom_paint$46dart.src__rendering__custom_paint;
-  var checkbox = Object.create(dart.library);
-  var $abs = dartx.abs;
-  var $noSuchMethod = dartx.noSuchMethod;
+  const binding = packages__flutter__src__gestures__binding$46dart.src__gestures__binding;
+  const events = packages__flutter__src__gestures__events$46dart.src__gestures__events;
+  const vector_math_64 = packages__vector_math__vector_math_64$46dart.vector_math_64;
+  const arena = packages__flutter__src__gestures__arena$46dart.src__gestures__arena;
+  const tap = packages__flutter__src__gestures__tap$46dart.src__gestures__tap;
+  const constants = packages__flutter__src__gestures__constants$46dart.src__gestures__constants;
+  const recognizer = packages__flutter__src__gestures__recognizer$46dart.src__gestures__recognizer;
+  var multitap = Object.create(dart.library);
+  var $_set = dartx._set;
+  var $_get = dartx._get;
+  var $remove = dartx.remove;
+  var $isEmpty = dartx.isEmpty;
+  var $isNotEmpty = dartx.isNotEmpty;
+  var $values = dartx.values;
+  var $toList = dartx.toList;
+  var $forEach = dartx.forEach;
+  var $containsKey = dartx.containsKey;
   dart._checkModuleNullSafetyMode(false);
   var T = {
-    ColorN: () => (T.ColorN = dart.constFn(dart.nullable(ui.Color)))(),
-    SetOfMaterialState: () => (T.SetOfMaterialState = dart.constFn(core.Set$(material_state.MaterialState)))(),
-    SetOfMaterialStateToColorN: () => (T.SetOfMaterialStateToColorN = dart.constFn(dart.fnType(T.ColorN(), [T.SetOfMaterialState()])))(),
-    SetOfMaterialStateToColor: () => (T.SetOfMaterialStateToColor = dart.constFn(dart.fnType(ui.Color, [T.SetOfMaterialState()])))(),
-    MouseCursorN: () => (T.MouseCursorN = dart.constFn(dart.nullable(mouse_cursor.MouseCursor)))(),
-    SetOfMaterialStateToMouseCursor: () => (T.SetOfMaterialStateToMouseCursor = dart.constFn(dart.fnType(mouse_cursor.MouseCursor, [T.SetOfMaterialState()])))(),
-    _LocationL: () => (T._LocationL = dart.constFn(dart.legacy(widget_inspector._Location)))(),
-    ListenableN: () => (T.ListenableN = dart.constFn(dart.nullable(change_notifier.Listenable)))()
+    IdentityMapOfint$_TapTracker: () => (T.IdentityMapOfint$_TapTracker = dart.constFn(_js_helper.IdentityMap$(core.int, multitap._TapTracker)))(),
+    VoidTovoid: () => (T.VoidTovoid = dart.constFn(dart.fnType(dart.void, [])))(),
+    IdentityMapOfint$_TapGesture: () => (T.IdentityMapOfint$_TapGesture = dart.constFn(_js_helper.IdentityMap$(core.int, multitap._TapGesture)))(),
+    ListOf_TapGesture: () => (T.ListOf_TapGesture = dart.constFn(core.List$(multitap._TapGesture)))()
   };
   const CT = Object.create({
     _: () => (C, CT)
@@ -43,827 +36,577 @@ define(['dart_sdk', 'packages/flutter/src/widgets/widget_span.dart', 'packages/f
   dart.defineLazy(CT, {
     get C0() {
       return C[0] = dart.const({
-        __proto__: ui.Size.prototype,
-        [OffsetBase__dy]: 48,
-        [OffsetBase__dx]: 48
+        __proto__: core.Duration.prototype,
+        [Duration__duration]: 0
       });
-    },
-    get C1() {
-      return C[1] = dart.const({
-        __proto__: theme_data.MaterialTapTargetSize.prototype,
-        [_name]: "MaterialTapTargetSize.padded",
-        index: 0
-      });
-    },
-    get C2() {
-      return C[2] = dart.const({
-        __proto__: ui.Size.prototype,
-        [OffsetBase__dy]: 40,
-        [OffsetBase__dx]: 40
-      });
-    },
-    get C3() {
-      return C[3] = dart.const({
-        __proto__: theme_data.MaterialTapTargetSize.prototype,
-        [_name]: "MaterialTapTargetSize.shrinkWrap",
-        index: 1
-      });
-    },
-    get C4() {
-      return C[4] = dart.const({
-        __proto__: ui.Color.prototype,
-        [Color_value]: 4294967295.0
-      });
-    },
-    get C7() {
-      return C[7] = dart.const({
-        __proto__: borders.BorderStyle.prototype,
-        [_name$]: "BorderStyle.none",
-        index: 0
-      });
-    },
-    get C8() {
-      return C[8] = dart.const({
-        __proto__: ui.Color.prototype,
-        [Color_value]: 4278190080.0
-      });
-    },
-    get C6() {
-      return C[6] = dart.const({
-        __proto__: borders.BorderSide.prototype,
-        [BorderSide_style]: C[7] || CT.C7,
-        [BorderSide_width]: 0,
-        [BorderSide_color]: C[8] || CT.C8
-      });
-    },
-    get C10() {
-      return C[10] = dart.const({
-        __proto__: ui.Radius.prototype,
-        [Radius_y]: 1,
-        [Radius_x]: 1
-      });
-    },
-    get C9() {
-      return C[9] = dart.const({
-        __proto__: border_radius.BorderRadius.prototype,
-        [BorderRadius_bottomRight]: C[10] || CT.C10,
-        [BorderRadius_bottomLeft]: C[10] || CT.C10,
-        [BorderRadius_topRight]: C[10] || CT.C10,
-        [BorderRadius_topLeft]: C[10] || CT.C10
-      });
-    },
-    get C5() {
-      return C[5] = dart.const({
-        __proto__: rounded_rectangle_border.RoundedRectangleBorder.prototype,
-        [OutlinedBorder_side]: C[6] || CT.C6,
-        [RoundedRectangleBorder_borderRadius]: C[9] || CT.C9
-      });
-    },
-    get C13() {
-      return C[13] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "checked",
-        [_Location_column]: 7,
-        [_Location_line]: 453,
-        [_Location_file]: null
-      });
-    },
-    get C14() {
-      return C[14] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 7,
-        [_Location_line]: 454,
-        [_Location_file]: null
-      });
-    },
-    get C12() {
-      return C[12] = dart.constList([C[13] || CT.C13, C[14] || CT.C14], T._LocationL());
-    },
-    get C11() {
-      return C[11] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[12] || CT.C12,
-        [_Location_name]: null,
-        [_Location_column]: 12,
-        [_Location_line]: 452,
-        [_Location_file]: "file:///C:/Users/Ejas/Desktop/App_files/flutter/packages/flutter/lib/src/material/checkbox.dart"
-      });
-    },
-    get C15() {
-      return C[15] = dart.const({
-        __proto__: ui.Offset.prototype,
-        [OffsetBase__dy]: 8.1,
-        [OffsetBase__dx]: 2.6999999999999997
-      });
-    },
-    get C16() {
-      return C[16] = dart.const({
-        __proto__: ui.Offset.prototype,
-        [OffsetBase__dy]: 12.6,
-        [OffsetBase__dx]: 7.2
-      });
-    },
-    get C17() {
-      return C[17] = dart.const({
-        __proto__: ui.Offset.prototype,
-        [OffsetBase__dy]: 4.5,
-        [OffsetBase__dx]: 15.299999999999999
-      });
-    },
-    get C18() {
-      return C[18] = dart.const({
-        __proto__: ui.Offset.prototype,
-        [OffsetBase__dy]: 9,
-        [OffsetBase__dx]: 3.6
-      });
-    },
-    get C19() {
-      return C[19] = dart.const({
-        __proto__: ui.Offset.prototype,
-        [OffsetBase__dy]: 9,
-        [OffsetBase__dx]: 9
-      });
-    },
-    get C20() {
-      return C[20] = dart.const({
-        __proto__: ui.Offset.prototype,
-        [OffsetBase__dy]: 9,
-        [OffsetBase__dx]: 14.4
-      });
-    },
-    get C21() {
-      return C[21] = dart.const({
-        __proto__: ui.Size.prototype,
-        [OffsetBase__dy]: 18,
-        [OffsetBase__dx]: 18
-      });
-    },
-    get C22() {
-      return C[22] = dart.const(new _js_helper.PrivateSymbol.new('_repaint', _repaint));
     }
   }, false);
-  var C = Array(23).fill(void 0);
+  var C = [void 0];
   var I = [
-    "file:///C:/Users/Ejas/Desktop/App_files/flutter/packages/flutter/lib/src/material/checkbox.dart",
-    "package:flutter/src/material/checkbox.dart"
+    "file:///C:/src/flutter/packages/flutter/lib/src/gestures/multitap.dart",
+    "package:flutter/src/gestures/multitap.dart"
   ];
-  var value$ = dart.privateName(checkbox, "Checkbox.value");
-  var onChanged$ = dart.privateName(checkbox, "Checkbox.onChanged");
-  var mouseCursor$ = dart.privateName(checkbox, "Checkbox.mouseCursor");
-  var activeColor$ = dart.privateName(checkbox, "Checkbox.activeColor");
-  var fillColor$ = dart.privateName(checkbox, "Checkbox.fillColor");
-  var checkColor$ = dart.privateName(checkbox, "Checkbox.checkColor");
-  var tristate$ = dart.privateName(checkbox, "Checkbox.tristate");
-  var materialTapTargetSize$ = dart.privateName(checkbox, "Checkbox.materialTapTargetSize");
-  var visualDensity$ = dart.privateName(checkbox, "Checkbox.visualDensity");
-  var focusColor$ = dart.privateName(checkbox, "Checkbox.focusColor");
-  var hoverColor$ = dart.privateName(checkbox, "Checkbox.hoverColor");
-  var overlayColor$ = dart.privateName(checkbox, "Checkbox.overlayColor");
-  var splashRadius$ = dart.privateName(checkbox, "Checkbox.splashRadius");
-  var focusNode$ = dart.privateName(checkbox, "Checkbox.focusNode");
-  var autofocus$ = dart.privateName(checkbox, "Checkbox.autofocus");
-  var shape$ = dart.privateName(checkbox, "Checkbox.shape");
-  var side$ = dart.privateName(checkbox, "Checkbox.side");
-  checkbox.Checkbox = class Checkbox extends framework.StatefulWidget {
-    get value() {
-      return this[value$];
+  var _timeout = dart.privateName(multitap, "_timeout");
+  var _onTimeout = dart.privateName(multitap, "_onTimeout");
+  multitap._CountdownZoned = class _CountdownZoned extends core.Object {
+    get timeout() {
+      return this[_timeout];
     }
-    set value(value) {
-      super.value = value;
-    }
-    get onChanged() {
-      return this[onChanged$];
-    }
-    set onChanged(value) {
-      super.onChanged = value;
-    }
-    get mouseCursor() {
-      return this[mouseCursor$];
-    }
-    set mouseCursor(value) {
-      super.mouseCursor = value;
-    }
-    get activeColor() {
-      return this[activeColor$];
-    }
-    set activeColor(value) {
-      super.activeColor = value;
-    }
-    get fillColor() {
-      return this[fillColor$];
-    }
-    set fillColor(value) {
-      super.fillColor = value;
-    }
-    get checkColor() {
-      return this[checkColor$];
-    }
-    set checkColor(value) {
-      super.checkColor = value;
-    }
-    get tristate() {
-      return this[tristate$];
-    }
-    set tristate(value) {
-      super.tristate = value;
-    }
-    get materialTapTargetSize() {
-      return this[materialTapTargetSize$];
-    }
-    set materialTapTargetSize(value) {
-      super.materialTapTargetSize = value;
-    }
-    get visualDensity() {
-      return this[visualDensity$];
-    }
-    set visualDensity(value) {
-      super.visualDensity = value;
-    }
-    get focusColor() {
-      return this[focusColor$];
-    }
-    set focusColor(value) {
-      super.focusColor = value;
-    }
-    get hoverColor() {
-      return this[hoverColor$];
-    }
-    set hoverColor(value) {
-      super.hoverColor = value;
-    }
-    get overlayColor() {
-      return this[overlayColor$];
-    }
-    set overlayColor(value) {
-      super.overlayColor = value;
-    }
-    get splashRadius() {
-      return this[splashRadius$];
-    }
-    set splashRadius(value) {
-      super.splashRadius = value;
-    }
-    get focusNode() {
-      return this[focusNode$];
-    }
-    set focusNode(value) {
-      super.focusNode = value;
-    }
-    get autofocus() {
-      return this[autofocus$];
-    }
-    set autofocus(value) {
-      super.autofocus = value;
-    }
-    get shape() {
-      return this[shape$];
-    }
-    set shape(value) {
-      super.shape = value;
-    }
-    get side() {
-      return this[side$];
-    }
-    set side(value) {
-      super.side = value;
-    }
-    createState() {
-      return new checkbox._CheckboxState.new();
+    [_onTimeout]() {
+      this[_timeout] = true;
     }
   };
-  (checkbox.Checkbox.new = function(opts) {
-    let key = opts && 'key' in opts ? opts.key : null;
-    let value = opts && 'value' in opts ? opts.value : null;
-    let tristate = opts && 'tristate' in opts ? opts.tristate : false;
-    if (tristate == null) dart.nullFailed(I[0], 95, 10, "tristate");
-    let onChanged = opts && 'onChanged' in opts ? opts.onChanged : null;
-    let mouseCursor = opts && 'mouseCursor' in opts ? opts.mouseCursor : null;
-    let activeColor = opts && 'activeColor' in opts ? opts.activeColor : null;
-    let fillColor = opts && 'fillColor' in opts ? opts.fillColor : null;
-    let checkColor = opts && 'checkColor' in opts ? opts.checkColor : null;
-    let focusColor = opts && 'focusColor' in opts ? opts.focusColor : null;
-    let hoverColor = opts && 'hoverColor' in opts ? opts.hoverColor : null;
-    let overlayColor = opts && 'overlayColor' in opts ? opts.overlayColor : null;
-    let splashRadius = opts && 'splashRadius' in opts ? opts.splashRadius : null;
-    let materialTapTargetSize = opts && 'materialTapTargetSize' in opts ? opts.materialTapTargetSize : null;
-    let visualDensity = opts && 'visualDensity' in opts ? opts.visualDensity : null;
-    let focusNode = opts && 'focusNode' in opts ? opts.focusNode : null;
-    let autofocus = opts && 'autofocus' in opts ? opts.autofocus : false;
-    if (autofocus == null) dart.nullFailed(I[0], 108, 10, "autofocus");
-    let shape = opts && 'shape' in opts ? opts.shape : null;
-    let side = opts && 'side' in opts ? opts.side : null;
-    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
-    this[value$] = value;
-    this[tristate$] = tristate;
-    this[onChanged$] = onChanged;
-    this[mouseCursor$] = mouseCursor;
-    this[activeColor$] = activeColor;
-    this[fillColor$] = fillColor;
-    this[checkColor$] = checkColor;
-    this[focusColor$] = focusColor;
-    this[hoverColor$] = hoverColor;
-    this[overlayColor$] = overlayColor;
-    this[splashRadius$] = splashRadius;
-    this[materialTapTargetSize$] = materialTapTargetSize;
-    this[visualDensity$] = visualDensity;
-    this[focusNode$] = focusNode;
-    this[autofocus$] = autofocus;
-    this[shape$] = shape;
-    this[side$] = side;
-    if (!(tristate != null)) dart.assertFailed(null, I[0], 111, 15, "tristate != null");
-    if (!(dart.test(tristate) || value != null)) dart.assertFailed(null, I[0], 112, 15, "tristate || value != null");
-    if (!(autofocus != null)) dart.assertFailed(null, I[0], 113, 15, "autofocus != null");
-    checkbox.Checkbox.__proto__.new.call(this, {key: key, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
+  (multitap._CountdownZoned.new = function(opts) {
+    let duration = opts && 'duration' in opts ? opts.duration : null;
+    if (duration == null) dart.nullFailed(I[0], 42, 39, "duration");
+    this[_timeout] = false;
+    if (!(duration != null)) dart.assertFailed(null, I[0], 43, 17, "duration != null");
+    async.Timer.new(duration, dart.bind(this, _onTimeout));
+  }).prototype = multitap._CountdownZoned.prototype;
+  dart.addTypeTests(multitap._CountdownZoned);
+  dart.addTypeCaches(multitap._CountdownZoned);
+  dart.setMethodSignature(multitap._CountdownZoned, () => ({
+    __proto__: dart.getMethods(multitap._CountdownZoned.__proto__),
+    [_onTimeout]: dart.fnType(dart.void, [])
+  }));
+  dart.setGetterSignature(multitap._CountdownZoned, () => ({
+    __proto__: dart.getGetters(multitap._CountdownZoned.__proto__),
+    timeout: core.bool
+  }));
+  dart.setLibraryUri(multitap._CountdownZoned, I[1]);
+  dart.setFieldSignature(multitap._CountdownZoned, () => ({
+    __proto__: dart.getFields(multitap._CountdownZoned.__proto__),
+    [_timeout]: dart.fieldType(core.bool)
+  }));
+  var _isTrackingPointer = dart.privateName(multitap, "_isTrackingPointer");
+  var _initialGlobalPosition = dart.privateName(multitap, "_initialGlobalPosition");
+  var _doubleTapMinTimeCountdown = dart.privateName(multitap, "_doubleTapMinTimeCountdown");
+  multitap._TapTracker = class _TapTracker extends core.Object {
+    startTrackingPointer(route, transform) {
+      if (route == null) dart.nullFailed(I[0], 79, 42, "route");
+      if (!dart.test(this[_isTrackingPointer])) {
+        this[_isTrackingPointer] = true;
+        dart.nullCheck(binding.GestureBinding.instance).pointerRouter.addRoute(this.pointer, route, transform);
+      }
+    }
+    stopTrackingPointer(route) {
+      if (route == null) dart.nullFailed(I[0], 86, 41, "route");
+      if (dart.test(this[_isTrackingPointer])) {
+        this[_isTrackingPointer] = false;
+        dart.nullCheck(binding.GestureBinding.instance).pointerRouter.removeRoute(this.pointer, route);
+      }
+    }
+    isWithinGlobalTolerance(event, tolerance) {
+      if (event == null) dart.nullFailed(I[0], 93, 45, "event");
+      if (tolerance == null) dart.nullFailed(I[0], 93, 59, "tolerance");
+      let offset = event.position['-'](this[_initialGlobalPosition]);
+      return dart.notNull(offset.distance) <= dart.notNull(tolerance);
+    }
+    hasElapsedMinTime() {
+      return this[_doubleTapMinTimeCountdown].timeout;
+    }
+    hasSameButton(event) {
+      if (event == null) dart.nullFailed(I[0], 102, 39, "event");
+      return event.buttons == this.initialButtons;
+    }
+  };
+  (multitap._TapTracker.new = function(opts) {
+    let event = opts && 'event' in opts ? opts.event : null;
+    if (event == null) dart.nullFailed(I[0], 60, 31, "event");
+    let entry = opts && 'entry' in opts ? opts.entry : null;
+    if (entry == null) dart.nullFailed(I[0], 61, 19, "entry");
+    let doubleTapMinTime = opts && 'doubleTapMinTime' in opts ? opts.doubleTapMinTime : null;
+    if (doubleTapMinTime == null) dart.nullFailed(I[0], 62, 23, "doubleTapMinTime");
+    this[_isTrackingPointer] = false;
+    this.entry = entry;
+    if (!(doubleTapMinTime != null)) dart.assertFailed(null, I[0], 63, 15, "doubleTapMinTime != null");
+    if (!(event != null)) dart.assertFailed(null, I[0], 64, 15, "event != null");
+    if (!(event.buttons != null)) dart.assertFailed(null, I[0], 65, 15, "event.buttons != null");
+    this.pointer = event.pointer;
+    this[_initialGlobalPosition] = event.position;
+    this.initialButtons = event.buttons;
+    this[_doubleTapMinTimeCountdown] = new multitap._CountdownZoned.new({duration: doubleTapMinTime});
     ;
-  }).prototype = checkbox.Checkbox.prototype;
-  dart.addTypeTests(checkbox.Checkbox);
-  dart.addTypeCaches(checkbox.Checkbox);
-  dart.setMethodSignature(checkbox.Checkbox, () => ({
-    __proto__: dart.getMethods(checkbox.Checkbox.__proto__),
-    createState: dart.fnType(checkbox._CheckboxState, [])
+  }).prototype = multitap._TapTracker.prototype;
+  dart.addTypeTests(multitap._TapTracker);
+  dart.addTypeCaches(multitap._TapTracker);
+  dart.setMethodSignature(multitap._TapTracker, () => ({
+    __proto__: dart.getMethods(multitap._TapTracker.__proto__),
+    startTrackingPointer: dart.fnType(dart.void, [dart.fnType(dart.void, [events.PointerEvent]), dart.nullable(vector_math_64.Matrix4)]),
+    stopTrackingPointer: dart.fnType(dart.void, [dart.fnType(dart.void, [events.PointerEvent])]),
+    isWithinGlobalTolerance: dart.fnType(core.bool, [events.PointerEvent, core.double]),
+    hasElapsedMinTime: dart.fnType(core.bool, []),
+    hasSameButton: dart.fnType(core.bool, [events.PointerDownEvent])
   }));
-  dart.setLibraryUri(checkbox.Checkbox, I[1]);
-  dart.setFieldSignature(checkbox.Checkbox, () => ({
-    __proto__: dart.getFields(checkbox.Checkbox.__proto__),
-    value: dart.finalFieldType(dart.nullable(core.bool)),
-    onChanged: dart.finalFieldType(dart.nullable(dart.fnType(dart.void, [dart.nullable(core.bool)]))),
-    mouseCursor: dart.finalFieldType(dart.nullable(mouse_cursor.MouseCursor)),
-    activeColor: dart.finalFieldType(dart.nullable(ui.Color)),
-    fillColor: dart.finalFieldType(dart.nullable(material_state.MaterialStateProperty$(dart.nullable(ui.Color)))),
-    checkColor: dart.finalFieldType(dart.nullable(ui.Color)),
-    tristate: dart.finalFieldType(core.bool),
-    materialTapTargetSize: dart.finalFieldType(dart.nullable(theme_data.MaterialTapTargetSize)),
-    visualDensity: dart.finalFieldType(dart.nullable(theme_data.VisualDensity)),
-    focusColor: dart.finalFieldType(dart.nullable(ui.Color)),
-    hoverColor: dart.finalFieldType(dart.nullable(ui.Color)),
-    overlayColor: dart.finalFieldType(dart.nullable(material_state.MaterialStateProperty$(dart.nullable(ui.Color)))),
-    splashRadius: dart.finalFieldType(dart.nullable(core.double)),
-    focusNode: dart.finalFieldType(dart.nullable(focus_manager.FocusNode)),
-    autofocus: dart.finalFieldType(core.bool),
-    shape: dart.finalFieldType(dart.nullable(borders.OutlinedBorder)),
-    side: dart.finalFieldType(dart.nullable(borders.BorderSide))
+  dart.setLibraryUri(multitap._TapTracker, I[1]);
+  dart.setFieldSignature(multitap._TapTracker, () => ({
+    __proto__: dart.getFields(multitap._TapTracker.__proto__),
+    pointer: dart.finalFieldType(core.int),
+    entry: dart.finalFieldType(arena.GestureArenaEntry),
+    [_initialGlobalPosition]: dart.finalFieldType(ui.Offset),
+    initialButtons: dart.finalFieldType(core.int),
+    [_doubleTapMinTimeCountdown]: dart.finalFieldType(multitap._CountdownZoned),
+    [_isTrackingPointer]: dart.fieldType(core.bool)
   }));
-  dart.defineLazy(checkbox.Checkbox, {
-    /*checkbox.Checkbox.width*/get width() {
-      return 18;
+  var onDoubleTapDown = dart.privateName(multitap, "DoubleTapGestureRecognizer.onDoubleTapDown");
+  var onDoubleTap = dart.privateName(multitap, "DoubleTapGestureRecognizer.onDoubleTap");
+  var onDoubleTapCancel = dart.privateName(multitap, "DoubleTapGestureRecognizer.onDoubleTapCancel");
+  var _doubleTapTimer = dart.privateName(multitap, "_doubleTapTimer");
+  var _firstTap = dart.privateName(multitap, "_firstTap");
+  var _trackers = dart.privateName(multitap, "_trackers");
+  var _reset = dart.privateName(multitap, "_reset");
+  var _trackTap = dart.privateName(multitap, "_trackTap");
+  var _stopDoubleTapTimer = dart.privateName(multitap, "_stopDoubleTapTimer");
+  var _handleEvent = dart.privateName(multitap, "_handleEvent");
+  var _registerFirstTap = dart.privateName(multitap, "_registerFirstTap");
+  var _registerSecondTap = dart.privateName(multitap, "_registerSecondTap");
+  var _reject = dart.privateName(multitap, "_reject");
+  var _freezeTracker = dart.privateName(multitap, "_freezeTracker");
+  var _checkCancel = dart.privateName(multitap, "_checkCancel");
+  var _clearTrackers = dart.privateName(multitap, "_clearTrackers");
+  var _startDoubleTapTimer = dart.privateName(multitap, "_startDoubleTapTimer");
+  var _checkUp = dart.privateName(multitap, "_checkUp");
+  multitap.DoubleTapGestureRecognizer = class DoubleTapGestureRecognizer extends recognizer.GestureRecognizer {
+    get onDoubleTapDown() {
+      return this[onDoubleTapDown];
     }
-  }, false);
-  var _painter = dart.privateName(checkbox, "_painter");
-  var _previousValue = dart.privateName(checkbox, "_previousValue");
-  var _widgetFillColor = dart.privateName(checkbox, "_widgetFillColor");
-  var _defaultFillColor = dart.privateName(checkbox, "_defaultFillColor");
-  var OffsetBase__dy = dart.privateName(ui, "OffsetBase._dy");
-  var OffsetBase__dx = dart.privateName(ui, "OffsetBase._dx");
-  var _name = dart.privateName(theme_data, "_name");
-  var Color_value = dart.privateName(ui, "Color.value");
-  var _name$ = dart.privateName(borders, "_name");
-  var BorderSide_style = dart.privateName(borders, "BorderSide.style");
-  var BorderSide_width = dart.privateName(borders, "BorderSide.width");
-  var BorderSide_color = dart.privateName(borders, "BorderSide.color");
-  var OutlinedBorder_side = dart.privateName(borders, "OutlinedBorder.side");
-  var Radius_y = dart.privateName(ui, "Radius.y");
-  var Radius_x = dart.privateName(ui, "Radius.x");
-  var BorderRadius_bottomRight = dart.privateName(border_radius, "BorderRadius.bottomRight");
-  var BorderRadius_bottomLeft = dart.privateName(border_radius, "BorderRadius.bottomLeft");
-  var BorderRadius_topRight = dart.privateName(border_radius, "BorderRadius.topRight");
-  var BorderRadius_topLeft = dart.privateName(border_radius, "BorderRadius.topLeft");
-  var RoundedRectangleBorder_borderRadius = dart.privateName(rounded_rectangle_border, "RoundedRectangleBorder.borderRadius");
-  var _Location_parameterLocations = dart.privateName(widget_inspector, "_Location.parameterLocations");
-  var _Location_name = dart.privateName(widget_inspector, "_Location.name");
-  var _Location_column = dart.privateName(widget_inspector, "_Location.column");
-  var _Location_line = dart.privateName(widget_inspector, "_Location.line");
-  var _Location_file = dart.privateName(widget_inspector, "_Location.file");
-  const State_TickerProviderStateMixin$36 = class State_TickerProviderStateMixin extends framework.State$(checkbox.Checkbox) {};
-  (State_TickerProviderStateMixin$36.new = function() {
-    ticker_provider.TickerProviderStateMixin$(checkbox.Checkbox)[dart.mixinNew].call(this);
-    State_TickerProviderStateMixin$36.__proto__.new.call(this);
-  }).prototype = State_TickerProviderStateMixin$36.prototype;
-  dart.applyMixin(State_TickerProviderStateMixin$36, ticker_provider.TickerProviderStateMixin$(checkbox.Checkbox));
-  const State_ToggleableStateMixin$36 = class State_ToggleableStateMixin extends State_TickerProviderStateMixin$36 {};
-  (State_ToggleableStateMixin$36.new = function() {
-    toggleable.ToggleableStateMixin$(checkbox.Checkbox)[dart.mixinNew].call(this);
-    State_ToggleableStateMixin$36.__proto__.new.call(this);
-  }).prototype = State_ToggleableStateMixin$36.prototype;
-  dart.applyMixin(State_ToggleableStateMixin$36, toggleable.ToggleableStateMixin$(checkbox.Checkbox));
-  checkbox._CheckboxState = class _CheckboxState extends State_ToggleableStateMixin$36 {
-    initState() {
-      super.initState();
-      this[_previousValue] = this.widget.value;
+    set onDoubleTapDown(value) {
+      this[onDoubleTapDown] = value;
     }
-    didUpdateWidget(oldWidget) {
-      checkbox.Checkbox.as(oldWidget);
-      if (oldWidget == null) dart.nullFailed(I[0], 338, 33, "oldWidget");
-      super.didUpdateWidget(oldWidget);
-      if (oldWidget.value != this.widget.value) {
-        this[_previousValue] = oldWidget.value;
-        this.animateToValue();
+    get onDoubleTap() {
+      return this[onDoubleTap];
+    }
+    set onDoubleTap(value) {
+      this[onDoubleTap] = value;
+    }
+    get onDoubleTapCancel() {
+      return this[onDoubleTapCancel];
+    }
+    set onDoubleTapCancel(value) {
+      this[onDoubleTapCancel] = value;
+    }
+    isPointerAllowed(event) {
+      if (event == null) dart.nullFailed(I[0], 193, 42, "event");
+      if (this[_firstTap] == null) {
+        switch (event.buttons) {
+          case 1:
+          {
+            if (this.onDoubleTapDown == null && this.onDoubleTap == null && this.onDoubleTapCancel == null) return false;
+            break;
+          }
+          default:
+          {
+            return false;
+          }
+        }
+      }
+      return super.isPointerAllowed(event);
+    }
+    addAllowedPointer(event) {
+      if (event == null) dart.nullFailed(I[0], 210, 43, "event");
+      if (this[_firstTap] != null) {
+        if (!dart.test(dart.nullCheck(this[_firstTap]).isWithinGlobalTolerance(event, 100))) {
+          return;
+        } else if (!dart.test(dart.nullCheck(this[_firstTap]).hasElapsedMinTime()) || !dart.test(dart.nullCheck(this[_firstTap]).hasSameButton(event))) {
+          this[_reset]();
+          return this[_trackTap](event);
+        } else if (this.onDoubleTapDown != null) {
+          let details = new tap.TapDownDetails.new({globalPosition: event.position, localPosition: event.localPosition, kind: this.getKindForPointer(event.pointer)});
+          this.invokeCallback(dart.void, "onDoubleTapDown", dart.fn(() => dart.nullCheck(this.onDoubleTapDown)(details), T.VoidTovoid()));
+        }
+      }
+      this[_trackTap](event);
+    }
+    [_trackTap](event) {
+      if (event == null) dart.nullFailed(I[0], 232, 35, "event");
+      this[_stopDoubleTapTimer]();
+      let tracker = new multitap._TapTracker.new({event: event, entry: dart.nullCheck(binding.GestureBinding.instance).gestureArena.add(event.pointer, this), doubleTapMinTime: constants.kDoubleTapMinTime});
+      this[_trackers][$_set](event.pointer, tracker);
+      tracker.startTrackingPointer(dart.bind(this, _handleEvent), event.transform);
+    }
+    [_handleEvent](event) {
+      if (event == null) dart.nullFailed(I[0], 243, 34, "event");
+      let tracker = dart.nullCheck(this[_trackers][$_get](event.pointer));
+      if (events.PointerUpEvent.is(event)) {
+        if (this[_firstTap] == null)
+          this[_registerFirstTap](tracker);
+        else
+          this[_registerSecondTap](tracker);
+      } else if (events.PointerMoveEvent.is(event)) {
+        if (!dart.test(tracker.isWithinGlobalTolerance(event, 18))) this[_reject](tracker);
+      } else if (events.PointerCancelEvent.is(event)) {
+        this[_reject](tracker);
+      }
+    }
+    acceptGesture(pointer) {
+      if (pointer == null) dart.nullFailed(I[0], 259, 26, "pointer");
+    }
+    rejectGesture(pointer) {
+      if (pointer == null) dart.nullFailed(I[0], 262, 26, "pointer");
+      let tracker = this[_trackers][$_get](pointer);
+      if (tracker == null && this[_firstTap] != null && dart.nullCheck(this[_firstTap]).pointer == pointer) tracker = this[_firstTap];
+      if (tracker != null) this[_reject](tracker);
+    }
+    [_reject](tracker) {
+      if (tracker == null) dart.nullFailed(I[0], 274, 28, "tracker");
+      this[_trackers][$remove](tracker.pointer);
+      tracker.entry.resolve(arena.GestureDisposition.rejected);
+      this[_freezeTracker](tracker);
+      if (this[_firstTap] != null) {
+        if (dart.equals(tracker, this[_firstTap])) {
+          this[_reset]();
+        } else {
+          this[_checkCancel]();
+          if (dart.test(this[_trackers][$isEmpty])) this[_reset]();
+        }
       }
     }
     dispose() {
-      this[_painter].dispose();
+      this[_reset]();
       super.dispose();
     }
-    get onChanged() {
-      return this.widget.onChanged;
-    }
-    get tristate() {
-      return this.widget.tristate;
-    }
-    get value() {
-      return this.widget.value;
-    }
-    get [_widgetFillColor]() {
-      return material_state.MaterialStateProperty.resolveWith(T.ColorN(), dart.fn(states => {
-        if (states == null) dart.nullFailed(I[0], 362, 66, "states");
-        if (dart.test(states.contains(material_state.MaterialState.disabled))) {
-          return null;
-        }
-        if (dart.test(states.contains(material_state.MaterialState.selected))) {
-          return this.widget.activeColor;
-        }
-        return null;
-      }, T.SetOfMaterialStateToColorN()));
-    }
-    get [_defaultFillColor]() {
-      let themeData = theme.Theme.of(this.context);
-      return material_state.MaterialStateProperty.resolveWith(ui.Color, dart.fn(states => {
-        if (states == null) dart.nullFailed(I[0], 375, 66, "states");
-        if (dart.test(states.contains(material_state.MaterialState.disabled))) {
-          return themeData.disabledColor;
-        }
-        if (dart.test(states.contains(material_state.MaterialState.selected))) {
-          return themeData.toggleableActiveColor;
-        }
-        return themeData.unselectedWidgetColor;
-      }, T.SetOfMaterialStateToColor()));
-    }
-    build(context) {
-      let t0, t0$, t0$0, t0$1, t0$2, t0$3, t0$4, t0$5, t1, t0$6, t0$7, t0$8, t0$9, t1$, t0$10, t0$11, t0$12, t0$13, t0$14, t1$0, t0$15, t0$16, t0$17, t0$18, t0$19, t1$1, t0$20, t0$21, t0$22, t0$23, t1$2, t0$24, t0$25, t0$26, t0$27, t1$3, t0$28, t0$29, t1$4, t0$30, t0$31, t1$5, t1$6, t1$7, t1$8, t1$9, t0$32;
-      if (context == null) dart.nullFailed(I[0], 387, 29, "context");
-      if (!dart.test(debug.debugCheckHasMaterial(context))) dart.assertFailed(null, I[0], 388, 12, "debugCheckHasMaterial(context)");
-      let themeData = theme.Theme.of(context);
-      let effectiveMaterialTapTargetSize = (t0$ = (t0 = this.widget.materialTapTargetSize, t0 == null ? themeData.checkboxTheme.materialTapTargetSize : t0), t0$ == null ? themeData.materialTapTargetSize : t0$);
-      let effectiveVisualDensity = (t0$1 = (t0$0 = this.widget.visualDensity, t0$0 == null ? themeData.checkboxTheme.visualDensity : t0$0), t0$1 == null ? themeData.visualDensity : t0$1);
-      let size = null;
-      switch (effectiveMaterialTapTargetSize) {
-        case C[1] || CT.C1:
-        {
-          size = C[0] || CT.C0;
-          break;
-        }
-        case C[3] || CT.C3:
-        {
-          size = C[2] || CT.C2;
-          break;
-        }
-        default:
-        {
-          dart.throw(new _internal.ReachabilityError.new("`null` encountered as case in a switch expression with a non-nullable enum type."));
-        }
+    [_reset]() {
+      this[_stopDoubleTapTimer]();
+      if (this[_firstTap] != null) {
+        if (dart.test(this[_trackers][$isNotEmpty])) this[_checkCancel]();
+        let tracker = dart.nullCheck(this[_firstTap]);
+        this[_firstTap] = null;
+        this[_reject](tracker);
+        dart.nullCheck(binding.GestureBinding.instance).gestureArena.release(tracker.pointer);
       }
-      size = size['+'](effectiveVisualDensity.baseSizeAdjustment);
-      let effectiveMouseCursor = material_state.MaterialStateProperty.resolveWith(mouse_cursor.MouseCursor, dart.fn(states => {
-        let t1, t0, t0$;
-        if (states == null) dart.nullFailed(I[0], 407, 136, "states");
-        t0$ = (t0 = material_state.MaterialStateProperty.resolveAs(T.MouseCursorN(), this.widget.mouseCursor, states), t0 == null ? (t1 = themeData.checkboxTheme.mouseCursor, t1 == null ? null : t1.resolve(states)) : t0);
-        return t0$ == null ? material_state.MaterialStateMouseCursor.clickable.resolve(states) : t0$;
-      }, T.SetOfMaterialStateToMouseCursor()));
-      let activeStates = (t0$2 = this.states, (() => {
-        t0$2.add(material_state.MaterialState.selected);
-        return t0$2;
-      })());
-      let inactiveStates = (t0$3 = this.states, (() => {
-        t0$3.remove(material_state.MaterialState.selected);
-        return t0$3;
-      })());
-      let effectiveActiveColor = (t0$7 = (t0$6 = (t0$5 = (t0$4 = this.widget.fillColor, t0$4 == null ? null : t0$4.resolve(activeStates)), t0$5 == null ? this[_widgetFillColor].resolve(activeStates) : t0$5), t0$6 == null ? (t1 = themeData.checkboxTheme.fillColor, t1 == null ? null : t1.resolve(activeStates)) : t0$6), t0$7 == null ? this[_defaultFillColor].resolve(activeStates) : t0$7);
-      let effectiveInactiveColor = (t0$11 = (t0$10 = (t0$9 = (t0$8 = this.widget.fillColor, t0$8 == null ? null : t0$8.resolve(inactiveStates)), t0$9 == null ? this[_widgetFillColor].resolve(inactiveStates) : t0$9), t0$10 == null ? (t1$ = themeData.checkboxTheme.fillColor, t1$ == null ? null : t1$.resolve(inactiveStates)) : t0$10), t0$11 == null ? this[_defaultFillColor].resolve(inactiveStates) : t0$11);
-      let focusedStates = (t0$12 = this.states, (() => {
-        t0$12.add(material_state.MaterialState.focused);
-        return t0$12;
-      })());
-      let effectiveFocusOverlayColor = (t0$16 = (t0$15 = (t0$14 = (t0$13 = this.widget.overlayColor, t0$13 == null ? null : t0$13.resolve(focusedStates)), t0$14 == null ? this.widget.focusColor : t0$14), t0$15 == null ? (t1$0 = themeData.checkboxTheme.overlayColor, t1$0 == null ? null : t1$0.resolve(focusedStates)) : t0$15), t0$16 == null ? themeData.focusColor : t0$16);
-      let hoveredStates = (t0$17 = this.states, (() => {
-        t0$17.add(material_state.MaterialState.hovered);
-        return t0$17;
-      })());
-      let effectiveHoverOverlayColor = (t0$21 = (t0$20 = (t0$19 = (t0$18 = this.widget.overlayColor, t0$18 == null ? null : t0$18.resolve(hoveredStates)), t0$19 == null ? this.widget.hoverColor : t0$19), t0$20 == null ? (t1$1 = themeData.checkboxTheme.overlayColor, t1$1 == null ? null : t1$1.resolve(hoveredStates)) : t0$20), t0$21 == null ? themeData.hoverColor : t0$21);
-      let activePressedStates = (t0$22 = activeStates, (() => {
-        t0$22.add(material_state.MaterialState.pressed);
-        return t0$22;
-      })());
-      let effectiveActivePressedOverlayColor = (t0$25 = (t0$24 = (t0$23 = this.widget.overlayColor, t0$23 == null ? null : t0$23.resolve(activePressedStates)), t0$24 == null ? (t1$2 = themeData.checkboxTheme.overlayColor, t1$2 == null ? null : t1$2.resolve(activePressedStates)) : t0$24), t0$25 == null ? effectiveActiveColor.withAlpha(31) : t0$25);
-      let inactivePressedStates = (t0$26 = inactiveStates, (() => {
-        t0$26.add(material_state.MaterialState.pressed);
-        return t0$26;
-      })());
-      let effectiveInactivePressedOverlayColor = (t0$29 = (t0$28 = (t0$27 = this.widget.overlayColor, t0$27 == null ? null : t0$27.resolve(inactivePressedStates)), t0$28 == null ? (t1$3 = themeData.checkboxTheme.overlayColor, t1$3 == null ? null : t1$3.resolve(inactivePressedStates)) : t0$28), t0$29 == null ? effectiveActiveColor.withAlpha(31) : t0$29);
-      let effectiveCheckColor = (t0$31 = (t0$30 = this.widget.checkColor, t0$30 == null ? (t1$4 = themeData.checkboxTheme.checkColor, t1$4 == null ? null : t1$4.resolve(this.states)) : t0$30), t0$31 == null ? C[4] || CT.C4 : t0$31);
-      return new basic.Semantics.new({checked: this.widget.value === true, child: this.buildToggleable({mouseCursor: effectiveMouseCursor, focusNode: this.widget.focusNode, autofocus: this.widget.autofocus, size: size, painter: (t0$32 = this[_painter], (() => {
-            t0$32.position = this.position;
-            t0$32.reaction = this.reaction;
-            t0$32.reactionFocusFade = this.reactionFocusFade;
-            t0$32.reactionHoverFade = this.reactionHoverFade;
-            t0$32.inactiveReactionColor = effectiveInactivePressedOverlayColor;
-            t0$32.reactionColor = effectiveActivePressedOverlayColor;
-            t0$32.hoverColor = effectiveHoverOverlayColor;
-            t0$32.focusColor = effectiveFocusOverlayColor;
-            t0$32.splashRadius = (t1$6 = (t1$5 = this.widget.splashRadius, t1$5 == null ? themeData.checkboxTheme.splashRadius : t1$5), t1$6 == null ? 20 : t1$6);
-            t0$32.downPosition = this.downPosition;
-            t0$32.isFocused = this.states.contains(material_state.MaterialState.focused);
-            t0$32.isHovered = this.states.contains(material_state.MaterialState.hovered);
-            t0$32.activeColor = effectiveActiveColor;
-            t0$32.inactiveColor = effectiveInactiveColor;
-            t0$32.checkColor = effectiveCheckColor;
-            t0$32.value = this.value;
-            t0$32.previousValue = this[_previousValue];
-            t0$32.shape = (t1$8 = (t1$7 = this.widget.shape, t1$7 == null ? themeData.checkboxTheme.shape : t1$7), t1$8 == null ? C[5] || CT.C5 : t1$8);
-            t0$32.side = (t1$9 = this.widget.side, t1$9 == null ? themeData.checkboxTheme.side : t1$9);
-            return t0$32;
-          })())}), $creationLocationd_0dea112b090073317d4: C[11] || CT.C11});
+      this[_clearTrackers]();
+    }
+    [_registerFirstTap](tracker) {
+      if (tracker == null) dart.nullFailed(I[0], 310, 38, "tracker");
+      this[_startDoubleTapTimer]();
+      dart.nullCheck(binding.GestureBinding.instance).gestureArena.hold(tracker.pointer);
+      this[_freezeTracker](tracker);
+      this[_trackers][$remove](tracker.pointer);
+      this[_clearTrackers]();
+      this[_firstTap] = tracker;
+    }
+    [_registerSecondTap](tracker) {
+      if (tracker == null) dart.nullFailed(I[0], 321, 39, "tracker");
+      dart.nullCheck(this[_firstTap]).entry.resolve(arena.GestureDisposition.accepted);
+      tracker.entry.resolve(arena.GestureDisposition.accepted);
+      this[_freezeTracker](tracker);
+      this[_trackers][$remove](tracker.pointer);
+      this[_checkUp](tracker.initialButtons);
+      this[_reset]();
+    }
+    [_clearTrackers]() {
+      this[_trackers][$values][$toList]()[$forEach](dart.bind(this, _reject));
+      if (!dart.test(this[_trackers][$isEmpty])) dart.assertFailed(null, I[0], 332, 12, "_trackers.isEmpty");
+    }
+    [_freezeTracker](tracker) {
+      if (tracker == null) dart.nullFailed(I[0], 335, 35, "tracker");
+      tracker.stopTrackingPointer(dart.bind(this, _handleEvent));
+    }
+    [_startDoubleTapTimer]() {
+      this[_doubleTapTimer] == null ? this[_doubleTapTimer] = async.Timer.new(constants.kDoubleTapTimeout, dart.bind(this, _reset)) : null;
+    }
+    [_stopDoubleTapTimer]() {
+      if (this[_doubleTapTimer] != null) {
+        dart.nullCheck(this[_doubleTapTimer]).cancel();
+        this[_doubleTapTimer] = null;
+      }
+    }
+    [_checkUp](buttons) {
+      if (buttons == null) dart.nullFailed(I[0], 350, 21, "buttons");
+      if (!(buttons === 1)) dart.assertFailed(null, I[0], 351, 12, "buttons == kPrimaryButton");
+      if (this.onDoubleTap != null) this.invokeCallback(dart.void, "onDoubleTap", dart.nullCheck(this.onDoubleTap));
+    }
+    [_checkCancel]() {
+      if (this.onDoubleTapCancel != null) this.invokeCallback(dart.void, "onDoubleTapCancel", dart.nullCheck(this.onDoubleTapCancel));
+    }
+    get debugDescription() {
+      return "double tap";
     }
   };
-  (checkbox._CheckboxState.new = function() {
-    this[_painter] = new checkbox._CheckboxPainter.new();
-    this[_previousValue] = null;
-    checkbox._CheckboxState.__proto__.new.call(this);
+  (multitap.DoubleTapGestureRecognizer.new = function(opts) {
+    let debugOwner = opts && 'debugOwner' in opts ? opts.debugOwner : null;
+    let kind = opts && 'kind' in opts ? opts.kind : null;
+    this[onDoubleTapDown] = null;
+    this[onDoubleTap] = null;
+    this[onDoubleTapCancel] = null;
+    this[_doubleTapTimer] = null;
+    this[_firstTap] = null;
+    this[_trackers] = new (T.IdentityMapOfint$_TapTracker()).new();
+    multitap.DoubleTapGestureRecognizer.__proto__.new.call(this, {debugOwner: debugOwner, kind: kind});
     ;
-  }).prototype = checkbox._CheckboxState.prototype;
-  dart.addTypeTests(checkbox._CheckboxState);
-  dart.addTypeCaches(checkbox._CheckboxState);
-  dart.setMethodSignature(checkbox._CheckboxState, () => ({
-    __proto__: dart.getMethods(checkbox._CheckboxState.__proto__),
-    build: dart.fnType(framework.Widget, [framework.BuildContext])
+  }).prototype = multitap.DoubleTapGestureRecognizer.prototype;
+  dart.addTypeTests(multitap.DoubleTapGestureRecognizer);
+  dart.addTypeCaches(multitap.DoubleTapGestureRecognizer);
+  dart.setMethodSignature(multitap.DoubleTapGestureRecognizer, () => ({
+    __proto__: dart.getMethods(multitap.DoubleTapGestureRecognizer.__proto__),
+    [_trackTap]: dart.fnType(dart.void, [events.PointerDownEvent]),
+    [_handleEvent]: dart.fnType(dart.void, [events.PointerEvent]),
+    acceptGesture: dart.fnType(dart.void, [core.int]),
+    rejectGesture: dart.fnType(dart.void, [core.int]),
+    [_reject]: dart.fnType(dart.void, [multitap._TapTracker]),
+    [_reset]: dart.fnType(dart.void, []),
+    [_registerFirstTap]: dart.fnType(dart.void, [multitap._TapTracker]),
+    [_registerSecondTap]: dart.fnType(dart.void, [multitap._TapTracker]),
+    [_clearTrackers]: dart.fnType(dart.void, []),
+    [_freezeTracker]: dart.fnType(dart.void, [multitap._TapTracker]),
+    [_startDoubleTapTimer]: dart.fnType(dart.void, []),
+    [_stopDoubleTapTimer]: dart.fnType(dart.void, []),
+    [_checkUp]: dart.fnType(dart.void, [core.int]),
+    [_checkCancel]: dart.fnType(dart.void, [])
   }));
-  dart.setGetterSignature(checkbox._CheckboxState, () => ({
-    __proto__: dart.getGetters(checkbox._CheckboxState.__proto__),
-    onChanged: dart.nullable(dart.fnType(dart.void, [dart.nullable(core.bool)])),
-    tristate: core.bool,
-    value: dart.nullable(core.bool),
-    [_widgetFillColor]: material_state.MaterialStateProperty$(dart.nullable(ui.Color)),
-    [_defaultFillColor]: material_state.MaterialStateProperty$(ui.Color)
+  dart.setGetterSignature(multitap.DoubleTapGestureRecognizer, () => ({
+    __proto__: dart.getGetters(multitap.DoubleTapGestureRecognizer.__proto__),
+    debugDescription: core.String
   }));
-  dart.setLibraryUri(checkbox._CheckboxState, I[1]);
-  dart.setFieldSignature(checkbox._CheckboxState, () => ({
-    __proto__: dart.getFields(checkbox._CheckboxState.__proto__),
-    [_painter]: dart.finalFieldType(checkbox._CheckboxPainter),
-    [_previousValue]: dart.fieldType(dart.nullable(core.bool))
+  dart.setLibraryUri(multitap.DoubleTapGestureRecognizer, I[1]);
+  dart.setFieldSignature(multitap.DoubleTapGestureRecognizer, () => ({
+    __proto__: dart.getFields(multitap.DoubleTapGestureRecognizer.__proto__),
+    onDoubleTapDown: dart.fieldType(dart.nullable(dart.fnType(dart.void, [tap.TapDownDetails]))),
+    onDoubleTap: dart.fieldType(dart.nullable(dart.fnType(dart.void, []))),
+    onDoubleTapCancel: dart.fieldType(dart.nullable(dart.fnType(dart.void, []))),
+    [_doubleTapTimer]: dart.fieldType(dart.nullable(async.Timer)),
+    [_firstTap]: dart.fieldType(dart.nullable(multitap._TapTracker)),
+    [_trackers]: dart.finalFieldType(core.Map$(core.int, multitap._TapTracker))
   }));
-  var _checkColor = dart.privateName(checkbox, "_checkColor");
-  var _value = dart.privateName(checkbox, "_value");
-  var _shape = dart.privateName(checkbox, "_shape");
-  var _side = dart.privateName(checkbox, "_side");
-  var _outerRectAt = dart.privateName(checkbox, "_outerRectAt");
-  var _colorAt = dart.privateName(checkbox, "_colorAt");
-  var _createStrokePaint = dart.privateName(checkbox, "_createStrokePaint");
-  var _drawBorder = dart.privateName(checkbox, "_drawBorder");
-  var _drawCheck = dart.privateName(checkbox, "_drawCheck");
-  var _drawDash = dart.privateName(checkbox, "_drawDash");
-  var _repaint = dart.privateName(checkbox, "_repaint");
-  var _repaint$ = dart.privateName(custom_paint, "_repaint");
-  checkbox._CheckboxPainter = class _CheckboxPainter extends toggleable.ToggleablePainter {
-    get checkColor() {
-      return dart.nullCheck(this[_checkColor]);
-    }
-    set checkColor(value) {
-      if (value == null) dart.nullFailed(I[0], 492, 24, "value");
-      if (dart.equals(this[_checkColor], value)) {
-        return;
+  var _wonArena = dart.privateName(multitap, "_wonArena");
+  var _timer = dart.privateName(multitap, "_timer");
+  var _finalPosition = dart.privateName(multitap, "_finalPosition");
+  var _lastPosition = dart.privateName(multitap, "_lastPosition");
+  var _dispatchLongTap = dart.privateName(multitap, "_dispatchLongTap");
+  var _check = dart.privateName(multitap, "_check");
+  var _dispatchCancel = dart.privateName(multitap, "_dispatchCancel");
+  var _dispatchTap = dart.privateName(multitap, "_dispatchTap");
+  multitap._TapGesture = class _TapGesture extends multitap._TapTracker {
+    handleEvent(event) {
+      if (event == null) dart.nullFailed(I[0], 397, 33, "event");
+      if (!(event.pointer == this.pointer)) dart.assertFailed(null, I[0], 398, 12, "event.pointer == pointer");
+      if (events.PointerMoveEvent.is(event)) {
+        if (!dart.test(this.isWithinGlobalTolerance(event, events.computeHitSlop(event.kind))))
+          this.cancel();
+        else
+          this[_lastPosition] = recognizer.OffsetPair.fromEventPosition(event);
+      } else if (events.PointerCancelEvent.is(event)) {
+        this.cancel();
+      } else if (events.PointerUpEvent.is(event)) {
+        this.stopTrackingPointer(dart.bind(this, 'handleEvent'));
+        this[_finalPosition] = recognizer.OffsetPair.fromEventPosition(event);
+        this[_check]();
       }
-      this[_checkColor] = value;
-      this.notifyListeners();
     }
-    get value() {
-      return this[_value];
-    }
-    set value(value) {
-      if (this[_value] == value) {
-        return;
-      }
-      this[_value] = value;
-      this.notifyListeners();
-    }
-    get previousValue() {
-      return this[_previousValue];
-    }
-    set previousValue(value) {
-      if (this[_previousValue] == value) {
-        return;
-      }
-      this[_previousValue] = value;
-      this.notifyListeners();
-    }
-    get shape() {
-      return dart.nullCheck(this[_shape]);
-    }
-    set shape(value) {
-      if (value == null) dart.nullFailed(I[0], 522, 28, "value");
-      if (dart.equals(this[_shape], value)) {
-        return;
-      }
-      this[_shape] = value;
-      this.notifyListeners();
-    }
-    get side() {
-      return this[_side];
-    }
-    set side(value) {
-      if (dart.equals(this[_side], value)) {
-        return;
-      }
-      this[_side] = value;
-      this.notifyListeners();
-    }
-    [_outerRectAt](origin, t) {
-      if (origin == null) dart.nullFailed(I[0], 544, 28, "origin");
-      if (t == null) dart.nullFailed(I[0], 544, 43, "t");
-      let inset = 1.0 - (dart.notNull(t) - 0.5)[$abs]() * 2.0;
-      let size = 18 - inset * 2;
-      let rect = new ui.Rect.fromLTWH(dart.notNull(origin.dx) + inset, dart.notNull(origin.dy) + inset, size, size);
-      return rect;
-    }
-    [_colorAt](t) {
-      if (t == null) dart.nullFailed(I[0], 553, 25, "t");
-      return dart.notNull(t) >= 0.25 ? this.activeColor : dart.nullCheck(ui.Color.lerp(this.inactiveColor, this.activeColor, dart.notNull(t) * 4.0));
-    }
-    [_createStrokePaint]() {
+    stopTrackingPointer(route) {
       let t0;
-      t0 = ui.Paint.new();
-      return (() => {
-        t0.color = this.checkColor;
-        t0.style = ui.PaintingStyle.stroke;
-        t0.strokeWidth = 2;
-        return t0;
-      })();
+      if (route == null) dart.nullFailed(I[0], 414, 41, "route");
+      t0 = this[_timer];
+      t0 == null ? null : t0.cancel();
+      this[_timer] = null;
+      super.stopTrackingPointer(route);
     }
-    [_drawBorder](canvas, outer, t, paint) {
-      if (canvas == null) dart.nullFailed(I[0], 566, 27, "canvas");
-      if (outer == null) dart.nullFailed(I[0], 566, 40, "outer");
-      if (t == null) dart.nullFailed(I[0], 566, 54, "t");
-      if (paint == null) dart.nullFailed(I[0], 566, 63, "paint");
-      if (!(dart.notNull(t) >= 0.0 && dart.notNull(t) <= 0.5)) dart.assertFailed(null, I[0], 567, 12, "t >= 0.0 && t <= 0.5");
-      let resolvedShape = this.shape;
-      if (this.side == null) {
-        resolvedShape = resolvedShape.copyWith({side: new borders.BorderSide.new({width: 2.0, color: paint.color})});
-      }
-      resolvedShape.copyWith({side: this.side}).paint(canvas, outer);
+    accept() {
+      this[_wonArena] = true;
+      this[_check]();
     }
-    [_drawCheck](canvas, origin, t, paint) {
-      if (canvas == null) dart.nullFailed(I[0], 575, 26, "canvas");
-      if (origin == null) dart.nullFailed(I[0], 575, 41, "origin");
-      if (t == null) dart.nullFailed(I[0], 575, 56, "t");
-      if (paint == null) dart.nullFailed(I[0], 575, 65, "paint");
-      if (!(dart.notNull(t) >= 0.0 && dart.notNull(t) <= 1.0)) dart.assertFailed(null, I[0], 576, 12, "t >= 0.0 && t <= 1.0");
-      let path = ui.Path.new();
-      let start = C[15] || CT.C15;
-      let mid = C[16] || CT.C16;
-      let end = C[17] || CT.C17;
-      if (dart.notNull(t) < 0.5) {
-        let strokeT = dart.notNull(t) * 2.0;
-        let drawMid = dart.nullCheck(ui.Offset.lerp(start, mid, strokeT));
-        path.moveTo(dart.notNull(origin.dx) + dart.notNull(start.dx), dart.notNull(origin.dy) + dart.notNull(start.dy));
-        path.lineTo(dart.notNull(origin.dx) + dart.notNull(drawMid.dx), dart.notNull(origin.dy) + dart.notNull(drawMid.dy));
-      } else {
-        let strokeT = (dart.notNull(t) - 0.5) * 2.0;
-        let drawEnd = dart.nullCheck(ui.Offset.lerp(mid, end, strokeT));
-        path.moveTo(dart.notNull(origin.dx) + dart.notNull(start.dx), dart.notNull(origin.dy) + dart.notNull(start.dy));
-        path.lineTo(dart.notNull(origin.dx) + dart.notNull(mid.dx), dart.notNull(origin.dy) + dart.notNull(mid.dy));
-        path.lineTo(dart.notNull(origin.dx) + dart.notNull(drawEnd.dx), dart.notNull(origin.dy) + dart.notNull(drawEnd.dy));
-      }
-      canvas.drawPath(path, paint);
+    reject() {
+      this.stopTrackingPointer(dart.bind(this, 'handleEvent'));
+      this.gestureRecognizer[_dispatchCancel](this.pointer);
     }
-    [_drawDash](canvas, origin, t, paint) {
-      if (canvas == null) dart.nullFailed(I[0], 598, 25, "canvas");
-      if (origin == null) dart.nullFailed(I[0], 598, 40, "origin");
-      if (t == null) dart.nullFailed(I[0], 598, 55, "t");
-      if (paint == null) dart.nullFailed(I[0], 598, 64, "paint");
-      if (!(dart.notNull(t) >= 0.0 && dart.notNull(t) <= 1.0)) dart.assertFailed(null, I[0], 599, 12, "t >= 0.0 && t <= 1.0");
-      let start = C[18] || CT.C18;
-      let mid = C[19] || CT.C19;
-      let end = C[20] || CT.C20;
-      let drawStart = dart.nullCheck(ui.Offset.lerp(start, mid, 1.0 - dart.notNull(t)));
-      let drawEnd = dart.nullCheck(ui.Offset.lerp(mid, end, t));
-      canvas.drawLine(origin['+'](drawStart), origin['+'](drawEnd), paint);
+    cancel() {
+      if (dart.test(this[_wonArena]))
+        this.reject();
+      else
+        this.entry.resolve(arena.GestureDisposition.rejected);
     }
-    paint(canvas, size) {
-      let t0, t0$;
-      if (canvas == null) dart.nullFailed(I[0], 611, 21, "canvas");
-      if (size == null) dart.nullFailed(I[0], 611, 34, "size");
-      this.paintRadialReaction({canvas: canvas, origin: size.center(ui.Offset.zero)});
-      let strokePaint = this[_createStrokePaint]();
-      let origin = ui.Offset.as(size['/'](2.0)['-']((C[21] || CT.C21)['/'](2.0)));
-      let status = this.position.status;
-      let tNormalized = status == animation.AnimationStatus.forward || status == animation.AnimationStatus.completed ? this.position.value : 1.0 - dart.notNull(this.position.value);
-      if (this.previousValue === false || this.value === false) {
-        let t = this.value === false ? 1.0 - dart.notNull(tNormalized) : tNormalized;
-        let outer = this[_outerRectAt](origin, t);
-        let emptyCheckboxPath = this.shape.copyWith({side: this.side}).getOuterPath(outer);
-        let paint = (t0 = ui.Paint.new(), (() => {
-          t0.color = this[_colorAt](t);
-          return t0;
-        })());
-        if (dart.notNull(t) <= 0.5) {
-          this[_drawBorder](canvas, outer, t, paint);
-        } else {
-          canvas.drawPath(emptyCheckboxPath, paint);
-          let tShrink = (dart.notNull(t) - 0.5) * 2.0;
-          if (this.previousValue == null || this.value == null)
-            this[_drawDash](canvas, origin, tShrink, strokePaint);
-          else
-            this[_drawCheck](canvas, origin, tShrink, strokePaint);
-        }
-      } else {
-        let outer = this[_outerRectAt](origin, 1.0);
-        let paint = (t0$ = ui.Paint.new(), (() => {
-          t0$.color = this[_colorAt](1.0);
-          return t0$;
-        })());
-        canvas.drawPath(this.shape.copyWith({side: this.side}).getOuterPath(outer), paint);
-        if (dart.notNull(tNormalized) <= 0.5) {
-          let tShrink = 1.0 - dart.notNull(tNormalized) * 2.0;
-          if (this.previousValue === true)
-            this[_drawCheck](canvas, origin, tShrink, strokePaint);
-          else
-            this[_drawDash](canvas, origin, tShrink, strokePaint);
-        } else {
-          let tExpand = (dart.notNull(tNormalized) - 0.5) * 2.0;
-          if (this.value === true)
-            this[_drawCheck](canvas, origin, tExpand, strokePaint);
-          else
-            this[_drawDash](canvas, origin, tExpand, strokePaint);
-        }
-      }
-    }
-    get [_repaint$]() {
-      return T.ListenableN().as(this[$noSuchMethod](new core._Invocation.getter(C[22] || CT.C22)));
+    [_check]() {
+      if (dart.test(this[_wonArena]) && this[_finalPosition] != null) this.gestureRecognizer[_dispatchTap](this.pointer, dart.nullCheck(this[_finalPosition]));
     }
   };
-  (checkbox._CheckboxPainter.new = function() {
-    this[_checkColor] = null;
-    this[_value] = null;
-    this[_previousValue] = null;
-    this[_shape] = null;
-    this[_side] = null;
-    checkbox._CheckboxPainter.__proto__.new.call(this);
-    ;
-  }).prototype = checkbox._CheckboxPainter.prototype;
-  dart.addTypeTests(checkbox._CheckboxPainter);
-  dart.addTypeCaches(checkbox._CheckboxPainter);
-  dart.setMethodSignature(checkbox._CheckboxPainter, () => ({
-    __proto__: dart.getMethods(checkbox._CheckboxPainter.__proto__),
-    [_outerRectAt]: dart.fnType(ui.Rect, [ui.Offset, core.double]),
-    [_colorAt]: dart.fnType(ui.Color, [core.double]),
-    [_createStrokePaint]: dart.fnType(ui.Paint, []),
-    [_drawBorder]: dart.fnType(dart.void, [ui.Canvas, ui.Rect, core.double, ui.Paint]),
-    [_drawCheck]: dart.fnType(dart.void, [ui.Canvas, ui.Offset, core.double, ui.Paint]),
-    [_drawDash]: dart.fnType(dart.void, [ui.Canvas, ui.Offset, core.double, ui.Paint]),
-    paint: dart.fnType(dart.void, [ui.Canvas, ui.Size])
-  }));
-  dart.setGetterSignature(checkbox._CheckboxPainter, () => ({
-    __proto__: dart.getGetters(checkbox._CheckboxPainter.__proto__),
-    checkColor: ui.Color,
-    value: dart.nullable(core.bool),
-    previousValue: dart.nullable(core.bool),
-    shape: borders.OutlinedBorder,
-    side: dart.nullable(borders.BorderSide),
-    [_repaint$]: dart.nullable(change_notifier.Listenable)
-  }));
-  dart.setSetterSignature(checkbox._CheckboxPainter, () => ({
-    __proto__: dart.getSetters(checkbox._CheckboxPainter.__proto__),
-    checkColor: ui.Color,
-    value: dart.nullable(core.bool),
-    previousValue: dart.nullable(core.bool),
-    shape: borders.OutlinedBorder,
-    side: dart.nullable(borders.BorderSide)
-  }));
-  dart.setLibraryUri(checkbox._CheckboxPainter, I[1]);
-  dart.setFieldSignature(checkbox._CheckboxPainter, () => ({
-    __proto__: dart.getFields(checkbox._CheckboxPainter.__proto__),
-    [_checkColor]: dart.fieldType(dart.nullable(ui.Color)),
-    [_value]: dart.fieldType(dart.nullable(core.bool)),
-    [_previousValue]: dart.fieldType(dart.nullable(core.bool)),
-    [_shape]: dart.fieldType(dart.nullable(borders.OutlinedBorder)),
-    [_side]: dart.fieldType(dart.nullable(borders.BorderSide))
-  }));
-  dart.defineLazy(checkbox, {
-    /*checkbox._kEdgeSize*/get _kEdgeSize() {
-      return 18;
-    },
-    /*checkbox._kStrokeWidth*/get _kStrokeWidth() {
-      return 2;
+  (multitap._TapGesture.new = function(opts) {
+    let gestureRecognizer = opts && 'gestureRecognizer' in opts ? opts.gestureRecognizer : null;
+    if (gestureRecognizer == null) dart.nullFailed(I[0], 371, 19, "gestureRecognizer");
+    let event = opts && 'event' in opts ? opts.event : null;
+    if (event == null) dart.nullFailed(I[0], 372, 27, "event");
+    let longTapDelay = opts && 'longTapDelay' in opts ? opts.longTapDelay : null;
+    if (longTapDelay == null) dart.nullFailed(I[0], 373, 23, "longTapDelay");
+    this[_wonArena] = false;
+    this[_timer] = null;
+    this[_finalPosition] = null;
+    this.gestureRecognizer = gestureRecognizer;
+    this[_lastPosition] = recognizer.OffsetPair.fromEventPosition(event);
+    multitap._TapGesture.__proto__.new.call(this, {event: events.PointerDownEvent.as(event), entry: dart.nullCheck(binding.GestureBinding.instance).gestureArena.add(event.pointer, gestureRecognizer), doubleTapMinTime: constants.kDoubleTapMinTime});
+    this.startTrackingPointer(dart.bind(this, 'handleEvent'), event.transform);
+    if (dart.test(longTapDelay['>'](core.Duration.zero))) {
+      this[_timer] = async.Timer.new(longTapDelay, dart.fn(() => {
+        this[_timer] = null;
+        this.gestureRecognizer[_dispatchLongTap](event.pointer, this[_lastPosition]);
+      }, T.VoidTovoid()));
     }
-  }, false);
-  dart.trackLibraries("packages/flutter/src/material/checkbox.dart", {
-    "package:flutter/src/material/checkbox.dart": checkbox
+  }).prototype = multitap._TapGesture.prototype;
+  dart.addTypeTests(multitap._TapGesture);
+  dart.addTypeCaches(multitap._TapGesture);
+  dart.setMethodSignature(multitap._TapGesture, () => ({
+    __proto__: dart.getMethods(multitap._TapGesture.__proto__),
+    handleEvent: dart.fnType(dart.void, [events.PointerEvent]),
+    accept: dart.fnType(dart.void, []),
+    reject: dart.fnType(dart.void, []),
+    cancel: dart.fnType(dart.void, []),
+    [_check]: dart.fnType(dart.void, [])
+  }));
+  dart.setLibraryUri(multitap._TapGesture, I[1]);
+  dart.setFieldSignature(multitap._TapGesture, () => ({
+    __proto__: dart.getFields(multitap._TapGesture.__proto__),
+    gestureRecognizer: dart.finalFieldType(multitap.MultiTapGestureRecognizer),
+    [_wonArena]: dart.fieldType(core.bool),
+    [_timer]: dart.fieldType(dart.nullable(async.Timer)),
+    [_lastPosition]: dart.fieldType(recognizer.OffsetPair),
+    [_finalPosition]: dart.fieldType(dart.nullable(recognizer.OffsetPair))
+  }));
+  var onTapDown = dart.privateName(multitap, "MultiTapGestureRecognizer.onTapDown");
+  var onTapUp = dart.privateName(multitap, "MultiTapGestureRecognizer.onTapUp");
+  var onTap = dart.privateName(multitap, "MultiTapGestureRecognizer.onTap");
+  var onTapCancel = dart.privateName(multitap, "MultiTapGestureRecognizer.onTapCancel");
+  var longTapDelay$ = dart.privateName(multitap, "MultiTapGestureRecognizer.longTapDelay");
+  var onLongTapDown = dart.privateName(multitap, "MultiTapGestureRecognizer.onLongTapDown");
+  var Duration__duration = dart.privateName(core, "Duration._duration");
+  var _gestureMap = dart.privateName(multitap, "_gestureMap");
+  multitap.MultiTapGestureRecognizer = class MultiTapGestureRecognizer extends recognizer.GestureRecognizer {
+    get onTapDown() {
+      return this[onTapDown];
+    }
+    set onTapDown(value) {
+      this[onTapDown] = value;
+    }
+    get onTapUp() {
+      return this[onTapUp];
+    }
+    set onTapUp(value) {
+      this[onTapUp] = value;
+    }
+    get onTap() {
+      return this[onTap];
+    }
+    set onTap(value) {
+      this[onTap] = value;
+    }
+    get onTapCancel() {
+      return this[onTapCancel];
+    }
+    set onTapCancel(value) {
+      this[onTapCancel] = value;
+    }
+    get longTapDelay() {
+      return this[longTapDelay$];
+    }
+    set longTapDelay(value) {
+      this[longTapDelay$] = value;
+    }
+    get onLongTapDown() {
+      return this[onLongTapDown];
+    }
+    set onLongTapDown(value) {
+      this[onLongTapDown] = value;
+    }
+    addAllowedPointer(event) {
+      if (event == null) dart.nullFailed(I[0], 490, 39, "event");
+      if (!!dart.test(this[_gestureMap][$containsKey](event.pointer))) dart.assertFailed(null, I[0], 491, 12, "!_gestureMap.containsKey(event.pointer)");
+      this[_gestureMap][$_set](event.pointer, new multitap._TapGesture.new({gestureRecognizer: this, event: event, longTapDelay: this.longTapDelay}));
+      if (this.onTapDown != null) this.invokeCallback(dart.void, "onTapDown", dart.fn(() => {
+        dart.nullCheck(this.onTapDown)(event.pointer, new tap.TapDownDetails.new({globalPosition: event.position, localPosition: event.localPosition, kind: event.kind}));
+      }, T.VoidTovoid()));
+    }
+    acceptGesture(pointer) {
+      if (pointer == null) dart.nullFailed(I[0], 508, 26, "pointer");
+      if (!dart.test(this[_gestureMap][$containsKey](pointer))) dart.assertFailed(null, I[0], 509, 12, "_gestureMap.containsKey(pointer)");
+      dart.nullCheck(this[_gestureMap][$_get](pointer)).accept();
+    }
+    rejectGesture(pointer) {
+      if (pointer == null) dart.nullFailed(I[0], 514, 26, "pointer");
+      if (!dart.test(this[_gestureMap][$containsKey](pointer))) dart.assertFailed(null, I[0], 515, 12, "_gestureMap.containsKey(pointer)");
+      dart.nullCheck(this[_gestureMap][$_get](pointer)).reject();
+      if (!!dart.test(this[_gestureMap][$containsKey](pointer))) dart.assertFailed(null, I[0], 517, 12, "!_gestureMap.containsKey(pointer)");
+    }
+    [_dispatchCancel](pointer) {
+      if (pointer == null) dart.nullFailed(I[0], 520, 28, "pointer");
+      if (!dart.test(this[_gestureMap][$containsKey](pointer))) dart.assertFailed(null, I[0], 521, 12, "_gestureMap.containsKey(pointer)");
+      this[_gestureMap][$remove](pointer);
+      if (this.onTapCancel != null) this.invokeCallback(dart.void, "onTapCancel", dart.fn(() => dart.nullCheck(this.onTapCancel)(pointer), T.VoidTovoid()));
+    }
+    [_dispatchTap](pointer, position) {
+      if (pointer == null) dart.nullFailed(I[0], 527, 25, "pointer");
+      if (position == null) dart.nullFailed(I[0], 527, 45, "position");
+      if (!dart.test(this[_gestureMap][$containsKey](pointer))) dart.assertFailed(null, I[0], 528, 12, "_gestureMap.containsKey(pointer)");
+      this[_gestureMap][$remove](pointer);
+      if (this.onTapUp != null) this.invokeCallback(dart.void, "onTapUp", dart.fn(() => {
+        dart.nullCheck(this.onTapUp)(pointer, new tap.TapUpDetails.new({kind: this.getKindForPointer(pointer), localPosition: position.local, globalPosition: position.global}));
+      }, T.VoidTovoid()));
+      if (this.onTap != null) this.invokeCallback(dart.void, "onTap", dart.fn(() => dart.nullCheck(this.onTap)(pointer), T.VoidTovoid()));
+    }
+    [_dispatchLongTap](pointer, lastPosition) {
+      if (pointer == null) dart.nullFailed(I[0], 542, 29, "pointer");
+      if (lastPosition == null) dart.nullFailed(I[0], 542, 49, "lastPosition");
+      if (!dart.test(this[_gestureMap][$containsKey](pointer))) dart.assertFailed(null, I[0], 543, 12, "_gestureMap.containsKey(pointer)");
+      if (this.onLongTapDown != null) this.invokeCallback(dart.void, "onLongTapDown", dart.fn(() => {
+        dart.nullCheck(this.onLongTapDown)(pointer, new tap.TapDownDetails.new({globalPosition: lastPosition.global, localPosition: lastPosition.local, kind: this.getKindForPointer(pointer)}));
+      }, T.VoidTovoid()));
+    }
+    dispose() {
+      let localGestures = T.ListOf_TapGesture().from(this[_gestureMap][$values]);
+      for (let gesture of localGestures)
+        gesture.cancel();
+      if (!dart.test(this[_gestureMap][$isEmpty])) dart.assertFailed(null, I[0], 563, 12, "_gestureMap.isEmpty");
+      super.dispose();
+    }
+    get debugDescription() {
+      return "multitap";
+    }
+  };
+  (multitap.MultiTapGestureRecognizer.new = function(opts) {
+    let longTapDelay = opts && 'longTapDelay' in opts ? opts.longTapDelay : C[0] || CT.C0;
+    if (longTapDelay == null) dart.nullFailed(I[0], 460, 10, "longTapDelay");
+    let debugOwner = opts && 'debugOwner' in opts ? opts.debugOwner : null;
+    let kind = opts && 'kind' in opts ? opts.kind : null;
+    this[onTapDown] = null;
+    this[onTapUp] = null;
+    this[onTap] = null;
+    this[onTapCancel] = null;
+    this[onLongTapDown] = null;
+    this[_gestureMap] = new (T.IdentityMapOfint$_TapGesture()).new();
+    this[longTapDelay$] = longTapDelay;
+    multitap.MultiTapGestureRecognizer.__proto__.new.call(this, {debugOwner: debugOwner, kind: kind});
+    ;
+  }).prototype = multitap.MultiTapGestureRecognizer.prototype;
+  dart.addTypeTests(multitap.MultiTapGestureRecognizer);
+  dart.addTypeCaches(multitap.MultiTapGestureRecognizer);
+  dart.setMethodSignature(multitap.MultiTapGestureRecognizer, () => ({
+    __proto__: dart.getMethods(multitap.MultiTapGestureRecognizer.__proto__),
+    addAllowedPointer: dart.fnType(dart.void, [events.PointerEvent]),
+    acceptGesture: dart.fnType(dart.void, [core.int]),
+    rejectGesture: dart.fnType(dart.void, [core.int]),
+    [_dispatchCancel]: dart.fnType(dart.void, [core.int]),
+    [_dispatchTap]: dart.fnType(dart.void, [core.int, recognizer.OffsetPair]),
+    [_dispatchLongTap]: dart.fnType(dart.void, [core.int, recognizer.OffsetPair])
+  }));
+  dart.setGetterSignature(multitap.MultiTapGestureRecognizer, () => ({
+    __proto__: dart.getGetters(multitap.MultiTapGestureRecognizer.__proto__),
+    debugDescription: core.String
+  }));
+  dart.setLibraryUri(multitap.MultiTapGestureRecognizer, I[1]);
+  dart.setFieldSignature(multitap.MultiTapGestureRecognizer, () => ({
+    __proto__: dart.getFields(multitap.MultiTapGestureRecognizer.__proto__),
+    onTapDown: dart.fieldType(dart.nullable(dart.fnType(dart.void, [core.int, tap.TapDownDetails]))),
+    onTapUp: dart.fieldType(dart.nullable(dart.fnType(dart.void, [core.int, tap.TapUpDetails]))),
+    onTap: dart.fieldType(dart.nullable(dart.fnType(dart.void, [core.int]))),
+    onTapCancel: dart.fieldType(dart.nullable(dart.fnType(dart.void, [core.int]))),
+    longTapDelay: dart.fieldType(core.Duration),
+    onLongTapDown: dart.fieldType(dart.nullable(dart.fnType(dart.void, [core.int, tap.TapDownDetails]))),
+    [_gestureMap]: dart.finalFieldType(core.Map$(core.int, multitap._TapGesture))
+  }));
+  dart.trackLibraries("packages/flutter/src/gestures/multitap.dart", {
+    "package:flutter/src/gestures/multitap.dart": multitap
   }, {
-  }, '{"version":3,"sourceRoot":"","sources":["checkbox.dart"],"names":[],"mappings":"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","file":"../../../../../../../../../../packages/flutter/src/material/checkbox.dart.lib.js"}');
+  }, '{"version":3,"sourceRoot":"","sources":["multitap.dart"],"names":[],"mappings":"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","file":"../../../../../../../../D:/packages/flutter/src/gestures/multitap.dart.lib.js"}');
   // Exports:
   return {
-    src__material__checkbox: checkbox
+    src__gestures__multitap: multitap
   };
 }));
 
-//# sourceMappingURL=checkbox.dart.lib.js.map
+//# sourceMappingURL=multitap.dart.lib.js.map

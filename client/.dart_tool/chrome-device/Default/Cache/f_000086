@@ -1,297 +1,302 @@
-define(['dart_sdk', 'packages/typed_data/src/typed_buffer.dart'], (function load__packages__flutter__src__foundation__serialization_dart(dart_sdk, packages__typed_data__src__typed_buffer$46dart) {
+define(['dart_sdk', 'packages/flutter/src/painting/borders.dart', 'packages/flutter/src/painting/edge_insets.dart'], (function load__packages__flutter__src__rendering__table_border_dart(dart_sdk, packages__flutter__src__painting__borders$46dart, packages__flutter__src__painting__edge_insets$46dart) {
   'use strict';
   const core = dart_sdk.core;
-  const _native_typed_data = dart_sdk._native_typed_data;
+  const ui = dart_sdk.ui;
   const _internal = dart_sdk._internal;
-  const typed_data = dart_sdk.typed_data;
   const dart = dart_sdk.dart;
   const dartx = dart_sdk.dartx;
-  const typed_buffer = packages__typed_data__src__typed_buffer$46dart.src__typed_buffer;
-  var serialization = Object.create(dart.library);
-  var $buffer = dartx.buffer;
-  var $asUint8List = dartx.asUint8List;
-  var $setUint16 = dartx.setUint16;
-  var $setUint32 = dartx.setUint32;
-  var $setInt32 = dartx.setInt32;
-  var $setInt64 = dartx.setInt64;
-  var $setFloat64 = dartx.setFloat64;
-  var $offsetInBytes = dartx.offsetInBytes;
-  var $length = dartx.length;
-  var $modulo = dartx['%'];
-  var $asByteData = dartx.asByteData;
-  var $lengthInBytes = dartx.lengthInBytes;
-  var $getUint8 = dartx.getUint8;
-  var $getUint16 = dartx.getUint16;
-  var $getUint32 = dartx.getUint32;
-  var $getInt32 = dartx.getInt32;
-  var $getInt64 = dartx.getInt64;
-  var $getFloat64 = dartx.getFloat64;
-  var $asInt32List = dartx.asInt32List;
-  var $asInt64List = dartx.asInt64List;
-  var $asFloat64List = dartx.asFloat64List;
+  const borders = packages__flutter__src__painting__borders$46dart.src__painting__borders;
+  const edge_insets = packages__flutter__src__painting__edge_insets$46dart.src__painting__edge_insets;
+  var table_border = Object.create(dart.library);
+  var $isEmpty = dartx.isEmpty;
+  var $first = dartx.first;
+  var $last = dartx.last;
+  var $isNotEmpty = dartx.isNotEmpty;
+  var $runtimeType = dartx.runtimeType;
   dart._checkModuleNullSafetyMode(false);
   const CT = Object.create({
     _: () => (C, CT)
   });
+  dart.defineLazy(CT, {
+    get C1() {
+      return C[1] = dart.const({
+        __proto__: borders.BorderStyle.prototype,
+        [_name]: "BorderStyle.none",
+        index: 0
+      });
+    },
+    get C2() {
+      return C[2] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4278190080.0
+      });
+    },
+    get C0() {
+      return C[0] = dart.const({
+        __proto__: borders.BorderSide.prototype,
+        [BorderSide_style]: C[1] || CT.C1,
+        [BorderSide_width]: 0,
+        [BorderSide_color]: C[2] || CT.C2
+      });
+    },
+    get C3() {
+      return C[3] = dart.const({
+        __proto__: borders.BorderStyle.prototype,
+        [_name]: "BorderStyle.solid",
+        index: 1
+      });
+    }
+  }, false);
+  var C = Array(4).fill(void 0);
   var I = [
-    "file:///C:/Users/Ejas/Desktop/App_files/flutter/packages/flutter/lib/src/foundation/serialization.dart",
-    "package:flutter/src/foundation/serialization.dart"
+    "file:///C:/src/flutter/packages/flutter/lib/src/rendering/table_border.dart",
+    "package:flutter/src/rendering/table_border.dart"
   ];
-  var __WriteBuffer__eightBytesAsList = dart.privateName(serialization, "_#WriteBuffer#_eightBytesAsList");
-  var __WriteBuffer__eightBytesAsList_isSet = dart.privateName(serialization, "_#WriteBuffer#_eightBytesAsList#isSet");
-  var _buffer = dart.privateName(serialization, "_buffer");
-  var _eightBytes = dart.privateName(serialization, "_eightBytes");
-  var _eightBytesAsList = dart.privateName(serialization, "_eightBytesAsList");
-  var _alignTo = dart.privateName(serialization, "_alignTo");
-  serialization.WriteBuffer = class WriteBuffer extends core.Object {
-    get [_eightBytesAsList]() {
-      let t0;
-      return dart.test(this[__WriteBuffer__eightBytesAsList_isSet]) ? (t0 = this[__WriteBuffer__eightBytesAsList], t0) : dart.throw(new _internal.LateError.fieldNI("_eightBytesAsList"));
+  var top$ = dart.privateName(table_border, "TableBorder.top");
+  var right$ = dart.privateName(table_border, "TableBorder.right");
+  var bottom$ = dart.privateName(table_border, "TableBorder.bottom");
+  var left$ = dart.privateName(table_border, "TableBorder.left");
+  var horizontalInside$ = dart.privateName(table_border, "TableBorder.horizontalInside");
+  var verticalInside$ = dart.privateName(table_border, "TableBorder.verticalInside");
+  var _name = dart.privateName(borders, "_name");
+  var BorderSide_style = dart.privateName(borders, "BorderSide.style");
+  var BorderSide_width = dart.privateName(borders, "BorderSide.width");
+  var Color_value = dart.privateName(ui, "Color.value");
+  var BorderSide_color = dart.privateName(borders, "BorderSide.color");
+  table_border.TableBorder = class TableBorder extends core.Object {
+    get top() {
+      return this[top$];
     }
-    set [_eightBytesAsList](t0) {
-      if (t0 == null) dart.nullFailed(I[0], 25, 18, "null");
-      this[__WriteBuffer__eightBytesAsList_isSet] = true;
-      this[__WriteBuffer__eightBytesAsList] = t0;
+    set top(value) {
+      super.top = value;
     }
-    putUint8(byte) {
-      if (byte == null) dart.nullFailed(I[0], 28, 21, "byte");
-      dart.nullCheck(this[_buffer]).add(byte);
+    get right() {
+      return this[right$];
     }
-    putUint16(value, opts) {
-      let t1;
-      if (value == null) dart.nullFailed(I[0], 33, 22, "value");
-      let endian = opts && 'endian' in opts ? opts.endian : null;
-      this[_eightBytes][$setUint16](0, value, (t1 = endian, t1 == null ? typed_data.Endian.host : t1));
-      dart.nullCheck(this[_buffer]).addAll(this[_eightBytesAsList], 0, 2);
+    set right(value) {
+      super.right = value;
     }
-    putUint32(value, opts) {
-      let t1;
-      if (value == null) dart.nullFailed(I[0], 39, 22, "value");
-      let endian = opts && 'endian' in opts ? opts.endian : null;
-      this[_eightBytes][$setUint32](0, value, (t1 = endian, t1 == null ? typed_data.Endian.host : t1));
-      dart.nullCheck(this[_buffer]).addAll(this[_eightBytesAsList], 0, 4);
+    get bottom() {
+      return this[bottom$];
     }
-    putInt32(value, opts) {
-      let t1;
-      if (value == null) dart.nullFailed(I[0], 45, 21, "value");
-      let endian = opts && 'endian' in opts ? opts.endian : null;
-      this[_eightBytes][$setInt32](0, value, (t1 = endian, t1 == null ? typed_data.Endian.host : t1));
-      dart.nullCheck(this[_buffer]).addAll(this[_eightBytesAsList], 0, 4);
+    set bottom(value) {
+      super.bottom = value;
     }
-    putInt64(value, opts) {
-      let t1;
-      if (value == null) dart.nullFailed(I[0], 51, 21, "value");
-      let endian = opts && 'endian' in opts ? opts.endian : null;
-      this[_eightBytes][$setInt64](0, value, (t1 = endian, t1 == null ? typed_data.Endian.host : t1));
-      dart.nullCheck(this[_buffer]).addAll(this[_eightBytesAsList], 0, 8);
+    get left() {
+      return this[left$];
     }
-    putFloat64(value, opts) {
-      let t1;
-      if (value == null) dart.nullFailed(I[0], 57, 26, "value");
-      let endian = opts && 'endian' in opts ? opts.endian : null;
-      this[_alignTo](8);
-      this[_eightBytes][$setFloat64](0, value, (t1 = endian, t1 == null ? typed_data.Endian.host : t1));
-      dart.nullCheck(this[_buffer]).addAll(this[_eightBytesAsList]);
+    set left(value) {
+      super.left = value;
     }
-    putUint8List(list) {
-      if (list == null) dart.nullFailed(I[0], 64, 31, "list");
-      dart.nullCheck(this[_buffer]).addAll(list);
+    get horizontalInside() {
+      return this[horizontalInside$];
     }
-    putInt32List(list) {
-      if (list == null) dart.nullFailed(I[0], 69, 31, "list");
-      this[_alignTo](4);
-      dart.nullCheck(this[_buffer]).addAll(list[$buffer][$asUint8List](list[$offsetInBytes], 4 * dart.notNull(list[$length])));
+    set horizontalInside(value) {
+      super.horizontalInside = value;
     }
-    putInt64List(list) {
-      if (list == null) dart.nullFailed(I[0], 75, 31, "list");
-      this[_alignTo](8);
-      dart.nullCheck(this[_buffer]).addAll(list[$buffer][$asUint8List](list[$offsetInBytes], 8 * dart.notNull(list[$length])));
+    get verticalInside() {
+      return this[verticalInside$];
     }
-    putFloat64List(list) {
-      if (list == null) dart.nullFailed(I[0], 81, 35, "list");
-      this[_alignTo](8);
-      dart.nullCheck(this[_buffer]).addAll(list[$buffer][$asUint8List](list[$offsetInBytes], 8 * dart.notNull(list[$length])));
+    set verticalInside(value) {
+      super.verticalInside = value;
     }
-    [_alignTo](alignment) {
-      if (alignment == null) dart.nullFailed(I[0], 86, 21, "alignment");
-      let mod = dart.nullCheck(this[_buffer]).length[$modulo](alignment);
-      if (mod !== 0) {
-        for (let i = 0; i < dart.notNull(alignment) - mod; i = i + 1)
-          dart.nullCheck(this[_buffer]).add(0);
+    static all(opts) {
+      let color = opts && 'color' in opts ? opts.color : C[2] || CT.C2;
+      if (color == null) dart.nullFailed(I[0], 32, 11, "color");
+      let width = opts && 'width' in opts ? opts.width : 1;
+      if (width == null) dart.nullFailed(I[0], 33, 12, "width");
+      let style = opts && 'style' in opts ? opts.style : C[3] || CT.C3;
+      if (style == null) dart.nullFailed(I[0], 34, 17, "style");
+      let side = new borders.BorderSide.new({color: color, width: width, style: style});
+      return new table_border.TableBorder.new({top: side, right: side, bottom: side, left: side, horizontalInside: side, verticalInside: side});
+    }
+    static symmetric(opts) {
+      let inside = opts && 'inside' in opts ? opts.inside : C[0] || CT.C0;
+      if (inside == null) dart.nullFailed(I[0], 43, 16, "inside");
+      let outside = opts && 'outside' in opts ? opts.outside : C[0] || CT.C0;
+      if (outside == null) dart.nullFailed(I[0], 44, 16, "outside");
+      return new table_border.TableBorder.new({top: outside, right: outside, bottom: outside, left: outside, horizontalInside: inside, verticalInside: inside});
+    }
+    get dimensions() {
+      return new edge_insets.EdgeInsets.fromLTRB(this.left.width, this.top.width, this.right.width, this.bottom.width);
+    }
+    get isUniform() {
+      if (!(this.top != null)) dart.assertFailed(null, I[0], 85, 12, "top != null");
+      if (!(this.right != null)) dart.assertFailed(null, I[0], 86, 12, "right != null");
+      if (!(this.bottom != null)) dart.assertFailed(null, I[0], 87, 12, "bottom != null");
+      if (!(this.left != null)) dart.assertFailed(null, I[0], 88, 12, "left != null");
+      if (!(this.horizontalInside != null)) dart.assertFailed(null, I[0], 89, 12, "horizontalInside != null");
+      if (!(this.verticalInside != null)) dart.assertFailed(null, I[0], 90, 12, "verticalInside != null");
+      let topColor = this.top.color;
+      if (!dart.equals(this.right.color, topColor) || !dart.equals(this.bottom.color, topColor) || !dart.equals(this.left.color, topColor) || !dart.equals(this.horizontalInside.color, topColor) || !dart.equals(this.verticalInside.color, topColor)) return false;
+      let topWidth = this.top.width;
+      if (this.right.width != topWidth || this.bottom.width != topWidth || this.left.width != topWidth || this.horizontalInside.width != topWidth || this.verticalInside.width != topWidth) return false;
+      let topStyle = this.top.style;
+      if (this.right.style != topStyle || this.bottom.style != topStyle || this.left.style != topStyle || this.horizontalInside.style != topStyle || this.verticalInside.style != topStyle) return false;
+      return true;
+    }
+    scale(t) {
+      if (t == null) dart.nullFailed(I[0], 134, 28, "t");
+      return new table_border.TableBorder.new({top: this.top.scale(t), right: this.right.scale(t), bottom: this.bottom.scale(t), left: this.left.scale(t), horizontalInside: this.horizontalInside.scale(t), verticalInside: this.verticalInside.scale(t)});
+    }
+    static lerp(a, b, t) {
+      if (t == null) dart.nullFailed(I[0], 151, 67, "t");
+      if (!(t != null)) dart.assertFailed(null, I[0], 152, 12, "t != null");
+      if (a == null && b == null) return null;
+      if (a == null) return dart.nullCheck(b).scale(t);
+      if (b == null) return a.scale(1.0 - dart.notNull(t));
+      return new table_border.TableBorder.new({top: borders.BorderSide.lerp(a.top, b.top, t), right: borders.BorderSide.lerp(a.right, b.right, t), bottom: borders.BorderSide.lerp(a.bottom, b.bottom, t), left: borders.BorderSide.lerp(a.left, b.left, t), horizontalInside: borders.BorderSide.lerp(a.horizontalInside, b.horizontalInside, t), verticalInside: borders.BorderSide.lerp(a.verticalInside, b.verticalInside, t)});
+    }
+    paint(canvas, rect, opts) {
+      let t0, t0$;
+      if (canvas == null) dart.nullFailed(I[0], 196, 12, "canvas");
+      if (rect == null) dart.nullFailed(I[0], 197, 10, "rect");
+      let rows = opts && 'rows' in opts ? opts.rows : null;
+      if (rows == null) dart.nullFailed(I[0], 198, 31, "rows");
+      let columns = opts && 'columns' in opts ? opts.columns : null;
+      if (columns == null) dart.nullFailed(I[0], 199, 31, "columns");
+      if (!(this.top != null)) dart.assertFailed(null, I[0], 202, 12, "top != null");
+      if (!(this.right != null)) dart.assertFailed(null, I[0], 203, 12, "right != null");
+      if (!(this.bottom != null)) dart.assertFailed(null, I[0], 204, 12, "bottom != null");
+      if (!(this.left != null)) dart.assertFailed(null, I[0], 205, 12, "left != null");
+      if (!(this.horizontalInside != null)) dart.assertFailed(null, I[0], 206, 12, "horizontalInside != null");
+      if (!(this.verticalInside != null)) dart.assertFailed(null, I[0], 207, 12, "verticalInside != null");
+      if (!(canvas != null)) dart.assertFailed(null, I[0], 210, 12, "canvas != null");
+      if (!(rect != null)) dart.assertFailed(null, I[0], 211, 12, "rect != null");
+      if (!(rows != null)) dart.assertFailed(null, I[0], 212, 12, "rows != null");
+      if (!(dart.test(rows[$isEmpty]) || dart.notNull(rows[$first]) >= 0.0 && dart.notNull(rows[$last]) <= dart.notNull(rect.height))) dart.assertFailed(null, I[0], 213, 12, "rows.isEmpty || (rows.first >= 0.0 && rows.last <= rect.height)");
+      if (!(columns != null)) dart.assertFailed(null, I[0], 214, 12, "columns != null");
+      if (!(dart.test(columns[$isEmpty]) || dart.notNull(columns[$first]) >= 0.0 && dart.notNull(columns[$last]) <= dart.notNull(rect.width))) dart.assertFailed(null, I[0], 215, 12, "columns.isEmpty || (columns.first >= 0.0 && columns.last <= rect.width)");
+      if (dart.test(columns[$isNotEmpty]) || dart.test(rows[$isNotEmpty])) {
+        let paint = ui.Paint.new();
+        let path = ui.Path.new();
+        if (dart.test(columns[$isNotEmpty])) {
+          switch (this.verticalInside.style) {
+            case C[3] || CT.C3:
+            {
+              t0 = paint;
+              (() => {
+                t0.color = this.verticalInside.color;
+                t0.strokeWidth = this.verticalInside.width;
+                t0.style = ui.PaintingStyle.stroke;
+                return t0;
+              })();
+              path.reset();
+              for (let x of columns) {
+                path.moveTo(dart.notNull(rect.left) + dart.notNull(x), rect.top);
+                path.lineTo(dart.notNull(rect.left) + dart.notNull(x), rect.bottom);
+              }
+              canvas.drawPath(path, paint);
+              break;
+            }
+            case C[1] || CT.C1:
+            {
+              break;
+            }
+            default:
+            {
+              dart.throw(new _internal.ReachabilityError.new("`null` encountered as case in a switch expression with a non-nullable enum type."));
+            }
+          }
+        }
+        if (dart.test(rows[$isNotEmpty])) {
+          switch (this.horizontalInside.style) {
+            case C[3] || CT.C3:
+            {
+              t0$ = paint;
+              (() => {
+                t0$.color = this.horizontalInside.color;
+                t0$.strokeWidth = this.horizontalInside.width;
+                t0$.style = ui.PaintingStyle.stroke;
+                return t0$;
+              })();
+              path.reset();
+              for (let y of rows) {
+                path.moveTo(rect.left, dart.notNull(rect.top) + dart.notNull(y));
+                path.lineTo(rect.right, dart.notNull(rect.top) + dart.notNull(y));
+              }
+              canvas.drawPath(path, paint);
+              break;
+            }
+            case C[1] || CT.C1:
+            {
+              break;
+            }
+            default:
+            {
+              dart.throw(new _internal.ReachabilityError.new("`null` encountered as case in a switch expression with a non-nullable enum type."));
+            }
+          }
+        }
       }
+      borders.paintBorder(canvas, rect, {top: this.top, right: this.right, bottom: this.bottom, left: this.left});
     }
-    done() {
-      let result = dart.nullCheck(this[_buffer]).buffer[$asByteData](0, dart.nullCheck(this[_buffer]).lengthInBytes);
-      this[_buffer] = null;
-      return result;
+    _equals(other) {
+      if (other == null) return false;
+      if (this === other) return true;
+      if (!dart.equals(dart.runtimeType(other), this[$runtimeType])) return false;
+      return table_border.TableBorder.is(other) && dart.equals(other.top, this.top) && dart.equals(other.right, this.right) && dart.equals(other.bottom, this.bottom) && dart.equals(other.left, this.left) && dart.equals(other.horizontalInside, this.horizontalInside) && dart.equals(other.verticalInside, this.verticalInside);
     }
-  };
-  (serialization.WriteBuffer.new = function() {
-    this[__WriteBuffer__eightBytesAsList] = null;
-    this[__WriteBuffer__eightBytesAsList_isSet] = false;
-    this[_buffer] = new typed_buffer.Uint8Buffer.new();
-    this[_eightBytes] = _native_typed_data.NativeByteData.new(8);
-    this[_eightBytesAsList] = this[_eightBytes][$buffer][$asUint8List]();
-  }).prototype = serialization.WriteBuffer.prototype;
-  dart.addTypeTests(serialization.WriteBuffer);
-  dart.addTypeCaches(serialization.WriteBuffer);
-  dart.setMethodSignature(serialization.WriteBuffer, () => ({
-    __proto__: dart.getMethods(serialization.WriteBuffer.__proto__),
-    putUint8: dart.fnType(dart.void, [core.int]),
-    putUint16: dart.fnType(dart.void, [core.int], {endian: dart.nullable(typed_data.Endian)}, {}),
-    putUint32: dart.fnType(dart.void, [core.int], {endian: dart.nullable(typed_data.Endian)}, {}),
-    putInt32: dart.fnType(dart.void, [core.int], {endian: dart.nullable(typed_data.Endian)}, {}),
-    putInt64: dart.fnType(dart.void, [core.int], {endian: dart.nullable(typed_data.Endian)}, {}),
-    putFloat64: dart.fnType(dart.void, [core.double], {endian: dart.nullable(typed_data.Endian)}, {}),
-    putUint8List: dart.fnType(dart.void, [typed_data.Uint8List]),
-    putInt32List: dart.fnType(dart.void, [typed_data.Int32List]),
-    putInt64List: dart.fnType(dart.void, [typed_data.Int64List]),
-    putFloat64List: dart.fnType(dart.void, [typed_data.Float64List]),
-    [_alignTo]: dart.fnType(dart.void, [core.int]),
-    done: dart.fnType(typed_data.ByteData, [])
-  }));
-  dart.setGetterSignature(serialization.WriteBuffer, () => ({
-    __proto__: dart.getGetters(serialization.WriteBuffer.__proto__),
-    [_eightBytesAsList]: typed_data.Uint8List
-  }));
-  dart.setSetterSignature(serialization.WriteBuffer, () => ({
-    __proto__: dart.getSetters(serialization.WriteBuffer.__proto__),
-    [_eightBytesAsList]: typed_data.Uint8List
-  }));
-  dart.setLibraryUri(serialization.WriteBuffer, I[1]);
-  dart.setFieldSignature(serialization.WriteBuffer, () => ({
-    __proto__: dart.getFields(serialization.WriteBuffer.__proto__),
-    [_buffer]: dart.fieldType(dart.nullable(typed_buffer.Uint8Buffer)),
-    [_eightBytes]: dart.finalFieldType(typed_data.ByteData),
-    [__WriteBuffer__eightBytesAsList]: dart.fieldType(dart.nullable(typed_data.Uint8List)),
-    [__WriteBuffer__eightBytesAsList_isSet]: dart.fieldType(core.bool)
-  }));
-  var data$ = dart.privateName(serialization, "ReadBuffer.data");
-  var _position = dart.privateName(serialization, "_position");
-  serialization.ReadBuffer = class ReadBuffer extends core.Object {
-    get data() {
-      return this[data$];
+    get hashCode() {
+      return ui.hashValues(this.top, this.right, this.bottom, this.left, this.horizontalInside, this.verticalInside);
     }
-    set data(value) {
-      super.data = value;
-    }
-    get hasRemaining() {
-      return dart.notNull(this[_position]) < dart.notNull(this.data[$lengthInBytes]);
-    }
-    getUint8() {
-      let t1;
-      return this.data[$getUint8]((t1 = this[_position], this[_position] = dart.notNull(t1) + 1, t1));
-    }
-    getUint16(opts) {
-      let t1;
-      let endian = opts && 'endian' in opts ? opts.endian : null;
-      let value = this.data[$getUint16](this[_position], (t1 = endian, t1 == null ? typed_data.Endian.host : t1));
-      this[_position] = dart.notNull(this[_position]) + 2;
-      return value;
-    }
-    getUint32(opts) {
-      let t1;
-      let endian = opts && 'endian' in opts ? opts.endian : null;
-      let value = this.data[$getUint32](this[_position], (t1 = endian, t1 == null ? typed_data.Endian.host : t1));
-      this[_position] = dart.notNull(this[_position]) + 4;
-      return value;
-    }
-    getInt32(opts) {
-      let t1;
-      let endian = opts && 'endian' in opts ? opts.endian : null;
-      let value = this.data[$getInt32](this[_position], (t1 = endian, t1 == null ? typed_data.Endian.host : t1));
-      this[_position] = dart.notNull(this[_position]) + 4;
-      return value;
-    }
-    getInt64(opts) {
-      let t1;
-      let endian = opts && 'endian' in opts ? opts.endian : null;
-      let value = this.data[$getInt64](this[_position], (t1 = endian, t1 == null ? typed_data.Endian.host : t1));
-      this[_position] = dart.notNull(this[_position]) + 8;
-      return value;
-    }
-    getFloat64(opts) {
-      let t1;
-      let endian = opts && 'endian' in opts ? opts.endian : null;
-      this[_alignTo](8);
-      let value = this.data[$getFloat64](this[_position], (t1 = endian, t1 == null ? typed_data.Endian.host : t1));
-      this[_position] = dart.notNull(this[_position]) + 8;
-      return value;
-    }
-    getUint8List(length) {
-      if (length == null) dart.nullFailed(I[0], 161, 30, "length");
-      let list = this.data[$buffer][$asUint8List](dart.notNull(this.data[$offsetInBytes]) + dart.notNull(this[_position]), length);
-      this[_position] = dart.notNull(this[_position]) + dart.notNull(length);
-      return list;
-    }
-    getInt32List(length) {
-      if (length == null) dart.nullFailed(I[0], 168, 30, "length");
-      this[_alignTo](4);
-      let list = this.data[$buffer][$asInt32List](dart.notNull(this.data[$offsetInBytes]) + dart.notNull(this[_position]), length);
-      this[_position] = dart.notNull(this[_position]) + 4 * dart.notNull(length);
-      return list;
-    }
-    getInt64List(length) {
-      if (length == null) dart.nullFailed(I[0], 176, 30, "length");
-      this[_alignTo](8);
-      let list = this.data[$buffer][$asInt64List](dart.notNull(this.data[$offsetInBytes]) + dart.notNull(this[_position]), length);
-      this[_position] = dart.notNull(this[_position]) + 8 * dart.notNull(length);
-      return list;
-    }
-    getFloat64List(length) {
-      if (length == null) dart.nullFailed(I[0], 184, 34, "length");
-      this[_alignTo](8);
-      let list = this.data[$buffer][$asFloat64List](dart.notNull(this.data[$offsetInBytes]) + dart.notNull(this[_position]), length);
-      this[_position] = dart.notNull(this[_position]) + 8 * dart.notNull(length);
-      return list;
-    }
-    [_alignTo](alignment) {
-      if (alignment == null) dart.nullFailed(I[0], 191, 21, "alignment");
-      let mod = this[_position][$modulo](alignment);
-      if (mod !== 0) this[_position] = dart.notNull(this[_position]) + (dart.notNull(alignment) - mod);
+    toString() {
+      return "TableBorder(" + dart.str(this.top) + ", " + dart.str(this.right) + ", " + dart.str(this.bottom) + ", " + dart.str(this.left) + ", " + dart.str(this.horizontalInside) + ", " + dart.str(this.verticalInside) + ")";
     }
   };
-  (serialization.ReadBuffer.new = function(data) {
-    if (data == null) dart.nullFailed(I[0], 107, 19, "data");
-    this[_position] = 0;
-    this[data$] = data;
-    if (!(data != null)) dart.assertFailed(null, I[0], 108, 14, "data != null");
+  (table_border.TableBorder.new = function(opts) {
+    let top = opts && 'top' in opts ? opts.top : C[0] || CT.C0;
+    if (top == null) dart.nullFailed(I[0], 20, 10, "top");
+    let right = opts && 'right' in opts ? opts.right : C[0] || CT.C0;
+    if (right == null) dart.nullFailed(I[0], 21, 10, "right");
+    let bottom = opts && 'bottom' in opts ? opts.bottom : C[0] || CT.C0;
+    if (bottom == null) dart.nullFailed(I[0], 22, 10, "bottom");
+    let left = opts && 'left' in opts ? opts.left : C[0] || CT.C0;
+    if (left == null) dart.nullFailed(I[0], 23, 10, "left");
+    let horizontalInside = opts && 'horizontalInside' in opts ? opts.horizontalInside : C[0] || CT.C0;
+    if (horizontalInside == null) dart.nullFailed(I[0], 24, 10, "horizontalInside");
+    let verticalInside = opts && 'verticalInside' in opts ? opts.verticalInside : C[0] || CT.C0;
+    if (verticalInside == null) dart.nullFailed(I[0], 25, 10, "verticalInside");
+    this[top$] = top;
+    this[right$] = right;
+    this[bottom$] = bottom;
+    this[left$] = left;
+    this[horizontalInside$] = horizontalInside;
+    this[verticalInside$] = verticalInside;
     ;
-  }).prototype = serialization.ReadBuffer.prototype;
-  dart.addTypeTests(serialization.ReadBuffer);
-  dart.addTypeCaches(serialization.ReadBuffer);
-  dart.setMethodSignature(serialization.ReadBuffer, () => ({
-    __proto__: dart.getMethods(serialization.ReadBuffer.__proto__),
-    getUint8: dart.fnType(core.int, []),
-    getUint16: dart.fnType(core.int, [], {endian: dart.nullable(typed_data.Endian)}, {}),
-    getUint32: dart.fnType(core.int, [], {endian: dart.nullable(typed_data.Endian)}, {}),
-    getInt32: dart.fnType(core.int, [], {endian: dart.nullable(typed_data.Endian)}, {}),
-    getInt64: dart.fnType(core.int, [], {endian: dart.nullable(typed_data.Endian)}, {}),
-    getFloat64: dart.fnType(core.double, [], {endian: dart.nullable(typed_data.Endian)}, {}),
-    getUint8List: dart.fnType(typed_data.Uint8List, [core.int]),
-    getInt32List: dart.fnType(typed_data.Int32List, [core.int]),
-    getInt64List: dart.fnType(typed_data.Int64List, [core.int]),
-    getFloat64List: dart.fnType(typed_data.Float64List, [core.int]),
-    [_alignTo]: dart.fnType(dart.void, [core.int])
+  }).prototype = table_border.TableBorder.prototype;
+  dart.addTypeTests(table_border.TableBorder);
+  dart.addTypeCaches(table_border.TableBorder);
+  dart.setMethodSignature(table_border.TableBorder, () => ({
+    __proto__: dart.getMethods(table_border.TableBorder.__proto__),
+    scale: dart.fnType(table_border.TableBorder, [core.double]),
+    paint: dart.fnType(dart.void, [ui.Canvas, ui.Rect], {}, {columns: core.Iterable$(core.double), rows: core.Iterable$(core.double)})
   }));
-  dart.setGetterSignature(serialization.ReadBuffer, () => ({
-    __proto__: dart.getGetters(serialization.ReadBuffer.__proto__),
-    hasRemaining: core.bool
+  dart.setGetterSignature(table_border.TableBorder, () => ({
+    __proto__: dart.getGetters(table_border.TableBorder.__proto__),
+    dimensions: edge_insets.EdgeInsets,
+    isUniform: core.bool
   }));
-  dart.setLibraryUri(serialization.ReadBuffer, I[1]);
-  dart.setFieldSignature(serialization.ReadBuffer, () => ({
-    __proto__: dart.getFields(serialization.ReadBuffer.__proto__),
-    data: dart.finalFieldType(typed_data.ByteData),
-    [_position]: dart.fieldType(core.int)
+  dart.setLibraryUri(table_border.TableBorder, I[1]);
+  dart.setFieldSignature(table_border.TableBorder, () => ({
+    __proto__: dart.getFields(table_border.TableBorder.__proto__),
+    top: dart.finalFieldType(borders.BorderSide),
+    right: dart.finalFieldType(borders.BorderSide),
+    bottom: dart.finalFieldType(borders.BorderSide),
+    left: dart.finalFieldType(borders.BorderSide),
+    horizontalInside: dart.finalFieldType(borders.BorderSide),
+    verticalInside: dart.finalFieldType(borders.BorderSide)
   }));
-  dart.trackLibraries("packages/flutter/src/foundation/serialization.dart", {
-    "package:flutter/src/foundation/serialization.dart": serialization
+  dart.defineExtensionMethods(table_border.TableBorder, ['_equals', 'toString']);
+  dart.defineExtensionAccessors(table_border.TableBorder, ['hashCode']);
+  dart.trackLibraries("packages/flutter/src/rendering/table_border.dart", {
+    "package:flutter/src/rendering/table_border.dart": table_border
   }, {
-  }, '{"version":3,"sourceRoot":"","sources":["serialization.dart"],"names":[],"mappings":"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","file":"../../../../../../../../../../packages/flutter/src/foundation/serialization.dart.lib.js"}');
+  }, '{"version":3,"sourceRoot":"","sources":["table_border.dart"],"names":[],"mappings":"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","file":"../../../../../../../../D:/packages/flutter/src/rendering/table_border.dart.lib.js"}');
   // Exports:
   return {
-    src__foundation__serialization: serialization
+    src__rendering__table_border: table_border
   };
 }));
 
-//# sourceMappingURL=serialization.dart.lib.js.map
+//# sourceMappingURL=table_border.dart.lib.js.map

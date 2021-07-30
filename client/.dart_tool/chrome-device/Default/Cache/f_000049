@@ -1,230 +1,714 @@
-define(['dart_sdk', 'packages/flutter/src/painting/borders.dart', 'packages/flutter/src/painting/colors.dart', 'packages/flutter/src/foundation/debug.dart'], (function load__packages__flutter__src__material__floating_action_button_theme_dart(dart_sdk, packages__flutter__src__painting__borders$46dart, packages__flutter__src__painting__colors$46dart, packages__flutter__src__foundation__debug$46dart) {
+define(['dart_sdk', 'packages/flutter/src/widgets/widget_span.dart', 'packages/flutter/src/material/icon_button.dart', 'packages/softdoc/screens/send_doc_screen/send_doc_screen.dart', 'packages/flutter_bloc/src/multi_bloc_listener.dart', 'packages/flutter/src/painting/edge_insets.dart', 'packages/flutter/src/rendering/flex.dart', 'packages/softdoc/screens/send_doc_screen/add_or_edit_recepient.dart', 'packages/softdoc/screens/send_doc_screen/select_recepient.dart', 'packages/softdoc/screens/detail_screen/detail_screen.dart', 'packages/softdoc/screens/detail_screen/vertical_approval_progress.dart', 'packages/flutter/src/material/progress_indicator.dart'], (function load__packages__softdoc__screens__desktop_screen__desktop_screen_dart(dart_sdk, packages__flutter__src__widgets__widget_span$46dart, packages__flutter__src__material__icon_button$46dart, packages__softdoc__screens__send_doc_screen__send_doc_screen$46dart, packages__flutter_bloc__src__multi_bloc_listener$46dart, packages__flutter__src__painting__edge_insets$46dart, packages__flutter__src__rendering__flex$46dart, packages__softdoc__screens__send_doc_screen__add_or_edit_recepient$46dart, packages__softdoc__screens__send_doc_screen__select_recepient$46dart, packages__softdoc__screens__detail_screen__detail_screen$46dart, packages__softdoc__screens__detail_screen__vertical_approval_progress$46dart, packages__flutter__src__material__progress_indicator$46dart) {
   'use strict';
   const core = dart_sdk.core;
-  const ui = dart_sdk.ui;
+  const _interceptors = dart_sdk._interceptors;
   const dart = dart_sdk.dart;
   const dartx = dart_sdk.dartx;
-  const borders = packages__flutter__src__painting__borders$46dart.src__painting__borders;
-  const colors = packages__flutter__src__painting__colors$46dart.src__painting__colors;
-  const diagnostics = packages__flutter__src__foundation__debug$46dart.src__foundation__diagnostics;
-  var floating_action_button_theme = Object.create(dart.library);
-  var $runtimeType = dartx.runtimeType;
+  const framework = packages__flutter__src__widgets__widget_span$46dart.src__widgets__framework;
+  const media_query = packages__flutter__src__widgets__widget_span$46dart.src__widgets__media_query;
+  const basic = packages__flutter__src__widgets__widget_span$46dart.src__widgets__basic;
+  const container = packages__flutter__src__widgets__widget_span$46dart.src__widgets__container;
+  const widget_inspector = packages__flutter__src__widgets__widget_span$46dart.src__widgets__widget_inspector;
+  const text = packages__flutter__src__widgets__widget_span$46dart.src__widgets__text;
+  const scaffold = packages__flutter__src__material__icon_button$46dart.src__material__scaffold;
+  const home_screen = packages__softdoc__screens__send_doc_screen__send_doc_screen$46dart.screens__home_screen__home_screen;
+  const desktopnav_cubit = packages__softdoc__screens__send_doc_screen__send_doc_screen$46dart.cubit__desktop_nav_cubit__desktopnav_cubit;
+  const send_doc_screen = packages__softdoc__screens__send_doc_screen__send_doc_screen$46dart.screens__send_doc_screen__send_doc_screen;
+  const bloc_builder = packages__flutter_bloc__src__multi_bloc_listener$46dart.src__bloc_builder;
+  const edge_insets = packages__flutter__src__painting__edge_insets$46dart.src__painting__edge_insets;
+  const flex = packages__flutter__src__rendering__flex$46dart.src__rendering__flex;
+  const add_or_edit_recepient = packages__softdoc__screens__send_doc_screen__add_or_edit_recepient$46dart.screens__send_doc_screen__add_or_edit_recepient;
+  const select_recepient = packages__softdoc__screens__send_doc_screen__select_recepient$46dart.screens__send_doc_screen__select_recepient;
+  const detail_screen = packages__softdoc__screens__detail_screen__detail_screen$46dart.screens__detail_screen__detail_screen;
+  const vertical_approval_progress = packages__softdoc__screens__detail_screen__vertical_approval_progress$46dart.screens__detail_screen__vertical_approval_progress;
+  const progress_indicator = packages__flutter__src__material__progress_indicator$46dart.src__material__progress_indicator;
+  var desktop_screen = Object.create(dart.library);
   dart._checkModuleNullSafetyMode(false);
   var T = {
-    DiagnosticsPropertyOfShapeBorder: () => (T.DiagnosticsPropertyOfShapeBorder = dart.constFn(diagnostics.DiagnosticsProperty$(borders.ShapeBorder)))()
+    VoidToNull: () => (T.VoidToNull = dart.constFn(dart.fnType(core.Null, [])))(),
+    _LocationL: () => (T._LocationL = dart.constFn(dart.legacy(widget_inspector._Location)))(),
+    DesktopNavCubitL: () => (T.DesktopNavCubitL = dart.constFn(dart.legacy(desktopnav_cubit.DesktopNavCubit)))(),
+    DesktopNavStateL: () => (T.DesktopNavStateL = dart.constFn(dart.legacy(desktopnav_cubit.DesktopNavState)))(),
+    BlocBuilderOfDesktopNavCubitL$DesktopNavStateL: () => (T.BlocBuilderOfDesktopNavCubitL$DesktopNavStateL = dart.constFn(bloc_builder.BlocBuilder$(T.DesktopNavCubitL(), T.DesktopNavStateL())))(),
+    SendDocScreenNavL: () => (T.SendDocScreenNavL = dart.constFn(dart.legacy(desktopnav_cubit.SendDocScreenNav)))(),
+    WidgetL: () => (T.WidgetL = dart.constFn(dart.legacy(framework.Widget)))(),
+    JSArrayOfWidgetL: () => (T.JSArrayOfWidgetL = dart.constFn(_interceptors.JSArray$(T.WidgetL())))(),
+    DetailScreenNavL: () => (T.DetailScreenNavL = dart.constFn(dart.legacy(desktopnav_cubit.DetailScreenNav)))(),
+    HomeScreenNavL: () => (T.HomeScreenNavL = dart.constFn(dart.legacy(desktopnav_cubit.HomeScreenNav)))(),
+    BuildContextL: () => (T.BuildContextL = dart.constFn(dart.legacy(framework.BuildContext)))(),
+    BuildContextLAndDesktopNavStateLToWidgetL: () => (T.BuildContextLAndDesktopNavStateLToWidgetL = dart.constFn(dart.fnType(T.WidgetL(), [T.BuildContextL(), T.DesktopNavStateL()])))()
   };
   const CT = Object.create({
     _: () => (C, CT)
   });
   dart.defineLazy(CT, {
+    get C2() {
+      return C[2] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "isDesktop",
+        [_Location_column]: 31,
+        [_Location_line]: 33,
+        [_Location_file]: null
+      });
+    },
+    get C1() {
+      return C[1] = dart.constList([C[2] || CT.C2], T._LocationL());
+    },
     get C0() {
       return C[0] = dart.const({
-        __proto__: floating_action_button_theme.FloatingActionButtonThemeData.prototype,
-        [shape$]: null,
-        [highlightElevation$]: null,
-        [disabledElevation$]: null,
-        [hoverElevation$]: null,
-        [focusElevation$]: null,
-        [elevation$]: null,
-        [splashColor$]: null,
-        [hoverColor$]: null,
-        [focusColor$]: null,
-        [backgroundColor$]: null,
-        [foregroundColor$]: null
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[1] || CT.C1,
+        [_Location_name]: null,
+        [_Location_column]: 20,
+        [_Location_line]: 33,
+        [_Location_file]: "file:///D:/Abdul-Mateen/Edu/curricular/Year%203%20sem%202/COE%20356%20Intro%20to%20Software%20engineering/Project/Papperless-Document-Handling-System/client/lib/screens/desktop_screen/desktop_screen.dart"
+      });
+    },
+    get C5() {
+      return C[5] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "height",
+        [_Location_column]: 13,
+        [_Location_line]: 31,
+        [_Location_file]: null
+      });
+    },
+    get C6() {
+      return C[6] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "width",
+        [_Location_column]: 13,
+        [_Location_line]: 32,
+        [_Location_file]: null
+      });
+    },
+    get C7() {
+      return C[7] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 13,
+        [_Location_line]: 33,
+        [_Location_file]: null
+      });
+    },
+    get C4() {
+      return C[4] = dart.constList([C[5] || CT.C5, C[6] || CT.C6, C[7] || CT.C7], T._LocationL());
+    },
+    get C3() {
+      return C[3] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[4] || CT.C4,
+        [_Location_name]: null,
+        [_Location_column]: 11,
+        [_Location_line]: 30,
+        [_Location_file]: "file:///D:/Abdul-Mateen/Edu/curricular/Year%203%20sem%202/COE%20356%20Intro%20to%20Software%20engineering/Project/Papperless-Document-Handling-System/client/lib/screens/desktop_screen/desktop_screen.dart"
+      });
+    },
+    get C10() {
+      return C[10] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "isDesktop",
+        [_Location_column]: 53,
+        [_Location_line]: 42,
+        [_Location_file]: null
+      });
+    },
+    get C9() {
+      return C[9] = dart.constList([C[10] || CT.C10], T._LocationL());
+    },
+    get C8() {
+      return C[8] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[9] || CT.C9,
+        [_Location_name]: null,
+        [_Location_column]: 39,
+        [_Location_line]: 42,
+        [_Location_file]: "file:///D:/Abdul-Mateen/Edu/curricular/Year%203%20sem%202/COE%20356%20Intro%20to%20Software%20engineering/Project/Papperless-Document-Handling-System/client/lib/screens/desktop_screen/desktop_screen.dart"
+      });
+    },
+    get C13() {
+      return C[13] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 32,
+        [_Location_line]: 42,
+        [_Location_file]: null
+      });
+    },
+    get C12() {
+      return C[12] = dart.constList([C[13] || CT.C13], T._LocationL());
+    },
+    get C11() {
+      return C[11] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[12] || CT.C12,
+        [_Location_name]: null,
+        [_Location_column]: 23,
+        [_Location_line]: 42,
+        [_Location_file]: "file:///D:/Abdul-Mateen/Edu/curricular/Year%203%20sem%202/COE%20356%20Intro%20to%20Software%20engineering/Project/Papperless-Document-Handling-System/client/lib/screens/desktop_screen/desktop_screen.dart"
+      });
+    },
+    get C16() {
+      return C[16] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 35,
+        [_Location_line]: 52,
+        [_Location_file]: null
+      });
+    },
+    get C15() {
+      return C[15] = dart.constList([C[16] || CT.C16], T._LocationL());
+    },
+    get C14() {
+      return C[14] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[15] || CT.C15,
+        [_Location_name]: null,
+        [_Location_column]: 31,
+        [_Location_line]: 51,
+        [_Location_file]: "file:///D:/Abdul-Mateen/Edu/curricular/Year%203%20sem%202/COE%20356%20Intro%20to%20Software%20engineering/Project/Papperless-Document-Handling-System/client/lib/screens/desktop_screen/desktop_screen.dart"
+      });
+    },
+    get C19() {
+      return C[19] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "height",
+        [_Location_column]: 40,
+        [_Location_line]: 54,
+        [_Location_file]: null
+      });
+    },
+    get C18() {
+      return C[18] = dart.constList([C[19] || CT.C19], T._LocationL());
+    },
+    get C17() {
+      return C[17] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[18] || CT.C18,
+        [_Location_name]: null,
+        [_Location_column]: 31,
+        [_Location_line]: 54,
+        [_Location_file]: "file:///D:/Abdul-Mateen/Edu/curricular/Year%203%20sem%202/COE%20356%20Intro%20to%20Software%20engineering/Project/Papperless-Document-Handling-System/client/lib/screens/desktop_screen/desktop_screen.dart"
+      });
+    },
+    get C22() {
+      return C[22] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 40,
+        [_Location_line]: 55,
+        [_Location_file]: null
+      });
+    },
+    get C21() {
+      return C[21] = dart.constList([C[22] || CT.C22], T._LocationL());
+    },
+    get C20() {
+      return C[20] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[21] || CT.C21,
+        [_Location_name]: null,
+        [_Location_column]: 31,
+        [_Location_line]: 55,
+        [_Location_file]: "file:///D:/Abdul-Mateen/Edu/curricular/Year%203%20sem%202/COE%20356%20Intro%20to%20Software%20engineering/Project/Papperless-Document-Handling-System/client/lib/screens/desktop_screen/desktop_screen.dart"
+      });
+    },
+    get C25() {
+      return C[25] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "mainAxisAlignment",
+        [_Location_column]: 29,
+        [_Location_line]: 49,
+        [_Location_file]: null
+      });
+    },
+    get C26() {
+      return C[26] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "children",
+        [_Location_column]: 29,
+        [_Location_line]: 50,
+        [_Location_file]: null
+      });
+    },
+    get C24() {
+      return C[24] = dart.constList([C[25] || CT.C25, C[26] || CT.C26], T._LocationL());
+    },
+    get C23() {
+      return C[23] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[24] || CT.C24,
+        [_Location_name]: null,
+        [_Location_column]: 34,
+        [_Location_line]: 48,
+        [_Location_file]: "file:///D:/Abdul-Mateen/Edu/curricular/Year%203%20sem%202/COE%20356%20Intro%20to%20Software%20engineering/Project/Papperless-Document-Handling-System/client/lib/screens/desktop_screen/desktop_screen.dart"
+      });
+    },
+    get C29() {
+      return C[29] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "padding",
+        [_Location_column]: 27,
+        [_Location_line]: 46,
+        [_Location_file]: null
+      });
+    },
+    get C30() {
+      return C[30] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 27,
+        [_Location_line]: 48,
+        [_Location_file]: null
+      });
+    },
+    get C28() {
+      return C[28] = dart.constList([C[29] || CT.C29, C[30] || CT.C30], T._LocationL());
+    },
+    get C27() {
+      return C[27] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[28] || CT.C28,
+        [_Location_name]: null,
+        [_Location_column]: 32,
+        [_Location_line]: 44,
+        [_Location_file]: "file:///D:/Abdul-Mateen/Edu/curricular/Year%203%20sem%202/COE%20356%20Intro%20to%20Software%20engineering/Project/Papperless-Document-Handling-System/client/lib/screens/desktop_screen/desktop_screen.dart"
+      });
+    },
+    get C33() {
+      return C[33] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 25,
+        [_Location_line]: 44,
+        [_Location_file]: null
+      });
+    },
+    get C32() {
+      return C[32] = dart.constList([C[33] || CT.C33], T._LocationL());
+    },
+    get C31() {
+      return C[31] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[32] || CT.C32,
+        [_Location_name]: null,
+        [_Location_column]: 23,
+        [_Location_line]: 43,
+        [_Location_file]: "file:///D:/Abdul-Mateen/Edu/curricular/Year%203%20sem%202/COE%20356%20Intro%20to%20Software%20engineering/Project/Papperless-Document-Handling-System/client/lib/screens/desktop_screen/desktop_screen.dart"
+      });
+    },
+    get C36() {
+      return C[36] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "children",
+        [_Location_column]: 21,
+        [_Location_line]: 41,
+        [_Location_file]: null
+      });
+    },
+    get C35() {
+      return C[35] = dart.constList([C[36] || CT.C36], T._LocationL());
+    },
+    get C34() {
+      return C[34] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[35] || CT.C35,
+        [_Location_name]: null,
+        [_Location_column]: 26,
+        [_Location_line]: 40,
+        [_Location_file]: "file:///D:/Abdul-Mateen/Edu/curricular/Year%203%20sem%202/COE%20356%20Intro%20to%20Software%20engineering/Project/Papperless-Document-Handling-System/client/lib/screens/desktop_screen/desktop_screen.dart"
+      });
+    },
+    get C39() {
+      return C[39] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "isDesktop",
+        [_Location_column]: 25,
+        [_Location_line]: 69,
+        [_Location_file]: null
+      });
+    },
+    get C40() {
+      return C[40] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "selectedDoc",
+        [_Location_column]: 25,
+        [_Location_line]: 70,
+        [_Location_file]: null
+      });
+    },
+    get C38() {
+      return C[38] = dart.constList([C[39] || CT.C39, C[40] || CT.C40], T._LocationL());
+    },
+    get C37() {
+      return C[37] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[38] || CT.C38,
+        [_Location_name]: null,
+        [_Location_column]: 34,
+        [_Location_line]: 68,
+        [_Location_file]: "file:///D:/Abdul-Mateen/Edu/curricular/Year%203%20sem%202/COE%20356%20Intro%20to%20Software%20engineering/Project/Papperless-Document-Handling-System/client/lib/screens/desktop_screen/desktop_screen.dart"
+      });
+    },
+    get C43() {
+      return C[43] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 27,
+        [_Location_line]: 68,
+        [_Location_file]: null
+      });
+    },
+    get C42() {
+      return C[42] = dart.constList([C[43] || CT.C43], T._LocationL());
+    },
+    get C41() {
+      return C[41] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[42] || CT.C42,
+        [_Location_name]: null,
+        [_Location_column]: 23,
+        [_Location_line]: 67,
+        [_Location_file]: "file:///D:/Abdul-Mateen/Edu/curricular/Year%203%20sem%202/COE%20356%20Intro%20to%20Software%20engineering/Project/Papperless-Document-Handling-System/client/lib/screens/desktop_screen/desktop_screen.dart"
+      });
+    },
+    get C46() {
+      return C[46] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "approvalList",
+        [_Location_column]: 29,
+        [_Location_line]: 75,
+        [_Location_file]: null
+      });
+    },
+    get C47() {
+      return C[47] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "docStatus",
+        [_Location_column]: 29,
+        [_Location_line]: 76,
+        [_Location_file]: null
+      });
+    },
+    get C45() {
+      return C[45] = dart.constList([C[46] || CT.C46, C[47] || CT.C47], T._LocationL());
+    },
+    get C44() {
+      return C[44] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[45] || CT.C45,
+        [_Location_name]: null,
+        [_Location_column]: 34,
+        [_Location_line]: 74,
+        [_Location_file]: "file:///D:/Abdul-Mateen/Edu/curricular/Year%203%20sem%202/COE%20356%20Intro%20to%20Software%20engineering/Project/Papperless-Document-Handling-System/client/lib/screens/desktop_screen/desktop_screen.dart"
+      });
+    },
+    get C50() {
+      return C[50] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 27,
+        [_Location_line]: 74,
+        [_Location_file]: null
+      });
+    },
+    get C49() {
+      return C[49] = dart.constList([C[50] || CT.C50], T._LocationL());
+    },
+    get C48() {
+      return C[48] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[49] || CT.C49,
+        [_Location_name]: null,
+        [_Location_column]: 32,
+        [_Location_line]: 73,
+        [_Location_file]: "file:///D:/Abdul-Mateen/Edu/curricular/Year%203%20sem%202/COE%20356%20Intro%20to%20Software%20engineering/Project/Papperless-Document-Handling-System/client/lib/screens/desktop_screen/desktop_screen.dart"
+      });
+    },
+    get C53() {
+      return C[53] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 25,
+        [_Location_line]: 73,
+        [_Location_file]: null
+      });
+    },
+    get C52() {
+      return C[52] = dart.constList([C[53] || CT.C53], T._LocationL());
+    },
+    get C51() {
+      return C[51] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[52] || CT.C52,
+        [_Location_name]: null,
+        [_Location_column]: 23,
+        [_Location_line]: 72,
+        [_Location_file]: "file:///D:/Abdul-Mateen/Edu/curricular/Year%203%20sem%202/COE%20356%20Intro%20to%20Software%20engineering/Project/Papperless-Document-Handling-System/client/lib/screens/desktop_screen/desktop_screen.dart"
+      });
+    },
+    get C56() {
+      return C[56] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "children",
+        [_Location_column]: 21,
+        [_Location_line]: 66,
+        [_Location_file]: null
+      });
+    },
+    get C55() {
+      return C[55] = dart.constList([C[56] || CT.C56], T._LocationL());
+    },
+    get C54() {
+      return C[54] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[55] || CT.C55,
+        [_Location_name]: null,
+        [_Location_column]: 26,
+        [_Location_line]: 65,
+        [_Location_file]: "file:///D:/Abdul-Mateen/Edu/curricular/Year%203%20sem%202/COE%20356%20Intro%20to%20Software%20engineering/Project/Papperless-Document-Handling-System/client/lib/screens/desktop_screen/desktop_screen.dart"
+      });
+    },
+    get C59() {
+      return C[59] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "data",
+        [_Location_column]: 45,
+        [_Location_line]: 83,
+        [_Location_file]: null
+      });
+    },
+    get C58() {
+      return C[58] = dart.constList([C[59] || CT.C59], T._LocationL());
+    },
+    get C57() {
+      return C[57] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[58] || CT.C58,
+        [_Location_name]: null,
+        [_Location_column]: 40,
+        [_Location_line]: 83,
+        [_Location_file]: "file:///D:/Abdul-Mateen/Edu/curricular/Year%203%20sem%202/COE%20356%20Intro%20to%20Software%20engineering/Project/Papperless-Document-Handling-System/client/lib/screens/desktop_screen/desktop_screen.dart"
+      });
+    },
+    get C62() {
+      return C[62] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 33,
+        [_Location_line]: 83,
+        [_Location_file]: null
+      });
+    },
+    get C61() {
+      return C[61] = dart.constList([C[62] || CT.C62], T._LocationL());
+    },
+    get C60() {
+      return C[60] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[61] || CT.C61,
+        [_Location_name]: null,
+        [_Location_column]: 26,
+        [_Location_line]: 83,
+        [_Location_file]: "file:///D:/Abdul-Mateen/Edu/curricular/Year%203%20sem%202/COE%20356%20Intro%20to%20Software%20engineering/Project/Papperless-Document-Handling-System/client/lib/screens/desktop_screen/desktop_screen.dart"
+      });
+    },
+    get C64() {
+      return C[64] = dart.constList([], T._LocationL());
+    },
+    get C63() {
+      return C[63] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[64] || CT.C64,
+        [_Location_name]: null,
+        [_Location_column]: 24,
+        [_Location_line]: 85,
+        [_Location_file]: "file:///D:/Abdul-Mateen/Edu/curricular/Year%203%20sem%202/COE%20356%20Intro%20to%20Software%20engineering/Project/Papperless-Document-Handling-System/client/lib/screens/desktop_screen/desktop_screen.dart"
+      });
+    },
+    get C67() {
+      return C[67] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "builder",
+        [_Location_column]: 15,
+        [_Location_line]: 37,
+        [_Location_file]: null
+      });
+    },
+    get C66() {
+      return C[66] = dart.constList([C[67] || CT.C67], T._LocationL());
+    },
+    get C65() {
+      return C[65] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[66] || CT.C66,
+        [_Location_name]: null,
+        [_Location_column]: 20,
+        [_Location_line]: 36,
+        [_Location_file]: "file:///D:/Abdul-Mateen/Edu/curricular/Year%203%20sem%202/COE%20356%20Intro%20to%20Software%20engineering/Project/Papperless-Document-Handling-System/client/lib/screens/desktop_screen/desktop_screen.dart"
+      });
+    },
+    get C70() {
+      return C[70] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 13,
+        [_Location_line]: 36,
+        [_Location_file]: null
+      });
+    },
+    get C69() {
+      return C[69] = dart.constList([C[70] || CT.C70], T._LocationL());
+    },
+    get C68() {
+      return C[68] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[69] || CT.C69,
+        [_Location_name]: null,
+        [_Location_column]: 11,
+        [_Location_line]: 35,
+        [_Location_file]: "file:///D:/Abdul-Mateen/Edu/curricular/Year%203%20sem%202/COE%20356%20Intro%20to%20Software%20engineering/Project/Papperless-Document-Handling-System/client/lib/screens/desktop_screen/desktop_screen.dart"
+      });
+    },
+    get C73() {
+      return C[73] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "children",
+        [_Location_column]: 9,
+        [_Location_line]: 29,
+        [_Location_file]: null
+      });
+    },
+    get C72() {
+      return C[72] = dart.constList([C[73] || CT.C73], T._LocationL());
+    },
+    get C71() {
+      return C[71] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[72] || CT.C72,
+        [_Location_name]: null,
+        [_Location_column]: 13,
+        [_Location_line]: 28,
+        [_Location_file]: "file:///D:/Abdul-Mateen/Edu/curricular/Year%203%20sem%202/COE%20356%20Intro%20to%20Software%20engineering/Project/Papperless-Document-Handling-System/client/lib/screens/desktop_screen/desktop_screen.dart"
+      });
+    },
+    get C76() {
+      return C[76] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "body",
+        [_Location_column]: 7,
+        [_Location_line]: 28,
+        [_Location_file]: null
+      });
+    },
+    get C75() {
+      return C[75] = dart.constList([C[76] || CT.C76], T._LocationL());
+    },
+    get C74() {
+      return C[74] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[75] || CT.C75,
+        [_Location_name]: null,
+        [_Location_column]: 12,
+        [_Location_line]: 27,
+        [_Location_file]: "file:///D:/Abdul-Mateen/Edu/curricular/Year%203%20sem%202/COE%20356%20Intro%20to%20Software%20engineering/Project/Papperless-Document-Handling-System/client/lib/screens/desktop_screen/desktop_screen.dart"
       });
     }
   }, false);
-  var C = [void 0];
-  var I = [
-    "file:///C:/Users/Ejas/Desktop/App_files/flutter/packages/flutter/lib/src/material/floating_action_button_theme.dart",
-    "package:flutter/src/material/floating_action_button_theme.dart"
-  ];
-  var foregroundColor$ = dart.privateName(floating_action_button_theme, "FloatingActionButtonThemeData.foregroundColor");
-  var backgroundColor$ = dart.privateName(floating_action_button_theme, "FloatingActionButtonThemeData.backgroundColor");
-  var focusColor$ = dart.privateName(floating_action_button_theme, "FloatingActionButtonThemeData.focusColor");
-  var hoverColor$ = dart.privateName(floating_action_button_theme, "FloatingActionButtonThemeData.hoverColor");
-  var splashColor$ = dart.privateName(floating_action_button_theme, "FloatingActionButtonThemeData.splashColor");
-  var elevation$ = dart.privateName(floating_action_button_theme, "FloatingActionButtonThemeData.elevation");
-  var focusElevation$ = dart.privateName(floating_action_button_theme, "FloatingActionButtonThemeData.focusElevation");
-  var hoverElevation$ = dart.privateName(floating_action_button_theme, "FloatingActionButtonThemeData.hoverElevation");
-  var disabledElevation$ = dart.privateName(floating_action_button_theme, "FloatingActionButtonThemeData.disabledElevation");
-  var highlightElevation$ = dart.privateName(floating_action_button_theme, "FloatingActionButtonThemeData.highlightElevation");
-  var shape$ = dart.privateName(floating_action_button_theme, "FloatingActionButtonThemeData.shape");
-  const Object_Diagnosticable$36 = class Object_Diagnosticable extends core.Object {};
-  (Object_Diagnosticable$36.new = function() {
-  }).prototype = Object_Diagnosticable$36.prototype;
-  dart.applyMixin(Object_Diagnosticable$36, diagnostics.Diagnosticable);
-  floating_action_button_theme.FloatingActionButtonThemeData = class FloatingActionButtonThemeData extends Object_Diagnosticable$36 {
-    get foregroundColor() {
-      return this[foregroundColor$];
-    }
-    set foregroundColor(value) {
-      super.foregroundColor = value;
-    }
-    get backgroundColor() {
-      return this[backgroundColor$];
-    }
-    set backgroundColor(value) {
-      super.backgroundColor = value;
-    }
-    get focusColor() {
-      return this[focusColor$];
-    }
-    set focusColor(value) {
-      super.focusColor = value;
-    }
-    get hoverColor() {
-      return this[hoverColor$];
-    }
-    set hoverColor(value) {
-      super.hoverColor = value;
-    }
-    get splashColor() {
-      return this[splashColor$];
-    }
-    set splashColor(value) {
-      super.splashColor = value;
-    }
-    get elevation() {
-      return this[elevation$];
-    }
-    set elevation(value) {
-      super.elevation = value;
-    }
-    get focusElevation() {
-      return this[focusElevation$];
-    }
-    set focusElevation(value) {
-      super.focusElevation = value;
-    }
-    get hoverElevation() {
-      return this[hoverElevation$];
-    }
-    set hoverElevation(value) {
-      super.hoverElevation = value;
-    }
-    get disabledElevation() {
-      return this[disabledElevation$];
-    }
-    set disabledElevation(value) {
-      super.disabledElevation = value;
-    }
-    get highlightElevation() {
-      return this[highlightElevation$];
-    }
-    set highlightElevation(value) {
-      super.highlightElevation = value;
-    }
-    get shape() {
-      return this[shape$];
-    }
-    set shape(value) {
-      super.shape = value;
-    }
-    copyWith(opts) {
-      let t0, t0$, t0$0, t0$1, t0$2, t0$3, t0$4, t0$5, t0$6, t0$7, t0$8;
-      let foregroundColor = opts && 'foregroundColor' in opts ? opts.foregroundColor : null;
-      let backgroundColor = opts && 'backgroundColor' in opts ? opts.backgroundColor : null;
-      let focusColor = opts && 'focusColor' in opts ? opts.focusColor : null;
-      let hoverColor = opts && 'hoverColor' in opts ? opts.hoverColor : null;
-      let splashColor = opts && 'splashColor' in opts ? opts.splashColor : null;
-      let elevation = opts && 'elevation' in opts ? opts.elevation : null;
-      let focusElevation = opts && 'focusElevation' in opts ? opts.focusElevation : null;
-      let hoverElevation = opts && 'hoverElevation' in opts ? opts.hoverElevation : null;
-      let disabledElevation = opts && 'disabledElevation' in opts ? opts.disabledElevation : null;
-      let highlightElevation = opts && 'highlightElevation' in opts ? opts.highlightElevation : null;
-      let shape = opts && 'shape' in opts ? opts.shape : null;
-      return new floating_action_button_theme.FloatingActionButtonThemeData.new({foregroundColor: (t0 = foregroundColor, t0 == null ? this.foregroundColor : t0), backgroundColor: (t0$ = backgroundColor, t0$ == null ? this.backgroundColor : t0$), focusColor: (t0$0 = focusColor, t0$0 == null ? this.focusColor : t0$0), hoverColor: (t0$1 = hoverColor, t0$1 == null ? this.hoverColor : t0$1), splashColor: (t0$2 = splashColor, t0$2 == null ? this.splashColor : t0$2), elevation: (t0$3 = elevation, t0$3 == null ? this.elevation : t0$3), focusElevation: (t0$4 = focusElevation, t0$4 == null ? this.focusElevation : t0$4), hoverElevation: (t0$5 = hoverElevation, t0$5 == null ? this.hoverElevation : t0$5), disabledElevation: (t0$6 = disabledElevation, t0$6 == null ? this.disabledElevation : t0$6), highlightElevation: (t0$7 = highlightElevation, t0$7 == null ? this.highlightElevation : t0$7), shape: (t0$8 = shape, t0$8 == null ? this.shape : t0$8)});
-    }
-    static lerp(a, b, t) {
-      let t0, t0$, t0$0, t0$1, t0$2, t0$3, t0$4, t0$5, t0$6, t0$7, t0$8, t0$9, t0$10, t0$11, t0$12, t0$13, t0$14, t0$15, t0$16, t0$17, t0$18, t0$19;
-      if (t == null) dart.nullFailed(I[0], 127, 121, "t");
-      if (!(t != null)) dart.assertFailed(null, I[0], 128, 12, "t != null");
-      if (a == null && b == null) return null;
-      return new floating_action_button_theme.FloatingActionButtonThemeData.new({foregroundColor: ui.Color.lerp((t0 = a, t0 == null ? null : t0.foregroundColor), (t0$ = b, t0$ == null ? null : t0$.foregroundColor), t), backgroundColor: ui.Color.lerp((t0$0 = a, t0$0 == null ? null : t0$0.backgroundColor), (t0$1 = b, t0$1 == null ? null : t0$1.backgroundColor), t), focusColor: ui.Color.lerp((t0$2 = a, t0$2 == null ? null : t0$2.focusColor), (t0$3 = b, t0$3 == null ? null : t0$3.focusColor), t), hoverColor: ui.Color.lerp((t0$4 = a, t0$4 == null ? null : t0$4.hoverColor), (t0$5 = b, t0$5 == null ? null : t0$5.hoverColor), t), splashColor: ui.Color.lerp((t0$6 = a, t0$6 == null ? null : t0$6.splashColor), (t0$7 = b, t0$7 == null ? null : t0$7.splashColor), t), elevation: ui.lerpDouble((t0$8 = a, t0$8 == null ? null : t0$8.elevation), (t0$9 = b, t0$9 == null ? null : t0$9.elevation), t), focusElevation: ui.lerpDouble((t0$10 = a, t0$10 == null ? null : t0$10.focusElevation), (t0$11 = b, t0$11 == null ? null : t0$11.focusElevation), t), hoverElevation: ui.lerpDouble((t0$12 = a, t0$12 == null ? null : t0$12.hoverElevation), (t0$13 = b, t0$13 == null ? null : t0$13.hoverElevation), t), disabledElevation: ui.lerpDouble((t0$14 = a, t0$14 == null ? null : t0$14.disabledElevation), (t0$15 = b, t0$15 == null ? null : t0$15.disabledElevation), t), highlightElevation: ui.lerpDouble((t0$16 = a, t0$16 == null ? null : t0$16.highlightElevation), (t0$17 = b, t0$17 == null ? null : t0$17.highlightElevation), t), shape: borders.ShapeBorder.lerp((t0$18 = a, t0$18 == null ? null : t0$18.shape), (t0$19 = b, t0$19 == null ? null : t0$19.shape), t)});
-    }
-    get hashCode() {
-      return ui.hashValues(this.foregroundColor, this.backgroundColor, this.focusColor, this.hoverColor, this.splashColor, this.elevation, this.focusElevation, this.hoverElevation, this.disabledElevation, this.highlightElevation, this.shape);
-    }
-    _equals(other) {
-      if (other == null) return false;
-      if (this === other) return true;
-      if (!dart.equals(dart.runtimeType(other), this[$runtimeType])) return false;
-      return floating_action_button_theme.FloatingActionButtonThemeData.is(other) && dart.equals(other.foregroundColor, this.foregroundColor) && dart.equals(other.backgroundColor, this.backgroundColor) && dart.equals(other.focusColor, this.focusColor) && dart.equals(other.hoverColor, this.hoverColor) && dart.equals(other.splashColor, this.splashColor) && other.elevation == this.elevation && other.focusElevation == this.focusElevation && other.hoverElevation == this.hoverElevation && other.disabledElevation == this.disabledElevation && other.highlightElevation == this.highlightElevation && dart.equals(other.shape, this.shape);
-    }
-    debugFillProperties(properties) {
-      if (properties == null) dart.nullFailed(I[0], 184, 56, "properties");
-      super.debugFillProperties(properties);
-      let defaultData = C[0] || CT.C0;
-      properties.add(new colors.ColorProperty.new("foregroundColor", this.foregroundColor, {defaultValue: defaultData.foregroundColor}));
-      properties.add(new colors.ColorProperty.new("backgroundColor", this.backgroundColor, {defaultValue: defaultData.backgroundColor}));
-      properties.add(new colors.ColorProperty.new("focusColor", this.focusColor, {defaultValue: defaultData.focusColor}));
-      properties.add(new colors.ColorProperty.new("hoverColor", this.hoverColor, {defaultValue: defaultData.hoverColor}));
-      properties.add(new colors.ColorProperty.new("splashColor", this.splashColor, {defaultValue: defaultData.splashColor}));
-      properties.add(new diagnostics.DoubleProperty.new("elevation", this.elevation, {defaultValue: defaultData.elevation}));
-      properties.add(new diagnostics.DoubleProperty.new("focusElevation", this.focusElevation, {defaultValue: defaultData.focusElevation}));
-      properties.add(new diagnostics.DoubleProperty.new("hoverElevation", this.hoverElevation, {defaultValue: defaultData.hoverElevation}));
-      properties.add(new diagnostics.DoubleProperty.new("disabledElevation", this.disabledElevation, {defaultValue: defaultData.disabledElevation}));
-      properties.add(new diagnostics.DoubleProperty.new("highlightElevation", this.highlightElevation, {defaultValue: defaultData.highlightElevation}));
-      properties.add(new (T.DiagnosticsPropertyOfShapeBorder()).new("shape", this.shape, {defaultValue: defaultData.shape}));
+  var C = Array(77).fill(void 0);
+  var I = ["package:softdoc/screens/desktop_screen/desktop_screen.dart"];
+  desktop_screen.DesktopScreen = class DesktopScreen extends framework.StatefulWidget {
+    createState() {
+      return new desktop_screen._DesktopScreenState.new();
     }
   };
-  (floating_action_button_theme.FloatingActionButtonThemeData.new = function(opts) {
-    let foregroundColor = opts && 'foregroundColor' in opts ? opts.foregroundColor : null;
-    let backgroundColor = opts && 'backgroundColor' in opts ? opts.backgroundColor : null;
-    let focusColor = opts && 'focusColor' in opts ? opts.focusColor : null;
-    let hoverColor = opts && 'hoverColor' in opts ? opts.hoverColor : null;
-    let splashColor = opts && 'splashColor' in opts ? opts.splashColor : null;
-    let elevation = opts && 'elevation' in opts ? opts.elevation : null;
-    let focusElevation = opts && 'focusElevation' in opts ? opts.focusElevation : null;
-    let hoverElevation = opts && 'hoverElevation' in opts ? opts.hoverElevation : null;
-    let disabledElevation = opts && 'disabledElevation' in opts ? opts.disabledElevation : null;
-    let highlightElevation = opts && 'highlightElevation' in opts ? opts.highlightElevation : null;
-    let shape = opts && 'shape' in opts ? opts.shape : null;
-    this[foregroundColor$] = foregroundColor;
-    this[backgroundColor$] = backgroundColor;
-    this[focusColor$] = focusColor;
-    this[hoverColor$] = hoverColor;
-    this[splashColor$] = splashColor;
-    this[elevation$] = elevation;
-    this[focusElevation$] = focusElevation;
-    this[hoverElevation$] = hoverElevation;
-    this[disabledElevation$] = disabledElevation;
-    this[highlightElevation$] = highlightElevation;
-    this[shape$] = shape;
+  (desktop_screen.DesktopScreen.new = function(opts) {
+    let key = opts && 'key' in opts ? opts.key : null;
+    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
+    desktop_screen.DesktopScreen.__proto__.new.call(this, {key: key, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
     ;
-  }).prototype = floating_action_button_theme.FloatingActionButtonThemeData.prototype;
-  dart.addTypeTests(floating_action_button_theme.FloatingActionButtonThemeData);
-  dart.addTypeCaches(floating_action_button_theme.FloatingActionButtonThemeData);
-  dart.setMethodSignature(floating_action_button_theme.FloatingActionButtonThemeData, () => ({
-    __proto__: dart.getMethods(floating_action_button_theme.FloatingActionButtonThemeData.__proto__),
-    copyWith: dart.fnType(floating_action_button_theme.FloatingActionButtonThemeData, [], {backgroundColor: dart.nullable(ui.Color), disabledElevation: dart.nullable(core.double), elevation: dart.nullable(core.double), focusColor: dart.nullable(ui.Color), focusElevation: dart.nullable(core.double), foregroundColor: dart.nullable(ui.Color), highlightElevation: dart.nullable(core.double), hoverColor: dart.nullable(ui.Color), hoverElevation: dart.nullable(core.double), shape: dart.nullable(borders.ShapeBorder), splashColor: dart.nullable(ui.Color)}, {})
+  }).prototype = desktop_screen.DesktopScreen.prototype;
+  dart.addTypeTests(desktop_screen.DesktopScreen);
+  dart.addTypeCaches(desktop_screen.DesktopScreen);
+  dart.setMethodSignature(desktop_screen.DesktopScreen, () => ({
+    __proto__: dart.getMethods(desktop_screen.DesktopScreen.__proto__),
+    createState: dart.fnType(dart.legacy(desktop_screen._DesktopScreenState), [])
   }));
-  dart.setLibraryUri(floating_action_button_theme.FloatingActionButtonThemeData, I[1]);
-  dart.setFieldSignature(floating_action_button_theme.FloatingActionButtonThemeData, () => ({
-    __proto__: dart.getFields(floating_action_button_theme.FloatingActionButtonThemeData.__proto__),
-    foregroundColor: dart.finalFieldType(dart.nullable(ui.Color)),
-    backgroundColor: dart.finalFieldType(dart.nullable(ui.Color)),
-    focusColor: dart.finalFieldType(dart.nullable(ui.Color)),
-    hoverColor: dart.finalFieldType(dart.nullable(ui.Color)),
-    splashColor: dart.finalFieldType(dart.nullable(ui.Color)),
-    elevation: dart.finalFieldType(dart.nullable(core.double)),
-    focusElevation: dart.finalFieldType(dart.nullable(core.double)),
-    hoverElevation: dart.finalFieldType(dart.nullable(core.double)),
-    disabledElevation: dart.finalFieldType(dart.nullable(core.double)),
-    highlightElevation: dart.finalFieldType(dart.nullable(core.double)),
-    shape: dart.finalFieldType(dart.nullable(borders.ShapeBorder))
+  dart.setLibraryUri(desktop_screen.DesktopScreen, I[0]);
+  var _Location_parameterLocations = dart.privateName(widget_inspector, "_Location.parameterLocations");
+  var _Location_name = dart.privateName(widget_inspector, "_Location.name");
+  var _Location_column = dart.privateName(widget_inspector, "_Location.column");
+  var _Location_line = dart.privateName(widget_inspector, "_Location.line");
+  var _Location_file = dart.privateName(widget_inspector, "_Location.file");
+  desktop_screen._DesktopScreenState = class _DesktopScreenState extends framework.State$(dart.legacy(desktop_screen.DesktopScreen)) {
+    changeState() {
+      this.setState(dart.fn(() => {
+      }, T.VoidToNull()));
+    }
+    build(context) {
+      let screenSize = media_query.MediaQuery.of(context).size;
+      return new scaffold.Scaffold.new({body: new basic.Row.new({children: T.JSArrayOfWidgetL().of([new container.Container.new({height: 1 / 0, width: dart.notNull(screenSize.width) * 0.33, child: new home_screen.HomeScreen.new({isDesktop: true, $creationLocationd_0dea112b090073317d4: C[0] || CT.C0}), $creationLocationd_0dea112b090073317d4: C[3] || CT.C3}), new basic.Expanded.new({child: new (T.BlocBuilderOfDesktopNavCubitL$DesktopNavStateL()).new({builder: dart.fn((context, state) => {
+                  if (T.SendDocScreenNavL().is(state)) {
+                    return new basic.Row.new({children: T.JSArrayOfWidgetL().of([new basic.Expanded.new({child: new send_doc_screen.SendDocScreen.new({isDesktop: true, $creationLocationd_0dea112b090073317d4: C[8] || CT.C8}), $creationLocationd_0dea112b090073317d4: C[11] || CT.C11}), new basic.Expanded.new({child: new container.Container.new({padding: new edge_insets.EdgeInsets.only({top: 12.0, right: 10.0, bottom: 10.0}), child: new basic.Column.new({mainAxisAlignment: flex.MainAxisAlignment.spaceBetween, children: T.JSArrayOfWidgetL().of([new basic.Expanded.new({child: add_or_edit_recepient.addOrEditReciepient(true, dart.bind(this, 'changeState')), $creationLocationd_0dea112b090073317d4: C[14] || CT.C14}), new basic.SizedBox.new({height: 10.0, $creationLocationd_0dea112b090073317d4: C[17] || CT.C17}), new basic.Expanded.new({child: framework.Widget.as(select_recepient.selectRecepient(dart.bind(this, 'changeState'))), $creationLocationd_0dea112b090073317d4: C[20] || CT.C20})]), $creationLocationd_0dea112b090073317d4: C[23] || CT.C23}), $creationLocationd_0dea112b090073317d4: C[27] || CT.C27}), $creationLocationd_0dea112b090073317d4: C[31] || CT.C31})]), $creationLocationd_0dea112b090073317d4: C[34] || CT.C34});
+                  } else if (T.DetailScreenNavL().is(state)) {
+                    return new basic.Row.new({children: T.JSArrayOfWidgetL().of([new basic.Expanded.new({child: new detail_screen.DetailScreen.new({isDesktop: true, selectedDoc: state.selectedDoc, $creationLocationd_0dea112b090073317d4: C[37] || CT.C37}), $creationLocationd_0dea112b090073317d4: C[41] || CT.C41}), new basic.Expanded.new({child: new basic.Center.new({child: new vertical_approval_progress.VApprovalProgress.new({approvalList: state.selectedDoc.approvalProgress, docStatus: state.selectedDoc.status, $creationLocationd_0dea112b090073317d4: C[44] || CT.C44}), $creationLocationd_0dea112b090073317d4: C[48] || CT.C48}), $creationLocationd_0dea112b090073317d4: C[51] || CT.C51})]), $creationLocationd_0dea112b090073317d4: C[54] || CT.C54});
+                  } else if (T.HomeScreenNavL().is(state)) {
+                    return new basic.Center.new({child: new text.Text.new("replace with app icon", {$creationLocationd_0dea112b090073317d4: C[57] || CT.C57}), $creationLocationd_0dea112b090073317d4: C[60] || CT.C60});
+                  }
+                  return new progress_indicator.CircularProgressIndicator.new({$creationLocationd_0dea112b090073317d4: C[63] || CT.C63});
+                }, T.BuildContextLAndDesktopNavStateLToWidgetL()), $creationLocationd_0dea112b090073317d4: C[65] || CT.C65}), $creationLocationd_0dea112b090073317d4: C[68] || CT.C68})]), $creationLocationd_0dea112b090073317d4: C[71] || CT.C71}), $creationLocationd_0dea112b090073317d4: C[74] || CT.C74});
+    }
+  };
+  (desktop_screen._DesktopScreenState.new = function() {
+    desktop_screen._DesktopScreenState.__proto__.new.call(this);
+    ;
+  }).prototype = desktop_screen._DesktopScreenState.prototype;
+  dart.addTypeTests(desktop_screen._DesktopScreenState);
+  dart.addTypeCaches(desktop_screen._DesktopScreenState);
+  dart.setMethodSignature(desktop_screen._DesktopScreenState, () => ({
+    __proto__: dart.getMethods(desktop_screen._DesktopScreenState.__proto__),
+    changeState: dart.fnType(dart.void, []),
+    build: dart.fnType(dart.legacy(framework.Widget), [dart.legacy(framework.BuildContext)])
   }));
-  dart.defineExtensionMethods(floating_action_button_theme.FloatingActionButtonThemeData, ['_equals']);
-  dart.defineExtensionAccessors(floating_action_button_theme.FloatingActionButtonThemeData, ['hashCode']);
-  dart.trackLibraries("packages/flutter/src/material/floating_action_button_theme.dart", {
-    "package:flutter/src/material/floating_action_button_theme.dart": floating_action_button_theme
+  dart.setLibraryUri(desktop_screen._DesktopScreenState, I[0]);
+  dart.trackLibraries("packages/softdoc/screens/desktop_screen/desktop_screen.dart", {
+    "package:softdoc/screens/desktop_screen/desktop_screen.dart": desktop_screen
   }, {
-  }, '{"version":3,"sourceRoot":"","sources":["floating_action_button_theme.dart"],"names":[],"mappings":"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","file":"../../../../../../../../../../packages/flutter/src/material/floating_action_button_theme.dart.lib.js"}');
+  }, '{"version":3,"sourceRoot":"","sources":["desktop_screen.dart"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AAeuC;IAAqB;;;QAHjC;;AAAQ,gEAAW,GAAG;;EAAC;;;;;;;;;;;;;;;AAQ/B,MAAf,cAAS;;IACX;UAG0B;AACnB,uBAAwB,AAAY,0BAAT,OAAO;AACvC,YAAO,kCACC,6BACM,yBACR,mDAE0B,aAAjB,AAAW,UAAD,UAAS,aACnB,2CAAsB,wHAE/B,+BACS,uEACI,SAAC,SAAS;AAEjB,sBAAU,yBAAN,KAAK;AACP,0BAAO,8BACK,yBACR,+BAAgB,kDAAyB,0HACzC,+BACS,sCAGU,sCAAU,aAAW,cAAY,eACzC,yCACgC,+CAC3B,yBACR,+BAEQ,0CAAoB,gBAAM,kFAClC,gCAAiB,iEACjB,mDAAgB,2CAAgB;wBASzC,KAAU,wBAAN,KAAK;AACZ,0BAAO,8BACK,yBACR,+BACW,+CACE,mBACE,AAAM,KAAD,oIAEpB,+BACS,6BACE,oEACS,AAAM,AAAY,KAAb,0CACR,AAAM,AAAY,KAAb;wBAMrB,KAAU,sBAAN,KAAK;AACd,0BAAO,8BAAc,kBAAK;;AAE5B,wBAAO;;IAOrB;;;;;EACF","file":"../../../../../../../../../../../packages/softdoc/screens/desktop_screen/desktop_screen.dart.lib.js"}');
   // Exports:
   return {
-    src__material__floating_action_button_theme: floating_action_button_theme
+    screens__desktop_screen__desktop_screen: desktop_screen
   };
 }));
 
-//# sourceMappingURL=floating_action_button_theme.dart.lib.js.map
+//# sourceMappingURL=desktop_screen.dart.lib.js.map

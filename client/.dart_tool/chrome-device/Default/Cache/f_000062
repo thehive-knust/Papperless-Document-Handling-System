@@ -1,681 +1,1255 @@
-define(['dart_sdk', 'packages/flutter/src/gestures/recognizer.dart', 'packages/flutter/src/gestures/velocity_tracker.dart', 'packages/flutter/src/gestures/events.dart', 'packages/flutter/src/gestures/arena.dart', 'packages/vector_math/vector_math_64.dart', 'packages/flutter/src/gestures/drag_details.dart', 'packages/flutter/src/foundation/debug.dart'], (function load__packages__flutter__src__gestures__monodrag_dart(dart_sdk, packages__flutter__src__gestures__recognizer$46dart, packages__flutter__src__gestures__velocity_tracker$46dart, packages__flutter__src__gestures__events$46dart, packages__flutter__src__gestures__arena$46dart, packages__vector_math__vector_math_64$46dart, packages__flutter__src__gestures__drag_details$46dart, packages__flutter__src__foundation__debug$46dart) {
+define(['dart_sdk', 'packages/flutter/src/widgets/widget_span.dart', 'packages/flutter/src/rendering/editable.dart', 'packages/flutter/src/services/text_input.dart', 'packages/flutter/src/material/icon_button.dart', 'packages/flutter/src/painting/border_radius.dart', 'packages/flutter/src/painting/edge_insets.dart', 'packages/flutter/src/widgets/desktop_text_selection_toolbar_layout_delegate.dart', 'packages/flutter/src/rendering/flex.dart', 'packages/flutter/src/rendering/paragraph.dart', 'packages/flutter/src/material/colors.dart', 'packages/flutter/src/painting/alignment.dart', 'packages/flutter/src/painting/rounded_rectangle_border.dart', 'packages/flutter/src/painting/borders.dart', 'packages/flutter/src/painting/strut_style.dart'], (function load__packages__flutter__src__material__desktop_text_selection_dart(dart_sdk, packages__flutter__src__widgets__widget_span$46dart, packages__flutter__src__rendering__editable$46dart, packages__flutter__src__services__text_input$46dart, packages__flutter__src__material__icon_button$46dart, packages__flutter__src__painting__border_radius$46dart, packages__flutter__src__painting__edge_insets$46dart, packages__flutter__src__widgets__desktop_text_selection_toolbar_layout_delegate$46dart, packages__flutter__src__rendering__flex$46dart, packages__flutter__src__rendering__paragraph$46dart, packages__flutter__src__material__colors$46dart, packages__flutter__src__painting__alignment$46dart, packages__flutter__src__painting__rounded_rectangle_border$46dart, packages__flutter__src__painting__borders$46dart, packages__flutter__src__painting__strut_style$46dart) {
   'use strict';
   const core = dart_sdk.core;
-  const _js_helper = dart_sdk._js_helper;
-  const collection = dart_sdk.collection;
-  const _internal = dart_sdk._internal;
   const ui = dart_sdk.ui;
+  const _interceptors = dart_sdk._interceptors;
   const dart = dart_sdk.dart;
   const dartx = dart_sdk.dartx;
-  const recognizer = packages__flutter__src__gestures__recognizer$46dart.src__gestures__recognizer;
-  const velocity_tracker = packages__flutter__src__gestures__velocity_tracker$46dart.src__gestures__velocity_tracker;
-  const events = packages__flutter__src__gestures__events$46dart.src__gestures__events;
-  const arena = packages__flutter__src__gestures__arena$46dart.src__gestures__arena;
-  const vector_math_64 = packages__vector_math__vector_math_64$46dart.vector_math_64;
-  const drag_details = packages__flutter__src__gestures__drag_details$46dart.src__gestures__drag_details;
-  const diagnostics = packages__flutter__src__foundation__debug$46dart.src__foundation__diagnostics;
-  var monodrag = Object.create(dart.library);
-  var $_set = dartx._set;
-  var $_get = dartx._get;
-  var $sign = dartx.sign;
-  var $clear = dartx.clear;
-  var $abs = dartx.abs;
+  const widget_inspector = packages__flutter__src__widgets__widget_span$46dart.src__widgets__widget_inspector;
+  const basic = packages__flutter__src__widgets__widget_span$46dart.src__widgets__basic;
+  const framework = packages__flutter__src__widgets__widget_span$46dart.src__widgets__framework;
+  const text_selection = packages__flutter__src__widgets__widget_span$46dart.src__widgets__text_selection;
+  const debug = packages__flutter__src__widgets__widget_span$46dart.src__widgets__debug;
+  const media_query = packages__flutter__src__widgets__widget_span$46dart.src__widgets__media_query;
+  const text$ = packages__flutter__src__widgets__widget_span$46dart.src__widgets__text;
+  const editable = packages__flutter__src__rendering__editable$46dart.src__rendering__editable;
+  const text_input = packages__flutter__src__services__text_input$46dart.src__services__text_input;
+  const debug$ = packages__flutter__src__material__icon_button$46dart.src__material__debug;
+  const material_localizations = packages__flutter__src__material__icon_button$46dart.src__material__material_localizations;
+  const material = packages__flutter__src__material__icon_button$46dart.src__material__material;
+  const theme$ = packages__flutter__src__material__icon_button$46dart.src__material__theme;
+  const text_button = packages__flutter__src__material__icon_button$46dart.src__material__text_button;
+  const border_radius = packages__flutter__src__painting__border_radius$46dart.src__painting__border_radius;
+  const edge_insets = packages__flutter__src__painting__edge_insets$46dart.src__painting__edge_insets;
+  const desktop_text_selection_toolbar_layout_delegate = packages__flutter__src__widgets__desktop_text_selection_toolbar_layout_delegate$46dart.src__widgets__desktop_text_selection_toolbar_layout_delegate;
+  const flex = packages__flutter__src__rendering__flex$46dart.src__rendering__flex;
+  const paragraph = packages__flutter__src__rendering__paragraph$46dart.src__rendering__paragraph;
+  const colors = packages__flutter__src__material__colors$46dart.src__material__colors;
+  const alignment = packages__flutter__src__painting__alignment$46dart.src__painting__alignment;
+  const rounded_rectangle_border = packages__flutter__src__painting__rounded_rectangle_border$46dart.src__painting__rounded_rectangle_border;
+  const borders = packages__flutter__src__painting__borders$46dart.src__painting__borders;
+  const text_style = packages__flutter__src__painting__strut_style$46dart.src__painting__text_style;
+  var desktop_text_selection = Object.create(dart.library);
+  var $isNotEmpty = dartx.isNotEmpty;
+  var $clamp = dartx.clamp;
+  var $add = dartx.add;
+  var $isEmpty = dartx.isEmpty;
+  var $length = dartx.length;
   dart._checkModuleNullSafetyMode(false);
   var T = {
-    _DragStateL: () => (T._DragStateL = dart.constFn(dart.legacy(monodrag._DragState)))(),
-    PointerEventToVelocityTracker: () => (T.PointerEventToVelocityTracker = dart.constFn(dart.fnType(velocity_tracker.VelocityTracker, [events.PointerEvent])))(),
-    IdentityMapOfint$VelocityTracker: () => (T.IdentityMapOfint$VelocityTracker = dart.constFn(_js_helper.IdentityMap$(core.int, velocity_tracker.VelocityTracker)))(),
-    LinkedHashSetOfint: () => (T.LinkedHashSetOfint = dart.constFn(collection.LinkedHashSet$(core.int)))(),
     VoidTovoid: () => (T.VoidTovoid = dart.constFn(dart.fnType(dart.void, [])))(),
-    VoidToString: () => (T.VoidToString = dart.constFn(dart.fnType(core.String, [])))(),
-    EnumPropertyOfDragStartBehavior: () => (T.EnumPropertyOfDragStartBehavior = dart.constFn(diagnostics.EnumProperty$(recognizer.DragStartBehavior)))()
+    _LocationL: () => (T._LocationL = dart.constFn(dart.legacy(widget_inspector._Location)))(),
+    JSArrayOfWidget: () => (T.JSArrayOfWidget = dart.constFn(_interceptors.JSArray$(framework.Widget)))(),
+    StringAndFnTovoid: () => (T.StringAndFnTovoid = dart.constFn(dart.fnType(dart.void, [core.String, T.VoidTovoid()])))(),
+    BuildContextAndWidgetToWidget: () => (T.BuildContextAndWidgetToWidget = dart.constFn(dart.fnType(framework.Widget, [framework.BuildContext, framework.Widget])))()
   };
   const CT = Object.create({
     _: () => (C, CT)
   });
   dart.defineLazy(CT, {
-    get C0() {
-      return C[0] = dart.const({
-        __proto__: monodrag._DragState.prototype,
-        [_name$]: "_DragState.ready",
-        index: 0
-      });
-    },
-    get C1() {
-      return C[1] = dart.const({
-        __proto__: monodrag._DragState.prototype,
-        [_name$]: "_DragState.possible",
-        index: 1
-      });
-    },
     get C2() {
       return C[2] = dart.const({
-        __proto__: monodrag._DragState.prototype,
-        [_name$]: "_DragState.accepted",
-        index: 2
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "clipboardStatus",
+        [_Location_column]: 7,
+        [_Location_line]: 41,
+        [_Location_file]: null
       });
     },
     get C3() {
-      return C[3] = dart.constList([C[0] || CT.C0, C[1] || CT.C1, C[2] || CT.C2], T._DragStateL());
+      return C[3] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "endpoints",
+        [_Location_column]: 7,
+        [_Location_line]: 42,
+        [_Location_file]: null
+      });
     },
     get C4() {
       return C[4] = dart.const({
-        __proto__: recognizer.DragStartBehavior.prototype,
-        [_name]: "DragStartBehavior.start",
-        index: 1
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "globalEditableRegion",
+        [_Location_column]: 7,
+        [_Location_line]: 43,
+        [_Location_file]: null
       });
     },
     get C5() {
-      return C[5] = dart.fn(monodrag.DragGestureRecognizer._defaultBuilder, T.PointerEventToVelocityTracker());
+      return C[5] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "handleCut",
+        [_Location_column]: 7,
+        [_Location_line]: 44,
+        [_Location_file]: null
+      });
     },
     get C6() {
       return C[6] = dart.const({
-        __proto__: recognizer.DragStartBehavior.prototype,
-        [_name]: "DragStartBehavior.down",
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "handleCopy",
+        [_Location_column]: 7,
+        [_Location_line]: 45,
+        [_Location_file]: null
+      });
+    },
+    get C7() {
+      return C[7] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "handlePaste",
+        [_Location_column]: 7,
+        [_Location_line]: 46,
+        [_Location_file]: null
+      });
+    },
+    get C8() {
+      return C[8] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "handleSelectAll",
+        [_Location_column]: 7,
+        [_Location_line]: 47,
+        [_Location_file]: null
+      });
+    },
+    get C9() {
+      return C[9] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "selectionMidpoint",
+        [_Location_column]: 7,
+        [_Location_line]: 48,
+        [_Location_file]: null
+      });
+    },
+    get C10() {
+      return C[10] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "lastSecondaryTapDownPosition",
+        [_Location_column]: 7,
+        [_Location_line]: 49,
+        [_Location_file]: null
+      });
+    },
+    get C11() {
+      return C[11] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "textLineHeight",
+        [_Location_column]: 7,
+        [_Location_line]: 50,
+        [_Location_file]: null
+      });
+    },
+    get C1() {
+      return C[1] = dart.constList([C[2] || CT.C2, C[3] || CT.C3, C[4] || CT.C4, C[5] || CT.C5, C[6] || CT.C6, C[7] || CT.C7, C[8] || CT.C8, C[9] || CT.C9, C[10] || CT.C10, C[11] || CT.C11], T._LocationL());
+    },
+    get C0() {
+      return C[0] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[1] || CT.C1,
+        [_Location_name]: null,
+        [_Location_column]: 12,
+        [_Location_line]: 40,
+        [_Location_file]: "file:///C:/src/flutter/packages/flutter/lib/src/material/desktop_text_selection.dart"
+      });
+    },
+    get C14() {
+      return C[14] = dart.constList([], T._LocationL());
+    },
+    get C13() {
+      return C[13] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[14] || CT.C14,
+        [_Location_name]: null,
+        [_Location_column]: 18,
+        [_Location_line]: 57,
+        [_Location_file]: "file:///C:/src/flutter/packages/flutter/lib/src/material/desktop_text_selection.dart"
+      });
+    },
+    get C12() {
+      return C[12] = dart.const({
+        __proto__: basic.SizedBox.prototype,
+        [Widget__location]: C[13] || CT.C13,
+        [Widget_key]: null,
+        [SingleChildRenderObjectWidget_child]: null,
+        [SizedBox_height]: 0,
+        [SizedBox_width]: 0
+      });
+    },
+    get C18() {
+      return C[18] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "width",
+        [_Location_column]: 29,
+        [_Location_line]: 164,
+        [_Location_file]: null
+      });
+    },
+    get C19() {
+      return C[19] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "height",
+        [_Location_column]: 41,
+        [_Location_line]: 164,
+        [_Location_file]: null
+      });
+    },
+    get C17() {
+      return C[17] = dart.constList([C[18] || CT.C18, C[19] || CT.C19], T._LocationL());
+    },
+    get C16() {
+      return C[16] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[17] || CT.C17,
+        [_Location_name]: null,
+        [_Location_column]: 20,
+        [_Location_line]: 164,
+        [_Location_file]: "file:///C:/src/flutter/packages/flutter/lib/src/material/desktop_text_selection.dart"
+      });
+    },
+    get C15() {
+      return C[15] = dart.const({
+        __proto__: basic.SizedBox.prototype,
+        [Widget__location]: C[16] || CT.C16,
+        [Widget_key]: null,
+        [SingleChildRenderObjectWidget_child]: null,
+        [SizedBox_height]: 0,
+        [SizedBox_width]: 0
+      });
+    },
+    get C22() {
+      return C[22] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "context",
+        [_Location_column]: 9,
+        [_Location_line]: 187,
+        [_Location_file]: null
+      });
+    },
+    get C23() {
+      return C[23] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "onPressed",
+        [_Location_column]: 9,
+        [_Location_line]: 188,
+        [_Location_file]: null
+      });
+    },
+    get C24() {
+      return C[24] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "text",
+        [_Location_column]: 9,
+        [_Location_line]: 189,
+        [_Location_file]: null
+      });
+    },
+    get C21() {
+      return C[21] = dart.constList([C[22] || CT.C22, C[23] || CT.C23, C[24] || CT.C24], T._LocationL());
+    },
+    get C20() {
+      return C[20] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[21] || CT.C21,
+        [_Location_name]: null,
+        [_Location_column]: 52,
+        [_Location_line]: 186,
+        [_Location_file]: "file:///C:/src/flutter/packages/flutter/lib/src/material/desktop_text_selection.dart"
+      });
+    },
+    get C28() {
+      return C[28] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "width",
+        [_Location_column]: 29,
+        [_Location_line]: 209,
+        [_Location_file]: null
+      });
+    },
+    get C29() {
+      return C[29] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "height",
+        [_Location_column]: 41,
+        [_Location_line]: 209,
+        [_Location_file]: null
+      });
+    },
+    get C27() {
+      return C[27] = dart.constList([C[28] || CT.C28, C[29] || CT.C29], T._LocationL());
+    },
+    get C26() {
+      return C[26] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[27] || CT.C27,
+        [_Location_name]: null,
+        [_Location_column]: 20,
+        [_Location_line]: 209,
+        [_Location_file]: "file:///C:/src/flutter/packages/flutter/lib/src/material/desktop_text_selection.dart"
+      });
+    },
+    get C25() {
+      return C[25] = dart.const({
+        __proto__: basic.SizedBox.prototype,
+        [Widget__location]: C[26] || CT.C26,
+        [Widget_key]: null,
+        [SingleChildRenderObjectWidget_child]: null,
+        [SizedBox_height]: 0,
+        [SizedBox_width]: 0
+      });
+    },
+    get C32() {
+      return C[32] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "anchor",
+        [_Location_column]: 7,
+        [_Location_line]: 213,
+        [_Location_file]: null
+      });
+    },
+    get C33() {
+      return C[33] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "children",
+        [_Location_column]: 7,
+        [_Location_line]: 214,
+        [_Location_file]: null
+      });
+    },
+    get C31() {
+      return C[31] = dart.constList([C[32] || CT.C32, C[33] || CT.C33], T._LocationL());
+    },
+    get C30() {
+      return C[30] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[31] || CT.C31,
+        [_Location_name]: null,
+        [_Location_column]: 12,
+        [_Location_line]: 212,
+        [_Location_file]: "file:///C:/src/flutter/packages/flutter/lib/src/material/desktop_text_selection.dart"
+      });
+    },
+    get C34() {
+      return C[34] = dart.fn(desktop_text_selection._DesktopTextSelectionToolbar._defaultToolbarBuilder, T.BuildContextAndWidgetToWidget());
+    },
+    get C36() {
+      return C[36] = dart.const({
+        __proto__: ui.Radius.prototype,
+        [Radius_y]: 7,
+        [Radius_x]: 7
+      });
+    },
+    get C35() {
+      return C[35] = dart.const({
+        __proto__: border_radius.BorderRadius.prototype,
+        [BorderRadius_bottomRight]: C[36] || CT.C36,
+        [BorderRadius_bottomLeft]: C[36] || CT.C36,
+        [BorderRadius_topRight]: C[36] || CT.C36,
+        [BorderRadius_topLeft]: C[36] || CT.C36
+      });
+    },
+    get C39() {
+      return C[39] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "borderRadius",
+        [_Location_column]: 9,
+        [_Location_line]: 265,
+        [_Location_file]: null
+      });
+    },
+    get C40() {
+      return C[40] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "clipBehavior",
+        [_Location_column]: 9,
+        [_Location_line]: 266,
+        [_Location_file]: null
+      });
+    },
+    get C41() {
+      return C[41] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "elevation",
+        [_Location_column]: 9,
+        [_Location_line]: 267,
+        [_Location_file]: null
+      });
+    },
+    get C42() {
+      return C[42] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "type",
+        [_Location_column]: 9,
+        [_Location_line]: 268,
+        [_Location_file]: null
+      });
+    },
+    get C43() {
+      return C[43] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 9,
+        [_Location_line]: 269,
+        [_Location_file]: null
+      });
+    },
+    get C38() {
+      return C[38] = dart.constList([C[39] || CT.C39, C[40] || CT.C40, C[41] || CT.C41, C[42] || CT.C42, C[43] || CT.C43], T._LocationL());
+    },
+    get C37() {
+      return C[37] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[38] || CT.C38,
+        [_Location_name]: null,
+        [_Location_column]: 14,
+        [_Location_line]: 264,
+        [_Location_file]: "file:///C:/src/flutter/packages/flutter/lib/src/material/desktop_text_selection.dart"
+      });
+    },
+    get C46() {
+      return C[46] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "width",
+        [_Location_column]: 7,
+        [_Location_line]: 263,
+        [_Location_file]: null
+      });
+    },
+    get C47() {
+      return C[47] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 7,
+        [_Location_line]: 264,
+        [_Location_file]: null
+      });
+    },
+    get C45() {
+      return C[45] = dart.constList([C[46] || CT.C46, C[47] || CT.C47], T._LocationL());
+    },
+    get C44() {
+      return C[44] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[45] || CT.C45,
+        [_Location_name]: null,
+        [_Location_column]: 12,
+        [_Location_line]: 262,
+        [_Location_file]: "file:///C:/src/flutter/packages/flutter/lib/src/material/desktop_text_selection.dart"
+      });
+    },
+    get C50() {
+      return C[50] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "mainAxisSize",
+        [_Location_column]: 11,
+        [_Location_line]: 294,
+        [_Location_file]: null
+      });
+    },
+    get C51() {
+      return C[51] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "children",
+        [_Location_column]: 11,
+        [_Location_line]: 295,
+        [_Location_file]: null
+      });
+    },
+    get C49() {
+      return C[49] = dart.constList([C[50] || CT.C50, C[51] || CT.C51], T._LocationL());
+    },
+    get C48() {
+      return C[48] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[49] || CT.C49,
+        [_Location_name]: null,
+        [_Location_column]: 40,
+        [_Location_line]: 293,
+        [_Location_file]: "file:///C:/src/flutter/packages/flutter/lib/src/material/desktop_text_selection.dart"
+      });
+    },
+    get C54() {
+      return C[54] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "delegate",
+        [_Location_column]: 9,
+        [_Location_line]: 290,
+        [_Location_file]: null
+      });
+    },
+    get C55() {
+      return C[55] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 9,
+        [_Location_line]: 293,
+        [_Location_file]: null
+      });
+    },
+    get C53() {
+      return C[53] = dart.constList([C[54] || CT.C54, C[55] || CT.C55], T._LocationL());
+    },
+    get C52() {
+      return C[52] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[53] || CT.C53,
+        [_Location_name]: null,
+        [_Location_column]: 14,
+        [_Location_line]: 289,
+        [_Location_file]: "file:///C:/src/flutter/packages/flutter/lib/src/material/desktop_text_selection.dart"
+      });
+    },
+    get C58() {
+      return C[58] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "padding",
+        [_Location_column]: 7,
+        [_Location_line]: 283,
+        [_Location_file]: null
+      });
+    },
+    get C59() {
+      return C[59] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 7,
+        [_Location_line]: 289,
+        [_Location_file]: null
+      });
+    },
+    get C57() {
+      return C[57] = dart.constList([C[58] || CT.C58, C[59] || CT.C59], T._LocationL());
+    },
+    get C56() {
+      return C[56] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[57] || CT.C57,
+        [_Location_name]: null,
+        [_Location_column]: 12,
+        [_Location_line]: 282,
+        [_Location_file]: "file:///C:/src/flutter/packages/flutter/lib/src/material/desktop_text_selection.dart"
+      });
+    },
+    get C62() {
+      return C[62] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "data",
+        [_Location_column]: 10,
+        [_Location_line]: 333,
+        [_Location_file]: null
+      });
+    },
+    get C63() {
+      return C[63] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "overflow",
+        [_Location_column]: 10,
+        [_Location_line]: 334,
+        [_Location_file]: null
+      });
+    },
+    get C64() {
+      return C[64] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "style",
+        [_Location_column]: 10,
+        [_Location_line]: 335,
+        [_Location_file]: null
+      });
+    },
+    get C61() {
+      return C[61] = dart.constList([C[62] || CT.C62, C[63] || CT.C63, C[64] || CT.C64], T._LocationL());
+    },
+    get C60() {
+      return C[60] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[61] || CT.C61,
+        [_Location_name]: null,
+        [_Location_column]: 16,
+        [_Location_line]: 332,
+        [_Location_file]: "file:///C:/src/flutter/packages/flutter/lib/src/material/desktop_text_selection.dart"
+      });
+    },
+    get C67() {
+      return C[67] = dart.const({
+        __proto__: borders.BorderStyle.prototype,
+        [_name]: "BorderStyle.none",
         index: 0
+      });
+    },
+    get C68() {
+      return C[68] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4278190080.0
+      });
+    },
+    get C66() {
+      return C[66] = dart.const({
+        __proto__: borders.BorderSide.prototype,
+        [BorderSide_style]: C[67] || CT.C67,
+        [BorderSide_width]: 0,
+        [BorderSide_color]: C[68] || CT.C68
+      });
+    },
+    get C70() {
+      return C[70] = dart.const({
+        __proto__: ui.Radius.prototype,
+        [Radius_y]: 0,
+        [Radius_x]: 0
+      });
+    },
+    get C69() {
+      return C[69] = dart.const({
+        __proto__: border_radius.BorderRadius.prototype,
+        [BorderRadius_bottomRight]: C[70] || CT.C70,
+        [BorderRadius_bottomLeft]: C[70] || CT.C70,
+        [BorderRadius_topRight]: C[70] || CT.C70,
+        [BorderRadius_topLeft]: C[70] || CT.C70
+      });
+    },
+    get C65() {
+      return C[65] = dart.const({
+        __proto__: rounded_rectangle_border.RoundedRectangleBorder.prototype,
+        [OutlinedBorder_side]: C[66] || CT.C66,
+        [RoundedRectangleBorder_borderRadius]: C[69] || CT.C69
+      });
+    },
+    get C71() {
+      return C[71] = dart.const({
+        __proto__: ui.Size.prototype,
+        [OffsetBase__dy]: 36,
+        [OffsetBase__dx]: 48
+      });
+    },
+    get C74() {
+      return C[74] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "style",
+        [_Location_column]: 9,
+        [_Location_line]: 359,
+        [_Location_file]: null
+      });
+    },
+    get C75() {
+      return C[75] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "onPressed",
+        [_Location_column]: 9,
+        [_Location_line]: 366,
+        [_Location_file]: null
+      });
+    },
+    get C76() {
+      return C[76] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 9,
+        [_Location_line]: 367,
+        [_Location_file]: null
+      });
+    },
+    get C73() {
+      return C[73] = dart.constList([C[74] || CT.C74, C[75] || CT.C75, C[76] || CT.C76], T._LocationL());
+    },
+    get C72() {
+      return C[72] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[73] || CT.C73,
+        [_Location_name]: null,
+        [_Location_column]: 14,
+        [_Location_line]: 358,
+        [_Location_file]: "file:///C:/src/flutter/packages/flutter/lib/src/material/desktop_text_selection.dart"
+      });
+    },
+    get C79() {
+      return C[79] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "width",
+        [_Location_column]: 7,
+        [_Location_line]: 357,
+        [_Location_file]: null
+      });
+    },
+    get C80() {
+      return C[80] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 7,
+        [_Location_line]: 358,
+        [_Location_file]: null
+      });
+    },
+    get C78() {
+      return C[78] = dart.constList([C[79] || CT.C79, C[80] || CT.C80], T._LocationL());
+    },
+    get C77() {
+      return C[77] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[78] || CT.C78,
+        [_Location_name]: null,
+        [_Location_column]: 12,
+        [_Location_line]: 356,
+        [_Location_file]: "file:///C:/src/flutter/packages/flutter/lib/src/material/desktop_text_selection.dart"
+      });
+    },
+    get C82() {
+      return C[82] = dart.const({
+        __proto__: ui.FontWeight.prototype,
+        [FontWeight_index]: 3
+      });
+    },
+    get C81() {
+      return C[81] = dart.const({
+        __proto__: text_style.TextStyle.prototype,
+        [TextStyle_fontFeatures]: null,
+        [TextStyle_shadows]: null,
+        [TextStyle_debugLabel]: null,
+        [TextStyle_decorationThickness]: null,
+        [TextStyle_decorationStyle]: null,
+        [TextStyle_decorationColor]: null,
+        [TextStyle_decoration]: null,
+        [TextStyle_background]: null,
+        [TextStyle_foreground]: null,
+        [TextStyle_locale]: null,
+        [TextStyle_leadingDistribution]: null,
+        [TextStyle_height]: null,
+        [TextStyle_textBaseline]: null,
+        [TextStyle_wordSpacing]: null,
+        [TextStyle_letterSpacing]: -0.15,
+        [TextStyle_fontStyle]: null,
+        [TextStyle_fontWeight]: C[82] || CT.C82,
+        [TextStyle_fontSize]: 14,
+        [TextStyle__package]: null,
+        [TextStyle__fontFamilyFallback]: null,
+        [TextStyle_fontFamily]: null,
+        [TextStyle_backgroundColor]: null,
+        [TextStyle_color]: null,
+        [TextStyle_inherit]: false
+      });
+    },
+    get C83() {
+      return C[83] = dart.const({
+        __proto__: edge_insets.EdgeInsets.prototype,
+        [EdgeInsets_bottom]: 3,
+        [EdgeInsets_right]: 20,
+        [EdgeInsets_top]: 0,
+        [EdgeInsets_left]: 20
       });
     }
   }, false);
-  var C = Array(7).fill(void 0);
+  var C = Array(84).fill(void 0);
   var I = [
-    "file:///C:/Users/Ejas/Desktop/App_files/flutter/packages/flutter/lib/src/gestures/monodrag.dart",
-    "package:flutter/src/gestures/monodrag.dart"
+    "file:///C:/src/flutter/packages/flutter/lib/src/material/desktop_text_selection.dart",
+    "package:flutter/src/material/desktop_text_selection.dart"
   ];
-  var _name$ = dart.privateName(monodrag, "_name");
-  monodrag._DragState = class _DragState extends core.Object {
-    toString() {
-      return this[_name$];
+  var _Location_parameterLocations = dart.privateName(widget_inspector, "_Location.parameterLocations");
+  var _Location_name = dart.privateName(widget_inspector, "_Location.name");
+  var _Location_column = dart.privateName(widget_inspector, "_Location.column");
+  var _Location_line = dart.privateName(widget_inspector, "_Location.line");
+  var _Location_file = dart.privateName(widget_inspector, "_Location.file");
+  var Widget__location = dart.privateName(framework, "Widget._location");
+  var Widget_key = dart.privateName(framework, "Widget.key");
+  var SingleChildRenderObjectWidget_child = dart.privateName(framework, "SingleChildRenderObjectWidget.child");
+  var SizedBox_height = dart.privateName(basic, "SizedBox.height");
+  var SizedBox_width = dart.privateName(basic, "SizedBox.width");
+  desktop_text_selection._DesktopTextSelectionControls = class _DesktopTextSelectionControls extends text_selection.TextSelectionControls {
+    getHandleSize(textLineHeight) {
+      if (textLineHeight == null) dart.nullFailed(I[0], 24, 29, "textLineHeight");
+      return ui.Size.zero;
+    }
+    buildToolbar(context, globalEditableRegion, textLineHeight, selectionMidpoint, endpoints, delegate, clipboardStatus, lastSecondaryTapDownPosition) {
+      if (context == null) dart.nullFailed(I[0], 31, 18, "context");
+      if (globalEditableRegion == null) dart.nullFailed(I[0], 32, 10, "globalEditableRegion");
+      if (textLineHeight == null) dart.nullFailed(I[0], 33, 12, "textLineHeight");
+      if (selectionMidpoint == null) dart.nullFailed(I[0], 34, 12, "selectionMidpoint");
+      if (endpoints == null) dart.nullFailed(I[0], 35, 30, "endpoints");
+      if (delegate == null) dart.nullFailed(I[0], 36, 27, "delegate");
+      if (clipboardStatus == null) dart.nullFailed(I[0], 37, 29, "clipboardStatus");
+      return new desktop_text_selection._DesktopTextSelectionControlsToolbar.new({clipboardStatus: clipboardStatus, endpoints: endpoints, globalEditableRegion: globalEditableRegion, handleCut: dart.test(this.canCut(delegate)) ? dart.fn(() => this.handleCut(delegate), T.VoidTovoid()) : null, handleCopy: dart.test(this.canCopy(delegate)) ? dart.fn(() => this.handleCopy(delegate, clipboardStatus), T.VoidTovoid()) : null, handlePaste: dart.test(this.canPaste(delegate)) ? dart.fn(() => this.handlePaste(delegate), T.VoidTovoid()) : null, handleSelectAll: dart.test(this.canSelectAll(delegate)) ? dart.fn(() => this.handleSelectAll(delegate), T.VoidTovoid()) : null, selectionMidpoint: selectionMidpoint, lastSecondaryTapDownPosition: lastSecondaryTapDownPosition, textLineHeight: textLineHeight, $creationLocationd_0dea112b090073317d4: C[0] || CT.C0});
+    }
+    buildHandle(context, type, textLineHeight) {
+      if (context == null) dart.nullFailed(I[0], 56, 35, "context");
+      if (type == null) dart.nullFailed(I[0], 56, 68, "type");
+      if (textLineHeight == null) dart.nullFailed(I[0], 56, 81, "textLineHeight");
+      return C[12] || CT.C12;
+    }
+    getHandleAnchor(type, textLineHeight) {
+      if (type == null) dart.nullFailed(I[0], 62, 50, "type");
+      if (textLineHeight == null) dart.nullFailed(I[0], 62, 63, "textLineHeight");
+      return ui.Offset.zero;
+    }
+    canSelectAll(delegate) {
+      if (delegate == null) dart.nullFailed(I[0], 67, 43, "delegate");
+      let value = delegate.textEditingValue;
+      return dart.test(delegate.selectAllEnabled) && value.text[$isNotEmpty] && !(value.selection.start === 0 && value.selection.end === value.text.length);
     }
   };
-  (monodrag._DragState.new = function(index, _name) {
-    if (index == null) dart.nullFailed(I[0], 15, 6, "index");
-    if (_name == null) dart.nullFailed(I[0], 15, 6, "_name");
-    this.index = index;
-    this[_name$] = _name;
+  (desktop_text_selection._DesktopTextSelectionControls.new = function() {
     ;
-  }).prototype = monodrag._DragState.prototype;
-  dart.addTypeTests(monodrag._DragState);
-  dart.addTypeCaches(monodrag._DragState);
-  dart.setLibraryUri(monodrag._DragState, I[1]);
-  dart.setFieldSignature(monodrag._DragState, () => ({
-    __proto__: dart.getFields(monodrag._DragState.__proto__),
-    index: dart.finalFieldType(core.int),
-    [_name$]: dart.finalFieldType(core.String)
+  }).prototype = desktop_text_selection._DesktopTextSelectionControls.prototype;
+  dart.addTypeTests(desktop_text_selection._DesktopTextSelectionControls);
+  dart.addTypeCaches(desktop_text_selection._DesktopTextSelectionControls);
+  dart.setMethodSignature(desktop_text_selection._DesktopTextSelectionControls, () => ({
+    __proto__: dart.getMethods(desktop_text_selection._DesktopTextSelectionControls.__proto__),
+    getHandleSize: dart.fnType(ui.Size, [core.double]),
+    buildToolbar: dart.fnType(framework.Widget, [framework.BuildContext, ui.Rect, core.double, ui.Offset, core.List$(editable.TextSelectionPoint), text_input.TextSelectionDelegate, text_selection.ClipboardStatusNotifier, dart.nullable(ui.Offset)]),
+    buildHandle: dart.fnType(framework.Widget, [framework.BuildContext, text_selection.TextSelectionHandleType, core.double]),
+    getHandleAnchor: dart.fnType(ui.Offset, [text_selection.TextSelectionHandleType, core.double])
   }));
-  dart.defineExtensionMethods(monodrag._DragState, ['toString']);
-  monodrag._DragState.ready = C[0] || CT.C0;
-  monodrag._DragState.possible = C[1] || CT.C1;
-  monodrag._DragState.accepted = C[2] || CT.C2;
-  monodrag._DragState.values = C[3] || CT.C3;
-  var dragStartBehavior$ = dart.privateName(monodrag, "DragGestureRecognizer.dragStartBehavior");
-  var onDown = dart.privateName(monodrag, "DragGestureRecognizer.onDown");
-  var onStart = dart.privateName(monodrag, "DragGestureRecognizer.onStart");
-  var onUpdate = dart.privateName(monodrag, "DragGestureRecognizer.onUpdate");
-  var onEnd = dart.privateName(monodrag, "DragGestureRecognizer.onEnd");
-  var onCancel = dart.privateName(monodrag, "DragGestureRecognizer.onCancel");
-  var minFlingDistance = dart.privateName(monodrag, "DragGestureRecognizer.minFlingDistance");
-  var minFlingVelocity = dart.privateName(monodrag, "DragGestureRecognizer.minFlingVelocity");
-  var maxFlingVelocity = dart.privateName(monodrag, "DragGestureRecognizer.maxFlingVelocity");
-  var velocityTrackerBuilder$ = dart.privateName(monodrag, "DragGestureRecognizer.velocityTrackerBuilder");
-  var _name = dart.privateName(recognizer, "_name");
-  var _state = dart.privateName(monodrag, "_state");
-  var __DragGestureRecognizer__initialPosition = dart.privateName(monodrag, "_#DragGestureRecognizer#_initialPosition");
-  var __DragGestureRecognizer__initialPosition_isSet = dart.privateName(monodrag, "_#DragGestureRecognizer#_initialPosition#isSet");
-  var __DragGestureRecognizer__pendingDragOffset = dart.privateName(monodrag, "_#DragGestureRecognizer#_pendingDragOffset");
-  var __DragGestureRecognizer__pendingDragOffset_isSet = dart.privateName(monodrag, "_#DragGestureRecognizer#_pendingDragOffset#isSet");
-  var _lastPendingEventTimestamp = dart.privateName(monodrag, "_lastPendingEventTimestamp");
-  var _initialButtons = dart.privateName(monodrag, "_initialButtons");
-  var _lastTransform = dart.privateName(monodrag, "_lastTransform");
-  var __DragGestureRecognizer__globalDistanceMoved = dart.privateName(monodrag, "_#DragGestureRecognizer#_globalDistanceMoved");
-  var __DragGestureRecognizer__globalDistanceMoved_isSet = dart.privateName(monodrag, "_#DragGestureRecognizer#_globalDistanceMoved#isSet");
-  var _velocityTrackers = dart.privateName(monodrag, "_velocityTrackers");
-  var _acceptedActivePointers = dart.privateName(monodrag, "_acceptedActivePointers");
-  var _initialPosition = dart.privateName(monodrag, "_initialPosition");
-  var _pendingDragOffset = dart.privateName(monodrag, "_pendingDragOffset");
-  var _globalDistanceMoved = dart.privateName(monodrag, "_globalDistanceMoved");
-  var _checkDown = dart.privateName(monodrag, "_checkDown");
-  var _giveUpPointer = dart.privateName(monodrag, "_giveUpPointer");
-  var _getDeltaForDetails = dart.privateName(monodrag, "_getDeltaForDetails");
-  var _getPrimaryValueFromOffset = dart.privateName(monodrag, "_getPrimaryValueFromOffset");
-  var _checkUpdate = dart.privateName(monodrag, "_checkUpdate");
-  var _hasSufficientGlobalDistanceToAccept = dart.privateName(monodrag, "_hasSufficientGlobalDistanceToAccept");
-  var _checkStart = dart.privateName(monodrag, "_checkStart");
-  var _checkCancel = dart.privateName(monodrag, "_checkCancel");
-  var _checkEnd = dart.privateName(monodrag, "_checkEnd");
-  monodrag.DragGestureRecognizer = class DragGestureRecognizer extends recognizer.OneSequenceGestureRecognizer {
-    get dragStartBehavior() {
-      return this[dragStartBehavior$];
+  dart.setLibraryUri(desktop_text_selection._DesktopTextSelectionControls, I[1]);
+  var clipboardStatus$ = dart.privateName(desktop_text_selection, "_DesktopTextSelectionControlsToolbar.clipboardStatus");
+  var endpoints$ = dart.privateName(desktop_text_selection, "_DesktopTextSelectionControlsToolbar.endpoints");
+  var globalEditableRegion$ = dart.privateName(desktop_text_selection, "_DesktopTextSelectionControlsToolbar.globalEditableRegion");
+  var handleCopy$ = dart.privateName(desktop_text_selection, "_DesktopTextSelectionControlsToolbar.handleCopy");
+  var handleCut$ = dart.privateName(desktop_text_selection, "_DesktopTextSelectionControlsToolbar.handleCut");
+  var handlePaste$ = dart.privateName(desktop_text_selection, "_DesktopTextSelectionControlsToolbar.handlePaste");
+  var handleSelectAll$ = dart.privateName(desktop_text_selection, "_DesktopTextSelectionControlsToolbar.handleSelectAll");
+  var lastSecondaryTapDownPosition$ = dart.privateName(desktop_text_selection, "_DesktopTextSelectionControlsToolbar.lastSecondaryTapDownPosition");
+  var selectionMidpoint$ = dart.privateName(desktop_text_selection, "_DesktopTextSelectionControlsToolbar.selectionMidpoint");
+  var textLineHeight$ = dart.privateName(desktop_text_selection, "_DesktopTextSelectionControlsToolbar.textLineHeight");
+  desktop_text_selection._DesktopTextSelectionControlsToolbar = class _DesktopTextSelectionControlsToolbar extends framework.StatefulWidget {
+    get clipboardStatus() {
+      return this[clipboardStatus$];
     }
-    set dragStartBehavior(value) {
-      this[dragStartBehavior$] = value;
+    set clipboardStatus(value) {
+      super.clipboardStatus = value;
     }
-    get onDown() {
-      return this[onDown];
+    get endpoints() {
+      return this[endpoints$];
     }
-    set onDown(value) {
-      this[onDown] = value;
+    set endpoints(value) {
+      super.endpoints = value;
     }
-    get onStart() {
-      return this[onStart];
+    get globalEditableRegion() {
+      return this[globalEditableRegion$];
     }
-    set onStart(value) {
-      this[onStart] = value;
+    set globalEditableRegion(value) {
+      super.globalEditableRegion = value;
     }
-    get onUpdate() {
-      return this[onUpdate];
+    get handleCopy() {
+      return this[handleCopy$];
     }
-    set onUpdate(value) {
-      this[onUpdate] = value;
+    set handleCopy(value) {
+      super.handleCopy = value;
     }
-    get onEnd() {
-      return this[onEnd];
+    get handleCut() {
+      return this[handleCut$];
     }
-    set onEnd(value) {
-      this[onEnd] = value;
+    set handleCut(value) {
+      super.handleCut = value;
     }
-    get onCancel() {
-      return this[onCancel];
+    get handlePaste() {
+      return this[handlePaste$];
     }
-    set onCancel(value) {
-      this[onCancel] = value;
+    set handlePaste(value) {
+      super.handlePaste = value;
     }
-    get minFlingDistance() {
-      return this[minFlingDistance];
+    get handleSelectAll() {
+      return this[handleSelectAll$];
     }
-    set minFlingDistance(value) {
-      this[minFlingDistance] = value;
+    set handleSelectAll(value) {
+      super.handleSelectAll = value;
     }
-    get minFlingVelocity() {
-      return this[minFlingVelocity];
+    get lastSecondaryTapDownPosition() {
+      return this[lastSecondaryTapDownPosition$];
     }
-    set minFlingVelocity(value) {
-      this[minFlingVelocity] = value;
+    set lastSecondaryTapDownPosition(value) {
+      super.lastSecondaryTapDownPosition = value;
     }
-    get maxFlingVelocity() {
-      return this[maxFlingVelocity];
+    get selectionMidpoint() {
+      return this[selectionMidpoint$];
     }
-    set maxFlingVelocity(value) {
-      this[maxFlingVelocity] = value;
+    set selectionMidpoint(value) {
+      super.selectionMidpoint = value;
     }
-    get velocityTrackerBuilder() {
-      return this[velocityTrackerBuilder$];
+    get textLineHeight() {
+      return this[textLineHeight$];
     }
-    set velocityTrackerBuilder(value) {
-      this[velocityTrackerBuilder$] = value;
+    set textLineHeight(value) {
+      super.textLineHeight = value;
     }
-    static _defaultBuilder(event) {
-      if (event == null) dart.nullFailed(I[0], 75, 55, "event");
-      return new velocity_tracker.VelocityTracker.withKind(event.kind);
+    createState() {
+      return new desktop_text_selection._DesktopTextSelectionControlsToolbarState.new();
     }
-    get [_initialPosition]() {
+  };
+  (desktop_text_selection._DesktopTextSelectionControlsToolbar.new = function(opts) {
+    let key = opts && 'key' in opts ? opts.key : null;
+    let clipboardStatus = opts && 'clipboardStatus' in opts ? opts.clipboardStatus : null;
+    let endpoints = opts && 'endpoints' in opts ? opts.endpoints : null;
+    if (endpoints == null) dart.nullFailed(I[0], 86, 19, "endpoints");
+    let globalEditableRegion = opts && 'globalEditableRegion' in opts ? opts.globalEditableRegion : null;
+    if (globalEditableRegion == null) dart.nullFailed(I[0], 87, 19, "globalEditableRegion");
+    let handleCopy = opts && 'handleCopy' in opts ? opts.handleCopy : null;
+    let handleCut = opts && 'handleCut' in opts ? opts.handleCut : null;
+    let handlePaste = opts && 'handlePaste' in opts ? opts.handlePaste : null;
+    let handleSelectAll = opts && 'handleSelectAll' in opts ? opts.handleSelectAll : null;
+    let selectionMidpoint = opts && 'selectionMidpoint' in opts ? opts.selectionMidpoint : null;
+    if (selectionMidpoint == null) dart.nullFailed(I[0], 92, 19, "selectionMidpoint");
+    let textLineHeight = opts && 'textLineHeight' in opts ? opts.textLineHeight : null;
+    if (textLineHeight == null) dart.nullFailed(I[0], 93, 19, "textLineHeight");
+    let lastSecondaryTapDownPosition = opts && 'lastSecondaryTapDownPosition' in opts ? opts.lastSecondaryTapDownPosition : null;
+    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
+    this[clipboardStatus$] = clipboardStatus;
+    this[endpoints$] = endpoints;
+    this[globalEditableRegion$] = globalEditableRegion;
+    this[handleCopy$] = handleCopy;
+    this[handleCut$] = handleCut;
+    this[handlePaste$] = handlePaste;
+    this[handleSelectAll$] = handleSelectAll;
+    this[selectionMidpoint$] = selectionMidpoint;
+    this[textLineHeight$] = textLineHeight;
+    this[lastSecondaryTapDownPosition$] = lastSecondaryTapDownPosition;
+    desktop_text_selection._DesktopTextSelectionControlsToolbar.__proto__.new.call(this, {key: key, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
+    ;
+  }).prototype = desktop_text_selection._DesktopTextSelectionControlsToolbar.prototype;
+  dart.addTypeTests(desktop_text_selection._DesktopTextSelectionControlsToolbar);
+  dart.addTypeCaches(desktop_text_selection._DesktopTextSelectionControlsToolbar);
+  dart.setMethodSignature(desktop_text_selection._DesktopTextSelectionControlsToolbar, () => ({
+    __proto__: dart.getMethods(desktop_text_selection._DesktopTextSelectionControlsToolbar.__proto__),
+    createState: dart.fnType(desktop_text_selection._DesktopTextSelectionControlsToolbarState, [])
+  }));
+  dart.setLibraryUri(desktop_text_selection._DesktopTextSelectionControlsToolbar, I[1]);
+  dart.setFieldSignature(desktop_text_selection._DesktopTextSelectionControlsToolbar, () => ({
+    __proto__: dart.getFields(desktop_text_selection._DesktopTextSelectionControlsToolbar.__proto__),
+    clipboardStatus: dart.finalFieldType(dart.nullable(text_selection.ClipboardStatusNotifier)),
+    endpoints: dart.finalFieldType(core.List$(editable.TextSelectionPoint)),
+    globalEditableRegion: dart.finalFieldType(ui.Rect),
+    handleCopy: dart.finalFieldType(dart.nullable(dart.fnType(dart.void, []))),
+    handleCut: dart.finalFieldType(dart.nullable(dart.fnType(dart.void, []))),
+    handlePaste: dart.finalFieldType(dart.nullable(dart.fnType(dart.void, []))),
+    handleSelectAll: dart.finalFieldType(dart.nullable(dart.fnType(dart.void, []))),
+    lastSecondaryTapDownPosition: dart.finalFieldType(dart.nullable(ui.Offset)),
+    selectionMidpoint: dart.finalFieldType(ui.Offset),
+    textLineHeight: dart.finalFieldType(core.double)
+  }));
+  var _clipboardStatus = dart.privateName(desktop_text_selection, "_clipboardStatus");
+  var _onChangedClipboardStatus = dart.privateName(desktop_text_selection, "_onChangedClipboardStatus");
+  desktop_text_selection._DesktopTextSelectionControlsToolbarState = class _DesktopTextSelectionControlsToolbarState extends framework.State$(desktop_text_selection._DesktopTextSelectionControlsToolbar) {
+    [_onChangedClipboardStatus]() {
+      this.setState(dart.fn(() => {
+      }, T.VoidTovoid()));
+    }
+    initState() {
       let t0;
-      return dart.test(this[__DragGestureRecognizer__initialPosition_isSet]) ? (t0 = this[__DragGestureRecognizer__initialPosition], t0) : dart.throw(new _internal.LateError.fieldNI("_initialPosition"));
+      super.initState();
+      if (this.widget.handlePaste != null) {
+        this[_clipboardStatus] = (t0 = this.widget.clipboardStatus, t0 == null ? new text_selection.ClipboardStatusNotifier.new() : t0);
+        dart.nullCheck(this[_clipboardStatus]).addListener(dart.bind(this, _onChangedClipboardStatus));
+        dart.nullCheck(this[_clipboardStatus]).update();
+      }
     }
-    set [_initialPosition](t0) {
-      if (t0 == null) dart.nullFailed(I[0], 204, 19, "null");
-      this[__DragGestureRecognizer__initialPosition_isSet] = true;
-      this[__DragGestureRecognizer__initialPosition] = t0;
-    }
-    get [_pendingDragOffset]() {
-      let t1;
-      return dart.test(this[__DragGestureRecognizer__pendingDragOffset_isSet]) ? (t1 = this[__DragGestureRecognizer__pendingDragOffset], t1) : dart.throw(new _internal.LateError.fieldNI("_pendingDragOffset"));
-    }
-    set [_pendingDragOffset](t1) {
-      if (t1 == null) dart.nullFailed(I[0], 205, 19, "null");
-      this[__DragGestureRecognizer__pendingDragOffset_isSet] = true;
-      this[__DragGestureRecognizer__pendingDragOffset] = t1;
-    }
-    get [_globalDistanceMoved]() {
-      let t2;
-      return dart.test(this[__DragGestureRecognizer__globalDistanceMoved_isSet]) ? (t2 = this[__DragGestureRecognizer__globalDistanceMoved], t2) : dart.throw(new _internal.LateError.fieldNI("_globalDistanceMoved"));
-    }
-    set [_globalDistanceMoved](t2) {
-      if (t2 == null) dart.nullFailed(I[0], 216, 15, "null");
-      this[__DragGestureRecognizer__globalDistanceMoved_isSet] = true;
-      this[__DragGestureRecognizer__globalDistanceMoved] = t2;
-    }
-    isPointerAllowed(event) {
-      if (event == null) dart.nullFailed(I[0], 232, 38, "event");
-      if (this[_initialButtons] == null) {
-        switch (event.buttons) {
-          case 1:
-          {
-            if (this.onDown == null && this.onStart == null && this.onUpdate == null && this.onEnd == null && this.onCancel == null) return false;
-            break;
-          }
-          default:
-          {
-            return false;
-          }
+    didUpdateWidget(oldWidget) {
+      let t0;
+      desktop_text_selection._DesktopTextSelectionControlsToolbar.as(oldWidget);
+      if (oldWidget == null) dart.nullFailed(I[0], 132, 61, "oldWidget");
+      super.didUpdateWidget(oldWidget);
+      if (!dart.equals(oldWidget.clipboardStatus, this.widget.clipboardStatus)) {
+        if (this[_clipboardStatus] != null) {
+          dart.nullCheck(this[_clipboardStatus]).removeListener(dart.bind(this, _onChangedClipboardStatus));
+          dart.nullCheck(this[_clipboardStatus]).dispose();
         }
-      } else {
-        if (event.buttons != this[_initialButtons]) {
-          return false;
+        this[_clipboardStatus] = (t0 = this.widget.clipboardStatus, t0 == null ? new text_selection.ClipboardStatusNotifier.new() : t0);
+        dart.nullCheck(this[_clipboardStatus]).addListener(dart.bind(this, _onChangedClipboardStatus));
+        if (this.widget.handlePaste != null) {
+          dart.nullCheck(this[_clipboardStatus]).update();
         }
       }
-      return super.isPointerAllowed(events.PointerDownEvent.as(event));
-    }
-    addAllowedPointer(event) {
-      let t3;
-      if (event == null) dart.nullFailed(I[0], 256, 39, "event");
-      this.startTrackingPointer(event.pointer, event.transform);
-      this[_velocityTrackers][$_set](event.pointer, (t3 = event, this.velocityTrackerBuilder(t3)));
-      if (this[_state] == monodrag._DragState.ready) {
-        this[_state] = monodrag._DragState.possible;
-        this[_initialPosition] = new recognizer.OffsetPair.new({global: event.position, local: event.localPosition});
-        this[_initialButtons] = event.buttons;
-        this[_pendingDragOffset] = recognizer.OffsetPair.zero;
-        this[_globalDistanceMoved] = 0.0;
-        this[_lastPendingEventTimestamp] = event.timeStamp;
-        this[_lastTransform] = event.transform;
-        this[_checkDown]();
-      } else if (this[_state] == monodrag._DragState.accepted) {
-        this.resolve(arena.GestureDisposition.accepted);
-      }
-    }
-    handleEvent(event) {
-      let t3;
-      if (event == null) dart.nullFailed(I[0], 274, 33, "event");
-      if (!(this[_state] != monodrag._DragState.ready)) dart.assertFailed(null, I[0], 275, 12, "_state != _DragState.ready");
-      if (!dart.test(event.synthesized) && (events.PointerDownEvent.is(event) || events.PointerMoveEvent.is(event))) {
-        let tracker = dart.nullCheck(this[_velocityTrackers][$_get](event.pointer));
-        if (!(tracker !== null)) dart.assertFailed(null, I[0], 279, 14, "tracker != null");
-        tracker.addPosition(event.timeStamp, event.localPosition);
-      }
-      if (events.PointerMoveEvent.is(event)) {
-        if (event.buttons != this[_initialButtons]) {
-          this[_giveUpPointer](event.pointer);
-          return;
-        }
-        if (this[_state] == monodrag._DragState.accepted) {
-          this[_checkUpdate]({sourceTimeStamp: event.timeStamp, delta: this[_getDeltaForDetails](event.localDelta), primaryDelta: this[_getPrimaryValueFromOffset](event.localDelta), globalPosition: event.position, localPosition: event.localPosition});
-        } else {
-          this[_pendingDragOffset] = this[_pendingDragOffset]['+'](new recognizer.OffsetPair.new({local: event.localDelta, global: event.delta}));
-          this[_lastPendingEventTimestamp] = event.timeStamp;
-          this[_lastTransform] = event.transform;
-          let movedLocally = this[_getDeltaForDetails](event.localDelta);
-          let localToGlobalTransform = event.transform == null ? null : vector_math_64.Matrix4.tryInvert(dart.nullCheck(event.transform));
-          this[_globalDistanceMoved] = dart.notNull(this[_globalDistanceMoved]) + dart.notNull(events.PointerEvent.transformDeltaViaPositions({transform: localToGlobalTransform, untransformedDelta: movedLocally, untransformedEndPosition: event.localPosition}).distance) * (t3 = this[_getPrimaryValueFromOffset](movedLocally), t3 == null ? 1.0 : t3)[$sign];
-          if (dart.test(this[_hasSufficientGlobalDistanceToAccept](event.kind))) this.resolve(arena.GestureDisposition.accepted);
-        }
-      }
-      if (events.PointerUpEvent.is(event) || events.PointerCancelEvent.is(event)) {
-        this[_giveUpPointer](event.pointer);
-      }
-    }
-    acceptGesture(pointer) {
-      if (pointer == null) dart.nullFailed(I[0], 319, 26, "pointer");
-      if (!!dart.test(this[_acceptedActivePointers].contains(pointer))) dart.assertFailed(null, I[0], 320, 12, "!_acceptedActivePointers.contains(pointer)");
-      this[_acceptedActivePointers].add(pointer);
-      if (this[_state] != monodrag._DragState.accepted) {
-        this[_state] = monodrag._DragState.accepted;
-        let delta = this[_pendingDragOffset];
-        let timestamp = dart.nullCheck(this[_lastPendingEventTimestamp]);
-        let transform = this[_lastTransform];
-        let localUpdateDelta = null;
-        switch (this.dragStartBehavior) {
-          case C[4] || CT.C4:
-          {
-            this[_initialPosition] = this[_initialPosition]['+'](delta);
-            localUpdateDelta = ui.Offset.zero;
-            break;
-          }
-          case C[6] || CT.C6:
-          {
-            localUpdateDelta = this[_getDeltaForDetails](delta.local);
-            break;
-          }
-          default:
-          {
-            dart.throw(new _internal.ReachabilityError.new("`null` encountered as case in a switch expression with a non-nullable enum type."));
-          }
-        }
-        this[_pendingDragOffset] = recognizer.OffsetPair.zero;
-        this[_lastPendingEventTimestamp] = null;
-        this[_lastTransform] = null;
-        this[_checkStart](timestamp, pointer);
-        if (!dart.equals(localUpdateDelta, ui.Offset.zero) && this.onUpdate != null) {
-          let localToGlobal = transform != null ? vector_math_64.Matrix4.tryInvert(transform) : null;
-          let correctedLocalPosition = this[_initialPosition].local['+'](localUpdateDelta);
-          let globalUpdateDelta = events.PointerEvent.transformDeltaViaPositions({untransformedEndPosition: correctedLocalPosition, untransformedDelta: localUpdateDelta, transform: localToGlobal});
-          let updateDelta = new recognizer.OffsetPair.new({local: localUpdateDelta, global: globalUpdateDelta});
-          let correctedPosition = this[_initialPosition]['+'](updateDelta);
-          this[_checkUpdate]({sourceTimeStamp: timestamp, delta: localUpdateDelta, primaryDelta: this[_getPrimaryValueFromOffset](localUpdateDelta), globalPosition: correctedPosition.global, localPosition: correctedPosition.local});
-        }
-      }
-    }
-    rejectGesture(pointer) {
-      if (pointer == null) dart.nullFailed(I[0], 363, 26, "pointer");
-      this[_giveUpPointer](pointer);
-    }
-    didStopTrackingLastPointer(pointer) {
-      if (pointer == null) dart.nullFailed(I[0], 368, 39, "pointer");
-      if (!(this[_state] != monodrag._DragState.ready)) dart.assertFailed(null, I[0], 369, 12, "_state != _DragState.ready");
-      switch (this[_state]) {
-        case C[0] || CT.C0:
-        {
-          break;
-        }
-        case C[1] || CT.C1:
-        {
-          this.resolve(arena.GestureDisposition.rejected);
-          this[_checkCancel]();
-          break;
-        }
-        case C[2] || CT.C2:
-        {
-          this[_checkEnd](pointer);
-          break;
-        }
-        default:
-        {
-          dart.throw(new _internal.ReachabilityError.new("`null` encountered as case in a switch expression with a non-nullable enum type."));
-        }
-      }
-      this[_velocityTrackers][$clear]();
-      this[_initialButtons] = null;
-      this[_state] = monodrag._DragState.ready;
-    }
-    [_giveUpPointer](pointer) {
-      if (pointer == null) dart.nullFailed(I[0], 388, 27, "pointer");
-      this.stopTrackingPointer(pointer);
-      if (!dart.test(this[_acceptedActivePointers].remove(pointer))) this.resolvePointer(pointer, arena.GestureDisposition.rejected);
-    }
-    [_checkDown]() {
-      if (!(this[_initialButtons] === 1)) dart.assertFailed(null, I[0], 397, 12, "_initialButtons == kPrimaryButton");
-      if (this.onDown != null) {
-        let details = new drag_details.DragDownDetails.new({globalPosition: this[_initialPosition].global, localPosition: this[_initialPosition].local});
-        this.invokeCallback(dart.void, "onDown", dart.fn(() => dart.nullCheck(this.onDown)(details), T.VoidTovoid()));
-      }
-    }
-    [_checkStart](timestamp, pointer) {
-      if (timestamp == null) dart.nullFailed(I[0], 407, 29, "timestamp");
-      if (pointer == null) dart.nullFailed(I[0], 407, 44, "pointer");
-      if (!(this[_initialButtons] === 1)) dart.assertFailed(null, I[0], 408, 12, "_initialButtons == kPrimaryButton");
-      if (this.onStart != null) {
-        let details = new drag_details.DragStartDetails.new({sourceTimeStamp: timestamp, globalPosition: this[_initialPosition].global, localPosition: this[_initialPosition].local, kind: this.getKindForPointer(pointer)});
-        this.invokeCallback(dart.void, "onStart", dart.fn(() => dart.nullCheck(this.onStart)(details), T.VoidTovoid()));
-      }
-    }
-    [_checkUpdate](opts) {
-      let sourceTimeStamp = opts && 'sourceTimeStamp' in opts ? opts.sourceTimeStamp : null;
-      let delta = opts && 'delta' in opts ? opts.delta : null;
-      if (delta == null) dart.nullFailed(I[0], 422, 21, "delta");
-      let primaryDelta = opts && 'primaryDelta' in opts ? opts.primaryDelta : null;
-      let globalPosition = opts && 'globalPosition' in opts ? opts.globalPosition : null;
-      if (globalPosition == null) dart.nullFailed(I[0], 424, 21, "globalPosition");
-      let localPosition = opts && 'localPosition' in opts ? opts.localPosition : null;
-      if (!(this[_initialButtons] === 1)) dart.assertFailed(null, I[0], 427, 12, "_initialButtons == kPrimaryButton");
-      if (this.onUpdate != null) {
-        let details = new drag_details.DragUpdateDetails.new({sourceTimeStamp: sourceTimeStamp, delta: delta, primaryDelta: primaryDelta, globalPosition: globalPosition, localPosition: localPosition});
-        this.invokeCallback(dart.void, "onUpdate", dart.fn(() => dart.nullCheck(this.onUpdate)(details), T.VoidTovoid()));
-      }
-    }
-    [_checkEnd](pointer) {
-      let t3, t3$;
-      if (pointer == null) dart.nullFailed(I[0], 440, 22, "pointer");
-      if (!(this[_initialButtons] === 1)) dart.assertFailed(null, I[0], 441, 12, "_initialButtons == kPrimaryButton");
-      if (this.onEnd == null) return;
-      let tracker = dart.nullCheck(this[_velocityTrackers][$_get](pointer));
-      if (!(tracker !== null)) dart.assertFailed(null, I[0], 446, 12, "tracker != null");
-      let details = null;
-      let debugReport = null;
-      let estimate = tracker.getVelocityEstimate();
-      if (estimate != null && dart.test(this.isFlingGesture(estimate, tracker.kind))) {
-        let velocity = new velocity_tracker.Velocity.new({pixelsPerSecond: estimate.pixelsPerSecond}).clampMagnitude((t3 = this.minFlingVelocity, t3 == null ? 50 : t3), (t3$ = this.maxFlingVelocity, t3$ == null ? 8000 : t3$));
-        details = new drag_details.DragEndDetails.new({velocity: velocity, primaryVelocity: this[_getPrimaryValueFromOffset](velocity.pixelsPerSecond)});
-        debugReport = dart.fn(() => dart.str(estimate) + "; fling at " + dart.str(velocity) + ".", T.VoidToString());
-      } else {
-        details = new drag_details.DragEndDetails.new({velocity: velocity_tracker.Velocity.zero, primaryVelocity: 0.0});
-        debugReport = dart.fn(() => {
-          if (estimate == null) return "Could not estimate velocity.";
-          return dart.str(estimate) + "; judged to not be a fling.";
-        }, T.VoidToString());
-      }
-      this.invokeCallback(dart.void, "onEnd", dart.fn(() => dart.nullCheck(this.onEnd)(details), T.VoidTovoid()), {debugReport: debugReport});
-    }
-    [_checkCancel]() {
-      if (!(this[_initialButtons] === 1)) dart.assertFailed(null, I[0], 477, 12, "_initialButtons == kPrimaryButton");
-      if (this.onCancel != null) this.invokeCallback(dart.void, "onCancel", dart.nullCheck(this.onCancel));
     }
     dispose() {
-      this[_velocityTrackers][$clear]();
       super.dispose();
+      if (this[_clipboardStatus] != null && !dart.test(dart.nullCheck(this[_clipboardStatus]).disposed)) {
+        dart.nullCheck(this[_clipboardStatus]).removeListener(dart.bind(this, _onChangedClipboardStatus));
+        if (this.widget.clipboardStatus == null) {
+          dart.nullCheck(this[_clipboardStatus]).dispose();
+        }
+      }
     }
-    debugFillProperties(properties) {
-      if (properties == null) dart.nullFailed(I[0], 488, 56, "properties");
-      super.debugFillProperties(properties);
-      properties.add(new (T.EnumPropertyOfDragStartBehavior()).new("start behavior", this.dragStartBehavior));
-    }
-  };
-  (monodrag.DragGestureRecognizer.new = function(opts) {
-    let debugOwner = opts && 'debugOwner' in opts ? opts.debugOwner : null;
-    let kind = opts && 'kind' in opts ? opts.kind : null;
-    let dragStartBehavior = opts && 'dragStartBehavior' in opts ? opts.dragStartBehavior : C[4] || CT.C4;
-    if (dragStartBehavior == null) dart.nullFailed(I[0], 70, 10, "dragStartBehavior");
-    let velocityTrackerBuilder = opts && 'velocityTrackerBuilder' in opts ? opts.velocityTrackerBuilder : C[5] || CT.C5;
-    if (velocityTrackerBuilder == null) dart.nullFailed(I[0], 71, 10, "velocityTrackerBuilder");
-    this[onDown] = null;
-    this[onStart] = null;
-    this[onUpdate] = null;
-    this[onEnd] = null;
-    this[onCancel] = null;
-    this[minFlingDistance] = null;
-    this[minFlingVelocity] = null;
-    this[maxFlingVelocity] = null;
-    this[_state] = monodrag._DragState.ready;
-    this[__DragGestureRecognizer__initialPosition] = null;
-    this[__DragGestureRecognizer__initialPosition_isSet] = false;
-    this[__DragGestureRecognizer__pendingDragOffset] = null;
-    this[__DragGestureRecognizer__pendingDragOffset_isSet] = false;
-    this[_lastPendingEventTimestamp] = null;
-    this[_initialButtons] = null;
-    this[_lastTransform] = null;
-    this[__DragGestureRecognizer__globalDistanceMoved] = null;
-    this[__DragGestureRecognizer__globalDistanceMoved_isSet] = false;
-    this[_velocityTrackers] = new (T.IdentityMapOfint$VelocityTracker()).new();
-    this[_acceptedActivePointers] = T.LinkedHashSetOfint().new();
-    this[dragStartBehavior$] = dragStartBehavior;
-    this[velocityTrackerBuilder$] = velocityTrackerBuilder;
-    if (!(dragStartBehavior != null)) dart.assertFailed(null, I[0], 72, 15, "dragStartBehavior != null");
-    monodrag.DragGestureRecognizer.__proto__.new.call(this, {debugOwner: debugOwner, kind: kind});
-    ;
-  }).prototype = monodrag.DragGestureRecognizer.prototype;
-  dart.addTypeTests(monodrag.DragGestureRecognizer);
-  dart.addTypeCaches(monodrag.DragGestureRecognizer);
-  dart.setMethodSignature(monodrag.DragGestureRecognizer, () => ({
-    __proto__: dart.getMethods(monodrag.DragGestureRecognizer.__proto__),
-    isPointerAllowed: dart.fnType(core.bool, [events.PointerEvent]),
-    addAllowedPointer: dart.fnType(dart.void, [events.PointerEvent]),
-    handleEvent: dart.fnType(dart.void, [events.PointerEvent]),
-    didStopTrackingLastPointer: dart.fnType(dart.void, [core.int]),
-    [_giveUpPointer]: dart.fnType(dart.void, [core.int]),
-    [_checkDown]: dart.fnType(dart.void, []),
-    [_checkStart]: dart.fnType(dart.void, [core.Duration, core.int]),
-    [_checkUpdate]: dart.fnType(dart.void, [], {localPosition: dart.nullable(ui.Offset), primaryDelta: dart.nullable(core.double), sourceTimeStamp: dart.nullable(core.Duration)}, {delta: ui.Offset, globalPosition: ui.Offset}),
-    [_checkEnd]: dart.fnType(dart.void, [core.int]),
-    [_checkCancel]: dart.fnType(dart.void, [])
-  }));
-  dart.setGetterSignature(monodrag.DragGestureRecognizer, () => ({
-    __proto__: dart.getGetters(monodrag.DragGestureRecognizer.__proto__),
-    [_initialPosition]: recognizer.OffsetPair,
-    [_pendingDragOffset]: recognizer.OffsetPair,
-    [_globalDistanceMoved]: core.double
-  }));
-  dart.setSetterSignature(monodrag.DragGestureRecognizer, () => ({
-    __proto__: dart.getSetters(monodrag.DragGestureRecognizer.__proto__),
-    [_initialPosition]: recognizer.OffsetPair,
-    [_pendingDragOffset]: recognizer.OffsetPair,
-    [_globalDistanceMoved]: core.double
-  }));
-  dart.setLibraryUri(monodrag.DragGestureRecognizer, I[1]);
-  dart.setFieldSignature(monodrag.DragGestureRecognizer, () => ({
-    __proto__: dart.getFields(monodrag.DragGestureRecognizer.__proto__),
-    dragStartBehavior: dart.fieldType(recognizer.DragStartBehavior),
-    onDown: dart.fieldType(dart.nullable(dart.fnType(dart.void, [drag_details.DragDownDetails]))),
-    onStart: dart.fieldType(dart.nullable(dart.fnType(dart.void, [drag_details.DragStartDetails]))),
-    onUpdate: dart.fieldType(dart.nullable(dart.fnType(dart.void, [drag_details.DragUpdateDetails]))),
-    onEnd: dart.fieldType(dart.nullable(dart.fnType(dart.void, [drag_details.DragEndDetails]))),
-    onCancel: dart.fieldType(dart.nullable(dart.fnType(dart.void, []))),
-    minFlingDistance: dart.fieldType(dart.nullable(core.double)),
-    minFlingVelocity: dart.fieldType(dart.nullable(core.double)),
-    maxFlingVelocity: dart.fieldType(dart.nullable(core.double)),
-    velocityTrackerBuilder: dart.fieldType(dart.fnType(velocity_tracker.VelocityTracker, [events.PointerEvent])),
-    [_state]: dart.fieldType(monodrag._DragState),
-    [__DragGestureRecognizer__initialPosition]: dart.fieldType(dart.nullable(recognizer.OffsetPair)),
-    [__DragGestureRecognizer__initialPosition_isSet]: dart.fieldType(core.bool),
-    [__DragGestureRecognizer__pendingDragOffset]: dart.fieldType(dart.nullable(recognizer.OffsetPair)),
-    [__DragGestureRecognizer__pendingDragOffset_isSet]: dart.fieldType(core.bool),
-    [_lastPendingEventTimestamp]: dart.fieldType(dart.nullable(core.Duration)),
-    [_initialButtons]: dart.fieldType(dart.nullable(core.int)),
-    [_lastTransform]: dart.fieldType(dart.nullable(vector_math_64.Matrix4)),
-    [__DragGestureRecognizer__globalDistanceMoved]: dart.fieldType(dart.nullable(core.double)),
-    [__DragGestureRecognizer__globalDistanceMoved_isSet]: dart.fieldType(core.bool),
-    [_velocityTrackers]: dart.finalFieldType(core.Map$(core.int, velocity_tracker.VelocityTracker)),
-    [_acceptedActivePointers]: dart.finalFieldType(core.Set$(core.int))
-  }));
-  monodrag.VerticalDragGestureRecognizer = class VerticalDragGestureRecognizer extends monodrag.DragGestureRecognizer {
-    isFlingGesture(estimate, kind) {
-      let t3, t3$;
-      if (estimate == null) dart.nullFailed(I[0], 514, 40, "estimate");
-      if (kind == null) dart.nullFailed(I[0], 514, 68, "kind");
-      let minVelocity = (t3 = this.minFlingVelocity, t3 == null ? 50 : t3);
-      let minDistance = (t3$ = this.minFlingDistance, t3$ == null ? events.computeHitSlop(kind) : t3$);
-      return estimate.pixelsPerSecond.dy[$abs]() > dart.notNull(minVelocity) && estimate.offset.dy[$abs]() > dart.notNull(minDistance);
-    }
-    [_hasSufficientGlobalDistanceToAccept](pointerDeviceKind) {
-      if (pointerDeviceKind == null) dart.nullFailed(I[0], 521, 63, "pointerDeviceKind");
-      return this[_globalDistanceMoved][$abs]() > dart.notNull(events.computeHitSlop(pointerDeviceKind));
-    }
-    [_getDeltaForDetails](delta) {
-      if (delta == null) dart.nullFailed(I[0], 526, 37, "delta");
-      return new ui.Offset.new(0.0, delta.dy);
-    }
-    [_getPrimaryValueFromOffset](value) {
-      if (value == null) dart.nullFailed(I[0], 529, 44, "value");
-      return value.dy;
-    }
-    get debugDescription() {
-      return "vertical drag";
+    build(context) {
+      let t0;
+      if (context == null) dart.nullFailed(I[0], 161, 29, "context");
+      if (this.widget.handlePaste != null && dart.nullCheck(this[_clipboardStatus]).value == text_selection.ClipboardStatus.unknown) {
+        return C[15] || CT.C15;
+      }
+      if (!dart.test(debug.debugCheckHasMediaQuery(context))) dart.assertFailed(null, I[0], 167, 12, "debugCheckHasMediaQuery(context)");
+      let mediaQuery = media_query.MediaQuery.of(context);
+      let midpointAnchor = new ui.Offset.new((dart.notNull(this.widget.selectionMidpoint.dx) - dart.notNull(this.widget.globalEditableRegion.left))[$clamp](mediaQuery.padding.left, dart.notNull(mediaQuery.size.width) - dart.notNull(mediaQuery.padding.right)), dart.notNull(this.widget.selectionMidpoint.dy) - dart.notNull(this.widget.globalEditableRegion.top));
+      if (!dart.test(debug$.debugCheckHasMaterialLocalizations(context))) dart.assertFailed(null, I[0], 178, 12, "debugCheckHasMaterialLocalizations(context)");
+      let localizations = material_localizations.MaterialLocalizations.of(context);
+      let items = T.JSArrayOfWidget().of([]);
+      function addToolbarButton(text, onPressed) {
+        if (text == null) dart.nullFailed(I[0], 183, 14, "text");
+        if (onPressed == null) dart.nullFailed(I[0], 184, 20, "onPressed");
+        items[$add](new desktop_text_selection._DesktopTextSelectionToolbarButton.text({context: context, onPressed: onPressed, text: text, $creationLocationd_0dea112b090073317d4: C[20] || CT.C20}));
+      }
+      dart.fn(addToolbarButton, T.StringAndFnTovoid());
+      if (this.widget.handleCut != null) {
+        addToolbarButton(localizations.cutButtonLabel, dart.nullCheck(this.widget.handleCut));
+      }
+      if (this.widget.handleCopy != null) {
+        addToolbarButton(localizations.copyButtonLabel, dart.nullCheck(this.widget.handleCopy));
+      }
+      if (this.widget.handlePaste != null && dart.nullCheck(this[_clipboardStatus]).value == text_selection.ClipboardStatus.pasteable) {
+        addToolbarButton(localizations.pasteButtonLabel, dart.nullCheck(this.widget.handlePaste));
+      }
+      if (this.widget.handleSelectAll != null) {
+        addToolbarButton(localizations.selectAllButtonLabel, dart.nullCheck(this.widget.handleSelectAll));
+      }
+      if (dart.test(items[$isEmpty])) {
+        return C[25] || CT.C25;
+      }
+      return new desktop_text_selection._DesktopTextSelectionToolbar.new({anchor: (t0 = this.widget.lastSecondaryTapDownPosition, t0 == null ? midpointAnchor : t0), children: items, $creationLocationd_0dea112b090073317d4: C[30] || CT.C30});
     }
   };
-  (monodrag.VerticalDragGestureRecognizer.new = function(opts) {
-    let debugOwner = opts && 'debugOwner' in opts ? opts.debugOwner : null;
-    let kind = opts && 'kind' in opts ? opts.kind : null;
-    monodrag.VerticalDragGestureRecognizer.__proto__.new.call(this, {debugOwner: debugOwner, kind: kind});
+  (desktop_text_selection._DesktopTextSelectionControlsToolbarState.new = function() {
+    this[_clipboardStatus] = null;
+    desktop_text_selection._DesktopTextSelectionControlsToolbarState.__proto__.new.call(this);
     ;
-  }).prototype = monodrag.VerticalDragGestureRecognizer.prototype;
-  dart.addTypeTests(monodrag.VerticalDragGestureRecognizer);
-  dart.addTypeCaches(monodrag.VerticalDragGestureRecognizer);
-  dart.setMethodSignature(monodrag.VerticalDragGestureRecognizer, () => ({
-    __proto__: dart.getMethods(monodrag.VerticalDragGestureRecognizer.__proto__),
-    isFlingGesture: dart.fnType(core.bool, [velocity_tracker.VelocityEstimate, ui.PointerDeviceKind]),
-    [_hasSufficientGlobalDistanceToAccept]: dart.fnType(core.bool, [ui.PointerDeviceKind]),
-    [_getDeltaForDetails]: dart.fnType(ui.Offset, [ui.Offset]),
-    [_getPrimaryValueFromOffset]: dart.fnType(core.double, [ui.Offset])
+  }).prototype = desktop_text_selection._DesktopTextSelectionControlsToolbarState.prototype;
+  dart.addTypeTests(desktop_text_selection._DesktopTextSelectionControlsToolbarState);
+  dart.addTypeCaches(desktop_text_selection._DesktopTextSelectionControlsToolbarState);
+  dart.setMethodSignature(desktop_text_selection._DesktopTextSelectionControlsToolbarState, () => ({
+    __proto__: dart.getMethods(desktop_text_selection._DesktopTextSelectionControlsToolbarState.__proto__),
+    [_onChangedClipboardStatus]: dart.fnType(dart.void, []),
+    build: dart.fnType(framework.Widget, [framework.BuildContext])
   }));
-  dart.setGetterSignature(monodrag.VerticalDragGestureRecognizer, () => ({
-    __proto__: dart.getGetters(monodrag.VerticalDragGestureRecognizer.__proto__),
-    debugDescription: core.String
+  dart.setLibraryUri(desktop_text_selection._DesktopTextSelectionControlsToolbarState, I[1]);
+  dart.setFieldSignature(desktop_text_selection._DesktopTextSelectionControlsToolbarState, () => ({
+    __proto__: dart.getFields(desktop_text_selection._DesktopTextSelectionControlsToolbarState.__proto__),
+    [_clipboardStatus]: dart.fieldType(dart.nullable(text_selection.ClipboardStatusNotifier))
   }));
-  dart.setLibraryUri(monodrag.VerticalDragGestureRecognizer, I[1]);
-  monodrag.HorizontalDragGestureRecognizer = class HorizontalDragGestureRecognizer extends monodrag.DragGestureRecognizer {
-    isFlingGesture(estimate, kind) {
-      let t3, t3$;
-      if (estimate == null) dart.nullFailed(I[0], 555, 40, "estimate");
-      if (kind == null) dart.nullFailed(I[0], 555, 68, "kind");
-      let minVelocity = (t3 = this.minFlingVelocity, t3 == null ? 50 : t3);
-      let minDistance = (t3$ = this.minFlingDistance, t3$ == null ? events.computeHitSlop(kind) : t3$);
-      return estimate.pixelsPerSecond.dx[$abs]() > dart.notNull(minVelocity) && estimate.offset.dx[$abs]() > dart.notNull(minDistance);
+  var anchor$ = dart.privateName(desktop_text_selection, "_DesktopTextSelectionToolbar.anchor");
+  var children$ = dart.privateName(desktop_text_selection, "_DesktopTextSelectionToolbar.children");
+  var toolbarBuilder$ = dart.privateName(desktop_text_selection, "_DesktopTextSelectionToolbar.toolbarBuilder");
+  var Radius_y = dart.privateName(ui, "Radius.y");
+  var Radius_x = dart.privateName(ui, "Radius.x");
+  var BorderRadius_bottomRight = dart.privateName(border_radius, "BorderRadius.bottomRight");
+  var BorderRadius_bottomLeft = dart.privateName(border_radius, "BorderRadius.bottomLeft");
+  var BorderRadius_topRight = dart.privateName(border_radius, "BorderRadius.topRight");
+  var BorderRadius_topLeft = dart.privateName(border_radius, "BorderRadius.topLeft");
+  desktop_text_selection._DesktopTextSelectionToolbar = class _DesktopTextSelectionToolbar extends framework.StatelessWidget {
+    get anchor() {
+      return this[anchor$];
     }
-    [_hasSufficientGlobalDistanceToAccept](pointerDeviceKind) {
-      if (pointerDeviceKind == null) dart.nullFailed(I[0], 562, 63, "pointerDeviceKind");
-      return this[_globalDistanceMoved][$abs]() > dart.notNull(events.computeHitSlop(pointerDeviceKind));
+    set anchor(value) {
+      super.anchor = value;
     }
-    [_getDeltaForDetails](delta) {
-      if (delta == null) dart.nullFailed(I[0], 567, 37, "delta");
-      return new ui.Offset.new(delta.dx, 0.0);
+    get children() {
+      return this[children$];
     }
-    [_getPrimaryValueFromOffset](value) {
-      if (value == null) dart.nullFailed(I[0], 570, 44, "value");
-      return value.dx;
+    set children(value) {
+      super.children = value;
     }
-    get debugDescription() {
-      return "horizontal drag";
+    get toolbarBuilder() {
+      return this[toolbarBuilder$];
+    }
+    set toolbarBuilder(value) {
+      super.toolbarBuilder = value;
+    }
+    static _defaultToolbarBuilder(context, child) {
+      if (context == null) dart.nullFailed(I[0], 261, 53, "context");
+      if (child == null) dart.nullFailed(I[0], 261, 69, "child");
+      return new basic.SizedBox.new({width: 222, child: new material.Material.new({borderRadius: C[35] || CT.C35, clipBehavior: ui.Clip.antiAlias, elevation: 1.0, type: material.MaterialType.card, child: child, $creationLocationd_0dea112b090073317d4: C[37] || CT.C37}), $creationLocationd_0dea112b090073317d4: C[44] || CT.C44});
+    }
+    build(context) {
+      let t1, t0;
+      if (context == null) dart.nullFailed(I[0], 275, 29, "context");
+      if (!dart.test(debug.debugCheckHasMediaQuery(context))) dart.assertFailed(null, I[0], 276, 12, "debugCheckHasMediaQuery(context)");
+      let mediaQuery = media_query.MediaQuery.of(context);
+      let paddingAbove = dart.notNull(mediaQuery.padding.top) + 8;
+      let localAdjustment = new ui.Offset.new(8, paddingAbove);
+      return new basic.Padding.new({padding: new edge_insets.EdgeInsets.fromLTRB(8, paddingAbove, 8, 8), child: new basic.CustomSingleChildLayout.new({delegate: new desktop_text_selection_toolbar_layout_delegate.DesktopTextSelectionToolbarLayoutDelegate.new({anchor: this.anchor['-'](localAdjustment)}), child: (t0 = context, t1 = new basic.Column.new({mainAxisSize: flex.MainAxisSize.min, children: this.children, $creationLocationd_0dea112b090073317d4: C[48] || CT.C48}), this.toolbarBuilder(t0, t1)), $creationLocationd_0dea112b090073317d4: C[52] || CT.C52}), $creationLocationd_0dea112b090073317d4: C[56] || CT.C56});
     }
   };
-  (monodrag.HorizontalDragGestureRecognizer.new = function(opts) {
-    let debugOwner = opts && 'debugOwner' in opts ? opts.debugOwner : null;
-    let kind = opts && 'kind' in opts ? opts.kind : null;
-    monodrag.HorizontalDragGestureRecognizer.__proto__.new.call(this, {debugOwner: debugOwner, kind: kind});
+  (desktop_text_selection._DesktopTextSelectionToolbar.new = function(opts) {
+    let key = opts && 'key' in opts ? opts.key : null;
+    let anchor = opts && 'anchor' in opts ? opts.anchor : null;
+    if (anchor == null) dart.nullFailed(I[0], 237, 19, "anchor");
+    let children = opts && 'children' in opts ? opts.children : null;
+    if (children == null) dart.nullFailed(I[0], 238, 19, "children");
+    let toolbarBuilder = opts && 'toolbarBuilder' in opts ? opts.toolbarBuilder : C[34] || CT.C34;
+    if (toolbarBuilder == null) dart.nullFailed(I[0], 239, 10, "toolbarBuilder");
+    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
+    this[anchor$] = anchor;
+    this[children$] = children;
+    this[toolbarBuilder$] = toolbarBuilder;
+    if (!(dart.notNull(children[$length]) > 0)) dart.assertFailed(null, I[0], 240, 15, "children.length > 0");
+    desktop_text_selection._DesktopTextSelectionToolbar.__proto__.new.call(this, {key: key, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
     ;
-  }).prototype = monodrag.HorizontalDragGestureRecognizer.prototype;
-  dart.addTypeTests(monodrag.HorizontalDragGestureRecognizer);
-  dart.addTypeCaches(monodrag.HorizontalDragGestureRecognizer);
-  dart.setMethodSignature(monodrag.HorizontalDragGestureRecognizer, () => ({
-    __proto__: dart.getMethods(monodrag.HorizontalDragGestureRecognizer.__proto__),
-    isFlingGesture: dart.fnType(core.bool, [velocity_tracker.VelocityEstimate, ui.PointerDeviceKind]),
-    [_hasSufficientGlobalDistanceToAccept]: dart.fnType(core.bool, [ui.PointerDeviceKind]),
-    [_getDeltaForDetails]: dart.fnType(ui.Offset, [ui.Offset]),
-    [_getPrimaryValueFromOffset]: dart.fnType(core.double, [ui.Offset])
+  }).prototype = desktop_text_selection._DesktopTextSelectionToolbar.prototype;
+  dart.addTypeTests(desktop_text_selection._DesktopTextSelectionToolbar);
+  dart.addTypeCaches(desktop_text_selection._DesktopTextSelectionToolbar);
+  dart.setMethodSignature(desktop_text_selection._DesktopTextSelectionToolbar, () => ({
+    __proto__: dart.getMethods(desktop_text_selection._DesktopTextSelectionToolbar.__proto__),
+    build: dart.fnType(framework.Widget, [framework.BuildContext])
   }));
-  dart.setGetterSignature(monodrag.HorizontalDragGestureRecognizer, () => ({
-    __proto__: dart.getGetters(monodrag.HorizontalDragGestureRecognizer.__proto__),
-    debugDescription: core.String
+  dart.setLibraryUri(desktop_text_selection._DesktopTextSelectionToolbar, I[1]);
+  dart.setFieldSignature(desktop_text_selection._DesktopTextSelectionToolbar, () => ({
+    __proto__: dart.getFields(desktop_text_selection._DesktopTextSelectionToolbar.__proto__),
+    anchor: dart.finalFieldType(ui.Offset),
+    children: dart.finalFieldType(core.List$(framework.Widget)),
+    toolbarBuilder: dart.finalFieldType(dart.fnType(framework.Widget, [framework.BuildContext, framework.Widget]))
   }));
-  dart.setLibraryUri(monodrag.HorizontalDragGestureRecognizer, I[1]);
-  monodrag.PanGestureRecognizer = class PanGestureRecognizer extends monodrag.DragGestureRecognizer {
-    isFlingGesture(estimate, kind) {
-      let t3, t3$;
-      if (estimate == null) dart.nullFailed(I[0], 590, 40, "estimate");
-      if (kind == null) dart.nullFailed(I[0], 590, 68, "kind");
-      let minVelocity = (t3 = this.minFlingVelocity, t3 == null ? 50 : t3);
-      let minDistance = (t3$ = this.minFlingDistance, t3$ == null ? events.computeHitSlop(kind) : t3$);
-      return dart.notNull(estimate.pixelsPerSecond.distanceSquared) > dart.notNull(minVelocity) * dart.notNull(minVelocity) && dart.notNull(estimate.offset.distanceSquared) > dart.notNull(minDistance) * dart.notNull(minDistance);
+  var onPressed$ = dart.privateName(desktop_text_selection, "_DesktopTextSelectionToolbarButton.onPressed");
+  var child$ = dart.privateName(desktop_text_selection, "_DesktopTextSelectionToolbarButton.child");
+  var _name = dart.privateName(borders, "_name");
+  var BorderSide_style = dart.privateName(borders, "BorderSide.style");
+  var BorderSide_width = dart.privateName(borders, "BorderSide.width");
+  var Color_value = dart.privateName(ui, "Color.value");
+  var BorderSide_color = dart.privateName(borders, "BorderSide.color");
+  var OutlinedBorder_side = dart.privateName(borders, "OutlinedBorder.side");
+  var RoundedRectangleBorder_borderRadius = dart.privateName(rounded_rectangle_border, "RoundedRectangleBorder.borderRadius");
+  var OffsetBase__dy = dart.privateName(ui, "OffsetBase._dy");
+  var OffsetBase__dx = dart.privateName(ui, "OffsetBase._dx");
+  desktop_text_selection._DesktopTextSelectionToolbarButton = class _DesktopTextSelectionToolbarButton extends framework.StatelessWidget {
+    get onPressed() {
+      return this[onPressed$];
     }
-    [_hasSufficientGlobalDistanceToAccept](pointerDeviceKind) {
-      if (pointerDeviceKind == null) dart.nullFailed(I[0], 598, 63, "pointerDeviceKind");
-      return this[_globalDistanceMoved][$abs]() > dart.notNull(events.computePanSlop(pointerDeviceKind));
+    set onPressed(value) {
+      super.onPressed = value;
     }
-    [_getDeltaForDetails](delta) {
-      if (delta == null) dart.nullFailed(I[0], 603, 37, "delta");
-      return delta;
+    get child() {
+      return this[child$];
     }
-    [_getPrimaryValueFromOffset](value) {
-      if (value == null) dart.nullFailed(I[0], 606, 45, "value");
-      return null;
+    set child(value) {
+      super.child = value;
     }
-    get debugDescription() {
-      return "pan";
+    build(context) {
+      if (context == null) dart.nullFailed(I[0], 350, 29, "context");
+      let theme = theme$.Theme.of(context);
+      let isDark = theme.colorScheme.brightness == ui.Brightness.dark;
+      let primary = isDark ? colors.Colors.white : colors.Colors.black87;
+      return new basic.SizedBox.new({width: 1 / 0, child: new text_button.TextButton.new({style: text_button.TextButton.styleFrom({alignment: alignment.Alignment.centerLeft, primary: primary, shape: C[65] || CT.C65, minimumSize: C[71] || CT.C71, padding: desktop_text_selection._kToolbarButtonPadding}), onPressed: this.onPressed, child: this.child, $creationLocationd_0dea112b090073317d4: C[72] || CT.C72}), $creationLocationd_0dea112b090073317d4: C[77] || CT.C77});
     }
   };
-  (monodrag.PanGestureRecognizer.new = function(opts) {
-    let debugOwner = opts && 'debugOwner' in opts ? opts.debugOwner : null;
-    monodrag.PanGestureRecognizer.__proto__.new.call(this, {debugOwner: debugOwner});
+  (desktop_text_selection._DesktopTextSelectionToolbarButton.new = function(opts) {
+    let key = opts && 'key' in opts ? opts.key : null;
+    let onPressed = opts && 'onPressed' in opts ? opts.onPressed : null;
+    if (onPressed == null) dart.nullFailed(I[0], 321, 19, "onPressed");
+    let child = opts && 'child' in opts ? opts.child : null;
+    if (child == null) dart.nullFailed(I[0], 322, 19, "child");
+    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
+    this[onPressed$] = onPressed;
+    this[child$] = child;
+    desktop_text_selection._DesktopTextSelectionToolbarButton.__proto__.new.call(this, {key: key, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
     ;
-  }).prototype = monodrag.PanGestureRecognizer.prototype;
-  dart.addTypeTests(monodrag.PanGestureRecognizer);
-  dart.addTypeCaches(monodrag.PanGestureRecognizer);
-  dart.setMethodSignature(monodrag.PanGestureRecognizer, () => ({
-    __proto__: dart.getMethods(monodrag.PanGestureRecognizer.__proto__),
-    isFlingGesture: dart.fnType(core.bool, [velocity_tracker.VelocityEstimate, ui.PointerDeviceKind]),
-    [_hasSufficientGlobalDistanceToAccept]: dart.fnType(core.bool, [ui.PointerDeviceKind]),
-    [_getDeltaForDetails]: dart.fnType(ui.Offset, [ui.Offset]),
-    [_getPrimaryValueFromOffset]: dart.fnType(dart.nullable(core.double), [ui.Offset])
+  }).prototype = desktop_text_selection._DesktopTextSelectionToolbarButton.prototype;
+  (desktop_text_selection._DesktopTextSelectionToolbarButton.text = function(opts) {
+    let key = opts && 'key' in opts ? opts.key : null;
+    let context = opts && 'context' in opts ? opts.context : null;
+    if (context == null) dart.nullFailed(I[0], 329, 27, "context");
+    let onPressed = opts && 'onPressed' in opts ? opts.onPressed : null;
+    if (onPressed == null) dart.nullFailed(I[0], 330, 19, "onPressed");
+    let text = opts && 'text' in opts ? opts.text : null;
+    if (text == null) dart.nullFailed(I[0], 331, 21, "text");
+    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
+    this[onPressed$] = onPressed;
+    this[child$] = new text$.Text.new(text, {overflow: paragraph.TextOverflow.ellipsis, style: desktop_text_selection._kToolbarButtonFontStyle.copyWith({color: theme$.Theme.of(context).colorScheme.brightness == ui.Brightness.dark ? colors.Colors.white : colors.Colors.black87}), $creationLocationd_0dea112b090073317d4: C[60] || CT.C60});
+    desktop_text_selection._DesktopTextSelectionToolbarButton.__proto__.new.call(this, {key: key, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
+    ;
+  }).prototype = desktop_text_selection._DesktopTextSelectionToolbarButton.prototype;
+  dart.addTypeTests(desktop_text_selection._DesktopTextSelectionToolbarButton);
+  dart.addTypeCaches(desktop_text_selection._DesktopTextSelectionToolbarButton);
+  dart.setMethodSignature(desktop_text_selection._DesktopTextSelectionToolbarButton, () => ({
+    __proto__: dart.getMethods(desktop_text_selection._DesktopTextSelectionToolbarButton.__proto__),
+    build: dart.fnType(framework.Widget, [framework.BuildContext])
   }));
-  dart.setGetterSignature(monodrag.PanGestureRecognizer, () => ({
-    __proto__: dart.getGetters(monodrag.PanGestureRecognizer.__proto__),
-    debugDescription: core.String
+  dart.setLibraryUri(desktop_text_selection._DesktopTextSelectionToolbarButton, I[1]);
+  dart.setFieldSignature(desktop_text_selection._DesktopTextSelectionToolbarButton, () => ({
+    __proto__: dart.getFields(desktop_text_selection._DesktopTextSelectionToolbarButton.__proto__),
+    onPressed: dart.finalFieldType(dart.fnType(dart.void, [])),
+    child: dart.finalFieldType(framework.Widget)
   }));
-  dart.setLibraryUri(monodrag.PanGestureRecognizer, I[1]);
-  dart.trackLibraries("packages/flutter/src/gestures/monodrag.dart", {
-    "package:flutter/src/gestures/monodrag.dart": monodrag
+  var TextStyle_fontFeatures = dart.privateName(text_style, "TextStyle.fontFeatures");
+  var TextStyle_shadows = dart.privateName(text_style, "TextStyle.shadows");
+  var TextStyle_debugLabel = dart.privateName(text_style, "TextStyle.debugLabel");
+  var TextStyle_decorationThickness = dart.privateName(text_style, "TextStyle.decorationThickness");
+  var TextStyle_decorationStyle = dart.privateName(text_style, "TextStyle.decorationStyle");
+  var TextStyle_decorationColor = dart.privateName(text_style, "TextStyle.decorationColor");
+  var TextStyle_decoration = dart.privateName(text_style, "TextStyle.decoration");
+  var TextStyle_background = dart.privateName(text_style, "TextStyle.background");
+  var TextStyle_foreground = dart.privateName(text_style, "TextStyle.foreground");
+  var TextStyle_locale = dart.privateName(text_style, "TextStyle.locale");
+  var TextStyle_leadingDistribution = dart.privateName(text_style, "TextStyle.leadingDistribution");
+  var TextStyle_height = dart.privateName(text_style, "TextStyle.height");
+  var TextStyle_textBaseline = dart.privateName(text_style, "TextStyle.textBaseline");
+  var TextStyle_wordSpacing = dart.privateName(text_style, "TextStyle.wordSpacing");
+  var TextStyle_letterSpacing = dart.privateName(text_style, "TextStyle.letterSpacing");
+  var TextStyle_fontStyle = dart.privateName(text_style, "TextStyle.fontStyle");
+  var FontWeight_index = dart.privateName(ui, "FontWeight.index");
+  var TextStyle_fontWeight = dart.privateName(text_style, "TextStyle.fontWeight");
+  var TextStyle_fontSize = dart.privateName(text_style, "TextStyle.fontSize");
+  var TextStyle__package = dart.privateName(text_style, "TextStyle._package");
+  var TextStyle__fontFamilyFallback = dart.privateName(text_style, "TextStyle._fontFamilyFallback");
+  var TextStyle_fontFamily = dart.privateName(text_style, "TextStyle.fontFamily");
+  var TextStyle_backgroundColor = dart.privateName(text_style, "TextStyle.backgroundColor");
+  var TextStyle_color = dart.privateName(text_style, "TextStyle.color");
+  var TextStyle_inherit = dart.privateName(text_style, "TextStyle.inherit");
+  var EdgeInsets_bottom = dart.privateName(edge_insets, "EdgeInsets.bottom");
+  var EdgeInsets_right = dart.privateName(edge_insets, "EdgeInsets.right");
+  var EdgeInsets_top = dart.privateName(edge_insets, "EdgeInsets.top");
+  var EdgeInsets_left = dart.privateName(edge_insets, "EdgeInsets.left");
+  dart.defineLazy(desktop_text_selection, {
+    /*desktop_text_selection._kToolbarScreenPadding*/get _kToolbarScreenPadding() {
+      return 8;
+    },
+    /*desktop_text_selection._kToolbarWidth*/get _kToolbarWidth() {
+      return 222;
+    },
+    /*desktop_text_selection.desktopTextSelectionControls*/get desktopTextSelectionControls() {
+      return new desktop_text_selection._DesktopTextSelectionControls.new();
+    },
+    /*desktop_text_selection._kToolbarButtonFontStyle*/get _kToolbarButtonFontStyle() {
+      return C[81] || CT.C81;
+    },
+    /*desktop_text_selection._kToolbarButtonPadding*/get _kToolbarButtonPadding() {
+      return C[83] || CT.C83;
+    }
+  }, false);
+  dart.trackLibraries("packages/flutter/src/material/desktop_text_selection.dart", {
+    "package:flutter/src/material/desktop_text_selection.dart": desktop_text_selection
   }, {
-  }, '{"version":3,"sourceRoot":"","sources":["monodrag.dart"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;IAkBA;;;QAJK;;;;;EAIL;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;IA8EoB;;;;;;IAYO;;;;;;IAiBC;;;;;;IAYC;;;;;;IAaH;;;;;;IAOG;;;;;;IAOnB;;;;;;IAOA;;;;;;IAKA;;;;;;IAwBsB;;;;;;;UA9HsB;AAAU,YAAgB,+CAAS,AAAM,KAAD;IAAM;;;AAiIlF;IAAgB;;;AAAhB;;IAAgB;;;AAChB;IAAkB;;;AAAlB;;IAAkB;;;AAWtB;IAAoB;;;AAApB;;IAAoB;;UAgBG;AACjC,UAAI,AAAgB;AAClB,gBAAQ,AAAM,KAAD;;;AAET,gBAAI,AAAO,uBACP,AAAQ,wBACR,AAAS,yBACT,AAAM,sBACN,AAAS,uBACX,MAAO;AACT;;;;AAEA,kBAAO;;;;AAIX,YAAI,AAAM,KAAD,YAAY;AACnB,gBAAO;;;AAGX,YAAa,wBAAuB,2BAAN,KAAK;IACrC;sBAGoC;;;AACkB,MAApD,0BAAqB,AAAM,KAAD,UAAU,AAAM,KAAD;AACuB,MAAhE,AAAiB,+BAAC,AAAM,KAAD,gBAAmC,KAAK,EAA5B,AAAsB;AACzD,UAAI,AAAO,gBAAc;AACK,QAA5B,eAAoB;AAC6D,QAAjF,yBAAmB,uCAAmB,AAAM,KAAD,kBAAkB,AAAM,KAAD;AACnC,QAA/B,wBAAkB,AAAM,KAAD;AACa,QAApC,2BAAgC;AACN,QAA1B,6BAAuB;AACqB,QAA5C,mCAA6B,AAAM,KAAD;AACF,QAAhC,uBAAiB,AAAM,KAAD;AACV,QAAZ;YACK,KAAI,AAAO,gBAAc;AACM,QAApC,aAA2B;;IAE/B;gBAG8B;;;AAC5B,YAAO,AAAO,gBAAc;AAC5B,qBAAK,AAAM,KAAD,kBACI,2BAAN,KAAK,KAA8B,2BAAN,KAAK;AAClB,sBAA0C,eAAhC,AAAiB,+BAAC,AAAM,KAAD;AACvD,cAAO,AAAQ,OAAD;AAC2C,QAAzD,AAAQ,OAAD,aAAa,AAAM,KAAD,YAAY,AAAM,KAAD;;AAG5C,UAAU,2BAAN,KAAK;AACP,YAAI,AAAM,KAAD,YAAY;AACU,UAA7B,qBAAe,AAAM,KAAD;AACpB;;AAEF,YAAI,AAAO,gBAAc;AAOtB,UAND,qCACmB,AAAM,KAAD,mBACf,0BAAoB,AAAM,KAAD,4BAClB,iCAA2B,AAAM,KAAD,8BAC9B,AAAM,KAAD,0BACN,AAAM,KAAD;;AAGwD,UAA9E,2BAAA,AAAmB,8BAAG,sCAAkB,AAAM,KAAD,qBAAqB,AAAM,KAAD;AAC3B,UAA5C,mCAA6B,AAAM,KAAD;AACF,UAAhC,uBAAiB,AAAM,KAAD;AACT,6BAAe,0BAAoB,AAAM,KAAD;AACtC,uCAAyB,AAAM,AAAU,KAAX,qBAAqB,OAAe,iCAAyB,eAAf,AAAM,KAAD;AAK/B,UAJjE,6BAAqB,aAArB,8BAIW,aAJ0B,AAInC,2DAHW,sBAAsB,sBACb,YAAY,4BACN,AAAM,KAAD,6BAC4B,CAAN,KAAzC,iCAA2B,YAAY,GAAvC,aAA4C;AAC1D,wBAAI,2CAAqC,AAAM,KAAD,SAC5C,AAAoC,aAAT;;;AAGjC,UAAU,yBAAN,KAAK,KAA4B,6BAAN,KAAK;AACL,QAA7B,qBAAe,AAAM,KAAD;;IAExB;;UAKuB;AACrB,WAAO,WAAC,AAAwB,uCAAS,OAAO;AACZ,MAApC,AAAwB,kCAAI,OAAO;AACnC,UAAI,gBAAqB;AACK,QAA5B,eAAoB;AACH,oBAAQ;AACV,wBAAsC,eAA1B;AACZ,wBAAY;AACd;AACb,gBAAQ;;;AAEuC,YAA3C,yBAAmB,AAAiB,4BAAE,KAAK;AACb,YAA9B,mBAA0B;AAC1B;;;;AAEmD,YAAnD,mBAAmB,0BAAoB,AAAM,KAAD;AAC5C;;;;AAPJ;;;AASoC,QAApC,2BAAgC;AACC,QAAjC,mCAA6B;AACR,QAArB,uBAAiB;AACc,QAA/B,kBAAY,SAAS,EAAE,OAAO;AAC9B,yBAAI,gBAAgB,EAAW,mBAAQ;AACtB,8BAAgB,AAAU,SAAD,WAAmB,iCAAU,SAAS,IAAI;AACrE,uCAAyB,AAAiB,AAAM,kCAAE,gBAAgB;AAClE,kCAAiC,0EAClB,sBAAsB,sBAC5B,gBAAgB,aACzB,aAAa;AAET,4BAAc,sCAAkB,gBAAgB,UAAU,iBAAiB;AAC3E,kCAAoB,AAAiB,4BAAE,WAAW;AAOlE,UAND,qCACmB,SAAS,SACnB,gBAAgB,gBACT,iCAA2B,gBAAgB,mBACzC,AAAkB,iBAAD,wBAClB,AAAkB,iBAAD;;;IAIxC;;UAGuB;AACE,MAAvB,qBAAe,OAAO;IACxB;;UAGoC;AAClC,YAAO,AAAO,gBAAc;AAC5B,cAAO;;;AAEH;;;;AAGoC,UAApC,aAA2B;AACb,UAAd;AACA;;;;AAGkB,UAAlB,gBAAU,OAAO;AACjB;;;;AAXJ;;;AAayB,MAAzB,AAAkB;AACI,MAAtB,wBAAkB;AACO,MAAzB,eAAoB;IACtB;;UAEwB;AACM,MAA5B,yBAAoB,OAAO;AAG3B,qBAAK,AAAwB,qCAAO,OAAO,IACzC,AAAoD,oBAArC,OAAO,EAAqB;IAC/C;;AAGE,YAAO,AAAgB;AACvB,UAAI;AACoB,sBAAU,sDACd,AAAiB,8CAClB,AAAiB;AAEoB,QAAtD,+BAAqB,UAAU,cAAY,AAAC,eAAP,aAAQ,OAAO;;IAExD;kBAE0B,WAAe;UAAf;UAAe;AACvC,YAAO,AAAgB;AACvB,UAAI;AACqB,sBAAU,wDACd,SAAS,kBACV,AAAiB,8CAClB,AAAiB,oCAC1B,uBAAkB,OAAO;AAEuB,QAAxD,+BAAqB,WAAW,cAAa,AAAC,eAAR,cAAS,OAAO;;IAE1D;;UAGY;UACM;;UACR;UACQ;;UACR;AAER,YAAO,AAAgB;AACvB,UAAI;AACsB,sBAAU,yDACf,eAAe,SACzB,KAAK,gBACE,YAAY,kBACV,cAAc,iBACf,aAAa;AAE4B,QAA1D,+BAAqB,YAAY,cAAc,AAAC,eAAT,eAAU,OAAO;;IAE5D;gBAEmB;;;AACjB,YAAO,AAAgB;AACvB,UAAI,AAAM,oBACR;AAEoB,oBAAoC,eAA1B,AAAiB,+BAAC,OAAO;AACzD,YAAO,AAAQ,OAAD;AAEO;AACG;AAEA,qBAAW,AAAQ,OAAD;AAC1C,UAAI,QAAQ,sBAAY,oBAAe,QAAQ,EAAE,AAAQ,OAAD;AACvC,uBAAW,AACvB,oDADiD,AAAS,QAAD,mCACzB,4BAAjB,wBAAwD,6BAAjB;AAIxD,QAHD,UAAU,+CACE,QAAQ,mBACD,iCAA2B,AAAS,QAAD;AAIrD,QAFD,cAAc,cAC2B,SAA9B,QAAQ,6BAAY,QAAQ;;AAMtC,QAHD,UAAU,+CACW,iDACF;AAMlB,QAJD,cAAc;AACZ,cAAI,AAAS,QAAD,UACV,MAAO;AACT,gBAA6C,UAApC,QAAQ;;;AAGyD,MAA9E,+BAAqB,SAAS,cAAW,AAAC,eAAN,YAAO,OAAO,kCAAgB,WAAW;IAC/E;;AAGE,YAAO,AAAgB;AACvB,UAAI,uBACF,AAA2C,+BAAtB,YAAoB,eAAR;IACrC;;AAI2B,MAAzB,AAAkB;AACH,MAAT;IACR;;UAEqD;AACd,MAA/B,0BAAoB,UAAU;AACgD,MAApF,AAAW,UAAD,KAAK,8CAAgC,kBAAkB;IACnE;;;QAvaU;QACW;QACd;;QACA;;IAsCkB;IAiBC;IAYC;IAaH;IAOG;IAOnB;IAOA;IAKA;IA0BG,eAAoB;qDACf;;uDACA;;IACN;IAGL;IACI;yDAMG;;IAaoB,0BAA0C;IAuF3D,gCAA+B;IAtPvC;IACA;UACK,AAAkB,iBAAD;AACxB,yEAAkB,UAAU,QAAQ,IAAI;;EAAC;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;mBAybT,UAA4B;;UAA5B;UAA4B;AAClD,yBAA+B,4BAAjB;AACd,yBAA+B,6BAAjB,cAAoB,sBAAe,IAAI;AAClE,YAAO,AAAS,AAAgB,AAAG,AAAM,AAAc,SAAxC,2CAA4B,WAAW,KAAI,AAAS,AAAO,AAAG,AAAM,QAAjB,kCAAmB,WAAW;IAClG;;UAG4D;AAC1D,YAAO,AAAqB,AAAM,mDAAE,sBAAe,iBAAiB;IACtE;;UAGkC;AAAU,+BAAO,KAAK,AAAM,KAAD;IAAI;;UAGxB;AAAU,YAAA,AAAM,MAAD;IAAG;;AAG5B;IAAe;;;QAvBpC;QACW;AAChB,iFAAkB,UAAU,QAAQ,IAAI;;EAAC;;;;;;;;;;;;;;;;mBA4CT,UAA4B;;UAA5B;UAA4B;AAClD,yBAA+B,4BAAjB;AACd,yBAA+B,6BAAjB,cAAoB,sBAAe,IAAI;AAClE,YAAO,AAAS,AAAgB,AAAG,AAAM,AAAc,SAAxC,2CAA4B,WAAW,KAAI,AAAS,AAAO,AAAG,AAAM,QAAjB,kCAAmB,WAAW;IAClG;;UAG4D;AAC1D,YAAO,AAAqB,AAAM,mDAAE,sBAAe,iBAAiB;IACtE;;UAGkC;AAAU,+BAAO,AAAM,KAAD,KAAK;IAAI;;UAGxB;AAAU,YAAA,AAAM,MAAD;IAAG;;AAG5B;IAAiB;;;QAvBtC;QACW;AAChB,mFAAkB,UAAU,QAAQ,IAAI;;EAAC;;;;;;;;;;;;;;;;mBAsCT,UAA4B;;UAA5B;UAA4B;AAClD,yBAA+B,4BAAjB;AACd,yBAA+B,6BAAjB,cAAoB,sBAAe,IAAI;AAClE,YAAgD,AAC5C,cADG,AAAS,AAAgB,QAAjB,oCAA+C,aAAZ,WAAW,iBAAG,WAAW,KACpC,aAAhC,AAAS,AAAO,QAAR,2BAAsC,aAAZ,WAAW,iBAAG,WAAW;IACpE;;UAG4D;AAC1D,YAAO,AAAqB,AAAM,mDAAE,sBAAe,iBAAiB;IACtE;;UAGkC;AAAU,kBAAK;;;UAGP;AAAU;IAAI;;AAGzB;IAAK;;;QAtBL;AAAgB,wEAAkB,UAAU;;EAAC","file":"../../../../../../../../../../packages/flutter/src/gestures/monodrag.dart.lib.js"}');
+  }, '{"version":3,"sourceRoot":"","sources":["desktop_text_selection.dart"],"names":[],"mappings":"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","file":"../../../../../../../../D:/packages/flutter/src/material/desktop_text_selection.dart.lib.js"}');
   // Exports:
   return {
-    src__gestures__monodrag: monodrag
+    src__material__desktop_text_selection: desktop_text_selection
   };
 }));
 
-//# sourceMappingURL=monodrag.dart.lib.js.map
+//# sourceMappingURL=desktop_text_selection.dart.lib.js.map

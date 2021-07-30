@@ -1,409 +1,371 @@
-define(['dart_sdk', 'packages/flutter/src/widgets/widget_span.dart', 'packages/flutter/src/rendering/layer.dart', 'packages/flutter/src/foundation/debug.dart'], (function load__packages__flutter__src__widgets__layout_builder_dart(dart_sdk, packages__flutter__src__widgets__widget_span$46dart, packages__flutter__src__rendering__layer$46dart, packages__flutter__src__foundation__debug$46dart) {
+define(['dart_sdk', 'packages/bloc/src/transition.dart'], (function load__packages__bloc__src__bloc_observer_dart(dart_sdk, packages__bloc__src__transition$46dart) {
   'use strict';
   const core = dart_sdk.core;
-  const _js_helper = dart_sdk._js_helper;
-  const ui = dart_sdk.ui;
+  const async = dart_sdk.async;
+  const _internal = dart_sdk._internal;
   const dart = dart_sdk.dart;
   const dartx = dart_sdk.dartx;
-  const framework = packages__flutter__src__widgets__widget_span$46dart.src__widgets__framework;
-  const debug = packages__flutter__src__widgets__widget_span$46dart.src__widgets__debug;
-  const object = packages__flutter__src__rendering__layer$46dart.src__rendering__object;
-  const box = packages__flutter__src__rendering__layer$46dart.src__rendering__box;
-  const assertions = packages__flutter__src__foundation__debug$46dart.src__foundation__assertions;
-  const diagnostics = packages__flutter__src__foundation__debug$46dart.src__foundation__diagnostics;
-  var layout_builder = Object.create(dart.library);
+  const transition = packages__bloc__src__transition$46dart.src__transition;
+  var bloc_observer = Object.create(dart.library);
+  var bloc = Object.create(dart.library);
+  var bloc$ = Object.create(dart.library);
   dart._checkModuleNullSafetyMode(false);
   var T = {
-    SyncIterableOfDiagnosticsNode: () => (T.SyncIterableOfDiagnosticsNode = dart.constFn(_js_helper.SyncIterable$(diagnostics.DiagnosticsNode)))(),
-    IterableOfDiagnosticsNode: () => (T.IterableOfDiagnosticsNode = dart.constFn(core.Iterable$(diagnostics.DiagnosticsNode)))(),
-    VoidToIterableOfDiagnosticsNode: () => (T.VoidToIterableOfDiagnosticsNode = dart.constFn(dart.fnType(T.IterableOfDiagnosticsNode(), [])))(),
-    VoidTovoid: () => (T.VoidTovoid = dart.constFn(dart.fnType(dart.void, [])))(),
-    VoidTobool: () => (T.VoidTobool = dart.constFn(dart.fnType(core.bool, [])))()
+    VoidToNever: () => (T.VoidToNever = dart.constFn(dart.fnType(dart.Never, [])))()
   };
   const CT = Object.create({
     _: () => (C, CT)
   });
+  dart.defineLazy(CT, {
+    get C0() {
+      return C[0] = dart.const({
+        __proto__: core._StringStackTrace.prototype,
+        [_StringStackTrace__stackTrace]: ""
+      });
+    }
+  }, false);
+  var C = [void 0];
   var I = [
-    "file:///C:/Users/Ejas/Desktop/App_files/flutter/packages/flutter/lib/src/widgets/layout_builder.dart",
-    "package:flutter/src/widgets/layout_builder.dart"
+    "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/bloc-7.0.0/lib/src/bloc_observer.dart",
+    "package:bloc/src/bloc_observer.dart",
+    "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/bloc-7.0.0/lib/src/bloc.dart",
+    "package:bloc/src/bloc.dart"
   ];
-  var builder$ = dart.privateName(layout_builder, "ConstrainedLayoutBuilder.builder");
-  const _is_ConstrainedLayoutBuilder_default = Symbol('_is_ConstrainedLayoutBuilder_default');
-  layout_builder.ConstrainedLayoutBuilder$ = dart.generic(ConstraintType => {
-    var _LayoutBuilderElementOfConstraintType = () => (_LayoutBuilderElementOfConstraintType = dart.constFn(layout_builder._LayoutBuilderElement$(ConstraintType)))();
-    class ConstrainedLayoutBuilder extends framework.RenderObjectWidget {
-      get builder() {
-        return this[builder$];
+  bloc_observer.BlocObserver = class BlocObserver extends core.Object {
+    onCreate(bloc) {
+      if (bloc == null) dart.nullFailed(I[0], 12, 26, "bloc");
+    }
+    onEvent(bloc, event) {
+      if (bloc == null) dart.nullFailed(I[0], 18, 21, "bloc");
+    }
+    onChange(bloc, change) {
+      if (bloc == null) dart.nullFailed(I[0], 25, 26, "bloc");
+      if (change == null) dart.nullFailed(I[0], 25, 39, "change");
+    }
+    onTransition(bloc, transition) {
+      if (bloc == null) dart.nullFailed(I[0], 34, 26, "bloc");
+      if (transition == null) dart.nullFailed(I[0], 34, 43, "transition");
+    }
+    onError(bloc, error, stackTrace) {
+      if (bloc == null) dart.nullFailed(I[0], 41, 25, "bloc");
+      if (error == null) dart.nullFailed(I[0], 41, 38, "error");
+      if (stackTrace == null) dart.nullFailed(I[0], 41, 56, "stackTrace");
+    }
+    onClose(bloc) {
+      if (bloc == null) dart.nullFailed(I[0], 49, 25, "bloc");
+    }
+  };
+  (bloc_observer.BlocObserver.new = function() {
+    ;
+  }).prototype = bloc_observer.BlocObserver.prototype;
+  dart.addTypeTests(bloc_observer.BlocObserver);
+  dart.addTypeCaches(bloc_observer.BlocObserver);
+  dart.setMethodSignature(bloc_observer.BlocObserver, () => ({
+    __proto__: dart.getMethods(bloc_observer.BlocObserver.__proto__),
+    onCreate: dart.fnType(dart.void, [bloc.BlocBase]),
+    onEvent: dart.fnType(dart.void, [bloc.Bloc, dart.nullable(core.Object)]),
+    onChange: dart.fnType(dart.void, [bloc.BlocBase, transition.Change]),
+    onTransition: dart.fnType(dart.void, [bloc.Bloc, transition.Transition]),
+    onError: dart.fnType(dart.void, [bloc.BlocBase, core.Object, core.StackTrace]),
+    onClose: dart.fnType(dart.void, [bloc.BlocBase])
+  }));
+  dart.setLibraryUri(bloc_observer.BlocObserver, I[1]);
+  var bloc$0 = dart.privateName(bloc, "BlocUnhandledErrorException.bloc");
+  var error$ = dart.privateName(bloc, "BlocUnhandledErrorException.error");
+  var stackTrace$ = dart.privateName(bloc, "BlocUnhandledErrorException.stackTrace");
+  var _StringStackTrace__stackTrace = dart.privateName(core, "_StringStackTrace._stackTrace");
+  bloc.BlocUnhandledErrorException = class BlocUnhandledErrorException extends core.Object {
+    get bloc() {
+      return this[bloc$0];
+    }
+    set bloc(value) {
+      super.bloc = value;
+    }
+    get error() {
+      return this[error$];
+    }
+    set error(value) {
+      super.error = value;
+    }
+    get stackTrace() {
+      return this[stackTrace$];
+    }
+    set stackTrace(value) {
+      super.stackTrace = value;
+    }
+    toString() {
+      return "Unhandled error " + dart.str(this.error) + " occurred in " + dart.str(this.bloc) + ".\n" + dart.str(this.stackTrace);
+    }
+  };
+  (bloc.BlocUnhandledErrorException.new = function(bloc, error, stackTrace = C[0] || CT.C0) {
+    if (bloc == null) dart.nullFailed(I[2], 19, 10, "bloc");
+    if (error == null) dart.nullFailed(I[2], 20, 10, "error");
+    if (stackTrace == null) dart.nullFailed(I[2], 21, 10, "stackTrace");
+    this[bloc$0] = bloc;
+    this[error$] = error;
+    this[stackTrace$] = stackTrace;
+    ;
+  }).prototype = bloc.BlocUnhandledErrorException.prototype;
+  dart.addTypeTests(bloc.BlocUnhandledErrorException);
+  dart.addTypeCaches(bloc.BlocUnhandledErrorException);
+  bloc.BlocUnhandledErrorException[dart.implements] = () => [core.Exception];
+  dart.setLibraryUri(bloc.BlocUnhandledErrorException, I[3]);
+  dart.setFieldSignature(bloc.BlocUnhandledErrorException, () => ({
+    __proto__: dart.getFields(bloc.BlocUnhandledErrorException.__proto__),
+    bloc: dart.finalFieldType(bloc.BlocBase),
+    error: dart.finalFieldType(core.Object),
+    stackTrace: dart.finalFieldType(core.StackTrace)
+  }));
+  dart.defineExtensionMethods(bloc.BlocUnhandledErrorException, ['toString']);
+  var _transitionSubscription = dart.privateName(bloc, "_transitionSubscription");
+  var __eventController = dart.privateName(bloc, "__eventController");
+  var _bindEventsToStates = dart.privateName(bloc, "_bindEventsToStates");
+  var _eventController = dart.privateName(bloc, "_eventController");
+  var _emitted = dart.privateName(bloc, "_emitted");
+  var __stateController = dart.privateName(bloc, "__stateController");
+  var _state$ = dart.privateName(bloc, "_state");
+  var _stateController = dart.privateName(bloc, "_stateController");
+  const _is_BlocBase_default = Symbol('_is_BlocBase_default');
+  bloc.BlocBase$ = dart.generic(State => {
+    var StreamControllerOfState = () => (StreamControllerOfState = dart.constFn(async.StreamController$(State)))();
+    var ChangeOfState = () => (ChangeOfState = dart.constFn(transition.Change$(State)))();
+    class BlocBase extends core.Object {
+      get [_stateController]() {
+        let t2;
+        t2 = this[__stateController];
+        return t2 == null ? this[__stateController] = StreamControllerOfState().broadcast() : t2;
       }
-      set builder(value) {
-        super.builder = value;
+      get state() {
+        return this[_state$];
       }
-      createElement() {
-        return new (_LayoutBuilderElementOfConstraintType()).new(this);
+      get stream() {
+        return this[_stateController].stream;
+      }
+      listen(onData, opts) {
+        let onError = opts && 'onError' in opts ? opts.onError : null;
+        let onDone = opts && 'onDone' in opts ? opts.onDone : null;
+        let cancelOnError = opts && 'cancelOnError' in opts ? opts.cancelOnError : null;
+        return this.stream.listen(onData, {onError: onError, onDone: onDone, cancelOnError: cancelOnError});
+      }
+      emit(state) {
+        State.as(state);
+        if (dart.test(this[_stateController].isClosed)) return;
+        if (dart.equals(state, this[_state$]) && dart.test(this[_emitted])) return;
+        this.onChange(new (ChangeOfState()).new({currentState: this.state, nextState: state}));
+        this[_state$] = state;
+        this[_stateController].add(this[_state$]);
+        this[_emitted] = true;
+      }
+      onChange(change) {
+        ChangeOfState().as(change);
+        if (change == null) dart.nullFailed(I[2], 354, 31, "change");
+        bloc.Bloc.observer.onChange(this, change);
+      }
+      addError(error, stackTrace = null) {
+        let t2;
+        if (error == null) dart.nullFailed(I[2], 361, 24, "error");
+        this.onError(error, (t2 = stackTrace, t2 == null ? core.StackTrace.current : t2));
+      }
+      onError(error, stackTrace) {
+        if (error == null) dart.nullFailed(I[2], 385, 23, "error");
+        if (stackTrace == null) dart.nullFailed(I[2], 385, 41, "stackTrace");
+        bloc.Bloc.observer.onError(this, error, stackTrace);
+        if (!dart.dtest((dart.fn(() => {
+          dart.throw(new bloc.BlocUnhandledErrorException.new(this, error, stackTrace));
+        }, T.VoidToNever())(), dart.throw(new _internal.ReachabilityError.new("`null` encountered as the result from expression with type `Never`."))))) dart.assertFailed(null, I[2], 388, 12, "() {\n      throw BlocUnhandledErrorException(this, error, stackTrace);\n    }()");
+      }
+      close() {
+        return async.async(dart.void, (function* close() {
+          bloc.Bloc.observer.onClose(this);
+          yield this[_stateController].close();
+        }).bind(this));
       }
     }
-    (ConstrainedLayoutBuilder.new = function(opts) {
-      let key = opts && 'key' in opts ? opts.key : null;
-      let builder = opts && 'builder' in opts ? opts.builder : null;
-      if (builder == null) dart.nullFailed(I[0], 42, 19, "builder");
-      let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
-      this[builder$] = builder;
-      if (!(builder != null)) dart.assertFailed(null, I[0], 43, 15, "builder != null");
-      ConstrainedLayoutBuilder.__proto__.new.call(this, {key: key, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
-      ;
-    }).prototype = ConstrainedLayoutBuilder.prototype;
-    dart.addTypeTests(ConstrainedLayoutBuilder);
-    ConstrainedLayoutBuilder.prototype[_is_ConstrainedLayoutBuilder_default] = true;
-    dart.addTypeCaches(ConstrainedLayoutBuilder);
-    dart.setMethodSignature(ConstrainedLayoutBuilder, () => ({
-      __proto__: dart.getMethods(ConstrainedLayoutBuilder.__proto__),
-      createElement: dart.fnType(layout_builder._LayoutBuilderElement$(ConstraintType), [])
+    (BlocBase.new = function(_state) {
+      this[__stateController] = null;
+      this[_emitted] = false;
+      this[_state$] = _state;
+      bloc.Bloc.observer.onCreate(this);
+    }).prototype = BlocBase.prototype;
+    dart.addTypeTests(BlocBase);
+    BlocBase.prototype[_is_BlocBase_default] = true;
+    dart.addTypeCaches(BlocBase);
+    dart.setMethodSignature(BlocBase, () => ({
+      __proto__: dart.getMethods(BlocBase.__proto__),
+      listen: dart.fnType(async.StreamSubscription$(State), [dart.nullable(dart.fnType(dart.void, [State]))], {cancelOnError: dart.nullable(core.bool), onDone: dart.nullable(dart.fnType(dart.void, [])), onError: dart.nullable(core.Function)}, {}),
+      emit: dart.fnType(dart.void, [dart.nullable(core.Object)]),
+      onChange: dart.fnType(dart.void, [dart.nullable(core.Object)]),
+      addError: dart.fnType(dart.void, [core.Object], [dart.nullable(core.StackTrace)]),
+      onError: dart.fnType(dart.void, [core.Object, core.StackTrace]),
+      close: dart.fnType(async.Future$(dart.void), [])
     }));
-    dart.setLibraryUri(ConstrainedLayoutBuilder, I[1]);
-    dart.setFieldSignature(ConstrainedLayoutBuilder, () => ({
-      __proto__: dart.getFields(ConstrainedLayoutBuilder.__proto__),
-      builder: dart.finalFieldType(dart.fnType(framework.Widget, [framework.BuildContext, ConstraintType]))
+    dart.setGetterSignature(BlocBase, () => ({
+      __proto__: dart.getGetters(BlocBase.__proto__),
+      [_stateController]: async.StreamController$(State),
+      state: State,
+      stream: async.Stream$(State)
     }));
-    return ConstrainedLayoutBuilder;
+    dart.setLibraryUri(BlocBase, I[3]);
+    dart.setFieldSignature(BlocBase, () => ({
+      __proto__: dart.getFields(BlocBase.__proto__),
+      [__stateController]: dart.fieldType(dart.nullable(async.StreamController$(State))),
+      [_state$]: dart.fieldType(State),
+      [_emitted]: dart.fieldType(core.bool)
+    }));
+    return BlocBase;
   });
-  layout_builder.ConstrainedLayoutBuilder = layout_builder.ConstrainedLayoutBuilder$();
-  dart.addTypeTests(layout_builder.ConstrainedLayoutBuilder, _is_ConstrainedLayoutBuilder_default);
-  var _child = dart.privateName(layout_builder, "_child");
-  var _layout = dart.privateName(layout_builder, "_layout");
-  const _is__LayoutBuilderElement_default = Symbol('_is__LayoutBuilderElement_default');
-  layout_builder._LayoutBuilderElement$ = dart.generic(ConstraintType => {
-    var ConstrainedLayoutBuilderOfConstraintType = () => (ConstrainedLayoutBuilderOfConstraintType = dart.constFn(layout_builder.ConstrainedLayoutBuilder$(ConstraintType)))();
-    var RenderConstrainedLayoutBuilderOfConstraintType$RenderObject = () => (RenderConstrainedLayoutBuilderOfConstraintType$RenderObject = dart.constFn(layout_builder.RenderConstrainedLayoutBuilder$(ConstraintType, object.RenderObject)))();
-    var BuildContextAndConstraintTypeToWidget = () => (BuildContextAndConstraintTypeToWidget = dart.constFn(dart.fnType(framework.Widget, [framework.BuildContext, ConstraintType])))();
-    class _LayoutBuilderElement extends framework.RenderObjectElement {
-      get widget() {
-        return ConstrainedLayoutBuilderOfConstraintType().as(super.widget);
+  bloc.BlocBase = bloc.BlocBase$();
+  dart.addTypeTests(bloc.BlocBase, _is_BlocBase_default);
+  const _is_Bloc_default = Symbol('_is_Bloc_default');
+  bloc.Bloc$ = dart.generic((Event, State) => {
+    var StreamControllerOfEvent = () => (StreamControllerOfEvent = dart.constFn(async.StreamController$(Event)))();
+    var StreamOfEvent = () => (StreamOfEvent = dart.constFn(async.Stream$(Event)))();
+    var TransitionOfEvent$State = () => (TransitionOfEvent$State = dart.constFn(transition.Transition$(Event, State)))();
+    var StreamOfTransitionOfEvent$State = () => (StreamOfTransitionOfEvent$State = dart.constFn(async.Stream$(TransitionOfEvent$State())))();
+    var EventToStreamOfTransitionOfEvent$State = () => (EventToStreamOfTransitionOfEvent$State = dart.constFn(dart.fnType(StreamOfTransitionOfEvent$State(), [Event])))();
+    var StateToTransitionOfEvent$State = () => (StateToTransitionOfEvent$State = dart.constFn(dart.fnType(TransitionOfEvent$State(), [State])))();
+    var TransitionOfEvent$StateTovoid = () => (TransitionOfEvent$StateTovoid = dart.constFn(dart.fnType(dart.void, [TransitionOfEvent$State()])))();
+    const close = Symbol("close");
+    class Bloc extends bloc.BlocBase$(State) {
+      get [_eventController]() {
+        let t0;
+        t0 = this[__eventController];
+        return t0 == null ? this[__eventController] = StreamControllerOfEvent().broadcast() : t0;
       }
-      get renderObject() {
-        return RenderConstrainedLayoutBuilderOfConstraintType$RenderObject().as(super.renderObject);
-      }
-      visitChildren(visitor) {
-        if (visitor == null) dart.nullFailed(I[0], 69, 37, "visitor");
-        if (this[_child] != null) visitor(dart.nullCheck(this[_child]));
-      }
-      forgetChild(child) {
-        if (child == null) dart.nullFailed(I[0], 75, 28, "child");
-        if (!dart.equals(child, this[_child])) dart.assertFailed(null, I[0], 76, 12, "child == _child");
-        this[_child] = null;
-        super.forgetChild(child);
-      }
-      mount(parent, newSlot) {
-        super.mount(parent, newSlot);
-        this.renderObject.updateCallback(dart.bind(this, _layout));
-      }
-      update(newWidget) {
-        ConstrainedLayoutBuilderOfConstraintType().as(newWidget);
-        if (newWidget == null) dart.nullFailed(I[0], 88, 56, "newWidget");
-        if (!!dart.equals(this.widget, newWidget)) dart.assertFailed(null, I[0], 89, 12, "widget != newWidget");
-        super.update(newWidget);
-        if (!dart.equals(this.widget, newWidget)) dart.assertFailed(null, I[0], 91, 12, "widget == newWidget");
-        this.renderObject.updateCallback(dart.bind(this, _layout));
-        this.renderObject.markNeedsBuild();
-      }
-      performRebuild() {
-        this.renderObject.markNeedsBuild();
-        super.performRebuild();
-      }
-      unmount() {
-        this.renderObject.updateCallback(null);
-        super.unmount();
-      }
-      [_layout](constraints) {
-        ConstraintType.as(constraints);
-        if (constraints == null) dart.nullFailed(I[0], 117, 31, "constraints");
-        dart.nullCheck(this.owner).buildScope(this, dart.fn(() => {
-          let t1, t0;
-          let built = null;
-          try {
-            built = (t0 = this.widget, t1 = constraints, BuildContextAndConstraintTypeToWidget().as(t0.builder)(this, t1));
-            debug.debugWidgetBuilderValue(this.widget, built);
-          } catch (e$) {
-            let e = dart.getThrown(e$);
-            let stack = dart.stackTrace(e$);
-            if (core.Object.is(e)) {
-              built = framework.ErrorWidget.builder(layout_builder._debugReportException(new assertions.ErrorDescription.new("building " + dart.str(this.widget)), e, stack, {informationCollector: dart.fn(() => new (T.SyncIterableOfDiagnosticsNode()).new((function*() {
-                  yield new object.DiagnosticsDebugCreator.new(new framework.DebugCreator.new(this));
-                }).bind(this)), T.VoidToIterableOfDiagnosticsNode())}));
-            } else
-              throw e$;
-          }
-          try {
-            this[_child] = this.updateChild(this[_child], built, null);
-            if (!(this[_child] != null)) dart.assertFailed(null, I[0], 137, 16, "_child != null");
-          } catch (e$0) {
-            let e = dart.getThrown(e$0);
-            let stack = dart.stackTrace(e$0);
-            if (core.Object.is(e)) {
-              built = framework.ErrorWidget.builder(layout_builder._debugReportException(new assertions.ErrorDescription.new("building " + dart.str(this.widget)), e, stack, {informationCollector: dart.fn(() => new (T.SyncIterableOfDiagnosticsNode()).new((function*() {
-                  yield new object.DiagnosticsDebugCreator.new(new framework.DebugCreator.new(this));
-                }).bind(this)), T.VoidToIterableOfDiagnosticsNode())}));
-              this[_child] = this.updateChild(null, built, this.slot);
-            } else
-              throw e$0;
-          }
-        }, T.VoidTovoid()));
-      }
-      insertRenderObjectChild(child, slot) {
-        object.RenderObject.as(child);
-        if (child == null) dart.nullFailed(I[0], 155, 45, "child");
-        let renderObject = this.renderObject;
-        if (!(slot == null)) dart.assertFailed(null, I[0], 157, 12, "slot == null");
-        if (!dart.test(renderObject.debugValidateChild(child))) dart.assertFailed(null, I[0], 158, 12, "renderObject.debugValidateChild(child)");
-        renderObject.child = child;
-        if (!dart.equals(renderObject, this.renderObject)) dart.assertFailed(null, I[0], 160, 12, "renderObject == this.renderObject");
-      }
-      moveRenderObjectChild(child, oldSlot, newSlot) {
-        object.RenderObject.as(child);
-        if (child == null) dart.nullFailed(I[0], 164, 43, "child");
-        if (!false) dart.assertFailed(null, I[0], 165, 12, "false");
-      }
-      removeRenderObjectChild(child, slot) {
-        object.RenderObject.as(child);
-        if (child == null) dart.nullFailed(I[0], 169, 45, "child");
-        let renderObject = this.renderObject;
-        if (!dart.equals(renderObject.child, child)) dart.assertFailed(null, I[0], 171, 12, "renderObject.child == child");
-        renderObject.child = null;
-        if (!dart.equals(renderObject, this.renderObject)) dart.assertFailed(null, I[0], 173, 12, "renderObject == this.renderObject");
-      }
-    }
-    (_LayoutBuilderElement.new = function(widget) {
-      if (widget == null) dart.nullFailed(I[0], 58, 66, "widget");
-      this[_child] = null;
-      _LayoutBuilderElement.__proto__.new.call(this, widget);
-      ;
-    }).prototype = _LayoutBuilderElement.prototype;
-    dart.addTypeTests(_LayoutBuilderElement);
-    _LayoutBuilderElement.prototype[_is__LayoutBuilderElement_default] = true;
-    dart.addTypeCaches(_LayoutBuilderElement);
-    dart.setMethodSignature(_LayoutBuilderElement, () => ({
-      __proto__: dart.getMethods(_LayoutBuilderElement.__proto__),
-      [_layout]: dart.fnType(dart.void, [dart.nullable(core.Object)])
-    }));
-    dart.setGetterSignature(_LayoutBuilderElement, () => ({
-      __proto__: dart.getGetters(_LayoutBuilderElement.__proto__),
-      widget: layout_builder.ConstrainedLayoutBuilder$(ConstraintType),
-      renderObject: layout_builder.RenderConstrainedLayoutBuilder$(ConstraintType, object.RenderObject)
-    }));
-    dart.setLibraryUri(_LayoutBuilderElement, I[1]);
-    dart.setFieldSignature(_LayoutBuilderElement, () => ({
-      __proto__: dart.getFields(_LayoutBuilderElement.__proto__),
-      [_child]: dart.fieldType(dart.nullable(framework.Element))
-    }));
-    return _LayoutBuilderElement;
-  });
-  layout_builder._LayoutBuilderElement = layout_builder._LayoutBuilderElement$();
-  dart.addTypeTests(layout_builder._LayoutBuilderElement, _is__LayoutBuilderElement_default);
-  var _callback = dart.privateName(layout_builder, "RenderConstrainedLayoutBuilder._callback");
-  var _needsBuild = dart.privateName(layout_builder, "RenderConstrainedLayoutBuilder._needsBuild");
-  var _previousConstraints = dart.privateName(layout_builder, "RenderConstrainedLayoutBuilder._previousConstraints");
-  var _callback$ = dart.privateName(layout_builder, "_callback");
-  var _needsBuild$ = dart.privateName(layout_builder, "_needsBuild");
-  var _previousConstraints$ = dart.privateName(layout_builder, "_previousConstraints");
-  const _is_RenderConstrainedLayoutBuilder_default = Symbol('_is_RenderConstrainedLayoutBuilder_default');
-  layout_builder.RenderConstrainedLayoutBuilder$ = dart.generic((ConstraintType, ChildType) => {
-    class RenderConstrainedLayoutBuilder extends object.RenderObjectWithChildMixin$(ChildType) {}
-    RenderConstrainedLayoutBuilder[dart.mixinOn] = RenderObjectWithChildMixin => class RenderConstrainedLayoutBuilder extends RenderObjectWithChildMixin {
-      get [_callback$]() {
-        return this[_callback];
-      }
-      set [_callback$](value) {
-        this[_callback] = value;
-      }
-      get [_needsBuild$]() {
-        return this[_needsBuild];
-      }
-      set [_needsBuild$](value) {
-        this[_needsBuild] = value;
-      }
-      get [_previousConstraints$]() {
-        return this[_previousConstraints];
-      }
-      set [_previousConstraints$](value) {
-        this[_previousConstraints] = value;
-      }
-      updateCallback(value) {
-        if (dart.equals(value, this[_callback$])) return;
-        this[_callback$] = value;
-        this.markNeedsLayout();
-      }
-      markNeedsBuild() {
-        this[_needsBuild$] = true;
-        this.markNeedsLayout();
-      }
-      rebuildIfNecessary() {
-        if (!(this[_callback$] != null)) dart.assertFailed(null, I[0], 221, 12, "_callback != null");
-        if (dart.test(this[_needsBuild$]) || !dart.equals(this.constraints, this[_previousConstraints$])) {
-          this[_previousConstraints$] = this.constraints;
-          this[_needsBuild$] = false;
-          this.invokeLayoutCallback(ConstraintType, dart.nullCheck(this[_callback$]));
+      add(event) {
+        Event.as(event);
+        if (dart.test(this[_eventController].isClosed)) return;
+        try {
+          this.onEvent(event);
+          this[_eventController].add(event);
+        } catch (e) {
+          let error = dart.getThrown(e);
+          let stackTrace = dart.stackTrace(e);
+          if (core.Object.is(error)) {
+            this.onError(error, stackTrace);
+          } else
+            throw e;
         }
       }
-    };
-    (RenderConstrainedLayoutBuilder[dart.mixinNew] = function() {
-      this[_callback] = null;
-      this[_needsBuild] = true;
-      this[_previousConstraints] = null;
-    }).prototype = RenderConstrainedLayoutBuilder.prototype;
-    dart.addTypeTests(RenderConstrainedLayoutBuilder);
-    RenderConstrainedLayoutBuilder.prototype[_is_RenderConstrainedLayoutBuilder_default] = true;
-    dart.addTypeCaches(RenderConstrainedLayoutBuilder);
-    RenderConstrainedLayoutBuilder[dart.implements] = () => [object.RenderObjectWithChildMixin$(ChildType)];
-    dart.setMethodSignature(RenderConstrainedLayoutBuilder, () => ({
-      __proto__: dart.getMethods(RenderConstrainedLayoutBuilder.__proto__),
-      updateCallback: dart.fnType(dart.void, [dart.nullable(dart.fnType(dart.void, [ConstraintType]))]),
-      markNeedsBuild: dart.fnType(dart.void, []),
-      rebuildIfNecessary: dart.fnType(dart.void, [])
-    }));
-    dart.setLibraryUri(RenderConstrainedLayoutBuilder, I[1]);
-    dart.setFieldSignature(RenderConstrainedLayoutBuilder, () => ({
-      __proto__: dart.getFields(RenderConstrainedLayoutBuilder.__proto__),
-      [_callback$]: dart.fieldType(dart.nullable(dart.fnType(dart.void, [ConstraintType]))),
-      [_needsBuild$]: dart.fieldType(core.bool),
-      [_previousConstraints$]: dart.fieldType(dart.nullable(object.Constraints))
-    }));
-    return RenderConstrainedLayoutBuilder;
-  });
-  layout_builder.RenderConstrainedLayoutBuilder = layout_builder.RenderConstrainedLayoutBuilder$();
-  dart.addTypeTests(layout_builder.RenderConstrainedLayoutBuilder, _is_RenderConstrainedLayoutBuilder_default);
-  layout_builder.LayoutBuilder = class LayoutBuilder extends layout_builder.ConstrainedLayoutBuilder$(box.BoxConstraints) {
-    get builder() {
-      return super.builder;
-    }
-    createRenderObject(context) {
-      if (context == null) dart.nullFailed(I[0], 320, 56, "context");
-      return new layout_builder._RenderLayoutBuilder.new();
-    }
-  };
-  (layout_builder.LayoutBuilder.new = function(opts) {
-    let key = opts && 'key' in opts ? opts.key : null;
-    let builder = opts && 'builder' in opts ? opts.builder : null;
-    if (builder == null) dart.nullFailed(I[0], 312, 34, "builder");
-    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
-    if (!(builder != null)) dart.assertFailed(null, I[0], 313, 15, "builder != null");
-    layout_builder.LayoutBuilder.__proto__.new.call(this, {key: key, builder: builder, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
-    ;
-  }).prototype = layout_builder.LayoutBuilder.prototype;
-  dart.addTypeTests(layout_builder.LayoutBuilder);
-  dart.addTypeCaches(layout_builder.LayoutBuilder);
-  dart.setMethodSignature(layout_builder.LayoutBuilder, () => ({
-    __proto__: dart.getMethods(layout_builder.LayoutBuilder.__proto__),
-    createRenderObject: dart.fnType(layout_builder._RenderLayoutBuilder, [framework.BuildContext])
-  }));
-  dart.setGetterSignature(layout_builder.LayoutBuilder, () => ({
-    __proto__: dart.getGetters(layout_builder.LayoutBuilder.__proto__),
-    builder: dart.fnType(framework.Widget, [framework.BuildContext, box.BoxConstraints])
-  }));
-  dart.setLibraryUri(layout_builder.LayoutBuilder, I[1]);
-  var _debugThrowIfNotCheckingIntrinsics = dart.privateName(layout_builder, "_debugThrowIfNotCheckingIntrinsics");
-  const RenderBox_RenderObjectWithChildMixin$36 = class RenderBox_RenderObjectWithChildMixin extends box.RenderBox {};
-  (RenderBox_RenderObjectWithChildMixin$36.new = function() {
-    object.RenderObjectWithChildMixin$(box.RenderBox)[dart.mixinNew].call(this);
-    RenderBox_RenderObjectWithChildMixin$36.__proto__.new.call(this);
-  }).prototype = RenderBox_RenderObjectWithChildMixin$36.prototype;
-  dart.applyMixin(RenderBox_RenderObjectWithChildMixin$36, object.RenderObjectWithChildMixin$(box.RenderBox));
-  const RenderBox_RenderConstrainedLayoutBuilder$36 = class RenderBox_RenderConstrainedLayoutBuilder extends RenderBox_RenderObjectWithChildMixin$36 {};
-  (RenderBox_RenderConstrainedLayoutBuilder$36.new = function() {
-    layout_builder.RenderConstrainedLayoutBuilder$(box.BoxConstraints, box.RenderBox)[dart.mixinNew].call(this);
-    RenderBox_RenderConstrainedLayoutBuilder$36.__proto__.new.call(this);
-  }).prototype = RenderBox_RenderConstrainedLayoutBuilder$36.prototype;
-  dart.applyMixin(RenderBox_RenderConstrainedLayoutBuilder$36, layout_builder.RenderConstrainedLayoutBuilder$(box.BoxConstraints, box.RenderBox));
-  layout_builder._RenderLayoutBuilder = class _RenderLayoutBuilder extends RenderBox_RenderConstrainedLayoutBuilder$36 {
-    computeMinIntrinsicWidth(height) {
-      if (height == null) dart.nullFailed(I[0], 325, 42, "height");
-      if (!dart.test(this[_debugThrowIfNotCheckingIntrinsics]())) dart.assertFailed(null, I[0], 326, 12, "_debugThrowIfNotCheckingIntrinsics()");
-      return 0.0;
-    }
-    computeMaxIntrinsicWidth(height) {
-      if (height == null) dart.nullFailed(I[0], 331, 42, "height");
-      if (!dart.test(this[_debugThrowIfNotCheckingIntrinsics]())) dart.assertFailed(null, I[0], 332, 12, "_debugThrowIfNotCheckingIntrinsics()");
-      return 0.0;
-    }
-    computeMinIntrinsicHeight(width) {
-      if (width == null) dart.nullFailed(I[0], 337, 43, "width");
-      if (!dart.test(this[_debugThrowIfNotCheckingIntrinsics]())) dart.assertFailed(null, I[0], 338, 12, "_debugThrowIfNotCheckingIntrinsics()");
-      return 0.0;
-    }
-    computeMaxIntrinsicHeight(width) {
-      if (width == null) dart.nullFailed(I[0], 343, 43, "width");
-      if (!dart.test(this[_debugThrowIfNotCheckingIntrinsics]())) dart.assertFailed(null, I[0], 344, 12, "_debugThrowIfNotCheckingIntrinsics()");
-      return 0.0;
-    }
-    computeDryLayout(constraints) {
-      if (constraints == null) dart.nullFailed(I[0], 349, 40, "constraints");
-      if (!dart.test(this.debugCannotComputeDryLayout({reason: "Calculating the dry layout would require running the layout callback " + "speculatively, which might mutate the live render object tree."}))) dart.assertFailed(null, I[0], 350, 12, "debugCannotComputeDryLayout(reason:\r\n      'Calculating the dry layout would require running the layout callback '\r\n      'speculatively, which might mutate the live render object tree.',\r\n    )");
-      return ui.Size.zero;
-    }
-    performLayout() {
-      let constraints = this.constraints;
-      this.rebuildIfNecessary();
-      if (this.child != null) {
-        dart.nullCheck(this.child).layout(constraints, {parentUsesSize: true});
-        this.size = constraints.constrain(dart.nullCheck(this.child).size);
-      } else {
-        this.size = constraints.biggest;
+      onEvent(event) {
+        Event.as(event);
+        bloc.Bloc.observer.onEvent(this, event);
+      }
+      transformEvents(events, transitionFn) {
+        StreamOfEvent().as(events);
+        if (events == null) dart.nullFailed(I[2], 132, 19, "events");
+        EventToStreamOfTransitionOfEvent$State().as(transitionFn);
+        if (transitionFn == null) dart.nullFailed(I[2], 133, 38, "transitionFn");
+        return events.asyncExpand(TransitionOfEvent$State(), transitionFn);
+      }
+      emit(state) {
+        State.as(state);
+        return super.emit(state);
+      }
+      onTransition(transition) {
+        TransitionOfEvent$State().as(transition);
+        if (transition == null) dart.nullFailed(I[2], 179, 46, "transition");
+        bloc.Bloc.observer.onTransition(this, transition);
+      }
+      transformTransitions(transitions) {
+        StreamOfTransitionOfEvent$State().as(transitions);
+        if (transitions == null) dart.nullFailed(I[2], 202, 38, "transitions");
+        return transitions;
+      }
+      close() {
+        return async.async(dart.void, (function* close$() {
+          let t1;
+          yield this[_eventController].close();
+          yield (t1 = this[_transitionSubscription], t1 == null ? null : t1.cancel());
+          return this[close]();
+        }).bind(this));
+      }
+      [_bindEventsToStates]() {
+        this[_transitionSubscription] = this.transformTransitions(this.transformEvents(this[_eventController].stream, dart.fn(event => this.mapEventToState(event).map(TransitionOfEvent$State(), dart.fn(nextState => new (TransitionOfEvent$State()).new({currentState: this.state, event: event, nextState: nextState}), StateToTransitionOfEvent$State())), EventToStreamOfTransitionOfEvent$State()))).listen(dart.fn(transition => {
+          if (transition == null) dart.nullFailed(I[2], 234, 8, "transition");
+          if (dart.equals(transition.nextState, this.state) && dart.test(this[_emitted])) return;
+          try {
+            this.onTransition(transition);
+            this.emit(transition.nextState);
+          } catch (e) {
+            let error = dart.getThrown(e);
+            let stackTrace = dart.stackTrace(e);
+            if (core.Object.is(error)) {
+              this.onError(error, stackTrace);
+            } else
+              throw e;
+          }
+        }, TransitionOfEvent$StateTovoid()), {onError: dart.bind(this, 'onError')});
+      }
+      [close]() {
+        return super.close();
       }
     }
-    computeDistanceToActualBaseline(baseline) {
-      if (baseline == null) dart.nullFailed(I[0], 370, 56, "baseline");
-      if (this.child != null) return dart.nullCheck(this.child).getDistanceToActualBaseline(baseline);
-      return super.computeDistanceToActualBaseline(baseline);
-    }
-    hitTestChildren(result, opts) {
-      let t2, t2$;
-      if (result == null) dart.nullFailed(I[0], 377, 41, "result");
-      let position = opts && 'position' in opts ? opts.position : null;
-      if (position == null) dart.nullFailed(I[0], 377, 67, "position");
-      t2$ = (t2 = this.child, t2 == null ? null : t2.hitTest(result, {position: position}));
-      return t2$ == null ? false : t2$;
-    }
-    paint(context, offset) {
-      if (context == null) dart.nullFailed(I[0], 382, 30, "context");
-      if (offset == null) dart.nullFailed(I[0], 382, 46, "offset");
-      if (this.child != null) context.paintChild(dart.nullCheck(this.child), offset);
-    }
-    [_debugThrowIfNotCheckingIntrinsics]() {
-      if (!dart.test(dart.fn(() => {
-        if (!dart.test(object.RenderObject.debugCheckingIntrinsics)) {
-          dart.throw(assertions.FlutterError.new("LayoutBuilder does not support returning intrinsic dimensions.\n" + "Calculating the intrinsic dimensions would require running the layout " + "callback speculatively, which might mutate the live render object tree."));
-        }
-        return true;
-      }, T.VoidTobool())())) dart.assertFailed(null, I[0], 388, 12, "() {\r\n      if (!RenderObject.debugCheckingIntrinsics) {\r\n        throw FlutterError(\r\n          'LayoutBuilder does not support returning intrinsic dimensions.\\n'\r\n          'Calculating the intrinsic dimensions would require running the layout '\r\n          'callback speculatively, which might mutate the live render object tree.',\r\n        );\r\n      }\r\n      return true;\r\n    }()");
-      return true;
-    }
-  };
-  (layout_builder._RenderLayoutBuilder.new = function() {
-    layout_builder._RenderLayoutBuilder.__proto__.new.call(this);
-    ;
-  }).prototype = layout_builder._RenderLayoutBuilder.prototype;
-  dart.addTypeTests(layout_builder._RenderLayoutBuilder);
-  dart.addTypeCaches(layout_builder._RenderLayoutBuilder);
-  dart.setMethodSignature(layout_builder._RenderLayoutBuilder, () => ({
-    __proto__: dart.getMethods(layout_builder._RenderLayoutBuilder.__proto__),
-    [_debugThrowIfNotCheckingIntrinsics]: dart.fnType(core.bool, [])
-  }));
-  dart.setLibraryUri(layout_builder._RenderLayoutBuilder, I[1]);
-  layout_builder._debugReportException = function _debugReportException(context, exception, stack, opts) {
-    if (context == null) dart.nullFailed(I[0], 404, 19, "context");
-    if (exception == null) dart.nullFailed(I[0], 405, 10, "exception");
-    if (stack == null) dart.nullFailed(I[0], 406, 14, "stack");
-    let informationCollector = opts && 'informationCollector' in opts ? opts.informationCollector : null;
-    let details = new assertions.FlutterErrorDetails.new({exception: exception, stack: stack, library: "widgets library", context: context, informationCollector: informationCollector});
-    assertions.FlutterError.reportError(details);
-    return details;
-  };
-  dart.trackLibraries("packages/flutter/src/widgets/layout_builder.dart", {
-    "package:flutter/src/widgets/layout_builder.dart": layout_builder
+    (Bloc.new = function(initialState) {
+      this[_transitionSubscription] = null;
+      this[__eventController] = null;
+      Bloc.__proto__.new.call(this, initialState);
+      this[_bindEventsToStates]();
+    }).prototype = Bloc.prototype;
+    dart.addTypeTests(Bloc);
+    Bloc.prototype[_is_Bloc_default] = true;
+    dart.addTypeCaches(Bloc);
+    dart.setMethodSignature(Bloc, () => ({
+      __proto__: dart.getMethods(Bloc.__proto__),
+      add: dart.fnType(dart.void, [dart.nullable(core.Object)]),
+      onEvent: dart.fnType(dart.void, [dart.nullable(core.Object)]),
+      transformEvents: dart.fnType(async.Stream$(transition.Transition$(Event, State)), [dart.nullable(core.Object), dart.nullable(core.Object)]),
+      onTransition: dart.fnType(dart.void, [dart.nullable(core.Object)]),
+      transformTransitions: dart.fnType(async.Stream$(transition.Transition$(Event, State)), [dart.nullable(core.Object)]),
+      [_bindEventsToStates]: dart.fnType(dart.void, [])
+    }));
+    dart.setGetterSignature(Bloc, () => ({
+      __proto__: dart.getGetters(Bloc.__proto__),
+      [_eventController]: async.StreamController$(Event)
+    }));
+    dart.setLibraryUri(Bloc, I[3]);
+    dart.setFieldSignature(Bloc, () => ({
+      __proto__: dart.getFields(Bloc.__proto__),
+      [_transitionSubscription]: dart.fieldType(dart.nullable(async.StreamSubscription$(transition.Transition$(Event, State)))),
+      [__eventController]: dart.fieldType(dart.nullable(async.StreamController$(Event)))
+    }));
+    return Bloc;
+  });
+  bloc.Bloc = bloc.Bloc$();
+  dart.defineLazy(bloc.Bloc, {
+    /*bloc.Bloc.observer*/get observer() {
+      return new bloc_observer.BlocObserver.new();
+    },
+    set observer(_) {}
+  }, false);
+  dart.addTypeTests(bloc.Bloc, _is_Bloc_default);
+  const _is_Cubit_default = Symbol('_is_Cubit_default');
+  bloc.Cubit$ = dart.generic(State => {
+    class Cubit extends bloc.BlocBase$(State) {}
+    (Cubit.new = function(initialState) {
+      Cubit.__proto__.new.call(this, initialState);
+      ;
+    }).prototype = Cubit.prototype;
+    dart.addTypeTests(Cubit);
+    Cubit.prototype[_is_Cubit_default] = true;
+    dart.addTypeCaches(Cubit);
+    dart.setLibraryUri(Cubit, I[3]);
+    return Cubit;
+  });
+  bloc.Cubit = bloc.Cubit$();
+  dart.addTypeTests(bloc.Cubit, _is_Cubit_default);
+  dart.trackLibraries("packages/bloc/src/bloc_observer.dart", {
+    "package:bloc/src/bloc_observer.dart": bloc_observer,
+    "package:bloc/src/bloc.dart": bloc,
+    "package:bloc/bloc.dart": bloc$
   }, {
-  }, '{"version":3,"sourceRoot":"","sources":["layout_builder.dart"],"names":[],"mappings":"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","file":"../../../../../../../../../../packages/flutter/src/widgets/layout_builder.dart.lib.js"}');
+  }, '{"version":3,"sourceRoot":"","sources":["bloc_observer.dart","bloc.dart"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;UAWyB;IAAO;YAMZ,MAAc;UAAd;IAAsB;aAOjB,MAAa;UAAb;UAAa;IAAS;iBAStB,MAAiB;UAAjB;UAAiB;IAAa;YAO/B,MAAa,OAAkB;UAA/B;UAAa;UAAkB;IAAa;;UAQ5C;IAAO;;;;EAC/B;;;;;;;;;;;;;;;;;;ICzBiB;;;;;;IAGF;;;;;;IAII;;;;;;;AAIf,YAAO,+BAAkB,cAAK,2BAAc,aAAI,iBAC1C;IACR;;mDAnBO,MACA,OACA;QAFA;QACA;QACA;IAFA;IACA;IACA;;EACL;;;;;;;;;;;;;;;;;;;;;;;;;;;AAsQA,aAAO;cAAkB,cAAlB,0BAAsB;MAC/B;;AAOmB;MAAM;;AAGG,cAAA,AAAiB;MAAM;aAU3B;YACZ;YACO;YACX;AAEN,cAAO,AAAO,oBACZ,MAAM,YACG,OAAO,UACR,MAAM,iBACC,aAAa;MAEhC;;iBASgB;AACd,sBAAI,AAAiB,kCAAU;AAC/B,YAAU,YAAN,KAAK,EAAI,4BAAU,iBAAU;AACkC,QAAnE,cAAS,yCAAiC,uBAAkB,KAAK;AACnD,QAAd,gBAAS,KAAK;AACc,QAA5B,AAAiB,2BAAI;AACN,QAAf,iBAAW;MACb;;2BAsB4B;;AAEU,QAA/B,AAAS,4BAAS,MAAM,MAAM;MACrC;eAIqB,OAAoB;;YAApB;AAC6B,QAAhD,aAAQ,KAAK,GAAa,KAAX,UAAU,EAAV,aAAyB;MAC1C;cAsBoB,OAAkB;YAAlB;YAAkB;AAEU,QAAzC,AAAS,2BAAQ,MAAM,KAAK,EAAE,UAAU;AAC7C,yBAAO,AAEN;AAD2D,UAA1D,WAAM,yCAA4B,MAAM,KAAK,EAAE,UAAU;8EAC1D;MACH;;AAMkB;AAEW,UAAtB,AAAS,2BAAQ;AACQ,UAA9B,MAAM,AAAiB;QACzB;;;6BA5Hc;MAKW;MAOpB,iBAAW;MAZF;AAEgB,MAAvB,AAAS,4BAAS;IACzB;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AA9NE,aAAO;cAAkB,cAAlB,0BAAsB;MAC/B;;iBAKe;AACb,sBAAI,AAAiB,kCAAU;AAC/B;AACgB,UAAd,aAAQ,KAAK;AACc,UAA3B,AAAiB,2BAAI,KAAK;;cACnB;cAAO;AAAd;AAC0B,YAA1B,aAAQ,KAAK,EAAE,UAAU;;;;MAE7B;;iBAsBmB;AAEY,QAA7B,AAAS,2BAAQ,MAAM,KAAK;MAC9B;sBAmCgB,QACmB;2BADnB;;oDACmB;;AAEjC,cAAO,AAAO,OAAD,wCAAa,YAAY;MACxC;;iBAYgB;AAAU,cAAM,YAAK,KAAK;MAAC;;qCA+BA;;AAEG,QAAvC,AAAS,gCAAa,MAAM,UAAU;MAC7C;;6CAoBmC;;AAEjC,cAAO,YAAW;MACpB;;AAUkB;;AACc,UAA9B,MAAM,AAAiB;AACgB,UAAvC,wDAAM,OAAyB;AAC/B,gBAAa;QACf;;;AAyBG,QAtBD,gCAA0B,AAWxB,0BAVA,qBACE,AAAiB,+BACjB,QAAC,SAAU,AAAuB,qBAAP,KAAK,iCAC9B,QAAC,aAAc,mDACC,mBACP,KAAK,aACD,SAAS,2FAK1B;cAAC;AACC,cAAyB,YAArB,AAAW,UAAD,YAAc,yBAAS,iBAAU;AAC/C;AAC0B,YAAxB,kBAAa,UAAU;AACG,YAA1B,UAAK,AAAW,UAAD;;gBACR;gBAAO;AAAd;AAC0B,cAA1B,aAAQ,KAAK,EAAE,UAAU;;;;iEAGpB;MAEb;;;;;yBAtMW;MAOmC;MAErB;AATE,oCAAM,YAAY;AACtB,MAArB;IACF;;;;;;;;;;;;;;;;;;;;;;;;;;;MAGoB,kBAAQ;YAAG;;;;;;;;0BAwNnB;AAAgB,qCAAM,YAAY;;IAAC","file":"../../../../../../../../../D:/packages/bloc/src/bloc_observer.dart.lib.js"}');
   // Exports:
   return {
-    src__widgets__layout_builder: layout_builder
+    src__bloc_observer: bloc_observer,
+    src__bloc: bloc,
+    bloc: bloc$
   };
 }));
 
-//# sourceMappingURL=layout_builder.dart.lib.js.map
+//# sourceMappingURL=bloc_observer.dart.lib.js.map

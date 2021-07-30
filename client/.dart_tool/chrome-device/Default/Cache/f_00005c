@@ -1,302 +1,473 @@
-define(['dart_sdk', 'packages/flutter/src/painting/borders.dart', 'packages/flutter/src/painting/edge_insets.dart'], (function load__packages__flutter__src__rendering__table_border_dart(dart_sdk, packages__flutter__src__painting__borders$46dart, packages__flutter__src__painting__edge_insets$46dart) {
+define(['dart_sdk', 'packages/flutter/src/services/text_input.dart', 'packages/flutter/src/foundation/_platform_web.dart', 'packages/characters/src/characters_impl.dart', 'packages/characters/src/extensions.dart', 'packages/flutter/src/services/text_editing.dart'], (function load__packages__flutter__src__services__text_formatter_dart(dart_sdk, packages__flutter__src__services__text_input$46dart, packages__flutter__src__foundation___platform_web$46dart, packages__characters__src__characters_impl$46dart, packages__characters__src__extensions$46dart, packages__flutter__src__services__text_editing$46dart) {
   'use strict';
   const core = dart_sdk.core;
-  const ui = dart_sdk.ui;
   const _internal = dart_sdk._internal;
+  const math = dart_sdk.math;
+  const ui = dart_sdk.ui;
   const dart = dart_sdk.dart;
   const dartx = dart_sdk.dartx;
-  const borders = packages__flutter__src__painting__borders$46dart.src__painting__borders;
-  const edge_insets = packages__flutter__src__painting__edge_insets$46dart.src__painting__edge_insets;
-  var table_border = Object.create(dart.library);
-  var $isEmpty = dartx.isEmpty;
-  var $first = dartx.first;
-  var $last = dartx.last;
+  const text_input = packages__flutter__src__services__text_input$46dart.src__services__text_input;
+  const platform$ = packages__flutter__src__foundation___platform_web$46dart.src__foundation__platform;
+  const characters_impl = packages__characters__src__characters_impl$46dart.src__characters_impl;
+  const extensions = packages__characters__src__extensions$46dart.src__extensions;
+  const text_editing = packages__flutter__src__services__text_editing$46dart.src__services__text_editing;
+  var text_formatter = Object.create(dart.library);
   var $isNotEmpty = dartx.isNotEmpty;
-  var $runtimeType = dartx.runtimeType;
+  var $splitMapJoin = dartx.splitMapJoin;
+  var $length = dartx.length;
+  var $substring = dartx.substring;
   dart._checkModuleNullSafetyMode(false);
+  var T = {
+    MaxLengthEnforcementL: () => (T.MaxLengthEnforcementL = dart.constFn(dart.legacy(text_formatter.MaxLengthEnforcement)))(),
+    MatchToString: () => (T.MatchToString = dart.constFn(dart.fnType(core.String, [core.Match])))(),
+    StringToString: () => (T.StringToString = dart.constFn(dart.fnType(core.String, [core.String])))()
+  };
   const CT = Object.create({
     _: () => (C, CT)
   });
   dart.defineLazy(CT, {
+    get C0() {
+      return C[0] = dart.const({
+        __proto__: text_formatter.MaxLengthEnforcement.prototype,
+        [_name$]: "MaxLengthEnforcement.none",
+        index: 0
+      });
+    },
     get C1() {
       return C[1] = dart.const({
-        __proto__: borders.BorderStyle.prototype,
-        [_name]: "BorderStyle.none",
-        index: 0
+        __proto__: text_formatter.MaxLengthEnforcement.prototype,
+        [_name$]: "MaxLengthEnforcement.enforced",
+        index: 1
       });
     },
     get C2() {
       return C[2] = dart.const({
-        __proto__: ui.Color.prototype,
-        [Color_value]: 4278190080.0
-      });
-    },
-    get C0() {
-      return C[0] = dart.const({
-        __proto__: borders.BorderSide.prototype,
-        [BorderSide_style]: C[1] || CT.C1,
-        [BorderSide_width]: 0,
-        [BorderSide_color]: C[2] || CT.C2
+        __proto__: text_formatter.MaxLengthEnforcement.prototype,
+        [_name$]: "MaxLengthEnforcement.truncateAfterCompositionEnds",
+        index: 2
       });
     },
     get C3() {
-      return C[3] = dart.const({
-        __proto__: borders.BorderStyle.prototype,
-        [_name]: "BorderStyle.solid",
+      return C[3] = dart.constList([C[0] || CT.C0, C[1] || CT.C1, C[2] || CT.C2], T.MaxLengthEnforcementL());
+    },
+    get C4() {
+      return C[4] = dart.const({
+        __proto__: platform$.TargetPlatform.prototype,
+        [_name]: "TargetPlatform.android",
+        index: 0
+      });
+    },
+    get C5() {
+      return C[5] = dart.const({
+        __proto__: platform$.TargetPlatform.prototype,
+        [_name]: "TargetPlatform.windows",
+        index: 5
+      });
+    },
+    get C6() {
+      return C[6] = dart.const({
+        __proto__: platform$.TargetPlatform.prototype,
+        [_name]: "TargetPlatform.iOS",
+        index: 2
+      });
+    },
+    get C7() {
+      return C[7] = dart.const({
+        __proto__: platform$.TargetPlatform.prototype,
+        [_name]: "TargetPlatform.macOS",
+        index: 4
+      });
+    },
+    get C8() {
+      return C[8] = dart.const({
+        __proto__: platform$.TargetPlatform.prototype,
+        [_name]: "TargetPlatform.linux",
+        index: 3
+      });
+    },
+    get C9() {
+      return C[9] = dart.const({
+        __proto__: platform$.TargetPlatform.prototype,
+        [_name]: "TargetPlatform.fuchsia",
         index: 1
+      });
+    },
+    get C11() {
+      return C[11] = dart.const({
+        __proto__: ui.TextAffinity.prototype,
+        [_name$0]: "TextAffinity.downstream",
+        index: 1
+      });
+    },
+    get C10() {
+      return C[10] = dart.const({
+        __proto__: text_editing.TextSelection.prototype,
+        [TextRange_end]: -1,
+        [TextRange_start]: -1,
+        [TextSelection_isDirectional]: false,
+        [TextSelection_affinity]: C[11] || CT.C11,
+        [TextSelection_extentOffset]: -1,
+        [TextSelection_baseOffset]: -1
       });
     }
   }, false);
-  var C = Array(4).fill(void 0);
+  var C = Array(12).fill(void 0);
   var I = [
-    "file:///C:/Users/Ejas/Desktop/App_files/flutter/packages/flutter/lib/src/rendering/table_border.dart",
-    "package:flutter/src/rendering/table_border.dart"
+    "file:///C:/src/flutter/packages/flutter/lib/src/services/text_formatter.dart",
+    "package:flutter/src/services/text_formatter.dart"
   ];
-  var top$ = dart.privateName(table_border, "TableBorder.top");
-  var right$ = dart.privateName(table_border, "TableBorder.right");
-  var bottom$ = dart.privateName(table_border, "TableBorder.bottom");
-  var left$ = dart.privateName(table_border, "TableBorder.left");
-  var horizontalInside$ = dart.privateName(table_border, "TableBorder.horizontalInside");
-  var verticalInside$ = dart.privateName(table_border, "TableBorder.verticalInside");
-  var _name = dart.privateName(borders, "_name");
-  var BorderSide_style = dart.privateName(borders, "BorderSide.style");
-  var BorderSide_width = dart.privateName(borders, "BorderSide.width");
-  var Color_value = dart.privateName(ui, "Color.value");
-  var BorderSide_color = dart.privateName(borders, "BorderSide.color");
-  table_border.TableBorder = class TableBorder extends core.Object {
-    get top() {
-      return this[top$];
+  var _name$ = dart.privateName(text_formatter, "_name");
+  text_formatter.MaxLengthEnforcement = class MaxLengthEnforcement extends core.Object {
+    toString() {
+      return this[_name$];
     }
-    set top(value) {
-      super.top = value;
+  };
+  (text_formatter.MaxLengthEnforcement.new = function(index, _name) {
+    if (index == null) dart.nullFailed(I[0], 42, 6, "index");
+    if (_name == null) dart.nullFailed(I[0], 42, 6, "_name");
+    this.index = index;
+    this[_name$] = _name;
+    ;
+  }).prototype = text_formatter.MaxLengthEnforcement.prototype;
+  dart.addTypeTests(text_formatter.MaxLengthEnforcement);
+  dart.addTypeCaches(text_formatter.MaxLengthEnforcement);
+  dart.setLibraryUri(text_formatter.MaxLengthEnforcement, I[1]);
+  dart.setFieldSignature(text_formatter.MaxLengthEnforcement, () => ({
+    __proto__: dart.getFields(text_formatter.MaxLengthEnforcement.__proto__),
+    index: dart.finalFieldType(core.int),
+    [_name$]: dart.finalFieldType(core.String)
+  }));
+  dart.defineExtensionMethods(text_formatter.MaxLengthEnforcement, ['toString']);
+  text_formatter.MaxLengthEnforcement.none = C[0] || CT.C0;
+  text_formatter.MaxLengthEnforcement.enforced = C[1] || CT.C1;
+  text_formatter.MaxLengthEnforcement.truncateAfterCompositionEnds = C[2] || CT.C2;
+  text_formatter.MaxLengthEnforcement.values = C[3] || CT.C3;
+  text_formatter.TextInputFormatter = class TextInputFormatter extends core.Object {
+    static withFunction(formatFunction) {
+      if (formatFunction == null) dart.nullFailed(I[0], 95, 29, "formatFunction");
+      return new text_formatter._SimpleTextInputFormatter.new(formatFunction);
     }
-    get right() {
-      return this[right$];
+  };
+  (text_formatter.TextInputFormatter.new = function() {
+    ;
+  }).prototype = text_formatter.TextInputFormatter.prototype;
+  dart.addTypeTests(text_formatter.TextInputFormatter);
+  dart.addTypeCaches(text_formatter.TextInputFormatter);
+  dart.setLibraryUri(text_formatter.TextInputFormatter, I[1]);
+  text_formatter._SimpleTextInputFormatter = class _SimpleTextInputFormatter extends text_formatter.TextInputFormatter {
+    formatEditUpdate(oldValue, newValue) {
+      let t1, t0;
+      if (oldValue == null) dart.nullFailed(I[0], 117, 22, "oldValue");
+      if (newValue == null) dart.nullFailed(I[0], 118, 22, "newValue");
+      t0 = oldValue;
+      t1 = newValue;
+      return this.formatFunction(t0, t1);
     }
-    set right(value) {
-      super.right = value;
+  };
+  (text_formatter._SimpleTextInputFormatter.new = function(formatFunction) {
+    if (formatFunction == null) dart.nullFailed(I[0], 110, 34, "formatFunction");
+    this.formatFunction = formatFunction;
+    if (!(formatFunction != null)) dart.assertFailed(null, I[0], 111, 14, "formatFunction != null");
+    ;
+  }).prototype = text_formatter._SimpleTextInputFormatter.prototype;
+  dart.addTypeTests(text_formatter._SimpleTextInputFormatter);
+  dart.addTypeCaches(text_formatter._SimpleTextInputFormatter);
+  dart.setMethodSignature(text_formatter._SimpleTextInputFormatter, () => ({
+    __proto__: dart.getMethods(text_formatter._SimpleTextInputFormatter.__proto__),
+    formatEditUpdate: dart.fnType(text_input.TextEditingValue, [text_input.TextEditingValue, text_input.TextEditingValue])
+  }));
+  dart.setLibraryUri(text_formatter._SimpleTextInputFormatter, I[1]);
+  dart.setFieldSignature(text_formatter._SimpleTextInputFormatter, () => ({
+    __proto__: dart.getFields(text_formatter._SimpleTextInputFormatter.__proto__),
+    formatFunction: dart.finalFieldType(dart.fnType(text_input.TextEditingValue, [text_input.TextEditingValue, text_input.TextEditingValue]))
+  }));
+  var filterPattern$ = dart.privateName(text_formatter, "FilteringTextInputFormatter.filterPattern");
+  var allow$ = dart.privateName(text_formatter, "FilteringTextInputFormatter.allow");
+  var replacementString$ = dart.privateName(text_formatter, "FilteringTextInputFormatter.replacementString");
+  text_formatter.FilteringTextInputFormatter = class FilteringTextInputFormatter extends text_formatter.TextInputFormatter {
+    get filterPattern() {
+      return this[filterPattern$];
     }
-    get bottom() {
-      return this[bottom$];
+    set filterPattern(value) {
+      super.filterPattern = value;
     }
-    set bottom(value) {
-      super.bottom = value;
+    get allow() {
+      return this[allow$];
     }
-    get left() {
-      return this[left$];
+    set allow(value) {
+      super.allow = value;
     }
-    set left(value) {
-      super.left = value;
+    get replacementString() {
+      return this[replacementString$];
     }
-    get horizontalInside() {
-      return this[horizontalInside$];
+    set replacementString(value) {
+      super.replacementString = value;
     }
-    set horizontalInside(value) {
-      super.horizontalInside = value;
+    formatEditUpdate(oldValue, newValue) {
+      if (oldValue == null) dart.nullFailed(I[0], 263, 22, "oldValue");
+      if (newValue == null) dart.nullFailed(I[0], 264, 22, "newValue");
+      return text_formatter._selectionAwareTextManipulation(newValue, dart.fn(substring => {
+        if (substring == null) dart.nullFailed(I[0], 268, 15, "substring");
+        return substring[$splitMapJoin](this.filterPattern, {onMatch: !dart.test(this.allow) ? dart.fn(match => {
+            if (match == null) dart.nullFailed(I[0], 271, 36, "match");
+            return this.replacementString;
+          }, T.MatchToString()) : null, onNonMatch: dart.test(this.allow) ? dart.fn(nonMatch => {
+            if (nonMatch == null) dart.nullFailed(I[0], 272, 39, "nonMatch");
+            return nonMatch[$isNotEmpty] ? this.replacementString : "";
+          }, T.StringToString()) : null});
+      }, T.StringToString()));
     }
-    get verticalInside() {
-      return this[verticalInside$];
+  };
+  (text_formatter.FilteringTextInputFormatter.new = function(filterPattern, opts) {
+    if (filterPattern == null) dart.nullFailed(I[0], 150, 10, "filterPattern");
+    let allow = opts && 'allow' in opts ? opts.allow : null;
+    if (allow == null) dart.nullFailed(I[0], 151, 19, "allow");
+    let replacementString = opts && 'replacementString' in opts ? opts.replacementString : "";
+    if (replacementString == null) dart.nullFailed(I[0], 152, 10, "replacementString");
+    this[filterPattern$] = filterPattern;
+    this[allow$] = allow;
+    this[replacementString$] = replacementString;
+    if (!(filterPattern != null)) dart.assertFailed(null, I[0], 153, 15, "filterPattern != null");
+    if (!(allow != null)) dart.assertFailed(null, I[0], 154, 15, "allow != null");
+    if (!(replacementString != null)) dart.assertFailed(null, I[0], 155, 15, "replacementString != null");
+    ;
+  }).prototype = text_formatter.FilteringTextInputFormatter.prototype;
+  (text_formatter.FilteringTextInputFormatter.allow = function(filterPattern, opts) {
+    if (filterPattern == null) dart.nullFailed(I[0], 162, 10, "filterPattern");
+    let replacementString = opts && 'replacementString' in opts ? opts.replacementString : "";
+    if (replacementString == null) dart.nullFailed(I[0], 163, 10, "replacementString");
+    this[filterPattern$] = filterPattern;
+    this[replacementString$] = replacementString;
+    if (!(filterPattern != null)) dart.assertFailed(null, I[0], 164, 15, "filterPattern != null");
+    if (!(replacementString != null)) dart.assertFailed(null, I[0], 165, 15, "replacementString != null");
+    this[allow$] = true;
+    ;
+  }).prototype = text_formatter.FilteringTextInputFormatter.prototype;
+  (text_formatter.FilteringTextInputFormatter.deny = function(filterPattern, opts) {
+    if (filterPattern == null) dart.nullFailed(I[0], 173, 10, "filterPattern");
+    let replacementString = opts && 'replacementString' in opts ? opts.replacementString : "";
+    if (replacementString == null) dart.nullFailed(I[0], 174, 10, "replacementString");
+    this[filterPattern$] = filterPattern;
+    this[replacementString$] = replacementString;
+    if (!(filterPattern != null)) dart.assertFailed(null, I[0], 175, 15, "filterPattern != null");
+    if (!(replacementString != null)) dart.assertFailed(null, I[0], 176, 15, "replacementString != null");
+    this[allow$] = false;
+    ;
+  }).prototype = text_formatter.FilteringTextInputFormatter.prototype;
+  dart.addTypeTests(text_formatter.FilteringTextInputFormatter);
+  dart.addTypeCaches(text_formatter.FilteringTextInputFormatter);
+  dart.setMethodSignature(text_formatter.FilteringTextInputFormatter, () => ({
+    __proto__: dart.getMethods(text_formatter.FilteringTextInputFormatter.__proto__),
+    formatEditUpdate: dart.fnType(text_input.TextEditingValue, [text_input.TextEditingValue, text_input.TextEditingValue])
+  }));
+  dart.setLibraryUri(text_formatter.FilteringTextInputFormatter, I[1]);
+  dart.setFieldSignature(text_formatter.FilteringTextInputFormatter, () => ({
+    __proto__: dart.getFields(text_formatter.FilteringTextInputFormatter.__proto__),
+    filterPattern: dart.finalFieldType(core.Pattern),
+    allow: dart.finalFieldType(core.bool),
+    replacementString: dart.finalFieldType(core.String)
+  }));
+  dart.defineLazy(text_formatter.FilteringTextInputFormatter, {
+    /*text_formatter.FilteringTextInputFormatter.singleLineFormatter*/get singleLineFormatter() {
+      return new text_formatter.FilteringTextInputFormatter.deny("\n");
+    },
+    /*text_formatter.FilteringTextInputFormatter.digitsOnly*/get digitsOnly() {
+      return new text_formatter.FilteringTextInputFormatter.allow(core.RegExp.new("[0-9]"));
     }
-    set verticalInside(value) {
-      super.verticalInside = value;
+  }, false);
+  text_formatter.BlacklistingTextInputFormatter = class BlacklistingTextInputFormatter extends text_formatter.FilteringTextInputFormatter {
+    get blacklistedPattern() {
+      return this.filterPattern;
     }
-    static all(opts) {
-      let color = opts && 'color' in opts ? opts.color : C[2] || CT.C2;
-      if (color == null) dart.nullFailed(I[0], 32, 11, "color");
-      let width = opts && 'width' in opts ? opts.width : 1;
-      if (width == null) dart.nullFailed(I[0], 33, 12, "width");
-      let style = opts && 'style' in opts ? opts.style : C[3] || CT.C3;
-      if (style == null) dart.nullFailed(I[0], 34, 17, "style");
-      let side = new borders.BorderSide.new({color: color, width: width, style: style});
-      return new table_border.TableBorder.new({top: side, right: side, bottom: side, left: side, horizontalInside: side, verticalInside: side});
+  };
+  (text_formatter.BlacklistingTextInputFormatter.new = function(blacklistedPattern, opts) {
+    if (blacklistedPattern == null) dart.nullFailed(I[0], 297, 13, "blacklistedPattern");
+    let replacementString = opts && 'replacementString' in opts ? opts.replacementString : "";
+    if (replacementString == null) dart.nullFailed(I[0], 298, 12, "replacementString");
+    text_formatter.BlacklistingTextInputFormatter.__proto__.deny.call(this, blacklistedPattern, {replacementString: replacementString});
+    ;
+  }).prototype = text_formatter.BlacklistingTextInputFormatter.prototype;
+  dart.addTypeTests(text_formatter.BlacklistingTextInputFormatter);
+  dart.addTypeCaches(text_formatter.BlacklistingTextInputFormatter);
+  dart.setGetterSignature(text_formatter.BlacklistingTextInputFormatter, () => ({
+    __proto__: dart.getGetters(text_formatter.BlacklistingTextInputFormatter.__proto__),
+    blacklistedPattern: core.Pattern
+  }));
+  dart.setLibraryUri(text_formatter.BlacklistingTextInputFormatter, I[1]);
+  dart.defineLazy(text_formatter.BlacklistingTextInputFormatter, {
+    /*text_formatter.BlacklistingTextInputFormatter.singleLineFormatter*/get singleLineFormatter() {
+      return new text_formatter.BlacklistingTextInputFormatter.new(core.RegExp.new("\\n"));
     }
-    static symmetric(opts) {
-      let inside = opts && 'inside' in opts ? opts.inside : C[0] || CT.C0;
-      if (inside == null) dart.nullFailed(I[0], 43, 16, "inside");
-      let outside = opts && 'outside' in opts ? opts.outside : C[0] || CT.C0;
-      if (outside == null) dart.nullFailed(I[0], 44, 16, "outside");
-      return new table_border.TableBorder.new({top: outside, right: outside, bottom: outside, left: outside, horizontalInside: inside, verticalInside: inside});
+  }, false);
+  text_formatter.WhitelistingTextInputFormatter = class WhitelistingTextInputFormatter extends text_formatter.FilteringTextInputFormatter {
+    get whitelistedPattern() {
+      return this.filterPattern;
     }
-    get dimensions() {
-      return new edge_insets.EdgeInsets.fromLTRB(this.left.width, this.top.width, this.right.width, this.bottom.width);
+  };
+  (text_formatter.WhitelistingTextInputFormatter.new = function(whitelistedPattern) {
+    if (whitelistedPattern == null) dart.nullFailed(I[0], 328, 42, "whitelistedPattern");
+    if (!(whitelistedPattern != null)) dart.assertFailed(null, I[0], 329, 14, "whitelistedPattern != null");
+    text_formatter.WhitelistingTextInputFormatter.__proto__.allow.call(this, whitelistedPattern);
+    ;
+  }).prototype = text_formatter.WhitelistingTextInputFormatter.prototype;
+  dart.addTypeTests(text_formatter.WhitelistingTextInputFormatter);
+  dart.addTypeCaches(text_formatter.WhitelistingTextInputFormatter);
+  dart.setGetterSignature(text_formatter.WhitelistingTextInputFormatter, () => ({
+    __proto__: dart.getGetters(text_formatter.WhitelistingTextInputFormatter.__proto__),
+    whitelistedPattern: core.Pattern
+  }));
+  dart.setLibraryUri(text_formatter.WhitelistingTextInputFormatter, I[1]);
+  dart.defineLazy(text_formatter.WhitelistingTextInputFormatter, {
+    /*text_formatter.WhitelistingTextInputFormatter.digitsOnly*/get digitsOnly() {
+      return new text_formatter.WhitelistingTextInputFormatter.new(core.RegExp.new("\\d+"));
     }
-    get isUniform() {
-      if (!(this.top != null)) dart.assertFailed(null, I[0], 85, 12, "top != null");
-      if (!(this.right != null)) dart.assertFailed(null, I[0], 86, 12, "right != null");
-      if (!(this.bottom != null)) dart.assertFailed(null, I[0], 87, 12, "bottom != null");
-      if (!(this.left != null)) dart.assertFailed(null, I[0], 88, 12, "left != null");
-      if (!(this.horizontalInside != null)) dart.assertFailed(null, I[0], 89, 12, "horizontalInside != null");
-      if (!(this.verticalInside != null)) dart.assertFailed(null, I[0], 90, 12, "verticalInside != null");
-      let topColor = this.top.color;
-      if (!dart.equals(this.right.color, topColor) || !dart.equals(this.bottom.color, topColor) || !dart.equals(this.left.color, topColor) || !dart.equals(this.horizontalInside.color, topColor) || !dart.equals(this.verticalInside.color, topColor)) return false;
-      let topWidth = this.top.width;
-      if (this.right.width != topWidth || this.bottom.width != topWidth || this.left.width != topWidth || this.horizontalInside.width != topWidth || this.verticalInside.width != topWidth) return false;
-      let topStyle = this.top.style;
-      if (this.right.style != topStyle || this.bottom.style != topStyle || this.left.style != topStyle || this.horizontalInside.style != topStyle || this.verticalInside.style != topStyle) return false;
-      return true;
+  }, false);
+  var maxLength$ = dart.privateName(text_formatter, "LengthLimitingTextInputFormatter.maxLength");
+  var maxLengthEnforcement$ = dart.privateName(text_formatter, "LengthLimitingTextInputFormatter.maxLengthEnforcement");
+  var _name = dart.privateName(platform$, "_name");
+  text_formatter.LengthLimitingTextInputFormatter = class LengthLimitingTextInputFormatter extends text_formatter.TextInputFormatter {
+    get maxLength() {
+      return this[maxLength$];
     }
-    scale(t) {
-      if (t == null) dart.nullFailed(I[0], 134, 28, "t");
-      return new table_border.TableBorder.new({top: this.top.scale(t), right: this.right.scale(t), bottom: this.bottom.scale(t), left: this.left.scale(t), horizontalInside: this.horizontalInside.scale(t), verticalInside: this.verticalInside.scale(t)});
+    set maxLength(value) {
+      super.maxLength = value;
     }
-    static lerp(a, b, t) {
-      if (t == null) dart.nullFailed(I[0], 151, 67, "t");
-      if (!(t != null)) dart.assertFailed(null, I[0], 152, 12, "t != null");
-      if (a == null && b == null) return null;
-      if (a == null) return dart.nullCheck(b).scale(t);
-      if (b == null) return a.scale(1.0 - dart.notNull(t));
-      return new table_border.TableBorder.new({top: borders.BorderSide.lerp(a.top, b.top, t), right: borders.BorderSide.lerp(a.right, b.right, t), bottom: borders.BorderSide.lerp(a.bottom, b.bottom, t), left: borders.BorderSide.lerp(a.left, b.left, t), horizontalInside: borders.BorderSide.lerp(a.horizontalInside, b.horizontalInside, t), verticalInside: borders.BorderSide.lerp(a.verticalInside, b.verticalInside, t)});
+    get maxLengthEnforcement() {
+      return this[maxLengthEnforcement$];
     }
-    paint(canvas, rect, opts) {
-      let t0, t0$;
-      if (canvas == null) dart.nullFailed(I[0], 196, 12, "canvas");
-      if (rect == null) dart.nullFailed(I[0], 197, 10, "rect");
-      let rows = opts && 'rows' in opts ? opts.rows : null;
-      if (rows == null) dart.nullFailed(I[0], 198, 31, "rows");
-      let columns = opts && 'columns' in opts ? opts.columns : null;
-      if (columns == null) dart.nullFailed(I[0], 199, 31, "columns");
-      if (!(this.top != null)) dart.assertFailed(null, I[0], 202, 12, "top != null");
-      if (!(this.right != null)) dart.assertFailed(null, I[0], 203, 12, "right != null");
-      if (!(this.bottom != null)) dart.assertFailed(null, I[0], 204, 12, "bottom != null");
-      if (!(this.left != null)) dart.assertFailed(null, I[0], 205, 12, "left != null");
-      if (!(this.horizontalInside != null)) dart.assertFailed(null, I[0], 206, 12, "horizontalInside != null");
-      if (!(this.verticalInside != null)) dart.assertFailed(null, I[0], 207, 12, "verticalInside != null");
-      if (!(canvas != null)) dart.assertFailed(null, I[0], 210, 12, "canvas != null");
-      if (!(rect != null)) dart.assertFailed(null, I[0], 211, 12, "rect != null");
-      if (!(rows != null)) dart.assertFailed(null, I[0], 212, 12, "rows != null");
-      if (!(dart.test(rows[$isEmpty]) || dart.notNull(rows[$first]) >= 0.0 && dart.notNull(rows[$last]) <= dart.notNull(rect.height))) dart.assertFailed(null, I[0], 213, 12, "rows.isEmpty || (rows.first >= 0.0 && rows.last <= rect.height)");
-      if (!(columns != null)) dart.assertFailed(null, I[0], 214, 12, "columns != null");
-      if (!(dart.test(columns[$isEmpty]) || dart.notNull(columns[$first]) >= 0.0 && dart.notNull(columns[$last]) <= dart.notNull(rect.width))) dart.assertFailed(null, I[0], 215, 12, "columns.isEmpty || (columns.first >= 0.0 && columns.last <= rect.width)");
-      if (dart.test(columns[$isNotEmpty]) || dart.test(rows[$isNotEmpty])) {
-        let paint = ui.Paint.new();
-        let path = ui.Path.new();
-        if (dart.test(columns[$isNotEmpty])) {
-          switch (this.verticalInside.style) {
-            case C[3] || CT.C3:
-            {
-              t0 = paint;
-              (() => {
-                t0.color = this.verticalInside.color;
-                t0.strokeWidth = this.verticalInside.width;
-                t0.style = ui.PaintingStyle.stroke;
-                return t0;
-              })();
-              path.reset();
-              for (let x of columns) {
-                path.moveTo(dart.notNull(rect.left) + dart.notNull(x), rect.top);
-                path.lineTo(dart.notNull(rect.left) + dart.notNull(x), rect.bottom);
-              }
-              canvas.drawPath(path, paint);
-              break;
-            }
-            case C[1] || CT.C1:
-            {
-              break;
-            }
-            default:
-            {
-              dart.throw(new _internal.ReachabilityError.new("`null` encountered as case in a switch expression with a non-nullable enum type."));
-            }
+    set maxLengthEnforcement(value) {
+      super.maxLengthEnforcement = value;
+    }
+    static getDefaultMaxLengthEnforcement(platform = null) {
+      let t0;
+      if (true) {
+        return text_formatter.MaxLengthEnforcement.truncateAfterCompositionEnds;
+      } else {
+        switch (t0 = platform, t0 == null ? platform$.defaultTargetPlatform : t0) {
+          case C[4] || CT.C4:
+          case C[5] || CT.C5:
+          {
+            return text_formatter.MaxLengthEnforcement.enforced;
           }
-        }
-        if (dart.test(rows[$isNotEmpty])) {
-          switch (this.horizontalInside.style) {
-            case C[3] || CT.C3:
-            {
-              t0$ = paint;
-              (() => {
-                t0$.color = this.horizontalInside.color;
-                t0$.strokeWidth = this.horizontalInside.width;
-                t0$.style = ui.PaintingStyle.stroke;
-                return t0$;
-              })();
-              path.reset();
-              for (let y of rows) {
-                path.moveTo(rect.left, dart.notNull(rect.top) + dart.notNull(y));
-                path.lineTo(rect.right, dart.notNull(rect.top) + dart.notNull(y));
-              }
-              canvas.drawPath(path, paint);
-              break;
-            }
-            case C[1] || CT.C1:
-            {
-              break;
-            }
-            default:
-            {
-              dart.throw(new _internal.ReachabilityError.new("`null` encountered as case in a switch expression with a non-nullable enum type."));
-            }
+          case C[6] || CT.C6:
+          case C[7] || CT.C7:
+          case C[8] || CT.C8:
+          case C[9] || CT.C9:
+          {
+            return text_formatter.MaxLengthEnforcement.truncateAfterCompositionEnds;
+          }
+          default:
+          {
+            dart.throw(new _internal.ReachabilityError.new("`null` encountered as case in a switch expression with a non-nullable enum type."));
           }
         }
       }
-      borders.paintBorder(canvas, rect, {top: this.top, right: this.right, bottom: this.bottom, left: this.left});
     }
-    _equals(other) {
-      if (other == null) return false;
-      if (this === other) return true;
-      if (!dart.equals(dart.runtimeType(other), this[$runtimeType])) return false;
-      return table_border.TableBorder.is(other) && dart.equals(other.top, this.top) && dart.equals(other.right, this.right) && dart.equals(other.bottom, this.bottom) && dart.equals(other.left, this.left) && dart.equals(other.horizontalInside, this.horizontalInside) && dart.equals(other.verticalInside, this.verticalInside);
+    static truncate(value, maxLength) {
+      if (value == null) dart.nullFailed(I[0], 462, 53, "value");
+      if (maxLength == null) dart.nullFailed(I[0], 462, 64, "maxLength");
+      let iterator = new characters_impl.StringCharacterRange.new(value.text);
+      if (dart.notNull(extensions['StringCharacters|get#characters'](value.text)[$length]) > dart.notNull(maxLength)) {
+        iterator.expandNext(maxLength);
+      }
+      let truncated = iterator.current;
+      return new text_input.TextEditingValue.new({text: truncated, selection: value.selection.copyWith({baseOffset: math.min(core.int, value.selection.start, truncated.length), extentOffset: math.min(core.int, value.selection.end, truncated.length)}), composing: !dart.test(value.composing.isCollapsed) && truncated.length > dart.notNull(value.composing.start) ? new ui.TextRange.new({start: value.composing.start, end: math.min(core.int, value.composing.end, truncated.length)}) : ui.TextRange.empty});
     }
-    get hashCode() {
-      return ui.hashValues(this.top, this.right, this.bottom, this.left, this.horizontalInside, this.verticalInside);
-    }
-    toString() {
-      return "TableBorder(" + dart.str(this.top) + ", " + dart.str(this.right) + ", " + dart.str(this.bottom) + ", " + dart.str(this.left) + ", " + dart.str(this.horizontalInside) + ", " + dart.str(this.verticalInside) + ")";
+    formatEditUpdate(oldValue, newValue) {
+      let t0;
+      if (oldValue == null) dart.nullFailed(I[0], 486, 22, "oldValue");
+      if (newValue == null) dart.nullFailed(I[0], 487, 22, "newValue");
+      let maxLength = this.maxLength;
+      if (maxLength == null || maxLength === -1 || dart.notNull(extensions['StringCharacters|get#characters'](newValue.text)[$length]) <= dart.notNull(maxLength)) {
+        return newValue;
+      }
+      if (!(dart.notNull(maxLength) > 0)) dart.assertFailed(null, I[0], 497, 12, "maxLength > 0");
+      switch (t0 = this.maxLengthEnforcement, t0 == null ? text_formatter.LengthLimitingTextInputFormatter.getDefaultMaxLengthEnforcement() : t0) {
+        case C[0] || CT.C0:
+        {
+          return newValue;
+        }
+        case C[1] || CT.C1:
+        {
+          if (extensions['StringCharacters|get#characters'](oldValue.text)[$length] == maxLength && dart.test(oldValue.selection.isCollapsed)) {
+            return oldValue;
+          }
+          return text_formatter.LengthLimitingTextInputFormatter.truncate(newValue, maxLength);
+        }
+        case C[2] || CT.C2:
+        {
+          if (extensions['StringCharacters|get#characters'](oldValue.text)[$length] == maxLength && !dart.test(oldValue.composing.isValid)) {
+            return oldValue;
+          }
+          if (dart.test(newValue.composing.isValid)) {
+            return newValue;
+          }
+          return text_formatter.LengthLimitingTextInputFormatter.truncate(newValue, maxLength);
+        }
+        default:
+        {
+          dart.throw(new _internal.ReachabilityError.new("`null` encountered as case in a switch expression with a non-nullable enum type."));
+        }
+      }
     }
   };
-  (table_border.TableBorder.new = function(opts) {
-    let top = opts && 'top' in opts ? opts.top : C[0] || CT.C0;
-    if (top == null) dart.nullFailed(I[0], 20, 10, "top");
-    let right = opts && 'right' in opts ? opts.right : C[0] || CT.C0;
-    if (right == null) dart.nullFailed(I[0], 21, 10, "right");
-    let bottom = opts && 'bottom' in opts ? opts.bottom : C[0] || CT.C0;
-    if (bottom == null) dart.nullFailed(I[0], 22, 10, "bottom");
-    let left = opts && 'left' in opts ? opts.left : C[0] || CT.C0;
-    if (left == null) dart.nullFailed(I[0], 23, 10, "left");
-    let horizontalInside = opts && 'horizontalInside' in opts ? opts.horizontalInside : C[0] || CT.C0;
-    if (horizontalInside == null) dart.nullFailed(I[0], 24, 10, "horizontalInside");
-    let verticalInside = opts && 'verticalInside' in opts ? opts.verticalInside : C[0] || CT.C0;
-    if (verticalInside == null) dart.nullFailed(I[0], 25, 10, "verticalInside");
-    this[top$] = top;
-    this[right$] = right;
-    this[bottom$] = bottom;
-    this[left$] = left;
-    this[horizontalInside$] = horizontalInside;
-    this[verticalInside$] = verticalInside;
+  (text_formatter.LengthLimitingTextInputFormatter.new = function(maxLength, opts) {
+    let maxLengthEnforcement = opts && 'maxLengthEnforcement' in opts ? opts.maxLengthEnforcement : null;
+    this[maxLength$] = maxLength;
+    this[maxLengthEnforcement$] = maxLengthEnforcement;
+    if (!(maxLength == null || maxLength === -1 || dart.notNull(maxLength) > 0)) dart.assertFailed(null, I[0], 371, 15, "maxLength == null || maxLength == -1 || maxLength > 0");
     ;
-  }).prototype = table_border.TableBorder.prototype;
-  dart.addTypeTests(table_border.TableBorder);
-  dart.addTypeCaches(table_border.TableBorder);
-  dart.setMethodSignature(table_border.TableBorder, () => ({
-    __proto__: dart.getMethods(table_border.TableBorder.__proto__),
-    scale: dart.fnType(table_border.TableBorder, [core.double]),
-    paint: dart.fnType(dart.void, [ui.Canvas, ui.Rect], {}, {columns: core.Iterable$(core.double), rows: core.Iterable$(core.double)})
+  }).prototype = text_formatter.LengthLimitingTextInputFormatter.prototype;
+  dart.addTypeTests(text_formatter.LengthLimitingTextInputFormatter);
+  dart.addTypeCaches(text_formatter.LengthLimitingTextInputFormatter);
+  dart.setMethodSignature(text_formatter.LengthLimitingTextInputFormatter, () => ({
+    __proto__: dart.getMethods(text_formatter.LengthLimitingTextInputFormatter.__proto__),
+    formatEditUpdate: dart.fnType(text_input.TextEditingValue, [text_input.TextEditingValue, text_input.TextEditingValue])
   }));
-  dart.setGetterSignature(table_border.TableBorder, () => ({
-    __proto__: dart.getGetters(table_border.TableBorder.__proto__),
-    dimensions: edge_insets.EdgeInsets,
-    isUniform: core.bool
+  dart.setLibraryUri(text_formatter.LengthLimitingTextInputFormatter, I[1]);
+  dart.setFieldSignature(text_formatter.LengthLimitingTextInputFormatter, () => ({
+    __proto__: dart.getFields(text_formatter.LengthLimitingTextInputFormatter.__proto__),
+    maxLength: dart.finalFieldType(dart.nullable(core.int)),
+    maxLengthEnforcement: dart.finalFieldType(dart.nullable(text_formatter.MaxLengthEnforcement))
   }));
-  dart.setLibraryUri(table_border.TableBorder, I[1]);
-  dart.setFieldSignature(table_border.TableBorder, () => ({
-    __proto__: dart.getFields(table_border.TableBorder.__proto__),
-    top: dart.finalFieldType(borders.BorderSide),
-    right: dart.finalFieldType(borders.BorderSide),
-    bottom: dart.finalFieldType(borders.BorderSide),
-    left: dart.finalFieldType(borders.BorderSide),
-    horizontalInside: dart.finalFieldType(borders.BorderSide),
-    verticalInside: dart.finalFieldType(borders.BorderSide)
-  }));
-  dart.defineExtensionMethods(table_border.TableBorder, ['_equals', 'toString']);
-  dart.defineExtensionAccessors(table_border.TableBorder, ['hashCode']);
-  dart.trackLibraries("packages/flutter/src/rendering/table_border.dart", {
-    "package:flutter/src/rendering/table_border.dart": table_border
+  var TextRange_end = dart.privateName(ui, "TextRange.end");
+  var TextRange_start = dart.privateName(ui, "TextRange.start");
+  var TextSelection_isDirectional = dart.privateName(text_editing, "TextSelection.isDirectional");
+  var _name$0 = dart.privateName(ui, "_name");
+  var TextSelection_affinity = dart.privateName(text_editing, "TextSelection.affinity");
+  var TextSelection_extentOffset = dart.privateName(text_editing, "TextSelection.extentOffset");
+  var TextSelection_baseOffset = dart.privateName(text_editing, "TextSelection.baseOffset");
+  text_formatter._selectionAwareTextManipulation = function _selectionAwareTextManipulation(value, substringManipulation) {
+    let t0;
+    if (value == null) dart.nullFailed(I[0], 532, 20, "value");
+    if (substringManipulation == null) dart.nullFailed(I[0], 533, 37, "substringManipulation");
+    let selectionStartIndex = value.selection.start;
+    let selectionEndIndex = value.selection.end;
+    let manipulatedText = null;
+    let manipulatedSelection = null;
+    if (dart.notNull(selectionStartIndex) < 0 || dart.notNull(selectionEndIndex) < 0) {
+      manipulatedText = substringManipulation(value.text);
+    } else {
+      let beforeSelection = substringManipulation(value.text[$substring](0, selectionStartIndex));
+      let inSelection = substringManipulation(value.text[$substring](selectionStartIndex, selectionEndIndex));
+      let afterSelection = substringManipulation(value.text[$substring](selectionEndIndex));
+      manipulatedText = dart.notNull(beforeSelection) + dart.notNull(inSelection) + dart.notNull(afterSelection);
+      if (dart.notNull(value.selection.baseOffset) > dart.notNull(value.selection.extentOffset)) {
+        manipulatedSelection = value.selection.copyWith({baseOffset: beforeSelection.length + inSelection.length, extentOffset: beforeSelection.length});
+      } else {
+        manipulatedSelection = value.selection.copyWith({baseOffset: beforeSelection.length, extentOffset: beforeSelection.length + inSelection.length});
+      }
+    }
+    return new text_input.TextEditingValue.new({text: manipulatedText, selection: (t0 = manipulatedSelection, t0 == null ? C[10] || CT.C10 : t0), composing: manipulatedText == value.text ? value.composing : ui.TextRange.empty});
+  };
+  dart.trackLibraries("packages/flutter/src/services/text_formatter.dart", {
+    "package:flutter/src/services/text_formatter.dart": text_formatter
   }, {
-  }, '{"version":3,"sourceRoot":"","sources":["table_border.dart"],"names":[],"mappings":"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","file":"../../../../../../../../../../packages/flutter/src/rendering/table_border.dart.lib.js"}');
+  }, '{"version":3,"sourceRoot":"","sources":["text_formatter.dart"],"names":[],"mappings":"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","file":"../../../../../../../../D:/packages/flutter/src/services/text_formatter.dart.lib.js"}');
   // Exports:
   return {
-    src__rendering__table_border: table_border
+    src__services__text_formatter: text_formatter
   };
 }));
 
-//# sourceMappingURL=table_border.dart.lib.js.map
+//# sourceMappingURL=text_formatter.dart.lib.js.map

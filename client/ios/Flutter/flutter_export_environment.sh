@@ -1,7 +1,7 @@
 #!/bin/sh
 # This is a generated file; do not edit or check into version control.
-export "FLUTTER_ROOT=C:\Users\Ejas\Desktop\App_files\flutter"
-export "FLUTTER_APPLICATION_PATH=C:\Users\Ejas\Desktop\App_files\Papperless-Document-Handling-System\client"
+export "FLUTTER_ROOT=C:\src\flutter"
+export "FLUTTER_APPLICATION_PATH=D:\Abdul-Mateen\Edu\curricular\Year 3 sem 2\COE 356 Intro to Software engineering\Project\Papperless-Document-Handling-System\client"
 export "COCOAPODS_PARALLEL_CODE_SIGN=true"
 export "FLUTTER_TARGET=lib\main.dart"
 export "FLUTTER_BUILD_DIR=build"

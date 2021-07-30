@@ -1,586 +1,619 @@
-define(['dart_sdk', 'packages/flutter/src/scheduler/ticker.dart', 'packages/flutter/src/rendering/sliver_persistent_header.dart', 'packages/flutter/src/widgets/widget_span.dart', 'packages/flutter/src/foundation/debug.dart', 'packages/flutter/src/rendering/layer.dart'], (function load__packages__flutter__src__widgets__sliver_persistent_header_dart(dart_sdk, packages__flutter__src__scheduler__ticker$46dart, packages__flutter__src__rendering__sliver_persistent_header$46dart, packages__flutter__src__widgets__widget_span$46dart, packages__flutter__src__foundation__debug$46dart, packages__flutter__src__rendering__layer$46dart) {
+define(['dart_sdk', 'packages/flutter/src/gestures/debug.dart', 'packages/flutter/src/foundation/print.dart', 'packages/flutter/src/foundation/debug.dart', 'packages/flutter/src/gestures/arena.dart', 'packages/flutter/src/gestures/events.dart', 'packages/flutter/src/gestures/binding.dart', 'packages/flutter/src/gestures/team.dart', 'packages/vector_math/vector_math_64.dart', 'packages/flutter/src/foundation/object.dart'], (function load__packages__flutter__src__gestures__recognizer_dart(dart_sdk, packages__flutter__src__gestures__debug$46dart, packages__flutter__src__foundation__print$46dart, packages__flutter__src__foundation__debug$46dart, packages__flutter__src__gestures__arena$46dart, packages__flutter__src__gestures__events$46dart, packages__flutter__src__gestures__binding$46dart, packages__flutter__src__gestures__team$46dart, packages__vector_math__vector_math_64$46dart, packages__flutter__src__foundation__object$46dart) {
   'use strict';
   const core = dart_sdk.core;
-  const _interceptors = dart_sdk._interceptors;
+  const _js_helper = dart_sdk._js_helper;
+  const ui = dart_sdk.ui;
+  const collection = dart_sdk.collection;
+  const async = dart_sdk.async;
   const dart = dart_sdk.dart;
   const dartx = dart_sdk.dartx;
-  const ticker = packages__flutter__src__scheduler__ticker$46dart.src__scheduler__ticker;
-  const sliver_persistent_header = packages__flutter__src__rendering__sliver_persistent_header$46dart.src__rendering__sliver_persistent_header;
-  const widget_inspector = packages__flutter__src__widgets__widget_span$46dart.src__widgets__widget_inspector;
-  const framework = packages__flutter__src__widgets__widget_span$46dart.src__widgets__framework;
+  const debug = packages__flutter__src__gestures__debug$46dart.src__gestures__debug;
+  const print = packages__flutter__src__foundation__print$46dart.src__foundation__print;
   const diagnostics = packages__flutter__src__foundation__debug$46dart.src__foundation__diagnostics;
-  const box = packages__flutter__src__rendering__layer$46dart.src__rendering__box;
-  const object = packages__flutter__src__rendering__layer$46dart.src__rendering__object;
-  var sliver_persistent_header$ = Object.create(dart.library);
-  var $add = dartx.add;
+  const assertions = packages__flutter__src__foundation__debug$46dart.src__foundation__assertions;
+  const arena = packages__flutter__src__gestures__arena$46dart.src__gestures__arena;
+  const events = packages__flutter__src__gestures__events$46dart.src__gestures__events;
+  const binding = packages__flutter__src__gestures__binding$46dart.src__gestures__binding;
+  const team = packages__flutter__src__gestures__team$46dart.src__gestures__team;
+  const vector_math_64 = packages__vector_math__vector_math_64$46dart.vector_math_64;
+  const object = packages__flutter__src__foundation__object$46dart.src__foundation__object;
+  var recognizer = Object.create(dart.library);
+  var $_set = dartx._set;
+  var $containsKey = dartx.containsKey;
+  var $_get = dartx._get;
+  var $times = dartx['*'];
+  var $isNotEmpty = dartx.isNotEmpty;
+  var $values = dartx.values;
+  var $clear = dartx.clear;
+  var $remove = dartx.remove;
   var $isEmpty = dartx.isEmpty;
-  var $runtimeType = dartx.runtimeType;
+  var $containsValue = dartx.containsValue;
   dart._checkModuleNullSafetyMode(false);
-  var T = {
-    _LocationL: () => (T._LocationL = dart.constFn(dart.legacy(widget_inspector._Location)))(),
-    DiagnosticsPropertyOfSliverPersistentHeaderDelegate: () => (T.DiagnosticsPropertyOfSliverPersistentHeaderDelegate = dart.constFn(diagnostics.DiagnosticsProperty$(sliver_persistent_header$.SliverPersistentHeaderDelegate)))(),
-    JSArrayOfString: () => (T.JSArrayOfString = dart.constFn(_interceptors.JSArray$(core.String)))(),
-    IterablePropertyOfString: () => (T.IterablePropertyOfString = dart.constFn(diagnostics.IterableProperty$(core.String)))(),
-    VoidTovoid: () => (T.VoidTovoid = dart.constFn(dart.fnType(dart.void, [])))()
+  var T$ = {
+    DragStartBehaviorL: () => (T$.DragStartBehaviorL = dart.constFn(dart.legacy(recognizer.DragStartBehavior)))(),
+    IdentityMapOfint$PointerDeviceKind: () => (T$.IdentityMapOfint$PointerDeviceKind = dart.constFn(_js_helper.IdentityMap$(core.int, ui.PointerDeviceKind)))(),
+    VoidTobool: () => (T$.VoidTobool = dart.constFn(dart.fnType(core.bool, [])))(),
+    DiagnosticsPropertyOfGestureRecognizer: () => (T$.DiagnosticsPropertyOfGestureRecognizer = dart.constFn(diagnostics.DiagnosticsProperty$(recognizer.GestureRecognizer)))(),
+    SyncIterableOfDiagnosticsNode: () => (T$.SyncIterableOfDiagnosticsNode = dart.constFn(_js_helper.SyncIterable$(diagnostics.DiagnosticsNode)))(),
+    IterableOfDiagnosticsNode: () => (T$.IterableOfDiagnosticsNode = dart.constFn(core.Iterable$(diagnostics.DiagnosticsNode)))(),
+    VoidToIterableOfDiagnosticsNode: () => (T$.VoidToIterableOfDiagnosticsNode = dart.constFn(dart.fnType(T$.IterableOfDiagnosticsNode(), [])))(),
+    DiagnosticsPropertyOfObject: () => (T$.DiagnosticsPropertyOfObject = dart.constFn(diagnostics.DiagnosticsProperty$(core.Object)))(),
+    IdentityMapOfint$GestureArenaEntry: () => (T$.IdentityMapOfint$GestureArenaEntry = dart.constFn(_js_helper.IdentityMap$(core.int, arena.GestureArenaEntry)))(),
+    _IdentityHashSetOfint: () => (T$._IdentityHashSetOfint = dart.constFn(collection._IdentityHashSet$(core.int)))(),
+    ListOfGestureArenaEntry: () => (T$.ListOfGestureArenaEntry = dart.constFn(core.List$(arena.GestureArenaEntry)))(),
+    GestureRecognizerStateL: () => (T$.GestureRecognizerStateL = dart.constFn(dart.legacy(recognizer.GestureRecognizerState)))(),
+    VoidTovoid: () => (T$.VoidTovoid = dart.constFn(dart.fnType(dart.void, [])))(),
+    EnumPropertyOfGestureRecognizerState: () => (T$.EnumPropertyOfGestureRecognizerState = dart.constFn(diagnostics.EnumProperty$(recognizer.GestureRecognizerState)))()
   };
   const CT = Object.create({
     _: () => (C, CT)
   });
   dart.defineLazy(CT, {
-    get C2() {
-      return C[2] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "delegate",
-        [_Location_column]: 52,
-        [_Location_line]: 161,
-        [_Location_file]: null
+    get C0() {
+      return C[0] = dart.const({
+        __proto__: recognizer.DragStartBehavior.prototype,
+        [_name$]: "DragStartBehavior.down",
+        index: 0
       });
     },
     get C1() {
-      return C[1] = dart.constList([C[2] || CT.C2], T._LocationL());
+      return C[1] = dart.const({
+        __proto__: recognizer.DragStartBehavior.prototype,
+        [_name$]: "DragStartBehavior.start",
+        index: 1
+      });
     },
-    get C0() {
-      return C[0] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[1] || CT.C1,
-        [_Location_name]: null,
-        [_Location_column]: 14,
-        [_Location_line]: 161,
-        [_Location_file]: "file:///C:/Users/Ejas/Desktop/App_files/flutter/packages/flutter/lib/src/widgets/sliver_persistent_header.dart"
+    get C2() {
+      return C[2] = dart.constList([C[0] || CT.C0, C[1] || CT.C1], T$.DragStartBehaviorL());
+    },
+    get C3() {
+      return C[3] = dart.const({
+        __proto__: recognizer.GestureRecognizerState.prototype,
+        [_name$]: "GestureRecognizerState.ready",
+        index: 0
+      });
+    },
+    get C4() {
+      return C[4] = dart.const({
+        __proto__: recognizer.GestureRecognizerState.prototype,
+        [_name$]: "GestureRecognizerState.possible",
+        index: 1
       });
     },
     get C5() {
       return C[5] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "delegate",
-        [_Location_column]: 44,
-        [_Location_line]: 163,
-        [_Location_file]: null
+        __proto__: recognizer.GestureRecognizerState.prototype,
+        [_name$]: "GestureRecognizerState.defunct",
+        index: 2
       });
     },
-    get C4() {
-      return C[4] = dart.constList([C[5] || CT.C5], T._LocationL());
-    },
-    get C3() {
-      return C[3] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[4] || CT.C4,
-        [_Location_name]: null,
-        [_Location_column]: 14,
-        [_Location_line]: 163,
-        [_Location_file]: "file:///C:/Users/Ejas/Desktop/App_files/flutter/packages/flutter/lib/src/widgets/sliver_persistent_header.dart"
-      });
+    get C6() {
+      return C[6] = dart.constList([C[3] || CT.C3, C[4] || CT.C4, C[5] || CT.C5], T$.GestureRecognizerStateL());
     },
     get C8() {
       return C[8] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "delegate",
-        [_Location_column]: 46,
-        [_Location_line]: 165,
-        [_Location_file]: null
+        __proto__: ui.Offset.prototype,
+        [OffsetBase__dy]: 0,
+        [OffsetBase__dx]: 0
       });
     },
     get C7() {
-      return C[7] = dart.constList([C[8] || CT.C8], T._LocationL());
-    },
-    get C6() {
-      return C[6] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[7] || CT.C7,
-        [_Location_name]: null,
-        [_Location_column]: 14,
-        [_Location_line]: 165,
-        [_Location_file]: "file:///C:/Users/Ejas/Desktop/App_files/flutter/packages/flutter/lib/src/widgets/sliver_persistent_header.dart"
-      });
-    },
-    get C11() {
-      return C[11] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "delegate",
-        [_Location_column]: 45,
-        [_Location_line]: 166,
-        [_Location_file]: null
-      });
-    },
-    get C10() {
-      return C[10] = dart.constList([C[11] || CT.C11], T._LocationL());
-    },
-    get C9() {
-      return C[9] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[10] || CT.C10,
-        [_Location_name]: null,
-        [_Location_column]: 12,
-        [_Location_line]: 166,
-        [_Location_file]: "file:///C:/Users/Ejas/Desktop/App_files/flutter/packages/flutter/lib/src/widgets/sliver_persistent_header.dart"
+      return C[7] = dart.const({
+        __proto__: recognizer.OffsetPair.prototype,
+        [global$]: C[8] || CT.C8,
+        [local$]: C[8] || CT.C8
       });
     }
   }, false);
-  var C = Array(12).fill(void 0);
+  var C = Array(9).fill(void 0);
   var I = [
-    "package:flutter/src/widgets/sliver_persistent_header.dart",
-    "file:///C:/Users/Ejas/Desktop/App_files/flutter/packages/flutter/lib/src/widgets/sliver_persistent_header.dart"
+    "file:///C:/src/flutter/packages/flutter/lib/src/gestures/recognizer.dart",
+    "package:flutter/src/gestures/recognizer.dart"
   ];
-  sliver_persistent_header$.SliverPersistentHeaderDelegate = class SliverPersistentHeaderDelegate extends core.Object {
-    get vsync() {
-      return null;
-    }
-    get snapConfiguration() {
-      return null;
-    }
-    get stretchConfiguration() {
-      return null;
-    }
-    get showOnScreenConfiguration() {
-      return null;
+  var _name$ = dart.privateName(recognizer, "_name");
+  recognizer.DragStartBehavior = class DragStartBehavior extends core.Object {
+    toString() {
+      return this[_name$];
     }
   };
-  (sliver_persistent_header$.SliverPersistentHeaderDelegate.new = function() {
+  (recognizer.DragStartBehavior.new = function(index, _name) {
+    if (index == null) dart.nullFailed(I[0], 36, 6, "index");
+    if (_name == null) dart.nullFailed(I[0], 36, 6, "_name");
+    this.index = index;
+    this[_name$] = _name;
     ;
-  }).prototype = sliver_persistent_header$.SliverPersistentHeaderDelegate.prototype;
-  dart.addTypeTests(sliver_persistent_header$.SliverPersistentHeaderDelegate);
-  dart.addTypeCaches(sliver_persistent_header$.SliverPersistentHeaderDelegate);
-  dart.setGetterSignature(sliver_persistent_header$.SliverPersistentHeaderDelegate, () => ({
-    __proto__: dart.getGetters(sliver_persistent_header$.SliverPersistentHeaderDelegate.__proto__),
-    vsync: dart.nullable(ticker.TickerProvider),
-    snapConfiguration: dart.nullable(sliver_persistent_header.FloatingHeaderSnapConfiguration),
-    stretchConfiguration: dart.nullable(sliver_persistent_header.OverScrollHeaderStretchConfiguration),
-    showOnScreenConfiguration: dart.nullable(sliver_persistent_header.PersistentHeaderShowOnScreenConfiguration)
+  }).prototype = recognizer.DragStartBehavior.prototype;
+  dart.addTypeTests(recognizer.DragStartBehavior);
+  dart.addTypeCaches(recognizer.DragStartBehavior);
+  dart.setLibraryUri(recognizer.DragStartBehavior, I[1]);
+  dart.setFieldSignature(recognizer.DragStartBehavior, () => ({
+    __proto__: dart.getFields(recognizer.DragStartBehavior.__proto__),
+    index: dart.finalFieldType(core.int),
+    [_name$]: dart.finalFieldType(core.String)
   }));
-  dart.setLibraryUri(sliver_persistent_header$.SliverPersistentHeaderDelegate, I[0]);
-  var delegate$ = dart.privateName(sliver_persistent_header$, "SliverPersistentHeader.delegate");
-  var pinned$ = dart.privateName(sliver_persistent_header$, "SliverPersistentHeader.pinned");
-  var floating$ = dart.privateName(sliver_persistent_header$, "SliverPersistentHeader.floating");
-  var _Location_parameterLocations = dart.privateName(widget_inspector, "_Location.parameterLocations");
-  var _Location_name = dart.privateName(widget_inspector, "_Location.name");
-  var _Location_column = dart.privateName(widget_inspector, "_Location.column");
-  var _Location_line = dart.privateName(widget_inspector, "_Location.line");
-  var _Location_file = dart.privateName(widget_inspector, "_Location.file");
-  sliver_persistent_header$.SliverPersistentHeader = class SliverPersistentHeader extends framework.StatelessWidget {
-    get delegate() {
-      return this[delegate$];
+  dart.defineExtensionMethods(recognizer.DragStartBehavior, ['toString']);
+  recognizer.DragStartBehavior.down = C[0] || CT.C0;
+  recognizer.DragStartBehavior.start = C[1] || CT.C1;
+  recognizer.DragStartBehavior.values = C[2] || CT.C2;
+  var debugOwner$ = dart.privateName(recognizer, "GestureRecognizer.debugOwner");
+  var _pointerToKind = dart.privateName(recognizer, "_pointerToKind");
+  var _kindFilter = dart.privateName(recognizer, "_kindFilter");
+  const GestureArenaMember_DiagnosticableTreeMixin$36 = class GestureArenaMember_DiagnosticableTreeMixin extends arena.GestureArenaMember {};
+  (GestureArenaMember_DiagnosticableTreeMixin$36.new = function() {
+  }).prototype = GestureArenaMember_DiagnosticableTreeMixin$36.prototype;
+  dart.applyMixin(GestureArenaMember_DiagnosticableTreeMixin$36, diagnostics.DiagnosticableTreeMixin);
+  recognizer.GestureRecognizer = class GestureRecognizer extends GestureArenaMember_DiagnosticableTreeMixin$36 {
+    get debugOwner() {
+      return this[debugOwner$];
     }
-    set delegate(value) {
-      super.delegate = value;
+    set debugOwner(value) {
+      super.debugOwner = value;
     }
-    get pinned() {
-      return this[pinned$];
+    addPointer(event) {
+      if (event == null) dart.nullFailed(I[0], 99, 36, "event");
+      this[_pointerToKind][$_set](event.pointer, event.kind);
+      if (dart.test(this.isPointerAllowed(event))) {
+        this.addAllowedPointer(event);
+      } else {
+        this.handleNonAllowedPointer(event);
+      }
     }
-    set pinned(value) {
-      super.pinned = value;
+    addAllowedPointer(event) {
+      if (event == null) dart.nullFailed(I[0], 116, 43, "event");
     }
-    get floating() {
-      return this[floating$];
+    handleNonAllowedPointer(event) {
+      if (event == null) dart.nullFailed(I[0], 125, 49, "event");
     }
-    set floating(value) {
-      super.floating = value;
+    isPointerAllowed(event) {
+      if (event == null) dart.nullFailed(I[0], 129, 42, "event");
+      return this[_kindFilter] == null || this[_kindFilter] == event.kind;
     }
-    build(context) {
-      if (context == null) dart.nullFailed(I[1], 159, 29, "context");
-      if (dart.test(this.floating) && dart.test(this.pinned)) return new sliver_persistent_header$._SliverFloatingPinnedPersistentHeader.new({delegate: this.delegate, $creationLocationd_0dea112b090073317d4: C[0] || CT.C0});
-      if (dart.test(this.pinned)) return new sliver_persistent_header$._SliverPinnedPersistentHeader.new({delegate: this.delegate, $creationLocationd_0dea112b090073317d4: C[3] || CT.C3});
-      if (dart.test(this.floating)) return new sliver_persistent_header$._SliverFloatingPersistentHeader.new({delegate: this.delegate, $creationLocationd_0dea112b090073317d4: C[6] || CT.C6});
-      return new sliver_persistent_header$._SliverScrollingPersistentHeader.new({delegate: this.delegate, $creationLocationd_0dea112b090073317d4: C[9] || CT.C9});
+    getKindForPointer(pointer) {
+      if (pointer == null) dart.nullFailed(I[0], 140, 43, "pointer");
+      if (!dart.test(this[_pointerToKind][$containsKey](pointer))) dart.assertFailed(null, I[0], 141, 12, "_pointerToKind.containsKey(pointer)");
+      return dart.nullCheck(this[_pointerToKind][$_get](pointer));
+    }
+    dispose() {
+    }
+    invokeCallback(T, name, callback, opts) {
+      if (name == null) dart.nullFailed(I[0], 168, 31, "name");
+      if (callback == null) dart.nullFailed(I[0], 168, 59, "callback");
+      let debugReport = opts && 'debugReport' in opts ? opts.debugReport : null;
+      if (!(callback != null)) dart.assertFailed(null, I[0], 169, 12, "callback != null");
+      let result = null;
+      try {
+        if (!dart.test(dart.fn(() => {
+          let t0;
+          if (dart.test(debug.debugPrintRecognizerCallbacksTrace)) {
+            let report = debugReport != null ? debugReport() : null;
+            let prefix = dart.test(debug.debugPrintGestureArenaDiagnostics) ? " "[$times](19) + "❙ " : "";
+            print.debugPrint(prefix + dart.str(this) + " calling " + dart.str(name) + " callback." + ((t0 = report, t0 == null ? null : t0[$isNotEmpty]) === true ? " " + dart.str(report) : ""));
+          }
+          return true;
+        }, T$.VoidTobool())())) dart.assertFailed(null, I[0], 172, 14, "() {\r\n        if (debugPrintRecognizerCallbacksTrace) {\r\n          final String? report = debugReport != null ? debugReport() : null;\r\n          // The 19 in the line below is the width of the prefix used by\r\n          // _debugLogDiagnostic in arena.dart.\r\n          final String prefix = debugPrintGestureArenaDiagnostics ? ' ' * 19 + '❙ ' : '';\r\n          debugPrint('$prefix$this calling $name callback.${ report?.isNotEmpty == true ? \" $report\" : \"\" }');\r\n        }\r\n        return true;\r\n      }()");
+        result = callback();
+      } catch (e) {
+        let exception = dart.getThrown(e);
+        let stack = dart.stackTrace(e);
+        if (core.Object.is(exception)) {
+          let collector = null;
+          if (!dart.test(dart.fn(() => {
+            collector = dart.fn(() => new (T$.SyncIterableOfDiagnosticsNode()).new((function*() {
+              yield new diagnostics.StringProperty.new("Handler", name);
+              yield new (T$.DiagnosticsPropertyOfGestureRecognizer()).new("Recognizer", this, {style: diagnostics.DiagnosticsTreeStyle.errorProperty});
+            }).bind(this)), T$.VoidToIterableOfDiagnosticsNode());
+            return true;
+          }, T$.VoidTobool())())) dart.assertFailed(null, I[0], 185, 14, "() {\r\n        collector = () sync* {\r\n          yield StringProperty('Handler', name);\r\n          yield DiagnosticsProperty<GestureRecognizer>('Recognizer', this, style: DiagnosticsTreeStyle.errorProperty);\r\n        };\r\n        return true;\r\n      }()");
+          assertions.FlutterError.reportError(new assertions.FlutterErrorDetails.new({exception: exception, stack: stack, library: "gesture", context: new assertions.ErrorDescription.new("while handling a gesture"), informationCollector: collector}));
+        } else
+          throw e;
+      }
+      return result;
     }
     debugFillProperties(properties) {
-      if (properties == null) dart.nullFailed(I[1], 170, 56, "properties");
+      if (properties == null) dart.nullFailed(I[0], 204, 56, "properties");
       super.debugFillProperties(properties);
-      properties.add(new (T.DiagnosticsPropertyOfSliverPersistentHeaderDelegate()).new("delegate", this.delegate));
-      let flags = (() => {
-        let t0 = T.JSArrayOfString().of([]);
-        if (dart.test(this.pinned)) t0[$add]("pinned");
-        if (dart.test(this.floating)) t0[$add]("floating");
-        return t0;
-      })();
-      if (dart.test(flags[$isEmpty])) flags[$add]("normal");
-      properties.add(new (T.IterablePropertyOfString()).new("mode", flags));
+      properties.add(new (T$.DiagnosticsPropertyOfObject()).new("debugOwner", this.debugOwner, {defaultValue: null}));
     }
   };
-  (sliver_persistent_header$.SliverPersistentHeader.new = function(opts) {
-    let key = opts && 'key' in opts ? opts.key : null;
-    let delegate = opts && 'delegate' in opts ? opts.delegate : null;
-    if (delegate == null) dart.nullFailed(I[1], 122, 19, "delegate");
-    let pinned = opts && 'pinned' in opts ? opts.pinned : false;
-    if (pinned == null) dart.nullFailed(I[1], 123, 10, "pinned");
-    let floating = opts && 'floating' in opts ? opts.floating : false;
-    if (floating == null) dart.nullFailed(I[1], 124, 10, "floating");
-    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
-    this[delegate$] = delegate;
-    this[pinned$] = pinned;
-    this[floating$] = floating;
-    if (!(delegate != null)) dart.assertFailed(null, I[1], 125, 15, "delegate != null");
-    if (!(pinned != null)) dart.assertFailed(null, I[1], 126, 15, "pinned != null");
-    if (!(floating != null)) dart.assertFailed(null, I[1], 127, 15, "floating != null");
-    sliver_persistent_header$.SliverPersistentHeader.__proto__.new.call(this, {key: key, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
+  (recognizer.GestureRecognizer.new = function(opts) {
+    let debugOwner = opts && 'debugOwner' in opts ? opts.debugOwner : null;
+    let kind = opts && 'kind' in opts ? opts.kind : null;
+    this[_pointerToKind] = new (T$.IdentityMapOfint$PointerDeviceKind()).new();
+    this[debugOwner$] = debugOwner;
+    this[_kindFilter] = kind;
     ;
-  }).prototype = sliver_persistent_header$.SliverPersistentHeader.prototype;
-  dart.addTypeTests(sliver_persistent_header$.SliverPersistentHeader);
-  dart.addTypeCaches(sliver_persistent_header$.SliverPersistentHeader);
-  dart.setMethodSignature(sliver_persistent_header$.SliverPersistentHeader, () => ({
-    __proto__: dart.getMethods(sliver_persistent_header$.SliverPersistentHeader.__proto__),
-    build: dart.fnType(framework.Widget, [framework.BuildContext])
+  }).prototype = recognizer.GestureRecognizer.prototype;
+  dart.addTypeTests(recognizer.GestureRecognizer);
+  dart.addTypeCaches(recognizer.GestureRecognizer);
+  dart.setMethodSignature(recognizer.GestureRecognizer, () => ({
+    __proto__: dart.getMethods(recognizer.GestureRecognizer.__proto__),
+    addPointer: dart.fnType(dart.void, [events.PointerDownEvent]),
+    addAllowedPointer: dart.fnType(dart.void, [events.PointerDownEvent]),
+    handleNonAllowedPointer: dart.fnType(dart.void, [events.PointerDownEvent]),
+    isPointerAllowed: dart.fnType(core.bool, [events.PointerDownEvent]),
+    getKindForPointer: dart.fnType(ui.PointerDeviceKind, [core.int]),
+    dispose: dart.fnType(dart.void, []),
+    invokeCallback: dart.gFnType(T => [dart.nullable(T), [core.String, dart.fnType(T, [])], {debugReport: dart.nullable(dart.fnType(core.String, []))}, {}], T => [dart.nullable(core.Object)])
   }));
-  dart.setLibraryUri(sliver_persistent_header$.SliverPersistentHeader, I[0]);
-  dart.setFieldSignature(sliver_persistent_header$.SliverPersistentHeader, () => ({
-    __proto__: dart.getFields(sliver_persistent_header$.SliverPersistentHeader.__proto__),
-    delegate: dart.finalFieldType(sliver_persistent_header$.SliverPersistentHeaderDelegate),
-    pinned: dart.finalFieldType(core.bool),
-    floating: dart.finalFieldType(core.bool)
+  dart.setLibraryUri(recognizer.GestureRecognizer, I[1]);
+  dart.setFieldSignature(recognizer.GestureRecognizer, () => ({
+    __proto__: dart.getFields(recognizer.GestureRecognizer.__proto__),
+    debugOwner: dart.finalFieldType(dart.nullable(core.Object)),
+    [_kindFilter]: dart.finalFieldType(dart.nullable(ui.PointerDeviceKind)),
+    [_pointerToKind]: dart.finalFieldType(core.Map$(core.int, ui.PointerDeviceKind))
   }));
-  var _element = dart.privateName(sliver_persistent_header$, "_element");
-  var _build = dart.privateName(sliver_persistent_header$, "_build");
-  sliver_persistent_header$._SliverPersistentHeaderElement = class _SliverPersistentHeaderElement extends framework.RenderObjectElement {
-    get widget() {
-      return sliver_persistent_header$._SliverPersistentHeaderRenderObjectWidget.as(super.widget);
+  var _entries = dart.privateName(recognizer, "_entries");
+  var _trackedPointers = dart.privateName(recognizer, "_trackedPointers");
+  var _team = dart.privateName(recognizer, "_team");
+  var _addPointerToArena = dart.privateName(recognizer, "_addPointerToArena");
+  recognizer.OneSequenceGestureRecognizer = class OneSequenceGestureRecognizer extends recognizer.GestureRecognizer {
+    handleNonAllowedPointer(event) {
+      if (event == null) dart.nullFailed(I[0], 231, 49, "event");
+      this.resolve(arena.GestureDisposition.rejected);
     }
-    get renderObject() {
-      return sliver_persistent_header$._RenderSliverPersistentHeaderForWidgetsMixin.as(super.renderObject);
+    acceptGesture(pointer) {
+      if (pointer == null) dart.nullFailed(I[0], 240, 26, "pointer");
     }
-    mount(parent, newSlot) {
-      super.mount(parent, newSlot);
-      this.renderObject[_element] = this;
+    rejectGesture(pointer) {
+      if (pointer == null) dart.nullFailed(I[0], 243, 26, "pointer");
     }
-    unmount() {
-      super.unmount();
-      this.renderObject[_element] = null;
+    resolve(disposition) {
+      if (disposition == null) dart.nullFailed(I[0], 256, 35, "disposition");
+      let localEntries = T$.ListOfGestureArenaEntry().from(this[_entries][$values]);
+      this[_entries][$clear]();
+      for (let entry of localEntries)
+        entry.resolve(disposition);
     }
-    update(newWidget) {
-      sliver_persistent_header$._SliverPersistentHeaderRenderObjectWidget.as(newWidget);
-      if (newWidget == null) dart.nullFailed(I[1], 210, 57, "newWidget");
-      let oldWidget = this.widget;
-      super.update(newWidget);
-      let newDelegate = newWidget.delegate;
-      let oldDelegate = oldWidget.delegate;
-      if (!dart.equals(newDelegate, oldDelegate) && (!dart.equals(dart.runtimeType(newDelegate), dart.runtimeType(oldDelegate)) || dart.test(newDelegate.shouldRebuild(oldDelegate)))) this.renderObject.triggerRebuild();
+    resolvePointer(pointer, disposition) {
+      if (pointer == null) dart.nullFailed(I[0], 267, 27, "pointer");
+      if (disposition == null) dart.nullFailed(I[0], 267, 55, "disposition");
+      let entry = this[_entries][$_get](pointer);
+      if (entry != null) {
+        this[_entries][$remove](pointer);
+        entry.resolve(disposition);
+      }
     }
-    performRebuild() {
-      super.performRebuild();
-      this.renderObject.triggerRebuild();
+    dispose() {
+      this.resolve(arena.GestureDisposition.rejected);
+      for (let pointer of this[_trackedPointers])
+        dart.nullCheck(binding.GestureBinding.instance).pointerRouter.removeRoute(pointer, dart.bind(this, 'handleEvent'));
+      this[_trackedPointers].clear();
+      if (!dart.test(this[_entries][$isEmpty])) dart.assertFailed(null, I[0], 281, 12, "_entries.isEmpty");
+      super.dispose();
     }
-    [_build](shrinkOffset, overlapsContent) {
-      if (shrinkOffset == null) dart.nullFailed(I[1], 228, 22, "shrinkOffset");
-      if (overlapsContent == null) dart.nullFailed(I[1], 228, 41, "overlapsContent");
-      dart.nullCheck(this.owner).buildScope(this, dart.fn(() => {
-        this.child = this.updateChild(this.child, this.widget.delegate.build(this, shrinkOffset, overlapsContent), null);
-      }, T.VoidTovoid()));
+    get team() {
+      return this[_team];
     }
-    forgetChild(child) {
-      if (child == null) dart.nullFailed(I[1], 243, 28, "child");
-      if (!dart.equals(child, this.child)) dart.assertFailed(null, I[1], 244, 12, "child == this.child");
-      this.child = null;
-      super.forgetChild(child);
+    set team(value) {
+      if (!(value != null)) dart.assertFailed(null, I[0], 299, 12, "value != null");
+      if (!dart.test(this[_entries][$isEmpty])) dart.assertFailed(null, I[0], 300, 12, "_entries.isEmpty");
+      if (!dart.test(this[_trackedPointers][$isEmpty])) dart.assertFailed(null, I[0], 301, 12, "_trackedPointers.isEmpty");
+      if (!(this[_team] == null)) dart.assertFailed(null, I[0], 302, 12, "_team == null");
+      this[_team] = value;
     }
-    insertRenderObjectChild(child, slot) {
-      box.RenderBox.as(child);
-      if (child == null) dart.nullFailed(I[1], 250, 52, "child");
-      if (!dart.test(this.renderObject.debugValidateChild(child))) dart.assertFailed(null, I[1], 251, 12, "renderObject.debugValidateChild(child)");
-      this.renderObject.child = child;
+    [_addPointerToArena](pointer) {
+      if (pointer == null) dart.nullFailed(I[0], 306, 44, "pointer");
+      if (this[_team] != null) return dart.nullCheck(this[_team]).add(pointer, this);
+      return dart.nullCheck(binding.GestureBinding.instance).gestureArena.add(pointer, this);
     }
-    moveRenderObjectChild(child, oldSlot, newSlot) {
-      object.RenderObject.as(child);
-      if (child == null) dart.nullFailed(I[1], 256, 53, "child");
-      if (!false) dart.assertFailed(null, I[1], 257, 12, "false");
+    startTrackingPointer(pointer, transform = null) {
+      if (pointer == null) dart.nullFailed(I[0], 322, 33, "pointer");
+      dart.nullCheck(binding.GestureBinding.instance).pointerRouter.addRoute(pointer, dart.bind(this, 'handleEvent'), transform);
+      this[_trackedPointers].add(pointer);
+      if (!!dart.test(this[_entries][$containsValue](pointer))) dart.assertFailed(null, I[0], 325, 12, "!_entries.containsValue(pointer)");
+      this[_entries][$_set](pointer, this[_addPointerToArena](pointer));
     }
-    removeRenderObjectChild(child, slot) {
-      object.RenderObject.as(child);
-      if (child == null) dart.nullFailed(I[1], 261, 55, "child");
-      this.renderObject.child = null;
+    stopTrackingPointer(pointer) {
+      if (pointer == null) dart.nullFailed(I[0], 336, 32, "pointer");
+      if (dart.test(this[_trackedPointers].contains(pointer))) {
+        dart.nullCheck(binding.GestureBinding.instance).pointerRouter.removeRoute(pointer, dart.bind(this, 'handleEvent'));
+        this[_trackedPointers].remove(pointer);
+        if (dart.test(this[_trackedPointers][$isEmpty])) this.didStopTrackingLastPointer(pointer);
+      }
     }
-    visitChildren(visitor) {
-      if (visitor == null) dart.nullFailed(I[1], 266, 37, "visitor");
-      if (this.child != null) visitor(dart.nullCheck(this.child));
+    stopTrackingIfPointerNoLongerDown(event) {
+      if (event == null) dart.nullFailed(I[0], 348, 55, "event");
+      if (events.PointerUpEvent.is(event) || events.PointerCancelEvent.is(event)) this.stopTrackingPointer(event.pointer);
     }
   };
-  (sliver_persistent_header$._SliverPersistentHeaderElement.new = function(widget) {
-    if (widget == null) dart.nullFailed(I[1], 189, 76, "widget");
-    this.child = null;
-    sliver_persistent_header$._SliverPersistentHeaderElement.__proto__.new.call(this, widget);
+  (recognizer.OneSequenceGestureRecognizer.new = function(opts) {
+    let debugOwner = opts && 'debugOwner' in opts ? opts.debugOwner : null;
+    let kind = opts && 'kind' in opts ? opts.kind : null;
+    this[_entries] = new (T$.IdentityMapOfint$GestureArenaEntry()).new();
+    this[_trackedPointers] = new (T$._IdentityHashSetOfint()).new();
+    this[_team] = null;
+    recognizer.OneSequenceGestureRecognizer.__proto__.new.call(this, {debugOwner: debugOwner, kind: kind});
     ;
-  }).prototype = sliver_persistent_header$._SliverPersistentHeaderElement.prototype;
-  dart.addTypeTests(sliver_persistent_header$._SliverPersistentHeaderElement);
-  dart.addTypeCaches(sliver_persistent_header$._SliverPersistentHeaderElement);
-  dart.setMethodSignature(sliver_persistent_header$._SliverPersistentHeaderElement, () => ({
-    __proto__: dart.getMethods(sliver_persistent_header$._SliverPersistentHeaderElement.__proto__),
-    [_build]: dart.fnType(dart.void, [core.double, core.bool])
+  }).prototype = recognizer.OneSequenceGestureRecognizer.prototype;
+  dart.addTypeTests(recognizer.OneSequenceGestureRecognizer);
+  dart.addTypeCaches(recognizer.OneSequenceGestureRecognizer);
+  dart.setMethodSignature(recognizer.OneSequenceGestureRecognizer, () => ({
+    __proto__: dart.getMethods(recognizer.OneSequenceGestureRecognizer.__proto__),
+    acceptGesture: dart.fnType(dart.void, [core.int]),
+    rejectGesture: dart.fnType(dart.void, [core.int]),
+    resolve: dart.fnType(dart.void, [arena.GestureDisposition]),
+    resolvePointer: dart.fnType(dart.void, [core.int, arena.GestureDisposition]),
+    [_addPointerToArena]: dart.fnType(arena.GestureArenaEntry, [core.int]),
+    startTrackingPointer: dart.fnType(dart.void, [core.int], [dart.nullable(vector_math_64.Matrix4)]),
+    stopTrackingPointer: dart.fnType(dart.void, [core.int]),
+    stopTrackingIfPointerNoLongerDown: dart.fnType(dart.void, [events.PointerEvent])
   }));
-  dart.setGetterSignature(sliver_persistent_header$._SliverPersistentHeaderElement, () => ({
-    __proto__: dart.getGetters(sliver_persistent_header$._SliverPersistentHeaderElement.__proto__),
-    widget: sliver_persistent_header$._SliverPersistentHeaderRenderObjectWidget,
-    renderObject: sliver_persistent_header$._RenderSliverPersistentHeaderForWidgetsMixin
+  dart.setGetterSignature(recognizer.OneSequenceGestureRecognizer, () => ({
+    __proto__: dart.getGetters(recognizer.OneSequenceGestureRecognizer.__proto__),
+    team: dart.nullable(team.GestureArenaTeam)
   }));
-  dart.setLibraryUri(sliver_persistent_header$._SliverPersistentHeaderElement, I[0]);
-  dart.setFieldSignature(sliver_persistent_header$._SliverPersistentHeaderElement, () => ({
-    __proto__: dart.getFields(sliver_persistent_header$._SliverPersistentHeaderElement.__proto__),
-    child: dart.fieldType(dart.nullable(framework.Element))
+  dart.setSetterSignature(recognizer.OneSequenceGestureRecognizer, () => ({
+    __proto__: dart.getSetters(recognizer.OneSequenceGestureRecognizer.__proto__),
+    team: dart.nullable(team.GestureArenaTeam)
   }));
-  var delegate$0 = dart.privateName(sliver_persistent_header$, "_SliverPersistentHeaderRenderObjectWidget.delegate");
-  sliver_persistent_header$._SliverPersistentHeaderRenderObjectWidget = class _SliverPersistentHeaderRenderObjectWidget extends framework.RenderObjectWidget {
-    get delegate() {
-      return this[delegate$0];
-    }
-    set delegate(value) {
-      super.delegate = value;
-    }
-    createElement() {
-      return new sliver_persistent_header$._SliverPersistentHeaderElement.new(this);
-    }
-    debugFillProperties(description) {
-      if (description == null) dart.nullFailed(I[1], 288, 56, "description");
-      super.debugFillProperties(description);
-      description.add(new (T.DiagnosticsPropertyOfSliverPersistentHeaderDelegate()).new("delegate", this.delegate));
+  dart.setLibraryUri(recognizer.OneSequenceGestureRecognizer, I[1]);
+  dart.setFieldSignature(recognizer.OneSequenceGestureRecognizer, () => ({
+    __proto__: dart.getFields(recognizer.OneSequenceGestureRecognizer.__proto__),
+    [_entries]: dart.finalFieldType(core.Map$(core.int, arena.GestureArenaEntry)),
+    [_trackedPointers]: dart.finalFieldType(core.Set$(core.int)),
+    [_team]: dart.fieldType(dart.nullable(team.GestureArenaTeam))
+  }));
+  recognizer.GestureRecognizerState = class GestureRecognizerState extends core.Object {
+    toString() {
+      return this[_name$];
     }
   };
-  (sliver_persistent_header$._SliverPersistentHeaderRenderObjectWidget.new = function(opts) {
-    let key = opts && 'key' in opts ? opts.key : null;
-    let delegate = opts && 'delegate' in opts ? opts.delegate : null;
-    if (delegate == null) dart.nullFailed(I[1], 275, 19, "delegate");
-    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
-    this[delegate$0] = delegate;
-    if (!(delegate != null)) dart.assertFailed(null, I[1], 276, 15, "delegate != null");
-    sliver_persistent_header$._SliverPersistentHeaderRenderObjectWidget.__proto__.new.call(this, {key: key, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
+  (recognizer.GestureRecognizerState.new = function(index, _name) {
+    if (index == null) dart.nullFailed(I[0], 361, 6, "index");
+    if (_name == null) dart.nullFailed(I[0], 361, 6, "_name");
+    this.index = index;
+    this[_name$] = _name;
     ;
-  }).prototype = sliver_persistent_header$._SliverPersistentHeaderRenderObjectWidget.prototype;
-  dart.addTypeTests(sliver_persistent_header$._SliverPersistentHeaderRenderObjectWidget);
-  dart.addTypeCaches(sliver_persistent_header$._SliverPersistentHeaderRenderObjectWidget);
-  dart.setMethodSignature(sliver_persistent_header$._SliverPersistentHeaderRenderObjectWidget, () => ({
-    __proto__: dart.getMethods(sliver_persistent_header$._SliverPersistentHeaderRenderObjectWidget.__proto__),
-    createElement: dart.fnType(sliver_persistent_header$._SliverPersistentHeaderElement, [])
+  }).prototype = recognizer.GestureRecognizerState.prototype;
+  dart.addTypeTests(recognizer.GestureRecognizerState);
+  dart.addTypeCaches(recognizer.GestureRecognizerState);
+  dart.setLibraryUri(recognizer.GestureRecognizerState, I[1]);
+  dart.setFieldSignature(recognizer.GestureRecognizerState, () => ({
+    __proto__: dart.getFields(recognizer.GestureRecognizerState.__proto__),
+    index: dart.finalFieldType(core.int),
+    [_name$]: dart.finalFieldType(core.String)
   }));
-  dart.setLibraryUri(sliver_persistent_header$._SliverPersistentHeaderRenderObjectWidget, I[0]);
-  dart.setFieldSignature(sliver_persistent_header$._SliverPersistentHeaderRenderObjectWidget, () => ({
-    __proto__: dart.getFields(sliver_persistent_header$._SliverPersistentHeaderRenderObjectWidget.__proto__),
-    delegate: dart.finalFieldType(sliver_persistent_header$.SliverPersistentHeaderDelegate)
-  }));
-  var _element$ = dart.privateName(sliver_persistent_header$, "_RenderSliverPersistentHeaderForWidgetsMixin._element");
-  sliver_persistent_header$._RenderSliverPersistentHeaderForWidgetsMixin = class _RenderSliverPersistentHeaderForWidgetsMixin extends sliver_persistent_header.RenderSliverPersistentHeader {};
-  sliver_persistent_header$._RenderSliverPersistentHeaderForWidgetsMixin[dart.mixinOn] = RenderSliverPersistentHeader => class _RenderSliverPersistentHeaderForWidgetsMixin extends RenderSliverPersistentHeader {
-    get [_element]() {
-      return this[_element$];
+  dart.defineExtensionMethods(recognizer.GestureRecognizerState, ['toString']);
+  recognizer.GestureRecognizerState.ready = C[3] || CT.C3;
+  recognizer.GestureRecognizerState.possible = C[4] || CT.C4;
+  recognizer.GestureRecognizerState.defunct = C[5] || CT.C5;
+  recognizer.GestureRecognizerState.values = C[6] || CT.C6;
+  var deadline$ = dart.privateName(recognizer, "PrimaryPointerGestureRecognizer.deadline");
+  var preAcceptSlopTolerance$ = dart.privateName(recognizer, "PrimaryPointerGestureRecognizer.preAcceptSlopTolerance");
+  var postAcceptSlopTolerance$ = dart.privateName(recognizer, "PrimaryPointerGestureRecognizer.postAcceptSlopTolerance");
+  var state = dart.privateName(recognizer, "PrimaryPointerGestureRecognizer.state");
+  var primaryPointer = dart.privateName(recognizer, "PrimaryPointerGestureRecognizer.primaryPointer");
+  var initialPosition = dart.privateName(recognizer, "PrimaryPointerGestureRecognizer.initialPosition");
+  var _gestureAccepted = dart.privateName(recognizer, "_gestureAccepted");
+  var _timer = dart.privateName(recognizer, "_timer");
+  var _getGlobalDistance = dart.privateName(recognizer, "_getGlobalDistance");
+  var _stopTimer = dart.privateName(recognizer, "_stopTimer");
+  recognizer.PrimaryPointerGestureRecognizer = class PrimaryPointerGestureRecognizer extends recognizer.OneSequenceGestureRecognizer {
+    get deadline() {
+      return this[deadline$];
     }
-    set [_element](value) {
-      this[_element$] = value;
+    set deadline(value) {
+      super.deadline = value;
     }
-    get minExtent() {
-      return dart.nullCheck(this[_element]).widget.delegate.minExtent;
+    get preAcceptSlopTolerance() {
+      return this[preAcceptSlopTolerance$];
     }
-    get maxExtent() {
-      return dart.nullCheck(this[_element]).widget.delegate.maxExtent;
+    set preAcceptSlopTolerance(value) {
+      super.preAcceptSlopTolerance = value;
     }
-    updateChild(shrinkOffset, overlapsContent) {
-      if (shrinkOffset == null) dart.nullFailed(I[1], 309, 27, "shrinkOffset");
-      if (overlapsContent == null) dart.nullFailed(I[1], 309, 46, "overlapsContent");
-      if (!(this[_element] != null)) dart.assertFailed(null, I[1], 310, 12, "_element != null");
-      dart.nullCheck(this[_element])[_build](shrinkOffset, overlapsContent);
+    get postAcceptSlopTolerance() {
+      return this[postAcceptSlopTolerance$];
     }
-    triggerRebuild() {
-      this.markNeedsLayout();
+    set postAcceptSlopTolerance(value) {
+      super.postAcceptSlopTolerance = value;
+    }
+    get state() {
+      return this[state];
+    }
+    set state(value) {
+      this[state] = value;
+    }
+    get primaryPointer() {
+      return this[primaryPointer];
+    }
+    set primaryPointer(value) {
+      this[primaryPointer] = value;
+    }
+    get initialPosition() {
+      return this[initialPosition];
+    }
+    set initialPosition(value) {
+      this[initialPosition] = value;
+    }
+    addAllowedPointer(event) {
+      if (event == null) dart.nullFailed(I[0], 447, 43, "event");
+      this.startTrackingPointer(event.pointer, event.transform);
+      if (this.state == recognizer.GestureRecognizerState.ready) {
+        this.state = recognizer.GestureRecognizerState.possible;
+        this.primaryPointer = event.pointer;
+        this.initialPosition = new recognizer.OffsetPair.new({local: event.localPosition, global: event.position});
+        if (this.deadline != null) this[_timer] = async.Timer.new(dart.nullCheck(this.deadline), dart.fn(() => this.didExceedDeadlineWithEvent(event), T$.VoidTovoid()));
+      }
+    }
+    handleEvent(event) {
+      if (event == null) dart.nullFailed(I[0], 459, 33, "event");
+      if (!(this.state != recognizer.GestureRecognizerState.ready)) dart.assertFailed(null, I[0], 460, 12, "state != GestureRecognizerState.ready");
+      if (this.state == recognizer.GestureRecognizerState.possible && event.pointer == this.primaryPointer) {
+        let isPreAcceptSlopPastTolerance = !dart.test(this[_gestureAccepted]) && this.preAcceptSlopTolerance != null && dart.notNull(this[_getGlobalDistance](event)) > dart.nullCheck(this.preAcceptSlopTolerance);
+        let isPostAcceptSlopPastTolerance = dart.test(this[_gestureAccepted]) && this.postAcceptSlopTolerance != null && dart.notNull(this[_getGlobalDistance](event)) > dart.nullCheck(this.postAcceptSlopTolerance);
+        if (events.PointerMoveEvent.is(event) && (isPreAcceptSlopPastTolerance || isPostAcceptSlopPastTolerance)) {
+          this.resolve(arena.GestureDisposition.rejected);
+          this.stopTrackingPointer(dart.nullCheck(this.primaryPointer));
+        } else {
+          this.handlePrimaryPointer(event);
+        }
+      }
+      this.stopTrackingIfPointerNoLongerDown(event);
+    }
+    didExceedDeadline() {
+      if (!(this.deadline == null)) dart.assertFailed(null, I[0], 491, 12, "deadline == null");
+    }
+    didExceedDeadlineWithEvent(event) {
+      if (event == null) dart.nullFailed(I[0], 500, 52, "event");
+      this.didExceedDeadline();
+    }
+    acceptGesture(pointer) {
+      if (pointer == null) dart.nullFailed(I[0], 505, 26, "pointer");
+      if (pointer == this.primaryPointer) {
+        this[_stopTimer]();
+        this[_gestureAccepted] = true;
+      }
+    }
+    rejectGesture(pointer) {
+      if (pointer == null) dart.nullFailed(I[0], 513, 26, "pointer");
+      if (pointer == this.primaryPointer && this.state == recognizer.GestureRecognizerState.possible) {
+        this[_stopTimer]();
+        this.state = recognizer.GestureRecognizerState.defunct;
+      }
+    }
+    didStopTrackingLastPointer(pointer) {
+      if (pointer == null) dart.nullFailed(I[0], 521, 39, "pointer");
+      if (!(this.state != recognizer.GestureRecognizerState.ready)) dart.assertFailed(null, I[0], 522, 12, "state != GestureRecognizerState.ready");
+      this[_stopTimer]();
+      this.state = recognizer.GestureRecognizerState.ready;
+    }
+    dispose() {
+      this[_stopTimer]();
+      super.dispose();
+    }
+    [_stopTimer]() {
+      if (this[_timer] != null) {
+        dart.nullCheck(this[_timer]).cancel();
+        this[_timer] = null;
+      }
+    }
+    [_getGlobalDistance](event) {
+      if (event == null) dart.nullFailed(I[0], 540, 42, "event");
+      let offset = event.position['-'](dart.nullCheck(this.initialPosition).global);
+      return offset.distance;
+    }
+    debugFillProperties(properties) {
+      if (properties == null) dart.nullFailed(I[0], 546, 56, "properties");
+      super.debugFillProperties(properties);
+      properties.add(new (T$.EnumPropertyOfGestureRecognizerState()).new("state", this.state));
     }
   };
-  (sliver_persistent_header$._RenderSliverPersistentHeaderForWidgetsMixin[dart.mixinNew] = function() {
-    this[_element$] = null;
-  }).prototype = sliver_persistent_header$._RenderSliverPersistentHeaderForWidgetsMixin.prototype;
-  dart.addTypeTests(sliver_persistent_header$._RenderSliverPersistentHeaderForWidgetsMixin);
-  dart.addTypeCaches(sliver_persistent_header$._RenderSliverPersistentHeaderForWidgetsMixin);
-  sliver_persistent_header$._RenderSliverPersistentHeaderForWidgetsMixin[dart.implements] = () => [sliver_persistent_header.RenderSliverPersistentHeader];
-  dart.setMethodSignature(sliver_persistent_header$._RenderSliverPersistentHeaderForWidgetsMixin, () => ({
-    __proto__: dart.getMethods(sliver_persistent_header$._RenderSliverPersistentHeaderForWidgetsMixin.__proto__),
-    triggerRebuild: dart.fnType(dart.void, [])
+  (recognizer.PrimaryPointerGestureRecognizer.new = function(opts) {
+    let deadline = opts && 'deadline' in opts ? opts.deadline : null;
+    let preAcceptSlopTolerance = opts && 'preAcceptSlopTolerance' in opts ? opts.preAcceptSlopTolerance : 18;
+    let postAcceptSlopTolerance = opts && 'postAcceptSlopTolerance' in opts ? opts.postAcceptSlopTolerance : 18;
+    let debugOwner = opts && 'debugOwner' in opts ? opts.debugOwner : null;
+    let kind = opts && 'kind' in opts ? opts.kind : null;
+    this[state] = recognizer.GestureRecognizerState.ready;
+    this[primaryPointer] = null;
+    this[initialPosition] = null;
+    this[_gestureAccepted] = false;
+    this[_timer] = null;
+    this[deadline$] = deadline;
+    this[preAcceptSlopTolerance$] = preAcceptSlopTolerance;
+    this[postAcceptSlopTolerance$] = postAcceptSlopTolerance;
+    if (!(preAcceptSlopTolerance == null || dart.notNull(preAcceptSlopTolerance) >= 0)) dart.assertFailed("The preAcceptSlopTolerance must be positive or null", I[0], 395, 10, "preAcceptSlopTolerance == null || preAcceptSlopTolerance >= 0");
+    if (!(postAcceptSlopTolerance == null || dart.notNull(postAcceptSlopTolerance) >= 0)) dart.assertFailed("The postAcceptSlopTolerance must be positive or null", I[0], 399, 10, "postAcceptSlopTolerance == null || postAcceptSlopTolerance >= 0");
+    recognizer.PrimaryPointerGestureRecognizer.__proto__.new.call(this, {debugOwner: debugOwner, kind: kind});
+    ;
+  }).prototype = recognizer.PrimaryPointerGestureRecognizer.prototype;
+  dart.addTypeTests(recognizer.PrimaryPointerGestureRecognizer);
+  dart.addTypeCaches(recognizer.PrimaryPointerGestureRecognizer);
+  dart.setMethodSignature(recognizer.PrimaryPointerGestureRecognizer, () => ({
+    __proto__: dart.getMethods(recognizer.PrimaryPointerGestureRecognizer.__proto__),
+    handleEvent: dart.fnType(dart.void, [events.PointerEvent]),
+    didExceedDeadline: dart.fnType(dart.void, []),
+    didExceedDeadlineWithEvent: dart.fnType(dart.void, [events.PointerDownEvent]),
+    didStopTrackingLastPointer: dart.fnType(dart.void, [core.int]),
+    [_stopTimer]: dart.fnType(dart.void, []),
+    [_getGlobalDistance]: dart.fnType(core.double, [events.PointerEvent])
   }));
-  dart.setGetterSignature(sliver_persistent_header$._RenderSliverPersistentHeaderForWidgetsMixin, () => ({
-    __proto__: dart.getGetters(sliver_persistent_header$._RenderSliverPersistentHeaderForWidgetsMixin.__proto__),
-    minExtent: core.double,
-    maxExtent: core.double
+  dart.setLibraryUri(recognizer.PrimaryPointerGestureRecognizer, I[1]);
+  dart.setFieldSignature(recognizer.PrimaryPointerGestureRecognizer, () => ({
+    __proto__: dart.getFields(recognizer.PrimaryPointerGestureRecognizer.__proto__),
+    deadline: dart.finalFieldType(dart.nullable(core.Duration)),
+    preAcceptSlopTolerance: dart.finalFieldType(dart.nullable(core.double)),
+    postAcceptSlopTolerance: dart.finalFieldType(dart.nullable(core.double)),
+    state: dart.fieldType(recognizer.GestureRecognizerState),
+    primaryPointer: dart.fieldType(dart.nullable(core.int)),
+    initialPosition: dart.fieldType(dart.nullable(recognizer.OffsetPair)),
+    [_gestureAccepted]: dart.fieldType(core.bool),
+    [_timer]: dart.fieldType(dart.nullable(async.Timer))
   }));
-  dart.setLibraryUri(sliver_persistent_header$._RenderSliverPersistentHeaderForWidgetsMixin, I[0]);
-  dart.setFieldSignature(sliver_persistent_header$._RenderSliverPersistentHeaderForWidgetsMixin, () => ({
-    __proto__: dart.getFields(sliver_persistent_header$._RenderSliverPersistentHeaderForWidgetsMixin.__proto__),
-    [_element]: dart.fieldType(dart.nullable(sliver_persistent_header$._SliverPersistentHeaderElement))
-  }));
-  sliver_persistent_header$._SliverScrollingPersistentHeader = class _SliverScrollingPersistentHeader extends sliver_persistent_header$._SliverPersistentHeaderRenderObjectWidget {
-    createRenderObject(context) {
-      if (context == null) dart.nullFailed(I[1], 330, 80, "context");
-      return new sliver_persistent_header$._RenderSliverScrollingPersistentHeaderForWidgets.new({stretchConfiguration: this.delegate.stretchConfiguration});
+  var local$ = dart.privateName(recognizer, "OffsetPair.local");
+  var global$ = dart.privateName(recognizer, "OffsetPair.global");
+  var OffsetBase__dy = dart.privateName(ui, "OffsetBase._dy");
+  var OffsetBase__dx = dart.privateName(ui, "OffsetBase._dx");
+  recognizer.OffsetPair = class OffsetPair extends core.Object {
+    get local() {
+      return this[local$];
+    }
+    set local(value) {
+      super.local = value;
+    }
+    get global() {
+      return this[global$];
+    }
+    set global(value) {
+      super.global = value;
+    }
+    static fromEventPosition(event) {
+      if (event == null) dart.nullFailed(I[0], 566, 53, "event");
+      return new recognizer.OffsetPair.new({local: event.localPosition, global: event.position});
+    }
+    static fromEventDelta(event) {
+      if (event == null) dart.nullFailed(I[0], 572, 50, "event");
+      return new recognizer.OffsetPair.new({local: event.localDelta, global: event.delta});
+    }
+    ['+'](other) {
+      if (other == null) dart.nullFailed(I[0], 587, 35, "other");
+      return new recognizer.OffsetPair.new({local: this.local['+'](other.local), global: this.global['+'](other.global)});
+    }
+    ['-'](other) {
+      if (other == null) dart.nullFailed(I[0], 595, 35, "other");
+      return new recognizer.OffsetPair.new({local: this.local['-'](other.local), global: this.global['-'](other.global)});
+    }
+    toString() {
+      return dart.str(object.objectRuntimeType(this, "OffsetPair")) + "(local: " + dart.str(this.local) + ", global: " + dart.str(this.global) + ")";
     }
   };
-  (sliver_persistent_header$._SliverScrollingPersistentHeader.new = function(opts) {
-    let key = opts && 'key' in opts ? opts.key : null;
-    let delegate = opts && 'delegate' in opts ? opts.delegate : null;
-    if (delegate == null) dart.nullFailed(I[1], 323, 45, "delegate");
-    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
-    sliver_persistent_header$._SliverScrollingPersistentHeader.__proto__.new.call(this, {key: key, delegate: delegate, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
+  (recognizer.OffsetPair.new = function(opts) {
+    let local = opts && 'local' in opts ? opts.local : null;
+    if (local == null) dart.nullFailed(I[0], 560, 19, "local");
+    let global = opts && 'global' in opts ? opts.global : null;
+    if (global == null) dart.nullFailed(I[0], 561, 19, "global");
+    this[local$] = local;
+    this[global$] = global;
     ;
-  }).prototype = sliver_persistent_header$._SliverScrollingPersistentHeader.prototype;
-  dart.addTypeTests(sliver_persistent_header$._SliverScrollingPersistentHeader);
-  dart.addTypeCaches(sliver_persistent_header$._SliverScrollingPersistentHeader);
-  dart.setMethodSignature(sliver_persistent_header$._SliverScrollingPersistentHeader, () => ({
-    __proto__: dart.getMethods(sliver_persistent_header$._SliverScrollingPersistentHeader.__proto__),
-    createRenderObject: dart.fnType(sliver_persistent_header$._RenderSliverPersistentHeaderForWidgetsMixin, [framework.BuildContext])
+  }).prototype = recognizer.OffsetPair.prototype;
+  dart.addTypeTests(recognizer.OffsetPair);
+  dart.addTypeCaches(recognizer.OffsetPair);
+  dart.setMethodSignature(recognizer.OffsetPair, () => ({
+    __proto__: dart.getMethods(recognizer.OffsetPair.__proto__),
+    '+': dart.fnType(recognizer.OffsetPair, [recognizer.OffsetPair]),
+    '-': dart.fnType(recognizer.OffsetPair, [recognizer.OffsetPair])
   }));
-  dart.setLibraryUri(sliver_persistent_header$._SliverScrollingPersistentHeader, I[0]);
-  const RenderSliverScrollingPersistentHeader__RenderSliverPersistentHeaderForWidgetsMixin$36 = class RenderSliverScrollingPersistentHeader__RenderSliverPersistentHeaderForWidgetsMixin extends sliver_persistent_header.RenderSliverScrollingPersistentHeader {};
-  (RenderSliverScrollingPersistentHeader__RenderSliverPersistentHeaderForWidgetsMixin$36.new = function(opts) {
-    sliver_persistent_header$._RenderSliverPersistentHeaderForWidgetsMixin[dart.mixinNew].call(this);
-    RenderSliverScrollingPersistentHeader__RenderSliverPersistentHeaderForWidgetsMixin$36.__proto__.new.call(this, opts);
-  }).prototype = RenderSliverScrollingPersistentHeader__RenderSliverPersistentHeaderForWidgetsMixin$36.prototype;
-  dart.applyMixin(RenderSliverScrollingPersistentHeader__RenderSliverPersistentHeaderForWidgetsMixin$36, sliver_persistent_header$._RenderSliverPersistentHeaderForWidgetsMixin);
-  sliver_persistent_header$._RenderSliverScrollingPersistentHeaderForWidgets = class _RenderSliverScrollingPersistentHeaderForWidgets extends RenderSliverScrollingPersistentHeader__RenderSliverPersistentHeaderForWidgetsMixin$36 {};
-  (sliver_persistent_header$._RenderSliverScrollingPersistentHeaderForWidgets.new = function(opts) {
-    let child = opts && 'child' in opts ? opts.child : null;
-    let stretchConfiguration = opts && 'stretchConfiguration' in opts ? opts.stretchConfiguration : null;
-    sliver_persistent_header$._RenderSliverScrollingPersistentHeaderForWidgets.__proto__.new.call(this, {child: child, stretchConfiguration: stretchConfiguration});
-    ;
-  }).prototype = sliver_persistent_header$._RenderSliverScrollingPersistentHeaderForWidgets.prototype;
-  dart.addTypeTests(sliver_persistent_header$._RenderSliverScrollingPersistentHeaderForWidgets);
-  dart.addTypeCaches(sliver_persistent_header$._RenderSliverScrollingPersistentHeaderForWidgets);
-  dart.setLibraryUri(sliver_persistent_header$._RenderSliverScrollingPersistentHeaderForWidgets, I[0]);
-  sliver_persistent_header$._SliverPinnedPersistentHeader = class _SliverPinnedPersistentHeader extends sliver_persistent_header$._SliverPersistentHeaderRenderObjectWidget {
-    createRenderObject(context) {
-      if (context == null) dart.nullFailed(I[1], 358, 80, "context");
-      return new sliver_persistent_header$._RenderSliverPinnedPersistentHeaderForWidgets.new({stretchConfiguration: this.delegate.stretchConfiguration, showOnScreenConfiguration: this.delegate.showOnScreenConfiguration});
-    }
-  };
-  (sliver_persistent_header$._SliverPinnedPersistentHeader.new = function(opts) {
-    let key = opts && 'key' in opts ? opts.key : null;
-    let delegate = opts && 'delegate' in opts ? opts.delegate : null;
-    if (delegate == null) dart.nullFailed(I[1], 351, 45, "delegate");
-    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
-    sliver_persistent_header$._SliverPinnedPersistentHeader.__proto__.new.call(this, {key: key, delegate: delegate, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
-    ;
-  }).prototype = sliver_persistent_header$._SliverPinnedPersistentHeader.prototype;
-  dart.addTypeTests(sliver_persistent_header$._SliverPinnedPersistentHeader);
-  dart.addTypeCaches(sliver_persistent_header$._SliverPinnedPersistentHeader);
-  dart.setMethodSignature(sliver_persistent_header$._SliverPinnedPersistentHeader, () => ({
-    __proto__: dart.getMethods(sliver_persistent_header$._SliverPinnedPersistentHeader.__proto__),
-    createRenderObject: dart.fnType(sliver_persistent_header$._RenderSliverPersistentHeaderForWidgetsMixin, [framework.BuildContext])
+  dart.setLibraryUri(recognizer.OffsetPair, I[1]);
+  dart.setFieldSignature(recognizer.OffsetPair, () => ({
+    __proto__: dart.getFields(recognizer.OffsetPair.__proto__),
+    local: dart.finalFieldType(ui.Offset),
+    global: dart.finalFieldType(ui.Offset)
   }));
-  dart.setLibraryUri(sliver_persistent_header$._SliverPinnedPersistentHeader, I[0]);
-  const RenderSliverPinnedPersistentHeader__RenderSliverPersistentHeaderForWidgetsMixin$36 = class RenderSliverPinnedPersistentHeader__RenderSliverPersistentHeaderForWidgetsMixin extends sliver_persistent_header.RenderSliverPinnedPersistentHeader {};
-  (RenderSliverPinnedPersistentHeader__RenderSliverPersistentHeaderForWidgetsMixin$36.new = function(opts) {
-    sliver_persistent_header$._RenderSliverPersistentHeaderForWidgetsMixin[dart.mixinNew].call(this);
-    RenderSliverPinnedPersistentHeader__RenderSliverPersistentHeaderForWidgetsMixin$36.__proto__.new.call(this, opts);
-  }).prototype = RenderSliverPinnedPersistentHeader__RenderSliverPersistentHeaderForWidgetsMixin$36.prototype;
-  dart.applyMixin(RenderSliverPinnedPersistentHeader__RenderSliverPersistentHeaderForWidgetsMixin$36, sliver_persistent_header$._RenderSliverPersistentHeaderForWidgetsMixin);
-  sliver_persistent_header$._RenderSliverPinnedPersistentHeaderForWidgets = class _RenderSliverPinnedPersistentHeaderForWidgets extends RenderSliverPinnedPersistentHeader__RenderSliverPersistentHeaderForWidgetsMixin$36 {};
-  (sliver_persistent_header$._RenderSliverPinnedPersistentHeaderForWidgets.new = function(opts) {
-    let child = opts && 'child' in opts ? opts.child : null;
-    let stretchConfiguration = opts && 'stretchConfiguration' in opts ? opts.stretchConfiguration : null;
-    let showOnScreenConfiguration = opts && 'showOnScreenConfiguration' in opts ? opts.showOnScreenConfiguration : null;
-    sliver_persistent_header$._RenderSliverPinnedPersistentHeaderForWidgets.__proto__.new.call(this, {child: child, stretchConfiguration: stretchConfiguration, showOnScreenConfiguration: showOnScreenConfiguration});
-    ;
-  }).prototype = sliver_persistent_header$._RenderSliverPinnedPersistentHeaderForWidgets.prototype;
-  dart.addTypeTests(sliver_persistent_header$._RenderSliverPinnedPersistentHeaderForWidgets);
-  dart.addTypeCaches(sliver_persistent_header$._RenderSliverPinnedPersistentHeaderForWidgets);
-  dart.setLibraryUri(sliver_persistent_header$._RenderSliverPinnedPersistentHeaderForWidgets, I[0]);
-  sliver_persistent_header$._SliverFloatingPersistentHeader = class _SliverFloatingPersistentHeader extends sliver_persistent_header$._SliverPersistentHeaderRenderObjectWidget {
-    createRenderObject(context) {
-      if (context == null) dart.nullFailed(I[1], 389, 80, "context");
-      return new sliver_persistent_header$._RenderSliverFloatingPersistentHeaderForWidgets.new({vsync: this.delegate.vsync, snapConfiguration: this.delegate.snapConfiguration, stretchConfiguration: this.delegate.stretchConfiguration, showOnScreenConfiguration: this.delegate.showOnScreenConfiguration});
+  dart.defineExtensionMethods(recognizer.OffsetPair, ['toString']);
+  dart.defineLazy(recognizer.OffsetPair, {
+    /*recognizer.OffsetPair.zero*/get zero() {
+      return C[7] || CT.C7;
     }
-    updateRenderObject(context, renderObject) {
-      if (context == null) dart.nullFailed(I[1], 399, 40, "context");
-      sliver_persistent_header$._RenderSliverFloatingPersistentHeaderForWidgets.as(renderObject);
-      if (renderObject == null) dart.nullFailed(I[1], 399, 97, "renderObject");
-      renderObject.vsync = this.delegate.vsync;
-      renderObject.snapConfiguration = this.delegate.snapConfiguration;
-      renderObject.stretchConfiguration = this.delegate.stretchConfiguration;
-      renderObject.showOnScreenConfiguration = this.delegate.showOnScreenConfiguration;
-    }
-  };
-  (sliver_persistent_header$._SliverFloatingPersistentHeader.new = function(opts) {
-    let key = opts && 'key' in opts ? opts.key : null;
-    let delegate = opts && 'delegate' in opts ? opts.delegate : null;
-    if (delegate == null) dart.nullFailed(I[1], 382, 45, "delegate");
-    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
-    sliver_persistent_header$._SliverFloatingPersistentHeader.__proto__.new.call(this, {key: key, delegate: delegate, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
-    ;
-  }).prototype = sliver_persistent_header$._SliverFloatingPersistentHeader.prototype;
-  dart.addTypeTests(sliver_persistent_header$._SliverFloatingPersistentHeader);
-  dart.addTypeCaches(sliver_persistent_header$._SliverFloatingPersistentHeader);
-  dart.setMethodSignature(sliver_persistent_header$._SliverFloatingPersistentHeader, () => ({
-    __proto__: dart.getMethods(sliver_persistent_header$._SliverFloatingPersistentHeader.__proto__),
-    createRenderObject: dart.fnType(sliver_persistent_header$._RenderSliverPersistentHeaderForWidgetsMixin, [framework.BuildContext])
-  }));
-  dart.setLibraryUri(sliver_persistent_header$._SliverFloatingPersistentHeader, I[0]);
-  const RenderSliverFloatingPinnedPersistentHeader__RenderSliverPersistentHeaderForWidgetsMixin$36 = class RenderSliverFloatingPinnedPersistentHeader__RenderSliverPersistentHeaderForWidgetsMixin extends sliver_persistent_header.RenderSliverFloatingPinnedPersistentHeader {};
-  (RenderSliverFloatingPinnedPersistentHeader__RenderSliverPersistentHeaderForWidgetsMixin$36.new = function(opts) {
-    sliver_persistent_header$._RenderSliverPersistentHeaderForWidgetsMixin[dart.mixinNew].call(this);
-    RenderSliverFloatingPinnedPersistentHeader__RenderSliverPersistentHeaderForWidgetsMixin$36.__proto__.new.call(this, opts);
-  }).prototype = RenderSliverFloatingPinnedPersistentHeader__RenderSliverPersistentHeaderForWidgetsMixin$36.prototype;
-  dart.applyMixin(RenderSliverFloatingPinnedPersistentHeader__RenderSliverPersistentHeaderForWidgetsMixin$36, sliver_persistent_header$._RenderSliverPersistentHeaderForWidgetsMixin);
-  sliver_persistent_header$._RenderSliverFloatingPinnedPersistentHeaderForWidgets = class _RenderSliverFloatingPinnedPersistentHeaderForWidgets extends RenderSliverFloatingPinnedPersistentHeader__RenderSliverPersistentHeaderForWidgetsMixin$36 {};
-  (sliver_persistent_header$._RenderSliverFloatingPinnedPersistentHeaderForWidgets.new = function(opts) {
-    let child = opts && 'child' in opts ? opts.child : null;
-    let vsync = opts && 'vsync' in opts ? opts.vsync : null;
-    let snapConfiguration = opts && 'snapConfiguration' in opts ? opts.snapConfiguration : null;
-    let stretchConfiguration = opts && 'stretchConfiguration' in opts ? opts.stretchConfiguration : null;
-    let showOnScreenConfiguration = opts && 'showOnScreenConfiguration' in opts ? opts.showOnScreenConfiguration : null;
-    sliver_persistent_header$._RenderSliverFloatingPinnedPersistentHeaderForWidgets.__proto__.new.call(this, {child: child, vsync: vsync, snapConfiguration: snapConfiguration, stretchConfiguration: stretchConfiguration, showOnScreenConfiguration: showOnScreenConfiguration});
-    ;
-  }).prototype = sliver_persistent_header$._RenderSliverFloatingPinnedPersistentHeaderForWidgets.prototype;
-  dart.addTypeTests(sliver_persistent_header$._RenderSliverFloatingPinnedPersistentHeaderForWidgets);
-  dart.addTypeCaches(sliver_persistent_header$._RenderSliverFloatingPinnedPersistentHeaderForWidgets);
-  dart.setLibraryUri(sliver_persistent_header$._RenderSliverFloatingPinnedPersistentHeaderForWidgets, I[0]);
-  sliver_persistent_header$._SliverFloatingPinnedPersistentHeader = class _SliverFloatingPinnedPersistentHeader extends sliver_persistent_header$._SliverPersistentHeaderRenderObjectWidget {
-    createRenderObject(context) {
-      if (context == null) dart.nullFailed(I[1], 434, 80, "context");
-      return new sliver_persistent_header$._RenderSliverFloatingPinnedPersistentHeaderForWidgets.new({vsync: this.delegate.vsync, snapConfiguration: this.delegate.snapConfiguration, stretchConfiguration: this.delegate.stretchConfiguration, showOnScreenConfiguration: this.delegate.showOnScreenConfiguration});
-    }
-    updateRenderObject(context, renderObject) {
-      if (context == null) dart.nullFailed(I[1], 444, 40, "context");
-      sliver_persistent_header$._RenderSliverFloatingPinnedPersistentHeaderForWidgets.as(renderObject);
-      if (renderObject == null) dart.nullFailed(I[1], 444, 103, "renderObject");
-      renderObject.vsync = this.delegate.vsync;
-      renderObject.snapConfiguration = this.delegate.snapConfiguration;
-      renderObject.stretchConfiguration = this.delegate.stretchConfiguration;
-      renderObject.showOnScreenConfiguration = this.delegate.showOnScreenConfiguration;
-    }
-  };
-  (sliver_persistent_header$._SliverFloatingPinnedPersistentHeader.new = function(opts) {
-    let key = opts && 'key' in opts ? opts.key : null;
-    let delegate = opts && 'delegate' in opts ? opts.delegate : null;
-    if (delegate == null) dart.nullFailed(I[1], 427, 45, "delegate");
-    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
-    sliver_persistent_header$._SliverFloatingPinnedPersistentHeader.__proto__.new.call(this, {key: key, delegate: delegate, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
-    ;
-  }).prototype = sliver_persistent_header$._SliverFloatingPinnedPersistentHeader.prototype;
-  dart.addTypeTests(sliver_persistent_header$._SliverFloatingPinnedPersistentHeader);
-  dart.addTypeCaches(sliver_persistent_header$._SliverFloatingPinnedPersistentHeader);
-  dart.setMethodSignature(sliver_persistent_header$._SliverFloatingPinnedPersistentHeader, () => ({
-    __proto__: dart.getMethods(sliver_persistent_header$._SliverFloatingPinnedPersistentHeader.__proto__),
-    createRenderObject: dart.fnType(sliver_persistent_header$._RenderSliverPersistentHeaderForWidgetsMixin, [framework.BuildContext])
-  }));
-  dart.setLibraryUri(sliver_persistent_header$._SliverFloatingPinnedPersistentHeader, I[0]);
-  const RenderSliverFloatingPersistentHeader__RenderSliverPersistentHeaderForWidgetsMixin$36 = class RenderSliverFloatingPersistentHeader__RenderSliverPersistentHeaderForWidgetsMixin extends sliver_persistent_header.RenderSliverFloatingPersistentHeader {};
-  (RenderSliverFloatingPersistentHeader__RenderSliverPersistentHeaderForWidgetsMixin$36.new = function(opts) {
-    sliver_persistent_header$._RenderSliverPersistentHeaderForWidgetsMixin[dart.mixinNew].call(this);
-    RenderSliverFloatingPersistentHeader__RenderSliverPersistentHeaderForWidgetsMixin$36.__proto__.new.call(this, opts);
-  }).prototype = RenderSliverFloatingPersistentHeader__RenderSliverPersistentHeaderForWidgetsMixin$36.prototype;
-  dart.applyMixin(RenderSliverFloatingPersistentHeader__RenderSliverPersistentHeaderForWidgetsMixin$36, sliver_persistent_header$._RenderSliverPersistentHeaderForWidgetsMixin);
-  sliver_persistent_header$._RenderSliverFloatingPersistentHeaderForWidgets = class _RenderSliverFloatingPersistentHeaderForWidgets extends RenderSliverFloatingPersistentHeader__RenderSliverPersistentHeaderForWidgetsMixin$36 {};
-  (sliver_persistent_header$._RenderSliverFloatingPersistentHeaderForWidgets.new = function(opts) {
-    let child = opts && 'child' in opts ? opts.child : null;
-    let vsync = opts && 'vsync' in opts ? opts.vsync : null;
-    let snapConfiguration = opts && 'snapConfiguration' in opts ? opts.snapConfiguration : null;
-    let stretchConfiguration = opts && 'stretchConfiguration' in opts ? opts.stretchConfiguration : null;
-    let showOnScreenConfiguration = opts && 'showOnScreenConfiguration' in opts ? opts.showOnScreenConfiguration : null;
-    sliver_persistent_header$._RenderSliverFloatingPersistentHeaderForWidgets.__proto__.new.call(this, {child: child, vsync: vsync, snapConfiguration: snapConfiguration, stretchConfiguration: stretchConfiguration, showOnScreenConfiguration: showOnScreenConfiguration});
-    ;
-  }).prototype = sliver_persistent_header$._RenderSliverFloatingPersistentHeaderForWidgets.prototype;
-  dart.addTypeTests(sliver_persistent_header$._RenderSliverFloatingPersistentHeaderForWidgets);
-  dart.addTypeCaches(sliver_persistent_header$._RenderSliverFloatingPersistentHeaderForWidgets);
-  dart.setLibraryUri(sliver_persistent_header$._RenderSliverFloatingPersistentHeaderForWidgets, I[0]);
-  dart.trackLibraries("packages/flutter/src/widgets/sliver_persistent_header.dart", {
-    "package:flutter/src/widgets/sliver_persistent_header.dart": sliver_persistent_header$
+  }, false);
+  dart.trackLibraries("packages/flutter/src/gestures/recognizer.dart", {
+    "package:flutter/src/gestures/recognizer.dart": recognizer
   }, {
-  }, '{"version":3,"sourceRoot":"","sources":["sliver_persistent_header.dart"],"names":[],"mappings":"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","file":"../../../../../../../../../../packages/flutter/src/widgets/sliver_persistent_header.dart.lib.js"}');
+  }, '{"version":3,"sourceRoot":"","sources":["recognizer.dart"],"names":[],"mappings":"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","file":"../../../../../../../../D:/packages/flutter/src/gestures/recognizer.dart.lib.js"}');
   // Exports:
   return {
-    src__widgets__sliver_persistent_header: sliver_persistent_header$
+    src__gestures__recognizer: recognizer
   };
 }));
 
-//# sourceMappingURL=sliver_persistent_header.dart.lib.js.map
+//# sourceMappingURL=recognizer.dart.lib.js.map

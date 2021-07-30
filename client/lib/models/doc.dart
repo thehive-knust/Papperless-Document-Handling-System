@@ -134,9 +134,6 @@ class Doc {
             subject: "Request for Classroom",
             approvalProgress: {
               "1": 'pending',
-              "2": 'pending',
-              "3": 'pending',
-              "4": 'pending'
             },
             status: 'pending'),
         Doc(
