@@ -30,3 +30,12 @@ Upload document : /document/upload\
 Get new documents : /document/new/{user_id}\
 Get approved docs : /document/approved/{user_id}\
 Get rejected docs : /document/rejected/{user_id}
+
+**Department**\
+Get All Departments : /department\
+Get Department by College ID: /department/get/{college_id}\
+Get Department By ID: /department/{department_id}\
+Create department : /department/create\
+Update department: /department/update/{department_id}\
+Delete Department: /department/delete/{department_id}\
+Get portfolios in a Departments : /department/get_portfolio/{department_id}
