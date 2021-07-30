@@ -67,7 +67,6 @@ def get_all_users():
             return jsonify({'msg': 'Ther are no registered users'}), 404
         return jsonify({'users': users})
 
-
 @bp.route('delete/<int:user_id>', methods=['DELETE'])
 def delete_user(user_id):
     if request.method == 'DELETE':
