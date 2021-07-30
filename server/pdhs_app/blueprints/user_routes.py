@@ -22,7 +22,7 @@ def get_user_by_id(user_id):
     return jsonify(msg="User not found"), 404
 
 
-@bp.route('/<String:email>', methods=['GET'])
+@bp.route('/<string:email>', methods=['GET'])
 def get_user_by_email(email):
     if request.method == 'GET':
         user = User.find_by_email(email)
@@ -71,6 +71,7 @@ def register_user(user_id):
         if User.register_user(user_id, first_name, last_name, email, password, portfolio_id, department_id):
             return jsonify({"message": f"Sucessfully registered {user_id}"})
 
+
 @bp.route('/', methods=['GET'])
 def get_all_users():
     """
@@ -88,7 +89,7 @@ def get_all_users():
         if len(users) == 0 or len(result) == 0:
             return jsonify({'msg': 'Ther are no registered users'}), 404
         return jsonify({'users': users})
-
+      
 
 @bp.route('delete/<int:user_id>', methods=['DELETE'])
 def delete_user(user_id):
@@ -101,5 +102,3 @@ def delete_user(user_id):
             return jsonify(msg="Error deleting user."), 500
 
     return jsonify(msg="User not found"), 404
-
-
