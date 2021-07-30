@@ -31,11 +31,7 @@ class User(db.Model):
 
     @classmethod
     def find_by_id(cls, user_id):
-        try:
-            user = cls.query.get(user_id)
-        except:
-            raise UserErrors.UserDontExistError("User Don't Exist")
-        return user
+        return cls.query.get(user_id)
 
     def save_to_db(self):
         db.session.add(self)
@@ -101,3 +97,5 @@ class User(db.Model):
         new_user = User(user_id, first_name, last_name, email,
                         password, portfolio_id, department_id).save_to_db()
         return True
+
+    
