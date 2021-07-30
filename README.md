@@ -17,13 +17,13 @@ Obed Ansah (3579718)-Member. Osei-Bonsu Alexander Kwasi Tweneboah- ( Head of Mul
 
 
 # Server APIs
-**User APIs**
-Login : /user/login
-Sign-Up : /user/register/{user_id}
-Delete User : /user/delete/{user_id}
-Get User by mail    : /user/{email}
-Get User by ID  : /user/{user_id}
-Get All Users : /user/all
+**User APIs**\
+Login : /user/login\
+Sign-Up : /user/register/{user_id}\
+Delete User : /user/delete/{user_id}\
+Get User by mail    : /user/{email}\
+Get User by ID  : /user/{user_id}\
+Get All Users : /user/all\
 
 **Document APIs**
 Upload document : /document/upload
