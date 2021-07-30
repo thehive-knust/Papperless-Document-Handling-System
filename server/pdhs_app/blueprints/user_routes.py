@@ -5,7 +5,7 @@ import pdhs_app.models.users.decorators as user_decorators  # src.
 import pdhs_app.models.users.constants as UserConstants
 from pdhs_app.models.documents.document import Document
 from pdhs_app.models.departments.department import Department
-from pdhs_app.blueprints.document_routes import get_new_docs
+from pdhs_app.blueprints.document_routes import new as get_new_docs
 
 bp = Blueprint('users', __name__, url_prefix='/users')
 
@@ -49,30 +49,6 @@ def update_user(user_id):
     pass
 
 
-@bp.route('/login', methods=['POST'])
-def login():
-    if request.method == 'POST':
-        request_data = request.get_json()
-        user_id = request_data['user_id']
-        password = request_data['password']
-        try:
-            user = User.is_login_valid(user_id, password)
-            if user:
-                departments = Department.query.filter_by(
-                    college_id=user.colleg_id)
-                user_department_members = User.query.filter_by(
-                    department_id=user.department_id)
-                recieved_documents = get_new_docs(user_id)
-                return jsonify(
-                    user=user,
-                    departments=departments,
-                    user_department_members=user_department_members,
-                    recieved_documents=recieved_documents
-                )
-        except UserErrors.UserError as e:
-            return jsonify({"message": f"{e.message}"})
-
-
 @bp.route('/register/<int:user_id>', methods=['POST'])
 def register_user(user_id):
     if request.method == 'POST':
@@ -113,20 +89,6 @@ def get_all_users():
             return jsonify({'msg': 'Ther are no registered users'}), 404
         return jsonify({'users': users})
 
-# # The profile page section
-# @bp.route('/profile')
-# @user_decorators.requires_login
-# def profile():
-#     # checking if user actually exists
-#     user = User.query.filter_by(user_id=user_id).first()
-#     return jsonify(user)
-
-# @bp.route('/edit_profile/<int: user_id>', methods=['POST'])
-# @user_decorators.requires_login
-# def edit_profile(user_id):
-#     if request.method == 'POST':
-#         user = User.query.filter_by(user_id=user_id).first()
-#         return jsonify({"message":"Done"})
 
 @bp.route('delete/<int:user_id>', methods=['DELETE'])
 def delete_user(user_id):
