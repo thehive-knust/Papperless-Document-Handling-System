@@ -103,13 +103,15 @@ def login():
     if request.method == 'POST':
         id = request.json.get('id', None)
         password = request.json.get('password', None)
-
-        user = User.find_by_id(id)
+        try:
+            user = User.find_by_id(id)
+        except:
+            return jsonify(message="User Don't Exist")
         correct_password = check_password_hash(user.password, password)
         if id is not None and correct_password:
             access_token = create_access_token(identity=user)
             refresh_token = create_refresh_token(identity=user)
-            return jsonify(access_token=access_token, refresh_token=refresh_token), 200
+            return jsonify(access_token=access_token, refresh_token=refresh_token, user=user.to_json()), 200
         else:
             return jsonify(msg='Invalid ID or password'), 401
     else:

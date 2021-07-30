@@ -1,6 +1,0 @@
-ADDING NEW USERS
-curl "http://127.0.0.1:5000/user/register/12" -H "Content-Type: application/json" -d "{\"user_id\":\"12345678\", \"first_name\":\"Koffi\", \"last_name\":\"Cobbin\", 
-\"email\":\"kofficobbin@email.com\", \"password\":\"kofficobbin\", \"portfolio_id\":1, \"department_id\":1}"
-
-GETTING ALL USERS
-curl "http://127.0.0.1:5000/user/all"

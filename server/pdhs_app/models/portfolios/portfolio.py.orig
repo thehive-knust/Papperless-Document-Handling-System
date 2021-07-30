@@ -28,6 +28,7 @@ class Portfolio(db.Model):
     def to_json(self):
         portfolio = {
             'id': self.id,
-            'name': self.name
+            'can_approve': self.can_approve,
+            'is_student': self.is_student
         }
         return portfolio

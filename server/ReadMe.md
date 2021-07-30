@@ -64,6 +64,17 @@ You can learn more here: https://flask-migrate.readthedocs.io/
 -- Flask-SQLAlchemy as ORM
 -- This project utilizes sqlite database for local development and an SQL server for production
 
-# API
+# APIs
+**User APIs**
+Login : /user/login
+Sign-Up : /user/register/{user_id}
+Delete User : /user/delete/{user_id}
+Get User by mail    : /user/{email}
+Get User by ID  : /user/{user_id}
+Get All Users : /user/all
 
--- Login "{/users/login"
+**Document APIs**
+Upload document : /document/upload
+Get new documents : /document/new/{user_id}
+Get approved docs : /document/approved/{user_id}
+Get rejected docs : /document/rejected/{user_id}

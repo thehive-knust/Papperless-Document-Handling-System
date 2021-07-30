@@ -10,31 +10,6 @@ from pdhs_app.blueprints.document_routes import get_new_docs
 bp = Blueprint('users', __name__, url_prefix='/users')
 
 
-@bp.route('/hello', methods=['GET'])
-def hello():
-    if request.method == 'GET':
-        return "Hello from /users"
-
-
-@bp.route('/', methods=['GET'])
-def get_all_users():
-    """
-    Return all the users in the user table
-    """
-    if request.method == 'GET':
-        result = []
-        users = []
-        try:
-            result = User.query.all()
-        except:
-            return jsonify({'msg': 'There was an error retrieving the items requested'}), 500
-        for user in result:
-            users.append(user.to_json())
-        if len(users) == 0 or len(result) == 0:
-            return jsonify({'msg': 'Ther are no registered users'}), 404
-        return jsonify({'users': users})
-
-
 @bp.route('/<int:user_id>', methods=['GET'])
 def get_user_by_id(user_id):
     """
@@ -47,7 +22,7 @@ def get_user_by_id(user_id):
     return jsonify(msg="User not found"), 404
 
 
-@bp.route('/<int:email>', methods=['GET'])
+@bp.route('/<String:email>', methods=['GET'])
 def get_user_by_email(email):
     if request.method == 'GET':
         user = User.find_by_email(email)
@@ -102,6 +77,23 @@ def register_user(user_id):
         if User.register_user(user_id, first_name, last_name, email, password, portfolio_id, department_id):
             return jsonify({"message": f"Sucessfully registered {user_id}"})
 
+@bp.route('/', methods=['GET'])
+def get_all_users():
+    """
+    Return all the users in the user table
+    """
+    if request.method == 'GET':
+        result = []
+        users = []
+        try:
+            result = User.query.all()
+        except:
+            return jsonify({'msg': 'There was an error retrieving the items requested'}), 500
+        for user in result:
+            users.append(user.to_json())
+        if len(users) == 0 or len(result) == 0:
+            return jsonify({'msg': 'Ther are no registered users'}), 404
+        return jsonify({'users': users})
 
 @bp.route('delete/<int:user_id>', methods=['DELETE'])
 def delete_user(user_id):
@@ -115,25 +107,4 @@ def delete_user(user_id):
 
     return jsonify(msg="User not found"), 404
 
-# # The profile page section
-# @bp.route('/profile')
-# @user_decorators.requires_login
-# def profile():
-#     # checking if user actually exists
-#     user = User.query.filter_by(user_id=user_id).first()
-#     return jsonify(user)
 
-# @bp.route('/edit_profile/<int: user_id>', methods=['POST'])
-# @user_decorators.requires_login
-# def edit_profile(user_id):
-#     if request.method == 'POST':
-#         user = User.query.filter_by(user_id=user_id).first()
-#         return jsonify({"message":"Done"})
-
-
-# # The Delete User section
-# @bp.route('/delete_user/<int: user_id>')
-# @user_decorators.requires_login
-# def delete_user(user_id):
-#     User.query.filter(User.user_id == user_id).delete()
-#     return jsonify({"message":"User Deleted"})

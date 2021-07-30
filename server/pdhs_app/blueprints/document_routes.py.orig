@@ -23,13 +23,19 @@ def upload():
         # Handling the associated people to approve the document
         recepients = request_data['recepients']
         for recepient in recepients:
+<<<<<<< HEAD
             new_approval = Approval(id=id, document_id=doc_id, recipient_id=id, status=doc_status).save_to_db()
+=======
+            new_approval = Approval(
+                id=id, document_id=doc_id, recipient_id=id, status=None).save_to_db()
+>>>>>>> f48fc4ec1e3e8c833ec0f44b33941a110903d53d
         return jsonify(message="Done!")
 
 
 @bp.route('/new/<int:user_id>', methods=['GET'])
 def new(user_id):
     if request.method == 'GET':
+<<<<<<< HEAD
         inbox_documents = Approval.query.filter_by(recipient_id=user_id, status="Pending")
         return jsonify(inbox_documents)    
 
@@ -56,6 +62,7 @@ def cancel():
         Document.query.filter_by(id=document_id).delete_from_db()
         return {"message": "Done"}   
         
+=======
         return "Hello from /document"
 
 
@@ -101,3 +108,4 @@ def get_document_by_id(document_id):
 @bp.route('/upload', methods=['POST'])
 def upload_document():
     pass
+>>>>>>> f48fc4ec1e3e8c833ec0f44b33941a110903d53d
