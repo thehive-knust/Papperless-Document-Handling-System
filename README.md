@@ -1,8 +1,8 @@
 # Paperless-Document-Handling-System
 
-This is a collaborative project work for the Software Engineering Course 2021.
-The goal of this project is to develop and design an effective software solution for
-handling documents processing in the College of Engineering, KNUST. Specifically,
+This is a collaborative project work for the __Software Engineering Course 2021__.
+The __goal__ of this project is to __develop__ and __design__ an effective software solution for
+handling documents processing in the __College of Engineering, KNUST__. Specifically,
 internal document approvals.
 
 # Contributors - Name (Index No. - Role)
