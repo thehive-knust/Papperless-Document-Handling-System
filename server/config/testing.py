@@ -13,9 +13,9 @@ load_dotenv()
 SECRET_KEY = environ.get('SECRET_KEY')
 JWT_SECRET_KEY = environ.get('JWT_SECRET_KEY')
 JWT_ACCESS_TOKEN_EXPIRES = timedelta(
-    hours=environ.get('JWT_ACCESS_TOKEN_EXPIRES'))
+    hours=int(environ.get('JWT_ACCESS_TOKEN_EXPIRES')))
 JWT_REFRESH_TOKEN_EXPIRES = timedelta(
-    days=environ.get('JWT_REFRESH_TOKEN_EXPIRES'))
+    days=int(environ.get('JWT_REFRESH_TOKEN_EXPIRES')))
 
 # Others
 FLASK_ENV = 'testing'
