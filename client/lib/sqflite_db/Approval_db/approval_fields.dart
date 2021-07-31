@@ -1,8 +1,8 @@
-final String tableUser = 'users';
+final String tableApprovaL = 'users';
 
 class ApprovalFields {
   static final List<String> values = [
-    // Add documents fields
+    // Add users fields
     id, status,
   ];
 

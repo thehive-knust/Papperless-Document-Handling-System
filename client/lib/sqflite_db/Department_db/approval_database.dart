@@ -3,17 +3,17 @@ import 'package:sqflite/sqflite.dart';
 import 'approval_model.dart';
 import 'approval_fields.dart';
 
-class ApprovalDatabase {
-  static final ApprovalDatabase instance = ApprovalDatabase._init();
+class DepartmentDatabase {
+  static final DepartmentDatabase instance = DepartmentDatabase._init();
 
   static Database _database;
 
-  ApprovalDatabase._init();
+  DepartmentDatabase._init();
 
   Future<Database> get database async {
     if (_database != null) return _database;
 
-    _database = await _initDB('approvals.db');
+    _database = await _initDB('department.db');
     return _database;
   }
 
@@ -38,59 +38,62 @@ class ApprovalDatabase {
 
 
     await db.execute('''
-  CREATE TABLE $tableApprovaL ( 
-  ${ApprovalFields.id} $idType, 
-  ${ApprovalFields.status} $textType,
+  CREATE TABLE $tableDepartment ( 
+  ${DepartmentFields.id} $idType, 
+  ${DepartmentFields.name} $textType,
   )
   ''');
   }
 
-  Future<Approval> create(Approval approval) async {
+  Future<Department> create(Department department) async {
     final db = await instance.database;
 
-    final id = await db.insert(tableApprovaL, approval.toMap());
-    return approval.copy(id: id);
+    final id = await db.insert(tableDepartment, department.toMap());
+    return department.copy(id: id);
   }
 
   /// Retrieving data from the database
 
-  Future<Approval> readApproval(int id) async {
+  Future<Department> readDepartment(int id) async {
     final db = await instance.database;
 
     final maps = await db.query(
-      tableApprovaL,
-      columns: ApprovalFields.values,
-      where: '${ApprovalFields.id} = ?',
+      tableDepartment,
+      columns: DepartmentFields.values,
+      where: '${DepartmentFields.id} = ?',
       whereArgs: [id],
     );
 
     if (maps.isNotEmpty) {
-      return Approval.fromMapTo(maps.first);
+      return Department.fromMapTo(maps.first);
     } else {
       throw Exception('ID $id not found');
     }
   }
   /// Reading/Retrieving all data from the database
 
-  Future<List<Approval>> readAllApprovals() async {
+  Future<List<Department>> readAllDepartments() async {
     final db = await instance.database;
 
-    final orderBy = '${ApprovalFields.status} ASC';
-    final result = await db.query(tableApprovaL, orderBy: orderBy);
+    final orderBy = '${DepartmentFields.name} ASC';
+    // final result =
+    //     await db.rawQuery('SELECT * FROM $tableNotes ORDER BY $orderBy');
 
-    return result.map((json) => Approval.fromMapTo(json)).toList();
+    final result = await db.query(tableDepartment, orderBy: orderBy);
+
+    return result.map((json) => Department.fromMapTo(json)).toList();
   }
 
 
  ///  Updating data into Database
-  Future<int> update(Approval approval) async {
+  Future<int> update(Department department) async {
     final db = await instance.database;
 
     return db.update(
-      tableApprovaL,
-      approval.toMap(),
-      where: '${ApprovalFields.id} = ?',
-      whereArgs: [approval.id],
+      tableDepartment,
+      department.toMap(),
+      where: '${DepartmentFields.id} = ?',
+      whereArgs: [department.id],
     );
   }
 
@@ -100,8 +103,8 @@ class ApprovalDatabase {
     final db = await instance.database;
 
     return await db.delete(
-      tableApprovaL,
-      where: '${ApprovalFields.id} = ?',
+      tableDepartment,
+      where: '${DepartmentFields.id} = ?',
       whereArgs: [id],
     );
   }

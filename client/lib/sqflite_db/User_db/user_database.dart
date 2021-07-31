@@ -45,16 +45,16 @@ class UserDatabase {
   ''');
   }
 
-  Future<User> create(User document) async {
+  Future<User> create(User user) async {
     final db = await instance.database;
 
-    final id = await db.insert(tableUser, document.toMap());
-    return document.copy(id: id);
+    final id = await db.insert(tableUser, user.toMap());
+    return user.copy(id: id);
   }
 
   /// Retrieving data from the database
 
-  Future<User> readDocument(int id) async {
+  Future<User> readUser(int id) async {
     final db = await instance.database;
 
     final maps = await db.query(
