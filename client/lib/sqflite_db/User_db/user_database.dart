@@ -1,4 +1,5 @@
 import 'package:path/path.dart';
+import 'package:softdoc/sqflite_db/Department_db/approval_fields.dart';
 import 'package:sqflite/sqflite.dart';
 import 'user_model.dart';
 import 'user_fields.dart';
@@ -33,7 +34,7 @@ class UserDatabase {
 
     final idType = 'INTEGER PRIMARY KEY AUTOINCREMENT';
     final textType = 'TEXT NOT NULL';
-
+    final deptID ='FOREIGN KEY ("${UserFields.deptID}") REFERENCES ${DepartmentFields.id}';
 
 
 
@@ -41,6 +42,7 @@ class UserDatabase {
   CREATE TABLE $tableUser ( 
   ${UserFields.id} $idType, 
   ${UserFields.name} $textType,
+  ${UserFields.deptID} $deptID,
   )
   ''');
   }
