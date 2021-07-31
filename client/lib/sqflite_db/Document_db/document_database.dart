@@ -1,4 +1,5 @@
 import 'package:path/path.dart';
+import 'package:softdoc/sqflite_db/User_db/user_fields.dart';
 import 'package:sqflite/sqflite.dart';
 import 'document.dart';
 import 'document_fields.dart';
@@ -34,7 +35,7 @@ class DocumentDatabase {
     final idType = 'INTEGER PRIMARY KEY AUTOINCREMENT';
     final textType = 'TEXT NOT NULL';
     final dateType = 'DATETIME NOT NULL';
-    //final userID ='FOREIGN KEY ("${DocumentFields.user_id}") REFERENCES  ';
+    final userID ='FOREIGN KEY ("${DocumentFields.userID}") REFERENCES ${UserFields.id}';
 
 
     await db.execute('''
@@ -46,6 +47,7 @@ class DocumentDatabase {
   ${DocumentFields.updatedAt} $dateType,
   ${DocumentFields.status} $textType,
   ${DocumentFields.createdAt} $dateType
+  ${DocumentFields.userID} $userID
   )
   ''');
   }

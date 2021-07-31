@@ -8,6 +8,7 @@ class Document {
   final String status;
   final DateTime createdAt;
   final DateTime updatedAt;
+  final int userID;
 
 
 
@@ -19,6 +20,7 @@ class Document {
     this.updatedAt,
     this.status,
     this.createdAt,
+    this.userID,
   });
 
   Document copy({
@@ -29,6 +31,7 @@ class Document {
     DateTime updatedAt,
     String status,
     DateTime createdAt,
+    int userID
   }) =>
       Document(
         id: id ?? this.id,
@@ -38,6 +41,7 @@ class Document {
         updatedAt: updatedAt ?? this.updatedAt,
         status: status ?? this.status,
         createdAt: createdAt ?? this.createdAt,
+        userID: userID ?? this.userID,
       );
 
 
@@ -52,6 +56,7 @@ class Document {
         status: mapData[DocumentFields.status] as String,
         createdAt:
         DateTime.parse(mapData[DocumentFields.createdAt] as String),
+        userID: mapData[DocumentFields.userID] as int,
       );
 
   /// converts object type values to map  data  type
@@ -63,6 +68,7 @@ class Document {
         DocumentFields.updatedAt: updatedAt.toIso8601String(),
         DocumentFields.status: status,
         DocumentFields.createdAt: createdAt.toIso8601String(),
+        DocumentFields.userID: userID,
       };
 }
 

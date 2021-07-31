@@ -3,7 +3,7 @@ final String tableDocuments = 'documents';
 class DocumentFields {
   static final List<String> values = [
     // Add documents fields
-    id, subject, filepath, description, status, createdAt,  updatedAt,
+    id, subject, filepath, description, status, createdAt,  updatedAt, userID
   ];
 
   static final String id = '_id';
@@ -14,4 +14,5 @@ class DocumentFields {
   static final String status = 'status';
   static final String createdAt = 'createdAt';
   static final String updatedAt = 'updatedAt';
+  static final String userID = 'userID';
 }
