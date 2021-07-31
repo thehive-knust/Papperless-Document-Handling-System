@@ -10,11 +10,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       routes: {
-        HOMEPAGE : (context) => PlatformSelect(),
-        DETAILPAGE: (context) => DetailScreen(),
-        SENDPAGE: (context) => SendDocScreen(),
-        DESKTOPAUTHPAGE: (context) => DesktopAuthScreen(),
-        AUTHPAGE: (context) => AuthScreen(),
+      //   HOMEPAGE : (context) => PlatformSelect(),
+      //   DETAILPAGE: (context) => DetailScreen(),
+      //   SENDPAGE: (context) => SendDocScreen(),
+      //   DESKTOPAUTHPAGE: (context) => DesktopAuthScreen(),
+      //   AUTHPAGE: (context) => AuthScreen(),
       },
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
