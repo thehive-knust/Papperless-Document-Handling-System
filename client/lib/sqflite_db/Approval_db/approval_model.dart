@@ -3,12 +3,16 @@ import 'approval_fields.dart';
 class Approval {
   final int id;
   final String status;
+  final int docID;
+  final int userID;
 
 
 
   const Approval({
     this.id,
     this.status,
+    this.docID,
+    this.userID,
 
   });
 
@@ -19,6 +23,8 @@ class Approval {
       Approval(
         id: id ?? this.id,
         status: status ?? this.status,
+        docID: docID ?? this.docID,
+        userID: userID ?? this.userID,
       );
 
 
@@ -26,6 +32,8 @@ class Approval {
   static Approval fromMapTo(Map<String, Object> mapData) => Approval(
         id: mapData[ApprovalFields.id] as int,
         status: mapData[ApprovalFields.status] as String,
+        docID: mapData[ApprovalFields.docID] as int,
+        userID: mapData[ApprovalFields.userID] as int,
 
       );
 
@@ -33,6 +41,8 @@ class Approval {
   Map<String, Object> toMap() => {
         ApprovalFields.id: id,
         ApprovalFields.status: status,
+        ApprovalFields.docID: docID,
+        ApprovalFields.userID: userID,
       };
 }
 

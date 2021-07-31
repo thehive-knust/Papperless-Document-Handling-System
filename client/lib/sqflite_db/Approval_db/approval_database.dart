@@ -1,4 +1,6 @@
 import 'package:path/path.dart';
+import 'package:softdoc/sqflite_db/Document_db/document_fields.dart';
+import 'package:softdoc/sqflite_db/User_db/user_fields.dart';
 import 'package:sqflite/sqflite.dart';
 import 'approval_model.dart';
 import 'approval_fields.dart';
@@ -7,7 +9,6 @@ class ApprovalDatabase {
   static final ApprovalDatabase instance = ApprovalDatabase._init();
 
   static Database _database;
-
   ApprovalDatabase._init();
 
   Future<Database> get database async {
@@ -33,6 +34,7 @@ class ApprovalDatabase {
 
     final idType = 'INTEGER PRIMARY KEY AUTOINCREMENT';
     final textType = 'TEXT NOT NULL';
+    final foreignKey ='FOREIGN KEY ("${DocumentFields.id}") REFERENCES ${UserFields.id}';
 
 
 
@@ -41,6 +43,8 @@ class ApprovalDatabase {
   CREATE TABLE $tableApprovaL ( 
   ${ApprovalFields.id} $idType, 
   ${ApprovalFields.status} $textType,
+  ${ApprovalFields.docID} $foreignKey, 
+  ${ApprovalFields.userID} $foreignKey, 
   )
   ''');
   }
