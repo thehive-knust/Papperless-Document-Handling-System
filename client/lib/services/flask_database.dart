@@ -1,11 +1,14 @@
 import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
+import 'package:softdoc/models/doc.dart';
+import 'package:softdoc/models/user.dart';
 // import 'package:softdoc/utills.dart';
 
 class FlaskDatabase {
   // -TODO: authentication:-------------------------------
-  static Future<bool> authenticate({String userId, String password}) async {
+  static Future<Map> authenticateWithIdAndPassword(
+      String userId, String password) async {
     Uri url = Uri.parse("https://soft-doc.herokuapp.com/users/login");
     http.Response response;
     try {
@@ -13,8 +16,6 @@ class FlaskDatabase {
         url,
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
-          // "Accept": "application/json",
-          // "Access-Control_Allow_Origin": "*"
         },
         body: jsonEncode(
           <String, String>{'user_id': userId, 'password': password},
@@ -23,61 +24,226 @@ class FlaskDatabase {
 
       if (response.statusCode == 200) {
         print(response.body);
-        return true;
+        return jsonDecode(response.body);
       } else {
         print(response.statusCode);
-        return false;
+        return null;
       }
     } catch (e) {
       print("This is the Error Message => " + e.toString());
+      return null;
     }
   }
 
   // test get request:-----------------------
-  static Future<http.Response> getMessage() async {
-    http.Response response;
+  // static Future<http.Response> getMessage() async {
+  //   http.Response response;
 
-    try {
-      response = await http.get(
-        Uri.parse('http://192.168.138.29:5000/user/'),
-      );
-    } catch (e) {
-      print("=======" + e.toString() + "------------");
-    }
-    if (response.statusCode == 200) {
-      print(response.body);
-      // jsonDecode("source");
-    }
-    return response;
-  }
+  //   try {
+  //     response = await http.get(
+  //       Uri.parse('http://192.168.138.29:5000/user/'),
+  //     );
+  //   } catch (e) {
+  //     print("=======" + e.toString() + "------------");
+  //   }
+  //   if (response.statusCode == 200) {
+  //     print(response.body);
+  //     // jsonDecode("source");
+  //   }
+  //   return response;
+  // }
 
   // test local network:------------------------------------
-  static Future getLocal() async {
+  // static Future getLocal() async {
+  //   http.Response response;
+  //   try {
+  //     response = await http.get(
+  //       Uri.parse('https://soft-doc.herokuapp.com/'),
+  //     );
+  //   } catch (e) {
+  //     debugPrint("---------" + e.toString() + "------------");
+  //   }
+  //   if (response.statusCode == 200) {
+  //     print(response.body);
+  //   } else {
+  //     print(response.statusCode);
+  //   }
+  // }
+
+  //TODO: implement get departments here:
+  static Future<dynamic> getDepartmentsByColId(colId) async {
+    Uri url = Uri.parse("");
     http.Response response;
     try {
-      response = await http.get(
-        Uri.parse('https://soft-doc.herokuapp.com/'),
+      response = await http.post(
+        url,
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode(
+          <String, String>{'colId': colId},
+        ),
       );
+
+      if (response.statusCode == 200) {
+        print(response.body);
+        return jsonDecode(response.body);
+      } else {
+        print(response.statusCode);
+        return null;
+      }
     } catch (e) {
-      debugPrint("---------" + e.toString() + "------------");
-    }
-    if (response.statusCode == 200) {
-      print(response.body);
-    } else {
-      print(response.statusCode);
+      print("This is the Error Message => " + e.toString());
+      return null;
     }
   }
 
-
-  //TODO: implement get departments here:
-
   //TODO: implement get users in deparment here:
+  static Future<dynamic> getUsersInDepartmentByDeptId(deptId) {
+    Uri uri = Uri.parse("");
+    http.Response response;
+    try {
+      http.post(
+        uri,
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode(
+          <String, String>{'deptId': deptId},
+        ),
+      );
 
-  //TODO: implement get send docs here:
+      if (response.statusCode == 200) {
+        print(response.body);
+        return jsonDecode(response.body);
+      } else {
+        print(response.statusCode);
+        return jsonDecode(response.body);
+      }
+    } catch (e) {
+      print("This is the Error Message => " + e.toString());
+      return null;
+    }
+  }
+
+  //TODO: implement get sent docs here:
+  static Future<dynamic> getSentDocsByUserId(userId) {
+    Uri uri = Uri.parse("");
+    http.Response response;
+    try {
+      http.post(
+        uri,
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode(
+          <String, String>{'userId': userId},
+        ),
+      );
+
+      if (response.statusCode == 200) {
+        print(response.body);
+        return jsonDecode(response.body);
+      } else {
+        print(response.statusCode);
+        return null;
+      }
+    } catch (e) {
+      print("This is the Error Message => " + e.toString());
+      return null;
+    }
+  }
+
+  //TODO: implement getDoc by doc id:
+  static Future<dynamic> getDocByDocId(docId) {
+    Uri uri = Uri.parse("");
+    http.Response reponse;
+    try {
+      http.get(uri);
+    } catch (e) {}
+  }
 
   //TODO: implement get received docs here:
+  static Future<dynamic> getReveivedDocsByUserId(userId) {
+    Uri uri = Uri.parse("");
+    http.Response response;
+    try {
+      http.post(
+        uri,
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode(
+          <String, String>{'userId': userId},
+        ),
+      );
 
-  //TODO: implement post document
+      if (response.statusCode == 200) {
+        print(response.body);
+        return jsonDecode(response.body);
+      } else {
+        print(response.statusCode);
+        return null;
+      }
+    } catch (e) {
+      print("This is the Error Message => " + e.toString());
+      return null;
+    }
+  }
+
+  //TODO: implement post document:--------------
+  static Future<dynamic> sendDoc(Doc doc) {
+    Uri uri = Uri.parse("");
+    http.Response response;
+    try {
+      http.post(
+        uri,
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode(
+          <String, dynamic>{'doc': doc},
+        ),
+      );
+
+      if (response.statusCode == 200) {
+        print(response.body);
+        return jsonDecode(response.body);
+      } else {
+        print(response.statusCode);
+        return null;
+      }
+    } catch (e) {
+      print("This is the Error Message => " + e.toString());
+      return null;
+    }
+  }
 
   //TODO: implement approval stuff here:--------
+  static Future<dynamic> sendApproval(userId) {
+    Uri uri = Uri.parse("");
+    http.Response response;
+    try {
+      http.post(
+        uri,
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode(
+          <String, String>{'userId': userId},
+        ),
+      );
+
+      if (response.statusCode == 200) {
+        print(response.body);
+        return jsonDecode(response.body);
+      } else {
+        print(response.statusCode);
+        return null;
+      }
+    } catch (e) {
+      print("This is the Error Message => " + e.toString());
+      return null;
+    }
+  }
 }

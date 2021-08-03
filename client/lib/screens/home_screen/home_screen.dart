@@ -30,6 +30,7 @@ class _HomeScreenState extends State<HomeScreen> {
     _androidNavCubit = BlocProvider.of<AndroidNavCubit>(context);
     _desktopNavCubit = BlocProvider.of<DesktopNavCubit>(context);
     _dataCubit = BlocProvider.of<DataCubit>(context);
+    _dataCubit.getSent();
   }
 
   @override
@@ -145,7 +146,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ...buttons.entries.map(
               (map) {
                 return map.value == '_'
-                    ? SizedBox(width: 50)
+                    ? SizedBox(width: 60)
                     : Expanded(
                         child: InkWell(
                           splashColor: Color(0xFF6D95E6).withOpacity(0.5),

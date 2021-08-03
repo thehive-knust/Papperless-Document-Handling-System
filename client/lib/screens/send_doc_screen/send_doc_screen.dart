@@ -119,7 +119,7 @@ class _SendDocScreenState extends State<SendDocScreen> {
                   ),
                 ),
                 SizedBox(height: 10),
-                // pick pdf from here:------------------------------------------------------------------
+                // pick pdf from here:--------------------------------------------------------
                 InkWell(
                   onTap: pickFile,
                   child: Container(
@@ -135,7 +135,12 @@ class _SendDocScreenState extends State<SendDocScreen> {
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    Icon(Icons.note, size: 30),
+                                    Center(
+                                      child: Image.asset(
+                                        "assets/images/pdf_icon_deactivated.png",
+                                        height: 100,
+                                      ),
+                                    ),
                                     SizedBox(height: 20),
                                     Text("Upload File"),
                                   ],

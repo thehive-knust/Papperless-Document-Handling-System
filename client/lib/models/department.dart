@@ -14,6 +14,14 @@ class Department {
     return users;
   }
 
+  factory Department.fromJson(json) {
+    return Department(
+      id: json['id'],
+      name: json['name'],
+      facultyId: json['faculty_id'] ?? null,
+    );
+  }
+  
   static List<Department> get departments => [
         Department(
           id: "25",

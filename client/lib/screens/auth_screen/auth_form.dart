@@ -1,9 +1,12 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:softdoc/cubit/android_nav_cubit/AndroidNav_cubit.dart';
 import 'package:softdoc/cubit/auth_cubit/auth_cubit.dart';
 import 'package:softdoc/cubit/data_cubit/data_cubit.dart';
 import 'package:softdoc/cubit/desktop_nav_cubit/desktopnav_cubit.dart';
+import 'package:softdoc/models/doc.dart';
 import 'package:softdoc/style.dart';
 import 'package:crypto/crypto.dart';
 import '../../services/flask_database.dart';
@@ -20,13 +23,14 @@ class _AuthFormState extends State<AuthForm> {
   final _formKey = GlobalKey<FormState>();
   String id;
   String testPass;
-  Digest password;
+  String password;
   bool isLoading = false;
 
   AndroidNavCubit _androidNavCubit;
   DesktopNavCubit _desktopNavCubit;
   AuthCubit _authCubit;
   DataCubit _dataCubit;
+  String errorMessage = "";
 
   @override
   void initState() {
@@ -35,9 +39,15 @@ class _AuthFormState extends State<AuthForm> {
     _androidNavCubit = BlocProvider.of<AndroidNavCubit>(context);
     _desktopNavCubit = BlocProvider.of<DesktopNavCubit>(context);
     _dataCubit = BlocProvider.of<DataCubit>(context);
-    _dataCubit.authenticate();
-    // _authCubit = BlocProvider.of<AuthCubit>(context);
-    // _authCubit.verify();
+    // _dataCubit.emit(SentDoc(Doc.sentDocs));
+  }
+
+  void showMessage(String msg) {
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text(msg),
+        behavior: SnackBarBehavior.floating,
+        backgroundColor: primary,
+        margin: EdgeInsets.symmetric(horizontal: 400, vertical: 20)));
   }
 
   @override
@@ -83,8 +93,9 @@ class _AuthFormState extends State<AuthForm> {
           TextFormField(
             onChanged: (pass) {
               // List<int> bytes = utf8.encode(pass);
-              // password = sha512.convert(bytes);
-              testPass = pass;
+              // password = sha512.convert(bytes).toString();
+              // print(password);
+              password = pass;
             },
             validator: (pass) => pass.isEmpty ? "Please enter password" : null,
             obscureText: true,
@@ -116,17 +127,11 @@ class _AuthFormState extends State<AuthForm> {
                 if (_formKey.currentState.validate()) {
                   isLoading = true;
                   setState(() {});
-                  bool verified = await FlaskDatabase.authenticate(
-                      userId: id, password: testPass);
-                  // await FlaskDatabase.getLocal();
-                  // FlaskDatabase.getMessage();
-                  verified
-                      ? _dataCubit.authenticate()
-                      : ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text("invalid user"),
-                          ),
-                        );
+                  bool error = await _dataCubit.authenticate(id, password);
+                  if (error) {
+                    errorMessage = "invalid User";
+                    setState(() {});
+                  }
 
                   isLoading = false;
                   setState(() {});
@@ -136,7 +141,9 @@ class _AuthFormState extends State<AuthForm> {
                   ? CircularProgressIndicator(color: Colors.white)
                   : Text("Verify", style: TextStyle(fontSize: 20)),
             ),
-          )
+          ),
+          SizedBox(height: 20),
+          Text(errorMessage, style: TextStyle(color: Colors.red))
         ],
       ),
     );

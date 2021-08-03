@@ -27,6 +27,7 @@ class _DetailScreenState extends State<DetailScreen> {
     super.initState();
     _androidNavCubit = BlocProvider.of<AndroidNavCubit>(context);
     _desktopNavCubit = BlocProvider.of<DesktopNavCubit>(context);
+    // request for doc details
   }
 
   void confirmWithdrawal(BuildContext context) {

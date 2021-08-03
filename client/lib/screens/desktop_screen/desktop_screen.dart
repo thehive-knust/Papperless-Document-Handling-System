@@ -4,6 +4,7 @@ import 'package:softdoc/cubit/desktop_nav_cubit/desktopnav_cubit.dart';
 import 'package:softdoc/screens/desktop_screen/desktop_auth_screen.dart';
 import 'package:softdoc/screens/detail_screen/detail_screen.dart';
 import 'package:softdoc/screens/home_screen/home_screen.dart';
+import 'package:softdoc/screens/reveived_detail_screen/reveived_detail_screen.dart';
 import 'package:softdoc/screens/send_doc_screen/add_or_edit_recepient.dart';
 import 'package:softdoc/screens/send_doc_screen/select_recepient.dart';
 import 'package:softdoc/screens/send_doc_screen/send_doc_screen.dart';
@@ -77,7 +78,21 @@ class _DesktopScreenState extends State<DesktopScreen> {
                     ],
                   );
                 } else if (state is HomeScreenNav) {
-                  return Center(child: Text("replace with app icon"));
+                  return Center(
+                      child:
+                          Image.asset("assets/images/pdf_icon_activated.png"));
+                } else if (state is ReveivedDetailScreenNav) {
+                  return Row(
+                    children: [
+                      Expanded(
+                        child: ReveivedDetailScreen(
+                          isDesktop: true,
+                          selectedDoc: state.selectedDoc,
+                        ),
+                      ),
+                      Spacer()
+                    ],
+                  );
                 }
                 return CircularProgressIndicator();
               },

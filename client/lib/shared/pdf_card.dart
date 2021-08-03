@@ -12,7 +12,10 @@ Widget pdfCard(name) => Card(
           children: [
             Expanded(
               child: Center(
-                child: Image.asset("assets/images/pdf_icon_activated.png")
+                child: Image.asset(
+                  "assets/images/pdf_icon_activated.png",
+                  height: 100,
+                ),
               ),
             ),
             Container(

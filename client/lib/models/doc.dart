@@ -24,14 +24,15 @@ class Doc {
 
   factory Doc.fromJson(Map<String, dynamic> json) {
     return Doc(
-        id: json['id'],
-        status: json['status'],
-        subject: json['subject'],
-        description: json['description'],
-        senderId: json['senderId'],
-        createdAt: json['createdAt'],
-        updatedAt: json['updatedAt'],
-        file: json['file']);
+      id: json['id'],
+      status: json['status'],
+      subject: json['subject'] ?? null,
+      description: json['description'] ?? null,
+      senderId: json['senderId'],
+      createdAt: json['createdAt'] ?? null,
+      updatedAt: json['updatedAt'] ?? null,
+      file: json['file'] ?? null,
+    );
   }
 
   Map<String, dynamic> toMap() {

@@ -21,7 +21,7 @@ class DocTiles extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      padding: EdgeInsets.symmetric(vertical: 10),
+      padding: EdgeInsets.fromLTRB(0.0, 10, 0.0, 60.0),
       itemCount: docs.length,
       itemBuilder: (context, index) => sectionWidget(
         context,
@@ -68,16 +68,15 @@ class DocTiles extends StatelessWidget {
     return TransitionAnimation(
       delay: index,
       child: GestureDetector(
-        // onTap: () => Navigator.of(context).pushNamed(DETAILPAGE, arguments: doc),
         onTap: () {
           if (isSent) {
             isDesktop
                 ? _desktopNavCubit.navToDetailScreen(doc)
                 : _androidNavCubit.navToDetailScreen(doc);
           } else {
-            // nav to reveived doc screen;
-            print("-------nav to reveived screen active--------");
-            _androidNavCubit.navToReveivedDetailScreen(doc);
+            isDesktop
+                ? _desktopNavCubit.navToReveivedDetailScreen(doc)
+                : _androidNavCubit.navToReveivedDetailScreen(doc);
           }
         },
         child: Padding(
