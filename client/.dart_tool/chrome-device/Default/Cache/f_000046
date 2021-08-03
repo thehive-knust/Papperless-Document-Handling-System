@@ -1,786 +1,332 @@
-define(['dart_sdk', 'packages/provider/src/provider.dart', 'packages/nested/nested.dart', 'packages/flutter/src/widgets/widget_span.dart'], (function load__packages__flutter_bloc__src__multi_bloc_listener_dart(dart_sdk, packages__provider__src__provider$46dart, packages__nested__nested$46dart, packages__flutter__src__widgets__widget_span$46dart) {
+define(['dart_sdk', 'packages/vector_math/vector_math_64.dart', 'packages/flutter/src/painting/basic_types.dart', 'packages/flutter/src/foundation/debug.dart'], (function load__packages__flutter__src__painting__matrix_utils_dart(dart_sdk, packages__vector_math__vector_math_64$46dart, packages__flutter__src__painting__basic_types$46dart, packages__flutter__src__foundation__debug$46dart) {
   'use strict';
   const core = dart_sdk.core;
+  const ui = dart_sdk.ui;
+  const _native_typed_data = dart_sdk._native_typed_data;
   const _internal = dart_sdk._internal;
-  const async = dart_sdk.async;
+  const _interceptors = dart_sdk._interceptors;
   const dart = dart_sdk.dart;
   const dartx = dart_sdk.dartx;
-  const provider = packages__provider__src__provider$46dart.src__provider;
-  const nested = packages__nested__nested$46dart.nested;
-  const framework = packages__flutter__src__widgets__widget_span$46dart.src__widgets__framework;
-  const widget_inspector = packages__flutter__src__widgets__widget_span$46dart.src__widgets__widget_inspector;
-  var multi_bloc_listener = Object.create(dart.library);
-  var bloc_listener = Object.create(dart.library);
-  var bloc_consumer = Object.create(dart.library);
-  var bloc_builder = Object.create(dart.library);
-  var flutter_bloc = Object.create(dart.library);
+  const vector_math_64 = packages__vector_math__vector_math_64$46dart.vector_math_64;
+  const basic_types = packages__flutter__src__painting__basic_types$46dart.src__painting__basic_types;
+  const diagnostics = packages__flutter__src__foundation__debug$46dart.src__foundation__diagnostics;
+  const debug = packages__flutter__src__foundation__debug$46dart.src__foundation__debug;
+  var matrix_utils = Object.create(dart.library);
+  var $_get = dartx._get;
+  var $_set = dartx._set;
+  var $isFinite = dartx.isFinite;
+  var $join = dartx.join;
   dart._checkModuleNullSafetyMode(false);
   var T = {
-    ObjectN: () => (T.ObjectN = dart.constFn(dart.nullable(core.Object)))(),
-    ObjectNToint: () => (T.ObjectNToint = dart.constFn(dart.fnType(core.int, [T.ObjectN()])))(),
-    _LocationL: () => (T._LocationL = dart.constFn(dart.legacy(widget_inspector._Location)))(),
-    VoidTovoid: () => (T.VoidTovoid = dart.constFn(dart.fnType(dart.void, [])))()
+    JSArrayOfString: () => (T.JSArrayOfString = dart.constFn(_interceptors.JSArray$(core.String)))(),
+    StringL: () => (T.StringL = dart.constFn(dart.legacy(core.String)))()
   };
   const CT = Object.create({
     _: () => (C, CT)
   });
   dart.defineLazy(CT, {
     get C0() {
-      return C[0] = dart.fn(core.identityHashCode, T.ObjectNToint());
-    },
-    get C3() {
-      return C[3] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "bloc",
-        [_Location_column]: 7,
-        [_Location_line]: 132,
-        [_Location_file]: null
+      return C[0] = dart.const({
+        __proto__: basic_types.Axis.prototype,
+        [_name]: "Axis.vertical",
+        index: 1
       });
-    },
-    get C4() {
-      return C[4] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "builder",
-        [_Location_column]: 7,
-        [_Location_line]: 133,
-        [_Location_file]: null
-      });
-    },
-    get C5() {
-      return C[5] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "buildWhen",
-        [_Location_column]: 7,
-        [_Location_line]: 134,
-        [_Location_file]: null
-      });
-    },
-    get C2() {
-      return C[2] = dart.constList([C[3] || CT.C3, C[4] || CT.C4, C[5] || CT.C5], T._LocationL());
     },
     get C1() {
       return C[1] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[2] || CT.C2,
-        [_Location_name]: null,
-        [_Location_column]: 12,
-        [_Location_line]: 131,
-        [_Location_file]: "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_bloc-7.0.1/lib/src/bloc_consumer.dart"
+        __proto__: diagnostics._NoDefaultValue.prototype
       });
     },
-    get C8() {
-      return C[8] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "bloc",
-        [_Location_column]: 7,
-        [_Location_line]: 160,
-        [_Location_file]: null
+    get C2() {
+      return C[2] = dart.const({
+        __proto__: diagnostics.DiagnosticLevel.prototype,
+        [_name$]: "DiagnosticLevel.info",
+        index: 3
       });
     },
-    get C9() {
-      return C[9] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "listenWhen",
-        [_Location_column]: 7,
-        [_Location_line]: 161,
-        [_Location_file]: null
-      });
-    },
-    get C10() {
-      return C[10] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "listener",
-        [_Location_column]: 7,
-        [_Location_line]: 162,
-        [_Location_file]: null
-      });
-    },
-    get C11() {
-      return C[11] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 7,
-        [_Location_line]: 163,
-        [_Location_file]: null
-      });
-    },
-    get C7() {
-      return C[7] = dart.constList([C[8] || CT.C8, C[9] || CT.C9, C[10] || CT.C10, C[11] || CT.C11], T._LocationL());
-    },
-    get C6() {
-      return C[6] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[7] || CT.C7,
-        [_Location_name]: null,
-        [_Location_column]: 12,
-        [_Location_line]: 159,
-        [_Location_file]: "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_bloc-7.0.1/lib/src/bloc_builder.dart"
-      });
+    get C3() {
+      return C[3] = dart.constList(["null"], T.StringL());
     }
   }, false);
-  var C = Array(12).fill(void 0);
+  var C = Array(4).fill(void 0);
   var I = [
-    "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_bloc-7.0.1/lib/src/multi_bloc_listener.dart",
-    "package:flutter_bloc/src/multi_bloc_listener.dart",
-    "package:flutter_bloc/src/bloc_listener.dart",
-    "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_bloc-7.0.1/lib/src/bloc_listener.dart",
-    "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_bloc-7.0.1/lib/src/bloc_consumer.dart",
-    "package:flutter_bloc/src/bloc_consumer.dart",
-    "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_bloc-7.0.1/lib/src/bloc_builder.dart",
-    "package:flutter_bloc/src/bloc_builder.dart"
+    "file:///C:/src/flutter/packages/flutter/lib/src/painting/matrix_utils.dart",
+    "package:flutter/src/painting/matrix_utils.dart"
   ];
-  multi_bloc_listener.MultiBlocListener = class MultiBlocListener extends provider.MultiProvider {};
-  (multi_bloc_listener.MultiBlocListener.new = function(opts) {
-    let key = opts && 'key' in opts ? opts.key : null;
-    let listeners = opts && 'listeners' in opts ? opts.listeners : null;
-    if (listeners == null) dart.nullFailed(I[0], 54, 50, "listeners");
-    let child = opts && 'child' in opts ? opts.child : null;
-    if (child == null) dart.nullFailed(I[0], 55, 21, "child");
-    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
-    multi_bloc_listener.MultiBlocListener.__proto__.new.call(this, {key: key, providers: listeners, child: child, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
+  var _name = dart.privateName(basic_types, "_name");
+  matrix_utils.MatrixUtils = class MatrixUtils extends core.Object {
+    static getAsTranslation(transform) {
+      if (transform == null) dart.nullFailed(I[0], 23, 43, "transform");
+      if (!(transform != null)) dart.assertFailed(null, I[0], 24, 12, "transform != null");
+      let values = transform.storage;
+      if (values[$_get](0) === 1.0 && values[$_get](1) === 0.0 && values[$_get](2) === 0.0 && values[$_get](3) === 0.0 && values[$_get](4) === 0.0 && values[$_get](5) === 1.0 && values[$_get](6) === 0.0 && values[$_get](7) === 0.0 && values[$_get](8) === 0.0 && values[$_get](9) === 0.0 && values[$_get](10) === 1.0 && values[$_get](11) === 0.0 && values[$_get](14) === 0.0 && values[$_get](15) === 1.0) {
+        return new ui.Offset.new(values[$_get](12), values[$_get](13));
+      }
+      return null;
+    }
+    static getAsScale(transform) {
+      if (transform == null) dart.nullFailed(I[0], 50, 37, "transform");
+      if (!(transform != null)) dart.assertFailed(null, I[0], 51, 12, "transform != null");
+      let values = transform.storage;
+      if (values[$_get](1) === 0.0 && values[$_get](2) === 0.0 && values[$_get](3) === 0.0 && values[$_get](4) === 0.0 && values[$_get](6) === 0.0 && values[$_get](7) === 0.0 && values[$_get](8) === 0.0 && values[$_get](9) === 0.0 && values[$_get](10) === 1.0 && values[$_get](11) === 0.0 && values[$_get](12) === 0.0 && values[$_get](13) === 0.0 && values[$_get](14) === 0.0 && values[$_get](15) === 1.0 && values[$_get](0) == values[$_get](5)) {
+        return values[$_get](0);
+      }
+      return null;
+    }
+    static matrixEquals(a, b) {
+      if (a == b) return true;
+      if (!(a != null || b != null)) dart.assertFailed(null, I[0], 79, 12, "a != null || b != null");
+      if (a == null) return matrix_utils.MatrixUtils.isIdentity(dart.nullCheck(b));
+      if (b == null) return matrix_utils.MatrixUtils.isIdentity(a);
+      if (!(a != null && b != null)) dart.assertFailed(null, I[0], 84, 12, "a != null && b != null");
+      return a.storage[$_get](0) == b.storage[$_get](0) && a.storage[$_get](1) == b.storage[$_get](1) && a.storage[$_get](2) == b.storage[$_get](2) && a.storage[$_get](3) == b.storage[$_get](3) && a.storage[$_get](4) == b.storage[$_get](4) && a.storage[$_get](5) == b.storage[$_get](5) && a.storage[$_get](6) == b.storage[$_get](6) && a.storage[$_get](7) == b.storage[$_get](7) && a.storage[$_get](8) == b.storage[$_get](8) && a.storage[$_get](9) == b.storage[$_get](9) && a.storage[$_get](10) == b.storage[$_get](10) && a.storage[$_get](11) == b.storage[$_get](11) && a.storage[$_get](12) == b.storage[$_get](12) && a.storage[$_get](13) == b.storage[$_get](13) && a.storage[$_get](14) == b.storage[$_get](14) && a.storage[$_get](15) == b.storage[$_get](15);
+    }
+    static isIdentity(a) {
+      if (a == null) dart.nullFailed(I[0], 104, 34, "a");
+      if (!(a != null)) dart.assertFailed(null, I[0], 105, 12, "a != null");
+      return a.storage[$_get](0) === 1.0 && a.storage[$_get](1) === 0.0 && a.storage[$_get](2) === 0.0 && a.storage[$_get](3) === 0.0 && a.storage[$_get](4) === 0.0 && a.storage[$_get](5) === 1.0 && a.storage[$_get](6) === 0.0 && a.storage[$_get](7) === 0.0 && a.storage[$_get](8) === 0.0 && a.storage[$_get](9) === 0.0 && a.storage[$_get](10) === 1.0 && a.storage[$_get](11) === 0.0 && a.storage[$_get](12) === 0.0 && a.storage[$_get](13) === 0.0 && a.storage[$_get](14) === 0.0 && a.storage[$_get](15) === 1.0;
+    }
+    static transformPoint(transform, point) {
+      if (transform == null) dart.nullFailed(I[0], 135, 40, "transform");
+      if (point == null) dart.nullFailed(I[0], 135, 58, "point");
+      let storage = transform.storage;
+      let x = point.dx;
+      let y = point.dy;
+      let rx = dart.notNull(storage[$_get](0)) * dart.notNull(x) + dart.notNull(storage[$_get](4)) * dart.notNull(y) + dart.notNull(storage[$_get](12));
+      let ry = dart.notNull(storage[$_get](1)) * dart.notNull(x) + dart.notNull(storage[$_get](5)) * dart.notNull(y) + dart.notNull(storage[$_get](13));
+      let rw = dart.notNull(storage[$_get](3)) * dart.notNull(x) + dart.notNull(storage[$_get](7)) * dart.notNull(y) + dart.notNull(storage[$_get](15));
+      if (rw === 1.0) {
+        return new ui.Offset.new(rx, ry);
+      } else {
+        return new ui.Offset.new(rx / rw, ry / rw);
+      }
+    }
+    static _safeTransformRect(transform, rect) {
+      if (transform == null) dart.nullFailed(I[0], 160, 42, "transform");
+      if (rect == null) dart.nullFailed(I[0], 160, 58, "rect");
+      let storage = transform.storage;
+      let isAffine = storage[$_get](3) === 0.0 && storage[$_get](7) === 0.0 && storage[$_get](15) === 1.0;
+      matrix_utils.MatrixUtils._accumulate(storage, rect.left, rect.top, true, isAffine);
+      matrix_utils.MatrixUtils._accumulate(storage, rect.right, rect.top, false, isAffine);
+      matrix_utils.MatrixUtils._accumulate(storage, rect.left, rect.bottom, false, isAffine);
+      matrix_utils.MatrixUtils._accumulate(storage, rect.right, rect.bottom, false, isAffine);
+      return new ui.Rect.fromLTRB(matrix_utils.MatrixUtils._minMax[$_get](0), matrix_utils.MatrixUtils._minMax[$_get](1), matrix_utils.MatrixUtils._minMax[$_get](2), matrix_utils.MatrixUtils._minMax[$_get](3));
+    }
+    static get _minMax() {
+      let t1;
+      if (!dart.test(matrix_utils.MatrixUtils['_#_minMax#isSet'])) {
+        let t0 = _native_typed_data.NativeFloat64List.new(4);
+        if (dart.test(matrix_utils.MatrixUtils['_#_minMax#isSet'])) dart.throw(new _internal.LateError.fieldADI("_minMax"));
+        matrix_utils.MatrixUtils['_#_minMax'] = t0;
+        matrix_utils.MatrixUtils['_#_minMax#isSet'] = true;
+      }
+      t1 = matrix_utils.MatrixUtils['_#_minMax'];
+      return t1;
+    }
+    static _accumulate(m, x, y, first, isAffine) {
+      let t2, t1, t2$, t1$;
+      if (m == null) dart.nullFailed(I[0], 175, 39, "m");
+      if (x == null) dart.nullFailed(I[0], 175, 49, "x");
+      if (y == null) dart.nullFailed(I[0], 175, 59, "y");
+      if (first == null) dart.nullFailed(I[0], 175, 67, "first");
+      if (isAffine == null) dart.nullFailed(I[0], 175, 79, "isAffine");
+      let w = dart.test(isAffine) ? 1.0 : 1.0 / (dart.notNull(m[$_get](3)) * dart.notNull(x) + dart.notNull(m[$_get](7)) * dart.notNull(y) + dart.notNull(m[$_get](15)));
+      let tx = (dart.notNull(m[$_get](0)) * dart.notNull(x) + dart.notNull(m[$_get](4)) * dart.notNull(y) + dart.notNull(m[$_get](12))) * w;
+      let ty = (dart.notNull(m[$_get](1)) * dart.notNull(x) + dart.notNull(m[$_get](5)) * dart.notNull(y) + dart.notNull(m[$_get](13))) * w;
+      if (dart.test(first)) {
+        matrix_utils.MatrixUtils._minMax[$_set](0, (t1 = matrix_utils.MatrixUtils._minMax, t2 = 2, t1[$_set](t2, tx), tx));
+        matrix_utils.MatrixUtils._minMax[$_set](1, (t1$ = matrix_utils.MatrixUtils._minMax, t2$ = 3, t1$[$_set](t2$, ty), ty));
+      } else {
+        if (tx < dart.notNull(matrix_utils.MatrixUtils._minMax[$_get](0))) {
+          matrix_utils.MatrixUtils._minMax[$_set](0, tx);
+        }
+        if (ty < dart.notNull(matrix_utils.MatrixUtils._minMax[$_get](1))) {
+          matrix_utils.MatrixUtils._minMax[$_set](1, ty);
+        }
+        if (tx > dart.notNull(matrix_utils.MatrixUtils._minMax[$_get](2))) {
+          matrix_utils.MatrixUtils._minMax[$_set](2, tx);
+        }
+        if (ty > dart.notNull(matrix_utils.MatrixUtils._minMax[$_get](3))) {
+          matrix_utils.MatrixUtils._minMax[$_set](3, ty);
+        }
+      }
+    }
+    static transformRect(transform, rect) {
+      if (transform == null) dart.nullFailed(I[0], 204, 37, "transform");
+      if (rect == null) dart.nullFailed(I[0], 204, 53, "rect");
+      let storage = transform.storage;
+      let x = rect.left;
+      let y = rect.top;
+      let w = dart.notNull(rect.right) - dart.notNull(x);
+      let h = dart.notNull(rect.bottom) - dart.notNull(y);
+      if (!w[$isFinite] || !h[$isFinite]) {
+        return matrix_utils.MatrixUtils._safeTransformRect(transform, rect);
+      }
+      let wx = dart.notNull(storage[$_get](0)) * w;
+      let hx = dart.notNull(storage[$_get](4)) * h;
+      let rx = dart.notNull(storage[$_get](0)) * dart.notNull(x) + dart.notNull(storage[$_get](4)) * dart.notNull(y) + dart.notNull(storage[$_get](12));
+      let wy = dart.notNull(storage[$_get](1)) * w;
+      let hy = dart.notNull(storage[$_get](5)) * h;
+      let ry = dart.notNull(storage[$_get](1)) * dart.notNull(x) + dart.notNull(storage[$_get](5)) * dart.notNull(y) + dart.notNull(storage[$_get](13));
+      if (storage[$_get](3) === 0.0 && storage[$_get](7) === 0.0 && storage[$_get](15) === 1.0) {
+        let left = rx;
+        let right = rx;
+        if (wx < 0) {
+          left = left + wx;
+        } else {
+          right = right + wx;
+        }
+        if (hx < 0) {
+          left = left + hx;
+        } else {
+          right = right + hx;
+        }
+        let top = ry;
+        let bottom = ry;
+        if (wy < 0) {
+          top = top + wy;
+        } else {
+          bottom = bottom + wy;
+        }
+        if (hy < 0) {
+          top = top + hy;
+        } else {
+          bottom = bottom + hy;
+        }
+        return new ui.Rect.fromLTRB(left, top, right, bottom);
+      } else {
+        let ww = dart.notNull(storage[$_get](3)) * w;
+        let hw = dart.notNull(storage[$_get](7)) * h;
+        let rw = dart.notNull(storage[$_get](3)) * dart.notNull(x) + dart.notNull(storage[$_get](7)) * dart.notNull(y) + dart.notNull(storage[$_get](15));
+        let ulx = rx / rw;
+        let uly = ry / rw;
+        let urx = (rx + wx) / (rw + ww);
+        let ury = (ry + wy) / (rw + ww);
+        let llx = (rx + hx) / (rw + hw);
+        let lly = (ry + hy) / (rw + hw);
+        let lrx = (rx + wx + hx) / (rw + ww + hw);
+        let lry = (ry + wy + hy) / (rw + ww + hw);
+        return new ui.Rect.fromLTRB(matrix_utils.MatrixUtils._min4(ulx, urx, llx, lrx), matrix_utils.MatrixUtils._min4(uly, ury, lly, lry), matrix_utils.MatrixUtils._max4(ulx, urx, llx, lrx), matrix_utils.MatrixUtils._max4(uly, ury, lly, lry));
+      }
+    }
+    static _min4(a, b, c, d) {
+      if (a == null) dart.nullFailed(I[0], 422, 30, "a");
+      if (b == null) dart.nullFailed(I[0], 422, 40, "b");
+      if (c == null) dart.nullFailed(I[0], 422, 50, "c");
+      if (d == null) dart.nullFailed(I[0], 422, 60, "d");
+      let e = dart.notNull(a) < dart.notNull(b) ? a : b;
+      let f = dart.notNull(c) < dart.notNull(d) ? c : d;
+      return dart.notNull(e) < dart.notNull(f) ? e : f;
+    }
+    static _max4(a, b, c, d) {
+      if (a == null) dart.nullFailed(I[0], 427, 30, "a");
+      if (b == null) dart.nullFailed(I[0], 427, 40, "b");
+      if (c == null) dart.nullFailed(I[0], 427, 50, "c");
+      if (d == null) dart.nullFailed(I[0], 427, 60, "d");
+      let e = dart.notNull(a) > dart.notNull(b) ? a : b;
+      let f = dart.notNull(c) > dart.notNull(d) ? c : d;
+      return dart.notNull(e) > dart.notNull(f) ? e : f;
+    }
+    static inverseTransformRect(transform, rect) {
+      let t1;
+      if (transform == null) dart.nullFailed(I[0], 439, 44, "transform");
+      if (rect == null) dart.nullFailed(I[0], 439, 60, "rect");
+      if (!(rect != null)) dart.assertFailed(null, I[0], 440, 12, "rect != null");
+      if (dart.test(matrix_utils.MatrixUtils.isIdentity(transform))) return rect;
+      transform = (t1 = vector_math_64.Matrix4.copy(transform), (() => {
+        t1.invert();
+        return t1;
+      })());
+      return matrix_utils.MatrixUtils.transformRect(transform, rect);
+    }
+    static createCylindricalProjectionTransform(opts) {
+      let t1;
+      let radius = opts && 'radius' in opts ? opts.radius : null;
+      if (radius == null) dart.nullFailed(I[0], 484, 21, "radius");
+      let angle = opts && 'angle' in opts ? opts.angle : null;
+      if (angle == null) dart.nullFailed(I[0], 485, 21, "angle");
+      let perspective = opts && 'perspective' in opts ? opts.perspective : 0.001;
+      if (perspective == null) dart.nullFailed(I[0], 486, 12, "perspective");
+      let orientation = opts && 'orientation' in opts ? opts.orientation : C[0] || CT.C0;
+      if (orientation == null) dart.nullFailed(I[0], 487, 10, "orientation");
+      if (!(radius != null)) dart.assertFailed(null, I[0], 489, 12, "radius != null");
+      if (!(angle != null)) dart.assertFailed(null, I[0], 490, 12, "angle != null");
+      if (!(dart.notNull(perspective) >= 0 && dart.notNull(perspective) <= 1.0)) dart.assertFailed(null, I[0], 491, 12, "perspective >= 0 && perspective <= 1.0");
+      if (!(orientation != null)) dart.assertFailed(null, I[0], 492, 12, "orientation != null");
+      let result = (t1 = vector_math_64.Matrix4.identity(), (() => {
+        t1.setEntry(3, 2, -dart.notNull(perspective));
+        t1.setEntry(2, 3, -dart.notNull(radius));
+        t1.setEntry(3, 3, dart.notNull(perspective) * dart.notNull(radius) + 1.0);
+        return t1;
+      })());
+      result = vector_math_64.Matrix4.as(result['*']((orientation == basic_types.Axis.horizontal ? vector_math_64.Matrix4.rotationY(angle) : vector_math_64.Matrix4.rotationX(angle))['*'](vector_math_64.Matrix4.translationValues(0.0, 0.0, radius))));
+      return result;
+    }
+    static forceToPoint(offset) {
+      let t1;
+      if (offset == null) dart.nullFailed(I[0], 529, 38, "offset");
+      t1 = vector_math_64.Matrix4.identity();
+      return (() => {
+        t1.setRow(0, vector_math_64.Vector4.new(0.0, 0.0, 0.0, offset.dx));
+        t1.setRow(1, vector_math_64.Vector4.new(0.0, 0.0, 0.0, offset.dy));
+        return t1;
+      })();
+    }
+  };
+  (matrix_utils.MatrixUtils.__ = function() {
     ;
-  }).prototype = multi_bloc_listener.MultiBlocListener.prototype;
-  dart.addTypeTests(multi_bloc_listener.MultiBlocListener);
-  dart.addTypeCaches(multi_bloc_listener.MultiBlocListener);
-  dart.setLibraryUri(multi_bloc_listener.MultiBlocListener, I[1]);
-  bloc_listener.BlocListenerSingleChildWidget = class BlocListenerSingleChildWidget extends nested.SingleChildWidget {};
-  bloc_listener.BlocListenerSingleChildWidget[dart.mixinOn] = SingleChildWidget => class BlocListenerSingleChildWidget extends SingleChildWidget {};
-  dart.addTypeTests(bloc_listener.BlocListenerSingleChildWidget);
-  dart.addTypeCaches(bloc_listener.BlocListenerSingleChildWidget);
-  bloc_listener.BlocListenerSingleChildWidget[dart.implements] = () => [nested.SingleChildWidget];
-  dart.setLibraryUri(bloc_listener.BlocListenerSingleChildWidget, I[2]);
-  var child$ = dart.privateName(bloc_listener, "BlocListenerBase.child");
-  var bloc$ = dart.privateName(bloc_listener, "BlocListenerBase.bloc");
-  var listener$ = dart.privateName(bloc_listener, "BlocListenerBase.listener");
-  var listenWhen$ = dart.privateName(bloc_listener, "BlocListenerBase.listenWhen");
-  const _is_BlocListenerBase_default = Symbol('_is_BlocListenerBase_default');
-  bloc_listener.BlocListenerBase$ = dart.generic((B, S) => {
-    var _BlocListenerBaseStateOfB$S = () => (_BlocListenerBaseStateOfB$S = dart.constFn(bloc_listener._BlocListenerBaseState$(B, S)))();
-    class BlocListenerBase extends nested.SingleChildStatefulWidget {
-      get child() {
-        return this[child$];
+  }).prototype = matrix_utils.MatrixUtils.prototype;
+  dart.addTypeTests(matrix_utils.MatrixUtils);
+  dart.addTypeCaches(matrix_utils.MatrixUtils);
+  dart.setLibraryUri(matrix_utils.MatrixUtils, I[1]);
+  dart.defineLazy(matrix_utils.MatrixUtils, {
+    /*matrix_utils.MatrixUtils['_#_minMax']*/get ['_#_minMax']() {
+      return null;
+    },
+    set ['_#_minMax'](_) {},
+    /*matrix_utils.MatrixUtils['_#_minMax#isSet']*/get ['_#_minMax#isSet']() {
+      return false;
+    },
+    set ['_#_minMax#isSet'](_) {}
+  }, false);
+  var _name$ = dart.privateName(diagnostics, "_name");
+  matrix_utils.TransformProperty = class TransformProperty extends diagnostics.DiagnosticsProperty$(vector_math_64.Matrix4) {
+    valueToString(opts) {
+      let parentConfiguration = opts && 'parentConfiguration' in opts ? opts.parentConfiguration : null;
+      if (parentConfiguration != null && !dart.test(parentConfiguration.lineBreakProperties)) {
+        let values = T.JSArrayOfString().of([dart.str(debug.debugFormatDouble(dart.nullCheck(this.value).entry(0, 0))) + "," + dart.str(debug.debugFormatDouble(dart.nullCheck(this.value).entry(0, 1))) + "," + dart.str(debug.debugFormatDouble(dart.nullCheck(this.value).entry(0, 2))) + "," + dart.str(debug.debugFormatDouble(dart.nullCheck(this.value).entry(0, 3))), dart.str(debug.debugFormatDouble(dart.nullCheck(this.value).entry(1, 0))) + "," + dart.str(debug.debugFormatDouble(dart.nullCheck(this.value).entry(1, 1))) + "," + dart.str(debug.debugFormatDouble(dart.nullCheck(this.value).entry(1, 2))) + "," + dart.str(debug.debugFormatDouble(dart.nullCheck(this.value).entry(1, 3))), dart.str(debug.debugFormatDouble(dart.nullCheck(this.value).entry(2, 0))) + "," + dart.str(debug.debugFormatDouble(dart.nullCheck(this.value).entry(2, 1))) + "," + dart.str(debug.debugFormatDouble(dart.nullCheck(this.value).entry(2, 2))) + "," + dart.str(debug.debugFormatDouble(dart.nullCheck(this.value).entry(2, 3))), dart.str(debug.debugFormatDouble(dart.nullCheck(this.value).entry(3, 0))) + "," + dart.str(debug.debugFormatDouble(dart.nullCheck(this.value).entry(3, 1))) + "," + dart.str(debug.debugFormatDouble(dart.nullCheck(this.value).entry(3, 2))) + "," + dart.str(debug.debugFormatDouble(dart.nullCheck(this.value).entry(3, 3)))]);
+        return "[" + dart.str(values[$join]("; ")) + "]";
       }
-      set child(value) {
-        super.child = value;
-      }
-      get bloc() {
-        return this[bloc$];
-      }
-      set bloc(value) {
-        super.bloc = value;
-      }
-      get listener() {
-        return this[listener$];
-      }
-      set listener(value) {
-        super.listener = value;
-      }
-      get listenWhen() {
-        return this[listenWhen$];
-      }
-      set listenWhen(value) {
-        super.listenWhen = value;
-      }
-      createState() {
-        return new (_BlocListenerBaseStateOfB$S()).new();
-      }
+      return matrix_utils.debugDescribeTransform(this.value)[$join]("\n");
     }
-    (BlocListenerBase.new = function(opts) {
-      let key = opts && 'key' in opts ? opts.key : null;
-      let listener = opts && 'listener' in opts ? opts.listener : null;
-      if (listener == null) dart.nullFailed(I[3], 113, 19, "listener");
-      let bloc = opts && 'bloc' in opts ? opts.bloc : null;
-      let child = opts && 'child' in opts ? opts.child : null;
-      let listenWhen = opts && 'listenWhen' in opts ? opts.listenWhen : null;
-      let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
-      this[listener$] = listener;
-      this[bloc$] = bloc;
-      this[child$] = child;
-      this[listenWhen$] = listenWhen;
-      BlocListenerBase.__proto__.new.call(this, {key: key, child: child, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
-      ;
-    }).prototype = BlocListenerBase.prototype;
-    dart.addTypeTests(BlocListenerBase);
-    BlocListenerBase.prototype[_is_BlocListenerBase_default] = true;
-    dart.addTypeCaches(BlocListenerBase);
-    dart.setMethodSignature(BlocListenerBase, () => ({
-      __proto__: dart.getMethods(BlocListenerBase.__proto__),
-      createState: dart.fnType(nested.SingleChildState$(bloc_listener.BlocListenerBase$(B, S)), [])
-    }));
-    dart.setLibraryUri(BlocListenerBase, I[2]);
-    dart.setFieldSignature(BlocListenerBase, () => ({
-      __proto__: dart.getFields(BlocListenerBase.__proto__),
-      child: dart.finalFieldType(dart.nullable(framework.Widget)),
-      bloc: dart.finalFieldType(dart.nullable(B)),
-      listener: dart.finalFieldType(dart.fnType(dart.void, [framework.BuildContext, S])),
-      listenWhen: dart.finalFieldType(dart.nullable(dart.fnType(core.bool, [S, S])))
-    }));
-    return BlocListenerBase;
-  });
-  bloc_listener.BlocListenerBase = bloc_listener.BlocListenerBase$();
-  dart.addTypeTests(bloc_listener.BlocListenerBase, _is_BlocListenerBase_default);
-  const _is_BlocListener_default = Symbol('_is_BlocListener_default');
-  bloc_listener.BlocListener$ = dart.generic((B, S) => {
-    const BlocListenerBase_BlocListenerSingleChildWidget$36 = class BlocListenerBase_BlocListenerSingleChildWidget extends bloc_listener.BlocListenerBase$(B, S) {};
-    (BlocListenerBase_BlocListenerSingleChildWidget$36.new = function(opts) {
-      BlocListenerBase_BlocListenerSingleChildWidget$36.__proto__.new.call(this, opts);
-    }).prototype = BlocListenerBase_BlocListenerSingleChildWidget$36.prototype;
-    dart.applyMixin(BlocListenerBase_BlocListenerSingleChildWidget$36, bloc_listener.BlocListenerSingleChildWidget);
-    class BlocListener extends BlocListenerBase_BlocListenerSingleChildWidget$36 {}
-    (BlocListener.new = function(opts) {
-      let key = opts && 'key' in opts ? opts.key : null;
-      let listener = opts && 'listener' in opts ? opts.listener : null;
-      if (listener == null) dart.nullFailed(I[3], 88, 36, "listener");
-      let bloc = opts && 'bloc' in opts ? opts.bloc : null;
-      let listenWhen = opts && 'listenWhen' in opts ? opts.listenWhen : null;
-      let child = opts && 'child' in opts ? opts.child : null;
-      let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
-      BlocListener.__proto__.new.call(this, {key: key, child: child, listener: listener, bloc: bloc, listenWhen: listenWhen, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
-      ;
-    }).prototype = BlocListener.prototype;
-    dart.addTypeTests(BlocListener);
-    BlocListener.prototype[_is_BlocListener_default] = true;
-    dart.addTypeCaches(BlocListener);
-    dart.setLibraryUri(BlocListener, I[2]);
-    return BlocListener;
-  });
-  bloc_listener.BlocListener = bloc_listener.BlocListener$();
-  dart.addTypeTests(bloc_listener.BlocListener, _is_BlocListener_default);
-  var _subscription = dart.privateName(bloc_listener, "_subscription");
-  var ___BlocListenerBaseState__bloc = dart.privateName(bloc_listener, "_#_BlocListenerBaseState#_bloc");
-  var ___BlocListenerBaseState__bloc_isSet = dart.privateName(bloc_listener, "_#_BlocListenerBaseState#_bloc#isSet");
-  var ___BlocListenerBaseState__previousState = dart.privateName(bloc_listener, "_#_BlocListenerBaseState#_previousState");
-  var ___BlocListenerBaseState__previousState_isSet = dart.privateName(bloc_listener, "_#_BlocListenerBaseState#_previousState#isSet");
-  var _bloc = dart.privateName(bloc_listener, "_bloc");
-  var _previousState = dart.privateName(bloc_listener, "_previousState");
-  var _subscribe = dart.privateName(bloc_listener, "_subscribe");
-  var _unsubscribe = dart.privateName(bloc_listener, "_unsubscribe");
-  const _is__BlocListenerBaseState_default = Symbol('_is__BlocListenerBaseState_default');
-  bloc_listener._BlocListenerBaseState$ = dart.generic((B, S) => {
-    var BlocListenerBaseOfB$S = () => (BlocListenerBaseOfB$S = dart.constFn(bloc_listener.BlocListenerBase$(B, S)))();
-    var SAndSTobool = () => (SAndSTobool = dart.constFn(dart.fnType(core.bool, [S, S])))();
-    var SAndSToNbool = () => (SAndSToNbool = dart.constFn(dart.nullable(SAndSTobool())))();
-    var BuildContextAndSTovoid = () => (BuildContextAndSTovoid = dart.constFn(dart.fnType(dart.void, [framework.BuildContext, S])))();
-    var STovoid = () => (STovoid = dart.constFn(dart.fnType(dart.void, [S])))();
-    class _BlocListenerBaseState extends nested.SingleChildState$(bloc_listener.BlocListenerBase$(B, S)) {
-      get [_bloc]() {
-        let t0;
-        return dart.test(this[___BlocListenerBaseState__bloc_isSet]) ? (t0 = this[___BlocListenerBaseState__bloc], t0) : dart.throw(new _internal.LateError.fieldNI("_bloc"));
-      }
-      set [_bloc](t0) {
-        if (t0 == null) dart.nullFailed(I[3], 143, 10, "null");
-        this[___BlocListenerBaseState__bloc_isSet] = true;
-        this[___BlocListenerBaseState__bloc] = t0;
-      }
-      get [_previousState]() {
-        let t1;
-        return dart.test(this[___BlocListenerBaseState__previousState_isSet]) ? (t1 = this[___BlocListenerBaseState__previousState], t1) : dart.throw(new _internal.LateError.fieldNI("_previousState"));
-      }
-      set [_previousState](t1) {
-        this[___BlocListenerBaseState__previousState_isSet] = true;
-        this[___BlocListenerBaseState__previousState] = t1;
-      }
-      initState() {
-        let t2;
-        super.initState();
-        this[_bloc] = (t2 = this.widget.bloc, t2 == null ? provider['ReadContext|read'](B, this.context) : t2);
-        this[_previousState] = this[_bloc].state;
-        this[_subscribe]();
-      }
-      didUpdateWidget(oldWidget) {
-        let t2, t2$;
-        BlocListenerBaseOfB$S().as(oldWidget);
-        if (oldWidget == null) dart.nullFailed(I[3], 155, 47, "oldWidget");
-        super.didUpdateWidget(oldWidget);
-        let oldBloc = (t2 = oldWidget.bloc, t2 == null ? provider['ReadContext|read'](B, this.context) : t2);
-        let currentBloc = (t2$ = this.widget.bloc, t2$ == null ? oldBloc : t2$);
-        if (!dart.equals(oldBloc, currentBloc)) {
-          if (this[_subscription] != null) {
-            this[_unsubscribe]();
-            this[_bloc] = currentBloc;
-            this[_previousState] = this[_bloc].state;
-          }
-          this[_subscribe]();
-        }
-      }
-      didChangeDependencies() {
-        let t2;
-        super.didChangeDependencies();
-        let bloc = (t2 = this.widget.bloc, t2 == null ? provider['ReadContext|read'](B, this.context) : t2);
-        if (!dart.equals(this[_bloc], bloc)) {
-          if (this[_subscription] != null) {
-            this[_unsubscribe]();
-            this[_bloc] = bloc;
-            this[_previousState] = this[_bloc].state;
-          }
-          this[_subscribe]();
-        }
-      }
-      buildWithChild(context, child) {
-        if (context == null) dart.nullFailed(I[3], 184, 38, "context");
-        if (this.widget.bloc == null) provider['SelectContext|select'](B, core.int, context, C[0] || CT.C0);
-        return dart.nullCheck(child);
-      }
-      dispose() {
-        this[_unsubscribe]();
-        super.dispose();
-      }
-      [_subscribe]() {
-        this[_subscription] = this[_bloc].stream.listen(dart.fn(state => {
-          let t2, t2$, t4, t3, t2$0;
-          if (dart.test((t2$ = (t2 = SAndSToNbool().as(this.widget.listenWhen), t2 == null ? null : t2(this[_previousState], state)), t2$ == null ? true : t2$))) {
-            t2$0 = this.widget;
-            t3 = this.context;
-            t4 = state;
-            BuildContextAndSTovoid().as(t2$0.listener)(t3, t4);
-          }
-          this[_previousState] = state;
-        }, STovoid()));
-      }
-      [_unsubscribe]() {
-        let t2;
-        t2 = this[_subscription];
-        t2 == null ? null : t2.cancel();
-        this[_subscription] = null;
-      }
-    }
-    (_BlocListenerBaseState.new = function() {
-      this[_subscription] = null;
-      this[___BlocListenerBaseState__bloc] = null;
-      this[___BlocListenerBaseState__bloc_isSet] = false;
-      this[___BlocListenerBaseState__previousState] = null;
-      this[___BlocListenerBaseState__previousState_isSet] = false;
-      _BlocListenerBaseState.__proto__.new.call(this);
-      ;
-    }).prototype = _BlocListenerBaseState.prototype;
-    dart.addTypeTests(_BlocListenerBaseState);
-    _BlocListenerBaseState.prototype[_is__BlocListenerBaseState_default] = true;
-    dart.addTypeCaches(_BlocListenerBaseState);
-    dart.setMethodSignature(_BlocListenerBaseState, () => ({
-      __proto__: dart.getMethods(_BlocListenerBaseState.__proto__),
-      buildWithChild: dart.fnType(framework.Widget, [framework.BuildContext, dart.nullable(framework.Widget)]),
-      [_subscribe]: dart.fnType(dart.void, []),
-      [_unsubscribe]: dart.fnType(dart.void, [])
-    }));
-    dart.setGetterSignature(_BlocListenerBaseState, () => ({
-      __proto__: dart.getGetters(_BlocListenerBaseState.__proto__),
-      [_bloc]: B,
-      [_previousState]: S
-    }));
-    dart.setSetterSignature(_BlocListenerBaseState, () => ({
-      __proto__: dart.getSetters(_BlocListenerBaseState.__proto__),
-      [_bloc]: B,
-      [_previousState]: S
-    }));
-    dart.setLibraryUri(_BlocListenerBaseState, I[2]);
-    dart.setFieldSignature(_BlocListenerBaseState, () => ({
-      __proto__: dart.getFields(_BlocListenerBaseState.__proto__),
-      [_subscription]: dart.fieldType(dart.nullable(async.StreamSubscription$(S))),
-      [___BlocListenerBaseState__bloc]: dart.fieldType(dart.nullable(B)),
-      [___BlocListenerBaseState__bloc_isSet]: dart.fieldType(core.bool),
-      [___BlocListenerBaseState__previousState]: dart.fieldType(dart.nullable(S)),
-      [___BlocListenerBaseState__previousState_isSet]: dart.fieldType(core.bool)
-    }));
-    return _BlocListenerBaseState;
-  });
-  bloc_listener._BlocListenerBaseState = bloc_listener._BlocListenerBaseState$();
-  dart.addTypeTests(bloc_listener._BlocListenerBaseState, _is__BlocListenerBaseState_default);
-  var bloc$0 = dart.privateName(bloc_consumer, "BlocConsumer.bloc");
-  var builder$ = dart.privateName(bloc_consumer, "BlocConsumer.builder");
-  var listener$0 = dart.privateName(bloc_consumer, "BlocConsumer.listener");
-  var buildWhen$ = dart.privateName(bloc_consumer, "BlocConsumer.buildWhen");
-  var listenWhen$0 = dart.privateName(bloc_consumer, "BlocConsumer.listenWhen");
-  const _is_BlocConsumer_default = Symbol('_is_BlocConsumer_default');
-  bloc_consumer.BlocConsumer$ = dart.generic((B, S) => {
-    var _BlocConsumerStateOfB$S = () => (_BlocConsumerStateOfB$S = dart.constFn(bloc_consumer._BlocConsumerState$(B, S)))();
-    class BlocConsumer extends framework.StatefulWidget {
-      get bloc() {
-        return this[bloc$0];
-      }
-      set bloc(value) {
-        super.bloc = value;
-      }
-      get builder() {
-        return this[builder$];
-      }
-      set builder(value) {
-        super.builder = value;
-      }
-      get listener() {
-        return this[listener$0];
-      }
-      set listener(value) {
-        super.listener = value;
-      }
-      get buildWhen() {
-        return this[buildWhen$];
-      }
-      set buildWhen(value) {
-        super.buildWhen = value;
-      }
-      get listenWhen() {
-        return this[listenWhen$0];
-      }
-      set listenWhen(value) {
-        super.listenWhen = value;
-      }
-      createState() {
-        return new (_BlocConsumerStateOfB$S()).new();
-      }
-    }
-    (BlocConsumer.new = function(opts) {
-      let key = opts && 'key' in opts ? opts.key : null;
-      let builder = opts && 'builder' in opts ? opts.builder : null;
-      if (builder == null) dart.nullFailed(I[4], 67, 19, "builder");
-      let listener = opts && 'listener' in opts ? opts.listener : null;
-      if (listener == null) dart.nullFailed(I[4], 68, 19, "listener");
-      let bloc = opts && 'bloc' in opts ? opts.bloc : null;
-      let buildWhen = opts && 'buildWhen' in opts ? opts.buildWhen : null;
-      let listenWhen = opts && 'listenWhen' in opts ? opts.listenWhen : null;
-      let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
-      this[builder$] = builder;
-      this[listener$0] = listener;
-      this[bloc$0] = bloc;
-      this[buildWhen$] = buildWhen;
-      this[listenWhen$0] = listenWhen;
-      BlocConsumer.__proto__.new.call(this, {key: key, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
-      ;
-    }).prototype = BlocConsumer.prototype;
-    dart.addTypeTests(BlocConsumer);
-    BlocConsumer.prototype[_is_BlocConsumer_default] = true;
-    dart.addTypeCaches(BlocConsumer);
-    dart.setMethodSignature(BlocConsumer, () => ({
-      __proto__: dart.getMethods(BlocConsumer.__proto__),
-      createState: dart.fnType(framework.State$(bloc_consumer.BlocConsumer$(B, S)), [])
-    }));
-    dart.setLibraryUri(BlocConsumer, I[5]);
-    dart.setFieldSignature(BlocConsumer, () => ({
-      __proto__: dart.getFields(BlocConsumer.__proto__),
-      bloc: dart.finalFieldType(dart.nullable(B)),
-      builder: dart.finalFieldType(dart.fnType(framework.Widget, [framework.BuildContext, S])),
-      listener: dart.finalFieldType(dart.fnType(dart.void, [framework.BuildContext, S])),
-      buildWhen: dart.finalFieldType(dart.nullable(dart.fnType(core.bool, [S, S]))),
-      listenWhen: dart.finalFieldType(dart.nullable(dart.fnType(core.bool, [S, S])))
-    }));
-    return BlocConsumer;
-  });
-  bloc_consumer.BlocConsumer = bloc_consumer.BlocConsumer$();
-  dart.addTypeTests(bloc_consumer.BlocConsumer, _is_BlocConsumer_default);
-  var ___BlocConsumerState__bloc = dart.privateName(bloc_consumer, "_#_BlocConsumerState#_bloc");
-  var ___BlocConsumerState__bloc_isSet = dart.privateName(bloc_consumer, "_#_BlocConsumerState#_bloc#isSet");
-  var _bloc$ = dart.privateName(bloc_consumer, "_bloc");
-  var _Location_parameterLocations = dart.privateName(widget_inspector, "_Location.parameterLocations");
-  var _Location_name = dart.privateName(widget_inspector, "_Location.name");
-  var _Location_column = dart.privateName(widget_inspector, "_Location.column");
-  var _Location_line = dart.privateName(widget_inspector, "_Location.line");
-  var _Location_file = dart.privateName(widget_inspector, "_Location.file");
-  const _is__BlocConsumerState_default = Symbol('_is__BlocConsumerState_default');
-  bloc_consumer._BlocConsumerState$ = dart.generic((B, S) => {
-    var BlocConsumerOfB$S = () => (BlocConsumerOfB$S = dart.constFn(bloc_consumer.BlocConsumer$(B, S)))();
-    var BlocBuilderOfB$S = () => (BlocBuilderOfB$S = dart.constFn(bloc_builder.BlocBuilder$(B, S)))();
-    var BuildContextAndSToWidget = () => (BuildContextAndSToWidget = dart.constFn(dart.fnType(framework.Widget, [framework.BuildContext, S])))();
-    var SAndSTobool = () => (SAndSTobool = dart.constFn(dart.fnType(core.bool, [S, S])))();
-    var SAndSToNbool = () => (SAndSToNbool = dart.constFn(dart.nullable(SAndSTobool())))();
-    var BuildContextAndSTovoid = () => (BuildContextAndSTovoid = dart.constFn(dart.fnType(dart.void, [framework.BuildContext, S])))();
-    class _BlocConsumerState extends framework.State$(bloc_consumer.BlocConsumer$(B, S)) {
-      get [_bloc$]() {
-        let t2;
-        return dart.test(this[___BlocConsumerState__bloc_isSet]) ? (t2 = this[___BlocConsumerState__bloc], t2) : dart.throw(new _internal.LateError.fieldNI("_bloc"));
-      }
-      set [_bloc$](t2) {
-        if (t2 == null) dart.nullFailed(I[4], 105, 10, "null");
-        this[___BlocConsumerState__bloc_isSet] = true;
-        this[___BlocConsumerState__bloc] = t2;
-      }
-      initState() {
-        let t3;
-        super.initState();
-        this[_bloc$] = (t3 = this.widget.bloc, t3 == null ? provider['ReadContext|read'](B, this.context) : t3);
-      }
-      didUpdateWidget(oldWidget) {
-        let t3, t3$;
-        BlocConsumerOfB$S().as(oldWidget);
-        if (oldWidget == null) dart.nullFailed(I[4], 114, 43, "oldWidget");
-        super.didUpdateWidget(oldWidget);
-        let oldBloc = (t3 = oldWidget.bloc, t3 == null ? provider['ReadContext|read'](B, this.context) : t3);
-        let currentBloc = (t3$ = this.widget.bloc, t3$ == null ? oldBloc : t3$);
-        if (!dart.equals(oldBloc, currentBloc)) this[_bloc$] = currentBloc;
-      }
-      didChangeDependencies() {
-        let t3;
-        super.didChangeDependencies();
-        let bloc = (t3 = this.widget.bloc, t3 == null ? provider['ReadContext|read'](B, this.context) : t3);
-        if (!dart.equals(this[_bloc$], bloc)) this[_bloc$] = bloc;
-      }
-      build(context) {
-        if (context == null) dart.nullFailed(I[4], 129, 29, "context");
-        if (this.widget.bloc == null) provider['SelectContext|select'](B, core.int, context, C[0] || CT.C0);
-        return new (BlocBuilderOfB$S()).new({bloc: this[_bloc$], builder: BuildContextAndSToWidget().as(this.widget.builder), buildWhen: dart.fn((previous, current) => {
-            let t3, t3$, t5, t4, t3$0, t3$1, t3$2;
-            if (dart.test((t3$ = (t3 = SAndSToNbool().as(this.widget.listenWhen), t3 == null ? null : t3(previous, current)), t3$ == null ? true : t3$))) {
-              t3$0 = this.widget;
-              t4 = context;
-              t5 = current;
-              BuildContextAndSTovoid().as(t3$0.listener)(t4, t5);
-            }
-            t3$2 = (t3$1 = SAndSToNbool().as(this.widget.buildWhen), t3$1 == null ? null : t3$1(previous, current));
-            return t3$2 == null ? true : t3$2;
-          }, SAndSTobool()), $creationLocationd_0dea112b090073317d4: C[1] || CT.C1});
-      }
-    }
-    (_BlocConsumerState.new = function() {
-      this[___BlocConsumerState__bloc] = null;
-      this[___BlocConsumerState__bloc_isSet] = false;
-      _BlocConsumerState.__proto__.new.call(this);
-      ;
-    }).prototype = _BlocConsumerState.prototype;
-    dart.addTypeTests(_BlocConsumerState);
-    _BlocConsumerState.prototype[_is__BlocConsumerState_default] = true;
-    dart.addTypeCaches(_BlocConsumerState);
-    dart.setMethodSignature(_BlocConsumerState, () => ({
-      __proto__: dart.getMethods(_BlocConsumerState.__proto__),
-      build: dart.fnType(framework.Widget, [framework.BuildContext])
-    }));
-    dart.setGetterSignature(_BlocConsumerState, () => ({
-      __proto__: dart.getGetters(_BlocConsumerState.__proto__),
-      [_bloc$]: B
-    }));
-    dart.setSetterSignature(_BlocConsumerState, () => ({
-      __proto__: dart.getSetters(_BlocConsumerState.__proto__),
-      [_bloc$]: B
-    }));
-    dart.setLibraryUri(_BlocConsumerState, I[5]);
-    dart.setFieldSignature(_BlocConsumerState, () => ({
-      __proto__: dart.getFields(_BlocConsumerState.__proto__),
-      [___BlocConsumerState__bloc]: dart.fieldType(dart.nullable(B)),
-      [___BlocConsumerState__bloc_isSet]: dart.fieldType(core.bool)
-    }));
-    return _BlocConsumerState;
-  });
-  bloc_consumer._BlocConsumerState = bloc_consumer._BlocConsumerState$();
-  dart.addTypeTests(bloc_consumer._BlocConsumerState, _is__BlocConsumerState_default);
-  var builder$0 = dart.privateName(bloc_builder, "BlocBuilder.builder");
-  var bloc$1 = dart.privateName(bloc_builder, "BlocBuilderBase.bloc");
-  var buildWhen$0 = dart.privateName(bloc_builder, "BlocBuilderBase.buildWhen");
-  const _is_BlocBuilderBase_default = Symbol('_is_BlocBuilderBase_default');
-  bloc_builder.BlocBuilderBase$ = dart.generic((B, S) => {
-    var _BlocBuilderBaseStateOfB$S = () => (_BlocBuilderBaseStateOfB$S = dart.constFn(bloc_builder._BlocBuilderBaseState$(B, S)))();
-    class BlocBuilderBase extends framework.StatefulWidget {
-      get bloc() {
-        return this[bloc$1];
-      }
-      set bloc(value) {
-        super.bloc = value;
-      }
-      get buildWhen() {
-        return this[buildWhen$0];
-      }
-      set buildWhen(value) {
-        super.buildWhen = value;
-      }
-      createState() {
-        return new (_BlocBuilderBaseStateOfB$S()).new();
-      }
-    }
-    (BlocBuilderBase.new = function(opts) {
-      let key = opts && 'key' in opts ? opts.key : null;
-      let bloc = opts && 'bloc' in opts ? opts.bloc : null;
-      let buildWhen = opts && 'buildWhen' in opts ? opts.buildWhen : null;
-      let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
-      this[bloc$1] = bloc;
-      this[buildWhen$0] = buildWhen;
-      BlocBuilderBase.__proto__.new.call(this, {key: key, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
-      ;
-    }).prototype = BlocBuilderBase.prototype;
-    dart.addTypeTests(BlocBuilderBase);
-    BlocBuilderBase.prototype[_is_BlocBuilderBase_default] = true;
-    dart.addTypeCaches(BlocBuilderBase);
-    dart.setMethodSignature(BlocBuilderBase, () => ({
-      __proto__: dart.getMethods(BlocBuilderBase.__proto__),
-      createState: dart.fnType(framework.State$(bloc_builder.BlocBuilderBase$(B, S)), [])
-    }));
-    dart.setLibraryUri(BlocBuilderBase, I[7]);
-    dart.setFieldSignature(BlocBuilderBase, () => ({
-      __proto__: dart.getFields(BlocBuilderBase.__proto__),
-      bloc: dart.finalFieldType(dart.nullable(B)),
-      buildWhen: dart.finalFieldType(dart.nullable(dart.fnType(core.bool, [S, S])))
-    }));
-    return BlocBuilderBase;
-  });
-  bloc_builder.BlocBuilderBase = bloc_builder.BlocBuilderBase$();
-  dart.addTypeTests(bloc_builder.BlocBuilderBase, _is_BlocBuilderBase_default);
-  const _is_BlocBuilder_default = Symbol('_is_BlocBuilder_default');
-  bloc_builder.BlocBuilder$ = dart.generic((B, S) => {
-    class BlocBuilder extends bloc_builder.BlocBuilderBase$(B, S) {
-      get builder() {
-        return this[builder$0];
-      }
-      set builder(value) {
-        super.builder = value;
-      }
-      build(context, state) {
-        let t4, t3;
-        if (context == null) dart.nullFailed(I[6], 91, 29, "context");
-        S.as(state);
-        t3 = context;
-        t4 = state;
-        return this.builder(t3, t4);
-      }
-    }
-    (BlocBuilder.new = function(opts) {
-      let key = opts && 'key' in opts ? opts.key : null;
-      let builder = opts && 'builder' in opts ? opts.builder : null;
-      if (builder == null) dart.nullFailed(I[6], 79, 19, "builder");
-      let bloc = opts && 'bloc' in opts ? opts.bloc : null;
-      let buildWhen = opts && 'buildWhen' in opts ? opts.buildWhen : null;
-      let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
-      this[builder$0] = builder;
-      BlocBuilder.__proto__.new.call(this, {key: key, bloc: bloc, buildWhen: buildWhen, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
-      ;
-    }).prototype = BlocBuilder.prototype;
-    dart.addTypeTests(BlocBuilder);
-    BlocBuilder.prototype[_is_BlocBuilder_default] = true;
-    dart.addTypeCaches(BlocBuilder);
-    dart.setMethodSignature(BlocBuilder, () => ({
-      __proto__: dart.getMethods(BlocBuilder.__proto__),
-      build: dart.fnType(framework.Widget, [framework.BuildContext, dart.nullable(core.Object)])
-    }));
-    dart.setLibraryUri(BlocBuilder, I[7]);
-    dart.setFieldSignature(BlocBuilder, () => ({
-      __proto__: dart.getFields(BlocBuilder.__proto__),
-      builder: dart.finalFieldType(dart.fnType(framework.Widget, [framework.BuildContext, S]))
-    }));
-    return BlocBuilder;
-  });
-  bloc_builder.BlocBuilder = bloc_builder.BlocBuilder$();
-  dart.addTypeTests(bloc_builder.BlocBuilder, _is_BlocBuilder_default);
-  var ___BlocBuilderBaseState__bloc = dart.privateName(bloc_builder, "_#_BlocBuilderBaseState#_bloc");
-  var ___BlocBuilderBaseState__bloc_isSet = dart.privateName(bloc_builder, "_#_BlocBuilderBaseState#_bloc#isSet");
-  var ___BlocBuilderBaseState__state = dart.privateName(bloc_builder, "_#_BlocBuilderBaseState#_state");
-  var ___BlocBuilderBaseState__state_isSet = dart.privateName(bloc_builder, "_#_BlocBuilderBaseState#_state#isSet");
-  var _bloc$0 = dart.privateName(bloc_builder, "_bloc");
-  var _state = dart.privateName(bloc_builder, "_state");
-  const _is__BlocBuilderBaseState_default = Symbol('_is__BlocBuilderBaseState_default');
-  bloc_builder._BlocBuilderBaseState$ = dart.generic((B, S) => {
-    var BlocBuilderBaseOfB$S = () => (BlocBuilderBaseOfB$S = dart.constFn(bloc_builder.BlocBuilderBase$(B, S)))();
-    var BlocListenerOfB$S = () => (BlocListenerOfB$S = dart.constFn(bloc_listener.BlocListener$(B, S)))();
-    var SAndSTobool = () => (SAndSTobool = dart.constFn(dart.fnType(core.bool, [S, S])))();
-    var SAndSToNbool = () => (SAndSToNbool = dart.constFn(dart.nullable(SAndSTobool())))();
-    var BuildContextAndSTovoid = () => (BuildContextAndSTovoid = dart.constFn(dart.fnType(dart.void, [framework.BuildContext, S])))();
-    class _BlocBuilderBaseState extends framework.State$(bloc_builder.BlocBuilderBase$(B, S)) {
-      get [_bloc$0]() {
-        let t3;
-        return dart.test(this[___BlocBuilderBaseState__bloc_isSet]) ? (t3 = this[___BlocBuilderBaseState__bloc], t3) : dart.throw(new _internal.LateError.fieldNI("_bloc"));
-      }
-      set [_bloc$0](t3) {
-        if (t3 == null) dart.nullFailed(I[6], 125, 10, "null");
-        this[___BlocBuilderBaseState__bloc_isSet] = true;
-        this[___BlocBuilderBaseState__bloc] = t3;
-      }
-      get [_state]() {
-        let t4;
-        return dart.test(this[___BlocBuilderBaseState__state_isSet]) ? (t4 = this[___BlocBuilderBaseState__state], t4) : dart.throw(new _internal.LateError.fieldNI("_state"));
-      }
-      set [_state](t4) {
-        this[___BlocBuilderBaseState__state_isSet] = true;
-        this[___BlocBuilderBaseState__state] = t4;
-      }
-      initState() {
-        let t5;
-        super.initState();
-        this[_bloc$0] = (t5 = this.widget.bloc, t5 == null ? provider['ReadContext|read'](B, this.context) : t5);
-        this[_state] = this[_bloc$0].state;
-      }
-      didUpdateWidget(oldWidget) {
-        let t5, t5$;
-        BlocBuilderBaseOfB$S().as(oldWidget);
-        if (oldWidget == null) dart.nullFailed(I[6], 136, 46, "oldWidget");
-        super.didUpdateWidget(oldWidget);
-        let oldBloc = (t5 = oldWidget.bloc, t5 == null ? provider['ReadContext|read'](B, this.context) : t5);
-        let currentBloc = (t5$ = this.widget.bloc, t5$ == null ? oldBloc : t5$);
-        if (!dart.equals(oldBloc, currentBloc)) {
-          this[_bloc$0] = currentBloc;
-          this[_state] = this[_bloc$0].state;
-        }
-      }
-      didChangeDependencies() {
-        let t5;
-        super.didChangeDependencies();
-        let bloc = (t5 = this.widget.bloc, t5 == null ? provider['ReadContext|read'](B, this.context) : t5);
-        if (!dart.equals(this[_bloc$0], bloc)) {
-          this[_bloc$0] = bloc;
-          this[_state] = this[_bloc$0].state;
-        }
-      }
-      build(context) {
-        if (context == null) dart.nullFailed(I[6], 157, 29, "context");
-        if (this.widget.bloc == null) provider['SelectContext|select'](B, core.int, context, C[0] || CT.C0);
-        return new (BlocListenerOfB$S()).new({bloc: this[_bloc$0], listenWhen: SAndSToNbool().as(this.widget.buildWhen), listener: dart.fn((context, state) => {
-            if (context == null) dart.nullFailed(I[6], 162, 18, "context");
-            return this.setState(dart.fn(() => this[_state] = state, T.VoidTovoid()));
-          }, BuildContextAndSTovoid()), child: this.widget.build(context, this[_state]), $creationLocationd_0dea112b090073317d4: C[6] || CT.C6});
-      }
-    }
-    (_BlocBuilderBaseState.new = function() {
-      this[___BlocBuilderBaseState__bloc] = null;
-      this[___BlocBuilderBaseState__bloc_isSet] = false;
-      this[___BlocBuilderBaseState__state] = null;
-      this[___BlocBuilderBaseState__state_isSet] = false;
-      _BlocBuilderBaseState.__proto__.new.call(this);
-      ;
-    }).prototype = _BlocBuilderBaseState.prototype;
-    dart.addTypeTests(_BlocBuilderBaseState);
-    _BlocBuilderBaseState.prototype[_is__BlocBuilderBaseState_default] = true;
-    dart.addTypeCaches(_BlocBuilderBaseState);
-    dart.setMethodSignature(_BlocBuilderBaseState, () => ({
-      __proto__: dart.getMethods(_BlocBuilderBaseState.__proto__),
-      build: dart.fnType(framework.Widget, [framework.BuildContext])
-    }));
-    dart.setGetterSignature(_BlocBuilderBaseState, () => ({
-      __proto__: dart.getGetters(_BlocBuilderBaseState.__proto__),
-      [_bloc$0]: B,
-      [_state]: S
-    }));
-    dart.setSetterSignature(_BlocBuilderBaseState, () => ({
-      __proto__: dart.getSetters(_BlocBuilderBaseState.__proto__),
-      [_bloc$0]: B,
-      [_state]: S
-    }));
-    dart.setLibraryUri(_BlocBuilderBaseState, I[7]);
-    dart.setFieldSignature(_BlocBuilderBaseState, () => ({
-      __proto__: dart.getFields(_BlocBuilderBaseState.__proto__),
-      [___BlocBuilderBaseState__bloc]: dart.fieldType(dart.nullable(B)),
-      [___BlocBuilderBaseState__bloc_isSet]: dart.fieldType(core.bool),
-      [___BlocBuilderBaseState__state]: dart.fieldType(dart.nullable(S)),
-      [___BlocBuilderBaseState__state_isSet]: dart.fieldType(core.bool)
-    }));
-    return _BlocBuilderBaseState;
-  });
-  bloc_builder._BlocBuilderBaseState = bloc_builder._BlocBuilderBaseState$();
-  dart.addTypeTests(bloc_builder._BlocBuilderBaseState, _is__BlocBuilderBaseState_default);
-  dart.trackLibraries("packages/flutter_bloc/src/multi_bloc_listener.dart", {
-    "package:flutter_bloc/src/multi_bloc_listener.dart": multi_bloc_listener,
-    "package:flutter_bloc/src/bloc_listener.dart": bloc_listener,
-    "package:flutter_bloc/src/bloc_consumer.dart": bloc_consumer,
-    "package:flutter_bloc/src/bloc_builder.dart": bloc_builder,
-    "package:flutter_bloc/flutter_bloc.dart": flutter_bloc
+  };
+  (matrix_utils.TransformProperty.new = function(name, value, opts) {
+    if (name == null) dart.nullFailed(I[0], 557, 12, "name");
+    let showName = opts && 'showName' in opts ? opts.showName : true;
+    if (showName == null) dart.nullFailed(I[0], 559, 10, "showName");
+    let defaultValue = opts && 'defaultValue' in opts ? opts.defaultValue : C[1] || CT.C1;
+    let level = opts && 'level' in opts ? opts.level : C[2] || CT.C2;
+    if (level == null) dart.nullFailed(I[0], 561, 21, "level");
+    if (!(showName != null)) dart.assertFailed(null, I[0], 562, 15, "showName != null");
+    if (!(level != null)) dart.assertFailed(null, I[0], 563, 15, "level != null");
+    matrix_utils.TransformProperty.__proto__.new.call(this, name, value, {showName: showName, defaultValue: defaultValue, level: level});
+    ;
+  }).prototype = matrix_utils.TransformProperty.prototype;
+  dart.addTypeTests(matrix_utils.TransformProperty);
+  dart.addTypeCaches(matrix_utils.TransformProperty);
+  dart.setLibraryUri(matrix_utils.TransformProperty, I[1]);
+  matrix_utils.debugDescribeTransform = function debugDescribeTransform(transform) {
+    if (transform == null) return C[3] || CT.C3;
+    return T.JSArrayOfString().of(["[0] " + dart.str(debug.debugFormatDouble(transform.entry(0, 0))) + "," + dart.str(debug.debugFormatDouble(transform.entry(0, 1))) + "," + dart.str(debug.debugFormatDouble(transform.entry(0, 2))) + "," + dart.str(debug.debugFormatDouble(transform.entry(0, 3))), "[1] " + dart.str(debug.debugFormatDouble(transform.entry(1, 0))) + "," + dart.str(debug.debugFormatDouble(transform.entry(1, 1))) + "," + dart.str(debug.debugFormatDouble(transform.entry(1, 2))) + "," + dart.str(debug.debugFormatDouble(transform.entry(1, 3))), "[2] " + dart.str(debug.debugFormatDouble(transform.entry(2, 0))) + "," + dart.str(debug.debugFormatDouble(transform.entry(2, 1))) + "," + dart.str(debug.debugFormatDouble(transform.entry(2, 2))) + "," + dart.str(debug.debugFormatDouble(transform.entry(2, 3))), "[3] " + dart.str(debug.debugFormatDouble(transform.entry(3, 0))) + "," + dart.str(debug.debugFormatDouble(transform.entry(3, 1))) + "," + dart.str(debug.debugFormatDouble(transform.entry(3, 2))) + "," + dart.str(debug.debugFormatDouble(transform.entry(3, 3)))]);
+  };
+  dart.trackLibraries("packages/flutter/src/painting/matrix_utils.dart", {
+    "package:flutter/src/painting/matrix_utils.dart": matrix_utils
   }, {
-  }, '{"version":3,"sourceRoot":"","sources":["multi_bloc_listener.dart","bloc_listener.dart","bloc_consumer.dart","bloc_builder.dart"],"names":[],"mappings":"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","file":"../../../../../../../../../D:/packages/flutter_bloc/src/multi_bloc_listener.dart.lib.js"}');
+  }, '{"version":3,"sourceRoot":"","sources":["matrix_utils.dart"],"names":[],"mappings":"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","file":"../../../../../../../../D:/packages/flutter/src/painting/matrix_utils.dart.lib.js"}');
   // Exports:
   return {
-    src__multi_bloc_listener: multi_bloc_listener,
-    src__bloc_listener: bloc_listener,
-    src__bloc_consumer: bloc_consumer,
-    src__bloc_builder: bloc_builder,
-    flutter_bloc: flutter_bloc
+    src__painting__matrix_utils: matrix_utils
   };
 }));
 
-//# sourceMappingURL=multi_bloc_listener.dart.lib.js.map
+//# sourceMappingURL=matrix_utils.dart.lib.js.map

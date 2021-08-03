@@ -1,1737 +1,869 @@
-define(['dart_sdk', 'packages/flutter/src/widgets/widget_span.dart', 'packages/softdoc/models/doc.dart', 'packages/flutter_bloc/src/bloc_provider.dart', 'packages/softdoc/cubit/android_nav_cubit/AndroidNav_cubit.dart', 'packages/softdoc/screens/send_doc_screen/send_doc_screen.dart', 'packages/flutter/src/material/button_bar.dart', 'packages/flutter/src/material/icon_button.dart', 'packages/flutter/src/painting/strut_style.dart', 'packages/flutter/src/material/colors.dart', 'packages/flutter/src/widgets/will_pop_scope.dart', 'packages/flutter/src/widgets/safe_area.dart', 'packages/flutter/src/painting/edge_insets.dart', 'packages/flutter/src/widgets/scroll_view.dart', 'packages/flutter/src/painting/alignment.dart', 'packages/softdoc/screens/detail_screen/approval_progress.dart', 'packages/flutter/src/painting/box_decoration.dart', 'packages/flutter/src/painting/border_radius.dart', 'packages/softdoc/style.dart', 'packages/flutter/src/rendering/flex.dart', 'packages/intl/src/intl/date_format.dart', 'packages/flutter/src/material/card.dart', 'packages/flutter/src/painting/rounded_rectangle_border.dart', 'packages/flutter/src/widgets/icon.dart', 'packages/flutter/src/material/icons.dart', 'packages/softdoc/shared/docTypeIcon.dart'], (function load__packages__softdoc__screens__detail_screen__detail_screen_dart(dart_sdk, packages__flutter__src__widgets__widget_span$46dart, packages__softdoc__models__doc$46dart, packages__flutter_bloc__src__bloc_provider$46dart, packages__softdoc__cubit__android_nav_cubit__AndroidNav_cubit$46dart, packages__softdoc__screens__send_doc_screen__send_doc_screen$46dart, packages__flutter__src__material__button_bar$46dart, packages__flutter__src__material__icon_button$46dart, packages__flutter__src__painting__strut_style$46dart, packages__flutter__src__material__colors$46dart, packages__flutter__src__widgets__will_pop_scope$46dart, packages__flutter__src__widgets__safe_area$46dart, packages__flutter__src__painting__edge_insets$46dart, packages__flutter__src__widgets__scroll_view$46dart, packages__flutter__src__painting__alignment$46dart, packages__softdoc__screens__detail_screen__approval_progress$46dart, packages__flutter__src__painting__box_decoration$46dart, packages__flutter__src__painting__border_radius$46dart, packages__softdoc__style$46dart, packages__flutter__src__rendering__flex$46dart, packages__intl__src__intl__date_format$46dart, packages__flutter__src__material__card$46dart, packages__flutter__src__painting__rounded_rectangle_border$46dart, packages__flutter__src__widgets__icon$46dart, packages__flutter__src__material__icons$46dart, packages__softdoc__shared__docTypeIcon$46dart) {
+define(['dart_sdk', 'packages/flutter/src/widgets/widget_span.dart', 'packages/flutter/src/services/mouse_cursor.dart', 'packages/flutter/src/material/material_state.dart', 'packages/flutter/src/material/icon_button.dart', 'packages/flutter/src/painting/borders.dart', 'packages/flutter/src/painting/rounded_rectangle_border.dart', 'packages/flutter/src/painting/border_radius.dart', 'packages/flutter/src/material/toggleable.dart', 'packages/flutter/src/animation/listener_helpers.dart', 'packages/flutter/src/foundation/change_notifier.dart', 'packages/flutter/src/rendering/custom_paint.dart'], (function load__packages__flutter__src__material__checkbox_dart(dart_sdk, packages__flutter__src__widgets__widget_span$46dart, packages__flutter__src__services__mouse_cursor$46dart, packages__flutter__src__material__material_state$46dart, packages__flutter__src__material__icon_button$46dart, packages__flutter__src__painting__borders$46dart, packages__flutter__src__painting__rounded_rectangle_border$46dart, packages__flutter__src__painting__border_radius$46dart, packages__flutter__src__material__toggleable$46dart, packages__flutter__src__animation__listener_helpers$46dart, packages__flutter__src__foundation__change_notifier$46dart, packages__flutter__src__rendering__custom_paint$46dart) {
   'use strict';
   const core = dart_sdk.core;
-  const _interceptors = dart_sdk._interceptors;
-  const async = dart_sdk.async;
   const ui = dart_sdk.ui;
+  const _internal = dart_sdk._internal;
+  const _js_helper = dart_sdk._js_helper;
   const dart = dart_sdk.dart;
   const dartx = dart_sdk.dartx;
   const framework = packages__flutter__src__widgets__widget_span$46dart.src__widgets__framework;
-  const text = packages__flutter__src__widgets__widget_span$46dart.src__widgets__text;
-  const widget_inspector = packages__flutter__src__widgets__widget_span$46dart.src__widgets__widget_inspector;
-  const navigator = packages__flutter__src__widgets__widget_span$46dart.src__widgets__navigator;
-  const container = packages__flutter__src__widgets__widget_span$46dart.src__widgets__container;
+  const focus_manager = packages__flutter__src__widgets__widget_span$46dart.src__widgets__focus_manager;
   const basic = packages__flutter__src__widgets__widget_span$46dart.src__widgets__basic;
-  const doc = packages__softdoc__models__doc$46dart.models__doc;
-  const bloc_provider = packages__flutter_bloc__src__bloc_provider$46dart.src__bloc_provider;
-  const AndroidNav_cubit = packages__softdoc__cubit__android_nav_cubit__AndroidNav_cubit$46dart.cubit__android_nav_cubit__AndroidNav_cubit;
-  const desktopnav_cubit = packages__softdoc__screens__send_doc_screen__send_doc_screen$46dart.cubit__desktop_nav_cubit__desktopnav_cubit;
-  const dialog = packages__flutter__src__material__button_bar$46dart.src__material__dialog;
-  const text_button = packages__flutter__src__material__icon_button$46dart.src__material__text_button;
-  const scaffold = packages__flutter__src__material__icon_button$46dart.src__material__scaffold;
-  const floating_action_button = packages__flutter__src__material__icon_button$46dart.src__material__floating_action_button;
-  const floating_action_button_location = packages__flutter__src__material__icon_button$46dart.src__material__floating_action_button_location;
-  const text_style = packages__flutter__src__painting__strut_style$46dart.src__painting__text_style;
-  const colors = packages__flutter__src__material__colors$46dart.src__material__colors;
-  const will_pop_scope = packages__flutter__src__widgets__will_pop_scope$46dart.src__widgets__will_pop_scope;
-  const safe_area = packages__flutter__src__widgets__safe_area$46dart.src__widgets__safe_area;
-  const edge_insets = packages__flutter__src__painting__edge_insets$46dart.src__painting__edge_insets;
-  const scroll_view = packages__flutter__src__widgets__scroll_view$46dart.src__widgets__scroll_view;
-  const alignment = packages__flutter__src__painting__alignment$46dart.src__painting__alignment;
-  const approval_progress = packages__softdoc__screens__detail_screen__approval_progress$46dart.screens__detail_screen__approval_progress;
-  const box_decoration = packages__flutter__src__painting__box_decoration$46dart.src__painting__box_decoration;
-  const border_radius = packages__flutter__src__painting__border_radius$46dart.src__painting__border_radius;
-  const style = packages__softdoc__style$46dart.style;
-  const flex = packages__flutter__src__rendering__flex$46dart.src__rendering__flex;
-  const date_format = packages__intl__src__intl__date_format$46dart.src__intl__date_format;
-  const card = packages__flutter__src__material__card$46dart.src__material__card;
+  const widget_inspector = packages__flutter__src__widgets__widget_span$46dart.src__widgets__widget_inspector;
+  const ticker_provider = packages__flutter__src__widgets__widget_span$46dart.src__widgets__ticker_provider;
+  const mouse_cursor = packages__flutter__src__services__mouse_cursor$46dart.src__services__mouse_cursor;
+  const material_state = packages__flutter__src__material__material_state$46dart.src__material__material_state;
+  const theme_data = packages__flutter__src__material__icon_button$46dart.src__material__theme_data;
+  const theme = packages__flutter__src__material__icon_button$46dart.src__material__theme;
+  const debug = packages__flutter__src__material__icon_button$46dart.src__material__debug;
+  const borders = packages__flutter__src__painting__borders$46dart.src__painting__borders;
   const rounded_rectangle_border = packages__flutter__src__painting__rounded_rectangle_border$46dart.src__painting__rounded_rectangle_border;
-  const icon = packages__flutter__src__widgets__icon$46dart.src__widgets__icon;
-  const icons = packages__flutter__src__material__icons$46dart.src__material__icons;
-  const docTypeIcon = packages__softdoc__shared__docTypeIcon$46dart.shared__docTypeIcon;
-  var detail_screen = Object.create(dart.library);
-  var $addAll = dartx.addAll;
-  var $add = dartx.add;
+  const border_radius = packages__flutter__src__painting__border_radius$46dart.src__painting__border_radius;
+  const toggleable = packages__flutter__src__material__toggleable$46dart.src__material__toggleable;
+  const animation = packages__flutter__src__animation__listener_helpers$46dart.src__animation__animation;
+  const change_notifier = packages__flutter__src__foundation__change_notifier$46dart.src__foundation__change_notifier;
+  const custom_paint = packages__flutter__src__rendering__custom_paint$46dart.src__rendering__custom_paint;
+  var checkbox = Object.create(dart.library);
+  var $abs = dartx.abs;
+  var $noSuchMethod = dartx.noSuchMethod;
   dart._checkModuleNullSafetyMode(false);
   var T = {
-    AndroidNavCubitL: () => (T.AndroidNavCubitL = dart.constFn(dart.legacy(AndroidNav_cubit.AndroidNavCubit)))(),
-    DesktopNavCubitL: () => (T.DesktopNavCubitL = dart.constFn(dart.legacy(desktopnav_cubit.DesktopNavCubit)))(),
+    ColorN: () => (T.ColorN = dart.constFn(dart.nullable(ui.Color)))(),
+    SetOfMaterialState: () => (T.SetOfMaterialState = dart.constFn(core.Set$(material_state.MaterialState)))(),
+    SetOfMaterialStateToColorN: () => (T.SetOfMaterialStateToColorN = dart.constFn(dart.fnType(T.ColorN(), [T.SetOfMaterialState()])))(),
+    SetOfMaterialStateToColor: () => (T.SetOfMaterialStateToColor = dart.constFn(dart.fnType(ui.Color, [T.SetOfMaterialState()])))(),
+    MouseCursorN: () => (T.MouseCursorN = dart.constFn(dart.nullable(mouse_cursor.MouseCursor)))(),
+    SetOfMaterialStateToMouseCursor: () => (T.SetOfMaterialStateToMouseCursor = dart.constFn(dart.fnType(mouse_cursor.MouseCursor, [T.SetOfMaterialState()])))(),
     _LocationL: () => (T._LocationL = dart.constFn(dart.legacy(widget_inspector._Location)))(),
-    VoidToNull: () => (T.VoidToNull = dart.constFn(dart.fnType(core.Null, [])))(),
-    ObjectL: () => (T.ObjectL = dart.constFn(dart.legacy(core.Object)))(),
-    VoidTovoid: () => (T.VoidTovoid = dart.constFn(dart.fnType(dart.void, [])))(),
-    WidgetL: () => (T.WidgetL = dart.constFn(dart.legacy(framework.Widget)))(),
-    JSArrayOfWidgetL: () => (T.JSArrayOfWidgetL = dart.constFn(_interceptors.JSArray$(T.WidgetL())))(),
-    AlertDialogL: () => (T.AlertDialogL = dart.constFn(dart.legacy(dialog.AlertDialog)))(),
-    BuildContextL: () => (T.BuildContextL = dart.constFn(dart.legacy(framework.BuildContext)))(),
-    BuildContextLToAlertDialogL: () => (T.BuildContextLToAlertDialogL = dart.constFn(dart.fnType(T.AlertDialogL(), [T.BuildContextL()])))(),
-    boolL: () => (T.boolL = dart.constFn(dart.legacy(core.bool)))(),
-    FutureOfboolL: () => (T.FutureOfboolL = dart.constFn(async.Future$(T.boolL())))(),
-    FutureLOfboolL: () => (T.FutureLOfboolL = dart.constFn(dart.legacy(T.FutureOfboolL())))(),
-    VoidToFutureLOfboolL: () => (T.VoidToFutureLOfboolL = dart.constFn(dart.fnType(T.FutureLOfboolL(), [])))()
+    ListenableN: () => (T.ListenableN = dart.constFn(dart.nullable(change_notifier.Listenable)))()
   };
   const CT = Object.create({
     _: () => (C, CT)
   });
   dart.defineLazy(CT, {
-    get C2() {
-      return C[2] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "data",
-        [_Location_column]: 21,
-        [_Location_line]: 36,
-        [_Location_file]: null
+    get C0() {
+      return C[0] = dart.const({
+        __proto__: ui.Size.prototype,
+        [OffsetBase__dy]: 48,
+        [OffsetBase__dx]: 48
       });
     },
     get C1() {
-      return C[1] = dart.constList([C[2] || CT.C2], T._LocationL());
-    },
-    get C0() {
-      return C[0] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[1] || CT.C1,
-        [_Location_name]: null,
-        [_Location_column]: 16,
-        [_Location_line]: 36,
-        [_Location_file]: "file:///D:/Abdul-Mateen/Edu/curricular/Year%203%20sem%202/COE%20356%20Intro%20to%20Software%20engineering/Project/Papperless-Document-Handling-System/client/lib/screens/detail_screen/detail_screen.dart"
+      return C[1] = dart.const({
+        __proto__: theme_data.MaterialTapTargetSize.prototype,
+        [_name]: "MaterialTapTargetSize.padded",
+        index: 0
       });
     },
-    get C5() {
-      return C[5] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "data",
-        [_Location_column]: 23,
-        [_Location_line]: 37,
-        [_Location_file]: null
+    get C2() {
+      return C[2] = dart.const({
+        __proto__: ui.Size.prototype,
+        [OffsetBase__dy]: 40,
+        [OffsetBase__dx]: 40
       });
-    },
-    get C4() {
-      return C[4] = dart.constList([C[5] || CT.C5], T._LocationL());
     },
     get C3() {
       return C[3] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[4] || CT.C4,
-        [_Location_name]: null,
-        [_Location_column]: 18,
-        [_Location_line]: 37,
-        [_Location_file]: "file:///D:/Abdul-Mateen/Edu/curricular/Year%203%20sem%202/COE%20356%20Intro%20to%20Software%20engineering/Project/Papperless-Document-Handling-System/client/lib/screens/detail_screen/detail_screen.dart"
+        __proto__: theme_data.MaterialTapTargetSize.prototype,
+        [_name]: "MaterialTapTargetSize.shrinkWrap",
+        index: 1
+      });
+    },
+    get C4() {
+      return C[4] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4294967295.0
+      });
+    },
+    get C7() {
+      return C[7] = dart.const({
+        __proto__: borders.BorderStyle.prototype,
+        [_name$]: "BorderStyle.none",
+        index: 0
       });
     },
     get C8() {
       return C[8] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "data",
-        [_Location_column]: 15,
-        [_Location_line]: 47,
-        [_Location_file]: null
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4278190080.0
+      });
+    },
+    get C6() {
+      return C[6] = dart.const({
+        __proto__: borders.BorderSide.prototype,
+        [BorderSide_style]: C[7] || CT.C7,
+        [BorderSide_width]: 0,
+        [BorderSide_color]: C[8] || CT.C8
+      });
+    },
+    get C10() {
+      return C[10] = dart.const({
+        __proto__: ui.Radius.prototype,
+        [Radius_y]: 1,
+        [Radius_x]: 1
       });
     },
     get C9() {
       return C[9] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "style",
-        [_Location_column]: 15,
-        [_Location_line]: 48,
-        [_Location_file]: null
+        __proto__: border_radius.BorderRadius.prototype,
+        [BorderRadius_bottomRight]: C[10] || CT.C10,
+        [BorderRadius_bottomLeft]: C[10] || CT.C10,
+        [BorderRadius_topRight]: C[10] || CT.C10,
+        [BorderRadius_topLeft]: C[10] || CT.C10
       });
     },
-    get C7() {
-      return C[7] = dart.constList([C[8] || CT.C8, C[9] || CT.C9], T._LocationL());
-    },
-    get C6() {
-      return C[6] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[7] || CT.C7,
-        [_Location_name]: null,
-        [_Location_column]: 20,
-        [_Location_line]: 46,
-        [_Location_file]: "file:///D:/Abdul-Mateen/Edu/curricular/Year%203%20sem%202/COE%20356%20Intro%20to%20Software%20engineering/Project/Papperless-Document-Handling-System/client/lib/screens/detail_screen/detail_screen.dart"
-      });
-    },
-    get C12() {
-      return C[12] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "onPressed",
-        [_Location_column]: 13,
-        [_Location_line]: 40,
-        [_Location_file]: null
+    get C5() {
+      return C[5] = dart.const({
+        __proto__: rounded_rectangle_border.RoundedRectangleBorder.prototype,
+        [OutlinedBorder_side]: C[6] || CT.C6,
+        [RoundedRectangleBorder_borderRadius]: C[9] || CT.C9
       });
     },
     get C13() {
       return C[13] = dart.const({
         __proto__: widget_inspector._Location.prototype,
         [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 13,
-        [_Location_line]: 46,
+        [_Location_name]: "checked",
+        [_Location_column]: 7,
+        [_Location_line]: 453,
         [_Location_file]: null
       });
-    },
-    get C11() {
-      return C[11] = dart.constList([C[12] || CT.C12, C[13] || CT.C13], T._LocationL());
-    },
-    get C10() {
-      return C[10] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[11] || CT.C11,
-        [_Location_name]: null,
-        [_Location_column]: 11,
-        [_Location_line]: 39,
-        [_Location_file]: "file:///D:/Abdul-Mateen/Edu/curricular/Year%203%20sem%202/COE%20356%20Intro%20to%20Software%20engineering/Project/Papperless-Document-Handling-System/client/lib/screens/detail_screen/detail_screen.dart"
-      });
-    },
-    get C16() {
-      return C[16] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "data",
-        [_Location_column]: 25,
-        [_Location_line]: 53,
-        [_Location_file]: null
-      });
-    },
-    get C15() {
-      return C[15] = dart.constList([C[16] || CT.C16], T._LocationL());
     },
     get C14() {
       return C[14] = dart.const({
         __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[15] || CT.C15,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 7,
+        [_Location_line]: 454,
+        [_Location_file]: null
+      });
+    },
+    get C12() {
+      return C[12] = dart.constList([C[13] || CT.C13, C[14] || CT.C14], T._LocationL());
+    },
+    get C11() {
+      return C[11] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[12] || CT.C12,
         [_Location_name]: null,
-        [_Location_column]: 20,
-        [_Location_line]: 53,
-        [_Location_file]: "file:///D:/Abdul-Mateen/Edu/curricular/Year%203%20sem%202/COE%20356%20Intro%20to%20Software%20engineering/Project/Papperless-Document-Handling-System/client/lib/screens/detail_screen/detail_screen.dart"
+        [_Location_column]: 12,
+        [_Location_line]: 452,
+        [_Location_file]: "file:///C:/src/flutter/packages/flutter/lib/src/material/checkbox.dart"
+      });
+    },
+    get C15() {
+      return C[15] = dart.const({
+        __proto__: ui.Offset.prototype,
+        [OffsetBase__dy]: 8.1,
+        [OffsetBase__dx]: 2.6999999999999997
+      });
+    },
+    get C16() {
+      return C[16] = dart.const({
+        __proto__: ui.Offset.prototype,
+        [OffsetBase__dy]: 12.6,
+        [OffsetBase__dx]: 7.2
+      });
+    },
+    get C17() {
+      return C[17] = dart.const({
+        __proto__: ui.Offset.prototype,
+        [OffsetBase__dy]: 4.5,
+        [OffsetBase__dx]: 15.299999999999999
+      });
+    },
+    get C18() {
+      return C[18] = dart.const({
+        __proto__: ui.Offset.prototype,
+        [OffsetBase__dy]: 9,
+        [OffsetBase__dx]: 3.6
       });
     },
     get C19() {
       return C[19] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "onPressed",
-        [_Location_column]: 13,
-        [_Location_line]: 52,
-        [_Location_file]: null
+        __proto__: ui.Offset.prototype,
+        [OffsetBase__dy]: 9,
+        [OffsetBase__dx]: 9
       });
     },
     get C20() {
       return C[20] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 13,
-        [_Location_line]: 53,
-        [_Location_file]: null
+        __proto__: ui.Offset.prototype,
+        [OffsetBase__dy]: 9,
+        [OffsetBase__dx]: 14.4
       });
-    },
-    get C18() {
-      return C[18] = dart.constList([C[19] || CT.C19, C[20] || CT.C20], T._LocationL());
-    },
-    get C17() {
-      return C[17] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[18] || CT.C18,
-        [_Location_name]: null,
-        [_Location_column]: 11,
-        [_Location_line]: 51,
-        [_Location_file]: "file:///D:/Abdul-Mateen/Edu/curricular/Year%203%20sem%202/COE%20356%20Intro%20to%20Software%20engineering/Project/Papperless-Document-Handling-System/client/lib/screens/detail_screen/detail_screen.dart"
-      });
-    },
-    get C23() {
-      return C[23] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "title",
-        [_Location_column]: 9,
-        [_Location_line]: 36,
-        [_Location_file]: null
-      });
-    },
-    get C24() {
-      return C[24] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "content",
-        [_Location_column]: 9,
-        [_Location_line]: 37,
-        [_Location_file]: null
-      });
-    },
-    get C25() {
-      return C[25] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "actions",
-        [_Location_column]: 9,
-        [_Location_line]: 38,
-        [_Location_file]: null
-      });
-    },
-    get C22() {
-      return C[22] = dart.constList([C[23] || CT.C23, C[24] || CT.C24, C[25] || CT.C25], T._LocationL());
     },
     get C21() {
       return C[21] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[22] || CT.C22,
-        [_Location_name]: null,
-        [_Location_column]: 29,
-        [_Location_line]: 35,
-        [_Location_file]: "file:///D:/Abdul-Mateen/Edu/curricular/Year%203%20sem%202/COE%20356%20Intro%20to%20Software%20engineering/Project/Papperless-Document-Handling-System/client/lib/screens/detail_screen/detail_screen.dart"
+        __proto__: ui.Size.prototype,
+        [OffsetBase__dy]: 18,
+        [OffsetBase__dx]: 18
       });
     },
-    get C26() {
-      return C[26] = dart.const({
-        __proto__: edge_insets.EdgeInsets.prototype,
-        [EdgeInsets_bottom]: 8,
-        [EdgeInsets_right]: 8,
-        [EdgeInsets_top]: 8,
-        [EdgeInsets_left]: 8
-      });
-    },
-    get C29() {
-      return C[29] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "data",
-        [_Location_column]: 50,
-        [_Location_line]: 81,
-        [_Location_file]: null
-      });
-    },
-    get C30() {
-      return C[30] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "style",
-        [_Location_column]: 23,
-        [_Location_line]: 82,
-        [_Location_file]: null
-      });
-    },
-    get C28() {
-      return C[28] = dart.constList([C[29] || CT.C29, C[30] || CT.C30], T._LocationL());
-    },
-    get C27() {
-      return C[27] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[28] || CT.C28,
-        [_Location_name]: null,
-        [_Location_column]: 26,
-        [_Location_line]: 81,
-        [_Location_file]: "file:///D:/Abdul-Mateen/Edu/curricular/Year%203%20sem%202/COE%20356%20Intro%20to%20Software%20engineering/Project/Papperless-Document-Handling-System/client/lib/screens/detail_screen/detail_screen.dart"
-      });
-    },
-    get C33() {
-      return C[33] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "alignment",
-        [_Location_column]: 19,
-        [_Location_line]: 77,
-        [_Location_file]: null
-      });
-    },
-    get C34() {
-      return C[34] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "width",
-        [_Location_column]: 19,
-        [_Location_line]: 78,
-        [_Location_file]: null
-      });
-    },
-    get C35() {
-      return C[35] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "height",
-        [_Location_column]: 19,
-        [_Location_line]: 79,
-        [_Location_file]: null
-      });
-    },
-    get C36() {
-      return C[36] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 19,
-        [_Location_line]: 81,
-        [_Location_file]: null
-      });
-    },
-    get C32() {
-      return C[32] = dart.constList([C[33] || CT.C33, C[34] || CT.C34, C[35] || CT.C35, C[36] || CT.C36], T._LocationL());
-    },
-    get C31() {
-      return C[31] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[32] || CT.C32,
-        [_Location_name]: null,
-        [_Location_column]: 17,
-        [_Location_line]: 76,
-        [_Location_file]: "file:///D:/Abdul-Mateen/Edu/curricular/Year%203%20sem%202/COE%20356%20Intro%20to%20Software%20engineering/Project/Papperless-Document-Handling-System/client/lib/screens/detail_screen/detail_screen.dart"
-      });
-    },
-    get C39() {
-      return C[39] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "height",
-        [_Location_column]: 28,
-        [_Location_line]: 86,
-        [_Location_file]: null
-      });
-    },
-    get C38() {
-      return C[38] = dart.constList([C[39] || CT.C39], T._LocationL());
-    },
-    get C37() {
-      return C[37] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[38] || CT.C38,
-        [_Location_name]: null,
-        [_Location_column]: 19,
-        [_Location_line]: 86,
-        [_Location_file]: "file:///D:/Abdul-Mateen/Edu/curricular/Year%203%20sem%202/COE%20356%20Intro%20to%20Software%20engineering/Project/Papperless-Document-Handling-System/client/lib/screens/detail_screen/detail_screen.dart"
-      });
-    },
-    get C42() {
-      return C[42] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "approvalList",
-        [_Location_column]: 21,
-        [_Location_line]: 88,
-        [_Location_file]: null
-      });
-    },
-    get C43() {
-      return C[43] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "docStatus",
-        [_Location_column]: 21,
-        [_Location_line]: 89,
-        [_Location_file]: null
-      });
-    },
-    get C41() {
-      return C[41] = dart.constList([C[42] || CT.C42, C[43] || CT.C43], T._LocationL());
-    },
-    get C40() {
-      return C[40] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[41] || CT.C41,
-        [_Location_name]: null,
-        [_Location_column]: 19,
-        [_Location_line]: 87,
-        [_Location_file]: "file:///D:/Abdul-Mateen/Edu/curricular/Year%203%20sem%202/COE%20356%20Intro%20to%20Software%20engineering/Project/Papperless-Document-Handling-System/client/lib/screens/detail_screen/detail_screen.dart"
-      });
-    },
-    get C44() {
-      return C[44] = dart.const({
-        __proto__: edge_insets.EdgeInsets.prototype,
-        [EdgeInsets_bottom]: 12,
-        [EdgeInsets_right]: 0,
-        [EdgeInsets_top]: 12,
-        [EdgeInsets_left]: 0
-      });
-    },
-    get C47() {
-      return C[47] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "data",
-        [_Location_column]: 55,
-        [_Location_line]: 107,
-        [_Location_file]: null
-      });
-    },
-    get C48() {
-      return C[48] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "style",
-        [_Location_column]: 35,
-        [_Location_line]: 108,
-        [_Location_file]: null
-      });
-    },
-    get C46() {
-      return C[46] = dart.constList([C[47] || CT.C47, C[48] || CT.C48], T._LocationL());
-    },
-    get C45() {
-      return C[45] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[46] || CT.C46,
-        [_Location_name]: null,
-        [_Location_column]: 31,
-        [_Location_line]: 107,
-        [_Location_file]: "file:///D:/Abdul-Mateen/Edu/curricular/Year%203%20sem%202/COE%20356%20Intro%20to%20Software%20engineering/Project/Papperless-Document-Handling-System/client/lib/screens/detail_screen/detail_screen.dart"
-      });
-    },
-    get C51() {
-      return C[51] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "data",
-        [_Location_column]: 40,
-        [_Location_line]: 117,
-        [_Location_file]: null
-      });
-    },
-    get C50() {
-      return C[50] = dart.constList([C[51] || CT.C51], T._LocationL());
-    },
-    get C49() {
-      return C[49] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[50] || CT.C50,
-        [_Location_name]: null,
-        [_Location_column]: 42,
-        [_Location_line]: 116,
-        [_Location_file]: "file:///D:/Abdul-Mateen/Edu/curricular/Year%203%20sem%202/COE%20356%20Intro%20to%20Software%20engineering/Project/Papperless-Document-Handling-System/client/lib/screens/detail_screen/detail_screen.dart"
-      });
-    },
-    get C54() {
-      return C[54] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "margin",
-        [_Location_column]: 35,
-        [_Location_line]: 111,
-        [_Location_file]: null
-      });
-    },
-    get C55() {
-      return C[55] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "decoration",
-        [_Location_column]: 35,
-        [_Location_line]: 112,
-        [_Location_file]: null
-      });
-    },
-    get C56() {
-      return C[56] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "padding",
-        [_Location_column]: 35,
-        [_Location_line]: 115,
-        [_Location_file]: null
-      });
-    },
-    get C57() {
-      return C[57] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 35,
-        [_Location_line]: 116,
-        [_Location_file]: null
-      });
-    },
-    get C53() {
-      return C[53] = dart.constList([C[54] || CT.C54, C[55] || CT.C55, C[56] || CT.C56, C[57] || CT.C57], T._LocationL());
-    },
-    get C52() {
-      return C[52] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[53] || CT.C53,
-        [_Location_name]: null,
-        [_Location_column]: 31,
-        [_Location_line]: 110,
-        [_Location_file]: "file:///D:/Abdul-Mateen/Edu/curricular/Year%203%20sem%202/COE%20356%20Intro%20to%20Software%20engineering/Project/Papperless-Document-Handling-System/client/lib/screens/detail_screen/detail_screen.dart"
-      });
-    },
-    get C60() {
-      return C[60] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "crossAxisAlignment",
-        [_Location_column]: 29,
-        [_Location_line]: 105,
-        [_Location_file]: null
-      });
-    },
-    get C61() {
-      return C[61] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "children",
-        [_Location_column]: 29,
-        [_Location_line]: 106,
-        [_Location_file]: null
-      });
-    },
-    get C59() {
-      return C[59] = dart.constList([C[60] || CT.C60, C[61] || CT.C61], T._LocationL());
-    },
-    get C58() {
-      return C[58] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[59] || CT.C59,
-        [_Location_name]: null,
-        [_Location_column]: 34,
-        [_Location_line]: 104,
-        [_Location_file]: "file:///D:/Abdul-Mateen/Edu/curricular/Year%203%20sem%202/COE%20356%20Intro%20to%20Software%20engineering/Project/Papperless-Document-Handling-System/client/lib/screens/detail_screen/detail_screen.dart"
-      });
-    },
-    get C64() {
-      return C[64] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "padding",
-        [_Location_column]: 27,
-        [_Location_line]: 100,
-        [_Location_file]: null
-      });
-    },
-    get C65() {
-      return C[65] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "decoration",
-        [_Location_column]: 27,
-        [_Location_line]: 101,
-        [_Location_file]: null
-      });
-    },
-    get C66() {
-      return C[66] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 27,
-        [_Location_line]: 104,
-        [_Location_file]: null
-      });
-    },
-    get C63() {
-      return C[63] = dart.constList([C[64] || CT.C64, C[65] || CT.C65, C[66] || CT.C66], T._LocationL());
-    },
-    get C62() {
-      return C[62] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[63] || CT.C63,
-        [_Location_name]: null,
-        [_Location_column]: 25,
-        [_Location_line]: 99,
-        [_Location_file]: "file:///D:/Abdul-Mateen/Edu/curricular/Year%203%20sem%202/COE%20356%20Intro%20to%20Software%20engineering/Project/Papperless-Document-Handling-System/client/lib/screens/detail_screen/detail_screen.dart"
-      });
-    },
-    get C69() {
-      return C[69] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "icon",
-        [_Location_column]: 57,
-        [_Location_line]: 131,
-        [_Location_file]: null
-      });
-    },
-    get C68() {
-      return C[68] = dart.constList([C[69] || CT.C69], T._LocationL());
-    },
-    get C67() {
-      return C[67] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[68] || CT.C68,
-        [_Location_name]: null,
-        [_Location_column]: 46,
-        [_Location_line]: 131,
-        [_Location_file]: "file:///D:/Abdul-Mateen/Edu/curricular/Year%203%20sem%202/COE%20356%20Intro%20to%20Software%20engineering/Project/Papperless-Document-Handling-System/client/lib/screens/detail_screen/detail_screen.dart"
-      });
-    },
-    get C72() {
-      return C[72] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "color",
-        [_Location_column]: 39,
-        [_Location_line]: 130,
-        [_Location_file]: null
-      });
-    },
-    get C73() {
-      return C[73] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 39,
-        [_Location_line]: 131,
-        [_Location_file]: null
-      });
-    },
-    get C71() {
-      return C[71] = dart.constList([C[72] || CT.C72, C[73] || CT.C73], T._LocationL());
-    },
-    get C70() {
-      return C[70] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[71] || CT.C71,
-        [_Location_name]: null,
-        [_Location_column]: 42,
-        [_Location_line]: 129,
-        [_Location_file]: "file:///D:/Abdul-Mateen/Edu/curricular/Year%203%20sem%202/COE%20356%20Intro%20to%20Software%20engineering/Project/Papperless-Document-Handling-System/client/lib/screens/detail_screen/detail_screen.dart"
-      });
-    },
-    get C76() {
-      return C[76] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 35,
-        [_Location_line]: 129,
-        [_Location_file]: null
-      });
-    },
-    get C75() {
-      return C[75] = dart.constList([C[76] || CT.C76], T._LocationL());
-    },
-    get C74() {
-      return C[74] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[75] || CT.C75,
-        [_Location_name]: null,
-        [_Location_column]: 31,
-        [_Location_line]: 128,
-        [_Location_file]: "file:///D:/Abdul-Mateen/Edu/curricular/Year%203%20sem%202/COE%20356%20Intro%20to%20Software%20engineering/Project/Papperless-Document-Handling-System/client/lib/screens/detail_screen/detail_screen.dart"
-      });
-    },
-    get C78() {
-      return C[78] = dart.constList([], T._LocationL());
-    },
-    get C77() {
-      return C[77] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[78] || CT.C78,
-        [_Location_name]: null,
-        [_Location_column]: 37,
-        [_Location_line]: 150,
-        [_Location_file]: "file:///D:/Abdul-Mateen/Edu/curricular/Year%203%20sem%202/COE%20356%20Intro%20to%20Software%20engineering/Project/Papperless-Document-Handling-System/client/lib/screens/detail_screen/detail_screen.dart"
-      });
-    },
-    get C81() {
-      return C[81] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "width",
-        [_Location_column]: 46,
-        [_Location_line]: 151,
-        [_Location_file]: null
-      });
-    },
-    get C80() {
-      return C[80] = dart.constList([C[81] || CT.C81], T._LocationL());
-    },
-    get C79() {
-      return C[79] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[80] || CT.C80,
-        [_Location_name]: null,
-        [_Location_column]: 37,
-        [_Location_line]: 151,
-        [_Location_file]: "file:///D:/Abdul-Mateen/Edu/curricular/Year%203%20sem%202/COE%20356%20Intro%20to%20Software%20engineering/Project/Papperless-Document-Handling-System/client/lib/screens/detail_screen/detail_screen.dart"
-      });
-    },
-    get C84() {
-      return C[84] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "data",
-        [_Location_column]: 42,
-        [_Location_line]: 153,
-        [_Location_file]: null
-      });
-    },
-    get C83() {
-      return C[83] = dart.constList([C[84] || CT.C84], T._LocationL());
-    },
-    get C82() {
-      return C[82] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[83] || CT.C83,
-        [_Location_name]: null,
-        [_Location_column]: 37,
-        [_Location_line]: 153,
-        [_Location_file]: "file:///D:/Abdul-Mateen/Edu/curricular/Year%203%20sem%202/COE%20356%20Intro%20to%20Software%20engineering/Project/Papperless-Document-Handling-System/client/lib/screens/detail_screen/detail_screen.dart"
-      });
-    },
-    get C87() {
-      return C[87] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "children",
-        [_Location_column]: 35,
-        [_Location_line]: 149,
-        [_Location_file]: null
-      });
-    },
-    get C86() {
-      return C[86] = dart.constList([C[87] || CT.C87], T._LocationL());
-    },
-    get C85() {
-      return C[85] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[86] || CT.C86,
-        [_Location_name]: null,
-        [_Location_column]: 40,
-        [_Location_line]: 148,
-        [_Location_file]: "file:///D:/Abdul-Mateen/Edu/curricular/Year%203%20sem%202/COE%20356%20Intro%20to%20Software%20engineering/Project/Papperless-Document-Handling-System/client/lib/screens/detail_screen/detail_screen.dart"
-      });
-    },
-    get C90() {
-      return C[90] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "color",
-        [_Location_column]: 33,
-        [_Location_line]: 145,
-        [_Location_file]: null
-      });
-    },
-    get C91() {
-      return C[91] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "padding",
-        [_Location_column]: 33,
-        [_Location_line]: 146,
-        [_Location_file]: null
-      });
-    },
-    get C92() {
-      return C[92] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "height",
-        [_Location_column]: 33,
-        [_Location_line]: 147,
-        [_Location_file]: null
-      });
-    },
-    get C93() {
-      return C[93] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 33,
-        [_Location_line]: 148,
-        [_Location_file]: null
-      });
-    },
-    get C89() {
-      return C[89] = dart.constList([C[90] || CT.C90, C[91] || CT.C91, C[92] || CT.C92, C[93] || CT.C93], T._LocationL());
-    },
-    get C88() {
-      return C[88] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[89] || CT.C89,
-        [_Location_name]: null,
-        [_Location_column]: 31,
-        [_Location_line]: 144,
-        [_Location_file]: "file:///D:/Abdul-Mateen/Edu/curricular/Year%203%20sem%202/COE%20356%20Intro%20to%20Software%20engineering/Project/Papperless-Document-Handling-System/client/lib/screens/detail_screen/detail_screen.dart"
-      });
-    },
-    get C96() {
-      return C[96] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "children",
-        [_Location_column]: 29,
-        [_Location_line]: 127,
-        [_Location_file]: null
-      });
-    },
-    get C95() {
-      return C[95] = dart.constList([C[96] || CT.C96], T._LocationL());
-    },
-    get C94() {
-      return C[94] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[95] || CT.C95,
-        [_Location_name]: null,
-        [_Location_column]: 34,
-        [_Location_line]: 126,
-        [_Location_file]: "file:///D:/Abdul-Mateen/Edu/curricular/Year%203%20sem%202/COE%20356%20Intro%20to%20Software%20engineering/Project/Papperless-Document-Handling-System/client/lib/screens/detail_screen/detail_screen.dart"
-      });
-    },
-    get C99() {
-      return C[99] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "shape",
-        [_Location_column]: 27,
-        [_Location_line]: 124,
-        [_Location_file]: null
-      });
-    },
-    get C100() {
-      return C[100] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 27,
-        [_Location_line]: 126,
-        [_Location_file]: null
-      });
-    },
-    get C98() {
-      return C[98] = dart.constList([C[99] || CT.C99, C[100] || CT.C100], T._LocationL());
-    },
-    get C97() {
-      return C[97] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[98] || CT.C98,
-        [_Location_name]: null,
-        [_Location_column]: 32,
-        [_Location_line]: 123,
-        [_Location_file]: "file:///D:/Abdul-Mateen/Edu/curricular/Year%203%20sem%202/COE%20356%20Intro%20to%20Software%20engineering/Project/Papperless-Document-Handling-System/client/lib/screens/detail_screen/detail_screen.dart"
-      });
-    },
-    get C103() {
-      return C[103] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "height",
-        [_Location_column]: 25,
-        [_Location_line]: 122,
-        [_Location_file]: null
-      });
-    },
-    get C104() {
-      return C[104] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 25,
-        [_Location_line]: 123,
-        [_Location_file]: null
-      });
-    },
-    get C102() {
-      return C[102] = dart.constList([C[103] || CT.C103, C[104] || CT.C104], T._LocationL());
-    },
-    get C101() {
-      return C[101] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[102] || CT.C102,
-        [_Location_name]: null,
-        [_Location_column]: 23,
-        [_Location_line]: 121,
-        [_Location_file]: "file:///D:/Abdul-Mateen/Edu/curricular/Year%203%20sem%202/COE%20356%20Intro%20to%20Software%20engineering/Project/Papperless-Document-Handling-System/client/lib/screens/detail_screen/detail_screen.dart"
-      });
-    },
-    get C107() {
-      return C[107] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "height",
-        [_Location_column]: 32,
-        [_Location_line]: 161,
-        [_Location_file]: null
-      });
-    },
-    get C106() {
-      return C[106] = dart.constList([C[107] || CT.C107], T._LocationL());
-    },
-    get C105() {
-      return C[105] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[106] || CT.C106,
-        [_Location_name]: null,
-        [_Location_column]: 23,
-        [_Location_line]: 161,
-        [_Location_file]: "file:///D:/Abdul-Mateen/Edu/curricular/Year%203%20sem%202/COE%20356%20Intro%20to%20Software%20engineering/Project/Papperless-Document-Handling-System/client/lib/screens/detail_screen/detail_screen.dart"
-      });
-    },
-    get C110() {
-      return C[110] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "status",
-        [_Location_column]: 58,
-        [_Location_line]: 163,
-        [_Location_file]: null
-      });
-    },
-    get C109() {
-      return C[109] = dart.constList([C[110] || CT.C110], T._LocationL());
-    },
-    get C108() {
-      return C[108] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[109] || CT.C109,
-        [_Location_name]: null,
-        [_Location_column]: 25,
-        [_Location_line]: 163,
-        [_Location_file]: "file:///D:/Abdul-Mateen/Edu/curricular/Year%203%20sem%202/COE%20356%20Intro%20to%20Software%20engineering/Project/Papperless-Document-Handling-System/client/lib/screens/detail_screen/detail_screen.dart"
-      });
-    },
-    get C113() {
-      return C[113] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "children",
-        [_Location_column]: 21,
-        [_Location_line]: 97,
-        [_Location_file]: null
-      });
-    },
-    get C112() {
-      return C[112] = dart.constList([C[113] || CT.C113], T._LocationL());
-    },
-    get C111() {
-      return C[111] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[112] || CT.C112,
-        [_Location_name]: null,
-        [_Location_column]: 26,
-        [_Location_line]: 95,
-        [_Location_file]: "file:///D:/Abdul-Mateen/Edu/curricular/Year%203%20sem%202/COE%20356%20Intro%20to%20Software%20engineering/Project/Papperless-Document-Handling-System/client/lib/screens/detail_screen/detail_screen.dart"
-      });
-    },
-    get C116() {
-      return C[116] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "padding",
-        [_Location_column]: 19,
-        [_Location_line]: 94,
-        [_Location_file]: null
-      });
-    },
-    get C117() {
-      return C[117] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 19,
-        [_Location_line]: 95,
-        [_Location_file]: null
-      });
-    },
-    get C115() {
-      return C[115] = dart.constList([C[116] || CT.C116, C[117] || CT.C117], T._LocationL());
-    },
-    get C114() {
-      return C[114] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[115] || CT.C115,
-        [_Location_name]: null,
-        [_Location_column]: 17,
-        [_Location_line]: 92,
-        [_Location_file]: "file:///D:/Abdul-Mateen/Edu/curricular/Year%203%20sem%202/COE%20356%20Intro%20to%20Software%20engineering/Project/Papperless-Document-Handling-System/client/lib/screens/detail_screen/detail_screen.dart"
-      });
-    },
-    get C120() {
-      return C[120] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "children",
-        [_Location_column]: 15,
-        [_Location_line]: 75,
-        [_Location_file]: null
-      });
-    },
-    get C119() {
-      return C[119] = dart.constList([C[120] || CT.C120], T._LocationL());
-    },
-    get C118() {
-      return C[118] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[119] || CT.C119,
-        [_Location_name]: null,
-        [_Location_column]: 20,
-        [_Location_line]: 74,
-        [_Location_file]: "file:///D:/Abdul-Mateen/Edu/curricular/Year%203%20sem%202/COE%20356%20Intro%20to%20Software%20engineering/Project/Papperless-Document-Handling-System/client/lib/screens/detail_screen/detail_screen.dart"
-      });
-    },
-    get C123() {
-      return C[123] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "height",
-        [_Location_column]: 13,
-        [_Location_line]: 71,
-        [_Location_file]: null
-      });
-    },
-    get C124() {
-      return C[124] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "width",
-        [_Location_column]: 13,
-        [_Location_line]: 72,
-        [_Location_file]: null
-      });
-    },
-    get C125() {
-      return C[125] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "padding",
-        [_Location_column]: 13,
-        [_Location_line]: 73,
-        [_Location_file]: null
-      });
-    },
-    get C126() {
-      return C[126] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 13,
-        [_Location_line]: 74,
-        [_Location_file]: null
-      });
-    },
-    get C122() {
-      return C[122] = dart.constList([C[123] || CT.C123, C[124] || CT.C124, C[125] || CT.C125, C[126] || CT.C126], T._LocationL());
-    },
-    get C121() {
-      return C[121] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[122] || CT.C122,
-        [_Location_name]: null,
-        [_Location_column]: 18,
-        [_Location_line]: 70,
-        [_Location_file]: "file:///D:/Abdul-Mateen/Edu/curricular/Year%203%20sem%202/COE%20356%20Intro%20to%20Software%20engineering/Project/Papperless-Document-Handling-System/client/lib/screens/detail_screen/detail_screen.dart"
-      });
-    },
-    get C129() {
-      return C[129] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 11,
-        [_Location_line]: 70,
-        [_Location_file]: null
-      });
-    },
-    get C128() {
-      return C[128] = dart.constList([C[129] || CT.C129], T._LocationL());
-    },
-    get C127() {
-      return C[127] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[128] || CT.C128,
-        [_Location_name]: null,
-        [_Location_column]: 15,
-        [_Location_line]: 69,
-        [_Location_file]: "file:///D:/Abdul-Mateen/Edu/curricular/Year%203%20sem%202/COE%20356%20Intro%20to%20Software%20engineering/Project/Papperless-Document-Handling-System/client/lib/screens/detail_screen/detail_screen.dart"
-      });
-    },
-    get C132() {
-      return C[132] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "data",
-        [_Location_column]: 21,
-        [_Location_line]: 194,
-        [_Location_file]: null
-      });
-    },
-    get C133() {
-      return C[133] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "style",
-        [_Location_column]: 21,
-        [_Location_line]: 195,
-        [_Location_file]: null
-      });
-    },
-    get C131() {
-      return C[131] = dart.constList([C[132] || CT.C132, C[133] || CT.C133], T._LocationL());
-    },
-    get C130() {
-      return C[130] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[131] || CT.C131,
-        [_Location_name]: null,
-        [_Location_column]: 26,
-        [_Location_line]: 193,
-        [_Location_file]: "file:///D:/Abdul-Mateen/Edu/curricular/Year%203%20sem%202/COE%20356%20Intro%20to%20Software%20engineering/Project/Papperless-Document-Handling-System/client/lib/screens/detail_screen/detail_screen.dart"
-      });
-    },
-    get C136() {
-      return C[136] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "padding",
-        [_Location_column]: 19,
-        [_Location_line]: 192,
-        [_Location_file]: null
-      });
-    },
-    get C137() {
-      return C[137] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 19,
-        [_Location_line]: 193,
-        [_Location_file]: null
-      });
-    },
-    get C135() {
-      return C[135] = dart.constList([C[136] || CT.C136, C[137] || CT.C137], T._LocationL());
-    },
-    get C134() {
-      return C[134] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[135] || CT.C135,
-        [_Location_name]: null,
-        [_Location_column]: 24,
-        [_Location_line]: 191,
-        [_Location_file]: "file:///D:/Abdul-Mateen/Edu/curricular/Year%203%20sem%202/COE%20356%20Intro%20to%20Software%20engineering/Project/Papperless-Document-Handling-System/client/lib/screens/detail_screen/detail_screen.dart"
-      });
-    },
-    get C140() {
-      return C[140] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "onPressed",
-        [_Location_column]: 17,
-        [_Location_line]: 188,
-        [_Location_file]: null
-      });
-    },
-    get C141() {
-      return C[141] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "label",
-        [_Location_column]: 17,
-        [_Location_line]: 191,
-        [_Location_file]: null
-      });
-    },
-    get C142() {
-      return C[142] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "backgroundColor",
-        [_Location_column]: 17,
-        [_Location_line]: 198,
-        [_Location_file]: null
-      });
-    },
-    get C143() {
-      return C[143] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "shape",
-        [_Location_column]: 17,
-        [_Location_line]: 199,
-        [_Location_file]: null
-      });
-    },
-    get C139() {
-      return C[139] = dart.constList([C[140] || CT.C140, C[141] || CT.C141, C[142] || CT.C142, C[143] || CT.C143], T._LocationL());
-    },
-    get C138() {
-      return C[138] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[139] || CT.C139,
-        [_Location_name]: null,
-        [_Location_column]: 36,
-        [_Location_line]: 186,
-        [_Location_file]: "file:///D:/Abdul-Mateen/Edu/curricular/Year%203%20sem%202/COE%20356%20Intro%20to%20Software%20engineering/Project/Papperless-Document-Handling-System/client/lib/screens/detail_screen/detail_screen.dart"
-      });
-    },
-    get C146() {
-      return C[146] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "body",
-        [_Location_column]: 9,
-        [_Location_line]: 69,
-        [_Location_file]: null
-      });
-    },
-    get C147() {
-      return C[147] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "floatingActionButton",
-        [_Location_column]: 9,
-        [_Location_line]: 185,
-        [_Location_file]: null
-      });
-    },
-    get C148() {
-      return C[148] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "floatingActionButtonLocation",
-        [_Location_column]: 9,
-        [_Location_line]: 204,
-        [_Location_file]: null
-      });
-    },
-    get C145() {
-      return C[145] = dart.constList([C[146] || CT.C146, C[147] || CT.C147, C[148] || CT.C148], T._LocationL());
-    },
-    get C144() {
-      return C[144] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[145] || CT.C145,
-        [_Location_name]: null,
-        [_Location_column]: 14,
-        [_Location_line]: 68,
-        [_Location_file]: "file:///D:/Abdul-Mateen/Edu/curricular/Year%203%20sem%202/COE%20356%20Intro%20to%20Software%20engineering/Project/Papperless-Document-Handling-System/client/lib/screens/detail_screen/detail_screen.dart"
-      });
-    },
-    get C151() {
-      return C[151] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "onWillPop",
-        [_Location_column]: 7,
-        [_Location_line]: 64,
-        [_Location_file]: null
-      });
-    },
-    get C152() {
-      return C[152] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 7,
-        [_Location_line]: 68,
-        [_Location_file]: null
-      });
-    },
-    get C150() {
-      return C[150] = dart.constList([C[151] || CT.C151, C[152] || CT.C152], T._LocationL());
-    },
-    get C149() {
-      return C[149] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[150] || CT.C150,
-        [_Location_name]: null,
-        [_Location_column]: 12,
-        [_Location_line]: 63,
-        [_Location_file]: "file:///D:/Abdul-Mateen/Edu/curricular/Year%203%20sem%202/COE%20356%20Intro%20to%20Software%20engineering/Project/Papperless-Document-Handling-System/client/lib/screens/detail_screen/detail_screen.dart"
-      });
-    },
-    get C155() {
-      return C[155] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "width",
-        [_Location_column]: 15,
-        [_Location_line]: 247,
-        [_Location_file]: null
-      });
-    },
-    get C156() {
-      return C[156] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "color",
-        [_Location_column]: 15,
-        [_Location_line]: 248,
-        [_Location_file]: null
-      });
-    },
-    get C154() {
-      return C[154] = dart.constList([C[155] || CT.C155, C[156] || CT.C156], T._LocationL());
-    },
-    get C153() {
-      return C[153] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[154] || CT.C154,
-        [_Location_name]: null,
-        [_Location_column]: 13,
-        [_Location_line]: 246,
-        [_Location_file]: "file:///D:/Abdul-Mateen/Edu/curricular/Year%203%20sem%202/COE%20356%20Intro%20to%20Software%20engineering/Project/Papperless-Document-Handling-System/client/lib/screens/detail_screen/detail_screen.dart"
-      });
-    },
-    get C159() {
-      return C[159] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "width",
-        [_Location_column]: 22,
-        [_Location_line]: 250,
-        [_Location_file]: null
-      });
-    },
-    get C158() {
-      return C[158] = dart.constList([C[159] || CT.C159], T._LocationL());
-    },
-    get C157() {
-      return C[157] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[158] || CT.C158,
-        [_Location_name]: null,
-        [_Location_column]: 13,
-        [_Location_line]: 250,
-        [_Location_file]: "file:///D:/Abdul-Mateen/Edu/curricular/Year%203%20sem%202/COE%20356%20Intro%20to%20Software%20engineering/Project/Papperless-Document-Handling-System/client/lib/screens/detail_screen/detail_screen.dart"
-      });
-    },
-    get C162() {
-      return C[162] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "data",
-        [_Location_column]: 19,
-        [_Location_line]: 254,
-        [_Location_file]: null
-      });
-    },
-    get C163() {
-      return C[163] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "style",
-        [_Location_column]: 19,
-        [_Location_line]: 255,
-        [_Location_file]: null
-      });
-    },
-    get C161() {
-      return C[161] = dart.constList([C[162] || CT.C162, C[163] || CT.C163], T._LocationL());
-    },
-    get C160() {
-      return C[160] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[161] || CT.C161,
-        [_Location_name]: null,
-        [_Location_column]: 24,
-        [_Location_line]: 253,
-        [_Location_file]: "file:///D:/Abdul-Mateen/Edu/curricular/Year%203%20sem%202/COE%20356%20Intro%20to%20Software%20engineering/Project/Papperless-Document-Handling-System/client/lib/screens/detail_screen/detail_screen.dart"
-      });
-    },
-    get C166() {
-      return C[166] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 17,
-        [_Location_line]: 253,
-        [_Location_file]: null
-      });
-    },
-    get C165() {
-      return C[165] = dart.constList([C[166] || CT.C166], T._LocationL());
-    },
-    get C164() {
-      return C[164] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[165] || CT.C165,
-        [_Location_name]: null,
-        [_Location_column]: 22,
-        [_Location_line]: 252,
-        [_Location_file]: "file:///D:/Abdul-Mateen/Edu/curricular/Year%203%20sem%202/COE%20356%20Intro%20to%20Software%20engineering/Project/Papperless-Document-Handling-System/client/lib/screens/detail_screen/detail_screen.dart"
-      });
-    },
-    get C169() {
-      return C[169] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 15,
-        [_Location_line]: 252,
-        [_Location_file]: null
-      });
-    },
-    get C168() {
-      return C[168] = dart.constList([C[169] || CT.C169], T._LocationL());
-    },
-    get C167() {
-      return C[167] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[168] || CT.C168,
-        [_Location_name]: null,
-        [_Location_column]: 13,
-        [_Location_line]: 251,
-        [_Location_file]: "file:///D:/Abdul-Mateen/Edu/curricular/Year%203%20sem%202/COE%20356%20Intro%20to%20Software%20engineering/Project/Papperless-Document-Handling-System/client/lib/screens/detail_screen/detail_screen.dart"
-      });
-    },
-    get C172() {
-      return C[172] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "children",
-        [_Location_column]: 11,
-        [_Location_line]: 245,
-        [_Location_file]: null
-      });
-    },
-    get C171() {
-      return C[171] = dart.constList([C[172] || CT.C172], T._LocationL());
-    },
-    get C170() {
-      return C[170] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[171] || CT.C171,
-        [_Location_name]: null,
-        [_Location_column]: 16,
-        [_Location_line]: 244,
-        [_Location_file]: "file:///D:/Abdul-Mateen/Edu/curricular/Year%203%20sem%202/COE%20356%20Intro%20to%20Software%20engineering/Project/Papperless-Document-Handling-System/client/lib/screens/detail_screen/detail_screen.dart"
-      });
-    },
-    get C175() {
-      return C[175] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "height",
-        [_Location_column]: 9,
-        [_Location_line]: 242,
-        [_Location_file]: null
-      });
-    },
-    get C176() {
-      return C[176] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "color",
-        [_Location_column]: 9,
-        [_Location_line]: 243,
-        [_Location_file]: null
-      });
-    },
-    get C177() {
-      return C[177] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 9,
-        [_Location_line]: 244,
-        [_Location_file]: null
-      });
-    },
-    get C174() {
-      return C[174] = dart.constList([C[175] || CT.C175, C[176] || CT.C176, C[177] || CT.C177], T._LocationL());
-    },
-    get C173() {
-      return C[173] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[174] || CT.C174,
-        [_Location_name]: null,
-        [_Location_column]: 14,
-        [_Location_line]: 240,
-        [_Location_file]: "file:///D:/Abdul-Mateen/Edu/curricular/Year%203%20sem%202/COE%20356%20Intro%20to%20Software%20engineering/Project/Papperless-Document-Handling-System/client/lib/screens/detail_screen/detail_screen.dart"
-      });
-    },
-    get C180() {
-      return C[180] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "borderRadius",
-        [_Location_column]: 7,
-        [_Location_line]: 239,
-        [_Location_file]: null
-      });
-    },
-    get C181() {
-      return C[181] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 7,
-        [_Location_line]: 240,
-        [_Location_file]: null
-      });
-    },
-    get C179() {
-      return C[179] = dart.constList([C[180] || CT.C180, C[181] || CT.C181], T._LocationL());
-    },
-    get C178() {
-      return C[178] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[179] || CT.C179,
-        [_Location_name]: null,
-        [_Location_column]: 12,
-        [_Location_line]: 238,
-        [_Location_file]: "file:///D:/Abdul-Mateen/Edu/curricular/Year%203%20sem%202/COE%20356%20Intro%20to%20Software%20engineering/Project/Papperless-Document-Handling-System/client/lib/screens/detail_screen/detail_screen.dart"
-      });
+    get C22() {
+      return C[22] = dart.const(new _js_helper.PrivateSymbol.new('_repaint', _repaint));
     }
   }, false);
-  var C = Array(182).fill(void 0);
-  var I = ["package:softdoc/screens/detail_screen/detail_screen.dart"];
-  var selectedDoc$ = dart.privateName(detail_screen, "DetailScreen.selectedDoc");
-  var isDesktop$ = dart.privateName(detail_screen, "DetailScreen.isDesktop");
-  detail_screen.DetailScreen = class DetailScreen extends framework.StatefulWidget {
-    get selectedDoc() {
-      return this[selectedDoc$];
+  var C = Array(23).fill(void 0);
+  var I = [
+    "file:///C:/src/flutter/packages/flutter/lib/src/material/checkbox.dart",
+    "package:flutter/src/material/checkbox.dart"
+  ];
+  var value$ = dart.privateName(checkbox, "Checkbox.value");
+  var onChanged$ = dart.privateName(checkbox, "Checkbox.onChanged");
+  var mouseCursor$ = dart.privateName(checkbox, "Checkbox.mouseCursor");
+  var activeColor$ = dart.privateName(checkbox, "Checkbox.activeColor");
+  var fillColor$ = dart.privateName(checkbox, "Checkbox.fillColor");
+  var checkColor$ = dart.privateName(checkbox, "Checkbox.checkColor");
+  var tristate$ = dart.privateName(checkbox, "Checkbox.tristate");
+  var materialTapTargetSize$ = dart.privateName(checkbox, "Checkbox.materialTapTargetSize");
+  var visualDensity$ = dart.privateName(checkbox, "Checkbox.visualDensity");
+  var focusColor$ = dart.privateName(checkbox, "Checkbox.focusColor");
+  var hoverColor$ = dart.privateName(checkbox, "Checkbox.hoverColor");
+  var overlayColor$ = dart.privateName(checkbox, "Checkbox.overlayColor");
+  var splashRadius$ = dart.privateName(checkbox, "Checkbox.splashRadius");
+  var focusNode$ = dart.privateName(checkbox, "Checkbox.focusNode");
+  var autofocus$ = dart.privateName(checkbox, "Checkbox.autofocus");
+  var shape$ = dart.privateName(checkbox, "Checkbox.shape");
+  var side$ = dart.privateName(checkbox, "Checkbox.side");
+  checkbox.Checkbox = class Checkbox extends framework.StatefulWidget {
+    get value() {
+      return this[value$];
     }
-    set selectedDoc(value) {
-      this[selectedDoc$] = value;
+    set value(value) {
+      super.value = value;
     }
-    get isDesktop() {
-      return this[isDesktop$];
+    get onChanged() {
+      return this[onChanged$];
     }
-    set isDesktop(value) {
-      super.isDesktop = value;
+    set onChanged(value) {
+      super.onChanged = value;
+    }
+    get mouseCursor() {
+      return this[mouseCursor$];
+    }
+    set mouseCursor(value) {
+      super.mouseCursor = value;
+    }
+    get activeColor() {
+      return this[activeColor$];
+    }
+    set activeColor(value) {
+      super.activeColor = value;
+    }
+    get fillColor() {
+      return this[fillColor$];
+    }
+    set fillColor(value) {
+      super.fillColor = value;
+    }
+    get checkColor() {
+      return this[checkColor$];
+    }
+    set checkColor(value) {
+      super.checkColor = value;
+    }
+    get tristate() {
+      return this[tristate$];
+    }
+    set tristate(value) {
+      super.tristate = value;
+    }
+    get materialTapTargetSize() {
+      return this[materialTapTargetSize$];
+    }
+    set materialTapTargetSize(value) {
+      super.materialTapTargetSize = value;
+    }
+    get visualDensity() {
+      return this[visualDensity$];
+    }
+    set visualDensity(value) {
+      super.visualDensity = value;
+    }
+    get focusColor() {
+      return this[focusColor$];
+    }
+    set focusColor(value) {
+      super.focusColor = value;
+    }
+    get hoverColor() {
+      return this[hoverColor$];
+    }
+    set hoverColor(value) {
+      super.hoverColor = value;
+    }
+    get overlayColor() {
+      return this[overlayColor$];
+    }
+    set overlayColor(value) {
+      super.overlayColor = value;
+    }
+    get splashRadius() {
+      return this[splashRadius$];
+    }
+    set splashRadius(value) {
+      super.splashRadius = value;
+    }
+    get focusNode() {
+      return this[focusNode$];
+    }
+    set focusNode(value) {
+      super.focusNode = value;
+    }
+    get autofocus() {
+      return this[autofocus$];
+    }
+    set autofocus(value) {
+      super.autofocus = value;
+    }
+    get shape() {
+      return this[shape$];
+    }
+    set shape(value) {
+      super.shape = value;
+    }
+    get side() {
+      return this[side$];
+    }
+    set side(value) {
+      super.side = value;
     }
     createState() {
-      return new detail_screen._DetailScreenState.new();
+      return new checkbox._CheckboxState.new();
     }
   };
-  (detail_screen.DetailScreen.new = function(opts) {
+  (checkbox.Checkbox.new = function(opts) {
     let key = opts && 'key' in opts ? opts.key : null;
-    let isDesktop = opts && 'isDesktop' in opts ? opts.isDesktop : false;
-    let selectedDoc = opts && 'selectedDoc' in opts ? opts.selectedDoc : null;
+    let value = opts && 'value' in opts ? opts.value : null;
+    let tristate = opts && 'tristate' in opts ? opts.tristate : false;
+    if (tristate == null) dart.nullFailed(I[0], 95, 10, "tristate");
+    let onChanged = opts && 'onChanged' in opts ? opts.onChanged : null;
+    let mouseCursor = opts && 'mouseCursor' in opts ? opts.mouseCursor : null;
+    let activeColor = opts && 'activeColor' in opts ? opts.activeColor : null;
+    let fillColor = opts && 'fillColor' in opts ? opts.fillColor : null;
+    let checkColor = opts && 'checkColor' in opts ? opts.checkColor : null;
+    let focusColor = opts && 'focusColor' in opts ? opts.focusColor : null;
+    let hoverColor = opts && 'hoverColor' in opts ? opts.hoverColor : null;
+    let overlayColor = opts && 'overlayColor' in opts ? opts.overlayColor : null;
+    let splashRadius = opts && 'splashRadius' in opts ? opts.splashRadius : null;
+    let materialTapTargetSize = opts && 'materialTapTargetSize' in opts ? opts.materialTapTargetSize : null;
+    let visualDensity = opts && 'visualDensity' in opts ? opts.visualDensity : null;
+    let focusNode = opts && 'focusNode' in opts ? opts.focusNode : null;
+    let autofocus = opts && 'autofocus' in opts ? opts.autofocus : false;
+    if (autofocus == null) dart.nullFailed(I[0], 108, 10, "autofocus");
+    let shape = opts && 'shape' in opts ? opts.shape : null;
+    let side = opts && 'side' in opts ? opts.side : null;
     let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
-    this[isDesktop$] = isDesktop;
-    this[selectedDoc$] = selectedDoc;
-    detail_screen.DetailScreen.__proto__.new.call(this, {key: key, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
+    this[value$] = value;
+    this[tristate$] = tristate;
+    this[onChanged$] = onChanged;
+    this[mouseCursor$] = mouseCursor;
+    this[activeColor$] = activeColor;
+    this[fillColor$] = fillColor;
+    this[checkColor$] = checkColor;
+    this[focusColor$] = focusColor;
+    this[hoverColor$] = hoverColor;
+    this[overlayColor$] = overlayColor;
+    this[splashRadius$] = splashRadius;
+    this[materialTapTargetSize$] = materialTapTargetSize;
+    this[visualDensity$] = visualDensity;
+    this[focusNode$] = focusNode;
+    this[autofocus$] = autofocus;
+    this[shape$] = shape;
+    this[side$] = side;
+    if (!(tristate != null)) dart.assertFailed(null, I[0], 111, 15, "tristate != null");
+    if (!(dart.test(tristate) || value != null)) dart.assertFailed(null, I[0], 112, 15, "tristate || value != null");
+    if (!(autofocus != null)) dart.assertFailed(null, I[0], 113, 15, "autofocus != null");
+    checkbox.Checkbox.__proto__.new.call(this, {key: key, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
     ;
-  }).prototype = detail_screen.DetailScreen.prototype;
-  dart.addTypeTests(detail_screen.DetailScreen);
-  dart.addTypeCaches(detail_screen.DetailScreen);
-  dart.setMethodSignature(detail_screen.DetailScreen, () => ({
-    __proto__: dart.getMethods(detail_screen.DetailScreen.__proto__),
-    createState: dart.fnType(dart.legacy(detail_screen._DetailScreenState), [])
+  }).prototype = checkbox.Checkbox.prototype;
+  dart.addTypeTests(checkbox.Checkbox);
+  dart.addTypeCaches(checkbox.Checkbox);
+  dart.setMethodSignature(checkbox.Checkbox, () => ({
+    __proto__: dart.getMethods(checkbox.Checkbox.__proto__),
+    createState: dart.fnType(checkbox._CheckboxState, [])
   }));
-  dart.setLibraryUri(detail_screen.DetailScreen, I[0]);
-  dart.setFieldSignature(detail_screen.DetailScreen, () => ({
-    __proto__: dart.getFields(detail_screen.DetailScreen.__proto__),
-    selectedDoc: dart.fieldType(dart.legacy(doc.Doc)),
-    isDesktop: dart.finalFieldType(dart.legacy(core.bool))
+  dart.setLibraryUri(checkbox.Checkbox, I[1]);
+  dart.setFieldSignature(checkbox.Checkbox, () => ({
+    __proto__: dart.getFields(checkbox.Checkbox.__proto__),
+    value: dart.finalFieldType(dart.nullable(core.bool)),
+    onChanged: dart.finalFieldType(dart.nullable(dart.fnType(dart.void, [dart.nullable(core.bool)]))),
+    mouseCursor: dart.finalFieldType(dart.nullable(mouse_cursor.MouseCursor)),
+    activeColor: dart.finalFieldType(dart.nullable(ui.Color)),
+    fillColor: dart.finalFieldType(dart.nullable(material_state.MaterialStateProperty$(dart.nullable(ui.Color)))),
+    checkColor: dart.finalFieldType(dart.nullable(ui.Color)),
+    tristate: dart.finalFieldType(core.bool),
+    materialTapTargetSize: dart.finalFieldType(dart.nullable(theme_data.MaterialTapTargetSize)),
+    visualDensity: dart.finalFieldType(dart.nullable(theme_data.VisualDensity)),
+    focusColor: dart.finalFieldType(dart.nullable(ui.Color)),
+    hoverColor: dart.finalFieldType(dart.nullable(ui.Color)),
+    overlayColor: dart.finalFieldType(dart.nullable(material_state.MaterialStateProperty$(dart.nullable(ui.Color)))),
+    splashRadius: dart.finalFieldType(dart.nullable(core.double)),
+    focusNode: dart.finalFieldType(dart.nullable(focus_manager.FocusNode)),
+    autofocus: dart.finalFieldType(core.bool),
+    shape: dart.finalFieldType(dart.nullable(borders.OutlinedBorder)),
+    side: dart.finalFieldType(dart.nullable(borders.BorderSide))
   }));
-  var _androidNavCubit = dart.privateName(detail_screen, "_androidNavCubit");
-  var _desktopNavCubit = dart.privateName(detail_screen, "_desktopNavCubit");
+  dart.defineLazy(checkbox.Checkbox, {
+    /*checkbox.Checkbox.width*/get width() {
+      return 18;
+    }
+  }, false);
+  var _painter = dart.privateName(checkbox, "_painter");
+  var _previousValue = dart.privateName(checkbox, "_previousValue");
+  var _widgetFillColor = dart.privateName(checkbox, "_widgetFillColor");
+  var _defaultFillColor = dart.privateName(checkbox, "_defaultFillColor");
+  var OffsetBase__dy = dart.privateName(ui, "OffsetBase._dy");
+  var OffsetBase__dx = dart.privateName(ui, "OffsetBase._dx");
+  var _name = dart.privateName(theme_data, "_name");
+  var Color_value = dart.privateName(ui, "Color.value");
+  var _name$ = dart.privateName(borders, "_name");
+  var BorderSide_style = dart.privateName(borders, "BorderSide.style");
+  var BorderSide_width = dart.privateName(borders, "BorderSide.width");
+  var BorderSide_color = dart.privateName(borders, "BorderSide.color");
+  var OutlinedBorder_side = dart.privateName(borders, "OutlinedBorder.side");
+  var Radius_y = dart.privateName(ui, "Radius.y");
+  var Radius_x = dart.privateName(ui, "Radius.x");
+  var BorderRadius_bottomRight = dart.privateName(border_radius, "BorderRadius.bottomRight");
+  var BorderRadius_bottomLeft = dart.privateName(border_radius, "BorderRadius.bottomLeft");
+  var BorderRadius_topRight = dart.privateName(border_radius, "BorderRadius.topRight");
+  var BorderRadius_topLeft = dart.privateName(border_radius, "BorderRadius.topLeft");
+  var RoundedRectangleBorder_borderRadius = dart.privateName(rounded_rectangle_border, "RoundedRectangleBorder.borderRadius");
   var _Location_parameterLocations = dart.privateName(widget_inspector, "_Location.parameterLocations");
   var _Location_name = dart.privateName(widget_inspector, "_Location.name");
   var _Location_column = dart.privateName(widget_inspector, "_Location.column");
   var _Location_line = dart.privateName(widget_inspector, "_Location.line");
   var _Location_file = dart.privateName(widget_inspector, "_Location.file");
-  var EdgeInsets_bottom = dart.privateName(edge_insets, "EdgeInsets.bottom");
-  var EdgeInsets_right = dart.privateName(edge_insets, "EdgeInsets.right");
-  var EdgeInsets_top = dart.privateName(edge_insets, "EdgeInsets.top");
-  var EdgeInsets_left = dart.privateName(edge_insets, "EdgeInsets.left");
-  detail_screen._DetailScreenState = class _DetailScreenState extends framework.State$(dart.legacy(detail_screen.DetailScreen)) {
+  const State_TickerProviderStateMixin$36 = class State_TickerProviderStateMixin extends framework.State$(checkbox.Checkbox) {};
+  (State_TickerProviderStateMixin$36.new = function() {
+    ticker_provider.TickerProviderStateMixin$(checkbox.Checkbox)[dart.mixinNew].call(this);
+    State_TickerProviderStateMixin$36.__proto__.new.call(this);
+  }).prototype = State_TickerProviderStateMixin$36.prototype;
+  dart.applyMixin(State_TickerProviderStateMixin$36, ticker_provider.TickerProviderStateMixin$(checkbox.Checkbox));
+  const State_ToggleableStateMixin$36 = class State_ToggleableStateMixin extends State_TickerProviderStateMixin$36 {};
+  (State_ToggleableStateMixin$36.new = function() {
+    toggleable.ToggleableStateMixin$(checkbox.Checkbox)[dart.mixinNew].call(this);
+    State_ToggleableStateMixin$36.__proto__.new.call(this);
+  }).prototype = State_ToggleableStateMixin$36.prototype;
+  dart.applyMixin(State_ToggleableStateMixin$36, toggleable.ToggleableStateMixin$(checkbox.Checkbox));
+  checkbox._CheckboxState = class _CheckboxState extends State_ToggleableStateMixin$36 {
     initState() {
       super.initState();
-      this[_androidNavCubit] = bloc_provider.BlocProvider.of(T.AndroidNavCubitL(), this.context);
-      this[_desktopNavCubit] = bloc_provider.BlocProvider.of(T.DesktopNavCubitL(), this.context);
+      this[_previousValue] = this.widget.value;
     }
-    confirmWithdrawal(context) {
-      dialog.showDialog(dart.dynamic, {context: context, builder: dart.fn(context => new dialog.AlertDialog.new({title: new text.Text.new("Are you sure?", {$creationLocationd_0dea112b090073317d4: C[0] || CT.C0}), content: new text.Text.new("this action is irreversible", {$creationLocationd_0dea112b090073317d4: C[3] || CT.C3}), actions: T.JSArrayOfWidgetL().of([new text_button.TextButton.new({onPressed: dart.fn(() => {
-                this.setState(dart.fn(() => {
-                  this.widget.selectedDoc.status = "cancelled";
-                }, T.VoidToNull()));
-                navigator.Navigator.of(context).pop(T.ObjectL());
-              }, T.VoidToNull()), child: new text.Text.new("YES", {style: new text_style.TextStyle.new({color: colors.Colors.redAccent}), $creationLocationd_0dea112b090073317d4: C[6] || CT.C6}), $creationLocationd_0dea112b090073317d4: C[10] || CT.C10}), new text_button.TextButton.new({onPressed: dart.fn(() => navigator.Navigator.pop(T.ObjectL(), context), T.VoidTovoid()), child: new text.Text.new("NO", {$creationLocationd_0dea112b090073317d4: C[14] || CT.C14}), $creationLocationd_0dea112b090073317d4: C[17] || CT.C17})]), $creationLocationd_0dea112b090073317d4: C[21] || CT.C21}), T.BuildContextLToAlertDialogL())});
+    didUpdateWidget(oldWidget) {
+      checkbox.Checkbox.as(oldWidget);
+      if (oldWidget == null) dart.nullFailed(I[0], 338, 33, "oldWidget");
+      super.didUpdateWidget(oldWidget);
+      if (oldWidget.value != this.widget.value) {
+        this[_previousValue] = oldWidget.value;
+        this.animateToValue();
+      }
+    }
+    dispose() {
+      this[_painter].dispose();
+      super.dispose();
+    }
+    get onChanged() {
+      return this.widget.onChanged;
+    }
+    get tristate() {
+      return this.widget.tristate;
+    }
+    get value() {
+      return this.widget.value;
+    }
+    get [_widgetFillColor]() {
+      return material_state.MaterialStateProperty.resolveWith(T.ColorN(), dart.fn(states => {
+        if (states == null) dart.nullFailed(I[0], 362, 66, "states");
+        if (dart.test(states.contains(material_state.MaterialState.disabled))) {
+          return null;
+        }
+        if (dart.test(states.contains(material_state.MaterialState.selected))) {
+          return this.widget.activeColor;
+        }
+        return null;
+      }, T.SetOfMaterialStateToColorN()));
+    }
+    get [_defaultFillColor]() {
+      let themeData = theme.Theme.of(this.context);
+      return material_state.MaterialStateProperty.resolveWith(ui.Color, dart.fn(states => {
+        if (states == null) dart.nullFailed(I[0], 375, 66, "states");
+        if (dart.test(states.contains(material_state.MaterialState.disabled))) {
+          return themeData.disabledColor;
+        }
+        if (dart.test(states.contains(material_state.MaterialState.selected))) {
+          return themeData.toggleableActiveColor;
+        }
+        return themeData.unselectedWidgetColor;
+      }, T.SetOfMaterialStateToColor()));
     }
     build(context) {
-      return new will_pop_scope.WillPopScope.new({onWillPop: dart.fn(() => {
-          this[_androidNavCubit].navToHomeScreen();
-          return T.FutureOfboolL().value(false);
-        }, T.VoidToFutureLOfboolL()), child: new scaffold.Scaffold.new({body: new safe_area.SafeArea.new({child: new container.Container.new({height: 1 / 0, width: 1 / 0, padding: C[26] || CT.C26, child: new scroll_view.ListView.new({children: (() => {
-                  let t0 = T.JSArrayOfWidgetL().of([new container.Container.new({alignment: alignment.Alignment.centerLeft, width: 1 / 0, height: 60.0, child: new text.Text.new(this.widget.selectedDoc.subject, {style: new text_style.TextStyle.new({fontSize: 21.0, fontWeight: ui.FontWeight.w600}), $creationLocationd_0dea112b090073317d4: C[27] || CT.C27}), $creationLocationd_0dea112b090073317d4: C[31] || CT.C31})]);
-                  if (!dart.test(this.widget.isDesktop)) t0[$addAll](T.JSArrayOfWidgetL().of([new basic.SizedBox.new({height: 10.0, $creationLocationd_0dea112b090073317d4: C[37] || CT.C37}), new approval_progress.ApprovalProgress.new({approvalList: this.widget.selectedDoc.approvalProgress, docStatus: this.widget.selectedDoc.status, $creationLocationd_0dea112b090073317d4: C[40] || CT.C40})]));
-                  t0[$add](new container.Container.new({padding: C[44] || CT.C44, child: new basic.Column.new({children: (() => {
-                        let t1 = T.JSArrayOfWidgetL().of([]);
-                        if (this.widget.selectedDoc.description != null) t1[$add](new container.Container.new({padding: new edge_insets.EdgeInsets.all(12.0), decoration: new box_decoration.BoxDecoration.new({borderRadius: new border_radius.BorderRadius.circular(10.0), color: style.primaryLight}), child: new basic.Column.new({crossAxisAlignment: flex.CrossAxisAlignment.start, children: T.JSArrayOfWidgetL().of([new text.Text.new(this.widget.selectedDoc.description, {style: new text_style.TextStyle.new({fontSize: dart.test(this.widget.isDesktop) ? 20.0 : 14.0}), $creationLocationd_0dea112b090073317d4: C[45] || CT.C45}), new container.Container.new({margin: new edge_insets.EdgeInsets.only({top: 10.0}), decoration: new box_decoration.BoxDecoration.new({borderRadius: new border_radius.BorderRadius.circular(5.0), color: colors.Colors.white}), padding: new edge_insets.EdgeInsets.all(4.0), child: new text.Text.new(new date_format.DateFormat.new("d MMMM, y   h:m a").format(this.widget.selectedDoc.createdAt), {$creationLocationd_0dea112b090073317d4: C[49] || CT.C49}), $creationLocationd_0dea112b090073317d4: C[52] || CT.C52})]), $creationLocationd_0dea112b090073317d4: C[58] || CT.C58}), $creationLocationd_0dea112b090073317d4: C[62] || CT.C62}));
-                        t1[$add](new container.Container.new({height: 200.0, child: new card.Card.new({shape: new rounded_rectangle_border.RoundedRectangleBorder.new({borderRadius: new border_radius.BorderRadius.circular(10.0)}), child: new basic.Column.new({children: T.JSArrayOfWidgetL().of([new basic.Expanded.new({child: new container.Container.new({color: colors.Colors.white, child: new icon.Icon.new(icons.Icons.note, {$creationLocationd_0dea112b090073317d4: C[67] || CT.C67}), $creationLocationd_0dea112b090073317d4: C[70] || CT.C70}), $creationLocationd_0dea112b090073317d4: C[74] || CT.C74}), new container.Container.new({color: style.primaryLight, padding: new edge_insets.EdgeInsets.all(8.0), height: 50.0, child: new basic.Row.new({children: T.JSArrayOfWidgetL().of([new docTypeIcon.DocTypeIcon.new({$creationLocationd_0dea112b090073317d4: C[77] || CT.C77}), new basic.SizedBox.new({width: 10.0, $creationLocationd_0dea112b090073317d4: C[79] || CT.C79}), new text.Text.new("name of file.pdf", {$creationLocationd_0dea112b090073317d4: C[82] || CT.C82})]), $creationLocationd_0dea112b090073317d4: C[85] || CT.C85}), $creationLocationd_0dea112b090073317d4: C[88] || CT.C88})]), $creationLocationd_0dea112b090073317d4: C[94] || CT.C94}), $creationLocationd_0dea112b090073317d4: C[97] || CT.C97}), $creationLocationd_0dea112b090073317d4: C[101] || CT.C101}));
-                        t1[$add](new basic.SizedBox.new({height: 12.0, $creationLocationd_0dea112b090073317d4: C[105] || CT.C105}));
-                        if (this.widget.selectedDoc.status !== "pending") t1[$add](new detail_screen.StatusMessage.new(this.widget.selectedDoc.status, {$creationLocationd_0dea112b090073317d4: C[108] || CT.C108}));
-                        return t1;
-                      })(), $creationLocationd_0dea112b090073317d4: C[111] || CT.C111}), $creationLocationd_0dea112b090073317d4: C[114] || CT.C114}));
-                  return t0;
-                })(), $creationLocationd_0dea112b090073317d4: C[118] || CT.C118}), $creationLocationd_0dea112b090073317d4: C[121] || CT.C121}), $creationLocationd_0dea112b090073317d4: C[127] || CT.C127}), floatingActionButton: this.widget.selectedDoc.status === "pending" ? new floating_action_button.FloatingActionButton.extended({onPressed: dart.fn(() => dart.test(this.widget.isDesktop) ? this[_desktopNavCubit].navToHomeScreen() : this[_androidNavCubit].navToHomeScreen(), T.VoidTovoid()), label: new basic.Padding.new({padding: new edge_insets.EdgeInsets.symmetric({horizontal: 40.0}), child: new text.Text.new("Cancel request", {style: new text_style.TextStyle.new({fontSize: 20.0}), $creationLocationd_0dea112b090073317d4: C[130] || CT.C130}), $creationLocationd_0dea112b090073317d4: C[134] || CT.C134}), backgroundColor: style.red, shape: new rounded_rectangle_border.RoundedRectangleBorder.new({borderRadius: new border_radius.BorderRadius.circular(7.0)}), $creationLocationd_0dea112b090073317d4: C[138] || CT.C138}) : null, floatingActionButtonLocation: !dart.test(this.widget.isDesktop) ? floating_action_button_location.FloatingActionButtonLocation.centerFloat : floating_action_button_location.FloatingActionButtonLocation.startFloat, $creationLocationd_0dea112b090073317d4: C[144] || CT.C144}), $creationLocationd_0dea112b090073317d4: C[149] || CT.C149});
+      let t0, t0$, t0$0, t0$1, t0$2, t0$3, t0$4, t0$5, t1, t0$6, t0$7, t0$8, t0$9, t1$, t0$10, t0$11, t0$12, t0$13, t0$14, t1$0, t0$15, t0$16, t0$17, t0$18, t0$19, t1$1, t0$20, t0$21, t0$22, t0$23, t1$2, t0$24, t0$25, t0$26, t0$27, t1$3, t0$28, t0$29, t1$4, t0$30, t0$31, t1$5, t1$6, t1$7, t1$8, t1$9, t0$32;
+      if (context == null) dart.nullFailed(I[0], 387, 29, "context");
+      if (!dart.test(debug.debugCheckHasMaterial(context))) dart.assertFailed(null, I[0], 388, 12, "debugCheckHasMaterial(context)");
+      let themeData = theme.Theme.of(context);
+      let effectiveMaterialTapTargetSize = (t0$ = (t0 = this.widget.materialTapTargetSize, t0 == null ? themeData.checkboxTheme.materialTapTargetSize : t0), t0$ == null ? themeData.materialTapTargetSize : t0$);
+      let effectiveVisualDensity = (t0$1 = (t0$0 = this.widget.visualDensity, t0$0 == null ? themeData.checkboxTheme.visualDensity : t0$0), t0$1 == null ? themeData.visualDensity : t0$1);
+      let size = null;
+      switch (effectiveMaterialTapTargetSize) {
+        case C[1] || CT.C1:
+        {
+          size = C[0] || CT.C0;
+          break;
+        }
+        case C[3] || CT.C3:
+        {
+          size = C[2] || CT.C2;
+          break;
+        }
+        default:
+        {
+          dart.throw(new _internal.ReachabilityError.new("`null` encountered as case in a switch expression with a non-nullable enum type."));
+        }
+      }
+      size = size['+'](effectiveVisualDensity.baseSizeAdjustment);
+      let effectiveMouseCursor = material_state.MaterialStateProperty.resolveWith(mouse_cursor.MouseCursor, dart.fn(states => {
+        let t1, t0, t0$;
+        if (states == null) dart.nullFailed(I[0], 407, 136, "states");
+        t0$ = (t0 = material_state.MaterialStateProperty.resolveAs(T.MouseCursorN(), this.widget.mouseCursor, states), t0 == null ? (t1 = themeData.checkboxTheme.mouseCursor, t1 == null ? null : t1.resolve(states)) : t0);
+        return t0$ == null ? material_state.MaterialStateMouseCursor.clickable.resolve(states) : t0$;
+      }, T.SetOfMaterialStateToMouseCursor()));
+      let activeStates = (t0$2 = this.states, (() => {
+        t0$2.add(material_state.MaterialState.selected);
+        return t0$2;
+      })());
+      let inactiveStates = (t0$3 = this.states, (() => {
+        t0$3.remove(material_state.MaterialState.selected);
+        return t0$3;
+      })());
+      let effectiveActiveColor = (t0$7 = (t0$6 = (t0$5 = (t0$4 = this.widget.fillColor, t0$4 == null ? null : t0$4.resolve(activeStates)), t0$5 == null ? this[_widgetFillColor].resolve(activeStates) : t0$5), t0$6 == null ? (t1 = themeData.checkboxTheme.fillColor, t1 == null ? null : t1.resolve(activeStates)) : t0$6), t0$7 == null ? this[_defaultFillColor].resolve(activeStates) : t0$7);
+      let effectiveInactiveColor = (t0$11 = (t0$10 = (t0$9 = (t0$8 = this.widget.fillColor, t0$8 == null ? null : t0$8.resolve(inactiveStates)), t0$9 == null ? this[_widgetFillColor].resolve(inactiveStates) : t0$9), t0$10 == null ? (t1$ = themeData.checkboxTheme.fillColor, t1$ == null ? null : t1$.resolve(inactiveStates)) : t0$10), t0$11 == null ? this[_defaultFillColor].resolve(inactiveStates) : t0$11);
+      let focusedStates = (t0$12 = this.states, (() => {
+        t0$12.add(material_state.MaterialState.focused);
+        return t0$12;
+      })());
+      let effectiveFocusOverlayColor = (t0$16 = (t0$15 = (t0$14 = (t0$13 = this.widget.overlayColor, t0$13 == null ? null : t0$13.resolve(focusedStates)), t0$14 == null ? this.widget.focusColor : t0$14), t0$15 == null ? (t1$0 = themeData.checkboxTheme.overlayColor, t1$0 == null ? null : t1$0.resolve(focusedStates)) : t0$15), t0$16 == null ? themeData.focusColor : t0$16);
+      let hoveredStates = (t0$17 = this.states, (() => {
+        t0$17.add(material_state.MaterialState.hovered);
+        return t0$17;
+      })());
+      let effectiveHoverOverlayColor = (t0$21 = (t0$20 = (t0$19 = (t0$18 = this.widget.overlayColor, t0$18 == null ? null : t0$18.resolve(hoveredStates)), t0$19 == null ? this.widget.hoverColor : t0$19), t0$20 == null ? (t1$1 = themeData.checkboxTheme.overlayColor, t1$1 == null ? null : t1$1.resolve(hoveredStates)) : t0$20), t0$21 == null ? themeData.hoverColor : t0$21);
+      let activePressedStates = (t0$22 = activeStates, (() => {
+        t0$22.add(material_state.MaterialState.pressed);
+        return t0$22;
+      })());
+      let effectiveActivePressedOverlayColor = (t0$25 = (t0$24 = (t0$23 = this.widget.overlayColor, t0$23 == null ? null : t0$23.resolve(activePressedStates)), t0$24 == null ? (t1$2 = themeData.checkboxTheme.overlayColor, t1$2 == null ? null : t1$2.resolve(activePressedStates)) : t0$24), t0$25 == null ? effectiveActiveColor.withAlpha(31) : t0$25);
+      let inactivePressedStates = (t0$26 = inactiveStates, (() => {
+        t0$26.add(material_state.MaterialState.pressed);
+        return t0$26;
+      })());
+      let effectiveInactivePressedOverlayColor = (t0$29 = (t0$28 = (t0$27 = this.widget.overlayColor, t0$27 == null ? null : t0$27.resolve(inactivePressedStates)), t0$28 == null ? (t1$3 = themeData.checkboxTheme.overlayColor, t1$3 == null ? null : t1$3.resolve(inactivePressedStates)) : t0$28), t0$29 == null ? effectiveActiveColor.withAlpha(31) : t0$29);
+      let effectiveCheckColor = (t0$31 = (t0$30 = this.widget.checkColor, t0$30 == null ? (t1$4 = themeData.checkboxTheme.checkColor, t1$4 == null ? null : t1$4.resolve(this.states)) : t0$30), t0$31 == null ? C[4] || CT.C4 : t0$31);
+      return new basic.Semantics.new({checked: this.widget.value === true, child: this.buildToggleable({mouseCursor: effectiveMouseCursor, focusNode: this.widget.focusNode, autofocus: this.widget.autofocus, size: size, painter: (t0$32 = this[_painter], (() => {
+            t0$32.position = this.position;
+            t0$32.reaction = this.reaction;
+            t0$32.reactionFocusFade = this.reactionFocusFade;
+            t0$32.reactionHoverFade = this.reactionHoverFade;
+            t0$32.inactiveReactionColor = effectiveInactivePressedOverlayColor;
+            t0$32.reactionColor = effectiveActivePressedOverlayColor;
+            t0$32.hoverColor = effectiveHoverOverlayColor;
+            t0$32.focusColor = effectiveFocusOverlayColor;
+            t0$32.splashRadius = (t1$6 = (t1$5 = this.widget.splashRadius, t1$5 == null ? themeData.checkboxTheme.splashRadius : t1$5), t1$6 == null ? 20 : t1$6);
+            t0$32.downPosition = this.downPosition;
+            t0$32.isFocused = this.states.contains(material_state.MaterialState.focused);
+            t0$32.isHovered = this.states.contains(material_state.MaterialState.hovered);
+            t0$32.activeColor = effectiveActiveColor;
+            t0$32.inactiveColor = effectiveInactiveColor;
+            t0$32.checkColor = effectiveCheckColor;
+            t0$32.value = this.value;
+            t0$32.previousValue = this[_previousValue];
+            t0$32.shape = (t1$8 = (t1$7 = this.widget.shape, t1$7 == null ? themeData.checkboxTheme.shape : t1$7), t1$8 == null ? C[5] || CT.C5 : t1$8);
+            t0$32.side = (t1$9 = this.widget.side, t1$9 == null ? themeData.checkboxTheme.side : t1$9);
+            return t0$32;
+          })())}), $creationLocationd_0dea112b090073317d4: C[11] || CT.C11});
     }
   };
-  (detail_screen._DetailScreenState.new = function() {
-    this[_androidNavCubit] = null;
-    this[_desktopNavCubit] = null;
-    detail_screen._DetailScreenState.__proto__.new.call(this);
+  (checkbox._CheckboxState.new = function() {
+    this[_painter] = new checkbox._CheckboxPainter.new();
+    this[_previousValue] = null;
+    checkbox._CheckboxState.__proto__.new.call(this);
     ;
-  }).prototype = detail_screen._DetailScreenState.prototype;
-  dart.addTypeTests(detail_screen._DetailScreenState);
-  dart.addTypeCaches(detail_screen._DetailScreenState);
-  dart.setMethodSignature(detail_screen._DetailScreenState, () => ({
-    __proto__: dart.getMethods(detail_screen._DetailScreenState.__proto__),
-    confirmWithdrawal: dart.fnType(dart.void, [dart.legacy(framework.BuildContext)]),
-    build: dart.fnType(dart.legacy(framework.Widget), [dart.legacy(framework.BuildContext)])
+  }).prototype = checkbox._CheckboxState.prototype;
+  dart.addTypeTests(checkbox._CheckboxState);
+  dart.addTypeCaches(checkbox._CheckboxState);
+  dart.setMethodSignature(checkbox._CheckboxState, () => ({
+    __proto__: dart.getMethods(checkbox._CheckboxState.__proto__),
+    build: dart.fnType(framework.Widget, [framework.BuildContext])
   }));
-  dart.setLibraryUri(detail_screen._DetailScreenState, I[0]);
-  dart.setFieldSignature(detail_screen._DetailScreenState, () => ({
-    __proto__: dart.getFields(detail_screen._DetailScreenState.__proto__),
-    [_androidNavCubit]: dart.fieldType(dart.legacy(AndroidNav_cubit.AndroidNavCubit)),
-    [_desktopNavCubit]: dart.fieldType(dart.legacy(desktopnav_cubit.DesktopNavCubit))
+  dart.setGetterSignature(checkbox._CheckboxState, () => ({
+    __proto__: dart.getGetters(checkbox._CheckboxState.__proto__),
+    onChanged: dart.nullable(dart.fnType(dart.void, [dart.nullable(core.bool)])),
+    tristate: core.bool,
+    value: dart.nullable(core.bool),
+    [_widgetFillColor]: material_state.MaterialStateProperty$(dart.nullable(ui.Color)),
+    [_defaultFillColor]: material_state.MaterialStateProperty$(ui.Color)
   }));
-  var status$ = dart.privateName(detail_screen, "StatusMessage.status");
-  var isDesktop$0 = dart.privateName(detail_screen, "StatusMessage.isDesktop");
-  detail_screen.StatusMessage = class StatusMessage extends framework.StatelessWidget {
-    get status() {
-      return this[status$];
+  dart.setLibraryUri(checkbox._CheckboxState, I[1]);
+  dart.setFieldSignature(checkbox._CheckboxState, () => ({
+    __proto__: dart.getFields(checkbox._CheckboxState.__proto__),
+    [_painter]: dart.finalFieldType(checkbox._CheckboxPainter),
+    [_previousValue]: dart.fieldType(dart.nullable(core.bool))
+  }));
+  var _checkColor = dart.privateName(checkbox, "_checkColor");
+  var _value = dart.privateName(checkbox, "_value");
+  var _shape = dart.privateName(checkbox, "_shape");
+  var _side = dart.privateName(checkbox, "_side");
+  var _outerRectAt = dart.privateName(checkbox, "_outerRectAt");
+  var _colorAt = dart.privateName(checkbox, "_colorAt");
+  var _createStrokePaint = dart.privateName(checkbox, "_createStrokePaint");
+  var _drawBorder = dart.privateName(checkbox, "_drawBorder");
+  var _drawCheck = dart.privateName(checkbox, "_drawCheck");
+  var _drawDash = dart.privateName(checkbox, "_drawDash");
+  var _repaint = dart.privateName(checkbox, "_repaint");
+  var _repaint$ = dart.privateName(custom_paint, "_repaint");
+  checkbox._CheckboxPainter = class _CheckboxPainter extends toggleable.ToggleablePainter {
+    get checkColor() {
+      return dart.nullCheck(this[_checkColor]);
     }
-    set status(value) {
-      super.status = value;
+    set checkColor(value) {
+      if (value == null) dart.nullFailed(I[0], 492, 24, "value");
+      if (dart.equals(this[_checkColor], value)) {
+        return;
+      }
+      this[_checkColor] = value;
+      this.notifyListeners();
     }
-    get isDesktop() {
-      return this[isDesktop$0];
+    get value() {
+      return this[_value];
     }
-    set isDesktop(value) {
-      super.isDesktop = value;
+    set value(value) {
+      if (this[_value] == value) {
+        return;
+      }
+      this[_value] = value;
+      this.notifyListeners();
     }
-    color(opts) {
-      let light = opts && 'light' in opts ? opts.light : false;
-      switch (this.status) {
-        case "approved":
-        {
-          return dart.test(light) ? style.green.withOpacity(0.3) : style.green;
+    get previousValue() {
+      return this[_previousValue];
+    }
+    set previousValue(value) {
+      if (this[_previousValue] == value) {
+        return;
+      }
+      this[_previousValue] = value;
+      this.notifyListeners();
+    }
+    get shape() {
+      return dart.nullCheck(this[_shape]);
+    }
+    set shape(value) {
+      if (value == null) dart.nullFailed(I[0], 522, 28, "value");
+      if (dart.equals(this[_shape], value)) {
+        return;
+      }
+      this[_shape] = value;
+      this.notifyListeners();
+    }
+    get side() {
+      return this[_side];
+    }
+    set side(value) {
+      if (dart.equals(this[_side], value)) {
+        return;
+      }
+      this[_side] = value;
+      this.notifyListeners();
+    }
+    [_outerRectAt](origin, t) {
+      if (origin == null) dart.nullFailed(I[0], 544, 28, "origin");
+      if (t == null) dart.nullFailed(I[0], 544, 43, "t");
+      let inset = 1.0 - (dart.notNull(t) - 0.5)[$abs]() * 2.0;
+      let size = 18 - inset * 2;
+      let rect = new ui.Rect.fromLTWH(dart.notNull(origin.dx) + inset, dart.notNull(origin.dy) + inset, size, size);
+      return rect;
+    }
+    [_colorAt](t) {
+      if (t == null) dart.nullFailed(I[0], 553, 25, "t");
+      return dart.notNull(t) >= 0.25 ? this.activeColor : dart.nullCheck(ui.Color.lerp(this.inactiveColor, this.activeColor, dart.notNull(t) * 4.0));
+    }
+    [_createStrokePaint]() {
+      let t0;
+      t0 = ui.Paint.new();
+      return (() => {
+        t0.color = this.checkColor;
+        t0.style = ui.PaintingStyle.stroke;
+        t0.strokeWidth = 2;
+        return t0;
+      })();
+    }
+    [_drawBorder](canvas, outer, t, paint) {
+      if (canvas == null) dart.nullFailed(I[0], 566, 27, "canvas");
+      if (outer == null) dart.nullFailed(I[0], 566, 40, "outer");
+      if (t == null) dart.nullFailed(I[0], 566, 54, "t");
+      if (paint == null) dart.nullFailed(I[0], 566, 63, "paint");
+      if (!(dart.notNull(t) >= 0.0 && dart.notNull(t) <= 0.5)) dart.assertFailed(null, I[0], 567, 12, "t >= 0.0 && t <= 0.5");
+      let resolvedShape = this.shape;
+      if (this.side == null) {
+        resolvedShape = resolvedShape.copyWith({side: new borders.BorderSide.new({width: 2.0, color: paint.color})});
+      }
+      resolvedShape.copyWith({side: this.side}).paint(canvas, outer);
+    }
+    [_drawCheck](canvas, origin, t, paint) {
+      if (canvas == null) dart.nullFailed(I[0], 575, 26, "canvas");
+      if (origin == null) dart.nullFailed(I[0], 575, 41, "origin");
+      if (t == null) dart.nullFailed(I[0], 575, 56, "t");
+      if (paint == null) dart.nullFailed(I[0], 575, 65, "paint");
+      if (!(dart.notNull(t) >= 0.0 && dart.notNull(t) <= 1.0)) dart.assertFailed(null, I[0], 576, 12, "t >= 0.0 && t <= 1.0");
+      let path = ui.Path.new();
+      let start = C[15] || CT.C15;
+      let mid = C[16] || CT.C16;
+      let end = C[17] || CT.C17;
+      if (dart.notNull(t) < 0.5) {
+        let strokeT = dart.notNull(t) * 2.0;
+        let drawMid = dart.nullCheck(ui.Offset.lerp(start, mid, strokeT));
+        path.moveTo(dart.notNull(origin.dx) + dart.notNull(start.dx), dart.notNull(origin.dy) + dart.notNull(start.dy));
+        path.lineTo(dart.notNull(origin.dx) + dart.notNull(drawMid.dx), dart.notNull(origin.dy) + dart.notNull(drawMid.dy));
+      } else {
+        let strokeT = (dart.notNull(t) - 0.5) * 2.0;
+        let drawEnd = dart.nullCheck(ui.Offset.lerp(mid, end, strokeT));
+        path.moveTo(dart.notNull(origin.dx) + dart.notNull(start.dx), dart.notNull(origin.dy) + dart.notNull(start.dy));
+        path.lineTo(dart.notNull(origin.dx) + dart.notNull(mid.dx), dart.notNull(origin.dy) + dart.notNull(mid.dy));
+        path.lineTo(dart.notNull(origin.dx) + dart.notNull(drawEnd.dx), dart.notNull(origin.dy) + dart.notNull(drawEnd.dy));
+      }
+      canvas.drawPath(path, paint);
+    }
+    [_drawDash](canvas, origin, t, paint) {
+      if (canvas == null) dart.nullFailed(I[0], 598, 25, "canvas");
+      if (origin == null) dart.nullFailed(I[0], 598, 40, "origin");
+      if (t == null) dart.nullFailed(I[0], 598, 55, "t");
+      if (paint == null) dart.nullFailed(I[0], 598, 64, "paint");
+      if (!(dart.notNull(t) >= 0.0 && dart.notNull(t) <= 1.0)) dart.assertFailed(null, I[0], 599, 12, "t >= 0.0 && t <= 1.0");
+      let start = C[18] || CT.C18;
+      let mid = C[19] || CT.C19;
+      let end = C[20] || CT.C20;
+      let drawStart = dart.nullCheck(ui.Offset.lerp(start, mid, 1.0 - dart.notNull(t)));
+      let drawEnd = dart.nullCheck(ui.Offset.lerp(mid, end, t));
+      canvas.drawLine(origin['+'](drawStart), origin['+'](drawEnd), paint);
+    }
+    paint(canvas, size) {
+      let t0, t0$;
+      if (canvas == null) dart.nullFailed(I[0], 611, 21, "canvas");
+      if (size == null) dart.nullFailed(I[0], 611, 34, "size");
+      this.paintRadialReaction({canvas: canvas, origin: size.center(ui.Offset.zero)});
+      let strokePaint = this[_createStrokePaint]();
+      let origin = ui.Offset.as(size['/'](2.0)['-']((C[21] || CT.C21)['/'](2.0)));
+      let status = this.position.status;
+      let tNormalized = status == animation.AnimationStatus.forward || status == animation.AnimationStatus.completed ? this.position.value : 1.0 - dart.notNull(this.position.value);
+      if (this.previousValue === false || this.value === false) {
+        let t = this.value === false ? 1.0 - dart.notNull(tNormalized) : tNormalized;
+        let outer = this[_outerRectAt](origin, t);
+        let emptyCheckboxPath = this.shape.copyWith({side: this.side}).getOuterPath(outer);
+        let paint = (t0 = ui.Paint.new(), (() => {
+          t0.color = this[_colorAt](t);
+          return t0;
+        })());
+        if (dart.notNull(t) <= 0.5) {
+          this[_drawBorder](canvas, outer, t, paint);
+        } else {
+          canvas.drawPath(emptyCheckboxPath, paint);
+          let tShrink = (dart.notNull(t) - 0.5) * 2.0;
+          if (this.previousValue == null || this.value == null)
+            this[_drawDash](canvas, origin, tShrink, strokePaint);
+          else
+            this[_drawCheck](canvas, origin, tShrink, strokePaint);
         }
-        case "rejected":
-        {
-          return dart.test(light) ? style.redLight.withOpacity(0.3) : style.red;
-        }
-        case "cancelled":
-        {
-          return dart.test(light) ? colors.Colors.grey._get(200) : colors.Colors.grey._get(400);
+      } else {
+        let outer = this[_outerRectAt](origin, 1.0);
+        let paint = (t0$ = ui.Paint.new(), (() => {
+          t0$.color = this[_colorAt](1.0);
+          return t0$;
+        })());
+        canvas.drawPath(this.shape.copyWith({side: this.side}).getOuterPath(outer), paint);
+        if (dart.notNull(tNormalized) <= 0.5) {
+          let tShrink = 1.0 - dart.notNull(tNormalized) * 2.0;
+          if (this.previousValue === true)
+            this[_drawCheck](canvas, origin, tShrink, strokePaint);
+          else
+            this[_drawDash](canvas, origin, tShrink, strokePaint);
+        } else {
+          let tExpand = (dart.notNull(tNormalized) - 0.5) * 2.0;
+          if (this.value === true)
+            this[_drawCheck](canvas, origin, tExpand, strokePaint);
+          else
+            this[_drawDash](canvas, origin, tExpand, strokePaint);
         }
       }
     }
-    text() {
-      if (this.status === "approved")
-        return "Approval Complete";
-      else if (this.status === "cancelled") return "Request Cancelled";
-      return "Rejected";
-    }
-    build(context) {
-      return new basic.ClipRRect.new({borderRadius: new border_radius.BorderRadius.circular(7.0), child: new container.Container.new({height: dart.test(this.isDesktop) ? 60.0 : 60.0, color: this.color({light: true}), child: new basic.Row.new({children: T.JSArrayOfWidgetL().of([new container.Container.new({width: 5.0, color: this.color(), $creationLocationd_0dea112b090073317d4: C[153] || CT.C153}), new basic.SizedBox.new({width: 20.0, $creationLocationd_0dea112b090073317d4: C[157] || CT.C157}), new basic.Expanded.new({child: new container.Container.new({child: new text.Text.new(this.text(), {style: new text_style.TextStyle.new({fontSize: dart.test(this.isDesktop) ? style.desktopFontSize : style.androidFontSize}), $creationLocationd_0dea112b090073317d4: C[160] || CT.C160}), $creationLocationd_0dea112b090073317d4: C[164] || CT.C164}), $creationLocationd_0dea112b090073317d4: C[167] || CT.C167})]), $creationLocationd_0dea112b090073317d4: C[170] || CT.C170}), $creationLocationd_0dea112b090073317d4: C[173] || CT.C173}), $creationLocationd_0dea112b090073317d4: C[178] || CT.C178});
+    get [_repaint$]() {
+      return T.ListenableN().as(this[$noSuchMethod](new core._Invocation.getter(C[22] || CT.C22)));
     }
   };
-  (detail_screen.StatusMessage.new = function(status, opts) {
-    let isDesktop = opts && 'isDesktop' in opts ? opts.isDesktop : false;
-    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
-    this[status$] = status;
-    this[isDesktop$0] = isDesktop;
-    detail_screen.StatusMessage.__proto__.new.call(this, {$creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
+  (checkbox._CheckboxPainter.new = function() {
+    this[_checkColor] = null;
+    this[_value] = null;
+    this[_previousValue] = null;
+    this[_shape] = null;
+    this[_side] = null;
+    checkbox._CheckboxPainter.__proto__.new.call(this);
     ;
-  }).prototype = detail_screen.StatusMessage.prototype;
-  dart.addTypeTests(detail_screen.StatusMessage);
-  dart.addTypeCaches(detail_screen.StatusMessage);
-  dart.setMethodSignature(detail_screen.StatusMessage, () => ({
-    __proto__: dart.getMethods(detail_screen.StatusMessage.__proto__),
-    color: dart.fnType(dart.legacy(ui.Color), [], {light: dart.legacy(core.bool)}, {}),
-    text: dart.fnType(dart.legacy(core.String), []),
-    build: dart.fnType(dart.legacy(framework.Widget), [dart.legacy(framework.BuildContext)])
+  }).prototype = checkbox._CheckboxPainter.prototype;
+  dart.addTypeTests(checkbox._CheckboxPainter);
+  dart.addTypeCaches(checkbox._CheckboxPainter);
+  dart.setMethodSignature(checkbox._CheckboxPainter, () => ({
+    __proto__: dart.getMethods(checkbox._CheckboxPainter.__proto__),
+    [_outerRectAt]: dart.fnType(ui.Rect, [ui.Offset, core.double]),
+    [_colorAt]: dart.fnType(ui.Color, [core.double]),
+    [_createStrokePaint]: dart.fnType(ui.Paint, []),
+    [_drawBorder]: dart.fnType(dart.void, [ui.Canvas, ui.Rect, core.double, ui.Paint]),
+    [_drawCheck]: dart.fnType(dart.void, [ui.Canvas, ui.Offset, core.double, ui.Paint]),
+    [_drawDash]: dart.fnType(dart.void, [ui.Canvas, ui.Offset, core.double, ui.Paint]),
+    paint: dart.fnType(dart.void, [ui.Canvas, ui.Size])
   }));
-  dart.setLibraryUri(detail_screen.StatusMessage, I[0]);
-  dart.setFieldSignature(detail_screen.StatusMessage, () => ({
-    __proto__: dart.getFields(detail_screen.StatusMessage.__proto__),
-    status: dart.finalFieldType(dart.legacy(core.String)),
-    isDesktop: dart.finalFieldType(dart.legacy(core.bool))
+  dart.setGetterSignature(checkbox._CheckboxPainter, () => ({
+    __proto__: dart.getGetters(checkbox._CheckboxPainter.__proto__),
+    checkColor: ui.Color,
+    value: dart.nullable(core.bool),
+    previousValue: dart.nullable(core.bool),
+    shape: borders.OutlinedBorder,
+    side: dart.nullable(borders.BorderSide),
+    [_repaint$]: dart.nullable(change_notifier.Listenable)
   }));
-  dart.trackLibraries("packages/softdoc/screens/detail_screen/detail_screen.dart", {
-    "package:softdoc/screens/detail_screen/detail_screen.dart": detail_screen
+  dart.setSetterSignature(checkbox._CheckboxPainter, () => ({
+    __proto__: dart.getSetters(checkbox._CheckboxPainter.__proto__),
+    checkColor: ui.Color,
+    value: dart.nullable(core.bool),
+    previousValue: dart.nullable(core.bool),
+    shape: borders.OutlinedBorder,
+    side: dart.nullable(borders.BorderSide)
+  }));
+  dart.setLibraryUri(checkbox._CheckboxPainter, I[1]);
+  dart.setFieldSignature(checkbox._CheckboxPainter, () => ({
+    __proto__: dart.getFields(checkbox._CheckboxPainter.__proto__),
+    [_checkColor]: dart.fieldType(dart.nullable(ui.Color)),
+    [_value]: dart.fieldType(dart.nullable(core.bool)),
+    [_previousValue]: dart.fieldType(dart.nullable(core.bool)),
+    [_shape]: dart.fieldType(dart.nullable(borders.OutlinedBorder)),
+    [_side]: dart.fieldType(dart.nullable(borders.BorderSide))
+  }));
+  dart.defineLazy(checkbox, {
+    /*checkbox._kEdgeSize*/get _kEdgeSize() {
+      return 18;
+    },
+    /*checkbox._kStrokeWidth*/get _kStrokeWidth() {
+      return 2;
+    }
+  }, false);
+  dart.trackLibraries("packages/flutter/src/material/checkbox.dart", {
+    "package:flutter/src/material/checkbox.dart": checkbox
   }, {
-  }, '{"version":3,"sourceRoot":"","sources":["detail_screen.dart"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;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","file":"../../../../../../../../../../../packages/softdoc/screens/detail_screen/detail_screen.dart.lib.js"}');
+  }, '{"version":3,"sourceRoot":"","sources":["checkbox.dart"],"names":[],"mappings":"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","file":"../../../../../../../../D:/packages/flutter/src/material/checkbox.dart.lib.js"}');
   // Exports:
   return {
-    screens__detail_screen__detail_screen: detail_screen
+    src__material__checkbox: checkbox
   };
 }));
 
-//# sourceMappingURL=detail_screen.dart.lib.js.map
+//# sourceMappingURL=checkbox.dart.lib.js.map

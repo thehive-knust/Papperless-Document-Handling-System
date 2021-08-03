@@ -1,490 +1,578 @@
-define(['dart_sdk', 'packages/flutter/src/physics/tolerance.dart', 'packages/flutter/src/physics/friction_simulation.dart', 'packages/flutter/src/physics/spring_simulation.dart', 'packages/flutter/src/foundation/object.dart', 'packages/flutter/src/physics/simulation.dart'], (function load__packages__flutter__src__widgets__scroll_simulation_dart(dart_sdk, packages__flutter__src__physics__tolerance$46dart, packages__flutter__src__physics__friction_simulation$46dart, packages__flutter__src__physics__spring_simulation$46dart, packages__flutter__src__foundation__object$46dart, packages__flutter__src__physics__simulation$46dart) {
+define(['dart_sdk', 'packages/flutter/src/widgets/widget_span.dart', 'packages/flutter/src/painting/alignment.dart', 'packages/flutter/src/rendering/flex.dart', 'packages/softdoc/style.dart', 'packages/flutter/src/material/colors.dart', 'packages/flutter/src/painting/box_decoration.dart', 'packages/flutter/src/painting/box_border.dart', 'packages/flutter/src/painting/box_shadow.dart', 'packages/flutter/src/painting/gradient.dart'], (function load__packages__softdoc__screens__detail_screen__approval_progress_dart(dart_sdk, packages__flutter__src__widgets__widget_span$46dart, packages__flutter__src__painting__alignment$46dart, packages__flutter__src__rendering__flex$46dart, packages__softdoc__style$46dart, packages__flutter__src__material__colors$46dart, packages__flutter__src__painting__box_decoration$46dart, packages__flutter__src__painting__box_border$46dart, packages__flutter__src__painting__box_shadow$46dart, packages__flutter__src__painting__gradient$46dart) {
   'use strict';
   const core = dart_sdk.core;
-  const math = dart_sdk.math;
-  const _internal = dart_sdk._internal;
   const _interceptors = dart_sdk._interceptors;
+  const ui = dart_sdk.ui;
   const dart = dart_sdk.dart;
   const dartx = dart_sdk.dartx;
-  const tolerance = packages__flutter__src__physics__tolerance$46dart.src__physics__tolerance;
-  const friction_simulation = packages__flutter__src__physics__friction_simulation$46dart.src__physics__friction_simulation;
-  const spring_simulation = packages__flutter__src__physics__spring_simulation$46dart.src__physics__spring_simulation;
-  const object = packages__flutter__src__foundation__object$46dart.src__foundation__object;
-  const simulation = packages__flutter__src__physics__simulation$46dart.src__physics__simulation;
-  var scroll_simulation = Object.create(dart.library);
-  var $isFinite = dartx.isFinite;
-  var $abs = dartx.abs;
-  var $round = dartx.round;
-  var $sign = dartx.sign;
-  var $clamp = dartx.clamp;
+  const framework = packages__flutter__src__widgets__widget_span$46dart.src__widgets__framework;
+  const container = packages__flutter__src__widgets__widget_span$46dart.src__widgets__container;
+  const basic = packages__flutter__src__widgets__widget_span$46dart.src__widgets__basic;
+  const widget_inspector = packages__flutter__src__widgets__widget_span$46dart.src__widgets__widget_inspector;
+  const text = packages__flutter__src__widgets__widget_span$46dart.src__widgets__text;
+  const alignment = packages__flutter__src__painting__alignment$46dart.src__painting__alignment;
+  const flex = packages__flutter__src__rendering__flex$46dart.src__rendering__flex;
+  const style = packages__softdoc__style$46dart.style;
+  const colors = packages__flutter__src__material__colors$46dart.src__material__colors;
+  const box_decoration = packages__flutter__src__painting__box_decoration$46dart.src__painting__box_decoration;
+  const box_border = packages__flutter__src__painting__box_border$46dart.src__painting__box_border;
+  const box_shadow = packages__flutter__src__painting__box_shadow$46dart.src__painting__box_shadow;
+  const gradient = packages__flutter__src__painting__gradient$46dart.src__painting__gradient;
+  var approval_progress = Object.create(dart.library);
+  var $keys = dartx.keys;
+  var $toList = dartx.toList;
+  var $length = dartx.length;
+  var $first = dartx.first;
+  var $values = dartx.values;
   var $_get = dartx._get;
+  var $entries = dartx.entries;
+  var $last = dartx.last;
+  var $modulo = dartx['%'];
+  var $indexOf = dartx.indexOf;
+  var $map = dartx.map;
+  var $truncate = dartx.truncate;
   dart._checkModuleNullSafetyMode(false);
   var T = {
-    JSArrayOfdouble: () => (T.JSArrayOfdouble = dart.constFn(_interceptors.JSArray$(core.double)))()
+    _LocationL: () => (T._LocationL = dart.constFn(dart.legacy(widget_inspector._Location)))(),
+    WidgetL: () => (T.WidgetL = dart.constFn(dart.legacy(framework.Widget)))(),
+    JSArrayOfWidgetL: () => (T.JSArrayOfWidgetL = dart.constFn(_interceptors.JSArray$(T.WidgetL())))(),
+    ExpandedL: () => (T.ExpandedL = dart.constFn(dart.legacy(basic.Expanded)))(),
+    StringL: () => (T.StringL = dart.constFn(dart.legacy(core.String)))(),
+    MapEntryOfStringL$StringL: () => (T.MapEntryOfStringL$StringL = dart.constFn(core.MapEntry$(T.StringL(), T.StringL())))(),
+    MapEntryLOfStringL$StringL: () => (T.MapEntryLOfStringL$StringL = dart.constFn(dart.legacy(T.MapEntryOfStringL$StringL())))(),
+    MapEntryLOfStringL$StringLToExpandedL: () => (T.MapEntryLOfStringL$StringLToExpandedL = dart.constFn(dart.fnType(T.ExpandedL(), [T.MapEntryLOfStringL$StringL()])))(),
+    BoxShadowL: () => (T.BoxShadowL = dart.constFn(dart.legacy(box_shadow.BoxShadow)))(),
+    JSArrayOfBoxShadowL: () => (T.JSArrayOfBoxShadowL = dart.constFn(_interceptors.JSArray$(T.BoxShadowL())))(),
+    ColorL: () => (T.ColorL = dart.constFn(dart.legacy(ui.Color)))(),
+    JSArrayOfColorL: () => (T.JSArrayOfColorL = dart.constFn(_interceptors.JSArray$(T.ColorL())))()
   };
   const CT = Object.create({
     _: () => (C, CT)
   });
   dart.defineLazy(CT, {
+    get C2() {
+      return C[2] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "height",
+        [_Location_column]: 26,
+        [_Location_line]: 32,
+        [_Location_file]: null
+      });
+    },
+    get C1() {
+      return C[1] = dart.constList([C[2] || CT.C2], T._LocationL());
+    },
     get C0() {
       return C[0] = dart.const({
-        __proto__: tolerance.Tolerance.prototype,
-        [Tolerance_velocity]: 0.001,
-        [Tolerance_time]: 0.001,
-        [Tolerance_distance]: 0.001
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[1] || CT.C1,
+        [_Location_name]: null,
+        [_Location_column]: 17,
+        [_Location_line]: 32,
+        [_Location_file]: "file:///D:/Abdul-Mateen/Edu/curricular/Year%203%20sem%202/COE%20356%20Intro%20to%20Software%20engineering/Project/Papperless-Document-Handling-System/client/lib/screens/detail_screen/approval_progress.dart"
+      });
+    },
+    get C5() {
+      return C[5] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "data",
+        [_Location_column]: 38,
+        [_Location_line]: 33,
+        [_Location_file]: null
+      });
+    },
+    get C4() {
+      return C[4] = dart.constList([C[5] || CT.C5], T._LocationL());
+    },
+    get C3() {
+      return C[3] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[4] || CT.C4,
+        [_Location_name]: null,
+        [_Location_column]: 17,
+        [_Location_line]: 33,
+        [_Location_file]: "file:///D:/Abdul-Mateen/Edu/curricular/Year%203%20sem%202/COE%20356%20Intro%20to%20Software%20engineering/Project/Papperless-Document-Handling-System/client/lib/screens/detail_screen/approval_progress.dart"
+      });
+    },
+    get C8() {
+      return C[8] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "mainAxisAlignment",
+        [_Location_column]: 15,
+        [_Location_line]: 29,
+        [_Location_file]: null
+      });
+    },
+    get C9() {
+      return C[9] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "children",
+        [_Location_column]: 15,
+        [_Location_line]: 30,
+        [_Location_file]: null
+      });
+    },
+    get C7() {
+      return C[7] = dart.constList([C[8] || CT.C8, C[9] || CT.C9], T._LocationL());
+    },
+    get C6() {
+      return C[6] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[7] || CT.C7,
+        [_Location_name]: null,
+        [_Location_column]: 13,
+        [_Location_line]: 28,
+        [_Location_file]: "file:///D:/Abdul-Mateen/Edu/curricular/Year%203%20sem%202/COE%20356%20Intro%20to%20Software%20engineering/Project/Papperless-Document-Handling-System/client/lib/screens/detail_screen/approval_progress.dart"
+      });
+    },
+    get C12() {
+      return C[12] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "children",
+        [_Location_column]: 25,
+        [_Location_line]: 46,
+        [_Location_file]: null
+      });
+    },
+    get C11() {
+      return C[11] = dart.constList([C[12] || CT.C12], T._LocationL());
+    },
+    get C10() {
+      return C[10] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[11] || CT.C11,
+        [_Location_name]: null,
+        [_Location_column]: 23,
+        [_Location_line]: 45,
+        [_Location_file]: "file:///D:/Abdul-Mateen/Edu/curricular/Year%203%20sem%202/COE%20356%20Intro%20to%20Software%20engineering/Project/Papperless-Document-Handling-System/client/lib/screens/detail_screen/approval_progress.dart"
+      });
+    },
+    get C15() {
+      return C[15] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "height",
+        [_Location_column]: 32,
+        [_Location_line]: 66,
+        [_Location_file]: null
+      });
+    },
+    get C14() {
+      return C[14] = dart.constList([C[15] || CT.C15], T._LocationL());
+    },
+    get C13() {
+      return C[13] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[14] || CT.C14,
+        [_Location_name]: null,
+        [_Location_column]: 23,
+        [_Location_line]: 66,
+        [_Location_file]: "file:///D:/Abdul-Mateen/Edu/curricular/Year%203%20sem%202/COE%20356%20Intro%20to%20Software%20engineering/Project/Papperless-Document-Handling-System/client/lib/screens/detail_screen/approval_progress.dart"
+      });
+    },
+    get C18() {
+      return C[18] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "data",
+        [_Location_column]: 27,
+        [_Location_line]: 68,
+        [_Location_file]: null
+      });
+    },
+    get C19() {
+      return C[19] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "textAlign",
+        [_Location_column]: 25,
+        [_Location_line]: 69,
+        [_Location_file]: null
+      });
+    },
+    get C17() {
+      return C[17] = dart.constList([C[18] || CT.C18, C[19] || CT.C19], T._LocationL());
+    },
+    get C16() {
+      return C[16] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[17] || CT.C17,
+        [_Location_name]: null,
+        [_Location_column]: 23,
+        [_Location_line]: 67,
+        [_Location_file]: "file:///D:/Abdul-Mateen/Edu/curricular/Year%203%20sem%202/COE%20356%20Intro%20to%20Software%20engineering/Project/Papperless-Document-Handling-System/client/lib/screens/detail_screen/approval_progress.dart"
+      });
+    },
+    get C22() {
+      return C[22] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "children",
+        [_Location_column]: 21,
+        [_Location_line]: 44,
+        [_Location_file]: null
+      });
+    },
+    get C21() {
+      return C[21] = dart.constList([C[22] || CT.C22], T._LocationL());
+    },
+    get C20() {
+      return C[20] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[21] || CT.C21,
+        [_Location_name]: null,
+        [_Location_column]: 26,
+        [_Location_line]: 43,
+        [_Location_file]: "file:///D:/Abdul-Mateen/Edu/curricular/Year%203%20sem%202/COE%20356%20Intro%20to%20Software%20engineering/Project/Papperless-Document-Handling-System/client/lib/screens/detail_screen/approval_progress.dart"
+      });
+    },
+    get C25() {
+      return C[25] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 19,
+        [_Location_line]: 43,
+        [_Location_file]: null
+      });
+    },
+    get C24() {
+      return C[24] = dart.constList([C[25] || CT.C25], T._LocationL());
+    },
+    get C23() {
+      return C[23] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[24] || CT.C24,
+        [_Location_name]: null,
+        [_Location_column]: 24,
+        [_Location_line]: 42,
+        [_Location_file]: "file:///D:/Abdul-Mateen/Edu/curricular/Year%203%20sem%202/COE%20356%20Intro%20to%20Software%20engineering/Project/Papperless-Document-Handling-System/client/lib/screens/detail_screen/approval_progress.dart"
+      });
+    },
+    get C28() {
+      return C[28] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "children",
+        [_Location_column]: 15,
+        [_Location_line]: 37,
+        [_Location_file]: null
+      });
+    },
+    get C27() {
+      return C[27] = dart.constList([C[28] || CT.C28], T._LocationL());
+    },
+    get C26() {
+      return C[26] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[27] || CT.C27,
+        [_Location_name]: null,
+        [_Location_column]: 13,
+        [_Location_line]: 36,
+        [_Location_file]: "file:///D:/Abdul-Mateen/Edu/curricular/Year%203%20sem%202/COE%20356%20Intro%20to%20Software%20engineering/Project/Papperless-Document-Handling-System/client/lib/screens/detail_screen/approval_progress.dart"
+      });
+    },
+    get C31() {
+      return C[31] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "alignment",
+        [_Location_column]: 7,
+        [_Location_line]: 25,
+        [_Location_file]: null
+      });
+    },
+    get C32() {
+      return C[32] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "height",
+        [_Location_column]: 7,
+        [_Location_line]: 26,
+        [_Location_file]: null
+      });
+    },
+    get C33() {
+      return C[33] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 7,
+        [_Location_line]: 27,
+        [_Location_file]: null
+      });
+    },
+    get C30() {
+      return C[30] = dart.constList([C[31] || CT.C31, C[32] || CT.C32, C[33] || CT.C33], T._LocationL());
+    },
+    get C29() {
+      return C[29] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[30] || CT.C30,
+        [_Location_name]: null,
+        [_Location_column]: 12,
+        [_Location_line]: 24,
+        [_Location_file]: "file:///D:/Abdul-Mateen/Edu/curricular/Year%203%20sem%202/COE%20356%20Intro%20to%20Software%20engineering/Project/Papperless-Document-Handling-System/client/lib/screens/detail_screen/approval_progress.dart"
+      });
+    },
+    get C36() {
+      return C[36] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "width",
+        [_Location_column]: 7,
+        [_Location_line]: 109,
+        [_Location_file]: null
+      });
+    },
+    get C37() {
+      return C[37] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "height",
+        [_Location_column]: 7,
+        [_Location_line]: 110,
+        [_Location_file]: null
+      });
+    },
+    get C38() {
+      return C[38] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "decoration",
+        [_Location_column]: 7,
+        [_Location_line]: 111,
+        [_Location_file]: null
+      });
+    },
+    get C35() {
+      return C[35] = dart.constList([C[36] || CT.C36, C[37] || CT.C37, C[38] || CT.C38], T._LocationL());
+    },
+    get C34() {
+      return C[34] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[35] || CT.C35,
+        [_Location_name]: null,
+        [_Location_column]: 12,
+        [_Location_line]: 108,
+        [_Location_file]: "file:///D:/Abdul-Mateen/Edu/curricular/Year%203%20sem%202/COE%20356%20Intro%20to%20Software%20engineering/Project/Papperless-Document-Handling-System/client/lib/screens/detail_screen/approval_progress.dart"
+      });
+    },
+    get C40() {
+      return C[40] = dart.constList([], T._LocationL());
+    },
+    get C39() {
+      return C[39] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[40] || CT.C40,
+        [_Location_name]: null,
+        [_Location_column]: 13,
+        [_Location_line]: 151,
+        [_Location_file]: "file:///D:/Abdul-Mateen/Edu/curricular/Year%203%20sem%202/COE%20356%20Intro%20to%20Software%20engineering/Project/Papperless-Document-Handling-System/client/lib/screens/detail_screen/approval_progress.dart"
+      });
+    },
+    get C43() {
+      return C[43] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "height",
+        [_Location_column]: 15,
+        [_Location_line]: 153,
+        [_Location_file]: null
+      });
+    },
+    get C44() {
+      return C[44] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "decoration",
+        [_Location_column]: 15,
+        [_Location_line]: 154,
+        [_Location_file]: null
+      });
+    },
+    get C42() {
+      return C[42] = dart.constList([C[43] || CT.C43, C[44] || CT.C44], T._LocationL());
+    },
+    get C41() {
+      return C[41] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[42] || CT.C42,
+        [_Location_name]: null,
+        [_Location_column]: 13,
+        [_Location_line]: 152,
+        [_Location_file]: "file:///D:/Abdul-Mateen/Edu/curricular/Year%203%20sem%202/COE%20356%20Intro%20to%20Software%20engineering/Project/Papperless-Document-Handling-System/client/lib/screens/detail_screen/approval_progress.dart"
+      });
+    },
+    get C47() {
+      return C[47] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 7,
+        [_Location_line]: 150,
+        [_Location_file]: null
+      });
+    },
+    get C46() {
+      return C[46] = dart.constList([C[47] || CT.C47], T._LocationL());
+    },
+    get C45() {
+      return C[45] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[46] || CT.C46,
+        [_Location_name]: null,
+        [_Location_column]: 12,
+        [_Location_line]: 149,
+        [_Location_file]: "file:///D:/Abdul-Mateen/Edu/curricular/Year%203%20sem%202/COE%20356%20Intro%20to%20Software%20engineering/Project/Papperless-Document-Handling-System/client/lib/screens/detail_screen/approval_progress.dart"
       });
     }
   }, false);
-  var C = [void 0];
-  var I = [
-    "file:///C:/src/flutter/packages/flutter/lib/src/widgets/scroll_simulation.dart",
-    "package:flutter/src/widgets/scroll_simulation.dart"
-  ];
-  var leadingExtent$ = dart.privateName(scroll_simulation, "BouncingScrollSimulation.leadingExtent");
-  var trailingExtent$ = dart.privateName(scroll_simulation, "BouncingScrollSimulation.trailingExtent");
-  var spring$ = dart.privateName(scroll_simulation, "BouncingScrollSimulation.spring");
-  var Tolerance_velocity = dart.privateName(tolerance, "Tolerance.velocity");
-  var Tolerance_time = dart.privateName(tolerance, "Tolerance.time");
-  var Tolerance_distance = dart.privateName(tolerance, "Tolerance.distance");
-  var __BouncingScrollSimulation__frictionSimulation = dart.privateName(scroll_simulation, "_#BouncingScrollSimulation#_frictionSimulation");
-  var __BouncingScrollSimulation__frictionSimulation_isSet = dart.privateName(scroll_simulation, "_#BouncingScrollSimulation#_frictionSimulation#isSet");
-  var __BouncingScrollSimulation__springSimulation = dart.privateName(scroll_simulation, "_#BouncingScrollSimulation#_springSimulation");
-  var __BouncingScrollSimulation__springSimulation_isSet = dart.privateName(scroll_simulation, "_#BouncingScrollSimulation#_springSimulation#isSet");
-  var __BouncingScrollSimulation__springTime = dart.privateName(scroll_simulation, "_#BouncingScrollSimulation#_springTime");
-  var __BouncingScrollSimulation__springTime_isSet = dart.privateName(scroll_simulation, "_#BouncingScrollSimulation#_springTime#isSet");
-  var _timeOffset = dart.privateName(scroll_simulation, "_timeOffset");
-  var _springSimulation = dart.privateName(scroll_simulation, "_springSimulation");
-  var _underscrollSimulation = dart.privateName(scroll_simulation, "_underscrollSimulation");
-  var _springTime = dart.privateName(scroll_simulation, "_springTime");
-  var _overscrollSimulation = dart.privateName(scroll_simulation, "_overscrollSimulation");
-  var _frictionSimulation = dart.privateName(scroll_simulation, "_frictionSimulation");
-  var _simulation = dart.privateName(scroll_simulation, "_simulation");
-  scroll_simulation.BouncingScrollSimulation = class BouncingScrollSimulation extends simulation.Simulation {
-    get leadingExtent() {
-      return this[leadingExtent$];
+  var C = Array(48).fill(void 0);
+  var I = ["package:softdoc/screens/detail_screen/approval_progress.dart"];
+  var approvalList$ = dart.privateName(approval_progress, "ApprovalProgress.approvalList");
+  var docStatus$ = dart.privateName(approval_progress, "ApprovalProgress.docStatus");
+  approval_progress.ApprovalProgress = class ApprovalProgress extends framework.StatefulWidget {
+    get approvalList() {
+      return this[approvalList$];
     }
-    set leadingExtent(value) {
-      super.leadingExtent = value;
+    set approvalList(value) {
+      super.approvalList = value;
     }
-    get trailingExtent() {
-      return this[trailingExtent$];
+    get docStatus() {
+      return this[docStatus$];
     }
-    set trailingExtent(value) {
-      super.trailingExtent = value;
+    set docStatus(value) {
+      super.docStatus = value;
     }
-    get spring() {
-      return this[spring$];
-    }
-    set spring(value) {
-      super.spring = value;
-    }
-    get [_frictionSimulation]() {
-      let t0;
-      return dart.test(this[__BouncingScrollSimulation__frictionSimulation_isSet]) ? (t0 = this[__BouncingScrollSimulation__frictionSimulation], t0) : dart.throw(new _internal.LateError.fieldNI("_frictionSimulation"));
-    }
-    set [_frictionSimulation](t0) {
-      if (t0 == null) dart.nullFailed(I[0], 92, 27, "null");
-      this[__BouncingScrollSimulation__frictionSimulation_isSet] = true;
-      this[__BouncingScrollSimulation__frictionSimulation] = t0;
-    }
-    get [_springSimulation]() {
-      let t1;
-      return dart.test(this[__BouncingScrollSimulation__springSimulation_isSet]) ? (t1 = this[__BouncingScrollSimulation__springSimulation], t1) : dart.throw(new _internal.LateError.fieldNI("_springSimulation"));
-    }
-    set [_springSimulation](t1) {
-      if (t1 == null) dart.nullFailed(I[0], 93, 19, "null");
-      this[__BouncingScrollSimulation__springSimulation_isSet] = true;
-      this[__BouncingScrollSimulation__springSimulation] = t1;
-    }
-    get [_springTime]() {
-      let t2;
-      return dart.test(this[__BouncingScrollSimulation__springTime_isSet]) ? (t2 = this[__BouncingScrollSimulation__springTime], t2) : dart.throw(new _internal.LateError.fieldNI("_springTime"));
-    }
-    set [_springTime](t2) {
-      if (t2 == null) dart.nullFailed(I[0], 94, 15, "null");
-      this[__BouncingScrollSimulation__springTime_isSet] = true;
-      this[__BouncingScrollSimulation__springTime] = t2;
-    }
-    [_underscrollSimulation](x, dx) {
-      if (x == null) dart.nullFailed(I[0], 97, 44, "x");
-      if (dx == null) dart.nullFailed(I[0], 97, 54, "dx");
-      return new spring_simulation.ScrollSpringSimulation.new(this.spring, x, this.leadingExtent, dx);
-    }
-    [_overscrollSimulation](x, dx) {
-      if (x == null) dart.nullFailed(I[0], 101, 43, "x");
-      if (dx == null) dart.nullFailed(I[0], 101, 53, "dx");
-      return new spring_simulation.ScrollSpringSimulation.new(this.spring, x, this.trailingExtent, dx);
-    }
-    [_simulation](time) {
-      let t3;
-      if (time == null) dart.nullFailed(I[0], 105, 33, "time");
-      let simulation = null;
-      if (dart.notNull(time) > dart.notNull(this[_springTime])) {
-        this[_timeOffset] = this[_springTime][$isFinite] ? this[_springTime] : 0.0;
-        simulation = this[_springSimulation];
-      } else {
-        this[_timeOffset] = 0.0;
-        simulation = this[_frictionSimulation];
-      }
-      t3 = simulation;
-      return (() => {
-        t3.tolerance = this.tolerance;
-        return t3;
-      })();
-    }
-    x(time) {
-      if (time == null) dart.nullFailed(I[0], 118, 19, "time");
-      return this[_simulation](time).x(dart.notNull(time) - dart.notNull(this[_timeOffset]));
-    }
-    dx(time) {
-      if (time == null) dart.nullFailed(I[0], 121, 20, "time");
-      return this[_simulation](time).dx(dart.notNull(time) - dart.notNull(this[_timeOffset]));
-    }
-    isDone(time) {
-      if (time == null) dart.nullFailed(I[0], 124, 22, "time");
-      return this[_simulation](time).isDone(dart.notNull(time) - dart.notNull(this[_timeOffset]));
-    }
-    toString() {
-      return dart.str(object.objectRuntimeType(this, "BouncingScrollSimulation")) + "(leadingExtent: " + dart.str(this.leadingExtent) + ", trailingExtent: " + dart.str(this.trailingExtent) + ")";
+    createState() {
+      return new approval_progress._ApprovalProgressState.new();
     }
   };
-  (scroll_simulation.BouncingScrollSimulation.new = function(opts) {
-    let position = opts && 'position' in opts ? opts.position : null;
-    if (position == null) dart.nullFailed(I[0], 32, 21, "position");
-    let velocity = opts && 'velocity' in opts ? opts.velocity : null;
-    if (velocity == null) dart.nullFailed(I[0], 33, 21, "velocity");
-    let leadingExtent = opts && 'leadingExtent' in opts ? opts.leadingExtent : null;
-    if (leadingExtent == null) dart.nullFailed(I[0], 34, 19, "leadingExtent");
-    let trailingExtent = opts && 'trailingExtent' in opts ? opts.trailingExtent : null;
-    if (trailingExtent == null) dart.nullFailed(I[0], 35, 19, "trailingExtent");
-    let spring = opts && 'spring' in opts ? opts.spring : null;
-    if (spring == null) dart.nullFailed(I[0], 36, 19, "spring");
-    let tolerance = opts && 'tolerance' in opts ? opts.tolerance : C[0] || CT.C0;
-    if (tolerance == null) dart.nullFailed(I[0], 37, 15, "tolerance");
-    this[__BouncingScrollSimulation__frictionSimulation] = null;
-    this[__BouncingScrollSimulation__frictionSimulation_isSet] = false;
-    this[__BouncingScrollSimulation__springSimulation] = null;
-    this[__BouncingScrollSimulation__springSimulation_isSet] = false;
-    this[__BouncingScrollSimulation__springTime] = null;
-    this[__BouncingScrollSimulation__springTime_isSet] = false;
-    this[_timeOffset] = 0.0;
-    this[leadingExtent$] = leadingExtent;
-    this[trailingExtent$] = trailingExtent;
-    this[spring$] = spring;
-    if (!(position != null)) dart.assertFailed(null, I[0], 38, 15, "position != null");
-    if (!(velocity != null)) dart.assertFailed(null, I[0], 39, 15, "velocity != null");
-    if (!(leadingExtent != null)) dart.assertFailed(null, I[0], 40, 15, "leadingExtent != null");
-    if (!(trailingExtent != null)) dart.assertFailed(null, I[0], 41, 15, "trailingExtent != null");
-    if (!(dart.notNull(leadingExtent) <= dart.notNull(trailingExtent))) dart.assertFailed(null, I[0], 42, 15, "leadingExtent <= trailingExtent");
-    if (!(spring != null)) dart.assertFailed(null, I[0], 43, 15, "spring != null");
-    scroll_simulation.BouncingScrollSimulation.__proto__.new.call(this, {tolerance: tolerance});
-    if (dart.notNull(position) < dart.notNull(this.leadingExtent)) {
-      this[_springSimulation] = this[_underscrollSimulation](position, velocity);
-      this[_springTime] = -1 / 0;
-    } else if (dart.notNull(position) > dart.notNull(this.trailingExtent)) {
-      this[_springSimulation] = this[_overscrollSimulation](position, velocity);
-      this[_springTime] = -1 / 0;
-    } else {
-      this[_frictionSimulation] = new friction_simulation.FrictionSimulation.new(0.135, position, velocity);
-      let finalX = this[_frictionSimulation].finalX;
-      if (dart.notNull(velocity) > 0.0 && dart.notNull(finalX) > dart.notNull(this.trailingExtent)) {
-        this[_springTime] = this[_frictionSimulation].timeAtX(this.trailingExtent);
-        this[_springSimulation] = this[_overscrollSimulation](this.trailingExtent, math.min(core.double, this[_frictionSimulation].dx(this[_springTime]), 5000));
-        if (!this[_springTime][$isFinite]) dart.assertFailed(null, I[0], 62, 16, "_springTime.isFinite");
-      } else if (dart.notNull(velocity) < 0.0 && dart.notNull(finalX) < dart.notNull(this.leadingExtent)) {
-        this[_springTime] = this[_frictionSimulation].timeAtX(this.leadingExtent);
-        this[_springSimulation] = this[_underscrollSimulation](this.leadingExtent, math.min(core.double, this[_frictionSimulation].dx(this[_springTime]), 5000));
-        if (!this[_springTime][$isFinite]) dart.assertFailed(null, I[0], 69, 16, "_springTime.isFinite");
-      } else {
-        this[_springTime] = 1 / 0;
+  (approval_progress.ApprovalProgress.new = function(opts) {
+    let key = opts && 'key' in opts ? opts.key : null;
+    let approvalList = opts && 'approvalList' in opts ? opts.approvalList : null;
+    let docStatus = opts && 'docStatus' in opts ? opts.docStatus : null;
+    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
+    this[approvalList$] = approvalList;
+    this[docStatus$] = docStatus;
+    approval_progress.ApprovalProgress.__proto__.new.call(this, {key: key, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
+    ;
+  }).prototype = approval_progress.ApprovalProgress.prototype;
+  dart.addTypeTests(approval_progress.ApprovalProgress);
+  dart.addTypeCaches(approval_progress.ApprovalProgress);
+  dart.setMethodSignature(approval_progress.ApprovalProgress, () => ({
+    __proto__: dart.getMethods(approval_progress.ApprovalProgress.__proto__),
+    createState: dart.fnType(dart.legacy(approval_progress._ApprovalProgressState), [])
+  }));
+  dart.setLibraryUri(approval_progress.ApprovalProgress, I[0]);
+  dart.setFieldSignature(approval_progress.ApprovalProgress, () => ({
+    __proto__: dart.getFields(approval_progress.ApprovalProgress.__proto__),
+    approvalList: dart.finalFieldType(dart.legacy(core.Map$(dart.legacy(core.String), dart.legacy(core.String)))),
+    docStatus: dart.finalFieldType(dart.legacy(core.String))
+  }));
+  var _Location_parameterLocations = dart.privateName(widget_inspector, "_Location.parameterLocations");
+  var _Location_name = dart.privateName(widget_inspector, "_Location.name");
+  var _Location_column = dart.privateName(widget_inspector, "_Location.column");
+  var _Location_line = dart.privateName(widget_inspector, "_Location.line");
+  var _Location_file = dart.privateName(widget_inspector, "_Location.file");
+  approval_progress._ApprovalProgressState = class _ApprovalProgressState extends framework.State$(dart.legacy(approval_progress.ApprovalProgress)) {
+    build(context) {
+      let approvalListKeys = this.widget.approvalList[$keys][$toList]();
+      return new container.Container.new({alignment: alignment.Alignment.topCenter, height: 80.0, child: this.widget.approvalList[$length] === 1 ? new basic.Column.new({mainAxisAlignment: flex.MainAxisAlignment.center, children: T.JSArrayOfWidgetL().of([this.progressDot(this.widget.approvalList[$values][$first]), new basic.SizedBox.new({height: 12.0, $creationLocationd_0dea112b090073317d4: C[0] || CT.C0}), new text.Text.new(approvalListKeys[$_get](0), {$creationLocationd_0dea112b090073317d4: C[3] || CT.C3})]), $creationLocationd_0dea112b090073317d4: C[6] || CT.C6}) : new basic.Row.new({children: this.widget.approvalList[$entries][$map](T.ExpandedL(), dart.fn(e => {
+            let isFirst = false;
+            let isLast = false;
+            if (approvalListKeys[$first] == e.key) isFirst = true;
+            if (approvalListKeys[$last] == e.key) isLast = true;
+            return new basic.Expanded.new({child: new basic.Column.new({children: T.JSArrayOfWidgetL().of([new basic.Row.new({children: T.JSArrayOfWidgetL().of([this.progressLine({isFirst: isFirst, start: this.widget.approvalList[$_get](approvalListKeys[$_get]((dart.notNull(approvalListKeys[$indexOf](e.key)) - 1)[$modulo](this.widget.approvalList[$length]))), end: e.value, beforeLine: true}), this.progressDot(e.value), this.progressLine({isLast: isLast, start: e.value, end: this.widget.approvalList[$_get](approvalListKeys[$_get]((dart.notNull(approvalListKeys[$indexOf](e.key)) + 1)[$modulo](this.widget.approvalList[$length]))), afterLine: true})]), $creationLocationd_0dea112b090073317d4: C[10] || CT.C10}), new basic.SizedBox.new({height: 12.0, $creationLocationd_0dea112b090073317d4: C[13] || CT.C13}), new text.Text.new(e.key, {textAlign: ui.TextAlign.center, $creationLocationd_0dea112b090073317d4: C[16] || CT.C16})]), $creationLocationd_0dea112b090073317d4: C[20] || CT.C20}), $creationLocationd_0dea112b090073317d4: C[23] || CT.C23});
+          }, T.MapEntryLOfStringL$StringLToExpandedL()))[$toList](), $creationLocationd_0dea112b090073317d4: C[26] || CT.C26}), $creationLocationd_0dea112b090073317d4: C[29] || CT.C29});
+    }
+    approvalStateColor(approvalState) {
+      if (approvalState === "pending")
+        return style.yellow;
+      else if (approvalState === "approved")
+        return style.green;
+      else
+        return style.red;
+    }
+    colorMix(startColor, endColor) {
+      return new ui.Color.fromRGBO(((dart.notNull(startColor.red) + dart.notNull(endColor.red)) / 2)[$truncate](), ((dart.notNull(startColor.green) + dart.notNull(endColor.green)) / 2)[$truncate](), ((dart.notNull(startColor.blue) + dart.notNull(endColor.blue)) / 2)[$truncate](), (dart.notNull(startColor.opacity) + dart.notNull(endColor.opacity)) / 2);
+    }
+    progressDot(approvalStatus) {
+      let color = null;
+      if (this.nextIsAsh === true || this.widget.docStatus === "cancelled")
+        color = colors.Colors.grey._get(400);
+      else
+        color = this.approvalStateColor(approvalStatus);
+      if (dart.equals(color, style.red) || dart.equals(color, style.yellow)) {
+        this.nextIsAsh = true;
+        this.lastColoredLine = true;
       }
+      return new container.Container.new({width: 20.0, height: 20.0, decoration: new box_decoration.BoxDecoration.new({color: color, shape: box_border.BoxShape.circle, boxShadow: T.JSArrayOfBoxShadowL().of([new box_shadow.BoxShadow.new({color: colors.Colors.black26, offset: new ui.Offset.new(0.0, 3.0), blurRadius: 4.0})])}), $creationLocationd_0dea112b090073317d4: C[34] || CT.C34});
     }
-    if (!(this[_springTime] != null)) dart.assertFailed(null, I[0], 74, 12, "_springTime != null");
-  }).prototype = scroll_simulation.BouncingScrollSimulation.prototype;
-  dart.addTypeTests(scroll_simulation.BouncingScrollSimulation);
-  dart.addTypeCaches(scroll_simulation.BouncingScrollSimulation);
-  dart.setMethodSignature(scroll_simulation.BouncingScrollSimulation, () => ({
-    __proto__: dart.getMethods(scroll_simulation.BouncingScrollSimulation.__proto__),
-    [_underscrollSimulation]: dart.fnType(simulation.Simulation, [core.double, core.double]),
-    [_overscrollSimulation]: dart.fnType(simulation.Simulation, [core.double, core.double]),
-    [_simulation]: dart.fnType(simulation.Simulation, [core.double]),
-    x: dart.fnType(core.double, [core.double]),
-    dx: dart.fnType(core.double, [core.double]),
-    isDone: dart.fnType(core.bool, [core.double])
-  }));
-  dart.setGetterSignature(scroll_simulation.BouncingScrollSimulation, () => ({
-    __proto__: dart.getGetters(scroll_simulation.BouncingScrollSimulation.__proto__),
-    [_frictionSimulation]: friction_simulation.FrictionSimulation,
-    [_springSimulation]: simulation.Simulation,
-    [_springTime]: core.double
-  }));
-  dart.setSetterSignature(scroll_simulation.BouncingScrollSimulation, () => ({
-    __proto__: dart.getSetters(scroll_simulation.BouncingScrollSimulation.__proto__),
-    [_frictionSimulation]: friction_simulation.FrictionSimulation,
-    [_springSimulation]: simulation.Simulation,
-    [_springTime]: core.double
-  }));
-  dart.setLibraryUri(scroll_simulation.BouncingScrollSimulation, I[1]);
-  dart.setFieldSignature(scroll_simulation.BouncingScrollSimulation, () => ({
-    __proto__: dart.getFields(scroll_simulation.BouncingScrollSimulation.__proto__),
-    leadingExtent: dart.finalFieldType(core.double),
-    trailingExtent: dart.finalFieldType(core.double),
-    spring: dart.finalFieldType(spring_simulation.SpringDescription),
-    [__BouncingScrollSimulation__frictionSimulation]: dart.fieldType(dart.nullable(friction_simulation.FrictionSimulation)),
-    [__BouncingScrollSimulation__frictionSimulation_isSet]: dart.fieldType(core.bool),
-    [__BouncingScrollSimulation__springSimulation]: dart.fieldType(dart.nullable(simulation.Simulation)),
-    [__BouncingScrollSimulation__springSimulation_isSet]: dart.fieldType(core.bool),
-    [__BouncingScrollSimulation__springTime]: dart.fieldType(dart.nullable(core.double)),
-    [__BouncingScrollSimulation__springTime_isSet]: dart.fieldType(core.bool),
-    [_timeOffset]: dart.fieldType(core.double)
-  }));
-  dart.defineExtensionMethods(scroll_simulation.BouncingScrollSimulation, ['toString']);
-  dart.defineLazy(scroll_simulation.BouncingScrollSimulation, {
-    /*scroll_simulation.BouncingScrollSimulation.maxSpringTransferVelocity*/get maxSpringTransferVelocity() {
-      return 5000;
-    }
-  }, false);
-  var position$ = dart.privateName(scroll_simulation, "ClampingScrollSimulation.position");
-  var velocity$ = dart.privateName(scroll_simulation, "ClampingScrollSimulation.velocity");
-  var friction$ = dart.privateName(scroll_simulation, "ClampingScrollSimulation.friction");
-  var __ClampingScrollSimulation__duration = dart.privateName(scroll_simulation, "_#ClampingScrollSimulation#_duration");
-  var __ClampingScrollSimulation__duration_isSet = dart.privateName(scroll_simulation, "_#ClampingScrollSimulation#_duration#isSet");
-  var __ClampingScrollSimulation__distance = dart.privateName(scroll_simulation, "_#ClampingScrollSimulation#_distance");
-  var __ClampingScrollSimulation__distance_isSet = dart.privateName(scroll_simulation, "_#ClampingScrollSimulation#_distance#isSet");
-  var _duration = dart.privateName(scroll_simulation, "_duration");
-  var _splineFlingDuration = dart.privateName(scroll_simulation, "_splineFlingDuration");
-  var _distance = dart.privateName(scroll_simulation, "_distance");
-  var _splineFlingDistance = dart.privateName(scroll_simulation, "_splineFlingDistance");
-  var _splineDeceleration = dart.privateName(scroll_simulation, "_splineDeceleration");
-  scroll_simulation.ClampingScrollSimulation = class ClampingScrollSimulation extends simulation.Simulation {
-    get position() {
-      return this[position$];
-    }
-    set position(value) {
-      super.position = value;
-    }
-    get velocity() {
-      return this[velocity$];
-    }
-    set velocity(value) {
-      super.velocity = value;
-    }
-    get friction() {
-      return this[friction$];
-    }
-    set friction(value) {
-      super.friction = value;
-    }
-    get [_duration]() {
-      let t3;
-      return dart.test(this[__ClampingScrollSimulation__duration_isSet]) ? (t3 = this[__ClampingScrollSimulation__duration], t3) : dart.throw(new _internal.LateError.fieldNI("_duration"));
-    }
-    set [_duration](t3) {
-      if (t3 == null) dart.nullFailed(I[0], 169, 12, "null");
-      this[__ClampingScrollSimulation__duration_isSet] = true;
-      this[__ClampingScrollSimulation__duration] = t3;
-    }
-    get [_distance]() {
-      let t4;
-      return dart.test(this[__ClampingScrollSimulation__distance_isSet]) ? (t4 = this[__ClampingScrollSimulation__distance], t4) : dart.throw(new _internal.LateError.fieldNI("_distance"));
-    }
-    set [_distance](t4) {
-      if (t4 == null) dart.nullFailed(I[0], 170, 15, "null");
-      this[__ClampingScrollSimulation__distance_isSet] = true;
-      this[__ClampingScrollSimulation__distance] = t4;
-    }
-    static _decelerationForFriction(friction) {
-      if (friction == null) dart.nullFailed(I[0], 176, 49, "friction");
-      return 9.80665 * 39.37 * dart.notNull(friction) * 1.0 * 160.0;
-    }
-    [_splineDeceleration](velocity) {
-      if (velocity == null) dart.nullFailed(I[0], 185, 37, "velocity");
-      return math.log(0.35 * velocity[$abs]() / (dart.notNull(this.friction) * dart.notNull(scroll_simulation.ClampingScrollSimulation._decelerationForFriction(0.84))));
-    }
-    [_splineFlingDuration](velocity) {
-      if (velocity == null) dart.nullFailed(I[0], 190, 35, "velocity");
-      let deceleration = this[_splineDeceleration](velocity);
-      return (1000 * math.exp(dart.notNull(deceleration) / (dart.notNull(scroll_simulation.ClampingScrollSimulation._kDecelerationRate) - 1.0)))[$round]();
-    }
-    [_splineFlingDistance](velocity) {
-      if (velocity == null) dart.nullFailed(I[0], 196, 38, "velocity");
-      let l = this[_splineDeceleration](velocity);
-      let decelMinusOne = dart.notNull(scroll_simulation.ClampingScrollSimulation._kDecelerationRate) - 1.0;
-      return dart.notNull(this.friction) * dart.notNull(scroll_simulation.ClampingScrollSimulation._decelerationForFriction(0.84)) * math.exp(dart.notNull(scroll_simulation.ClampingScrollSimulation._kDecelerationRate) / decelMinusOne * dart.notNull(l));
-    }
-    x(time) {
-      if (time == null) dart.nullFailed(I[0], 205, 19, "time");
-      if (time === 0) {
-        return this.position;
-      }
-      let sample = new scroll_simulation._NBSample.new(time, this[_duration]);
-      return dart.notNull(this.position) + dart.notNull(sample.distanceCoef) * dart.notNull(this[_distance]) * this.velocity[$sign];
-    }
-    dx(time) {
-      if (time == null) dart.nullFailed(I[0], 214, 20, "time");
-      if (time === 0) {
-        return this.velocity;
-      }
-      let sample = new scroll_simulation._NBSample.new(time, this[_duration]);
-      return dart.notNull(sample.velocityCoef) * dart.notNull(this[_distance]) / dart.notNull(this[_duration]) * this.velocity[$sign] * 1000.0;
-    }
-    isDone(time) {
-      if (time == null) dart.nullFailed(I[0], 223, 22, "time");
-      return dart.notNull(time) * 1000.0 >= dart.notNull(this[_duration]);
+    progressLine(opts) {
+      let isFirst = opts && 'isFirst' in opts ? opts.isFirst : false;
+      let isLast = opts && 'isLast' in opts ? opts.isLast : false;
+      let start = opts && 'start' in opts ? opts.start : null;
+      let end = opts && 'end' in opts ? opts.end : null;
+      let beforeLine = opts && 'beforeLine' in opts ? opts.beforeLine : false;
+      let afterLine = opts && 'afterLine' in opts ? opts.afterLine : false;
+      let startColor = this.approvalStateColor(start);
+      let endColor = this.approvalStateColor(end);
+      if (this.widget.docStatus === "cancelled")
+        startColor = endColor = colors.Colors.grey._get(400);
+      else if (this.nextIsAsh === true) {
+        startColor = dart.test(this.lastColoredLine) ? startColor : colors.Colors.grey._get(400);
+        if (dart.test(this.lastColoredLine)) this.lastColoredLine = false;
+        if (dart.test(afterLine))
+          endColor = this.colorMix(startColor, colors.Colors.grey._get(400));
+        else {
+          startColor = this.colorMix(startColor, colors.Colors.grey._get(400));
+          endColor = colors.Colors.grey._get(400);
+        }
+      } else if (dart.test(beforeLine))
+        startColor = this.colorMix(startColor, endColor);
+      else if (dart.test(afterLine)) endColor = this.colorMix(startColor, endColor);
+      return new basic.Expanded.new({child: dart.test(isFirst) || dart.test(isLast) ? new basic.SizedBox.new({$creationLocationd_0dea112b090073317d4: C[39] || CT.C39}) : new container.Container.new({height: 3.0, decoration: new box_decoration.BoxDecoration.new({gradient: new gradient.LinearGradient.new({colors: T.JSArrayOfColorL().of([startColor, endColor])})}), $creationLocationd_0dea112b090073317d4: C[41] || CT.C41}), $creationLocationd_0dea112b090073317d4: C[45] || CT.C45});
     }
   };
-  (scroll_simulation.ClampingScrollSimulation.new = function(opts) {
-    let position = opts && 'position' in opts ? opts.position : null;
-    if (position == null) dart.nullFailed(I[0], 148, 19, "position");
-    let velocity = opts && 'velocity' in opts ? opts.velocity : null;
-    if (velocity == null) dart.nullFailed(I[0], 149, 19, "velocity");
-    let friction = opts && 'friction' in opts ? opts.friction : 0.015;
-    if (friction == null) dart.nullFailed(I[0], 150, 10, "friction");
-    let tolerance = opts && 'tolerance' in opts ? opts.tolerance : C[0] || CT.C0;
-    if (tolerance == null) dart.nullFailed(I[0], 151, 15, "tolerance");
-    this[__ClampingScrollSimulation__duration] = null;
-    this[__ClampingScrollSimulation__duration_isSet] = false;
-    this[__ClampingScrollSimulation__distance] = null;
-    this[__ClampingScrollSimulation__distance_isSet] = false;
-    this[position$] = position;
-    this[velocity$] = velocity;
-    this[friction$] = friction;
-    scroll_simulation.ClampingScrollSimulation.__proto__.new.call(this, {tolerance: tolerance});
-    this[_duration] = this[_splineFlingDuration](this.velocity);
-    this[_distance] = this[_splineFlingDistance](this.velocity);
-  }).prototype = scroll_simulation.ClampingScrollSimulation.prototype;
-  dart.addTypeTests(scroll_simulation.ClampingScrollSimulation);
-  dart.addTypeCaches(scroll_simulation.ClampingScrollSimulation);
-  dart.setMethodSignature(scroll_simulation.ClampingScrollSimulation, () => ({
-    __proto__: dart.getMethods(scroll_simulation.ClampingScrollSimulation.__proto__),
-    [_splineDeceleration]: dart.fnType(core.double, [core.double]),
-    [_splineFlingDuration]: dart.fnType(core.int, [core.double]),
-    [_splineFlingDistance]: dart.fnType(core.double, [core.double]),
-    x: dart.fnType(core.double, [core.double]),
-    dx: dart.fnType(core.double, [core.double]),
-    isDone: dart.fnType(core.bool, [core.double])
+  (approval_progress._ApprovalProgressState.new = function() {
+    this.previousColor = null;
+    this.nextIsAsh = null;
+    this.lastColoredLine = false;
+    approval_progress._ApprovalProgressState.__proto__.new.call(this);
+    ;
+  }).prototype = approval_progress._ApprovalProgressState.prototype;
+  dart.addTypeTests(approval_progress._ApprovalProgressState);
+  dart.addTypeCaches(approval_progress._ApprovalProgressState);
+  dart.setMethodSignature(approval_progress._ApprovalProgressState, () => ({
+    __proto__: dart.getMethods(approval_progress._ApprovalProgressState.__proto__),
+    build: dart.fnType(dart.legacy(framework.Widget), [dart.legacy(framework.BuildContext)]),
+    approvalStateColor: dart.fnType(dart.legacy(ui.Color), [dart.legacy(core.String)]),
+    colorMix: dart.fnType(dart.legacy(ui.Color), [dart.legacy(ui.Color), dart.legacy(ui.Color)]),
+    progressDot: dart.fnType(dart.legacy(framework.Widget), [dart.legacy(core.String)]),
+    progressLine: dart.fnType(dart.legacy(framework.Widget), [], {afterLine: dart.legacy(core.bool), beforeLine: dart.legacy(core.bool), end: dart.legacy(core.String), isFirst: dart.legacy(core.bool), isLast: dart.legacy(core.bool), start: dart.legacy(core.String)}, {})
   }));
-  dart.setGetterSignature(scroll_simulation.ClampingScrollSimulation, () => ({
-    __proto__: dart.getGetters(scroll_simulation.ClampingScrollSimulation.__proto__),
-    [_duration]: core.int,
-    [_distance]: core.double
+  dart.setLibraryUri(approval_progress._ApprovalProgressState, I[0]);
+  dart.setFieldSignature(approval_progress._ApprovalProgressState, () => ({
+    __proto__: dart.getFields(approval_progress._ApprovalProgressState.__proto__),
+    previousColor: dart.fieldType(dart.legacy(ui.Color)),
+    nextIsAsh: dart.fieldType(dart.legacy(core.bool)),
+    lastColoredLine: dart.fieldType(dart.legacy(core.bool))
   }));
-  dart.setSetterSignature(scroll_simulation.ClampingScrollSimulation, () => ({
-    __proto__: dart.getSetters(scroll_simulation.ClampingScrollSimulation.__proto__),
-    [_duration]: core.int,
-    [_distance]: core.double
-  }));
-  dart.setLibraryUri(scroll_simulation.ClampingScrollSimulation, I[1]);
-  dart.setFieldSignature(scroll_simulation.ClampingScrollSimulation, () => ({
-    __proto__: dart.getFields(scroll_simulation.ClampingScrollSimulation.__proto__),
-    position: dart.finalFieldType(core.double),
-    velocity: dart.finalFieldType(core.double),
-    friction: dart.finalFieldType(core.double),
-    [__ClampingScrollSimulation__duration]: dart.fieldType(dart.nullable(core.int)),
-    [__ClampingScrollSimulation__duration_isSet]: dart.fieldType(core.bool),
-    [__ClampingScrollSimulation__distance]: dart.fieldType(dart.nullable(core.double)),
-    [__ClampingScrollSimulation__distance_isSet]: dart.fieldType(core.bool)
-  }));
-  dart.defineLazy(scroll_simulation.ClampingScrollSimulation, {
-    /*scroll_simulation.ClampingScrollSimulation._kDecelerationRate*/get _kDecelerationRate() {
-      return math.log(0.78) / math.log(0.9);
-    }
-  }, false);
-  var ___NBSample__velocityCoef = dart.privateName(scroll_simulation, "_#_NBSample#_velocityCoef");
-  var ___NBSample__velocityCoef_isSet = dart.privateName(scroll_simulation, "_#_NBSample#_velocityCoef#isSet");
-  var ___NBSample__distanceCoef = dart.privateName(scroll_simulation, "_#_NBSample#_distanceCoef");
-  var ___NBSample__distanceCoef_isSet = dart.privateName(scroll_simulation, "_#_NBSample#_distanceCoef#isSet");
-  var _distanceCoef = dart.privateName(scroll_simulation, "_distanceCoef");
-  var _velocityCoef = dart.privateName(scroll_simulation, "_velocityCoef");
-  scroll_simulation._NBSample = class _NBSample extends core.Object {
-    get [_velocityCoef]() {
-      let t5;
-      return dart.test(this[___NBSample__velocityCoef_isSet]) ? (t5 = this[___NBSample__velocityCoef], t5) : dart.throw(new _internal.LateError.fieldNI("_velocityCoef"));
-    }
-    set [_velocityCoef](t5) {
-      if (t5 == null) dart.nullFailed(I[0], 245, 15, "null");
-      this[___NBSample__velocityCoef_isSet] = true;
-      this[___NBSample__velocityCoef] = t5;
-    }
-    get velocityCoef() {
-      return this[_velocityCoef];
-    }
-    get [_distanceCoef]() {
-      let t6;
-      return dart.test(this[___NBSample__distanceCoef_isSet]) ? (t6 = this[___NBSample__distanceCoef], t6) : dart.throw(new _internal.LateError.fieldNI("_distanceCoef"));
-    }
-    set [_distanceCoef](t6) {
-      if (t6 == null) dart.nullFailed(I[0], 248, 15, "null");
-      this[___NBSample__distanceCoef_isSet] = true;
-      this[___NBSample__distanceCoef] = t6;
-    }
-    get distanceCoef() {
-      return this[_distanceCoef];
-    }
-  };
-  (scroll_simulation._NBSample.new = function(time, duration) {
-    if (time == null) dart.nullFailed(I[0], 229, 20, "time");
-    if (duration == null) dart.nullFailed(I[0], 229, 30, "duration");
-    this[___NBSample__velocityCoef] = null;
-    this[___NBSample__velocityCoef_isSet] = false;
-    this[___NBSample__distanceCoef] = null;
-    this[___NBSample__distanceCoef_isSet] = false;
-    let t = dart.notNull(time) * 1000.0 / dart.notNull(duration);
-    let index = (100 * t)[$clamp](0, 100)[$round]();
-    this[_distanceCoef] = 1.0;
-    this[_velocityCoef] = 0.0;
-    if (index < 100) {
-      let tInf = index / 100;
-      let tSup = (index + 1) / 100;
-      let dInf = scroll_simulation._NBSample._splinePosition[$_get](index);
-      let dSup = scroll_simulation._NBSample._splinePosition[$_get](index + 1);
-      this[_velocityCoef] = (dart.notNull(dSup) - dart.notNull(dInf)) / (tSup - tInf);
-      this[_distanceCoef] = dart.notNull(dInf) + (t - tInf) * dart.notNull(this[_velocityCoef]);
-    }
-  }).prototype = scroll_simulation._NBSample.prototype;
-  dart.addTypeTests(scroll_simulation._NBSample);
-  dart.addTypeCaches(scroll_simulation._NBSample);
-  dart.setGetterSignature(scroll_simulation._NBSample, () => ({
-    __proto__: dart.getGetters(scroll_simulation._NBSample.__proto__),
-    [_velocityCoef]: core.double,
-    velocityCoef: core.double,
-    [_distanceCoef]: core.double,
-    distanceCoef: core.double
-  }));
-  dart.setSetterSignature(scroll_simulation._NBSample, () => ({
-    __proto__: dart.getSetters(scroll_simulation._NBSample.__proto__),
-    [_velocityCoef]: core.double,
-    [_distanceCoef]: core.double
-  }));
-  dart.setLibraryUri(scroll_simulation._NBSample, I[1]);
-  dart.setFieldSignature(scroll_simulation._NBSample, () => ({
-    __proto__: dart.getFields(scroll_simulation._NBSample.__proto__),
-    [___NBSample__velocityCoef]: dart.fieldType(dart.nullable(core.double)),
-    [___NBSample__velocityCoef_isSet]: dart.fieldType(core.bool),
-    [___NBSample__distanceCoef]: dart.fieldType(dart.nullable(core.double)),
-    [___NBSample__distanceCoef_isSet]: dart.fieldType(core.bool)
-  }));
-  dart.defineLazy(scroll_simulation._NBSample, {
-    /*scroll_simulation._NBSample._nbSamples*/get _nbSamples() {
-      return 100;
-    },
-    /*scroll_simulation._NBSample._splinePosition*/get _splinePosition() {
-      return T.JSArrayOfdouble().of([0.000022888183591973643, 0.028561000304762274, 0.05705195792956655, 0.08538917797618413, 0.11349556286812107, 0.14129881694635613, 0.16877157254923383, 0.19581093511175632, 0.22239649722992452, 0.24843841866631658, 0.2740024733220569, 0.298967680744136, 0.32333234658228116, 0.34709556909569184, 0.3702249257894571, 0.39272483400399893, 0.41456988647721615, 0.43582889025419114, 0.4564192786416, 0.476410299013587, 0.4957560715637827, 0.5145493169954743, 0.5327205670880077, 0.5502846891191615, 0.5673274324802855, 0.583810881323224, 0.5997478744397482, 0.615194045299478, 0.6301165005270208, 0.6445484042257972, 0.6585198219185201, 0.6720397744233084, 0.6850997688076114, 0.6977281404741683, 0.7099506591298411, 0.7217749311525871, 0.7331784038850426, 0.7442308394229518, 0.7549087205105974, 0.7652471277371271, 0.7752251637549381, 0.7848768260203478, 0.7942056937103814, 0.8032299679689082, 0.8119428702388629, 0.8203713516576219, 0.8285187880808974, 0.8363794492831295, 0.8439768562813565, 0.851322799855549, 0.8584111051351724, 0.8652534074722162, 0.8718525580962131, 0.8782333271742155, 0.8843892099362031, 0.8903155590440985, 0.8960465359221951, 0.9015574505919048, 0.9068736766459904, 0.9119951682409297, 0.9169321898723632, 0.9216747065581234, 0.9262420604674766, 0.9306331858366086, 0.9348476990715433, 0.9389007110754832, 0.9427903495057521, 0.9465220679845756, 0.9500943036519721, 0.9535176728088761, 0.9567898524767604, 0.959924306623116, 0.9629127700159108, 0.9657622101750765, 0.9684818726275105, 0.9710676079044347, 0.9735231939498, 0.9758514437576309, 0.9780599066560445, 0.9801485715370128, 0.9821149805689633, 0.9839677526782791, 0.9857085499421516, 0.9873347811966005, 0.9888547171706613, 0.9902689443512227, 0.9915771042095881, 0.9927840651641069, 0.9938913963715834, 0.9948987305580712, 0.9958114963810524, 0.9966274782266875, 0.997352148697352, 0.9979848677523623, 0.9985285021374979, 0.9989844084453229, 0.9993537595844986, 0.999638729860106, 0.9998403888004533, 0.9999602810470701, 1.0]);
-    }
-  }, false);
-  dart.defineLazy(scroll_simulation, {
-    /*scroll_simulation._inflexion*/get _inflexion() {
-      return 0.35;
-    }
-  }, false);
-  dart.trackLibraries("packages/flutter/src/widgets/scroll_simulation.dart", {
-    "package:flutter/src/widgets/scroll_simulation.dart": scroll_simulation
+  dart.trackLibraries("packages/softdoc/screens/detail_screen/approval_progress.dart", {
+    "package:softdoc/screens/detail_screen/approval_progress.dart": approval_progress
   }, {
-  }, '{"version":3,"sourceRoot":"","sources":["scroll_simulation.dart"],"names":[],"mappings":"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","file":"../../../../../../../../D:/packages/flutter/src/widgets/scroll_simulation.dart.lib.js"}');
+  }, '{"version":3,"sourceRoot":"","sources":["approval_progress.dart"],"names":[],"mappings":"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","file":"../../../../../../../../../../../packages/softdoc/screens/detail_screen/approval_progress.dart.lib.js"}');
   // Exports:
   return {
-    src__widgets__scroll_simulation: scroll_simulation
+    screens__detail_screen__approval_progress: approval_progress
   };
 }));
 
-//# sourceMappingURL=scroll_simulation.dart.lib.js.map
+//# sourceMappingURL=approval_progress.dart.lib.js.map

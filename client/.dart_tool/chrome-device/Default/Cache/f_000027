@@ -1,901 +1,478 @@
-define(['dart_sdk', 'packages/flutter/src/widgets/widget_span.dart', 'packages/flutter/src/material/icon_button.dart', 'packages/flutter/src/foundation/_platform_web.dart', 'packages/flutter/src/cupertino/scrollbar.dart', 'packages/flutter/src/material/material_state.dart', 'packages/flutter/src/animation/animation_controller.dart'], (function load__packages__flutter__src__material__scrollbar_dart(dart_sdk, packages__flutter__src__widgets__widget_span$46dart, packages__flutter__src__material__icon_button$46dart, packages__flutter__src__foundation___platform_web$46dart, packages__flutter__src__cupertino__scrollbar$46dart, packages__flutter__src__material__material_state$46dart, packages__flutter__src__animation__animation_controller$46dart) {
+define(['dart_sdk', 'packages/flutter/src/painting/box_border.dart', 'packages/flutter/src/painting/border_radius.dart', 'packages/flutter/src/painting/box_shadow.dart', 'packages/flutter/src/painting/gradient.dart', 'packages/flutter/src/foundation/collections.dart', 'packages/flutter/src/foundation/debug.dart', 'packages/flutter/src/painting/colors.dart', 'packages/flutter/src/painting/decoration_image.dart', 'packages/flutter/src/painting/decoration.dart', 'packages/flutter/src/painting/_network_image_web.dart'], (function load__packages__flutter__src__painting__box_decoration_dart(dart_sdk, packages__flutter__src__painting__box_border$46dart, packages__flutter__src__painting__border_radius$46dart, packages__flutter__src__painting__box_shadow$46dart, packages__flutter__src__painting__gradient$46dart, packages__flutter__src__foundation__collections$46dart, packages__flutter__src__foundation__debug$46dart, packages__flutter__src__painting__colors$46dart, packages__flutter__src__painting__decoration_image$46dart, packages__flutter__src__painting__decoration$46dart, packages__flutter__src__painting___network_image_web$46dart) {
   'use strict';
   const core = dart_sdk.core;
   const ui = dart_sdk.ui;
   const _internal = dart_sdk._internal;
-  const collection = dart_sdk.collection;
+  const math = dart_sdk.math;
   const dart = dart_sdk.dart;
   const dartx = dart_sdk.dartx;
-  const framework = packages__flutter__src__widgets__widget_span$46dart.src__widgets__framework;
-  const scroll_controller = packages__flutter__src__widgets__widget_span$46dart.src__widgets__scroll_controller;
-  const scroll_notification = packages__flutter__src__widgets__widget_span$46dart.src__widgets__scroll_notification;
-  const widget_inspector = packages__flutter__src__widgets__widget_span$46dart.src__widgets__widget_inspector;
-  const scrollbar = packages__flutter__src__widgets__widget_span$46dart.src__widgets__scrollbar;
-  const basic = packages__flutter__src__widgets__widget_span$46dart.src__widgets__basic;
-  const media_query = packages__flutter__src__widgets__widget_span$46dart.src__widgets__media_query;
-  const theme$ = packages__flutter__src__material__icon_button$46dart.src__material__theme;
-  const color_scheme = packages__flutter__src__material__icon_button$46dart.src__material__color_scheme;
-  const scrollbar_theme = packages__flutter__src__material__icon_button$46dart.src__material__scrollbar_theme;
-  const platform = packages__flutter__src__foundation___platform_web$46dart.src__foundation__platform;
-  const scrollbar$ = packages__flutter__src__cupertino__scrollbar$46dart.src__cupertino__scrollbar;
-  const material_state = packages__flutter__src__material__material_state$46dart.src__material__material_state;
-  const animation_controller = packages__flutter__src__animation__animation_controller$46dart.src__animation__animation_controller;
-  var scrollbar$0 = Object.create(dart.library);
+  const box_border = packages__flutter__src__painting__box_border$46dart.src__painting__box_border;
+  const border_radius = packages__flutter__src__painting__border_radius$46dart.src__painting__border_radius;
+  const box_shadow = packages__flutter__src__painting__box_shadow$46dart.src__painting__box_shadow;
+  const gradient = packages__flutter__src__painting__gradient$46dart.src__painting__gradient;
+  const collections = packages__flutter__src__foundation__collections$46dart.src__foundation__collections;
+  const diagnostics = packages__flutter__src__foundation__debug$46dart.src__foundation__diagnostics;
+  const colors = packages__flutter__src__painting__colors$46dart.src__painting__colors;
+  const decoration_image = packages__flutter__src__painting__decoration_image$46dart.src__painting__decoration_image;
+  const decoration = packages__flutter__src__painting__decoration$46dart.src__painting__decoration;
+  const image_provider = packages__flutter__src__painting___network_image_web$46dart.src__painting__image_provider;
+  var box_decoration = Object.create(dart.library);
+  var $runtimeType = dartx.runtimeType;
   dart._checkModuleNullSafetyMode(false);
   var T = {
-    _LocationL: () => (T._LocationL = dart.constFn(dart.legacy(widget_inspector._Location)))(),
-    ScrollNotificationTobool: () => (T.ScrollNotificationTobool = dart.constFn(dart.fnType(core.bool, [scroll_notification.ScrollNotification])))(),
-    LinkedHashSetOfMaterialState: () => (T.LinkedHashSetOfMaterialState = dart.constFn(collection.LinkedHashSet$(material_state.MaterialState)))(),
-    VoidToColor: () => (T.VoidToColor = dart.constFn(dart.fnType(ui.Color, [])))(),
-    ColorTodynamic: () => (T.ColorTodynamic = dart.constFn(dart.fnType(dart.dynamic, [ui.Color])))(),
-    SetOfMaterialState: () => (T.SetOfMaterialState = dart.constFn(core.Set$(material_state.MaterialState)))(),
-    SetOfMaterialStateToColor: () => (T.SetOfMaterialStateToColor = dart.constFn(dart.fnType(ui.Color, [T.SetOfMaterialState()])))(),
-    SetOfMaterialStateTodouble: () => (T.SetOfMaterialStateTodouble = dart.constFn(dart.fnType(core.double, [T.SetOfMaterialState()])))(),
-    VoidTovoid: () => (T.VoidTovoid = dart.constFn(dart.fnType(dart.void, [])))()
+    BoxDecorationN: () => (T.BoxDecorationN = dart.constFn(dart.nullable(box_decoration.BoxDecoration)))(),
+    DiagnosticsPropertyOfDecorationImage: () => (T.DiagnosticsPropertyOfDecorationImage = dart.constFn(diagnostics.DiagnosticsProperty$(decoration_image.DecorationImage)))(),
+    DiagnosticsPropertyOfBoxBorder: () => (T.DiagnosticsPropertyOfBoxBorder = dart.constFn(diagnostics.DiagnosticsProperty$(box_border.BoxBorder)))(),
+    DiagnosticsPropertyOfBorderRadiusGeometry: () => (T.DiagnosticsPropertyOfBorderRadiusGeometry = dart.constFn(diagnostics.DiagnosticsProperty$(border_radius.BorderRadiusGeometry)))(),
+    IterablePropertyOfBoxShadow: () => (T.IterablePropertyOfBoxShadow = dart.constFn(diagnostics.IterableProperty$(box_shadow.BoxShadow)))(),
+    DiagnosticsPropertyOfGradient: () => (T.DiagnosticsPropertyOfGradient = dart.constFn(diagnostics.DiagnosticsProperty$(gradient.Gradient)))(),
+    EnumPropertyOfBoxShape: () => (T.EnumPropertyOfBoxShape = dart.constFn(diagnostics.EnumProperty$(box_border.BoxShape)))(),
+    BorderRadiusN: () => (T.BorderRadiusN = dart.constFn(dart.nullable(border_radius.BorderRadius)))()
   };
   const CT = Object.create({
     _: () => (C, CT)
   });
   dart.defineLazy(CT, {
-    get C2() {
-      return C[2] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 9,
-        [_Location_line]: 179,
-        [_Location_file]: null
-      });
-    },
-    get C3() {
-      return C[3] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "isAlwaysShown",
-        [_Location_column]: 9,
-        [_Location_line]: 180,
-        [_Location_file]: null
-      });
-    },
-    get C4() {
-      return C[4] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "thickness",
-        [_Location_column]: 9,
-        [_Location_line]: 181,
-        [_Location_file]: null
-      });
-    },
-    get C5() {
-      return C[5] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "thicknessWhileDragging",
-        [_Location_column]: 9,
-        [_Location_line]: 182,
-        [_Location_file]: null
-      });
-    },
-    get C6() {
-      return C[6] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "radius",
-        [_Location_column]: 9,
-        [_Location_line]: 183,
-        [_Location_file]: null
-      });
-    },
-    get C7() {
-      return C[7] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "radiusWhileDragging",
-        [_Location_column]: 9,
-        [_Location_line]: 184,
-        [_Location_file]: null
-      });
-    },
-    get C8() {
-      return C[8] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "controller",
-        [_Location_column]: 9,
-        [_Location_line]: 185,
-        [_Location_file]: null
-      });
-    },
-    get C9() {
-      return C[9] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "notificationPredicate",
-        [_Location_column]: 9,
-        [_Location_line]: 186,
-        [_Location_file]: null
+    get C0() {
+      return C[0] = dart.const({
+        __proto__: box_border.BoxShape.prototype,
+        [_name]: "BoxShape.rectangle",
+        index: 0
       });
     },
     get C1() {
-      return C[1] = dart.constList([C[2] || CT.C2, C[3] || CT.C3, C[4] || CT.C4, C[5] || CT.C5, C[6] || CT.C6, C[7] || CT.C7, C[8] || CT.C8, C[9] || CT.C9], T._LocationL());
-    },
-    get C0() {
-      return C[0] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[1] || CT.C1,
-        [_Location_name]: null,
-        [_Location_column]: 14,
-        [_Location_line]: 178,
-        [_Location_file]: "file:///C:/src/flutter/packages/flutter/lib/src/material/scrollbar.dart"
-      });
-    },
-    get C12() {
-      return C[12] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 7,
-        [_Location_line]: 190,
-        [_Location_file]: null
-      });
-    },
-    get C13() {
-      return C[13] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "controller",
-        [_Location_column]: 7,
-        [_Location_line]: 191,
-        [_Location_file]: null
-      });
-    },
-    get C14() {
-      return C[14] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "isAlwaysShown",
-        [_Location_column]: 7,
-        [_Location_line]: 192,
-        [_Location_file]: null
-      });
-    },
-    get C15() {
-      return C[15] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "showTrackOnHover",
-        [_Location_column]: 7,
-        [_Location_line]: 193,
-        [_Location_file]: null
-      });
-    },
-    get C16() {
-      return C[16] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "hoverThickness",
-        [_Location_column]: 7,
-        [_Location_line]: 194,
-        [_Location_file]: null
-      });
-    },
-    get C17() {
-      return C[17] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "thickness",
-        [_Location_column]: 7,
-        [_Location_line]: 195,
-        [_Location_file]: null
-      });
-    },
-    get C18() {
-      return C[18] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "radius",
-        [_Location_column]: 7,
-        [_Location_line]: 196,
-        [_Location_file]: null
-      });
-    },
-    get C19() {
-      return C[19] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "notificationPredicate",
-        [_Location_column]: 7,
-        [_Location_line]: 197,
-        [_Location_file]: null
-      });
-    },
-    get C20() {
-      return C[20] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "interactive",
-        [_Location_column]: 7,
-        [_Location_line]: 198,
-        [_Location_file]: null
-      });
-    },
-    get C11() {
-      return C[11] = dart.constList([C[12] || CT.C12, C[13] || CT.C13, C[14] || CT.C14, C[15] || CT.C15, C[16] || CT.C16, C[17] || CT.C17, C[18] || CT.C18, C[19] || CT.C19, C[20] || CT.C20], T._LocationL());
-    },
-    get C10() {
-      return C[10] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[11] || CT.C11,
-        [_Location_name]: null,
-        [_Location_column]: 12,
-        [_Location_line]: 189,
-        [_Location_file]: "file:///C:/src/flutter/packages/flutter/lib/src/material/scrollbar.dart"
-      });
-    },
-    get C21() {
-      return C[21] = dart.fn(scroll_notification.defaultScrollNotificationPredicate, T.ScrollNotificationTobool());
-    },
-    get C22() {
-      return C[22] = dart.const({
-        __proto__: ui.Brightness.prototype,
-        [_name]: "Brightness.light",
+      return C[1] = dart.const({
+        __proto__: box_border.BoxShape.prototype,
+        [_name]: "BoxShape.circle",
         index: 1
-      });
-    },
-    get C23() {
-      return C[23] = dart.const({
-        __proto__: ui.Brightness.prototype,
-        [_name]: "Brightness.dark",
-        index: 0
-      });
-    },
-    get C24() {
-      return C[24] = dart.const({
-        __proto__: ui.Color.prototype,
-        [Color_value]: 0
-      });
-    },
-    get C25() {
-      return C[25] = dart.const({
-        __proto__: core.Duration.prototype,
-        [Duration__duration]: 200000
-      });
-    },
-    get C26() {
-      return C[26] = dart.const({
-        __proto__: platform.TargetPlatform.prototype,
-        [_name$]: "TargetPlatform.android",
-        index: 0
-      });
-    },
-    get C27() {
-      return C[27] = dart.const({
-        __proto__: platform.TargetPlatform.prototype,
-        [_name$]: "TargetPlatform.iOS",
-        index: 2
-      });
-    },
-    get C28() {
-      return C[28] = dart.const({
-        __proto__: platform.TargetPlatform.prototype,
-        [_name$]: "TargetPlatform.linux",
-        index: 3
-      });
-    },
-    get C29() {
-      return C[29] = dart.const({
-        __proto__: platform.TargetPlatform.prototype,
-        [_name$]: "TargetPlatform.fuchsia",
-        index: 1
-      });
-    },
-    get C30() {
-      return C[30] = dart.const({
-        __proto__: platform.TargetPlatform.prototype,
-        [_name$]: "TargetPlatform.macOS",
-        index: 4
-      });
-    },
-    get C31() {
-      return C[31] = dart.const({
-        __proto__: platform.TargetPlatform.prototype,
-        [_name$]: "TargetPlatform.windows",
-        index: 5
-      });
-    },
-    get C32() {
-      return C[32] = dart.const({
-        __proto__: ui.Radius.prototype,
-        [Radius_y]: 8,
-        [Radius_x]: 8
-      });
-    },
-    get C33() {
-      return C[33] = dart.const({
-        __proto__: core.Duration.prototype,
-        [Duration__duration]: 300000
-      });
-    },
-    get C34() {
-      return C[34] = dart.const({
-        __proto__: core.Duration.prototype,
-        [Duration__duration]: 600000
       });
     }
   }, false);
-  var C = Array(35).fill(void 0);
+  var C = Array(2).fill(void 0);
   var I = [
-    "file:///C:/src/flutter/packages/flutter/lib/src/material/scrollbar.dart",
-    "package:flutter/src/material/scrollbar.dart"
+    "file:///C:/src/flutter/packages/flutter/lib/src/painting/box_decoration.dart",
+    "package:flutter/src/painting/box_decoration.dart"
   ];
-  var child$ = dart.privateName(scrollbar$0, "Scrollbar.child");
-  var controller$ = dart.privateName(scrollbar$0, "Scrollbar.controller");
-  var isAlwaysShown$ = dart.privateName(scrollbar$0, "Scrollbar.isAlwaysShown");
-  var showTrackOnHover$ = dart.privateName(scrollbar$0, "Scrollbar.showTrackOnHover");
-  var hoverThickness$ = dart.privateName(scrollbar$0, "Scrollbar.hoverThickness");
-  var thickness$ = dart.privateName(scrollbar$0, "Scrollbar.thickness");
-  var radius$ = dart.privateName(scrollbar$0, "Scrollbar.radius");
-  var interactive$ = dart.privateName(scrollbar$0, "Scrollbar.interactive");
-  var notificationPredicate$ = dart.privateName(scrollbar$0, "Scrollbar.notificationPredicate");
-  scrollbar$0.Scrollbar = class Scrollbar extends framework.StatefulWidget {
-    get child() {
-      return this[child$];
+  var color$ = dart.privateName(box_decoration, "BoxDecoration.color");
+  var image$ = dart.privateName(box_decoration, "BoxDecoration.image");
+  var border$ = dart.privateName(box_decoration, "BoxDecoration.border");
+  var borderRadius$ = dart.privateName(box_decoration, "BoxDecoration.borderRadius");
+  var boxShadow$ = dart.privateName(box_decoration, "BoxDecoration.boxShadow");
+  var gradient$ = dart.privateName(box_decoration, "BoxDecoration.gradient");
+  var backgroundBlendMode$ = dart.privateName(box_decoration, "BoxDecoration.backgroundBlendMode");
+  var shape$ = dart.privateName(box_decoration, "BoxDecoration.shape");
+  var _name = dart.privateName(box_border, "_name");
+  box_decoration.BoxDecoration = class BoxDecoration extends decoration.Decoration {
+    get color() {
+      return this[color$];
     }
-    set child(value) {
-      super.child = value;
+    set color(value) {
+      super.color = value;
     }
-    get controller() {
-      return this[controller$];
+    get image() {
+      return this[image$];
     }
-    set controller(value) {
-      super.controller = value;
+    set image(value) {
+      super.image = value;
     }
-    get isAlwaysShown() {
-      return this[isAlwaysShown$];
+    get border() {
+      return this[border$];
     }
-    set isAlwaysShown(value) {
-      super.isAlwaysShown = value;
+    set border(value) {
+      super.border = value;
     }
-    get showTrackOnHover() {
-      return this[showTrackOnHover$];
+    get borderRadius() {
+      return this[borderRadius$];
     }
-    set showTrackOnHover(value) {
-      super.showTrackOnHover = value;
+    set borderRadius(value) {
+      super.borderRadius = value;
     }
-    get hoverThickness() {
-      return this[hoverThickness$];
+    get boxShadow() {
+      return this[boxShadow$];
     }
-    set hoverThickness(value) {
-      super.hoverThickness = value;
+    set boxShadow(value) {
+      super.boxShadow = value;
     }
-    get thickness() {
-      return this[thickness$];
+    get gradient() {
+      return this[gradient$];
     }
-    set thickness(value) {
-      super.thickness = value;
+    set gradient(value) {
+      super.gradient = value;
     }
-    get radius() {
-      return this[radius$];
+    get backgroundBlendMode() {
+      return this[backgroundBlendMode$];
     }
-    set radius(value) {
-      super.radius = value;
+    set backgroundBlendMode(value) {
+      super.backgroundBlendMode = value;
     }
-    get interactive() {
-      return this[interactive$];
+    get shape() {
+      return this[shape$];
     }
-    set interactive(value) {
-      super.interactive = value;
+    set shape(value) {
+      super.shape = value;
     }
-    get notificationPredicate() {
-      return this[notificationPredicate$];
+    copyWith(opts) {
+      let t0, t0$, t0$0, t0$1, t0$2, t0$3, t0$4, t0$5;
+      let color = opts && 'color' in opts ? opts.color : null;
+      let image = opts && 'image' in opts ? opts.image : null;
+      let border = opts && 'border' in opts ? opts.border : null;
+      let borderRadius = opts && 'borderRadius' in opts ? opts.borderRadius : null;
+      let boxShadow = opts && 'boxShadow' in opts ? opts.boxShadow : null;
+      let gradient = opts && 'gradient' in opts ? opts.gradient : null;
+      let backgroundBlendMode = opts && 'backgroundBlendMode' in opts ? opts.backgroundBlendMode : null;
+      let shape = opts && 'shape' in opts ? opts.shape : null;
+      return new box_decoration.BoxDecoration.new({color: (t0 = color, t0 == null ? this.color : t0), image: (t0$ = image, t0$ == null ? this.image : t0$), border: (t0$0 = border, t0$0 == null ? this.border : t0$0), borderRadius: (t0$1 = borderRadius, t0$1 == null ? this.borderRadius : t0$1), boxShadow: (t0$2 = boxShadow, t0$2 == null ? this.boxShadow : t0$2), gradient: (t0$3 = gradient, t0$3 == null ? this.gradient : t0$3), backgroundBlendMode: (t0$4 = backgroundBlendMode, t0$4 == null ? this.backgroundBlendMode : t0$4), shape: (t0$5 = shape, t0$5 == null ? this.shape : t0$5)});
     }
-    set notificationPredicate(value) {
-      super.notificationPredicate = value;
+    debugAssertIsValid() {
+      if (!(this.shape != box_border.BoxShape.circle || this.borderRadius == null)) dart.assertFailed(null, I[0], 131, 12, "shape != BoxShape.circle || borderRadius == null");
+      return super.debugAssertIsValid();
     }
-    createState() {
-      return new scrollbar$0._ScrollbarState.new();
-    }
-  };
-  (scrollbar$0.Scrollbar.new = function(opts) {
-    let key = opts && 'key' in opts ? opts.key : null;
-    let child = opts && 'child' in opts ? opts.child : null;
-    if (child == null) dart.nullFailed(I[0], 111, 19, "child");
-    let controller = opts && 'controller' in opts ? opts.controller : null;
-    let isAlwaysShown = opts && 'isAlwaysShown' in opts ? opts.isAlwaysShown : null;
-    let showTrackOnHover = opts && 'showTrackOnHover' in opts ? opts.showTrackOnHover : null;
-    let hoverThickness = opts && 'hoverThickness' in opts ? opts.hoverThickness : null;
-    let thickness = opts && 'thickness' in opts ? opts.thickness : null;
-    let radius = opts && 'radius' in opts ? opts.radius : null;
-    let notificationPredicate = opts && 'notificationPredicate' in opts ? opts.notificationPredicate : null;
-    let interactive = opts && 'interactive' in opts ? opts.interactive : null;
-    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
-    this[child$] = child;
-    this[controller$] = controller;
-    this[isAlwaysShown$] = isAlwaysShown;
-    this[showTrackOnHover$] = showTrackOnHover;
-    this[hoverThickness$] = hoverThickness;
-    this[thickness$] = thickness;
-    this[radius$] = radius;
-    this[notificationPredicate$] = notificationPredicate;
-    this[interactive$] = interactive;
-    scrollbar$0.Scrollbar.__proto__.new.call(this, {key: key, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
-    ;
-  }).prototype = scrollbar$0.Scrollbar.prototype;
-  dart.addTypeTests(scrollbar$0.Scrollbar);
-  dart.addTypeCaches(scrollbar$0.Scrollbar);
-  dart.setMethodSignature(scrollbar$0.Scrollbar, () => ({
-    __proto__: dart.getMethods(scrollbar$0.Scrollbar.__proto__),
-    createState: dart.fnType(scrollbar$0._ScrollbarState, [])
-  }));
-  dart.setLibraryUri(scrollbar$0.Scrollbar, I[1]);
-  dart.setFieldSignature(scrollbar$0.Scrollbar, () => ({
-    __proto__: dart.getFields(scrollbar$0.Scrollbar.__proto__),
-    child: dart.finalFieldType(framework.Widget),
-    controller: dart.finalFieldType(dart.nullable(scroll_controller.ScrollController)),
-    isAlwaysShown: dart.finalFieldType(dart.nullable(core.bool)),
-    showTrackOnHover: dart.finalFieldType(dart.nullable(core.bool)),
-    hoverThickness: dart.finalFieldType(dart.nullable(core.double)),
-    thickness: dart.finalFieldType(dart.nullable(core.double)),
-    radius: dart.finalFieldType(dart.nullable(ui.Radius)),
-    interactive: dart.finalFieldType(dart.nullable(core.bool)),
-    notificationPredicate: dart.finalFieldType(dart.nullable(dart.fnType(core.bool, [scroll_notification.ScrollNotification])))
-  }));
-  var _useCupertinoScrollbar = dart.privateName(scrollbar$0, "_useCupertinoScrollbar");
-  var _Location_parameterLocations = dart.privateName(widget_inspector, "_Location.parameterLocations");
-  var _Location_name = dart.privateName(widget_inspector, "_Location.name");
-  var _Location_column = dart.privateName(widget_inspector, "_Location.column");
-  var _Location_line = dart.privateName(widget_inspector, "_Location.line");
-  var _Location_file = dart.privateName(widget_inspector, "_Location.file");
-  scrollbar$0._ScrollbarState = class _ScrollbarState extends framework.State$(scrollbar$0.Scrollbar) {
-    get [_useCupertinoScrollbar]() {
-      return theme$.Theme.of(this.context).platform == platform.TargetPlatform.iOS;
-    }
-    build(context) {
-      let t0, t0$, t0$0, t0$1, t0$2;
-      if (context == null) dart.nullFailed(I[0], 176, 29, "context");
-      if (dart.test(this[_useCupertinoScrollbar])) {
-        return new scrollbar$.CupertinoScrollbar.new({child: this.widget.child, isAlwaysShown: (t0 = this.widget.isAlwaysShown, t0 == null ? false : t0), thickness: (t0$ = this.widget.thickness, t0$ == null ? 3 : t0$), thicknessWhileDragging: (t0$0 = this.widget.thickness, t0$0 == null ? 8 : t0$0), radius: (t0$1 = this.widget.radius, t0$1 == null ? scrollbar$.CupertinoScrollbar.defaultRadius : t0$1), radiusWhileDragging: (t0$2 = this.widget.radius, t0$2 == null ? scrollbar$.CupertinoScrollbar.defaultRadiusWhileDragging : t0$2), controller: this.widget.controller, notificationPredicate: this.widget.notificationPredicate, $creationLocationd_0dea112b090073317d4: C[0] || CT.C0});
-      }
-      return new scrollbar$0._MaterialScrollbar.new({child: this.widget.child, controller: this.widget.controller, isAlwaysShown: this.widget.isAlwaysShown, showTrackOnHover: this.widget.showTrackOnHover, hoverThickness: this.widget.hoverThickness, thickness: this.widget.thickness, radius: this.widget.radius, notificationPredicate: this.widget.notificationPredicate, interactive: this.widget.interactive, $creationLocationd_0dea112b090073317d4: C[10] || CT.C10});
-    }
-  };
-  (scrollbar$0._ScrollbarState.new = function() {
-    scrollbar$0._ScrollbarState.__proto__.new.call(this);
-    ;
-  }).prototype = scrollbar$0._ScrollbarState.prototype;
-  dart.addTypeTests(scrollbar$0._ScrollbarState);
-  dart.addTypeCaches(scrollbar$0._ScrollbarState);
-  dart.setMethodSignature(scrollbar$0._ScrollbarState, () => ({
-    __proto__: dart.getMethods(scrollbar$0._ScrollbarState.__proto__),
-    build: dart.fnType(framework.Widget, [framework.BuildContext])
-  }));
-  dart.setGetterSignature(scrollbar$0._ScrollbarState, () => ({
-    __proto__: dart.getGetters(scrollbar$0._ScrollbarState.__proto__),
-    [_useCupertinoScrollbar]: core.bool
-  }));
-  dart.setLibraryUri(scrollbar$0._ScrollbarState, I[1]);
-  var showTrackOnHover$0 = dart.privateName(scrollbar$0, "_MaterialScrollbar.showTrackOnHover");
-  var hoverThickness$0 = dart.privateName(scrollbar$0, "_MaterialScrollbar.hoverThickness");
-  scrollbar$0._MaterialScrollbar = class _MaterialScrollbar extends scrollbar.RawScrollbar {
-    get showTrackOnHover() {
-      return this[showTrackOnHover$0];
-    }
-    set showTrackOnHover(value) {
-      super.showTrackOnHover = value;
-    }
-    get hoverThickness() {
-      return this[hoverThickness$0];
-    }
-    set hoverThickness(value) {
-      super.hoverThickness = value;
-    }
-    createState() {
-      return new scrollbar$0._MaterialScrollbarState.new();
-    }
-  };
-  (scrollbar$0._MaterialScrollbar.new = function(opts) {
-    let t0;
-    let key = opts && 'key' in opts ? opts.key : null;
-    let child = opts && 'child' in opts ? opts.child : null;
-    if (child == null) dart.nullFailed(I[0], 206, 21, "child");
-    let controller = opts && 'controller' in opts ? opts.controller : null;
-    let isAlwaysShown = opts && 'isAlwaysShown' in opts ? opts.isAlwaysShown : null;
-    let showTrackOnHover = opts && 'showTrackOnHover' in opts ? opts.showTrackOnHover : null;
-    let hoverThickness = opts && 'hoverThickness' in opts ? opts.hoverThickness : null;
-    let thickness = opts && 'thickness' in opts ? opts.thickness : null;
-    let radius = opts && 'radius' in opts ? opts.radius : null;
-    let notificationPredicate = opts && 'notificationPredicate' in opts ? opts.notificationPredicate : null;
-    let interactive = opts && 'interactive' in opts ? opts.interactive : null;
-    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
-    this[showTrackOnHover$0] = showTrackOnHover;
-    this[hoverThickness$0] = hoverThickness;
-    scrollbar$0._MaterialScrollbar.__proto__.new.call(this, {key: key, child: child, controller: controller, isAlwaysShown: isAlwaysShown, thickness: thickness, radius: radius, fadeDuration: scrollbar$0._kScrollbarFadeDuration, timeToFade: scrollbar$0._kScrollbarTimeToFade, pressDuration: core.Duration.zero, notificationPredicate: (t0 = notificationPredicate, t0 == null ? C[21] || CT.C21 : t0), interactive: interactive, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
-    ;
-  }).prototype = scrollbar$0._MaterialScrollbar.prototype;
-  dart.addTypeTests(scrollbar$0._MaterialScrollbar);
-  dart.addTypeCaches(scrollbar$0._MaterialScrollbar);
-  dart.setMethodSignature(scrollbar$0._MaterialScrollbar, () => ({
-    __proto__: dart.getMethods(scrollbar$0._MaterialScrollbar.__proto__),
-    createState: dart.fnType(scrollbar$0._MaterialScrollbarState, [])
-  }));
-  dart.setLibraryUri(scrollbar$0._MaterialScrollbar, I[1]);
-  dart.setFieldSignature(scrollbar$0._MaterialScrollbar, () => ({
-    __proto__: dart.getFields(scrollbar$0._MaterialScrollbar.__proto__),
-    showTrackOnHover: dart.finalFieldType(dart.nullable(core.bool)),
-    hoverThickness: dart.finalFieldType(dart.nullable(core.double))
-  }));
-  var ___MaterialScrollbarState__hoverAnimationController = dart.privateName(scrollbar$0, "_#_MaterialScrollbarState#_hoverAnimationController");
-  var ___MaterialScrollbarState__hoverAnimationController_isSet = dart.privateName(scrollbar$0, "_#_MaterialScrollbarState#_hoverAnimationController#isSet");
-  var _dragIsActive = dart.privateName(scrollbar$0, "_dragIsActive");
-  var _hoverIsActive = dart.privateName(scrollbar$0, "_hoverIsActive");
-  var ___MaterialScrollbarState__colorScheme = dart.privateName(scrollbar$0, "_#_MaterialScrollbarState#_colorScheme");
-  var ___MaterialScrollbarState__colorScheme_isSet = dart.privateName(scrollbar$0, "_#_MaterialScrollbarState#_colorScheme#isSet");
-  var ___MaterialScrollbarState__scrollbarTheme = dart.privateName(scrollbar$0, "_#_MaterialScrollbarState#_scrollbarTheme");
-  var ___MaterialScrollbarState__scrollbarTheme_isSet = dart.privateName(scrollbar$0, "_#_MaterialScrollbarState#_scrollbarTheme#isSet");
-  var ___MaterialScrollbarState__useAndroidScrollbar = dart.privateName(scrollbar$0, "_#_MaterialScrollbarState#_useAndroidScrollbar");
-  var ___MaterialScrollbarState__useAndroidScrollbar_isSet = dart.privateName(scrollbar$0, "_#_MaterialScrollbarState#_useAndroidScrollbar#isSet");
-  var _hoverAnimationController = dart.privateName(scrollbar$0, "_hoverAnimationController");
-  var _colorScheme = dart.privateName(scrollbar$0, "_colorScheme");
-  var _scrollbarTheme = dart.privateName(scrollbar$0, "_scrollbarTheme");
-  var _useAndroidScrollbar = dart.privateName(scrollbar$0, "_useAndroidScrollbar");
-  var _showTrackOnHover = dart.privateName(scrollbar$0, "_showTrackOnHover");
-  var _states = dart.privateName(scrollbar$0, "_states");
-  var _name = dart.privateName(ui, "_name");
-  var _thumbColor = dart.privateName(scrollbar$0, "_thumbColor");
-  var Color_value = dart.privateName(ui, "Color.value");
-  var _trackColor = dart.privateName(scrollbar$0, "_trackColor");
-  var _trackBorderColor = dart.privateName(scrollbar$0, "_trackBorderColor");
-  var _thickness = dart.privateName(scrollbar$0, "_thickness");
-  var Duration__duration = dart.privateName(core, "Duration._duration");
-  var _name$ = dart.privateName(platform, "_name");
-  scrollbar$0._MaterialScrollbarState = class _MaterialScrollbarState extends scrollbar.RawScrollbarState$(scrollbar$0._MaterialScrollbar) {
-    get [_hoverAnimationController]() {
+    get padding() {
       let t0;
-      return dart.test(this[___MaterialScrollbarState__hoverAnimationController_isSet]) ? (t0 = this[___MaterialScrollbarState__hoverAnimationController], t0) : dart.throw(new _internal.LateError.fieldNI("_hoverAnimationController"));
+      t0 = this.border;
+      return t0 == null ? null : t0.dimensions;
     }
-    set [_hoverAnimationController](t0) {
-      if (t0 == null) dart.nullFailed(I[0], 237, 28, "null");
-      this[___MaterialScrollbarState__hoverAnimationController_isSet] = true;
-      this[___MaterialScrollbarState__hoverAnimationController] = t0;
-    }
-    get [_colorScheme]() {
-      let t1;
-      return dart.test(this[___MaterialScrollbarState__colorScheme_isSet]) ? (t1 = this[___MaterialScrollbarState__colorScheme], t1) : dart.throw(new _internal.LateError.fieldNI("_colorScheme"));
-    }
-    set [_colorScheme](t1) {
-      if (t1 == null) dart.nullFailed(I[0], 240, 20, "null");
-      this[___MaterialScrollbarState__colorScheme_isSet] = true;
-      this[___MaterialScrollbarState__colorScheme] = t1;
-    }
-    get [_scrollbarTheme]() {
-      let t2;
-      return dart.test(this[___MaterialScrollbarState__scrollbarTheme_isSet]) ? (t2 = this[___MaterialScrollbarState__scrollbarTheme], t2) : dart.throw(new _internal.LateError.fieldNI("_scrollbarTheme"));
-    }
-    set [_scrollbarTheme](t2) {
-      if (t2 == null) dart.nullFailed(I[0], 241, 27, "null");
-      this[___MaterialScrollbarState__scrollbarTheme_isSet] = true;
-      this[___MaterialScrollbarState__scrollbarTheme] = t2;
-    }
-    get [_useAndroidScrollbar]() {
-      let t3;
-      return dart.test(this[___MaterialScrollbarState__useAndroidScrollbar_isSet]) ? (t3 = this[___MaterialScrollbarState__useAndroidScrollbar], t3) : dart.throw(new _internal.LateError.fieldNI("_useAndroidScrollbar"));
-    }
-    set [_useAndroidScrollbar](t3) {
-      if (t3 == null) dart.nullFailed(I[0], 243, 13, "null");
-      this[___MaterialScrollbarState__useAndroidScrollbar_isSet] = true;
-      this[___MaterialScrollbarState__useAndroidScrollbar] = t3;
-    }
-    get showScrollbar() {
-      let t4, t4$;
-      t4$ = (t4 = this.widget.isAlwaysShown, t4 == null ? this[_scrollbarTheme].isAlwaysShown : t4);
-      return t4$ == null ? false : t4$;
-    }
-    get enableGestures() {
-      let t4, t4$;
-      t4$ = (t4 = this.widget.interactive, t4 == null ? this[_scrollbarTheme].interactive : t4);
-      return t4$ == null ? !dart.test(this[_useAndroidScrollbar]) : t4$;
-    }
-    get [_showTrackOnHover]() {
-      let t4, t4$;
-      t4$ = (t4 = this.widget.showTrackOnHover, t4 == null ? this[_scrollbarTheme].showTrackOnHover : t4);
-      return t4$ == null ? false : t4$;
-    }
-    get [_states]() {
-      return (() => {
-        let t4 = T.LinkedHashSetOfMaterialState().new();
-        if (dart.test(this[_dragIsActive])) t4.add(material_state.MaterialState.dragged);
-        if (dart.test(this[_hoverIsActive])) t4.add(material_state.MaterialState.hovered);
-        return t4;
-      })();
-    }
-    get [_thumbColor]() {
-      let onSurface = this[_colorScheme].onSurface;
-      let brightness = this[_colorScheme].brightness;
-      let dragColor = null;
-      let dragColor$35isSet = false;
-      function dragColor$35get() {
-        return dragColor$35isSet ? dragColor : dart.throw(new _internal.LateError.localNI("dragColor"));
-      }
-      dart.fn(dragColor$35get, T.VoidToColor());
-      function dragColor$35set(t8) {
-        if (t8 == null) dart.nullFailed(I[0], 261, 16, "null");
-        dragColor$35isSet = true;
-        return dragColor = t8;
-      }
-      dart.fn(dragColor$35set, T.ColorTodynamic());
-      let hoverColor = null;
-      let hoverColor$35isSet = false;
-      function hoverColor$35get() {
-        return hoverColor$35isSet ? hoverColor : dart.throw(new _internal.LateError.localNI("hoverColor"));
-      }
-      dart.fn(hoverColor$35get, T.VoidToColor());
-      function hoverColor$35set(t13) {
-        if (t13 == null) dart.nullFailed(I[0], 262, 16, "null");
-        hoverColor$35isSet = true;
-        return hoverColor = t13;
-      }
-      dart.fn(hoverColor$35set, T.ColorTodynamic());
-      let idleColor = null;
-      let idleColor$35isSet = false;
-      function idleColor$35get() {
-        return idleColor$35isSet ? idleColor : dart.throw(new _internal.LateError.localNI("idleColor"));
-      }
-      dart.fn(idleColor$35get, T.VoidToColor());
-      function idleColor$35set(t18) {
-        if (t18 == null) dart.nullFailed(I[0], 263, 16, "null");
-        idleColor$35isSet = true;
-        return idleColor = t18;
-      }
-      dart.fn(idleColor$35set, T.ColorTodynamic());
-      switch (brightness) {
-        case C[22] || CT.C22:
+    getClipPath(rect, textDirection) {
+      let t0, t0$, t0$0;
+      if (rect == null) dart.nullFailed(I[0], 217, 25, "rect");
+      if (textDirection == null) dart.nullFailed(I[0], 217, 45, "textDirection");
+      switch (this.shape) {
+        case C[1] || CT.C1:
         {
-          dragColor$35set(onSurface.withOpacity(0.6));
-          hoverColor$35set(onSurface.withOpacity(0.5));
-          idleColor$35set(dart.test(this[_useAndroidScrollbar]) ? theme$.Theme.of(this.context).highlightColor.withOpacity(1.0) : onSurface.withOpacity(0.1));
-          break;
+          let center = rect.center;
+          let radius = dart.notNull(rect.shortestSide) / 2.0;
+          let square = new ui.Rect.fromCircle({center: center, radius: radius});
+          t0 = ui.Path.new();
+          return (() => {
+            t0.addOval(square);
+            return t0;
+          })();
         }
-        case C[23] || CT.C23:
+        case C[0] || CT.C0:
         {
-          dragColor$35set(onSurface.withOpacity(0.75));
-          hoverColor$35set(onSurface.withOpacity(0.65));
-          idleColor$35set(dart.test(this[_useAndroidScrollbar]) ? theme$.Theme.of(this.context).highlightColor.withOpacity(1.0) : onSurface.withOpacity(0.3));
-          break;
+          if (this.borderRadius != null) {
+            t0$ = ui.Path.new();
+            return (() => {
+              t0$.addRRect(dart.nullCheck(this.borderRadius).resolve(textDirection).toRRect(rect));
+              return t0$;
+            })();
+          }
+          t0$0 = ui.Path.new();
+          return (() => {
+            t0$0.addRect(rect);
+            return t0$0;
+          })();
         }
         default:
         {
           dart.throw(new _internal.ReachabilityError.new("`null` encountered as case in a switch expression with a non-nullable enum type."));
         }
       }
-      return material_state.MaterialStateProperty.resolveWith(ui.Color, dart.fn(states => {
-        let t20, t20$, t20$0, t20$1, t20$2, t20$3, t20$4, t20$5;
-        if (states == null) dart.nullFailed(I[0], 281, 66, "states");
-        if (dart.test(states.contains(material_state.MaterialState.dragged))) {
-          t20$ = (t20 = this[_scrollbarTheme].thumbColor, t20 == null ? null : t20.resolve(states));
-          return t20$ == null ? dragColor$35get() : t20$;
-        }
-        if (dart.test(states.contains(material_state.MaterialState.hovered)) && dart.test(this[_showTrackOnHover])) {
-          t20$1 = (t20$0 = this[_scrollbarTheme].thumbColor, t20$0 == null ? null : t20$0.resolve(states));
-          return t20$1 == null ? hoverColor$35get() : t20$1;
-        }
-        return dart.nullCheck(ui.Color.lerp((t20$3 = (t20$2 = this[_scrollbarTheme].thumbColor, t20$2 == null ? null : t20$2.resolve(states)), t20$3 == null ? idleColor$35get() : t20$3), (t20$5 = (t20$4 = this[_scrollbarTheme].thumbColor, t20$4 == null ? null : t20$4.resolve(states)), t20$5 == null ? hoverColor$35get() : t20$5), this[_hoverAnimationController].value));
-      }, T.SetOfMaterialStateToColor()));
     }
-    get [_trackColor]() {
-      let onSurface = this[_colorScheme].onSurface;
-      let brightness = this[_colorScheme].brightness;
-      return material_state.MaterialStateProperty.resolveWith(ui.Color, dart.fn(states => {
-        let t20, t20$;
-        if (states == null) dart.nullFailed(I[0], 301, 66, "states");
-        if (dart.test(states.contains(material_state.MaterialState.hovered)) && dart.test(this[_showTrackOnHover])) {
-          t20$ = (t20 = this[_scrollbarTheme].trackColor, t20 == null ? null : t20.resolve(states));
-          return t20$ == null ? brightness == ui.Brightness.light ? onSurface.withOpacity(0.03) : onSurface.withOpacity(0.05) : t20$;
-        }
-        return C[24] || CT.C24;
-      }, T.SetOfMaterialStateToColor()));
+    scale(factor) {
+      let t0;
+      if (factor == null) dart.nullFailed(I[0], 232, 30, "factor");
+      return new box_decoration.BoxDecoration.new({color: ui.Color.lerp(null, this.color, factor), image: this.image, border: box_border.BoxBorder.lerp(null, this.border, factor), borderRadius: border_radius.BorderRadiusGeometry.lerp(null, this.borderRadius, factor), boxShadow: box_shadow.BoxShadow.lerpList(null, this.boxShadow, factor), gradient: (t0 = this.gradient, t0 == null ? null : t0.scale(factor)), shape: this.shape});
     }
-    get [_trackBorderColor]() {
-      let onSurface = this[_colorScheme].onSurface;
-      let brightness = this[_colorScheme].brightness;
-      return material_state.MaterialStateProperty.resolveWith(ui.Color, dart.fn(states => {
-        let t20, t20$;
-        if (states == null) dart.nullFailed(I[0], 315, 66, "states");
-        if (dart.test(states.contains(material_state.MaterialState.hovered)) && dart.test(this[_showTrackOnHover])) {
-          t20$ = (t20 = this[_scrollbarTheme].trackBorderColor, t20 == null ? null : t20.resolve(states));
-          return t20$ == null ? brightness == ui.Brightness.light ? onSurface.withOpacity(0.1) : onSurface.withOpacity(0.25) : t20$;
-        }
-        return C[24] || CT.C24;
-      }, T.SetOfMaterialStateToColor()));
+    get isComplex() {
+      return this.boxShadow != null;
     }
-    get [_thickness]() {
-      return material_state.MaterialStateProperty.resolveWith(core.double, dart.fn(states => {
-        let t21, t20, t20$, t21$, t20$0, t20$1;
-        if (states == null) dart.nullFailed(I[0], 327, 66, "states");
-        if (dart.test(states.contains(material_state.MaterialState.hovered)) && dart.test(this[_showTrackOnHover])) {
-          t20$ = (t20 = this.widget.hoverThickness, t20 == null ? (t21 = this[_scrollbarTheme].thickness, t21 == null ? null : t21.resolve(states)) : t20);
-          return t20$ == null ? 12 : t20$;
-        }
-        t20$1 = (t20$0 = this.widget.thickness, t20$0 == null ? (t21$ = this[_scrollbarTheme].thickness, t21$ == null ? null : t21$.resolve(states)) : t20$0);
-        return t20$1 == null ? 8 / (dart.test(this[_useAndroidScrollbar]) ? 2 : 1) : t20$1;
-      }, T.SetOfMaterialStateTodouble()));
+    lerpFrom(a, t) {
+      if (t == null) dart.nullFailed(I[0], 248, 49, "t");
+      if (a == null) return this.scale(t);
+      if (box_decoration.BoxDecoration.is(a)) return box_decoration.BoxDecoration.lerp(a, this, t);
+      return T.BoxDecorationN().as(super.lerpFrom(a, t));
     }
-    initState() {
-      super.initState();
-      this[_hoverAnimationController] = new animation_controller.AnimationController.new({vsync: this, duration: C[25] || CT.C25});
-      this[_hoverAnimationController].addListener(dart.fn(() => {
-        this.updateScrollbarPainter();
-      }, T.VoidTovoid()));
+    lerpTo(b, t) {
+      if (t == null) dart.nullFailed(I[0], 257, 47, "t");
+      if (b == null) return this.scale(1.0 - dart.notNull(t));
+      if (box_decoration.BoxDecoration.is(b)) return box_decoration.BoxDecoration.lerp(this, b, t);
+      return T.BoxDecorationN().as(super.lerpTo(b, t));
     }
-    didChangeDependencies() {
-      let theme = theme$.Theme.of(this.context);
-      this[_colorScheme] = theme.colorScheme;
-      this[_scrollbarTheme] = theme.scrollbarTheme;
-      switch (theme.platform) {
-        case C[26] || CT.C26:
-        {
-          this[_useAndroidScrollbar] = true;
-          break;
-        }
-        case C[27] || CT.C27:
-        case C[28] || CT.C28:
-        case C[29] || CT.C29:
-        case C[30] || CT.C30:
-        case C[31] || CT.C31:
-        {
-          this[_useAndroidScrollbar] = false;
-          break;
-        }
-        default:
-        {
-          dart.throw(new _internal.ReachabilityError.new("`null` encountered as case in a switch expression with a non-nullable enum type."));
-        }
-      }
-      super.didChangeDependencies();
+    static lerp(a, b, t) {
+      if (t == null) dart.nullFailed(I[0], 288, 73, "t");
+      if (!(t != null)) dart.assertFailed(null, I[0], 289, 12, "t != null");
+      if (a == null && b == null) return null;
+      if (a == null) return dart.nullCheck(b).scale(t);
+      if (b == null) return a.scale(1.0 - dart.notNull(t));
+      if (t === 0.0) return a;
+      if (t === 1.0) return b;
+      return new box_decoration.BoxDecoration.new({color: ui.Color.lerp(a.color, b.color, t), image: dart.notNull(t) < 0.5 ? a.image : b.image, border: box_border.BoxBorder.lerp(a.border, b.border, t), borderRadius: border_radius.BorderRadiusGeometry.lerp(a.borderRadius, b.borderRadius, t), boxShadow: box_shadow.BoxShadow.lerpList(a.boxShadow, b.boxShadow, t), gradient: gradient.Gradient.lerp(a.gradient, b.gradient, t), shape: dart.notNull(t) < 0.5 ? a.shape : b.shape});
     }
-    updateScrollbarPainter() {
-      let t21, t21$, t21$0, t21$1, t21$2, t20;
-      t20 = this.scrollbarPainter;
+    _equals(other) {
+      if (other == null) return false;
+      if (this === other) return true;
+      if (!dart.equals(dart.runtimeType(other), this[$runtimeType])) return false;
+      return box_decoration.BoxDecoration.is(other) && dart.equals(other.color, this.color) && dart.equals(other.image, this.image) && dart.equals(other.border, this.border) && dart.equals(other.borderRadius, this.borderRadius) && dart.test(collections.listEquals(box_shadow.BoxShadow, other.boxShadow, this.boxShadow)) && dart.equals(other.gradient, this.gradient) && other.shape == this.shape;
+    }
+    get hashCode() {
+      return ui.hashValues(this.color, this.image, this.border, this.borderRadius, ui.hashList(this.boxShadow), this.gradient, this.shape);
+    }
+    debugFillProperties(properties) {
+      let t0;
+      if (properties == null) dart.nullFailed(I[0], 341, 56, "properties");
+      super.debugFillProperties(properties);
+      t0 = properties;
       (() => {
-        t20.color = this[_thumbColor].resolve(this[_states]);
-        t20.trackColor = this[_trackColor].resolve(this[_states]);
-        t20.trackBorderColor = this[_trackBorderColor].resolve(this[_states]);
-        t20.textDirection = basic.Directionality.of(this.context);
-        t20.thickness = this[_thickness].resolve(this[_states]);
-        t20.radius = (t21$ = (t21 = this.widget.radius, t21 == null ? this[_scrollbarTheme].radius : t21), t21$ == null ? dart.test(this[_useAndroidScrollbar]) ? null : scrollbar$0._kScrollbarRadius : t21$);
-        t20.crossAxisMargin = (t21$0 = this[_scrollbarTheme].crossAxisMargin, t21$0 == null ? dart.test(this[_useAndroidScrollbar]) ? 0.0 : 2 : t21$0);
-        t20.mainAxisMargin = (t21$1 = this[_scrollbarTheme].mainAxisMargin, t21$1 == null ? 0.0 : t21$1);
-        t20.minLength = (t21$2 = this[_scrollbarTheme].minThumbLength, t21$2 == null ? 48 : t21$2);
-        t20.padding = media_query.MediaQuery.of(this.context).padding;
-        return t20;
+        t0.defaultDiagnosticsTreeStyle = diagnostics.DiagnosticsTreeStyle.whitespace;
+        t0.emptyBodyDescription = "<no decorations specified>";
+        return t0;
       })();
+      properties.add(new colors.ColorProperty.new("color", this.color, {defaultValue: null}));
+      properties.add(new (T.DiagnosticsPropertyOfDecorationImage()).new("image", this.image, {defaultValue: null}));
+      properties.add(new (T.DiagnosticsPropertyOfBoxBorder()).new("border", this.border, {defaultValue: null}));
+      properties.add(new (T.DiagnosticsPropertyOfBorderRadiusGeometry()).new("borderRadius", this.borderRadius, {defaultValue: null}));
+      properties.add(new (T.IterablePropertyOfBoxShadow()).new("boxShadow", this.boxShadow, {defaultValue: null, style: diagnostics.DiagnosticsTreeStyle.whitespace}));
+      properties.add(new (T.DiagnosticsPropertyOfGradient()).new("gradient", this.gradient, {defaultValue: null}));
+      properties.add(new (T.EnumPropertyOfBoxShape()).new("shape", this.shape, {defaultValue: box_border.BoxShape.rectangle}));
     }
-    handleThumbPressStart(localPosition) {
-      if (localPosition == null) dart.nullFailed(I[0], 387, 37, "localPosition");
-      super.handleThumbPressStart(localPosition);
-      this.setState(dart.fn(() => {
-        this[_dragIsActive] = true;
-      }, T.VoidTovoid()));
-    }
-    handleThumbPressEnd(localPosition, velocity) {
-      if (localPosition == null) dart.nullFailed(I[0], 393, 35, "localPosition");
-      if (velocity == null) dart.nullFailed(I[0], 393, 59, "velocity");
-      super.handleThumbPressEnd(localPosition, velocity);
-      this.setState(dart.fn(() => {
-        this[_dragIsActive] = false;
-      }, T.VoidTovoid()));
-    }
-    handleHover(event) {
-      if (event == null) dart.nullFailed(I[0], 399, 38, "event");
-      super.handleHover(event);
-      if (dart.test(this.isPointerOverScrollbar(event.position, event.kind))) {
-        this.setState(dart.fn(() => {
-          this[_hoverIsActive] = true;
-        }, T.VoidTovoid()));
-        this[_hoverAnimationController].forward();
-      } else if (dart.test(this[_hoverIsActive])) {
-        this.setState(dart.fn(() => {
-          this[_hoverIsActive] = false;
-        }, T.VoidTovoid()));
-        this[_hoverAnimationController].reverse();
+    hitTest(size, position, opts) {
+      if (size == null) dart.nullFailed(I[0], 357, 21, "size");
+      if (position == null) dart.nullFailed(I[0], 357, 34, "position");
+      let textDirection = opts && 'textDirection' in opts ? opts.textDirection : null;
+      if (!(this.shape != null)) dart.assertFailed(null, I[0], 358, 12, "shape != null");
+      if (!dart.test(ui.Offset.zero['&'](size).contains(position))) dart.assertFailed(null, I[0], 359, 12, "(Offset.zero & size).contains(position)");
+      switch (this.shape) {
+        case C[0] || CT.C0:
+        {
+          if (this.borderRadius != null) {
+            let bounds = dart.nullCheck(this.borderRadius).resolve(textDirection).toRRect(ui.Offset.zero['&'](size));
+            return bounds.contains(position);
+          }
+          return true;
+        }
+        case C[1] || CT.C1:
+        {
+          let center = size.center(ui.Offset.zero);
+          let distance = position['-'](center).distance;
+          return dart.notNull(distance) <= math.min(core.double, size.width, size.height) / 2.0;
+        }
+        default:
+        {
+          dart.throw(new _internal.ReachabilityError.new("`null` encountered as case in a switch expression with a non-nullable enum type."));
+        }
       }
     }
-    handleHoverExit(event) {
-      if (event == null) dart.nullFailed(I[0], 414, 41, "event");
-      super.handleHoverExit(event);
-      this.setState(dart.fn(() => {
-        this[_hoverIsActive] = false;
-      }, T.VoidTovoid()));
-      this[_hoverAnimationController].reverse();
+    createBoxPainter(onChanged = null) {
+      if (!(onChanged != null || this.image == null)) dart.assertFailed(null, I[0], 377, 12, "onChanged != null || image == null");
+      return new box_decoration._BoxDecorationPainter.new(this, onChanged);
+    }
+  };
+  (box_decoration.BoxDecoration.new = function(opts) {
+    let color = opts && 'color' in opts ? opts.color : null;
+    let image = opts && 'image' in opts ? opts.image : null;
+    let border = opts && 'border' in opts ? opts.border : null;
+    let borderRadius = opts && 'borderRadius' in opts ? opts.borderRadius : null;
+    let boxShadow = opts && 'boxShadow' in opts ? opts.boxShadow : null;
+    let gradient = opts && 'gradient' in opts ? opts.gradient : null;
+    let backgroundBlendMode = opts && 'backgroundBlendMode' in opts ? opts.backgroundBlendMode : null;
+    let shape = opts && 'shape' in opts ? opts.shape : C[0] || CT.C0;
+    if (shape == null) dart.nullFailed(I[0], 97, 10, "shape");
+    this[color$] = color;
+    this[image$] = image;
+    this[border$] = border;
+    this[borderRadius$] = borderRadius;
+    this[boxShadow$] = boxShadow;
+    this[gradient$] = gradient;
+    this[backgroundBlendMode$] = backgroundBlendMode;
+    this[shape$] = shape;
+    if (!(shape != null)) dart.assertFailed(null, I[0], 98, 15, "shape != null");
+    if (!(backgroundBlendMode == null || color != null || gradient != null)) dart.assertFailed("backgroundBlendMode applies to BoxDecoration's background color or " + "gradient, but no color or gradient was provided.", I[0], 100, 10, "backgroundBlendMode == null || color != null || gradient != null");
+    box_decoration.BoxDecoration.__proto__.new.call(this);
+    ;
+  }).prototype = box_decoration.BoxDecoration.prototype;
+  dart.addTypeTests(box_decoration.BoxDecoration);
+  dart.addTypeCaches(box_decoration.BoxDecoration);
+  dart.setMethodSignature(box_decoration.BoxDecoration, () => ({
+    __proto__: dart.getMethods(box_decoration.BoxDecoration.__proto__),
+    copyWith: dart.fnType(box_decoration.BoxDecoration, [], {backgroundBlendMode: dart.nullable(ui.BlendMode), border: dart.nullable(box_border.BoxBorder), borderRadius: dart.nullable(border_radius.BorderRadiusGeometry), boxShadow: dart.nullable(core.List$(box_shadow.BoxShadow)), color: dart.nullable(ui.Color), gradient: dart.nullable(gradient.Gradient), image: dart.nullable(decoration_image.DecorationImage), shape: dart.nullable(box_border.BoxShape)}, {}),
+    scale: dart.fnType(box_decoration.BoxDecoration, [core.double]),
+    lerpFrom: dart.fnType(dart.nullable(box_decoration.BoxDecoration), [dart.nullable(decoration.Decoration), core.double]),
+    lerpTo: dart.fnType(dart.nullable(box_decoration.BoxDecoration), [dart.nullable(decoration.Decoration), core.double]),
+    createBoxPainter: dart.fnType(box_decoration._BoxDecorationPainter, [], [dart.nullable(dart.fnType(dart.void, []))])
+  }));
+  dart.setLibraryUri(box_decoration.BoxDecoration, I[1]);
+  dart.setFieldSignature(box_decoration.BoxDecoration, () => ({
+    __proto__: dart.getFields(box_decoration.BoxDecoration.__proto__),
+    color: dart.finalFieldType(dart.nullable(ui.Color)),
+    image: dart.finalFieldType(dart.nullable(decoration_image.DecorationImage)),
+    border: dart.finalFieldType(dart.nullable(box_border.BoxBorder)),
+    borderRadius: dart.finalFieldType(dart.nullable(border_radius.BorderRadiusGeometry)),
+    boxShadow: dart.finalFieldType(dart.nullable(core.List$(box_shadow.BoxShadow))),
+    gradient: dart.finalFieldType(dart.nullable(gradient.Gradient)),
+    backgroundBlendMode: dart.finalFieldType(dart.nullable(ui.BlendMode)),
+    shape: dart.finalFieldType(box_border.BoxShape)
+  }));
+  dart.defineExtensionMethods(box_decoration.BoxDecoration, ['_equals']);
+  dart.defineExtensionAccessors(box_decoration.BoxDecoration, ['hashCode']);
+  var _cachedBackgroundPaint = dart.privateName(box_decoration, "_cachedBackgroundPaint");
+  var _rectForCachedBackgroundPaint = dart.privateName(box_decoration, "_rectForCachedBackgroundPaint");
+  var _imagePainter = dart.privateName(box_decoration, "_imagePainter");
+  var _decoration$ = dart.privateName(box_decoration, "_decoration");
+  var _getBackgroundPaint = dart.privateName(box_decoration, "_getBackgroundPaint");
+  var _paintBox = dart.privateName(box_decoration, "_paintBox");
+  var _paintShadows = dart.privateName(box_decoration, "_paintShadows");
+  var _paintBackgroundColor = dart.privateName(box_decoration, "_paintBackgroundColor");
+  var _paintBackgroundImage = dart.privateName(box_decoration, "_paintBackgroundImage");
+  box_decoration._BoxDecorationPainter = class _BoxDecorationPainter extends decoration.BoxPainter {
+    [_getBackgroundPaint](rect, textDirection) {
+      if (rect == null) dart.nullFailed(I[0], 392, 34, "rect");
+      if (!(rect != null)) dart.assertFailed(null, I[0], 393, 12, "rect != null");
+      if (!(this[_decoration$].gradient != null || this[_rectForCachedBackgroundPaint] == null)) dart.assertFailed(null, I[0], 394, 12, "_decoration.gradient != null || _rectForCachedBackgroundPaint == null");
+      if (this[_cachedBackgroundPaint] == null || this[_decoration$].gradient != null && !dart.equals(this[_rectForCachedBackgroundPaint], rect)) {
+        let paint = ui.Paint.new();
+        if (this[_decoration$].backgroundBlendMode != null) paint.blendMode = dart.nullCheck(this[_decoration$].backgroundBlendMode);
+        if (this[_decoration$].color != null) paint.color = dart.nullCheck(this[_decoration$].color);
+        if (this[_decoration$].gradient != null) {
+          paint.shader = dart.nullCheck(this[_decoration$].gradient).createShader(rect, {textDirection: textDirection});
+          this[_rectForCachedBackgroundPaint] = rect;
+        }
+        this[_cachedBackgroundPaint] = paint;
+      }
+      return dart.nullCheck(this[_cachedBackgroundPaint]);
+    }
+    [_paintBox](canvas, rect, paint, textDirection) {
+      if (canvas == null) dart.nullFailed(I[0], 413, 25, "canvas");
+      if (rect == null) dart.nullFailed(I[0], 413, 38, "rect");
+      if (paint == null) dart.nullFailed(I[0], 413, 50, "paint");
+      switch (this[_decoration$].shape) {
+        case C[1] || CT.C1:
+        {
+          if (!(this[_decoration$].borderRadius == null)) dart.assertFailed(null, I[0], 416, 16, "_decoration.borderRadius == null");
+          let center = rect.center;
+          let radius = dart.notNull(rect.shortestSide) / 2.0;
+          canvas.drawCircle(center, radius, paint);
+          break;
+        }
+        case C[0] || CT.C0:
+        {
+          if (this[_decoration$].borderRadius == null) {
+            canvas.drawRect(rect, paint);
+          } else {
+            canvas.drawRRect(dart.nullCheck(this[_decoration$].borderRadius).resolve(textDirection).toRRect(rect), paint);
+          }
+          break;
+        }
+        default:
+        {
+          dart.throw(new _internal.ReachabilityError.new("`null` encountered as case in a switch expression with a non-nullable enum type."));
+        }
+      }
+    }
+    [_paintShadows](canvas, rect, textDirection) {
+      if (canvas == null) dart.nullFailed(I[0], 431, 29, "canvas");
+      if (rect == null) dart.nullFailed(I[0], 431, 42, "rect");
+      if (this[_decoration$].boxShadow == null) return;
+      for (let boxShadow of dart.nullCheck(this[_decoration$].boxShadow)) {
+        let paint = boxShadow.toPaint();
+        let bounds = rect.shift(boxShadow.offset).inflate(boxShadow.spreadRadius);
+        this[_paintBox](canvas, bounds, paint, textDirection);
+      }
+    }
+    [_paintBackgroundColor](canvas, rect, textDirection) {
+      if (canvas == null) dart.nullFailed(I[0], 441, 37, "canvas");
+      if (rect == null) dart.nullFailed(I[0], 441, 50, "rect");
+      if (this[_decoration$].color != null || this[_decoration$].gradient != null) this[_paintBox](canvas, rect, this[_getBackgroundPaint](rect, textDirection), textDirection);
+    }
+    [_paintBackgroundImage](canvas, rect, configuration) {
+      let t0, t0$;
+      if (canvas == null) dart.nullFailed(I[0], 447, 37, "canvas");
+      if (rect == null) dart.nullFailed(I[0], 447, 50, "rect");
+      if (configuration == null) dart.nullFailed(I[0], 447, 75, "configuration");
+      if (this[_decoration$].image == null) return;
+      this[_imagePainter] == null ? this[_imagePainter] = dart.nullCheck(this[_decoration$].image).createPainter(dart.nullCheck(this.onChanged)) : null;
+      let clipPath = null;
+      switch (this[_decoration$].shape) {
+        case C[1] || CT.C1:
+        {
+          if (!(this[_decoration$].borderRadius == null)) dart.assertFailed(null, I[0], 454, 16, "_decoration.borderRadius == null");
+          let center = rect.center;
+          let radius = dart.notNull(rect.shortestSide) / 2.0;
+          let square = new ui.Rect.fromCircle({center: center, radius: radius});
+          clipPath = (t0 = ui.Path.new(), (() => {
+            t0.addOval(square);
+            return t0;
+          })());
+          break;
+        }
+        case C[0] || CT.C0:
+        {
+          if (this[_decoration$].borderRadius != null) clipPath = (t0$ = ui.Path.new(), (() => {
+            t0$.addRRect(dart.nullCheck(this[_decoration$].borderRadius).resolve(configuration.textDirection).toRRect(rect));
+            return t0$;
+          })());
+          break;
+        }
+        default:
+        {
+          dart.throw(new _internal.ReachabilityError.new("`null` encountered as case in a switch expression with a non-nullable enum type."));
+        }
+      }
+      dart.nullCheck(this[_imagePainter]).paint(canvas, rect, clipPath, configuration);
     }
     dispose() {
-      this[_hoverAnimationController].dispose();
+      let t0;
+      t0 = this[_imagePainter];
+      t0 == null ? null : t0.dispose();
       super.dispose();
     }
-  };
-  (scrollbar$0._MaterialScrollbarState.new = function() {
-    this[___MaterialScrollbarState__hoverAnimationController] = null;
-    this[___MaterialScrollbarState__hoverAnimationController_isSet] = false;
-    this[_dragIsActive] = false;
-    this[_hoverIsActive] = false;
-    this[___MaterialScrollbarState__colorScheme] = null;
-    this[___MaterialScrollbarState__colorScheme_isSet] = false;
-    this[___MaterialScrollbarState__scrollbarTheme] = null;
-    this[___MaterialScrollbarState__scrollbarTheme_isSet] = false;
-    this[___MaterialScrollbarState__useAndroidScrollbar] = null;
-    this[___MaterialScrollbarState__useAndroidScrollbar_isSet] = false;
-    scrollbar$0._MaterialScrollbarState.__proto__.new.call(this);
-    ;
-  }).prototype = scrollbar$0._MaterialScrollbarState.prototype;
-  dart.addTypeTests(scrollbar$0._MaterialScrollbarState);
-  dart.addTypeCaches(scrollbar$0._MaterialScrollbarState);
-  dart.setGetterSignature(scrollbar$0._MaterialScrollbarState, () => ({
-    __proto__: dart.getGetters(scrollbar$0._MaterialScrollbarState.__proto__),
-    [_hoverAnimationController]: animation_controller.AnimationController,
-    [_colorScheme]: color_scheme.ColorScheme,
-    [_scrollbarTheme]: scrollbar_theme.ScrollbarThemeData,
-    [_useAndroidScrollbar]: core.bool,
-    [_showTrackOnHover]: core.bool,
-    [_states]: core.Set$(material_state.MaterialState),
-    [_thumbColor]: material_state.MaterialStateProperty$(ui.Color),
-    [_trackColor]: material_state.MaterialStateProperty$(ui.Color),
-    [_trackBorderColor]: material_state.MaterialStateProperty$(ui.Color),
-    [_thickness]: material_state.MaterialStateProperty$(core.double)
-  }));
-  dart.setSetterSignature(scrollbar$0._MaterialScrollbarState, () => ({
-    __proto__: dart.getSetters(scrollbar$0._MaterialScrollbarState.__proto__),
-    [_hoverAnimationController]: animation_controller.AnimationController,
-    [_colorScheme]: color_scheme.ColorScheme,
-    [_scrollbarTheme]: scrollbar_theme.ScrollbarThemeData,
-    [_useAndroidScrollbar]: core.bool
-  }));
-  dart.setLibraryUri(scrollbar$0._MaterialScrollbarState, I[1]);
-  dart.setFieldSignature(scrollbar$0._MaterialScrollbarState, () => ({
-    __proto__: dart.getFields(scrollbar$0._MaterialScrollbarState.__proto__),
-    [___MaterialScrollbarState__hoverAnimationController]: dart.fieldType(dart.nullable(animation_controller.AnimationController)),
-    [___MaterialScrollbarState__hoverAnimationController_isSet]: dart.fieldType(core.bool),
-    [_dragIsActive]: dart.fieldType(core.bool),
-    [_hoverIsActive]: dart.fieldType(core.bool),
-    [___MaterialScrollbarState__colorScheme]: dart.fieldType(dart.nullable(color_scheme.ColorScheme)),
-    [___MaterialScrollbarState__colorScheme_isSet]: dart.fieldType(core.bool),
-    [___MaterialScrollbarState__scrollbarTheme]: dart.fieldType(dart.nullable(scrollbar_theme.ScrollbarThemeData)),
-    [___MaterialScrollbarState__scrollbarTheme_isSet]: dart.fieldType(core.bool),
-    [___MaterialScrollbarState__useAndroidScrollbar]: dart.fieldType(dart.nullable(core.bool)),
-    [___MaterialScrollbarState__useAndroidScrollbar_isSet]: dart.fieldType(core.bool)
-  }));
-  var Radius_y = dart.privateName(ui, "Radius.y");
-  var Radius_x = dart.privateName(ui, "Radius.x");
-  dart.defineLazy(scrollbar$0, {
-    /*scrollbar$0._kScrollbarThickness*/get _kScrollbarThickness() {
-      return 8;
-    },
-    /*scrollbar$0._kScrollbarThicknessWithTrack*/get _kScrollbarThicknessWithTrack() {
-      return 12;
-    },
-    /*scrollbar$0._kScrollbarMargin*/get _kScrollbarMargin() {
-      return 2;
-    },
-    /*scrollbar$0._kScrollbarMinLength*/get _kScrollbarMinLength() {
-      return 48;
-    },
-    /*scrollbar$0._kScrollbarRadius*/get _kScrollbarRadius() {
-      return C[32] || CT.C32;
-    },
-    /*scrollbar$0._kScrollbarFadeDuration*/get _kScrollbarFadeDuration() {
-      return C[33] || CT.C33;
-    },
-    /*scrollbar$0._kScrollbarTimeToFade*/get _kScrollbarTimeToFade() {
-      return C[34] || CT.C34;
+    paint(canvas, offset, configuration) {
+      let t0;
+      if (canvas == null) dart.nullFailed(I[0], 476, 21, "canvas");
+      if (offset == null) dart.nullFailed(I[0], 476, 36, "offset");
+      if (configuration == null) dart.nullFailed(I[0], 476, 63, "configuration");
+      if (!(configuration != null)) dart.assertFailed(null, I[0], 477, 12, "configuration != null");
+      if (!(configuration.size != null)) dart.assertFailed(null, I[0], 478, 12, "configuration.size != null");
+      let rect = offset['&'](dart.nullCheck(configuration.size));
+      let textDirection = configuration.textDirection;
+      this[_paintShadows](canvas, rect, textDirection);
+      this[_paintBackgroundColor](canvas, rect, textDirection);
+      this[_paintBackgroundImage](canvas, rect, configuration);
+      t0 = this[_decoration$].border;
+      t0 == null ? null : t0.paint(canvas, rect, {shape: this[_decoration$].shape, borderRadius: T.BorderRadiusN().as(this[_decoration$].borderRadius), textDirection: configuration.textDirection});
     }
-  }, false);
-  dart.trackLibraries("packages/flutter/src/material/scrollbar.dart", {
-    "package:flutter/src/material/scrollbar.dart": scrollbar$0
+    toString() {
+      return "BoxPainter for " + dart.str(this[_decoration$]);
+    }
+  };
+  (box_decoration._BoxDecorationPainter.new = function(_decoration, onChanged) {
+    if (_decoration == null) dart.nullFailed(I[0], 384, 30, "_decoration");
+    this[_cachedBackgroundPaint] = null;
+    this[_rectForCachedBackgroundPaint] = null;
+    this[_imagePainter] = null;
+    this[_decoration$] = _decoration;
+    if (!(_decoration != null)) dart.assertFailed(null, I[0], 385, 14, "_decoration != null");
+    box_decoration._BoxDecorationPainter.__proto__.new.call(this, onChanged);
+    ;
+  }).prototype = box_decoration._BoxDecorationPainter.prototype;
+  dart.addTypeTests(box_decoration._BoxDecorationPainter);
+  dart.addTypeCaches(box_decoration._BoxDecorationPainter);
+  dart.setMethodSignature(box_decoration._BoxDecorationPainter, () => ({
+    __proto__: dart.getMethods(box_decoration._BoxDecorationPainter.__proto__),
+    [_getBackgroundPaint]: dart.fnType(ui.Paint, [ui.Rect, dart.nullable(ui.TextDirection)]),
+    [_paintBox]: dart.fnType(dart.void, [ui.Canvas, ui.Rect, ui.Paint, dart.nullable(ui.TextDirection)]),
+    [_paintShadows]: dart.fnType(dart.void, [ui.Canvas, ui.Rect, dart.nullable(ui.TextDirection)]),
+    [_paintBackgroundColor]: dart.fnType(dart.void, [ui.Canvas, ui.Rect, dart.nullable(ui.TextDirection)]),
+    [_paintBackgroundImage]: dart.fnType(dart.void, [ui.Canvas, ui.Rect, image_provider.ImageConfiguration]),
+    paint: dart.fnType(dart.void, [ui.Canvas, ui.Offset, image_provider.ImageConfiguration])
+  }));
+  dart.setLibraryUri(box_decoration._BoxDecorationPainter, I[1]);
+  dart.setFieldSignature(box_decoration._BoxDecorationPainter, () => ({
+    __proto__: dart.getFields(box_decoration._BoxDecorationPainter.__proto__),
+    [_decoration$]: dart.finalFieldType(box_decoration.BoxDecoration),
+    [_cachedBackgroundPaint]: dart.fieldType(dart.nullable(ui.Paint)),
+    [_rectForCachedBackgroundPaint]: dart.fieldType(dart.nullable(ui.Rect)),
+    [_imagePainter]: dart.fieldType(dart.nullable(decoration_image.DecorationImagePainter))
+  }));
+  dart.defineExtensionMethods(box_decoration._BoxDecorationPainter, ['toString']);
+  dart.trackLibraries("packages/flutter/src/painting/box_decoration.dart", {
+    "package:flutter/src/painting/box_decoration.dart": box_decoration
   }, {
-  }, '{"version":3,"sourceRoot":"","sources":["scrollbar.dart"],"names":[],"mappings":"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","file":"../../../../../../../../D:/packages/flutter/src/material/scrollbar.dart.lib.js"}');
+  }, '{"version":3,"sourceRoot":"","sources":["box_decoration.dart"],"names":[],"mappings":"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","file":"../../../../../../../../D:/packages/flutter/src/painting/box_decoration.dart.lib.js"}');
   // Exports:
   return {
-    src__material__scrollbar: scrollbar$0
+    src__painting__box_decoration: box_decoration
   };
 }));
 
-//# sourceMappingURL=scrollbar.dart.lib.js.map
+//# sourceMappingURL=box_decoration.dart.lib.js.map

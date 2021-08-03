@@ -19,16 +19,16 @@ define("main_module.bootstrap", ["web_entrypoint.dart", "dart_sdk"], function(ap
          main();
       });
     }
-    window.$dartAppId = "d/IHztfkkwCXkQj+rFo6oA==";
+    window.$dartAppId = "TVw1sCsJcT+y7MxWEv4AlQ==";
 window.$dartReloadConfiguration = "ReloadConfiguration.none";
 window.$dartModuleStrategy = "require-js";
 window.$loadModuleConfig = require;
 window.$dwdsVersion = "11.0.2";
-window.$dwdsDevHandlerPath = "http://localhost:52987/$dwdsSseHandler";
+window.$dwdsDevHandlerPath = "http://localhost:6846/$dwdsSseHandler";
 window.$dwdsEnableDevtoolsLaunch = true;
 window.$dartEntrypointPath = "main_module.bootstrap.js";
 window.$requireLoader.forceLoadModule("dwds/src/injected/client");
-window.$dartExtensionUri = "http://127.0.0.1:52989/$debug";
+window.$dartExtensionUri = "http://127.0.0.1:6848/$debug";
 
   } else {
     if(window.$dartMainExecuted){
@@ -515,6 +515,7 @@ let modulePaths = {
  "packages/softdoc/cubit/data_cubit/data_cubit.dart": "packages/softdoc/cubit/data_cubit/data_cubit.dart.lib",
  "packages/softdoc/platformSelect.dart": "packages/softdoc/platformSelect.dart.lib",
  "packages/softdoc/screens/desktop_screen/desktop_screen.dart": "packages/softdoc/screens/desktop_screen/desktop_screen.dart.lib",
+ "packages/softdoc/screens/detail_screen/vertical_approval_progress.dart": "packages/softdoc/screens/detail_screen/vertical_approval_progress.dart.lib",
  "packages/softdoc/screens/detail_screen/detail_screen.dart": "packages/softdoc/screens/detail_screen/detail_screen.dart.lib",
  "packages/softdoc/screens/detail_screen/approval_progress.dart": "packages/softdoc/screens/detail_screen/approval_progress.dart.lib",
  "packages/intl/intl.dart": "packages/intl/intl.dart.lib",
@@ -1019,6 +1020,7 @@ let moduleNames = {
  "packages/softdoc/cubit/data_cubit/data_cubit.dart.lib": "packages/softdoc/cubit/data_cubit/data_cubit.dart",
  "packages/softdoc/platformSelect.dart.lib": "packages/softdoc/platformSelect.dart",
  "packages/softdoc/screens/desktop_screen/desktop_screen.dart.lib": "packages/softdoc/screens/desktop_screen/desktop_screen.dart",
+ "packages/softdoc/screens/detail_screen/vertical_approval_progress.dart.lib": "packages/softdoc/screens/detail_screen/vertical_approval_progress.dart",
  "packages/softdoc/screens/detail_screen/detail_screen.dart.lib": "packages/softdoc/screens/detail_screen/detail_screen.dart",
  "packages/softdoc/screens/detail_screen/approval_progress.dart.lib": "packages/softdoc/screens/detail_screen/approval_progress.dart",
  "packages/intl/intl.dart.lib": "packages/intl/intl.dart",

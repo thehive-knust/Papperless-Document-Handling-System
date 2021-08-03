@@ -95,29 +95,40 @@ class _DetailScreenState extends State<DetailScreen> {
                   child: Column(
                     //mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      if (widget.selectedDoc.description != null)
-                        Container(
-                          padding: EdgeInsets.all(12),
+                      Align(
+                        alignment: Alignment.topLeft,
+                        child: Container(
+                          width: double.infinity,
+                          padding: EdgeInsets.symmetric(horizontal: 12),
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
                               color: primaryLight),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(widget.selectedDoc.description,
-                                  style: TextStyle(
-                                      fontSize: widget.isDesktop ? 20 : 14)),
+                              if (widget.selectedDoc.description != null)
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 12),
+                                  child: Text(widget.selectedDoc.description,
+                                      style: TextStyle(
+                                          fontSize:
+                                              widget.isDesktop ? 20 : 14)),
+                                ),
                               Container(
-                                  margin: EdgeInsets.only(top: 10),
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(5),
-                                      color: Colors.white),
-                                  padding: EdgeInsets.all(4),
-                                  child: Text(DateFormat("d MMMM, y   h:m a")
-                                      .format(widget.selectedDoc.createdAt)))
+                                margin: EdgeInsets.only(top: 10, bottom: 10),
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(5),
+                                    color: Colors.white),
+                                padding: EdgeInsets.all(4),
+                                child: Text(
+                                  DateFormat("d MMMM, y   h:m a")
+                                      .format(widget.selectedDoc.createdAt),
+                                ),
+                              )
                             ],
                           ),
                         ),
+                      ),
                       Container(
                         height: 200,
                         child: Card(

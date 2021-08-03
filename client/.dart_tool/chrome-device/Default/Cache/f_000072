@@ -1,449 +1,302 @@
-define(['dart_sdk', 'packages/flutter/src/animation/animation_controller.dart', 'packages/flutter/src/animation/curves.dart', 'packages/flutter/src/foundation/change_notifier.dart', 'packages/flutter/src/animation/listener_helpers.dart', 'packages/flutter/src/widgets/widget_span.dart'], (function load__packages__flutter__src__material__tab_controller_dart(dart_sdk, packages__flutter__src__animation__animation_controller$46dart, packages__flutter__src__animation__curves$46dart, packages__flutter__src__foundation__change_notifier$46dart, packages__flutter__src__animation__listener_helpers$46dart, packages__flutter__src__widgets__widget_span$46dart) {
+define(['dart_sdk', 'packages/flutter/src/painting/borders.dart', 'packages/flutter/src/painting/edge_insets.dart'], (function load__packages__flutter__src__rendering__table_border_dart(dart_sdk, packages__flutter__src__painting__borders$46dart, packages__flutter__src__painting__edge_insets$46dart) {
   'use strict';
   const core = dart_sdk.core;
+  const ui = dart_sdk.ui;
   const _internal = dart_sdk._internal;
-  const math = dart_sdk.math;
   const dart = dart_sdk.dart;
   const dartx = dart_sdk.dartx;
-  const animation_controller = packages__flutter__src__animation__animation_controller$46dart.src__animation__animation_controller;
-  const curves = packages__flutter__src__animation__curves$46dart.src__animation__curves;
-  const change_notifier = packages__flutter__src__foundation__change_notifier$46dart.src__foundation__change_notifier;
-  const animation = packages__flutter__src__animation__listener_helpers$46dart.src__animation__animation;
-  const framework = packages__flutter__src__widgets__widget_span$46dart.src__widgets__framework;
-  const ticker_provider = packages__flutter__src__widgets__widget_span$46dart.src__widgets__ticker_provider;
-  const widget_inspector = packages__flutter__src__widgets__widget_span$46dart.src__widgets__widget_inspector;
-  var tab_controller = Object.create(dart.library);
-  var $toDouble = dartx.toDouble;
+  const borders = packages__flutter__src__painting__borders$46dart.src__painting__borders;
+  const edge_insets = packages__flutter__src__painting__edge_insets$46dart.src__painting__edge_insets;
+  var table_border = Object.create(dart.library);
+  var $isEmpty = dartx.isEmpty;
+  var $first = dartx.first;
+  var $last = dartx.last;
+  var $isNotEmpty = dartx.isNotEmpty;
+  var $runtimeType = dartx.runtimeType;
   dart._checkModuleNullSafetyMode(false);
-  var T = {
-    VoidTovoid: () => (T.VoidTovoid = dart.constFn(dart.fnType(dart.void, [])))(),
-    _LocationL: () => (T._LocationL = dart.constFn(dart.legacy(widget_inspector._Location)))()
-  };
   const CT = Object.create({
     _: () => (C, CT)
   });
   dart.defineLazy(CT, {
-    get C0() {
-      return C[0] = dart.const({
-        __proto__: core.Duration.prototype,
-        [Duration__duration]: 300000
-      });
-    },
     get C1() {
       return C[1] = dart.const({
-        __proto__: curves.Cubic.prototype,
-        [Cubic_d]: 1,
-        [Cubic_c]: 0.25,
-        [Cubic_b]: 0.1,
-        [Cubic_a]: 0.25
+        __proto__: borders.BorderStyle.prototype,
+        [_name]: "BorderStyle.none",
+        index: 0
       });
-    },
-    get C4() {
-      return C[4] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "controller",
-        [_Location_column]: 7,
-        [_Location_line]: 441,
-        [_Location_file]: null
-      });
-    },
-    get C5() {
-      return C[5] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "enabled",
-        [_Location_column]: 7,
-        [_Location_line]: 442,
-        [_Location_file]: null
-      });
-    },
-    get C6() {
-      return C[6] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 7,
-        [_Location_line]: 443,
-        [_Location_file]: null
-      });
-    },
-    get C3() {
-      return C[3] = dart.constList([C[4] || CT.C4, C[5] || CT.C5, C[6] || CT.C6], T._LocationL());
     },
     get C2() {
       return C[2] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[3] || CT.C3,
-        [_Location_name]: null,
-        [_Location_column]: 12,
-        [_Location_line]: 440,
-        [_Location_file]: "file:///C:/src/flutter/packages/flutter/lib/src/material/tab_controller.dart"
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4278190080.0
+      });
+    },
+    get C0() {
+      return C[0] = dart.const({
+        __proto__: borders.BorderSide.prototype,
+        [BorderSide_style]: C[1] || CT.C1,
+        [BorderSide_width]: 0,
+        [BorderSide_color]: C[2] || CT.C2
+      });
+    },
+    get C3() {
+      return C[3] = dart.const({
+        __proto__: borders.BorderStyle.prototype,
+        [_name]: "BorderStyle.solid",
+        index: 1
       });
     }
   }, false);
-  var C = Array(7).fill(void 0);
+  var C = Array(4).fill(void 0);
   var I = [
-    "file:///C:/src/flutter/packages/flutter/lib/src/material/tab_controller.dart",
-    "package:flutter/src/material/tab_controller.dart"
+    "file:///C:/src/flutter/packages/flutter/lib/src/rendering/table_border.dart",
+    "package:flutter/src/rendering/table_border.dart"
   ];
-  var length$ = dart.privateName(tab_controller, "TabController.length");
-  var _indexIsChangingCount = dart.privateName(tab_controller, "_indexIsChangingCount");
-  var _index = dart.privateName(tab_controller, "_index");
-  var _previousIndex = dart.privateName(tab_controller, "_previousIndex");
-  var _animationController = dart.privateName(tab_controller, "_animationController");
-  var _copyWith = dart.privateName(tab_controller, "_copyWith");
-  var _changeIndex = dart.privateName(tab_controller, "_changeIndex");
-  var Duration__duration = dart.privateName(core, "Duration._duration");
-  var Cubic_d = dart.privateName(curves, "Cubic.d");
-  var Cubic_c = dart.privateName(curves, "Cubic.c");
-  var Cubic_b = dart.privateName(curves, "Cubic.b");
-  var Cubic_a = dart.privateName(curves, "Cubic.a");
-  tab_controller.TabController = class TabController extends change_notifier.ChangeNotifier {
-    get length() {
-      return this[length$];
+  var top$ = dart.privateName(table_border, "TableBorder.top");
+  var right$ = dart.privateName(table_border, "TableBorder.right");
+  var bottom$ = dart.privateName(table_border, "TableBorder.bottom");
+  var left$ = dart.privateName(table_border, "TableBorder.left");
+  var horizontalInside$ = dart.privateName(table_border, "TableBorder.horizontalInside");
+  var verticalInside$ = dart.privateName(table_border, "TableBorder.verticalInside");
+  var _name = dart.privateName(borders, "_name");
+  var BorderSide_style = dart.privateName(borders, "BorderSide.style");
+  var BorderSide_width = dart.privateName(borders, "BorderSide.width");
+  var Color_value = dart.privateName(ui, "Color.value");
+  var BorderSide_color = dart.privateName(borders, "BorderSide.color");
+  table_border.TableBorder = class TableBorder extends core.Object {
+    get top() {
+      return this[top$];
     }
-    set length(value) {
-      super.length = value;
+    set top(value) {
+      super.top = value;
     }
-    [_copyWith](opts) {
-      let t0, t0$, t0$0;
-      let index = opts && 'index' in opts ? opts.index : null;
-      let length = opts && 'length' in opts ? opts.length : null;
-      let previousIndex = opts && 'previousIndex' in opts ? opts.previousIndex : null;
-      return new tab_controller.TabController.__({index: (t0 = index, t0 == null ? this[_index] : t0), length: (t0$ = length, t0$ == null ? this.length : t0$), animationController: this[_animationController], previousIndex: (t0$0 = previousIndex, t0$0 == null ? this[_previousIndex] : t0$0)});
+    get right() {
+      return this[right$];
     }
-    get animation() {
-      let t0;
-      t0 = this[_animationController];
-      return t0 == null ? null : t0.view;
+    set right(value) {
+      super.right = value;
     }
-    [_changeIndex](value, opts) {
-      if (value == null) dart.nullFailed(I[0], 210, 25, "value");
-      let duration = opts && 'duration' in opts ? opts.duration : null;
-      let curve = opts && 'curve' in opts ? opts.curve : null;
-      if (!(value != null)) dart.assertFailed(null, I[0], 211, 12, "value != null");
-      if (!(dart.notNull(value) >= 0 && (dart.notNull(value) < dart.notNull(this.length) || this.length === 0))) dart.assertFailed(null, I[0], 212, 12, "value >= 0 && (value < length || length == 0)");
-      if (!(duration != null || curve == null)) dart.assertFailed(null, I[0], 213, 12, "duration != null || curve == null");
-      if (!(dart.notNull(this[_indexIsChangingCount]) >= 0)) dart.assertFailed(null, I[0], 214, 12, "_indexIsChangingCount >= 0");
-      if (value == this[_index] || dart.notNull(this.length) < 2) return;
-      this[_previousIndex] = this.index;
-      this[_index] = value;
-      if (duration != null) {
-        this[_indexIsChangingCount] = dart.notNull(this[_indexIsChangingCount]) + 1;
-        this.notifyListeners();
-        dart.nullCheck(this[_animationController]).animateTo(this[_index][$toDouble](), {duration: duration, curve: dart.nullCheck(curve)}).whenCompleteOrCancel(dart.fn(() => {
-          if (this[_animationController] != null) {
-            this[_indexIsChangingCount] = dart.notNull(this[_indexIsChangingCount]) - 1;
-            this.notifyListeners();
+    get bottom() {
+      return this[bottom$];
+    }
+    set bottom(value) {
+      super.bottom = value;
+    }
+    get left() {
+      return this[left$];
+    }
+    set left(value) {
+      super.left = value;
+    }
+    get horizontalInside() {
+      return this[horizontalInside$];
+    }
+    set horizontalInside(value) {
+      super.horizontalInside = value;
+    }
+    get verticalInside() {
+      return this[verticalInside$];
+    }
+    set verticalInside(value) {
+      super.verticalInside = value;
+    }
+    static all(opts) {
+      let color = opts && 'color' in opts ? opts.color : C[2] || CT.C2;
+      if (color == null) dart.nullFailed(I[0], 32, 11, "color");
+      let width = opts && 'width' in opts ? opts.width : 1;
+      if (width == null) dart.nullFailed(I[0], 33, 12, "width");
+      let style = opts && 'style' in opts ? opts.style : C[3] || CT.C3;
+      if (style == null) dart.nullFailed(I[0], 34, 17, "style");
+      let side = new borders.BorderSide.new({color: color, width: width, style: style});
+      return new table_border.TableBorder.new({top: side, right: side, bottom: side, left: side, horizontalInside: side, verticalInside: side});
+    }
+    static symmetric(opts) {
+      let inside = opts && 'inside' in opts ? opts.inside : C[0] || CT.C0;
+      if (inside == null) dart.nullFailed(I[0], 43, 16, "inside");
+      let outside = opts && 'outside' in opts ? opts.outside : C[0] || CT.C0;
+      if (outside == null) dart.nullFailed(I[0], 44, 16, "outside");
+      return new table_border.TableBorder.new({top: outside, right: outside, bottom: outside, left: outside, horizontalInside: inside, verticalInside: inside});
+    }
+    get dimensions() {
+      return new edge_insets.EdgeInsets.fromLTRB(this.left.width, this.top.width, this.right.width, this.bottom.width);
+    }
+    get isUniform() {
+      if (!(this.top != null)) dart.assertFailed(null, I[0], 85, 12, "top != null");
+      if (!(this.right != null)) dart.assertFailed(null, I[0], 86, 12, "right != null");
+      if (!(this.bottom != null)) dart.assertFailed(null, I[0], 87, 12, "bottom != null");
+      if (!(this.left != null)) dart.assertFailed(null, I[0], 88, 12, "left != null");
+      if (!(this.horizontalInside != null)) dart.assertFailed(null, I[0], 89, 12, "horizontalInside != null");
+      if (!(this.verticalInside != null)) dart.assertFailed(null, I[0], 90, 12, "verticalInside != null");
+      let topColor = this.top.color;
+      if (!dart.equals(this.right.color, topColor) || !dart.equals(this.bottom.color, topColor) || !dart.equals(this.left.color, topColor) || !dart.equals(this.horizontalInside.color, topColor) || !dart.equals(this.verticalInside.color, topColor)) return false;
+      let topWidth = this.top.width;
+      if (this.right.width != topWidth || this.bottom.width != topWidth || this.left.width != topWidth || this.horizontalInside.width != topWidth || this.verticalInside.width != topWidth) return false;
+      let topStyle = this.top.style;
+      if (this.right.style != topStyle || this.bottom.style != topStyle || this.left.style != topStyle || this.horizontalInside.style != topStyle || this.verticalInside.style != topStyle) return false;
+      return true;
+    }
+    scale(t) {
+      if (t == null) dart.nullFailed(I[0], 134, 28, "t");
+      return new table_border.TableBorder.new({top: this.top.scale(t), right: this.right.scale(t), bottom: this.bottom.scale(t), left: this.left.scale(t), horizontalInside: this.horizontalInside.scale(t), verticalInside: this.verticalInside.scale(t)});
+    }
+    static lerp(a, b, t) {
+      if (t == null) dart.nullFailed(I[0], 151, 67, "t");
+      if (!(t != null)) dart.assertFailed(null, I[0], 152, 12, "t != null");
+      if (a == null && b == null) return null;
+      if (a == null) return dart.nullCheck(b).scale(t);
+      if (b == null) return a.scale(1.0 - dart.notNull(t));
+      return new table_border.TableBorder.new({top: borders.BorderSide.lerp(a.top, b.top, t), right: borders.BorderSide.lerp(a.right, b.right, t), bottom: borders.BorderSide.lerp(a.bottom, b.bottom, t), left: borders.BorderSide.lerp(a.left, b.left, t), horizontalInside: borders.BorderSide.lerp(a.horizontalInside, b.horizontalInside, t), verticalInside: borders.BorderSide.lerp(a.verticalInside, b.verticalInside, t)});
+    }
+    paint(canvas, rect, opts) {
+      let t0, t0$;
+      if (canvas == null) dart.nullFailed(I[0], 196, 12, "canvas");
+      if (rect == null) dart.nullFailed(I[0], 197, 10, "rect");
+      let rows = opts && 'rows' in opts ? opts.rows : null;
+      if (rows == null) dart.nullFailed(I[0], 198, 31, "rows");
+      let columns = opts && 'columns' in opts ? opts.columns : null;
+      if (columns == null) dart.nullFailed(I[0], 199, 31, "columns");
+      if (!(this.top != null)) dart.assertFailed(null, I[0], 202, 12, "top != null");
+      if (!(this.right != null)) dart.assertFailed(null, I[0], 203, 12, "right != null");
+      if (!(this.bottom != null)) dart.assertFailed(null, I[0], 204, 12, "bottom != null");
+      if (!(this.left != null)) dart.assertFailed(null, I[0], 205, 12, "left != null");
+      if (!(this.horizontalInside != null)) dart.assertFailed(null, I[0], 206, 12, "horizontalInside != null");
+      if (!(this.verticalInside != null)) dart.assertFailed(null, I[0], 207, 12, "verticalInside != null");
+      if (!(canvas != null)) dart.assertFailed(null, I[0], 210, 12, "canvas != null");
+      if (!(rect != null)) dart.assertFailed(null, I[0], 211, 12, "rect != null");
+      if (!(rows != null)) dart.assertFailed(null, I[0], 212, 12, "rows != null");
+      if (!(dart.test(rows[$isEmpty]) || dart.notNull(rows[$first]) >= 0.0 && dart.notNull(rows[$last]) <= dart.notNull(rect.height))) dart.assertFailed(null, I[0], 213, 12, "rows.isEmpty || (rows.first >= 0.0 && rows.last <= rect.height)");
+      if (!(columns != null)) dart.assertFailed(null, I[0], 214, 12, "columns != null");
+      if (!(dart.test(columns[$isEmpty]) || dart.notNull(columns[$first]) >= 0.0 && dart.notNull(columns[$last]) <= dart.notNull(rect.width))) dart.assertFailed(null, I[0], 215, 12, "columns.isEmpty || (columns.first >= 0.0 && columns.last <= rect.width)");
+      if (dart.test(columns[$isNotEmpty]) || dart.test(rows[$isNotEmpty])) {
+        let paint = ui.Paint.new();
+        let path = ui.Path.new();
+        if (dart.test(columns[$isNotEmpty])) {
+          switch (this.verticalInside.style) {
+            case C[3] || CT.C3:
+            {
+              t0 = paint;
+              (() => {
+                t0.color = this.verticalInside.color;
+                t0.strokeWidth = this.verticalInside.width;
+                t0.style = ui.PaintingStyle.stroke;
+                return t0;
+              })();
+              path.reset();
+              for (let x of columns) {
+                path.moveTo(dart.notNull(rect.left) + dart.notNull(x), rect.top);
+                path.lineTo(dart.notNull(rect.left) + dart.notNull(x), rect.bottom);
+              }
+              canvas.drawPath(path, paint);
+              break;
+            }
+            case C[1] || CT.C1:
+            {
+              break;
+            }
+            default:
+            {
+              dart.throw(new _internal.ReachabilityError.new("`null` encountered as case in a switch expression with a non-nullable enum type."));
+            }
           }
-        }, T.VoidTovoid()));
-      } else {
-        this[_indexIsChangingCount] = dart.notNull(this[_indexIsChangingCount]) + 1;
-        dart.nullCheck(this[_animationController]).value = this[_index][$toDouble]();
-        this[_indexIsChangingCount] = dart.notNull(this[_indexIsChangingCount]) - 1;
-        this.notifyListeners();
-      }
-    }
-    get index() {
-      return this[_index];
-    }
-    set index(value) {
-      if (value == null) dart.nullFailed(I[0], 249, 17, "value");
-      this[_changeIndex](value);
-    }
-    get previousIndex() {
-      return this[_previousIndex];
-    }
-    get indexIsChanging() {
-      return this[_indexIsChangingCount] !== 0;
-    }
-    animateTo(value, opts) {
-      if (value == null) dart.nullFailed(I[0], 273, 22, "value");
-      let duration = opts && 'duration' in opts ? opts.duration : C[0] || CT.C0;
-      if (duration == null) dart.nullFailed(I[0], 273, 40, "duration");
-      let curve = opts && 'curve' in opts ? opts.curve : C[1] || CT.C1;
-      if (curve == null) dart.nullFailed(I[0], 273, 77, "curve");
-      this[_changeIndex](value, {duration: duration, curve: curve});
-    }
-    get offset() {
-      return dart.notNull(dart.nullCheck(this[_animationController]).value) - this[_index][$toDouble]();
-    }
-    set offset(value) {
-      if (value == null) dart.nullFailed(I[0], 286, 21, "value");
-      if (!(value != null)) dart.assertFailed(null, I[0], 287, 12, "value != null");
-      if (!(dart.notNull(value) >= -1.0 && dart.notNull(value) <= 1.0)) dart.assertFailed(null, I[0], 288, 12, "value >= -1.0 && value <= 1.0");
-      if (!!dart.test(this.indexIsChanging)) dart.assertFailed(null, I[0], 289, 12, "!indexIsChanging");
-      if (value == this.offset) return;
-      dart.nullCheck(this[_animationController]).value = dart.notNull(value) + this[_index][$toDouble]();
-    }
-    dispose() {
-      let t0;
-      t0 = this[_animationController];
-      t0 == null ? null : t0.dispose();
-      this[_animationController] = null;
-      super.dispose();
-    }
-  };
-  (tab_controller.TabController.new = function(opts) {
-    let initialIndex = opts && 'initialIndex' in opts ? opts.initialIndex : 0;
-    if (initialIndex == null) dart.nullFailed(I[0], 149, 23, "initialIndex");
-    let length = opts && 'length' in opts ? opts.length : null;
-    if (length == null) dart.nullFailed(I[0], 149, 55, "length");
-    let vsync = opts && 'vsync' in opts ? opts.vsync : null;
-    if (vsync == null) dart.nullFailed(I[0], 149, 87, "vsync");
-    this[_indexIsChangingCount] = 0;
-    this[length$] = length;
-    if (!(length != null && dart.notNull(length) >= 0)) dart.assertFailed(null, I[0], 150, 14, "length != null && length >= 0");
-    if (!(initialIndex != null && dart.notNull(initialIndex) >= 0 && (length === 0 || dart.notNull(initialIndex) < dart.notNull(length)))) dart.assertFailed(null, I[0], 151, 14, "initialIndex != null && initialIndex >= 0 && (length == 0 || initialIndex < length)");
-    this[_index] = initialIndex;
-    this[_previousIndex] = initialIndex;
-    this[_animationController] = new animation_controller.AnimationController.unbounded({value: initialIndex[$toDouble](), vsync: vsync});
-    tab_controller.TabController.__proto__.new.call(this);
-    ;
-  }).prototype = tab_controller.TabController.prototype;
-  (tab_controller.TabController.__ = function(opts) {
-    let index = opts && 'index' in opts ? opts.index : null;
-    if (index == null) dart.nullFailed(I[0], 162, 18, "index");
-    let previousIndex = opts && 'previousIndex' in opts ? opts.previousIndex : null;
-    if (previousIndex == null) dart.nullFailed(I[0], 163, 18, "previousIndex");
-    let animationController = opts && 'animationController' in opts ? opts.animationController : null;
-    let length = opts && 'length' in opts ? opts.length : null;
-    if (length == null) dart.nullFailed(I[0], 165, 19, "length");
-    this[_indexIsChangingCount] = 0;
-    this[length$] = length;
-    this[_index] = index;
-    this[_previousIndex] = previousIndex;
-    this[_animationController] = animationController;
-    tab_controller.TabController.__proto__.new.call(this);
-    ;
-  }).prototype = tab_controller.TabController.prototype;
-  dart.addTypeTests(tab_controller.TabController);
-  dart.addTypeCaches(tab_controller.TabController);
-  dart.setMethodSignature(tab_controller.TabController, () => ({
-    __proto__: dart.getMethods(tab_controller.TabController.__proto__),
-    [_copyWith]: dart.fnType(tab_controller.TabController, [], {}, {index: dart.nullable(core.int), length: dart.nullable(core.int), previousIndex: dart.nullable(core.int)}),
-    [_changeIndex]: dart.fnType(dart.void, [core.int], {curve: dart.nullable(curves.Curve), duration: dart.nullable(core.Duration)}, {}),
-    animateTo: dart.fnType(dart.void, [core.int], {curve: curves.Curve, duration: core.Duration}, {})
-  }));
-  dart.setGetterSignature(tab_controller.TabController, () => ({
-    __proto__: dart.getGetters(tab_controller.TabController.__proto__),
-    animation: dart.nullable(animation.Animation$(core.double)),
-    index: core.int,
-    previousIndex: core.int,
-    indexIsChanging: core.bool,
-    offset: core.double
-  }));
-  dart.setSetterSignature(tab_controller.TabController, () => ({
-    __proto__: dart.getSetters(tab_controller.TabController.__proto__),
-    index: core.int,
-    offset: core.double
-  }));
-  dart.setLibraryUri(tab_controller.TabController, I[1]);
-  dart.setFieldSignature(tab_controller.TabController, () => ({
-    __proto__: dart.getFields(tab_controller.TabController.__proto__),
-    [_animationController]: dart.fieldType(dart.nullable(animation_controller.AnimationController)),
-    length: dart.finalFieldType(core.int),
-    [_index]: dart.fieldType(core.int),
-    [_previousIndex]: dart.fieldType(core.int),
-    [_indexIsChangingCount]: dart.fieldType(core.int)
-  }));
-  var controller$ = dart.privateName(tab_controller, "_TabControllerScope.controller");
-  var enabled$ = dart.privateName(tab_controller, "_TabControllerScope.enabled");
-  tab_controller._TabControllerScope = class _TabControllerScope extends framework.InheritedWidget {
-    get controller() {
-      return this[controller$];
-    }
-    set controller(value) {
-      super.controller = value;
-    }
-    get enabled() {
-      return this[enabled$];
-    }
-    set enabled(value) {
-      super.enabled = value;
-    }
-    updateShouldNotify(old) {
-      tab_controller._TabControllerScope.as(old);
-      if (old == null) dart.nullFailed(I[0], 315, 47, "old");
-      return this.enabled != old.enabled || !dart.equals(this.controller, old.controller);
-    }
-  };
-  (tab_controller._TabControllerScope.new = function(opts) {
-    let key = opts && 'key' in opts ? opts.key : null;
-    let controller = opts && 'controller' in opts ? opts.controller : null;
-    if (controller == null) dart.nullFailed(I[0], 306, 19, "controller");
-    let enabled = opts && 'enabled' in opts ? opts.enabled : null;
-    if (enabled == null) dart.nullFailed(I[0], 307, 19, "enabled");
-    let child = opts && 'child' in opts ? opts.child : null;
-    if (child == null) dart.nullFailed(I[0], 308, 21, "child");
-    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
-    this[controller$] = controller;
-    this[enabled$] = enabled;
-    tab_controller._TabControllerScope.__proto__.new.call(this, {key: key, child: child, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
-    ;
-  }).prototype = tab_controller._TabControllerScope.prototype;
-  dart.addTypeTests(tab_controller._TabControllerScope);
-  dart.addTypeCaches(tab_controller._TabControllerScope);
-  dart.setMethodSignature(tab_controller._TabControllerScope, () => ({
-    __proto__: dart.getMethods(tab_controller._TabControllerScope.__proto__),
-    updateShouldNotify: dart.fnType(core.bool, [dart.nullable(core.Object)])
-  }));
-  dart.setLibraryUri(tab_controller._TabControllerScope, I[1]);
-  dart.setFieldSignature(tab_controller._TabControllerScope, () => ({
-    __proto__: dart.getFields(tab_controller._TabControllerScope.__proto__),
-    controller: dart.finalFieldType(tab_controller.TabController),
-    enabled: dart.finalFieldType(core.bool)
-  }));
-  var length$0 = dart.privateName(tab_controller, "DefaultTabController.length");
-  var initialIndex$ = dart.privateName(tab_controller, "DefaultTabController.initialIndex");
-  var child$ = dart.privateName(tab_controller, "DefaultTabController.child");
-  tab_controller.DefaultTabController = class DefaultTabController extends framework.StatefulWidget {
-    get length() {
-      return this[length$0];
-    }
-    set length(value) {
-      super.length = value;
-    }
-    get initialIndex() {
-      return this[initialIndex$];
-    }
-    set initialIndex(value) {
-      super.initialIndex = value;
-    }
-    get child() {
-      return this[child$];
-    }
-    set child(value) {
-      super.child = value;
-    }
-    static of(context) {
-      let t0;
-      if (context == null) dart.nullFailed(I[0], 410, 41, "context");
-      let scope = context.dependOnInheritedWidgetOfExactType(tab_controller._TabControllerScope);
-      t0 = scope;
-      return t0 == null ? null : t0.controller;
-    }
-    createState() {
-      return new tab_controller._DefaultTabControllerState.new();
-    }
-  };
-  (tab_controller.DefaultTabController.new = function(opts) {
-    let key = opts && 'key' in opts ? opts.key : null;
-    let length = opts && 'length' in opts ? opts.length : null;
-    if (length == null) dart.nullFailed(I[0], 375, 19, "length");
-    let initialIndex = opts && 'initialIndex' in opts ? opts.initialIndex : 0;
-    if (initialIndex == null) dart.nullFailed(I[0], 376, 10, "initialIndex");
-    let child = opts && 'child' in opts ? opts.child : null;
-    if (child == null) dart.nullFailed(I[0], 377, 19, "child");
-    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
-    this[length$0] = length;
-    this[initialIndex$] = initialIndex;
-    this[child$] = child;
-    if (!(initialIndex != null)) dart.assertFailed(null, I[0], 378, 15, "initialIndex != null");
-    if (!(dart.notNull(length) >= 0)) dart.assertFailed(null, I[0], 379, 15, "length >= 0");
-    if (!(length === 0 || dart.notNull(initialIndex) >= 0 && dart.notNull(initialIndex) < dart.notNull(length))) dart.assertFailed(null, I[0], 380, 15, "length == 0 || (initialIndex >= 0 && initialIndex < length)");
-    tab_controller.DefaultTabController.__proto__.new.call(this, {key: key, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
-    ;
-  }).prototype = tab_controller.DefaultTabController.prototype;
-  dart.addTypeTests(tab_controller.DefaultTabController);
-  dart.addTypeCaches(tab_controller.DefaultTabController);
-  dart.setMethodSignature(tab_controller.DefaultTabController, () => ({
-    __proto__: dart.getMethods(tab_controller.DefaultTabController.__proto__),
-    createState: dart.fnType(tab_controller._DefaultTabControllerState, [])
-  }));
-  dart.setLibraryUri(tab_controller.DefaultTabController, I[1]);
-  dart.setFieldSignature(tab_controller.DefaultTabController, () => ({
-    __proto__: dart.getFields(tab_controller.DefaultTabController.__proto__),
-    length: dart.finalFieldType(core.int),
-    initialIndex: dart.finalFieldType(core.int),
-    child: dart.finalFieldType(framework.Widget)
-  }));
-  var ___DefaultTabControllerState__controller = dart.privateName(tab_controller, "_#_DefaultTabControllerState#_controller");
-  var ___DefaultTabControllerState__controller_isSet = dart.privateName(tab_controller, "_#_DefaultTabControllerState#_controller#isSet");
-  var _controller = dart.privateName(tab_controller, "_controller");
-  var _Location_parameterLocations = dart.privateName(widget_inspector, "_Location.parameterLocations");
-  var _Location_name = dart.privateName(widget_inspector, "_Location.name");
-  var _Location_column = dart.privateName(widget_inspector, "_Location.column");
-  var _Location_line = dart.privateName(widget_inspector, "_Location.line");
-  var _Location_file = dart.privateName(widget_inspector, "_Location.file");
-  const State_SingleTickerProviderStateMixin$36 = class State_SingleTickerProviderStateMixin extends framework.State$(tab_controller.DefaultTabController) {};
-  (State_SingleTickerProviderStateMixin$36.new = function() {
-    ticker_provider.SingleTickerProviderStateMixin$(tab_controller.DefaultTabController)[dart.mixinNew].call(this);
-    State_SingleTickerProviderStateMixin$36.__proto__.new.call(this);
-  }).prototype = State_SingleTickerProviderStateMixin$36.prototype;
-  dart.applyMixin(State_SingleTickerProviderStateMixin$36, ticker_provider.SingleTickerProviderStateMixin$(tab_controller.DefaultTabController));
-  tab_controller._DefaultTabControllerState = class _DefaultTabControllerState extends State_SingleTickerProviderStateMixin$36 {
-    get [_controller]() {
-      let t0;
-      return dart.test(this[___DefaultTabControllerState__controller_isSet]) ? (t0 = this[___DefaultTabControllerState__controller], t0) : dart.throw(new _internal.LateError.fieldNI("_controller"));
-    }
-    set [_controller](t0) {
-      if (t0 == null) dart.nullFailed(I[0], 420, 22, "null");
-      this[___DefaultTabControllerState__controller_isSet] = true;
-      this[___DefaultTabControllerState__controller] = t0;
-    }
-    initState() {
-      super.initState();
-      this[_controller] = new tab_controller.TabController.new({vsync: this, length: this.widget.length, initialIndex: this.widget.initialIndex});
-    }
-    dispose() {
-      this[_controller].dispose();
-      super.dispose();
-    }
-    build(context) {
-      if (context == null) dart.nullFailed(I[0], 439, 29, "context");
-      return new tab_controller._TabControllerScope.new({controller: this[_controller], enabled: ticker_provider.TickerMode.of(context), child: this.widget.child, $creationLocationd_0dea112b090073317d4: C[2] || CT.C2});
-    }
-    didUpdateWidget(oldWidget) {
-      tab_controller.DefaultTabController.as(oldWidget);
-      if (oldWidget == null) dart.nullFailed(I[0], 448, 45, "oldWidget");
-      super.didUpdateWidget(oldWidget);
-      if (oldWidget.length != this.widget.length) {
-        let newIndex = null;
-        let previousIndex = this[_controller].previousIndex;
-        if (dart.notNull(this[_controller].index) >= dart.notNull(this.widget.length)) {
-          newIndex = math.max(core.int, 0, dart.notNull(this.widget.length) - 1);
-          previousIndex = this[_controller].index;
         }
-        this[_controller] = this[_controller][_copyWith]({length: this.widget.length, index: newIndex, previousIndex: previousIndex});
+        if (dart.test(rows[$isNotEmpty])) {
+          switch (this.horizontalInside.style) {
+            case C[3] || CT.C3:
+            {
+              t0$ = paint;
+              (() => {
+                t0$.color = this.horizontalInside.color;
+                t0$.strokeWidth = this.horizontalInside.width;
+                t0$.style = ui.PaintingStyle.stroke;
+                return t0$;
+              })();
+              path.reset();
+              for (let y of rows) {
+                path.moveTo(rect.left, dart.notNull(rect.top) + dart.notNull(y));
+                path.lineTo(rect.right, dart.notNull(rect.top) + dart.notNull(y));
+              }
+              canvas.drawPath(path, paint);
+              break;
+            }
+            case C[1] || CT.C1:
+            {
+              break;
+            }
+            default:
+            {
+              dart.throw(new _internal.ReachabilityError.new("`null` encountered as case in a switch expression with a non-nullable enum type."));
+            }
+          }
+        }
       }
+      borders.paintBorder(canvas, rect, {top: this.top, right: this.right, bottom: this.bottom, left: this.left});
+    }
+    _equals(other) {
+      if (other == null) return false;
+      if (this === other) return true;
+      if (!dart.equals(dart.runtimeType(other), this[$runtimeType])) return false;
+      return table_border.TableBorder.is(other) && dart.equals(other.top, this.top) && dart.equals(other.right, this.right) && dart.equals(other.bottom, this.bottom) && dart.equals(other.left, this.left) && dart.equals(other.horizontalInside, this.horizontalInside) && dart.equals(other.verticalInside, this.verticalInside);
+    }
+    get hashCode() {
+      return ui.hashValues(this.top, this.right, this.bottom, this.left, this.horizontalInside, this.verticalInside);
+    }
+    toString() {
+      return "TableBorder(" + dart.str(this.top) + ", " + dart.str(this.right) + ", " + dart.str(this.bottom) + ", " + dart.str(this.left) + ", " + dart.str(this.horizontalInside) + ", " + dart.str(this.verticalInside) + ")";
     }
   };
-  (tab_controller._DefaultTabControllerState.new = function() {
-    this[___DefaultTabControllerState__controller] = null;
-    this[___DefaultTabControllerState__controller_isSet] = false;
-    tab_controller._DefaultTabControllerState.__proto__.new.call(this);
+  (table_border.TableBorder.new = function(opts) {
+    let top = opts && 'top' in opts ? opts.top : C[0] || CT.C0;
+    if (top == null) dart.nullFailed(I[0], 20, 10, "top");
+    let right = opts && 'right' in opts ? opts.right : C[0] || CT.C0;
+    if (right == null) dart.nullFailed(I[0], 21, 10, "right");
+    let bottom = opts && 'bottom' in opts ? opts.bottom : C[0] || CT.C0;
+    if (bottom == null) dart.nullFailed(I[0], 22, 10, "bottom");
+    let left = opts && 'left' in opts ? opts.left : C[0] || CT.C0;
+    if (left == null) dart.nullFailed(I[0], 23, 10, "left");
+    let horizontalInside = opts && 'horizontalInside' in opts ? opts.horizontalInside : C[0] || CT.C0;
+    if (horizontalInside == null) dart.nullFailed(I[0], 24, 10, "horizontalInside");
+    let verticalInside = opts && 'verticalInside' in opts ? opts.verticalInside : C[0] || CT.C0;
+    if (verticalInside == null) dart.nullFailed(I[0], 25, 10, "verticalInside");
+    this[top$] = top;
+    this[right$] = right;
+    this[bottom$] = bottom;
+    this[left$] = left;
+    this[horizontalInside$] = horizontalInside;
+    this[verticalInside$] = verticalInside;
     ;
-  }).prototype = tab_controller._DefaultTabControllerState.prototype;
-  dart.addTypeTests(tab_controller._DefaultTabControllerState);
-  dart.addTypeCaches(tab_controller._DefaultTabControllerState);
-  dart.setMethodSignature(tab_controller._DefaultTabControllerState, () => ({
-    __proto__: dart.getMethods(tab_controller._DefaultTabControllerState.__proto__),
-    build: dart.fnType(framework.Widget, [framework.BuildContext])
+  }).prototype = table_border.TableBorder.prototype;
+  dart.addTypeTests(table_border.TableBorder);
+  dart.addTypeCaches(table_border.TableBorder);
+  dart.setMethodSignature(table_border.TableBorder, () => ({
+    __proto__: dart.getMethods(table_border.TableBorder.__proto__),
+    scale: dart.fnType(table_border.TableBorder, [core.double]),
+    paint: dart.fnType(dart.void, [ui.Canvas, ui.Rect], {}, {columns: core.Iterable$(core.double), rows: core.Iterable$(core.double)})
   }));
-  dart.setGetterSignature(tab_controller._DefaultTabControllerState, () => ({
-    __proto__: dart.getGetters(tab_controller._DefaultTabControllerState.__proto__),
-    [_controller]: tab_controller.TabController
+  dart.setGetterSignature(table_border.TableBorder, () => ({
+    __proto__: dart.getGetters(table_border.TableBorder.__proto__),
+    dimensions: edge_insets.EdgeInsets,
+    isUniform: core.bool
   }));
-  dart.setSetterSignature(tab_controller._DefaultTabControllerState, () => ({
-    __proto__: dart.getSetters(tab_controller._DefaultTabControllerState.__proto__),
-    [_controller]: tab_controller.TabController
+  dart.setLibraryUri(table_border.TableBorder, I[1]);
+  dart.setFieldSignature(table_border.TableBorder, () => ({
+    __proto__: dart.getFields(table_border.TableBorder.__proto__),
+    top: dart.finalFieldType(borders.BorderSide),
+    right: dart.finalFieldType(borders.BorderSide),
+    bottom: dart.finalFieldType(borders.BorderSide),
+    left: dart.finalFieldType(borders.BorderSide),
+    horizontalInside: dart.finalFieldType(borders.BorderSide),
+    verticalInside: dart.finalFieldType(borders.BorderSide)
   }));
-  dart.setLibraryUri(tab_controller._DefaultTabControllerState, I[1]);
-  dart.setFieldSignature(tab_controller._DefaultTabControllerState, () => ({
-    __proto__: dart.getFields(tab_controller._DefaultTabControllerState.__proto__),
-    [___DefaultTabControllerState__controller]: dart.fieldType(dart.nullable(tab_controller.TabController)),
-    [___DefaultTabControllerState__controller_isSet]: dart.fieldType(core.bool)
-  }));
-  dart.trackLibraries("packages/flutter/src/material/tab_controller.dart", {
-    "package:flutter/src/material/tab_controller.dart": tab_controller
+  dart.defineExtensionMethods(table_border.TableBorder, ['_equals', 'toString']);
+  dart.defineExtensionAccessors(table_border.TableBorder, ['hashCode']);
+  dart.trackLibraries("packages/flutter/src/rendering/table_border.dart", {
+    "package:flutter/src/rendering/table_border.dart": table_border
   }, {
-  }, '{"version":3,"sourceRoot":"","sources":["tab_controller.dart"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;IA+MY;;;;;;;;UA7BM;UACA;UACA;AAEd,YAAqB,8CACN,KAAN,KAAK,EAAL,aAAS,6BACD,MAAP,MAAM,EAAN,cAAe,yCACF,4CACQ,OAAd,aAAa,EAAb,eAAiB;IAEpC;;;AAYoC;iCAAsB;IAAI;;UASxC;UAAmB;UAAiB;AACxD,YAAO,AAAM,KAAD;AACZ,YAAa,AAAK,aAAX,KAAK,KAAI,MAAY,aAAN,KAAK,iBAAG,gBAAU,AAAO,gBAAG;AAClD,YAAO,AAAiB,QAAT,YAAY,AAAM,KAAD;AAChC,YAA6B,aAAtB,gCAAyB;AAChC,UAAI,AAAM,KAAD,IAAI,gBAAiB,aAAP,eAAS,GAC9B;AACoB,MAAtB,uBAAiB;AACH,MAAd,eAAS,KAAK;AACd,UAAI,QAAQ;AACgB,QAA1B,8BAAsB,aAAtB,+BAAyB;AACR,QAAjB;AAQI,QAPgB,AACjB,AACA,eAFH,sCACa,AAAO,sCAAsB,QAAQ,SAAc,eAAL,KAAK,yBACxC;AACpB,cAAI;AACwB,YAA1B,8BAAsB,aAAtB,+BAAyB;AACR,YAAjB;;;;AAIoB,QAA1B,8BAAsB,aAAtB,+BAAyB;AACsB,QAA3B,AAAE,eAAtB,oCAA8B,AAAO;AACX,QAA1B,8BAAsB,aAAtB,+BAAyB;AACR,QAAjB;;IAEJ;;AAWiB;IAAM;;UAET;AACO,MAAnB,mBAAa,KAAK;IACpB;;AAKyB;IAAc;;AASX,YAAA,AAAsB,iCAAG;IAAC;;UAQnC;UAAkB;;UAAqC;;AACnB,MAArD,mBAAa,KAAK,aAAY,QAAQ,SAAS,KAAK;IACtD;;AAUqB,YAA4B,cAAR,AAAE,eAAtB,qCAA8B,AAAO;IAAU;;UAClD;AAChB,YAAO,AAAM,KAAD;AACZ,YAAa,AAAQ,aAAd,KAAK,KAAI,CAAC,OAAa,aAAN,KAAK,KAAI;AACjC,WAAO,WAAC;AACR,UAAI,AAAM,KAAD,IAAI,aACX;AACqD,MAAnC,AAAE,eAAtB,oCAAoC,aAAN,KAAK,IAAG,AAAO;IAC/C;;;AAIiC,WAA/B;0BAAsB;AACK,MAA3B,6BAAuB;AACR,MAAT;IACR;;;QAvJoB;;QAAgC;;QAAgC;;IAqHhF,8BAAwB;IArHwB;UACzC,AAAe,MAAT,YAAmB,aAAP,MAAM,KAAI;UAC5B,AAA0C,YAA9B,YAAyB,aAAb,YAAY,KAAI,MAAM,AAAO,MAAD,KAAI,KAAkB,aAAb,YAAY,iBAAG,MAAM;IAClF,eAAE,YAAY;IACN,uBAAE,YAAY;IACR,6BAAsB,+DAClC,AAAa,YAAD,sBACZ,KAAK;AAPlB;;EAQK;;QAKU;;QACA;;QACiB;QAChB;;IAqGZ,8BAAwB;IArGZ;IACJ,eAAE,KAAK;IACC,uBAAE,aAAa;IACT,6BAAE,mBAAmB;AAP/C;;EAO+C;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;IA+I3B;;;;;;IACT;;;;;;;4CAGiC;;AAC1C,YAAO,AAAuB,iBAAZ,AAAI,GAAD,yBAAY,iBAAc,AAAI,GAAD;IACpD;;;QAZO;QACS;;QACA;;QACE;;;IAFF;IACA;AAEX,sEAAW,GAAG,SAAS,KAAK;;EAAC;;;;;;;;;;;;;;;;;IA8ExB;;;;;;IAKA;;;;;;IAOG;;;;;;cAWyB;;;AACT,kBAAQ,AAAQ,OAAD;AAC1C,WAAO,KAAK;0BAAL,OAAO;IAChB;;AAG4C;IAA4B;;;QA1CjE;QACS;;QACT;;QACS;;;IAFA;IACT;IACS;UACJ,AAAa,YAAD;UACL,aAAP,MAAM,KAAI;UACV,AAAO,AAAK,MAAN,KAAI,KAAmB,aAAb,YAAY,KAAI,KAAkB,aAAb,YAAY,iBAAG,MAAM;AACjE,uEAAW,GAAG;;EAAC;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AAuCD;IAAW;;;AAAX;;IAAW;;AAIX,MAAX;AAKL,MAJD,oBAAc,6CACL,cACC,AAAO,kCACD,AAAO;IAEzB;;AAIuB,MAArB,AAAY;AACG,MAAT;IACR;;UAG0B;AACxB,YAAO,yDACO,4BACQ,8BAAG,OAAO,UACvB,AAAO;IAElB;;6CAG0C;;AACR,MAA1B,sBAAgB,SAAS;AAC/B,UAAI,AAAU,SAAD,WAAW,AAAO;AAGxB;AACD,4BAAgB,AAAY;AAChC,YAAsB,aAAlB,AAAY,yCAAS,AAAO;AACW,UAAzC,WAAW,mBAAS,GAAiB,aAAd,AAAO,sBAAS;AACN,UAAjC,gBAAgB,AAAY;;AAM7B,QAJD,oBAAc,AAAY,sCAChB,AAAO,2BACR,QAAQ,iBACA,aAAa;;IAGlC;;;qDA7CmB;;;;EA8CrB","file":"../../../../../../../../D:/packages/flutter/src/material/tab_controller.dart.lib.js"}');
+  }, '{"version":3,"sourceRoot":"","sources":["table_border.dart"],"names":[],"mappings":"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","file":"../../../../../../../../D:/packages/flutter/src/rendering/table_border.dart.lib.js"}');
   // Exports:
   return {
-    src__material__tab_controller: tab_controller
+    src__rendering__table_border: table_border
   };
 }));
 
-//# sourceMappingURL=tab_controller.dart.lib.js.map
+//# sourceMappingURL=table_border.dart.lib.js.map

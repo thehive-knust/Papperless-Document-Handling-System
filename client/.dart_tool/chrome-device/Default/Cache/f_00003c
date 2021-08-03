@@ -1,478 +1,447 @@
-define(['dart_sdk', 'packages/flutter/src/painting/box_border.dart', 'packages/flutter/src/painting/border_radius.dart', 'packages/flutter/src/painting/box_shadow.dart', 'packages/flutter/src/painting/gradient.dart', 'packages/flutter/src/foundation/collections.dart', 'packages/flutter/src/foundation/debug.dart', 'packages/flutter/src/painting/colors.dart', 'packages/flutter/src/painting/decoration_image.dart', 'packages/flutter/src/painting/decoration.dart', 'packages/flutter/src/painting/_network_image_web.dart'], (function load__packages__flutter__src__painting__box_decoration_dart(dart_sdk, packages__flutter__src__painting__box_border$46dart, packages__flutter__src__painting__border_radius$46dart, packages__flutter__src__painting__box_shadow$46dart, packages__flutter__src__painting__gradient$46dart, packages__flutter__src__foundation__collections$46dart, packages__flutter__src__foundation__debug$46dart, packages__flutter__src__painting__colors$46dart, packages__flutter__src__painting__decoration_image$46dart, packages__flutter__src__painting__decoration$46dart, packages__flutter__src__painting___network_image_web$46dart) {
+define(['dart_sdk', 'packages/collection/src/utils.dart'], (function load__packages__collection__src__priority_queue_dart(dart_sdk, packages__collection__src__utils$46dart) {
   'use strict';
   const core = dart_sdk.core;
-  const ui = dart_sdk.ui;
-  const _internal = dart_sdk._internal;
-  const math = dart_sdk.math;
+  const collection = dart_sdk.collection;
+  const _interceptors = dart_sdk._interceptors;
   const dart = dart_sdk.dart;
   const dartx = dart_sdk.dartx;
-  const box_border = packages__flutter__src__painting__box_border$46dart.src__painting__box_border;
-  const border_radius = packages__flutter__src__painting__border_radius$46dart.src__painting__border_radius;
-  const box_shadow = packages__flutter__src__painting__box_shadow$46dart.src__painting__box_shadow;
-  const gradient = packages__flutter__src__painting__gradient$46dart.src__painting__gradient;
-  const collections = packages__flutter__src__foundation__collections$46dart.src__foundation__collections;
-  const diagnostics = packages__flutter__src__foundation__debug$46dart.src__foundation__diagnostics;
-  const colors = packages__flutter__src__painting__colors$46dart.src__painting__colors;
-  const decoration_image = packages__flutter__src__painting__decoration_image$46dart.src__painting__decoration_image;
-  const decoration = packages__flutter__src__painting__decoration$46dart.src__painting__decoration;
-  const image_provider = packages__flutter__src__painting___network_image_web$46dart.src__painting__image_provider;
-  var box_decoration = Object.create(dart.library);
-  var $runtimeType = dartx.runtimeType;
+  const utils = packages__collection__src__utils$46dart.src__utils;
+  var priority_queue = Object.create(dart.library);
+  var $_get = dartx._get;
+  var $take = dartx.take;
+  var $cast = dartx.cast;
+  var $sort = dartx.sort;
+  var $add = dartx.add;
+  var $toString = dartx.toString;
+  var $length = dartx.length;
+  var $isOdd = dartx.isOdd;
+  var $rightShift = dartx['>>'];
+  var $_set = dartx._set;
+  var $truncate = dartx.truncate;
+  var $setRange = dartx.setRange;
+  var $iterator = dartx.iterator;
   dart._checkModuleNullSafetyMode(false);
   var T = {
-    BoxDecorationN: () => (T.BoxDecorationN = dart.constFn(dart.nullable(box_decoration.BoxDecoration)))(),
-    DiagnosticsPropertyOfDecorationImage: () => (T.DiagnosticsPropertyOfDecorationImage = dart.constFn(diagnostics.DiagnosticsProperty$(decoration_image.DecorationImage)))(),
-    DiagnosticsPropertyOfBoxBorder: () => (T.DiagnosticsPropertyOfBoxBorder = dart.constFn(diagnostics.DiagnosticsProperty$(box_border.BoxBorder)))(),
-    DiagnosticsPropertyOfBorderRadiusGeometry: () => (T.DiagnosticsPropertyOfBorderRadiusGeometry = dart.constFn(diagnostics.DiagnosticsProperty$(border_radius.BorderRadiusGeometry)))(),
-    IterablePropertyOfBoxShadow: () => (T.IterablePropertyOfBoxShadow = dart.constFn(diagnostics.IterableProperty$(box_shadow.BoxShadow)))(),
-    DiagnosticsPropertyOfGradient: () => (T.DiagnosticsPropertyOfGradient = dart.constFn(diagnostics.DiagnosticsProperty$(gradient.Gradient)))(),
-    EnumPropertyOfBoxShape: () => (T.EnumPropertyOfBoxShape = dart.constFn(diagnostics.EnumProperty$(box_border.BoxShape)))(),
-    BorderRadiusN: () => (T.BorderRadiusN = dart.constFn(dart.nullable(border_radius.BorderRadius)))()
+    ObjectN: () => (T.ObjectN = dart.constFn(dart.nullable(core.Object)))(),
+    ObjectNAndObjectNToint: () => (T.ObjectNAndObjectNToint = dart.constFn(dart.fnType(core.int, [T.ObjectN(), T.ObjectN()])))()
   };
   const CT = Object.create({
     _: () => (C, CT)
   });
   dart.defineLazy(CT, {
     get C0() {
-      return C[0] = dart.const({
-        __proto__: box_border.BoxShape.prototype,
-        [_name]: "BoxShape.rectangle",
-        index: 0
-      });
+      return C[0] = dart.fn(utils.defaultCompare, T.ObjectNAndObjectNToint());
     },
     get C1() {
-      return C[1] = dart.const({
-        __proto__: box_border.BoxShape.prototype,
-        [_name]: "BoxShape.circle",
-        index: 1
-      });
+      return C[1] = dart.constList([], core.Null);
     }
   }, false);
   var C = Array(2).fill(void 0);
   var I = [
-    "file:///C:/src/flutter/packages/flutter/lib/src/painting/box_decoration.dart",
-    "package:flutter/src/painting/box_decoration.dart"
+    "package:collection/src/priority_queue.dart",
+    "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/collection-1.15.0/lib/src/priority_queue.dart"
   ];
-  var color$ = dart.privateName(box_decoration, "BoxDecoration.color");
-  var image$ = dart.privateName(box_decoration, "BoxDecoration.image");
-  var border$ = dart.privateName(box_decoration, "BoxDecoration.border");
-  var borderRadius$ = dart.privateName(box_decoration, "BoxDecoration.borderRadius");
-  var boxShadow$ = dart.privateName(box_decoration, "BoxDecoration.boxShadow");
-  var gradient$ = dart.privateName(box_decoration, "BoxDecoration.gradient");
-  var backgroundBlendMode$ = dart.privateName(box_decoration, "BoxDecoration.backgroundBlendMode");
-  var shape$ = dart.privateName(box_decoration, "BoxDecoration.shape");
-  var _name = dart.privateName(box_border, "_name");
-  box_decoration.BoxDecoration = class BoxDecoration extends decoration.Decoration {
-    get color() {
-      return this[color$];
-    }
-    set color(value) {
-      super.color = value;
-    }
-    get image() {
-      return this[image$];
-    }
-    set image(value) {
-      super.image = value;
-    }
-    get border() {
-      return this[border$];
-    }
-    set border(value) {
-      super.border = value;
-    }
-    get borderRadius() {
-      return this[borderRadius$];
-    }
-    set borderRadius(value) {
-      super.borderRadius = value;
-    }
-    get boxShadow() {
-      return this[boxShadow$];
-    }
-    set boxShadow(value) {
-      super.boxShadow = value;
-    }
-    get gradient() {
-      return this[gradient$];
-    }
-    set gradient(value) {
-      super.gradient = value;
-    }
-    get backgroundBlendMode() {
-      return this[backgroundBlendMode$];
-    }
-    set backgroundBlendMode(value) {
-      super.backgroundBlendMode = value;
-    }
-    get shape() {
-      return this[shape$];
-    }
-    set shape(value) {
-      super.shape = value;
-    }
-    copyWith(opts) {
-      let t0, t0$, t0$0, t0$1, t0$2, t0$3, t0$4, t0$5;
-      let color = opts && 'color' in opts ? opts.color : null;
-      let image = opts && 'image' in opts ? opts.image : null;
-      let border = opts && 'border' in opts ? opts.border : null;
-      let borderRadius = opts && 'borderRadius' in opts ? opts.borderRadius : null;
-      let boxShadow = opts && 'boxShadow' in opts ? opts.boxShadow : null;
-      let gradient = opts && 'gradient' in opts ? opts.gradient : null;
-      let backgroundBlendMode = opts && 'backgroundBlendMode' in opts ? opts.backgroundBlendMode : null;
-      let shape = opts && 'shape' in opts ? opts.shape : null;
-      return new box_decoration.BoxDecoration.new({color: (t0 = color, t0 == null ? this.color : t0), image: (t0$ = image, t0$ == null ? this.image : t0$), border: (t0$0 = border, t0$0 == null ? this.border : t0$0), borderRadius: (t0$1 = borderRadius, t0$1 == null ? this.borderRadius : t0$1), boxShadow: (t0$2 = boxShadow, t0$2 == null ? this.boxShadow : t0$2), gradient: (t0$3 = gradient, t0$3 == null ? this.gradient : t0$3), backgroundBlendMode: (t0$4 = backgroundBlendMode, t0$4 == null ? this.backgroundBlendMode : t0$4), shape: (t0$5 = shape, t0$5 == null ? this.shape : t0$5)});
-    }
-    debugAssertIsValid() {
-      if (!(this.shape != box_border.BoxShape.circle || this.borderRadius == null)) dart.assertFailed(null, I[0], 131, 12, "shape != BoxShape.circle || borderRadius == null");
-      return super.debugAssertIsValid();
-    }
-    get padding() {
-      let t0;
-      t0 = this.border;
-      return t0 == null ? null : t0.dimensions;
-    }
-    getClipPath(rect, textDirection) {
-      let t0, t0$, t0$0;
-      if (rect == null) dart.nullFailed(I[0], 217, 25, "rect");
-      if (textDirection == null) dart.nullFailed(I[0], 217, 45, "textDirection");
-      switch (this.shape) {
-        case C[1] || CT.C1:
-        {
-          let center = rect.center;
-          let radius = dart.notNull(rect.shortestSide) / 2.0;
-          let square = new ui.Rect.fromCircle({center: center, radius: radius});
-          t0 = ui.Path.new();
-          return (() => {
-            t0.addOval(square);
-            return t0;
-          })();
+  const _is_PriorityQueue_default = Symbol('_is_PriorityQueue_default');
+  priority_queue.PriorityQueue$ = dart.generic(E => {
+    class PriorityQueue extends core.Object {}
+    (PriorityQueue[dart.mixinNew] = function() {
+    }).prototype = PriorityQueue.prototype;
+    dart.addTypeTests(PriorityQueue);
+    PriorityQueue.prototype[_is_PriorityQueue_default] = true;
+    dart.addTypeCaches(PriorityQueue);
+    dart.setLibraryUri(PriorityQueue, I[0]);
+    return PriorityQueue;
+  });
+  priority_queue.PriorityQueue = priority_queue.PriorityQueue$();
+  dart.addTypeTests(priority_queue.PriorityQueue, _is_PriorityQueue_default);
+  var comparison$ = dart.privateName(priority_queue, "HeapPriorityQueue.comparison");
+  var _queue$ = dart.privateName(priority_queue, "_queue");
+  var _length = dart.privateName(priority_queue, "_length");
+  var _modificationCount = dart.privateName(priority_queue, "_modificationCount");
+  var _elementAt = dart.privateName(priority_queue, "_elementAt");
+  var _add = dart.privateName(priority_queue, "_add");
+  var _locate = dart.privateName(priority_queue, "_locate");
+  var _removeLast = dart.privateName(priority_queue, "_removeLast");
+  var _bubbleUp = dart.privateName(priority_queue, "_bubbleUp");
+  var _bubbleDown = dart.privateName(priority_queue, "_bubbleDown");
+  var _toUnorderedList = dart.privateName(priority_queue, "_toUnorderedList");
+  var _grow = dart.privateName(priority_queue, "_grow");
+  const _is_HeapPriorityQueue_default = Symbol('_is_HeapPriorityQueue_default');
+  priority_queue.HeapPriorityQueue$ = dart.generic(E => {
+    var EN = () => (EN = dart.constFn(dart.nullable(E)))();
+    var ListOfEN = () => (ListOfEN = dart.constFn(core.List$(EN())))();
+    var IterableOfE = () => (IterableOfE = dart.constFn(core.Iterable$(E)))();
+    var _UnorderedElementsIterableOfE = () => (_UnorderedElementsIterableOfE = dart.constFn(priority_queue._UnorderedElementsIterable$(E)))();
+    var SplayTreeSetOfE = () => (SplayTreeSetOfE = dart.constFn(collection.SplayTreeSet$(E)))();
+    var JSArrayOfE = () => (JSArrayOfE = dart.constFn(_interceptors.JSArray$(E)))();
+    class HeapPriorityQueue extends core.Object {
+      get comparison() {
+        return this[comparison$];
+      }
+      set comparison(value) {
+        super.comparison = value;
+      }
+      [_elementAt](index) {
+        let t0;
+        if (index == null) dart.nullFailed(I[1], 207, 20, "index");
+        t0 = this[_queue$][$_get](index);
+        return t0 == null ? E.as(null) : t0;
+      }
+      add(element) {
+        E.as(element);
+        this[_modificationCount] = dart.notNull(this[_modificationCount]) + 1;
+        this[_add](element);
+      }
+      addAll(elements) {
+        IterableOfE().as(elements);
+        if (elements == null) dart.nullFailed(I[1], 216, 27, "elements");
+        let modified = 0;
+        for (let element of elements) {
+          modified = 1;
+          this[_add](element);
         }
-        case C[0] || CT.C0:
-        {
-          if (this.borderRadius != null) {
-            t0$ = ui.Path.new();
-            return (() => {
-              t0$.addRRect(dart.nullCheck(this.borderRadius).resolve(textDirection).toRRect(rect));
-              return t0$;
-            })();
+        this[_modificationCount] = dart.notNull(this[_modificationCount]) + modified;
+      }
+      clear() {
+        this[_modificationCount] = dart.notNull(this[_modificationCount]) + 1;
+        this[_queue$] = C[1] || CT.C1;
+        this[_length] = 0;
+      }
+      contains(object) {
+        E.as(object);
+        return dart.notNull(this[_locate](object)) >= 0;
+      }
+      get unorderedElements() {
+        return new (_UnorderedElementsIterableOfE()).new(this);
+      }
+      get first() {
+        if (this[_length] === 0) dart.throw(new core.StateError.new("No element"));
+        return this[_elementAt](0);
+      }
+      get isEmpty() {
+        return this[_length] === 0;
+      }
+      get isNotEmpty() {
+        return this[_length] !== 0;
+      }
+      get length() {
+        return this[_length];
+      }
+      remove(element) {
+        let t1, t0;
+        E.as(element);
+        let index = this[_locate](element);
+        if (dart.notNull(index) < 0) return false;
+        this[_modificationCount] = dart.notNull(this[_modificationCount]) + 1;
+        let last = this[_removeLast]();
+        if (dart.notNull(index) < dart.notNull(this[_length])) {
+          let comp = (t0 = last, t1 = element, this.comparison(t0, t1));
+          if (dart.notNull(comp) <= 0) {
+            this[_bubbleUp](last, index);
+          } else {
+            this[_bubbleDown](last, index);
           }
-          t0$0 = ui.Path.new();
-          return (() => {
-            t0$0.addRect(rect);
-            return t0$0;
-          })();
         }
-        default:
-        {
-          dart.throw(new _internal.ReachabilityError.new("`null` encountered as case in a switch expression with a non-nullable enum type."));
+        return true;
+      }
+      removeAll() {
+        this[_modificationCount] = dart.notNull(this[_modificationCount]) + 1;
+        let result = this[_queue$];
+        let length = this[_length];
+        this[_queue$] = C[1] || CT.C1;
+        this[_length] = 0;
+        return result[$take](length)[$cast](E);
+      }
+      removeFirst() {
+        if (this[_length] === 0) dart.throw(new core.StateError.new("No element"));
+        this[_modificationCount] = dart.notNull(this[_modificationCount]) + 1;
+        let result = this[_elementAt](0);
+        let last = this[_removeLast]();
+        if (dart.notNull(this[_length]) > 0) {
+          this[_bubbleDown](last, 0);
         }
+        return result;
+      }
+      toList() {
+        let t0;
+        t0 = this[_toUnorderedList]();
+        return (() => {
+          t0[$sort](this.comparison);
+          return t0;
+        })();
+      }
+      toSet() {
+        let set = new (SplayTreeSetOfE()).new(this.comparison);
+        for (let i = 0; i < dart.notNull(this[_length]); i = i + 1) {
+          set.add(this[_elementAt](i));
+        }
+        return set;
+      }
+      toUnorderedList() {
+        return this[_toUnorderedList]();
+      }
+      [_toUnorderedList]() {
+        return (() => {
+          let t0 = JSArrayOfE().of([]);
+          for (let i = 0; i < dart.notNull(this[_length]); i = i + 1)
+            t0[$add](this[_elementAt](i));
+          return t0;
+        })();
+      }
+      toString() {
+        return dart.toString(this[_queue$][$take](this[_length]));
+      }
+      [_add](element) {
+        let t1;
+        if (this[_length] == this[_queue$][$length]) this[_grow]();
+        this[_bubbleUp](element, (t1 = this[_length], this[_length] = dart.notNull(t1) + 1, t1));
+      }
+      [_locate](object) {
+        let t2, t1;
+        if (this[_length] === 0) return -1;
+        let position = 1;
+        do {
+          let index = position - 1;
+          let element = this[_elementAt](index);
+          let comp = (t1 = element, t2 = object, this.comparison(t1, t2));
+          if (dart.notNull(comp) <= 0) {
+            if (comp === 0 && dart.equals(element, object)) return index;
+            let leftChildPosition = position * 2;
+            if (leftChildPosition <= dart.notNull(this[_length])) {
+              position = leftChildPosition;
+              continue;
+            }
+          }
+          do {
+            while (position[$isOdd]) {
+              position = position[$rightShift](1);
+            }
+            position = position + 1;
+          } while (position > dart.notNull(this[_length]));
+        } while (position !== 1);
+        return -1;
+      }
+      [_removeLast]() {
+        let newLength = dart.notNull(this[_length]) - 1;
+        let last = this[_elementAt](newLength);
+        this[_queue$][$_set](newLength, null);
+        this[_length] = newLength;
+        return last;
+      }
+      [_bubbleUp](element, index) {
+        let t2, t1;
+        if (index == null) dart.nullFailed(I[1], 396, 33, "index");
+        while (dart.notNull(index) > 0) {
+          let parentIndex = ((dart.notNull(index) - 1) / 2)[$truncate]();
+          let parent = this[_elementAt](parentIndex);
+          if (dart.notNull((t1 = element, t2 = parent, this.comparison(t1, t2))) > 0) break;
+          this[_queue$][$_set](index, parent);
+          index = parentIndex;
+        }
+        this[_queue$][$_set](index, element);
+      }
+      [_bubbleDown](element, index) {
+        let t2, t1, t2$, t1$, t2$0, t1$0;
+        if (index == null) dart.nullFailed(I[1], 412, 35, "index");
+        let rightChildIndex = dart.notNull(index) * 2 + 2;
+        while (rightChildIndex < dart.notNull(this[_length])) {
+          let leftChildIndex = rightChildIndex - 1;
+          let leftChild = this[_elementAt](leftChildIndex);
+          let rightChild = this[_elementAt](rightChildIndex);
+          let comp = (t1 = leftChild, t2 = rightChild, this.comparison(t1, t2));
+          let minChildIndex = null;
+          let minChild = null;
+          if (dart.notNull(comp) < 0) {
+            minChild = leftChild;
+            minChildIndex = leftChildIndex;
+          } else {
+            minChild = rightChild;
+            minChildIndex = rightChildIndex;
+          }
+          comp = (t1$ = element, t2$ = minChild, this.comparison(t1$, t2$));
+          if (dart.notNull(comp) <= 0) {
+            this[_queue$][$_set](index, element);
+            return;
+          }
+          this[_queue$][$_set](index, minChild);
+          index = minChildIndex;
+          rightChildIndex = dart.notNull(index) * 2 + 2;
+        }
+        let leftChildIndex = rightChildIndex - 1;
+        if (leftChildIndex < dart.notNull(this[_length])) {
+          let child = this[_elementAt](leftChildIndex);
+          let comp = (t1$0 = element, t2$0 = child, this.comparison(t1$0, t2$0));
+          if (dart.notNull(comp) > 0) {
+            this[_queue$][$_set](index, child);
+            index = leftChildIndex;
+          }
+        }
+        this[_queue$][$_set](index, element);
+      }
+      [_grow]() {
+        let newCapacity = dart.notNull(this[_queue$][$length]) * 2 + 1;
+        if (newCapacity < 7) newCapacity = 7;
+        let newQueue = ListOfEN().filled(newCapacity, null);
+        newQueue[$setRange](0, this[_length], this[_queue$]);
+        this[_queue$] = newQueue;
       }
     }
-    scale(factor) {
+    (HeapPriorityQueue.new = function(comparison = null) {
       let t0;
-      if (factor == null) dart.nullFailed(I[0], 232, 30, "factor");
-      return new box_decoration.BoxDecoration.new({color: ui.Color.lerp(null, this.color, factor), image: this.image, border: box_border.BoxBorder.lerp(null, this.border, factor), borderRadius: border_radius.BorderRadiusGeometry.lerp(null, this.borderRadius, factor), boxShadow: box_shadow.BoxShadow.lerpList(null, this.boxShadow, factor), gradient: (t0 = this.gradient, t0 == null ? null : t0.scale(factor)), shape: this.shape});
+      this[_queue$] = ListOfEN().filled(7, null);
+      this[_length] = 0;
+      this[_modificationCount] = 0;
+      this[comparison$] = (t0 = comparison, t0 == null ? C[0] || CT.C0 : t0);
+      ;
+    }).prototype = HeapPriorityQueue.prototype;
+    dart.addTypeTests(HeapPriorityQueue);
+    HeapPriorityQueue.prototype[_is_HeapPriorityQueue_default] = true;
+    dart.addTypeCaches(HeapPriorityQueue);
+    HeapPriorityQueue[dart.implements] = () => [priority_queue.PriorityQueue$(E)];
+    dart.setMethodSignature(HeapPriorityQueue, () => ({
+      __proto__: dart.getMethods(HeapPriorityQueue.__proto__),
+      [_elementAt]: dart.fnType(E, [core.int]),
+      add: dart.fnType(dart.void, [dart.nullable(core.Object)]),
+      addAll: dart.fnType(dart.void, [dart.nullable(core.Object)]),
+      clear: dart.fnType(dart.void, []),
+      contains: dart.fnType(core.bool, [dart.nullable(core.Object)]),
+      remove: dart.fnType(core.bool, [dart.nullable(core.Object)]),
+      removeAll: dart.fnType(core.Iterable$(E), []),
+      removeFirst: dart.fnType(E, []),
+      toList: dart.fnType(core.List$(E), []),
+      toSet: dart.fnType(core.Set$(E), []),
+      toUnorderedList: dart.fnType(core.List$(E), []),
+      [_toUnorderedList]: dart.fnType(core.List$(E), []),
+      [_add]: dart.fnType(dart.void, [E]),
+      [_locate]: dart.fnType(core.int, [E]),
+      [_removeLast]: dart.fnType(E, []),
+      [_bubbleUp]: dart.fnType(dart.void, [E, core.int]),
+      [_bubbleDown]: dart.fnType(dart.void, [E, core.int]),
+      [_grow]: dart.fnType(dart.void, [])
+    }));
+    dart.setGetterSignature(HeapPriorityQueue, () => ({
+      __proto__: dart.getGetters(HeapPriorityQueue.__proto__),
+      unorderedElements: core.Iterable$(E),
+      first: E,
+      isEmpty: core.bool,
+      isNotEmpty: core.bool,
+      length: core.int
+    }));
+    dart.setLibraryUri(HeapPriorityQueue, I[0]);
+    dart.setFieldSignature(HeapPriorityQueue, () => ({
+      __proto__: dart.getFields(HeapPriorityQueue.__proto__),
+      comparison: dart.finalFieldType(dart.fnType(core.int, [E, E])),
+      [_queue$]: dart.fieldType(core.List$(dart.nullable(E))),
+      [_length]: dart.fieldType(core.int),
+      [_modificationCount]: dart.fieldType(core.int)
+    }));
+    dart.defineExtensionMethods(HeapPriorityQueue, ['toString']);
+    return HeapPriorityQueue;
+  });
+  priority_queue.HeapPriorityQueue = priority_queue.HeapPriorityQueue$();
+  dart.defineLazy(priority_queue.HeapPriorityQueue, {
+    /*priority_queue.HeapPriorityQueue._INITIAL_CAPACITY*/get _INITIAL_CAPACITY() {
+      return 7;
     }
-    get isComplex() {
-      return this.boxShadow != null;
+  }, false);
+  dart.addTypeTests(priority_queue.HeapPriorityQueue, _is_HeapPriorityQueue_default);
+  const _is__UnorderedElementsIterable_default = Symbol('_is__UnorderedElementsIterable_default');
+  priority_queue._UnorderedElementsIterable$ = dart.generic(E => {
+    var _UnorderedElementsIteratorOfE = () => (_UnorderedElementsIteratorOfE = dart.constFn(priority_queue._UnorderedElementsIterator$(E)))();
+    class _UnorderedElementsIterable extends core.Iterable$(E) {
+      get iterator() {
+        return new (_UnorderedElementsIteratorOfE()).new(this[_queue$]);
+      }
     }
-    lerpFrom(a, t) {
-      if (t == null) dart.nullFailed(I[0], 248, 49, "t");
-      if (a == null) return this.scale(t);
-      if (box_decoration.BoxDecoration.is(a)) return box_decoration.BoxDecoration.lerp(a, this, t);
-      return T.BoxDecorationN().as(super.lerpFrom(a, t));
-    }
-    lerpTo(b, t) {
-      if (t == null) dart.nullFailed(I[0], 257, 47, "t");
-      if (b == null) return this.scale(1.0 - dart.notNull(t));
-      if (box_decoration.BoxDecoration.is(b)) return box_decoration.BoxDecoration.lerp(this, b, t);
-      return T.BoxDecorationN().as(super.lerpTo(b, t));
-    }
-    static lerp(a, b, t) {
-      if (t == null) dart.nullFailed(I[0], 288, 73, "t");
-      if (!(t != null)) dart.assertFailed(null, I[0], 289, 12, "t != null");
-      if (a == null && b == null) return null;
-      if (a == null) return dart.nullCheck(b).scale(t);
-      if (b == null) return a.scale(1.0 - dart.notNull(t));
-      if (t === 0.0) return a;
-      if (t === 1.0) return b;
-      return new box_decoration.BoxDecoration.new({color: ui.Color.lerp(a.color, b.color, t), image: dart.notNull(t) < 0.5 ? a.image : b.image, border: box_border.BoxBorder.lerp(a.border, b.border, t), borderRadius: border_radius.BorderRadiusGeometry.lerp(a.borderRadius, b.borderRadius, t), boxShadow: box_shadow.BoxShadow.lerpList(a.boxShadow, b.boxShadow, t), gradient: gradient.Gradient.lerp(a.gradient, b.gradient, t), shape: dart.notNull(t) < 0.5 ? a.shape : b.shape});
-    }
-    _equals(other) {
-      if (other == null) return false;
-      if (this === other) return true;
-      if (!dart.equals(dart.runtimeType(other), this[$runtimeType])) return false;
-      return box_decoration.BoxDecoration.is(other) && dart.equals(other.color, this.color) && dart.equals(other.image, this.image) && dart.equals(other.border, this.border) && dart.equals(other.borderRadius, this.borderRadius) && dart.test(collections.listEquals(box_shadow.BoxShadow, other.boxShadow, this.boxShadow)) && dart.equals(other.gradient, this.gradient) && other.shape == this.shape;
-    }
-    get hashCode() {
-      return ui.hashValues(this.color, this.image, this.border, this.borderRadius, ui.hashList(this.boxShadow), this.gradient, this.shape);
-    }
-    debugFillProperties(properties) {
-      let t0;
-      if (properties == null) dart.nullFailed(I[0], 341, 56, "properties");
-      super.debugFillProperties(properties);
-      t0 = properties;
-      (() => {
-        t0.defaultDiagnosticsTreeStyle = diagnostics.DiagnosticsTreeStyle.whitespace;
-        t0.emptyBodyDescription = "<no decorations specified>";
-        return t0;
-      })();
-      properties.add(new colors.ColorProperty.new("color", this.color, {defaultValue: null}));
-      properties.add(new (T.DiagnosticsPropertyOfDecorationImage()).new("image", this.image, {defaultValue: null}));
-      properties.add(new (T.DiagnosticsPropertyOfBoxBorder()).new("border", this.border, {defaultValue: null}));
-      properties.add(new (T.DiagnosticsPropertyOfBorderRadiusGeometry()).new("borderRadius", this.borderRadius, {defaultValue: null}));
-      properties.add(new (T.IterablePropertyOfBoxShadow()).new("boxShadow", this.boxShadow, {defaultValue: null, style: diagnostics.DiagnosticsTreeStyle.whitespace}));
-      properties.add(new (T.DiagnosticsPropertyOfGradient()).new("gradient", this.gradient, {defaultValue: null}));
-      properties.add(new (T.EnumPropertyOfBoxShape()).new("shape", this.shape, {defaultValue: box_border.BoxShape.rectangle}));
-    }
-    hitTest(size, position, opts) {
-      if (size == null) dart.nullFailed(I[0], 357, 21, "size");
-      if (position == null) dart.nullFailed(I[0], 357, 34, "position");
-      let textDirection = opts && 'textDirection' in opts ? opts.textDirection : null;
-      if (!(this.shape != null)) dart.assertFailed(null, I[0], 358, 12, "shape != null");
-      if (!dart.test(ui.Offset.zero['&'](size).contains(position))) dart.assertFailed(null, I[0], 359, 12, "(Offset.zero & size).contains(position)");
-      switch (this.shape) {
-        case C[0] || CT.C0:
-        {
-          if (this.borderRadius != null) {
-            let bounds = dart.nullCheck(this.borderRadius).resolve(textDirection).toRRect(ui.Offset.zero['&'](size));
-            return bounds.contains(position);
-          }
+    (_UnorderedElementsIterable.new = function(_queue) {
+      if (_queue == null) dart.nullFailed(I[1], 464, 35, "_queue");
+      this[_queue$] = _queue;
+      _UnorderedElementsIterable.__proto__.new.call(this);
+      ;
+    }).prototype = _UnorderedElementsIterable.prototype;
+    dart.addTypeTests(_UnorderedElementsIterable);
+    _UnorderedElementsIterable.prototype[_is__UnorderedElementsIterable_default] = true;
+    dart.addTypeCaches(_UnorderedElementsIterable);
+    dart.setGetterSignature(_UnorderedElementsIterable, () => ({
+      __proto__: dart.getGetters(_UnorderedElementsIterable.__proto__),
+      iterator: core.Iterator$(E),
+      [$iterator]: core.Iterator$(E)
+    }));
+    dart.setLibraryUri(_UnorderedElementsIterable, I[0]);
+    dart.setFieldSignature(_UnorderedElementsIterable, () => ({
+      __proto__: dart.getFields(_UnorderedElementsIterable.__proto__),
+      [_queue$]: dart.finalFieldType(priority_queue.HeapPriorityQueue$(E))
+    }));
+    dart.defineExtensionAccessors(_UnorderedElementsIterable, ['iterator']);
+    return _UnorderedElementsIterable;
+  });
+  priority_queue._UnorderedElementsIterable = priority_queue._UnorderedElementsIterable$();
+  dart.addTypeTests(priority_queue._UnorderedElementsIterable, _is__UnorderedElementsIterable_default);
+  var _current = dart.privateName(priority_queue, "_current");
+  var _index = dart.privateName(priority_queue, "_index");
+  var _initialModificationCount = dart.privateName(priority_queue, "_initialModificationCount");
+  const _is__UnorderedElementsIterator_default = Symbol('_is__UnorderedElementsIterator_default');
+  priority_queue._UnorderedElementsIterator$ = dart.generic(E => {
+    class _UnorderedElementsIterator extends core.Object {
+      moveNext() {
+        if (this[_initialModificationCount] != this[_queue$][_modificationCount]) {
+          dart.throw(new core.ConcurrentModificationError.new(this[_queue$]));
+        }
+        let nextIndex = dart.notNull(this[_index]) + 1;
+        if (0 <= nextIndex && nextIndex < dart.notNull(this[_queue$].length)) {
+          this[_current] = this[_queue$][_queue$][$_get](nextIndex);
+          this[_index] = nextIndex;
           return true;
         }
-        case C[1] || CT.C1:
-        {
-          let center = size.center(ui.Offset.zero);
-          let distance = position['-'](center).distance;
-          return dart.notNull(distance) <= math.min(core.double, size.width, size.height) / 2.0;
-        }
-        default:
-        {
-          dart.throw(new _internal.ReachabilityError.new("`null` encountered as case in a switch expression with a non-nullable enum type."));
-        }
+        this[_current] = null;
+        this[_index] = -2;
+        return false;
+      }
+      get current() {
+        let t1;
+        return dart.notNull(this[_index]) < 0 ? dart.throw(new core.StateError.new("No element")) : (t1 = this[_current], t1 == null ? E.as(null) : t1);
       }
     }
-    createBoxPainter(onChanged = null) {
-      if (!(onChanged != null || this.image == null)) dart.assertFailed(null, I[0], 377, 12, "onChanged != null || image == null");
-      return new box_decoration._BoxDecorationPainter.new(this, onChanged);
-    }
-  };
-  (box_decoration.BoxDecoration.new = function(opts) {
-    let color = opts && 'color' in opts ? opts.color : null;
-    let image = opts && 'image' in opts ? opts.image : null;
-    let border = opts && 'border' in opts ? opts.border : null;
-    let borderRadius = opts && 'borderRadius' in opts ? opts.borderRadius : null;
-    let boxShadow = opts && 'boxShadow' in opts ? opts.boxShadow : null;
-    let gradient = opts && 'gradient' in opts ? opts.gradient : null;
-    let backgroundBlendMode = opts && 'backgroundBlendMode' in opts ? opts.backgroundBlendMode : null;
-    let shape = opts && 'shape' in opts ? opts.shape : C[0] || CT.C0;
-    if (shape == null) dart.nullFailed(I[0], 97, 10, "shape");
-    this[color$] = color;
-    this[image$] = image;
-    this[border$] = border;
-    this[borderRadius$] = borderRadius;
-    this[boxShadow$] = boxShadow;
-    this[gradient$] = gradient;
-    this[backgroundBlendMode$] = backgroundBlendMode;
-    this[shape$] = shape;
-    if (!(shape != null)) dart.assertFailed(null, I[0], 98, 15, "shape != null");
-    if (!(backgroundBlendMode == null || color != null || gradient != null)) dart.assertFailed("backgroundBlendMode applies to BoxDecoration's background color or " + "gradient, but no color or gradient was provided.", I[0], 100, 10, "backgroundBlendMode == null || color != null || gradient != null");
-    box_decoration.BoxDecoration.__proto__.new.call(this);
-    ;
-  }).prototype = box_decoration.BoxDecoration.prototype;
-  dart.addTypeTests(box_decoration.BoxDecoration);
-  dart.addTypeCaches(box_decoration.BoxDecoration);
-  dart.setMethodSignature(box_decoration.BoxDecoration, () => ({
-    __proto__: dart.getMethods(box_decoration.BoxDecoration.__proto__),
-    copyWith: dart.fnType(box_decoration.BoxDecoration, [], {backgroundBlendMode: dart.nullable(ui.BlendMode), border: dart.nullable(box_border.BoxBorder), borderRadius: dart.nullable(border_radius.BorderRadiusGeometry), boxShadow: dart.nullable(core.List$(box_shadow.BoxShadow)), color: dart.nullable(ui.Color), gradient: dart.nullable(gradient.Gradient), image: dart.nullable(decoration_image.DecorationImage), shape: dart.nullable(box_border.BoxShape)}, {}),
-    scale: dart.fnType(box_decoration.BoxDecoration, [core.double]),
-    lerpFrom: dart.fnType(dart.nullable(box_decoration.BoxDecoration), [dart.nullable(decoration.Decoration), core.double]),
-    lerpTo: dart.fnType(dart.nullable(box_decoration.BoxDecoration), [dart.nullable(decoration.Decoration), core.double]),
-    createBoxPainter: dart.fnType(box_decoration._BoxDecorationPainter, [], [dart.nullable(dart.fnType(dart.void, []))])
-  }));
-  dart.setLibraryUri(box_decoration.BoxDecoration, I[1]);
-  dart.setFieldSignature(box_decoration.BoxDecoration, () => ({
-    __proto__: dart.getFields(box_decoration.BoxDecoration.__proto__),
-    color: dart.finalFieldType(dart.nullable(ui.Color)),
-    image: dart.finalFieldType(dart.nullable(decoration_image.DecorationImage)),
-    border: dart.finalFieldType(dart.nullable(box_border.BoxBorder)),
-    borderRadius: dart.finalFieldType(dart.nullable(border_radius.BorderRadiusGeometry)),
-    boxShadow: dart.finalFieldType(dart.nullable(core.List$(box_shadow.BoxShadow))),
-    gradient: dart.finalFieldType(dart.nullable(gradient.Gradient)),
-    backgroundBlendMode: dart.finalFieldType(dart.nullable(ui.BlendMode)),
-    shape: dart.finalFieldType(box_border.BoxShape)
-  }));
-  dart.defineExtensionMethods(box_decoration.BoxDecoration, ['_equals']);
-  dart.defineExtensionAccessors(box_decoration.BoxDecoration, ['hashCode']);
-  var _cachedBackgroundPaint = dart.privateName(box_decoration, "_cachedBackgroundPaint");
-  var _rectForCachedBackgroundPaint = dart.privateName(box_decoration, "_rectForCachedBackgroundPaint");
-  var _imagePainter = dart.privateName(box_decoration, "_imagePainter");
-  var _decoration$ = dart.privateName(box_decoration, "_decoration");
-  var _getBackgroundPaint = dart.privateName(box_decoration, "_getBackgroundPaint");
-  var _paintBox = dart.privateName(box_decoration, "_paintBox");
-  var _paintShadows = dart.privateName(box_decoration, "_paintShadows");
-  var _paintBackgroundColor = dart.privateName(box_decoration, "_paintBackgroundColor");
-  var _paintBackgroundImage = dart.privateName(box_decoration, "_paintBackgroundImage");
-  box_decoration._BoxDecorationPainter = class _BoxDecorationPainter extends decoration.BoxPainter {
-    [_getBackgroundPaint](rect, textDirection) {
-      if (rect == null) dart.nullFailed(I[0], 392, 34, "rect");
-      if (!(rect != null)) dart.assertFailed(null, I[0], 393, 12, "rect != null");
-      if (!(this[_decoration$].gradient != null || this[_rectForCachedBackgroundPaint] == null)) dart.assertFailed(null, I[0], 394, 12, "_decoration.gradient != null || _rectForCachedBackgroundPaint == null");
-      if (this[_cachedBackgroundPaint] == null || this[_decoration$].gradient != null && !dart.equals(this[_rectForCachedBackgroundPaint], rect)) {
-        let paint = ui.Paint.new();
-        if (this[_decoration$].backgroundBlendMode != null) paint.blendMode = dart.nullCheck(this[_decoration$].backgroundBlendMode);
-        if (this[_decoration$].color != null) paint.color = dart.nullCheck(this[_decoration$].color);
-        if (this[_decoration$].gradient != null) {
-          paint.shader = dart.nullCheck(this[_decoration$].gradient).createShader(rect, {textDirection: textDirection});
-          this[_rectForCachedBackgroundPaint] = rect;
-        }
-        this[_cachedBackgroundPaint] = paint;
-      }
-      return dart.nullCheck(this[_cachedBackgroundPaint]);
-    }
-    [_paintBox](canvas, rect, paint, textDirection) {
-      if (canvas == null) dart.nullFailed(I[0], 413, 25, "canvas");
-      if (rect == null) dart.nullFailed(I[0], 413, 38, "rect");
-      if (paint == null) dart.nullFailed(I[0], 413, 50, "paint");
-      switch (this[_decoration$].shape) {
-        case C[1] || CT.C1:
-        {
-          if (!(this[_decoration$].borderRadius == null)) dart.assertFailed(null, I[0], 416, 16, "_decoration.borderRadius == null");
-          let center = rect.center;
-          let radius = dart.notNull(rect.shortestSide) / 2.0;
-          canvas.drawCircle(center, radius, paint);
-          break;
-        }
-        case C[0] || CT.C0:
-        {
-          if (this[_decoration$].borderRadius == null) {
-            canvas.drawRect(rect, paint);
-          } else {
-            canvas.drawRRect(dart.nullCheck(this[_decoration$].borderRadius).resolve(textDirection).toRRect(rect), paint);
-          }
-          break;
-        }
-        default:
-        {
-          dart.throw(new _internal.ReachabilityError.new("`null` encountered as case in a switch expression with a non-nullable enum type."));
-        }
-      }
-    }
-    [_paintShadows](canvas, rect, textDirection) {
-      if (canvas == null) dart.nullFailed(I[0], 431, 29, "canvas");
-      if (rect == null) dart.nullFailed(I[0], 431, 42, "rect");
-      if (this[_decoration$].boxShadow == null) return;
-      for (let boxShadow of dart.nullCheck(this[_decoration$].boxShadow)) {
-        let paint = boxShadow.toPaint();
-        let bounds = rect.shift(boxShadow.offset).inflate(boxShadow.spreadRadius);
-        this[_paintBox](canvas, bounds, paint, textDirection);
-      }
-    }
-    [_paintBackgroundColor](canvas, rect, textDirection) {
-      if (canvas == null) dart.nullFailed(I[0], 441, 37, "canvas");
-      if (rect == null) dart.nullFailed(I[0], 441, 50, "rect");
-      if (this[_decoration$].color != null || this[_decoration$].gradient != null) this[_paintBox](canvas, rect, this[_getBackgroundPaint](rect, textDirection), textDirection);
-    }
-    [_paintBackgroundImage](canvas, rect, configuration) {
-      let t0, t0$;
-      if (canvas == null) dart.nullFailed(I[0], 447, 37, "canvas");
-      if (rect == null) dart.nullFailed(I[0], 447, 50, "rect");
-      if (configuration == null) dart.nullFailed(I[0], 447, 75, "configuration");
-      if (this[_decoration$].image == null) return;
-      this[_imagePainter] == null ? this[_imagePainter] = dart.nullCheck(this[_decoration$].image).createPainter(dart.nullCheck(this.onChanged)) : null;
-      let clipPath = null;
-      switch (this[_decoration$].shape) {
-        case C[1] || CT.C1:
-        {
-          if (!(this[_decoration$].borderRadius == null)) dart.assertFailed(null, I[0], 454, 16, "_decoration.borderRadius == null");
-          let center = rect.center;
-          let radius = dart.notNull(rect.shortestSide) / 2.0;
-          let square = new ui.Rect.fromCircle({center: center, radius: radius});
-          clipPath = (t0 = ui.Path.new(), (() => {
-            t0.addOval(square);
-            return t0;
-          })());
-          break;
-        }
-        case C[0] || CT.C0:
-        {
-          if (this[_decoration$].borderRadius != null) clipPath = (t0$ = ui.Path.new(), (() => {
-            t0$.addRRect(dart.nullCheck(this[_decoration$].borderRadius).resolve(configuration.textDirection).toRRect(rect));
-            return t0$;
-          })());
-          break;
-        }
-        default:
-        {
-          dart.throw(new _internal.ReachabilityError.new("`null` encountered as case in a switch expression with a non-nullable enum type."));
-        }
-      }
-      dart.nullCheck(this[_imagePainter]).paint(canvas, rect, clipPath, configuration);
-    }
-    dispose() {
-      let t0;
-      t0 = this[_imagePainter];
-      t0 == null ? null : t0.dispose();
-      super.dispose();
-    }
-    paint(canvas, offset, configuration) {
-      let t0;
-      if (canvas == null) dart.nullFailed(I[0], 476, 21, "canvas");
-      if (offset == null) dart.nullFailed(I[0], 476, 36, "offset");
-      if (configuration == null) dart.nullFailed(I[0], 476, 63, "configuration");
-      if (!(configuration != null)) dart.assertFailed(null, I[0], 477, 12, "configuration != null");
-      if (!(configuration.size != null)) dart.assertFailed(null, I[0], 478, 12, "configuration.size != null");
-      let rect = offset['&'](dart.nullCheck(configuration.size));
-      let textDirection = configuration.textDirection;
-      this[_paintShadows](canvas, rect, textDirection);
-      this[_paintBackgroundColor](canvas, rect, textDirection);
-      this[_paintBackgroundImage](canvas, rect, configuration);
-      t0 = this[_decoration$].border;
-      t0 == null ? null : t0.paint(canvas, rect, {shape: this[_decoration$].shape, borderRadius: T.BorderRadiusN().as(this[_decoration$].borderRadius), textDirection: configuration.textDirection});
-    }
-    toString() {
-      return "BoxPainter for " + dart.str(this[_decoration$]);
-    }
-  };
-  (box_decoration._BoxDecorationPainter.new = function(_decoration, onChanged) {
-    if (_decoration == null) dart.nullFailed(I[0], 384, 30, "_decoration");
-    this[_cachedBackgroundPaint] = null;
-    this[_rectForCachedBackgroundPaint] = null;
-    this[_imagePainter] = null;
-    this[_decoration$] = _decoration;
-    if (!(_decoration != null)) dart.assertFailed(null, I[0], 385, 14, "_decoration != null");
-    box_decoration._BoxDecorationPainter.__proto__.new.call(this, onChanged);
-    ;
-  }).prototype = box_decoration._BoxDecorationPainter.prototype;
-  dart.addTypeTests(box_decoration._BoxDecorationPainter);
-  dart.addTypeCaches(box_decoration._BoxDecorationPainter);
-  dart.setMethodSignature(box_decoration._BoxDecorationPainter, () => ({
-    __proto__: dart.getMethods(box_decoration._BoxDecorationPainter.__proto__),
-    [_getBackgroundPaint]: dart.fnType(ui.Paint, [ui.Rect, dart.nullable(ui.TextDirection)]),
-    [_paintBox]: dart.fnType(dart.void, [ui.Canvas, ui.Rect, ui.Paint, dart.nullable(ui.TextDirection)]),
-    [_paintShadows]: dart.fnType(dart.void, [ui.Canvas, ui.Rect, dart.nullable(ui.TextDirection)]),
-    [_paintBackgroundColor]: dart.fnType(dart.void, [ui.Canvas, ui.Rect, dart.nullable(ui.TextDirection)]),
-    [_paintBackgroundImage]: dart.fnType(dart.void, [ui.Canvas, ui.Rect, image_provider.ImageConfiguration]),
-    paint: dart.fnType(dart.void, [ui.Canvas, ui.Offset, image_provider.ImageConfiguration])
-  }));
-  dart.setLibraryUri(box_decoration._BoxDecorationPainter, I[1]);
-  dart.setFieldSignature(box_decoration._BoxDecorationPainter, () => ({
-    __proto__: dart.getFields(box_decoration._BoxDecorationPainter.__proto__),
-    [_decoration$]: dart.finalFieldType(box_decoration.BoxDecoration),
-    [_cachedBackgroundPaint]: dart.fieldType(dart.nullable(ui.Paint)),
-    [_rectForCachedBackgroundPaint]: dart.fieldType(dart.nullable(ui.Rect)),
-    [_imagePainter]: dart.fieldType(dart.nullable(decoration_image.DecorationImagePainter))
-  }));
-  dart.defineExtensionMethods(box_decoration._BoxDecorationPainter, ['toString']);
-  dart.trackLibraries("packages/flutter/src/painting/box_decoration.dart", {
-    "package:flutter/src/painting/box_decoration.dart": box_decoration
+    (_UnorderedElementsIterator.new = function(_queue) {
+      if (_queue == null) dart.nullFailed(I[1], 475, 35, "_queue");
+      this[_current] = null;
+      this[_index] = -1;
+      this[_queue$] = _queue;
+      this[_initialModificationCount] = _queue[_modificationCount];
+      ;
+    }).prototype = _UnorderedElementsIterator.prototype;
+    dart.addTypeTests(_UnorderedElementsIterator);
+    _UnorderedElementsIterator.prototype[_is__UnorderedElementsIterator_default] = true;
+    dart.addTypeCaches(_UnorderedElementsIterator);
+    _UnorderedElementsIterator[dart.implements] = () => [core.Iterator$(E)];
+    dart.setMethodSignature(_UnorderedElementsIterator, () => ({
+      __proto__: dart.getMethods(_UnorderedElementsIterator.__proto__),
+      moveNext: dart.fnType(core.bool, [])
+    }));
+    dart.setGetterSignature(_UnorderedElementsIterator, () => ({
+      __proto__: dart.getGetters(_UnorderedElementsIterator.__proto__),
+      current: E
+    }));
+    dart.setLibraryUri(_UnorderedElementsIterator, I[0]);
+    dart.setFieldSignature(_UnorderedElementsIterator, () => ({
+      __proto__: dart.getFields(_UnorderedElementsIterator.__proto__),
+      [_queue$]: dart.finalFieldType(priority_queue.HeapPriorityQueue$(E)),
+      [_initialModificationCount]: dart.finalFieldType(core.int),
+      [_current]: dart.fieldType(dart.nullable(E)),
+      [_index]: dart.fieldType(core.int)
+    }));
+    return _UnorderedElementsIterator;
+  });
+  priority_queue._UnorderedElementsIterator = priority_queue._UnorderedElementsIterator$();
+  dart.addTypeTests(priority_queue._UnorderedElementsIterator, _is__UnorderedElementsIterator_default);
+  dart.trackLibraries("packages/collection/src/priority_queue.dart", {
+    "package:collection/src/priority_queue.dart": priority_queue
   }, {
-  }, '{"version":3,"sourceRoot":"","sources":["box_decoration.dart"],"names":[],"mappings":"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","file":"../../../../../../../../D:/packages/flutter/src/painting/box_decoration.dart.lib.js"}');
+  }, '{"version":3,"sourceRoot":"","sources":["priority_queue.dart"],"names":[],"mappings":"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","file":"../../../../../../../../../D:/packages/collection/src/priority_queue.dart.lib.js"}');
   // Exports:
   return {
-    src__painting__box_decoration: box_decoration
+    src__priority_queue: priority_queue
   };
 }));
 
-//# sourceMappingURL=box_decoration.dart.lib.js.map
+//# sourceMappingURL=priority_queue.dart.lib.js.map

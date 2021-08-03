@@ -1,347 +1,425 @@
-define(['dart_sdk', 'packages/flutter/src/gestures/debug.dart', 'packages/flutter/src/foundation/print.dart'], (function load__packages__flutter__src__gestures__arena_dart(dart_sdk, packages__flutter__src__gestures__debug$46dart, packages__flutter__src__foundation__print$46dart) {
+define(['dart_sdk'], (function load__packages__intl__date_symbols_dart(dart_sdk) {
   'use strict';
   const core = dart_sdk.core;
-  const _interceptors = dart_sdk._interceptors;
+  const collection = dart_sdk.collection;
   const _js_helper = dart_sdk._js_helper;
-  const async = dart_sdk.async;
   const dart = dart_sdk.dart;
   const dartx = dart_sdk.dartx;
-  const debug = packages__flutter__src__gestures__debug$46dart.src__gestures__debug;
-  const print = packages__flutter__src__foundation__print$46dart.src__foundation__print;
-  var arena = Object.create(dart.library);
-  var $add = dartx.add;
-  var $isEmpty = dartx.isEmpty;
-  var $map = dartx.map;
-  var $join = dartx.join;
-  var $putIfAbsent = dartx.putIfAbsent;
+  var date_symbols = Object.create(dart.library);
   var $_get = dartx._get;
-  var $remove = dartx.remove;
-  var $isNotEmpty = dartx.isNotEmpty;
-  var $first = dartx.first;
-  var $length = dartx.length;
-  var $contains = dartx.contains;
-  var $containsKey = dartx.containsKey;
-  var $toString = dartx.toString;
-  var $padRight = dartx.padRight;
+  var $_set = dartx._set;
   dart._checkModuleNullSafetyMode(false);
   var T = {
-    GestureDispositionL: () => (T.GestureDispositionL = dart.constFn(dart.legacy(arena.GestureDisposition)))(),
-    JSArrayOfGestureArenaMember: () => (T.JSArrayOfGestureArenaMember = dart.constFn(_interceptors.JSArray$(arena.GestureArenaMember)))(),
-    GestureArenaMemberToString: () => (T.GestureArenaMemberToString = dart.constFn(dart.fnType(core.String, [arena.GestureArenaMember])))(),
-    IdentityMapOfint$_GestureArena: () => (T.IdentityMapOfint$_GestureArena = dart.constFn(_js_helper.IdentityMap$(core.int, arena._GestureArena)))(),
-    VoidTo_GestureArena: () => (T.VoidTo_GestureArena = dart.constFn(dart.fnType(arena._GestureArena, [])))(),
-    VoidTovoid: () => (T.VoidTovoid = dart.constFn(dart.fnType(dart.void, [])))(),
-    VoidTobool: () => (T.VoidTobool = dart.constFn(dart.fnType(core.bool, [])))()
+    ListOfString: () => (T.ListOfString = dart.constFn(core.List$(core.String)))(),
+    StringToListOfString: () => (T.StringToListOfString = dart.constFn(dart.fnType(T.ListOfString(), [core.String])))(),
+    StringN: () => (T.StringN = dart.constFn(dart.nullable(core.String)))(),
+    LinkedHashMapOfString$String: () => (T.LinkedHashMapOfString$String = dart.constFn(collection.LinkedHashMap$(core.String, core.String)))(),
+    ListOfint: () => (T.ListOfint = dart.constFn(core.List$(core.int)))(),
+    IdentityMapOfString$dynamic: () => (T.IdentityMapOfString$dynamic = dart.constFn(_js_helper.IdentityMap$(core.String, dart.dynamic)))(),
+    StringL: () => (T.StringL = dart.constFn(dart.legacy(core.String)))(),
+    intL: () => (T.intL = dart.constFn(dart.legacy(core.int)))()
   };
   const CT = Object.create({
     _: () => (C, CT)
   });
   dart.defineLazy(CT, {
     get C0() {
-      return C[0] = dart.const({
-        __proto__: arena.GestureDisposition.prototype,
-        [_name$]: "GestureDisposition.accepted",
-        index: 0
-      });
+      return C[0] = dart.constList(["BC", "AD"], T.StringL());
     },
     get C1() {
-      return C[1] = dart.const({
-        __proto__: arena.GestureDisposition.prototype,
-        [_name$]: "GestureDisposition.rejected",
-        index: 1
-      });
+      return C[1] = dart.constList(["Before Christ", "Anno Domini"], T.StringL());
     },
     get C2() {
-      return C[2] = dart.constList([C[0] || CT.C0, C[1] || CT.C1], T.GestureDispositionL());
+      return C[2] = dart.constList(["J", "F", "M", "A", "M", "J", "J", "A", "S", "O", "N", "D"], T.StringL());
+    },
+    get C3() {
+      return C[3] = dart.constList(["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"], T.StringL());
+    },
+    get C4() {
+      return C[4] = dart.constList(["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"], T.StringL());
+    },
+    get C5() {
+      return C[5] = dart.constList(["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"], T.StringL());
+    },
+    get C6() {
+      return C[6] = dart.constList(["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"], T.StringL());
+    },
+    get C7() {
+      return C[7] = dart.constList(["S", "M", "T", "W", "T", "F", "S"], T.StringL());
+    },
+    get C8() {
+      return C[8] = dart.constList(["Q1", "Q2", "Q3", "Q4"], T.StringL());
+    },
+    get C9() {
+      return C[9] = dart.constList(["1st quarter", "2nd quarter", "3rd quarter", "4th quarter"], T.StringL());
+    },
+    get C10() {
+      return C[10] = dart.constList(["AM", "PM"], T.StringL());
+    },
+    get C11() {
+      return C[11] = dart.constList(["EEEE, MMMM d, y", "MMMM d, y", "MMM d, y", "M/d/yy"], T.StringL());
+    },
+    get C12() {
+      return C[12] = dart.constList(["h:mm:ss a zzzz", "h:mm:ss a z", "h:mm:ss a", "h:mm a"], T.StringL());
+    },
+    get C13() {
+      return C[13] = dart.constList([5, 6], T.intL());
+    },
+    get C14() {
+      return C[14] = dart.constList(["{1} 'at' {0}", "{1} 'at' {0}", "{1}, {0}", "{1}, {0}"], T.StringL());
+    },
+    get C15() {
+      return C[15] = dart.constMap(T.StringL(), T.StringL(), ["d", "d", "E", "EEE", "EEEE", "EEEE", "LLL", "LLL", "LLLL", "LLLL", "M", "L", "Md", "M/d", "MEd", "EEE, M/d", "MMM", "LLL", "MMMd", "MMM d", "MMMEd", "EEE, MMM d", "MMMM", "LLLL", "MMMMd", "MMMM d", "MMMMEEEEd", "EEEE, MMMM d", "QQQ", "QQQ", "QQQQ", "QQQQ", "y", "y", "yM", "M/y", "yMd", "M/d/y", "yMEd", "EEE, M/d/y", "yMMM", "MMM y", "yMMMd", "MMM d, y", "yMMMEd", "EEE, MMM d, y", "yMMMM", "MMMM y", "yMMMMd", "MMMM d, y", "yMMMMEEEEd", "EEEE, MMMM d, y", "yQQQ", "QQQ y", "yQQQQ", "QQQQ y", "H", "HH", "Hm", "HH:mm", "Hms", "HH:mm:ss", "j", "h a", "jm", "h:mm a", "jms", "h:mm:ss a", "jmv", "h:mm a v", "jmz", "h:mm a z", "jz", "h a z", "m", "m", "ms", "mm:ss", "s", "s", "v", "v", "z", "z", "zzzz", "zzzz", "ZZZZ", "ZZZZ"]);
     }
   }, false);
-  var C = Array(3).fill(void 0);
+  var C = Array(16).fill(void 0);
   var I = [
-    "file:///C:/src/flutter/packages/flutter/lib/src/gestures/arena.dart",
-    "package:flutter/src/gestures/arena.dart"
+    "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/intl-0.17.0/lib/date_symbols.dart",
+    "package:intl/date_symbols.dart"
   ];
-  var _name$ = dart.privateName(arena, "_name");
-  arena.GestureDisposition = class GestureDisposition extends core.Object {
-    toString() {
-      return this[_name$];
+  var NAME$ = dart.privateName(date_symbols, "DateSymbols.NAME");
+  var ERAS$ = dart.privateName(date_symbols, "DateSymbols.ERAS");
+  var ERANAMES$ = dart.privateName(date_symbols, "DateSymbols.ERANAMES");
+  var NARROWMONTHS$ = dart.privateName(date_symbols, "DateSymbols.NARROWMONTHS");
+  var STANDALONENARROWMONTHS$ = dart.privateName(date_symbols, "DateSymbols.STANDALONENARROWMONTHS");
+  var MONTHS$ = dart.privateName(date_symbols, "DateSymbols.MONTHS");
+  var STANDALONEMONTHS$ = dart.privateName(date_symbols, "DateSymbols.STANDALONEMONTHS");
+  var SHORTMONTHS$ = dart.privateName(date_symbols, "DateSymbols.SHORTMONTHS");
+  var STANDALONESHORTMONTHS$ = dart.privateName(date_symbols, "DateSymbols.STANDALONESHORTMONTHS");
+  var WEEKDAYS$ = dart.privateName(date_symbols, "DateSymbols.WEEKDAYS");
+  var STANDALONEWEEKDAYS$ = dart.privateName(date_symbols, "DateSymbols.STANDALONEWEEKDAYS");
+  var SHORTWEEKDAYS$ = dart.privateName(date_symbols, "DateSymbols.SHORTWEEKDAYS");
+  var STANDALONESHORTWEEKDAYS$ = dart.privateName(date_symbols, "DateSymbols.STANDALONESHORTWEEKDAYS");
+  var NARROWWEEKDAYS$ = dart.privateName(date_symbols, "DateSymbols.NARROWWEEKDAYS");
+  var STANDALONENARROWWEEKDAYS$ = dart.privateName(date_symbols, "DateSymbols.STANDALONENARROWWEEKDAYS");
+  var SHORTQUARTERS$ = dart.privateName(date_symbols, "DateSymbols.SHORTQUARTERS");
+  var QUARTERS$ = dart.privateName(date_symbols, "DateSymbols.QUARTERS");
+  var AMPMS$ = dart.privateName(date_symbols, "DateSymbols.AMPMS");
+  var DATEFORMATS$ = dart.privateName(date_symbols, "DateSymbols.DATEFORMATS");
+  var TIMEFORMATS$ = dart.privateName(date_symbols, "DateSymbols.TIMEFORMATS");
+  var DATETIMEFORMATS$ = dart.privateName(date_symbols, "DateSymbols.DATETIMEFORMATS");
+  var AVAILABLEFORMATS$ = dart.privateName(date_symbols, "DateSymbols.AVAILABLEFORMATS");
+  var FIRSTDAYOFWEEK$ = dart.privateName(date_symbols, "DateSymbols.FIRSTDAYOFWEEK");
+  var WEEKENDRANGE$ = dart.privateName(date_symbols, "DateSymbols.WEEKENDRANGE");
+  var FIRSTWEEKCUTOFFDAY$ = dart.privateName(date_symbols, "DateSymbols.FIRSTWEEKCUTOFFDAY");
+  var ZERODIGIT$ = dart.privateName(date_symbols, "DateSymbols.ZERODIGIT");
+  var _serializeToMap = dart.privateName(date_symbols, "_serializeToMap");
+  date_symbols.DateSymbols = class DateSymbols extends core.Object {
+    get NAME() {
+      return this[NAME$];
     }
-  };
-  (arena.GestureDisposition.new = function(index, _name) {
-    if (index == null) dart.nullFailed(I[0], 13, 6, "index");
-    if (_name == null) dart.nullFailed(I[0], 13, 6, "_name");
-    this.index = index;
-    this[_name$] = _name;
-    ;
-  }).prototype = arena.GestureDisposition.prototype;
-  dart.addTypeTests(arena.GestureDisposition);
-  dart.addTypeCaches(arena.GestureDisposition);
-  dart.setLibraryUri(arena.GestureDisposition, I[1]);
-  dart.setFieldSignature(arena.GestureDisposition, () => ({
-    __proto__: dart.getFields(arena.GestureDisposition.__proto__),
-    index: dart.finalFieldType(core.int),
-    [_name$]: dart.finalFieldType(core.String)
-  }));
-  dart.defineExtensionMethods(arena.GestureDisposition, ['toString']);
-  arena.GestureDisposition.accepted = C[0] || CT.C0;
-  arena.GestureDisposition.rejected = C[1] || CT.C1;
-  arena.GestureDisposition.values = C[2] || CT.C2;
-  arena.GestureArenaMember = class GestureArenaMember extends core.Object {};
-  (arena.GestureArenaMember.new = function() {
-    ;
-  }).prototype = arena.GestureArenaMember.prototype;
-  dart.addTypeTests(arena.GestureArenaMember);
-  dart.addTypeCaches(arena.GestureArenaMember);
-  dart.setLibraryUri(arena.GestureArenaMember, I[1]);
-  var _arena$ = dart.privateName(arena, "_arena");
-  var _pointer$ = dart.privateName(arena, "_pointer");
-  var _member$ = dart.privateName(arena, "_member");
-  var _resolve = dart.privateName(arena, "_resolve");
-  arena.GestureArenaEntry = class GestureArenaEntry extends core.Object {
-    resolve(disposition) {
-      if (disposition == null) dart.nullFailed(I[0], 52, 35, "disposition");
-      this[_arena$][_resolve](this[_pointer$], this[_member$], disposition);
+    set NAME(value) {
+      this[NAME$] = value;
     }
-  };
-  (arena.GestureArenaEntry.__ = function(_arena, _pointer, _member) {
-    if (_arena == null) dart.nullFailed(I[0], 42, 28, "_arena");
-    if (_pointer == null) dart.nullFailed(I[0], 42, 41, "_pointer");
-    if (_member == null) dart.nullFailed(I[0], 42, 56, "_member");
-    this[_arena$] = _arena;
-    this[_pointer$] = _pointer;
-    this[_member$] = _member;
-    ;
-  }).prototype = arena.GestureArenaEntry.prototype;
-  dart.addTypeTests(arena.GestureArenaEntry);
-  dart.addTypeCaches(arena.GestureArenaEntry);
-  dart.setMethodSignature(arena.GestureArenaEntry, () => ({
-    __proto__: dart.getMethods(arena.GestureArenaEntry.__proto__),
-    resolve: dart.fnType(dart.void, [arena.GestureDisposition])
-  }));
-  dart.setLibraryUri(arena.GestureArenaEntry, I[1]);
-  dart.setFieldSignature(arena.GestureArenaEntry, () => ({
-    __proto__: dart.getFields(arena.GestureArenaEntry.__proto__),
-    [_arena$]: dart.finalFieldType(arena.GestureArenaManager),
-    [_pointer$]: dart.finalFieldType(core.int),
-    [_member$]: dart.finalFieldType(arena.GestureArenaMember)
-  }));
-  arena._GestureArena = class _GestureArena extends core.Object {
-    add(member) {
-      if (member == null) dart.nullFailed(I[0], 69, 31, "member");
-      if (!dart.test(this.isOpen)) dart.assertFailed(null, I[0], 70, 12, "isOpen");
-      this.members[$add](member);
+    get ERAS() {
+      return this[ERAS$];
     }
-    toString() {
-      let buffer = new core.StringBuffer.new();
-      if (dart.test(this.members[$isEmpty])) {
-        buffer.write("<empty>");
-      } else {
-        buffer.write(this.members[$map](core.String, dart.fn(member => {
-          if (member == null) dart.nullFailed(I[0], 80, 60, "member");
-          if (dart.equals(member, this.eagerWinner)) return dart.str(member) + " (eager winner)";
-          return dart.str(member);
-        }, T.GestureArenaMemberToString()))[$join](", "));
-      }
-      if (dart.test(this.isOpen)) buffer.write(" [open]");
-      if (dart.test(this.isHeld)) buffer.write(" [held]");
-      if (dart.test(this.hasPendingSweep)) buffer.write(" [hasPendingSweep]");
-      return buffer.toString();
+    set ERAS(value) {
+      this[ERAS$] = value;
     }
-  };
-  (arena._GestureArena.new = function() {
-    this.members = T.JSArrayOfGestureArenaMember().of([]);
-    this.isOpen = true;
-    this.isHeld = false;
-    this.hasPendingSweep = false;
-    this.eagerWinner = null;
-    ;
-  }).prototype = arena._GestureArena.prototype;
-  dart.addTypeTests(arena._GestureArena);
-  dart.addTypeCaches(arena._GestureArena);
-  dart.setMethodSignature(arena._GestureArena, () => ({
-    __proto__: dart.getMethods(arena._GestureArena.__proto__),
-    add: dart.fnType(dart.void, [arena.GestureArenaMember])
-  }));
-  dart.setLibraryUri(arena._GestureArena, I[1]);
-  dart.setFieldSignature(arena._GestureArena, () => ({
-    __proto__: dart.getFields(arena._GestureArena.__proto__),
-    members: dart.finalFieldType(core.List$(arena.GestureArenaMember)),
-    isOpen: dart.fieldType(core.bool),
-    isHeld: dart.fieldType(core.bool),
-    hasPendingSweep: dart.fieldType(core.bool),
-    eagerWinner: dart.fieldType(dart.nullable(arena.GestureArenaMember))
-  }));
-  dart.defineExtensionMethods(arena._GestureArena, ['toString']);
-  var _arenas = dart.privateName(arena, "_arenas");
-  var _debugLogDiagnostic = dart.privateName(arena, "_debugLogDiagnostic");
-  var _tryToResolveArena = dart.privateName(arena, "_tryToResolveArena");
-  var _resolveInFavorOf = dart.privateName(arena, "_resolveInFavorOf");
-  var _resolveByDefault = dart.privateName(arena, "_resolveByDefault");
-  arena.GestureArenaManager = class GestureArenaManager extends core.Object {
-    add(pointer, member) {
-      if (pointer == null) dart.nullFailed(I[0], 107, 29, "pointer");
-      if (member == null) dart.nullFailed(I[0], 107, 57, "member");
-      let state = this[_arenas][$putIfAbsent](pointer, dart.fn(() => {
-        if (!dart.test(this[_debugLogDiagnostic](pointer, "★ Opening new gesture arena."))) dart.assertFailed(null, I[0], 109, 14, "_debugLogDiagnostic(pointer, '★ Opening new gesture arena.')");
-        return new arena._GestureArena.new();
-      }, T.VoidTo_GestureArena()));
-      state.add(member);
-      if (!dart.test(this[_debugLogDiagnostic](pointer, "Adding: " + dart.str(member)))) dart.assertFailed(null, I[0], 113, 12, "_debugLogDiagnostic(pointer, 'Adding: $member')");
-      return new arena.GestureArenaEntry.__(this, pointer, member);
+    get ERANAMES() {
+      return this[ERANAMES$];
     }
-    close(pointer) {
-      if (pointer == null) dart.nullFailed(I[0], 120, 18, "pointer");
-      let state = this[_arenas][$_get](pointer);
-      if (state == null) return;
-      state.isOpen = false;
-      if (!dart.test(this[_debugLogDiagnostic](pointer, "Closing", state))) dart.assertFailed(null, I[0], 125, 12, "_debugLogDiagnostic(pointer, 'Closing', state)");
-      this[_tryToResolveArena](pointer, state);
+    set ERANAMES(value) {
+      this[ERANAMES$] = value;
     }
-    sweep(pointer) {
-      if (pointer == null) dart.nullFailed(I[0], 142, 18, "pointer");
-      let state = this[_arenas][$_get](pointer);
-      if (state == null) return;
-      if (!!dart.test(state.isOpen)) dart.assertFailed(null, I[0], 146, 12, "!state.isOpen");
-      if (dart.test(state.isHeld)) {
-        state.hasPendingSweep = true;
-        if (!dart.test(this[_debugLogDiagnostic](pointer, "Delaying sweep", state))) dart.assertFailed(null, I[0], 149, 14, "_debugLogDiagnostic(pointer, 'Delaying sweep', state)");
-        return;
-      }
-      if (!dart.test(this[_debugLogDiagnostic](pointer, "Sweeping", state))) dart.assertFailed(null, I[0], 152, 12, "_debugLogDiagnostic(pointer, 'Sweeping', state)");
-      this[_arenas][$remove](pointer);
-      if (dart.test(state.members[$isNotEmpty])) {
-        if (!dart.test(this[_debugLogDiagnostic](pointer, "Winner: " + dart.str(state.members[$first])))) dart.assertFailed(null, I[0], 156, 14, "_debugLogDiagnostic(pointer, 'Winner: ${state.members.first}')");
-        state.members[$first].acceptGesture(pointer);
-        for (let i = 1; i < dart.notNull(state.members[$length]); i = i + 1)
-          state.members[$_get](i).rejectGesture(pointer);
-      }
+    get NARROWMONTHS() {
+      return this[NARROWMONTHS$];
     }
-    hold(pointer) {
-      if (pointer == null) dart.nullFailed(I[0], 176, 17, "pointer");
-      let state = this[_arenas][$_get](pointer);
-      if (state == null) return;
-      state.isHeld = true;
-      if (!dart.test(this[_debugLogDiagnostic](pointer, "Holding", state))) dart.assertFailed(null, I[0], 181, 12, "_debugLogDiagnostic(pointer, 'Holding', state)");
+    set NARROWMONTHS(value) {
+      this[NARROWMONTHS$] = value;
     }
-    release(pointer) {
-      if (pointer == null) dart.nullFailed(I[0], 193, 20, "pointer");
-      let state = this[_arenas][$_get](pointer);
-      if (state == null) return;
-      state.isHeld = false;
-      if (!dart.test(this[_debugLogDiagnostic](pointer, "Releasing", state))) dart.assertFailed(null, I[0], 198, 12, "_debugLogDiagnostic(pointer, 'Releasing', state)");
-      if (dart.test(state.hasPendingSweep)) this.sweep(pointer);
+    get STANDALONENARROWMONTHS() {
+      return this[STANDALONENARROWMONTHS$];
     }
-    [_resolve](pointer, member, disposition) {
+    set STANDALONENARROWMONTHS(value) {
+      this[STANDALONENARROWMONTHS$] = value;
+    }
+    get MONTHS() {
+      return this[MONTHS$];
+    }
+    set MONTHS(value) {
+      this[MONTHS$] = value;
+    }
+    get STANDALONEMONTHS() {
+      return this[STANDALONEMONTHS$];
+    }
+    set STANDALONEMONTHS(value) {
+      this[STANDALONEMONTHS$] = value;
+    }
+    get SHORTMONTHS() {
+      return this[SHORTMONTHS$];
+    }
+    set SHORTMONTHS(value) {
+      this[SHORTMONTHS$] = value;
+    }
+    get STANDALONESHORTMONTHS() {
+      return this[STANDALONESHORTMONTHS$];
+    }
+    set STANDALONESHORTMONTHS(value) {
+      this[STANDALONESHORTMONTHS$] = value;
+    }
+    get WEEKDAYS() {
+      return this[WEEKDAYS$];
+    }
+    set WEEKDAYS(value) {
+      this[WEEKDAYS$] = value;
+    }
+    get STANDALONEWEEKDAYS() {
+      return this[STANDALONEWEEKDAYS$];
+    }
+    set STANDALONEWEEKDAYS(value) {
+      this[STANDALONEWEEKDAYS$] = value;
+    }
+    get SHORTWEEKDAYS() {
+      return this[SHORTWEEKDAYS$];
+    }
+    set SHORTWEEKDAYS(value) {
+      this[SHORTWEEKDAYS$] = value;
+    }
+    get STANDALONESHORTWEEKDAYS() {
+      return this[STANDALONESHORTWEEKDAYS$];
+    }
+    set STANDALONESHORTWEEKDAYS(value) {
+      this[STANDALONESHORTWEEKDAYS$] = value;
+    }
+    get NARROWWEEKDAYS() {
+      return this[NARROWWEEKDAYS$];
+    }
+    set NARROWWEEKDAYS(value) {
+      this[NARROWWEEKDAYS$] = value;
+    }
+    get STANDALONENARROWWEEKDAYS() {
+      return this[STANDALONENARROWWEEKDAYS$];
+    }
+    set STANDALONENARROWWEEKDAYS(value) {
+      this[STANDALONENARROWWEEKDAYS$] = value;
+    }
+    get SHORTQUARTERS() {
+      return this[SHORTQUARTERS$];
+    }
+    set SHORTQUARTERS(value) {
+      this[SHORTQUARTERS$] = value;
+    }
+    get QUARTERS() {
+      return this[QUARTERS$];
+    }
+    set QUARTERS(value) {
+      this[QUARTERS$] = value;
+    }
+    get AMPMS() {
+      return this[AMPMS$];
+    }
+    set AMPMS(value) {
+      this[AMPMS$] = value;
+    }
+    get DATEFORMATS() {
+      return this[DATEFORMATS$];
+    }
+    set DATEFORMATS(value) {
+      this[DATEFORMATS$] = value;
+    }
+    get TIMEFORMATS() {
+      return this[TIMEFORMATS$];
+    }
+    set TIMEFORMATS(value) {
+      this[TIMEFORMATS$] = value;
+    }
+    get DATETIMEFORMATS() {
+      return this[DATETIMEFORMATS$];
+    }
+    set DATETIMEFORMATS(value) {
+      this[DATETIMEFORMATS$] = value;
+    }
+    get AVAILABLEFORMATS() {
+      return this[AVAILABLEFORMATS$];
+    }
+    set AVAILABLEFORMATS(value) {
+      this[AVAILABLEFORMATS$] = value;
+    }
+    get FIRSTDAYOFWEEK() {
+      return this[FIRSTDAYOFWEEK$];
+    }
+    set FIRSTDAYOFWEEK(value) {
+      this[FIRSTDAYOFWEEK$] = value;
+    }
+    get WEEKENDRANGE() {
+      return this[WEEKENDRANGE$];
+    }
+    set WEEKENDRANGE(value) {
+      this[WEEKENDRANGE$] = value;
+    }
+    get FIRSTWEEKCUTOFFDAY() {
+      return this[FIRSTWEEKCUTOFFDAY$];
+    }
+    set FIRSTWEEKCUTOFFDAY(value) {
+      this[FIRSTWEEKCUTOFFDAY$] = value;
+    }
+    get ZERODIGIT() {
+      return this[ZERODIGIT$];
+    }
+    set ZERODIGIT(value) {
+      this[ZERODIGIT$] = value;
+    }
+    static deserializeFromMap(map) {
       let t0;
-      if (pointer == null) dart.nullFailed(I[0], 206, 21, "pointer");
-      if (member == null) dart.nullFailed(I[0], 206, 49, "member");
-      if (disposition == null) dart.nullFailed(I[0], 206, 76, "disposition");
-      let state = this[_arenas][$_get](pointer);
-      if (state == null) return;
-      if (!dart.test(this[_debugLogDiagnostic](pointer, (disposition == arena.GestureDisposition.accepted ? "Accepting" : "Rejecting") + ": " + dart.str(member)))) dart.assertFailed(null, I[0], 210, 12, "_debugLogDiagnostic(pointer, '${ disposition == GestureDisposition.accepted ? \"Accepting\" : \"Rejecting\" }: $member')");
-      if (!dart.test(state.members[$contains](member))) dart.assertFailed(null, I[0], 211, 12, "state.members.contains(member)");
-      if (disposition == arena.GestureDisposition.rejected) {
-        state.members[$remove](member);
-        member.rejectGesture(pointer);
-        if (!dart.test(state.isOpen)) this[_tryToResolveArena](pointer, state);
-      } else {
-        if (!(disposition == arena.GestureDisposition.accepted)) dart.assertFailed(null, I[0], 218, 14, "disposition == GestureDisposition.accepted");
-        if (dart.test(state.isOpen)) {
-          t0 = state;
-          t0.eagerWinner == null ? t0.eagerWinner = member : null;
-        } else {
-          if (!dart.test(this[_debugLogDiagnostic](pointer, "Self-declared winner: " + dart.str(member)))) dart.assertFailed(null, I[0], 222, 16, "_debugLogDiagnostic(pointer, 'Self-declared winner: $member')");
-          this[_resolveInFavorOf](pointer, state, member);
-        }
+      if (map == null) dart.nullFailed(I[0], 138, 64, "map");
+      function _getStringList(name) {
+        if (name == null) dart.nullFailed(I[0], 139, 40, "name");
+        return T.ListOfString().from(core.Iterable.as(map[$_get](name)));
       }
+      dart.fn(_getStringList, T.StringToListOfString());
+      return new date_symbols.DateSymbols.new({NAME: core.String.as(map[$_get]("NAME")), ERAS: _getStringList("ERAS"), ERANAMES: _getStringList("ERANAMES"), NARROWMONTHS: _getStringList("NARROWMONTHS"), STANDALONENARROWMONTHS: _getStringList("STANDALONENARROWMONTHS"), MONTHS: _getStringList("MONTHS"), STANDALONEMONTHS: _getStringList("STANDALONEMONTHS"), SHORTMONTHS: _getStringList("SHORTMONTHS"), STANDALONESHORTMONTHS: _getStringList("STANDALONESHORTMONTHS"), WEEKDAYS: _getStringList("WEEKDAYS"), STANDALONEWEEKDAYS: _getStringList("STANDALONEWEEKDAYS"), SHORTWEEKDAYS: _getStringList("SHORTWEEKDAYS"), STANDALONESHORTWEEKDAYS: _getStringList("STANDALONESHORTWEEKDAYS"), NARROWWEEKDAYS: _getStringList("NARROWWEEKDAYS"), STANDALONENARROWWEEKDAYS: _getStringList("STANDALONENARROWWEEKDAYS"), SHORTQUARTERS: _getStringList("SHORTQUARTERS"), QUARTERS: _getStringList("QUARTERS"), AMPMS: _getStringList("AMPMS"), ZERODIGIT: T.StringN().as(map[$_get]("ZERODIGIT")), DATEFORMATS: _getStringList("DATEFORMATS"), TIMEFORMATS: _getStringList("TIMEFORMATS"), AVAILABLEFORMATS: T.LinkedHashMapOfString$String().from(core.Map.as((t0 = map[$_get]("AVAILABLEFORMATS"), t0 == null ? new _js_helper.LinkedMap.new() : t0))), FIRSTDAYOFWEEK: core.int.as(map[$_get]("FIRSTDAYOFWEEK")), WEEKENDRANGE: T.ListOfint().from(core.Iterable.as(map[$_get]("WEEKENDRANGE"))), FIRSTWEEKCUTOFFDAY: core.int.as(map[$_get]("FIRSTWEEKCUTOFFDAY")), DATETIMEFORMATS: _getStringList("DATETIMEFORMATS")});
     }
-    [_tryToResolveArena](pointer, state) {
-      if (pointer == null) dart.nullFailed(I[0], 228, 31, "pointer");
-      if (state == null) dart.nullFailed(I[0], 228, 54, "state");
-      if (!dart.equals(this[_arenas][$_get](pointer), state)) dart.assertFailed(null, I[0], 229, 12, "_arenas[pointer] == state");
-      if (!!dart.test(state.isOpen)) dart.assertFailed(null, I[0], 230, 12, "!state.isOpen");
-      if (state.members[$length] === 1) {
-        async.scheduleMicrotask(dart.fn(() => this[_resolveByDefault](pointer, state), T.VoidTovoid()));
-      } else if (dart.test(state.members[$isEmpty])) {
-        this[_arenas][$remove](pointer);
-        if (!dart.test(this[_debugLogDiagnostic](pointer, "Arena empty."))) dart.assertFailed(null, I[0], 235, 14, "_debugLogDiagnostic(pointer, 'Arena empty.')");
-      } else if (state.eagerWinner != null) {
-        if (!dart.test(this[_debugLogDiagnostic](pointer, "Eager winner: " + dart.str(state.eagerWinner)))) dart.assertFailed(null, I[0], 237, 14, "_debugLogDiagnostic(pointer, 'Eager winner: ${state.eagerWinner}')");
-        this[_resolveInFavorOf](pointer, state, dart.nullCheck(state.eagerWinner));
+    serializeToMap() {
+      let basicMap = this[_serializeToMap]();
+      if (this.ZERODIGIT != null && this.ZERODIGIT !== "") {
+        basicMap[$_set]("ZERODIGIT", this.ZERODIGIT);
       }
+      return basicMap;
     }
-    [_resolveByDefault](pointer, state) {
-      if (pointer == null) dart.nullFailed(I[0], 242, 30, "pointer");
-      if (state == null) dart.nullFailed(I[0], 242, 53, "state");
-      if (!dart.test(this[_arenas][$containsKey](pointer))) return;
-      if (!dart.equals(this[_arenas][$_get](pointer), state)) dart.assertFailed(null, I[0], 245, 12, "_arenas[pointer] == state");
-      if (!!dart.test(state.isOpen)) dart.assertFailed(null, I[0], 246, 12, "!state.isOpen");
-      let members = state.members;
-      if (!(members[$length] === 1)) dart.assertFailed(null, I[0], 248, 12, "members.length == 1");
-      this[_arenas][$remove](pointer);
-      if (!dart.test(this[_debugLogDiagnostic](pointer, "Default winner: " + dart.str(state.members[$first])))) dart.assertFailed(null, I[0], 250, 12, "_debugLogDiagnostic(pointer, 'Default winner: ${state.members.first}')");
-      state.members[$first].acceptGesture(pointer);
+    [_serializeToMap]() {
+      return new (T.IdentityMapOfString$dynamic()).from(["NAME", this.NAME, "ERAS", this.ERAS, "ERANAMES", this.ERANAMES, "NARROWMONTHS", this.NARROWMONTHS, "STANDALONENARROWMONTHS", this.STANDALONENARROWMONTHS, "MONTHS", this.MONTHS, "STANDALONEMONTHS", this.STANDALONEMONTHS, "SHORTMONTHS", this.SHORTMONTHS, "STANDALONESHORTMONTHS", this.STANDALONESHORTMONTHS, "WEEKDAYS", this.WEEKDAYS, "STANDALONEWEEKDAYS", this.STANDALONEWEEKDAYS, "SHORTWEEKDAYS", this.SHORTWEEKDAYS, "STANDALONESHORTWEEKDAYS", this.STANDALONESHORTWEEKDAYS, "NARROWWEEKDAYS", this.NARROWWEEKDAYS, "STANDALONENARROWWEEKDAYS", this.STANDALONENARROWWEEKDAYS, "SHORTQUARTERS", this.SHORTQUARTERS, "QUARTERS", this.QUARTERS, "AMPMS", this.AMPMS, "DATEFORMATS", this.DATEFORMATS, "TIMEFORMATS", this.TIMEFORMATS, "AVAILABLEFORMATS", this.AVAILABLEFORMATS, "FIRSTDAYOFWEEK", this.FIRSTDAYOFWEEK, "WEEKENDRANGE", this.WEEKENDRANGE, "FIRSTWEEKCUTOFFDAY", this.FIRSTWEEKCUTOFFDAY, "DATETIMEFORMATS", this.DATETIMEFORMATS]);
     }
-    [_resolveInFavorOf](pointer, state, member) {
-      if (pointer == null) dart.nullFailed(I[0], 254, 30, "pointer");
-      if (state == null) dart.nullFailed(I[0], 254, 53, "state");
-      if (member == null) dart.nullFailed(I[0], 254, 79, "member");
-      if (!dart.equals(state, this[_arenas][$_get](pointer))) dart.assertFailed(null, I[0], 255, 12, "state == _arenas[pointer]");
-      if (!(state != null)) dart.assertFailed(null, I[0], 256, 12, "state != null");
-      if (!(state.eagerWinner == null || dart.equals(state.eagerWinner, member))) dart.assertFailed(null, I[0], 257, 12, "state.eagerWinner == null || state.eagerWinner == member");
-      if (!!dart.test(state.isOpen)) dart.assertFailed(null, I[0], 258, 12, "!state.isOpen");
-      this[_arenas][$remove](pointer);
-      for (let rejectedMember of state.members) {
-        if (!dart.equals(rejectedMember, member)) rejectedMember.rejectGesture(pointer);
-      }
-      member.acceptGesture(pointer);
-    }
-    [_debugLogDiagnostic](pointer, message, state = null) {
-      if (pointer == null) dart.nullFailed(I[0], 267, 32, "pointer");
-      if (message == null) dart.nullFailed(I[0], 267, 48, "message");
-      if (!dart.test(dart.fn(() => {
-        let t0;
-        if (dart.test(debug.debugPrintGestureArenaDiagnostics)) {
-          let count = (t0 = state, t0 == null ? null : t0.members[$length]);
-          let s = count !== 1 ? "s" : "";
-          print.debugPrint("Gesture arena " + dart.toString(pointer)[$padRight](4) + " ❙ " + dart.str(message) + (count != null ? " with " + dart.str(count) + " member" + s + "." : ""));
-        }
-        return true;
-      }, T.VoidTobool())())) dart.assertFailed(null, I[0], 268, 12, "() {\r\n      if (debugPrintGestureArenaDiagnostics) {\r\n        final int? count = state?.members.length;\r\n        final String s = count != 1 ? 's' : '';\r\n        debugPrint('Gesture arena ${pointer.toString().padRight(4)} ❙ $message${ count != null ? \" with $count member$s.\" : \"\"}');\r\n      }\r\n      return true;\r\n    }()");
-      return true;
+    toString() {
+      return this.NAME;
     }
   };
-  (arena.GestureArenaManager.new = function() {
-    this[_arenas] = new (T.IdentityMapOfint$_GestureArena()).new();
+  (date_symbols.DateSymbols.new = function(opts) {
+    let NAME = opts && 'NAME' in opts ? opts.NAME : null;
+    if (NAME == null) dart.nullFailed(I[0], 105, 22, "NAME");
+    let ERAS = opts && 'ERAS' in opts ? opts.ERAS : null;
+    if (ERAS == null) dart.nullFailed(I[0], 106, 21, "ERAS");
+    let ERANAMES = opts && 'ERANAMES' in opts ? opts.ERANAMES : null;
+    if (ERANAMES == null) dart.nullFailed(I[0], 107, 21, "ERANAMES");
+    let NARROWMONTHS = opts && 'NARROWMONTHS' in opts ? opts.NARROWMONTHS : null;
+    if (NARROWMONTHS == null) dart.nullFailed(I[0], 108, 21, "NARROWMONTHS");
+    let STANDALONENARROWMONTHS = opts && 'STANDALONENARROWMONTHS' in opts ? opts.STANDALONENARROWMONTHS : null;
+    if (STANDALONENARROWMONTHS == null) dart.nullFailed(I[0], 109, 21, "STANDALONENARROWMONTHS");
+    let MONTHS = opts && 'MONTHS' in opts ? opts.MONTHS : null;
+    if (MONTHS == null) dart.nullFailed(I[0], 110, 21, "MONTHS");
+    let STANDALONEMONTHS = opts && 'STANDALONEMONTHS' in opts ? opts.STANDALONEMONTHS : null;
+    if (STANDALONEMONTHS == null) dart.nullFailed(I[0], 111, 21, "STANDALONEMONTHS");
+    let SHORTMONTHS = opts && 'SHORTMONTHS' in opts ? opts.SHORTMONTHS : null;
+    if (SHORTMONTHS == null) dart.nullFailed(I[0], 112, 21, "SHORTMONTHS");
+    let STANDALONESHORTMONTHS = opts && 'STANDALONESHORTMONTHS' in opts ? opts.STANDALONESHORTMONTHS : null;
+    if (STANDALONESHORTMONTHS == null) dart.nullFailed(I[0], 113, 21, "STANDALONESHORTMONTHS");
+    let WEEKDAYS = opts && 'WEEKDAYS' in opts ? opts.WEEKDAYS : null;
+    if (WEEKDAYS == null) dart.nullFailed(I[0], 114, 21, "WEEKDAYS");
+    let STANDALONEWEEKDAYS = opts && 'STANDALONEWEEKDAYS' in opts ? opts.STANDALONEWEEKDAYS : null;
+    if (STANDALONEWEEKDAYS == null) dart.nullFailed(I[0], 115, 21, "STANDALONEWEEKDAYS");
+    let SHORTWEEKDAYS = opts && 'SHORTWEEKDAYS' in opts ? opts.SHORTWEEKDAYS : null;
+    if (SHORTWEEKDAYS == null) dart.nullFailed(I[0], 116, 21, "SHORTWEEKDAYS");
+    let STANDALONESHORTWEEKDAYS = opts && 'STANDALONESHORTWEEKDAYS' in opts ? opts.STANDALONESHORTWEEKDAYS : null;
+    if (STANDALONESHORTWEEKDAYS == null) dart.nullFailed(I[0], 117, 21, "STANDALONESHORTWEEKDAYS");
+    let NARROWWEEKDAYS = opts && 'NARROWWEEKDAYS' in opts ? opts.NARROWWEEKDAYS : null;
+    if (NARROWWEEKDAYS == null) dart.nullFailed(I[0], 118, 21, "NARROWWEEKDAYS");
+    let STANDALONENARROWWEEKDAYS = opts && 'STANDALONENARROWWEEKDAYS' in opts ? opts.STANDALONENARROWWEEKDAYS : null;
+    if (STANDALONENARROWWEEKDAYS == null) dart.nullFailed(I[0], 119, 21, "STANDALONENARROWWEEKDAYS");
+    let SHORTQUARTERS = opts && 'SHORTQUARTERS' in opts ? opts.SHORTQUARTERS : null;
+    if (SHORTQUARTERS == null) dart.nullFailed(I[0], 120, 21, "SHORTQUARTERS");
+    let QUARTERS = opts && 'QUARTERS' in opts ? opts.QUARTERS : null;
+    if (QUARTERS == null) dart.nullFailed(I[0], 121, 21, "QUARTERS");
+    let AMPMS = opts && 'AMPMS' in opts ? opts.AMPMS : null;
+    if (AMPMS == null) dart.nullFailed(I[0], 122, 21, "AMPMS");
+    let ZERODIGIT = opts && 'ZERODIGIT' in opts ? opts.ZERODIGIT : null;
+    let DATEFORMATS = opts && 'DATEFORMATS' in opts ? opts.DATEFORMATS : null;
+    if (DATEFORMATS == null) dart.nullFailed(I[0], 128, 21, "DATEFORMATS");
+    let TIMEFORMATS = opts && 'TIMEFORMATS' in opts ? opts.TIMEFORMATS : null;
+    if (TIMEFORMATS == null) dart.nullFailed(I[0], 129, 21, "TIMEFORMATS");
+    let AVAILABLEFORMATS = opts && 'AVAILABLEFORMATS' in opts ? opts.AVAILABLEFORMATS : null;
+    let FIRSTDAYOFWEEK = opts && 'FIRSTDAYOFWEEK' in opts ? opts.FIRSTDAYOFWEEK : null;
+    if (FIRSTDAYOFWEEK == null) dart.nullFailed(I[0], 131, 21, "FIRSTDAYOFWEEK");
+    let WEEKENDRANGE = opts && 'WEEKENDRANGE' in opts ? opts.WEEKENDRANGE : null;
+    if (WEEKENDRANGE == null) dart.nullFailed(I[0], 132, 21, "WEEKENDRANGE");
+    let FIRSTWEEKCUTOFFDAY = opts && 'FIRSTWEEKCUTOFFDAY' in opts ? opts.FIRSTWEEKCUTOFFDAY : null;
+    if (FIRSTWEEKCUTOFFDAY == null) dart.nullFailed(I[0], 133, 21, "FIRSTWEEKCUTOFFDAY");
+    let DATETIMEFORMATS = opts && 'DATETIMEFORMATS' in opts ? opts.DATETIMEFORMATS : null;
+    if (DATETIMEFORMATS == null) dart.nullFailed(I[0], 134, 21, "DATETIMEFORMATS");
+    this[NAME$] = NAME;
+    this[ERAS$] = ERAS;
+    this[ERANAMES$] = ERANAMES;
+    this[NARROWMONTHS$] = NARROWMONTHS;
+    this[STANDALONENARROWMONTHS$] = STANDALONENARROWMONTHS;
+    this[MONTHS$] = MONTHS;
+    this[STANDALONEMONTHS$] = STANDALONEMONTHS;
+    this[SHORTMONTHS$] = SHORTMONTHS;
+    this[STANDALONESHORTMONTHS$] = STANDALONESHORTMONTHS;
+    this[WEEKDAYS$] = WEEKDAYS;
+    this[STANDALONEWEEKDAYS$] = STANDALONEWEEKDAYS;
+    this[SHORTWEEKDAYS$] = SHORTWEEKDAYS;
+    this[STANDALONESHORTWEEKDAYS$] = STANDALONESHORTWEEKDAYS;
+    this[NARROWWEEKDAYS$] = NARROWWEEKDAYS;
+    this[STANDALONENARROWWEEKDAYS$] = STANDALONENARROWWEEKDAYS;
+    this[SHORTQUARTERS$] = SHORTQUARTERS;
+    this[QUARTERS$] = QUARTERS;
+    this[AMPMS$] = AMPMS;
+    this[ZERODIGIT$] = ZERODIGIT;
+    this[DATEFORMATS$] = DATEFORMATS;
+    this[TIMEFORMATS$] = TIMEFORMATS;
+    this[AVAILABLEFORMATS$] = AVAILABLEFORMATS;
+    this[FIRSTDAYOFWEEK$] = FIRSTDAYOFWEEK;
+    this[WEEKENDRANGE$] = WEEKENDRANGE;
+    this[FIRSTWEEKCUTOFFDAY$] = FIRSTWEEKCUTOFFDAY;
+    this[DATETIMEFORMATS$] = DATETIMEFORMATS;
     ;
-  }).prototype = arena.GestureArenaManager.prototype;
-  dart.addTypeTests(arena.GestureArenaManager);
-  dart.addTypeCaches(arena.GestureArenaManager);
-  dart.setMethodSignature(arena.GestureArenaManager, () => ({
-    __proto__: dart.getMethods(arena.GestureArenaManager.__proto__),
-    add: dart.fnType(arena.GestureArenaEntry, [core.int, arena.GestureArenaMember]),
-    close: dart.fnType(dart.void, [core.int]),
-    sweep: dart.fnType(dart.void, [core.int]),
-    hold: dart.fnType(dart.void, [core.int]),
-    release: dart.fnType(dart.void, [core.int]),
-    [_resolve]: dart.fnType(dart.void, [core.int, arena.GestureArenaMember, arena.GestureDisposition]),
-    [_tryToResolveArena]: dart.fnType(dart.void, [core.int, arena._GestureArena]),
-    [_resolveByDefault]: dart.fnType(dart.void, [core.int, arena._GestureArena]),
-    [_resolveInFavorOf]: dart.fnType(dart.void, [core.int, arena._GestureArena, arena.GestureArenaMember]),
-    [_debugLogDiagnostic]: dart.fnType(core.bool, [core.int, core.String], [dart.nullable(arena._GestureArena)])
+  }).prototype = date_symbols.DateSymbols.prototype;
+  dart.addTypeTests(date_symbols.DateSymbols);
+  dart.addTypeCaches(date_symbols.DateSymbols);
+  dart.setMethodSignature(date_symbols.DateSymbols, () => ({
+    __proto__: dart.getMethods(date_symbols.DateSymbols.__proto__),
+    serializeToMap: dart.fnType(core.Map$(core.String, dart.dynamic), []),
+    [_serializeToMap]: dart.fnType(core.Map$(core.String, dart.dynamic), [])
   }));
-  dart.setLibraryUri(arena.GestureArenaManager, I[1]);
-  dart.setFieldSignature(arena.GestureArenaManager, () => ({
-    __proto__: dart.getFields(arena.GestureArenaManager.__proto__),
-    [_arenas]: dart.finalFieldType(core.Map$(core.int, arena._GestureArena))
+  dart.setLibraryUri(date_symbols.DateSymbols, I[1]);
+  dart.setFieldSignature(date_symbols.DateSymbols, () => ({
+    __proto__: dart.getFields(date_symbols.DateSymbols.__proto__),
+    NAME: dart.fieldType(core.String),
+    ERAS: dart.fieldType(core.List$(core.String)),
+    ERANAMES: dart.fieldType(core.List$(core.String)),
+    NARROWMONTHS: dart.fieldType(core.List$(core.String)),
+    STANDALONENARROWMONTHS: dart.fieldType(core.List$(core.String)),
+    MONTHS: dart.fieldType(core.List$(core.String)),
+    STANDALONEMONTHS: dart.fieldType(core.List$(core.String)),
+    SHORTMONTHS: dart.fieldType(core.List$(core.String)),
+    STANDALONESHORTMONTHS: dart.fieldType(core.List$(core.String)),
+    WEEKDAYS: dart.fieldType(core.List$(core.String)),
+    STANDALONEWEEKDAYS: dart.fieldType(core.List$(core.String)),
+    SHORTWEEKDAYS: dart.fieldType(core.List$(core.String)),
+    STANDALONESHORTWEEKDAYS: dart.fieldType(core.List$(core.String)),
+    NARROWWEEKDAYS: dart.fieldType(core.List$(core.String)),
+    STANDALONENARROWWEEKDAYS: dart.fieldType(core.List$(core.String)),
+    SHORTQUARTERS: dart.fieldType(core.List$(core.String)),
+    QUARTERS: dart.fieldType(core.List$(core.String)),
+    AMPMS: dart.fieldType(core.List$(core.String)),
+    DATEFORMATS: dart.fieldType(core.List$(core.String)),
+    TIMEFORMATS: dart.fieldType(core.List$(core.String)),
+    DATETIMEFORMATS: dart.fieldType(core.List$(core.String)),
+    AVAILABLEFORMATS: dart.fieldType(dart.nullable(core.Map$(core.String, core.String))),
+    FIRSTDAYOFWEEK: dart.fieldType(core.int),
+    WEEKENDRANGE: dart.fieldType(core.List$(core.int)),
+    FIRSTWEEKCUTOFFDAY: dart.fieldType(core.int),
+    ZERODIGIT: dart.fieldType(dart.nullable(core.String))
   }));
-  dart.trackLibraries("packages/flutter/src/gestures/arena.dart", {
-    "package:flutter/src/gestures/arena.dart": arena
+  dart.defineExtensionMethods(date_symbols.DateSymbols, ['toString']);
+  dart.defineLazy(date_symbols, {
+    /*date_symbols.en_USSymbols*/get en_USSymbols() {
+      return new date_symbols.DateSymbols.new({NAME: "en_US", ERAS: C[0] || CT.C0, ERANAMES: C[1] || CT.C1, NARROWMONTHS: C[2] || CT.C2, STANDALONENARROWMONTHS: C[2] || CT.C2, MONTHS: C[3] || CT.C3, STANDALONEMONTHS: C[3] || CT.C3, SHORTMONTHS: C[4] || CT.C4, STANDALONESHORTMONTHS: C[4] || CT.C4, WEEKDAYS: C[5] || CT.C5, STANDALONEWEEKDAYS: C[5] || CT.C5, SHORTWEEKDAYS: C[6] || CT.C6, STANDALONESHORTWEEKDAYS: C[6] || CT.C6, NARROWWEEKDAYS: C[7] || CT.C7, STANDALONENARROWWEEKDAYS: C[7] || CT.C7, SHORTQUARTERS: C[8] || CT.C8, QUARTERS: C[9] || CT.C9, AMPMS: C[10] || CT.C10, DATEFORMATS: C[11] || CT.C11, TIMEFORMATS: C[12] || CT.C12, FIRSTDAYOFWEEK: 6, WEEKENDRANGE: C[13] || CT.C13, FIRSTWEEKCUTOFFDAY: 5, DATETIMEFORMATS: C[14] || CT.C14});
+    },
+    set en_USSymbols(_) {},
+    /*date_symbols.en_USPatterns*/get en_USPatterns() {
+      return C[15] || CT.C15;
+    },
+    set en_USPatterns(_) {}
+  }, false);
+  dart.trackLibraries("packages/intl/date_symbols.dart", {
+    "package:intl/date_symbols.dart": date_symbols
   }, {
-  }, '{"version":3,"sourceRoot":"","sources":["arena.dart"],"names":[],"mappings":"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","file":"../../../../../../../../D:/packages/flutter/src/gestures/arena.dart.lib.js"}');
+  }, '{"version":3,"sourceRoot":"","sources":["date_symbols.dart"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;IAgBS;;;;;;IAIH;;;;;;IAGA;;;;;;IAGA;;;;;;IAIA;;;;;;IAGA;;;;;;IAOA;;;;;;IAGA;;;;;;IAIA;;;;;;IAGA;;;;;;IAMA;;;;;;IAGA;;;;;;IAIA;;;;;;IAGA;;;;;;IAIA;;;;;;IAGA;;;;;;IAGA;;;;;;IAGA;;;;;;IAGA;;;;;;IAGA;;;;;;IAGA;;;;;;IACiB;;;;;;IAIjB;;;;;;IAKM;;;;;;IACN;;;;;;IAEI;;;;;;8BAoCqD;;;AAC3D,eAAa;YAAsB;AAAS,sDAAkB,AAAG,GAAA,QAAC,IAAI;;;AACtE,YAAO,wDACC,AAAG,GAAA,QAAC,gBACJ,cAAc,CAAC,mBACX,cAAc,CAAC,2BACX,cAAc,CAAC,yCACL,cAAc,CAAC,mCAC/B,cAAc,CAAC,6BACL,cAAc,CAAC,kCACpB,cAAc,CAAC,uCACL,cAAc,CAAC,oCAC5B,cAAc,CAAC,iCACL,cAAc,CAAC,sCACpB,cAAc,CAAC,2CACL,cAAc,CAAC,4CACxB,cAAc,CAAC,6CACL,cAAc,CAAC,4CAC1B,cAAc,CAAC,4BACpB,cAAc,CAAC,oBAClB,cAAc,CAAC,oCACX,AAAG,GAAA,QAAC,4BACF,cAAc,CAAC,6BACf,cAAc,CAAC,kCACV,mDAAiD,KAAxB,AAAG,GAAA,QAAC,qBAAD,aAAwB,oEACtD,AAAG,GAAA,QAAC,kCACN,oCAAe,AAAG,GAAA,QAAC,mDACb,AAAG,GAAA,QAAC,yCACP,cAAc,CAAC;IAEpC;;AAKM,qBAAW;AACf,UAAI,0BAAqB,mBAAa;AACH,QAAjC,AAAQ,QAAA,QAAC,aAAe;;AAE1B,YAAO,SAAQ;IACjB;;AAE0C,yDACpC,QAAQ,WACR,QAAQ,WACR,YAAY,eACZ,gBAAgB,mBAChB,0BAA0B,6BAC1B,UAAU,aACV,oBAAoB,uBACpB,eAAe,kBACf,yBAAyB,4BACzB,YAAY,eACZ,sBAAsB,yBACtB,iBAAiB,oBACjB,2BAA2B,8BAC3B,kBAAkB,qBAClB,4BAA4B,+BAC5B,iBAAiB,oBACjB,YAAY,eACZ,SAAS,YACT,eAAe,kBACf,eAAe,kBACf,oBAAoB,uBACpB,kBAAkB,qBAClB,gBAAgB,mBAChB,sBAAsB,yBACtB,mBAAmB;IACpB;;AAEgB;IAAI;;;QAvGN;;QACD;;QACA;;QACA;;QACA;;QACA;;QACA;;QACA;;QACA;;QACA;;QACA;;QACA;;QACA;;QACA;;QACA;;QACA;;QACA;;QACA;;QACT;QAKS;;QACA;;QACT;QACS;;QACA;;QACA;;QACA;;IA7BC;IACD;IACA;IACA;IACA;IACA;IACA;IACA;IACA;IACA;IACA;IACA;IACA;IACA;IACA;IACA;IACA;IACA;IACT;IAKS;IACA;IACT;IACS;IACA;IACA;IACA;;EAAiB;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;MA+EjC,yBAAY;YAAG,yCACT,0lBA+HU,sDAEI;;;MAQpB,0BAAa","file":"../../../../../../../../D:/packages/intl/date_symbols.dart.lib.js"}');
   // Exports:
   return {
-    src__gestures__arena: arena
+    date_symbols: date_symbols
   };
 }));
 
-//# sourceMappingURL=arena.dart.lib.js.map
+//# sourceMappingURL=date_symbols.dart.lib.js.map

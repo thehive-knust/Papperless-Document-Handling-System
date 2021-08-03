@@ -1,368 +1,386 @@
-define(['dart_sdk', 'packages/flutter/src/rendering/layer.dart', 'packages/flutter/src/rendering/sliver.dart', 'packages/flutter/src/foundation/debug.dart', 'packages/flutter/src/rendering/proxy_box.dart'], (function load__packages__flutter__src__rendering__proxy_sliver_dart(dart_sdk, packages__flutter__src__rendering__layer$46dart, packages__flutter__src__rendering__sliver$46dart, packages__flutter__src__foundation__debug$46dart, packages__flutter__src__rendering__proxy_box$46dart) {
+define(['dart_sdk', 'packages/flutter/src/widgets/widget_span.dart', 'packages/flutter/src/animation/animation_controller.dart', 'packages/flutter/src/cupertino/text_theme.dart', 'packages/flutter/src/rendering/custom_paint.dart', 'packages/flutter/src/animation/listener_helpers.dart'], (function load__packages__flutter__src__cupertino__activity_indicator_dart(dart_sdk, packages__flutter__src__widgets__widget_span$46dart, packages__flutter__src__animation__animation_controller$46dart, packages__flutter__src__cupertino__text_theme$46dart, packages__flutter__src__rendering__custom_paint$46dart, packages__flutter__src__animation__listener_helpers$46dart) {
   'use strict';
   const core = dart_sdk.core;
+  const _internal = dart_sdk._internal;
   const ui = dart_sdk.ui;
-  const _interceptors = dart_sdk._interceptors;
   const dart = dart_sdk.dart;
   const dartx = dart_sdk.dartx;
-  const object = packages__flutter__src__rendering__layer$46dart.src__rendering__object;
-  const layer = packages__flutter__src__rendering__layer$46dart.src__rendering__layer;
-  const sliver = packages__flutter__src__rendering__sliver$46dart.src__rendering__sliver;
-  const diagnostics = packages__flutter__src__foundation__debug$46dart.src__foundation__diagnostics;
-  const proxy_box = packages__flutter__src__rendering__proxy_box$46dart.src__rendering__proxy_box;
-  var proxy_sliver = Object.create(dart.library);
+  const framework = packages__flutter__src__widgets__widget_span$46dart.src__widgets__framework;
+  const basic = packages__flutter__src__widgets__widget_span$46dart.src__widgets__basic;
+  const widget_inspector = packages__flutter__src__widgets__widget_span$46dart.src__widgets__widget_inspector;
+  const ticker_provider = packages__flutter__src__widgets__widget_span$46dart.src__widgets__ticker_provider;
+  const animation_controller = packages__flutter__src__animation__animation_controller$46dart.src__animation__animation_controller;
+  const colors = packages__flutter__src__cupertino__text_theme$46dart.src__cupertino__colors;
+  const custom_paint = packages__flutter__src__rendering__custom_paint$46dart.src__rendering__custom_paint;
+  const animation = packages__flutter__src__animation__listener_helpers$46dart.src__animation__animation;
+  var activity_indicator = Object.create(dart.library);
+  var $length = dartx.length;
+  var $floor = dartx.floor;
+  var $modulo = dartx['%'];
+  var $_get = dartx._get;
   dart._checkModuleNullSafetyMode(false);
   var T = {
-    OpacityLayerN: () => (T.OpacityLayerN = dart.constFn(dart.nullable(layer.OpacityLayer)))(),
-    DiagnosticsPropertyOfbool: () => (T.DiagnosticsPropertyOfbool = dart.constFn(diagnostics.DiagnosticsProperty$(core.bool)))(),
-    JSArrayOfDiagnosticsNode: () => (T.JSArrayOfDiagnosticsNode = dart.constFn(_interceptors.JSArray$(diagnostics.DiagnosticsNode)))()
+    _LocationL: () => (T._LocationL = dart.constFn(dart.legacy(widget_inspector._Location)))(),
+    intL: () => (T.intL = dart.constFn(dart.legacy(core.int)))()
   };
   const CT = Object.create({
     _: () => (C, CT)
   });
+  dart.defineLazy(CT, {
+    get C0() {
+      return C[0] = dart.const({
+        __proto__: core.Duration.prototype,
+        [Duration__duration]: 1000000
+      });
+    },
+    get C3() {
+      return C[3] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "painter",
+        [_Location_column]: 9,
+        [_Location_line]: 119,
+        [_Location_file]: null
+      });
+    },
+    get C2() {
+      return C[2] = dart.constList([C[3] || CT.C3], T._LocationL());
+    },
+    get C1() {
+      return C[1] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[2] || CT.C2,
+        [_Location_name]: null,
+        [_Location_column]: 14,
+        [_Location_line]: 118,
+        [_Location_file]: "file:///C:/src/flutter/packages/flutter/lib/src/cupertino/activity_indicator.dart"
+      });
+    },
+    get C6() {
+      return C[6] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "height",
+        [_Location_column]: 7,
+        [_Location_line]: 116,
+        [_Location_file]: null
+      });
+    },
+    get C7() {
+      return C[7] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "width",
+        [_Location_column]: 7,
+        [_Location_line]: 117,
+        [_Location_file]: null
+      });
+    },
+    get C8() {
+      return C[8] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 7,
+        [_Location_line]: 118,
+        [_Location_file]: null
+      });
+    },
+    get C5() {
+      return C[5] = dart.constList([C[6] || CT.C6, C[7] || CT.C7, C[8] || CT.C8], T._LocationL());
+    },
+    get C4() {
+      return C[4] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[5] || CT.C5,
+        [_Location_name]: null,
+        [_Location_column]: 12,
+        [_Location_line]: 115,
+        [_Location_file]: "file:///C:/src/flutter/packages/flutter/lib/src/cupertino/activity_indicator.dart"
+      });
+    },
+    get C10() {
+      return C[10] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4293651445.0
+      });
+    },
+    get C11() {
+      return C[11] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4282137668.0
+      });
+    },
+    get C9() {
+      return C[9] = dart.const({
+        __proto__: colors.CupertinoDynamicColor.prototype,
+        [Color_value]: 0,
+        [CupertinoDynamicColor_darkHighContrastElevatedColor]: C[10] || CT.C10,
+        [CupertinoDynamicColor_highContrastElevatedColor]: C[11] || CT.C11,
+        [CupertinoDynamicColor_darkElevatedColor]: C[10] || CT.C10,
+        [CupertinoDynamicColor_elevatedColor]: C[11] || CT.C11,
+        [CupertinoDynamicColor_darkHighContrastColor]: C[10] || CT.C10,
+        [CupertinoDynamicColor_highContrastColor]: C[11] || CT.C11,
+        [CupertinoDynamicColor_darkColor]: C[10] || CT.C10,
+        [CupertinoDynamicColor_color]: C[11] || CT.C11,
+        [CupertinoDynamicColor__debugResolveContext]: null,
+        [CupertinoDynamicColor__debugLabel]: null,
+        [CupertinoDynamicColor__effectiveColor]: C[11] || CT.C11
+      });
+    },
+    get C12() {
+      return C[12] = dart.constList([47, 47, 47, 47, 72, 97, 122, 147], T.intL());
+    }
+  }, false);
+  var C = Array(13).fill(void 0);
   var I = [
-    "file:///C:/src/flutter/packages/flutter/lib/src/rendering/proxy_sliver.dart",
-    "package:flutter/src/rendering/proxy_sliver.dart"
+    "file:///C:/src/flutter/packages/flutter/lib/src/cupertino/activity_indicator.dart",
+    "package:flutter/src/cupertino/activity_indicator.dart"
   ];
-  const RenderSliver_RenderObjectWithChildMixin$36 = class RenderSliver_RenderObjectWithChildMixin extends sliver.RenderSliver {};
-  (RenderSliver_RenderObjectWithChildMixin$36.new = function() {
-    object.RenderObjectWithChildMixin$(sliver.RenderSliver)[dart.mixinNew].call(this);
-    RenderSliver_RenderObjectWithChildMixin$36.__proto__.new.call(this);
-  }).prototype = RenderSliver_RenderObjectWithChildMixin$36.prototype;
-  dart.applyMixin(RenderSliver_RenderObjectWithChildMixin$36, object.RenderObjectWithChildMixin$(sliver.RenderSliver));
-  proxy_sliver.RenderProxySliver = class RenderProxySliver extends RenderSliver_RenderObjectWithChildMixin$36 {
-    setupParentData(child) {
-      object.RenderObject.as(child);
-      if (child == null) dart.nullFailed(I[0], 44, 37, "child");
-      if (!sliver.SliverPhysicalParentData.is(child.parentData)) child.parentData = new sliver.SliverPhysicalParentData.new();
+  var animating$ = dart.privateName(activity_indicator, "CupertinoActivityIndicator.animating");
+  var radius$ = dart.privateName(activity_indicator, "CupertinoActivityIndicator.radius");
+  var progress$ = dart.privateName(activity_indicator, "CupertinoActivityIndicator.progress");
+  activity_indicator.CupertinoActivityIndicator = class CupertinoActivityIndicator extends framework.StatefulWidget {
+    get animating() {
+      return this[animating$];
     }
-    performLayout() {
-      if (!(this.child != null)) dart.assertFailed(null, I[0], 51, 12, "child != null");
-      dart.nullCheck(this.child).layout(this.constraints, {parentUsesSize: true});
-      this.geometry = dart.nullCheck(this.child).geometry;
+    set animating(value) {
+      super.animating = value;
     }
-    paint(context, offset) {
-      if (context == null) dart.nullFailed(I[0], 57, 30, "context");
-      if (offset == null) dart.nullFailed(I[0], 57, 46, "offset");
-      if (this.child != null) context.paintChild(dart.nullCheck(this.child), offset);
+    get radius() {
+      return this[radius$];
     }
-    hitTestChildren(result, opts) {
-      if (result == null) dart.nullFailed(I[0], 63, 44, "result");
-      let mainAxisPosition = opts && 'mainAxisPosition' in opts ? opts.mainAxisPosition : null;
-      if (mainAxisPosition == null) dart.nullFailed(I[0], 63, 69, "mainAxisPosition");
-      let crossAxisPosition = opts && 'crossAxisPosition' in opts ? opts.crossAxisPosition : null;
-      if (crossAxisPosition == null) dart.nullFailed(I[0], 63, 103, "crossAxisPosition");
-      return this.child != null && dart.notNull(dart.nullCheck(dart.nullCheck(this.child).geometry).hitTestExtent) > 0 && dart.test(dart.nullCheck(this.child).hitTest(result, {mainAxisPosition: mainAxisPosition, crossAxisPosition: crossAxisPosition}));
+    set radius(value) {
+      super.radius = value;
     }
-    childMainAxisPosition(child) {
-      sliver.RenderSliver.as(child);
-      if (child == null) dart.nullFailed(I[0], 74, 45, "child");
-      if (!(child != null)) dart.assertFailed(null, I[0], 75, 12, "child != null");
-      if (!dart.equals(child, this.child)) dart.assertFailed(null, I[0], 76, 12, "child == this.child");
-      return 0.0;
+    get progress() {
+      return this[progress$];
     }
-    applyPaintTransform(child, transform) {
-      object.RenderObject.as(child);
-      if (child == null) dart.nullFailed(I[0], 81, 41, "child");
-      if (transform == null) dart.nullFailed(I[0], 81, 56, "transform");
-      if (!(child != null)) dart.assertFailed(null, I[0], 82, 12, "child != null");
-      let childParentData = sliver.SliverPhysicalParentData.as(dart.nullCheck(child.parentData));
-      childParentData.applyPaintTransform(transform);
+    set progress(value) {
+      super.progress = value;
+    }
+    createState() {
+      return new activity_indicator._CupertinoActivityIndicatorState.new();
     }
   };
-  (proxy_sliver.RenderProxySliver.new = function(child = null) {
-    proxy_sliver.RenderProxySliver.__proto__.new.call(this);
-    this.child = child;
-  }).prototype = proxy_sliver.RenderProxySliver.prototype;
-  dart.addTypeTests(proxy_sliver.RenderProxySliver);
-  dart.addTypeCaches(proxy_sliver.RenderProxySliver);
-  dart.setMethodSignature(proxy_sliver.RenderProxySliver, () => ({
-    __proto__: dart.getMethods(proxy_sliver.RenderProxySliver.__proto__),
-    performLayout: dart.fnType(dart.void, [])
+  (activity_indicator.CupertinoActivityIndicator.new = function(opts) {
+    let key = opts && 'key' in opts ? opts.key : null;
+    let animating = opts && 'animating' in opts ? opts.animating : true;
+    if (animating == null) dart.nullFailed(I[0], 30, 10, "animating");
+    let radius = opts && 'radius' in opts ? opts.radius : 10;
+    if (radius == null) dart.nullFailed(I[0], 31, 10, "radius");
+    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
+    this[animating$] = animating;
+    this[radius$] = radius;
+    if (!(animating != null)) dart.assertFailed(null, I[0], 32, 16, "animating != null");
+    if (!(radius != null)) dart.assertFailed(null, I[0], 33, 16, "radius != null");
+    if (!(dart.notNull(radius) > 0.0)) dart.assertFailed(null, I[0], 34, 16, "radius > 0.0");
+    this[progress$] = 1.0;
+    activity_indicator.CupertinoActivityIndicator.__proto__.new.call(this, {key: key, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
+    ;
+  }).prototype = activity_indicator.CupertinoActivityIndicator.prototype;
+  (activity_indicator.CupertinoActivityIndicator.partiallyRevealed = function(opts) {
+    let key = opts && 'key' in opts ? opts.key : null;
+    let radius = opts && 'radius' in opts ? opts.radius : 10;
+    if (radius == null) dart.nullFailed(I[0], 46, 10, "radius");
+    let progress = opts && 'progress' in opts ? opts.progress : 1;
+    if (progress == null) dart.nullFailed(I[0], 47, 10, "progress");
+    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
+    this[radius$] = radius;
+    this[progress$] = progress;
+    if (!(radius != null)) dart.assertFailed(null, I[0], 48, 16, "radius != null");
+    if (!(dart.notNull(radius) > 0.0)) dart.assertFailed(null, I[0], 49, 16, "radius > 0.0");
+    if (!(progress != null)) dart.assertFailed(null, I[0], 50, 16, "progress != null");
+    if (!(dart.notNull(progress) >= 0.0)) dart.assertFailed(null, I[0], 51, 16, "progress >= 0.0");
+    if (!(dart.notNull(progress) <= 1.0)) dart.assertFailed(null, I[0], 52, 16, "progress <= 1.0");
+    this[animating$] = false;
+    activity_indicator.CupertinoActivityIndicator.__proto__.new.call(this, {key: key, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
+    ;
+  }).prototype = activity_indicator.CupertinoActivityIndicator.prototype;
+  dart.addTypeTests(activity_indicator.CupertinoActivityIndicator);
+  dart.addTypeCaches(activity_indicator.CupertinoActivityIndicator);
+  dart.setMethodSignature(activity_indicator.CupertinoActivityIndicator, () => ({
+    __proto__: dart.getMethods(activity_indicator.CupertinoActivityIndicator.__proto__),
+    createState: dart.fnType(activity_indicator._CupertinoActivityIndicatorState, [])
   }));
-  dart.setLibraryUri(proxy_sliver.RenderProxySliver, I[1]);
-  var _opacity = dart.privateName(proxy_sliver, "_opacity");
-  var _alwaysIncludeSemantics = dart.privateName(proxy_sliver, "_alwaysIncludeSemantics");
-  var _alpha = dart.privateName(proxy_sliver, "_alpha");
-  proxy_sliver.RenderSliverOpacity = class RenderSliverOpacity extends proxy_sliver.RenderProxySliver {
-    get alwaysNeedsCompositing() {
-      return this.child != null && this[_alpha] !== 0 && this[_alpha] !== 255;
+  dart.setLibraryUri(activity_indicator.CupertinoActivityIndicator, I[1]);
+  dart.setFieldSignature(activity_indicator.CupertinoActivityIndicator, () => ({
+    __proto__: dart.getFields(activity_indicator.CupertinoActivityIndicator.__proto__),
+    animating: dart.finalFieldType(core.bool),
+    radius: dart.finalFieldType(core.double),
+    progress: dart.finalFieldType(core.double)
+  }));
+  var ___CupertinoActivityIndicatorState__controller = dart.privateName(activity_indicator, "_#_CupertinoActivityIndicatorState#_controller");
+  var ___CupertinoActivityIndicatorState__controller_isSet = dart.privateName(activity_indicator, "_#_CupertinoActivityIndicatorState#_controller#isSet");
+  var _controller = dart.privateName(activity_indicator, "_controller");
+  var Duration__duration = dart.privateName(core, "Duration._duration");
+  var _Location_parameterLocations = dart.privateName(widget_inspector, "_Location.parameterLocations");
+  var _Location_name = dart.privateName(widget_inspector, "_Location.name");
+  var _Location_column = dart.privateName(widget_inspector, "_Location.column");
+  var _Location_line = dart.privateName(widget_inspector, "_Location.line");
+  var _Location_file = dart.privateName(widget_inspector, "_Location.file");
+  const State_SingleTickerProviderStateMixin$36 = class State_SingleTickerProviderStateMixin extends framework.State$(activity_indicator.CupertinoActivityIndicator) {};
+  (State_SingleTickerProviderStateMixin$36.new = function() {
+    ticker_provider.SingleTickerProviderStateMixin$(activity_indicator.CupertinoActivityIndicator)[dart.mixinNew].call(this);
+    State_SingleTickerProviderStateMixin$36.__proto__.new.call(this);
+  }).prototype = State_SingleTickerProviderStateMixin$36.prototype;
+  dart.applyMixin(State_SingleTickerProviderStateMixin$36, ticker_provider.SingleTickerProviderStateMixin$(activity_indicator.CupertinoActivityIndicator));
+  activity_indicator._CupertinoActivityIndicatorState = class _CupertinoActivityIndicatorState extends State_SingleTickerProviderStateMixin$36 {
+    get [_controller]() {
+      let t0;
+      return dart.test(this[___CupertinoActivityIndicatorState__controller_isSet]) ? (t0 = this[___CupertinoActivityIndicatorState__controller], t0) : dart.throw(new _internal.LateError.fieldNI("_controller"));
     }
-    get opacity() {
-      return this[_opacity];
+    set [_controller](t0) {
+      if (t0 == null) dart.nullFailed(I[0], 81, 28, "null");
+      this[___CupertinoActivityIndicatorState__controller_isSet] = true;
+      this[___CupertinoActivityIndicatorState__controller] = t0;
     }
-    set opacity(value) {
-      if (value == null) dart.nullFailed(I[0], 131, 22, "value");
-      if (!(value != null)) dart.assertFailed(null, I[0], 132, 12, "value != null");
-      if (!(dart.notNull(value) >= 0.0 && dart.notNull(value) <= 1.0)) dart.assertFailed(null, I[0], 133, 12, "value >= 0.0 && value <= 1.0");
-      if (this[_opacity] == value) return;
-      let didNeedCompositing = this.alwaysNeedsCompositing;
-      let wasVisible = this[_alpha] !== 0;
-      this[_opacity] = value;
-      this[_alpha] = ui.Color.getAlphaFromOpacity(this[_opacity]);
-      if (didNeedCompositing != this.alwaysNeedsCompositing) this.markNeedsCompositingBitsUpdate();
-      this.markNeedsPaint();
-      if (wasVisible !== (this[_alpha] !== 0) && !dart.test(this.alwaysIncludeSemantics)) this.markNeedsSemanticsUpdate();
-    }
-    get alwaysIncludeSemantics() {
-      return this[_alwaysIncludeSemantics];
-    }
-    set alwaysIncludeSemantics(value) {
-      if (value == null) dart.nullFailed(I[0], 154, 35, "value");
-      if (value == this[_alwaysIncludeSemantics]) return;
-      this[_alwaysIncludeSemantics] = value;
-      this.markNeedsSemanticsUpdate();
-    }
-    paint(context, offset) {
-      if (context == null) dart.nullFailed(I[0], 162, 30, "context");
-      if (offset == null) dart.nullFailed(I[0], 162, 46, "offset");
-      if (this.child != null && dart.test(dart.nullCheck(dart.nullCheck(this.child).geometry).visible)) {
-        if (this[_alpha] === 0) {
-          this.layer = null;
-          return;
-        }
-        if (this[_alpha] === 255) {
-          this.layer = null;
-          context.paintChild(dart.nullCheck(this.child), offset);
-          return;
-        }
-        if (!dart.test(this.needsCompositing)) dart.assertFailed(null, I[0], 175, 14, "needsCompositing");
-        this.layer = context.pushOpacity(offset, this[_alpha], dart.bind(this, 'paint', super.paint), {oldLayer: T.OpacityLayerN().as(this.layer)});
+    initState() {
+      super.initState();
+      this[_controller] = new animation_controller.AnimationController.new({duration: C[0] || CT.C0, vsync: this});
+      if (dart.test(this.widget.animating)) {
+        this[_controller].repeat();
       }
     }
-    visitChildrenForSemantics(visitor) {
-      if (visitor == null) dart.nullFailed(I[0], 186, 54, "visitor");
-      if (this.child != null && (this[_alpha] !== 0 || dart.test(this.alwaysIncludeSemantics))) visitor(dart.nullCheck(this.child));
+    didUpdateWidget(oldWidget) {
+      activity_indicator.CupertinoActivityIndicator.as(oldWidget);
+      if (oldWidget == null) dart.nullFailed(I[0], 97, 51, "oldWidget");
+      super.didUpdateWidget(oldWidget);
+      if (this.widget.animating != oldWidget.animating) {
+        if (dart.test(this.widget.animating))
+          this[_controller].repeat();
+        else
+          this[_controller].stop();
+      }
     }
-    debugFillProperties(properties) {
-      if (properties == null) dart.nullFailed(I[0], 192, 56, "properties");
-      super.debugFillProperties(properties);
-      properties.add(new diagnostics.DoubleProperty.new("opacity", this.opacity));
-      properties.add(new diagnostics.FlagProperty.new("alwaysIncludeSemantics", {value: this.alwaysIncludeSemantics, ifTrue: "alwaysIncludeSemantics"}));
+    dispose() {
+      this[_controller].dispose();
+      super.dispose();
     }
-  };
-  (proxy_sliver.RenderSliverOpacity.new = function(opts) {
-    let opacity = opts && 'opacity' in opts ? opts.opacity : 1;
-    if (opacity == null) dart.nullFailed(I[0], 103, 12, "opacity");
-    let alwaysIncludeSemantics = opts && 'alwaysIncludeSemantics' in opts ? opts.alwaysIncludeSemantics : false;
-    if (alwaysIncludeSemantics == null) dart.nullFailed(I[0], 104, 10, "alwaysIncludeSemantics");
-    let sliver = opts && 'sliver' in opts ? opts.sliver : null;
-    if (!(opacity != null && dart.notNull(opacity) >= 0.0 && dart.notNull(opacity) <= 1.0)) dart.assertFailed(null, I[0], 106, 15, "opacity != null && opacity >= 0.0 && opacity <= 1.0");
-    if (!(alwaysIncludeSemantics != null)) dart.assertFailed(null, I[0], 107, 15, "alwaysIncludeSemantics != null");
-    this[_opacity] = opacity;
-    this[_alwaysIncludeSemantics] = alwaysIncludeSemantics;
-    this[_alpha] = ui.Color.getAlphaFromOpacity(opacity);
-    proxy_sliver.RenderSliverOpacity.__proto__.new.call(this);
-    this.child = sliver;
-  }).prototype = proxy_sliver.RenderSliverOpacity.prototype;
-  dart.addTypeTests(proxy_sliver.RenderSliverOpacity);
-  dart.addTypeCaches(proxy_sliver.RenderSliverOpacity);
-  dart.setGetterSignature(proxy_sliver.RenderSliverOpacity, () => ({
-    __proto__: dart.getGetters(proxy_sliver.RenderSliverOpacity.__proto__),
-    opacity: core.double,
-    alwaysIncludeSemantics: core.bool
-  }));
-  dart.setSetterSignature(proxy_sliver.RenderSliverOpacity, () => ({
-    __proto__: dart.getSetters(proxy_sliver.RenderSliverOpacity.__proto__),
-    opacity: core.double,
-    alwaysIncludeSemantics: core.bool
-  }));
-  dart.setLibraryUri(proxy_sliver.RenderSliverOpacity, I[1]);
-  dart.setFieldSignature(proxy_sliver.RenderSliverOpacity, () => ({
-    __proto__: dart.getFields(proxy_sliver.RenderSliverOpacity.__proto__),
-    [_alpha]: dart.fieldType(core.int),
-    [_opacity]: dart.fieldType(core.double),
-    [_alwaysIncludeSemantics]: dart.fieldType(core.bool)
-  }));
-  var _ignoring = dart.privateName(proxy_sliver, "_ignoring");
-  var _ignoringSemantics = dart.privateName(proxy_sliver, "_ignoringSemantics");
-  var _effectiveIgnoringSemantics = dart.privateName(proxy_sliver, "_effectiveIgnoringSemantics");
-  proxy_sliver.RenderSliverIgnorePointer = class RenderSliverIgnorePointer extends proxy_sliver.RenderProxySliver {
-    get ignoring() {
-      return this[_ignoring];
-    }
-    set ignoring(value) {
-      if (value == null) dart.nullFailed(I[0], 230, 21, "value");
-      if (!(value != null)) dart.assertFailed(null, I[0], 231, 12, "value != null");
-      if (value == this[_ignoring]) return;
-      this[_ignoring] = value;
-      if (this[_ignoringSemantics] == null || !dart.nullCheck(this[_ignoringSemantics])) this.markNeedsSemanticsUpdate();
-    }
-    get ignoringSemantics() {
-      return this[_ignoringSemantics];
-    }
-    set ignoringSemantics(value) {
-      if (value == this[_ignoringSemantics]) return;
-      let oldEffectiveValue = this[_effectiveIgnoringSemantics];
-      this[_ignoringSemantics] = value;
-      if (oldEffectiveValue != this[_effectiveIgnoringSemantics]) this.markNeedsSemanticsUpdate();
-    }
-    get [_effectiveIgnoringSemantics]() {
-      let t0;
-      t0 = this.ignoringSemantics;
-      return t0 == null ? this.ignoring : t0;
-    }
-    hitTest(result, opts) {
-      if (result == null) dart.nullFailed(I[0], 259, 36, "result");
-      let mainAxisPosition = opts && 'mainAxisPosition' in opts ? opts.mainAxisPosition : null;
-      if (mainAxisPosition == null) dart.nullFailed(I[0], 259, 61, "mainAxisPosition");
-      let crossAxisPosition = opts && 'crossAxisPosition' in opts ? opts.crossAxisPosition : null;
-      if (crossAxisPosition == null) dart.nullFailed(I[0], 259, 95, "crossAxisPosition");
-      return !dart.test(this.ignoring) && dart.test(super.hitTest(result, {mainAxisPosition: mainAxisPosition, crossAxisPosition: crossAxisPosition}));
-    }
-    visitChildrenForSemantics(visitor) {
-      if (visitor == null) dart.nullFailed(I[0], 269, 54, "visitor");
-      if (this.child != null && !dart.test(this[_effectiveIgnoringSemantics])) visitor(dart.nullCheck(this.child));
-    }
-    debugFillProperties(properties) {
-      if (properties == null) dart.nullFailed(I[0], 275, 56, "properties");
-      super.debugFillProperties(properties);
-      properties.add(new (T.DiagnosticsPropertyOfbool()).new("ignoring", this.ignoring));
-      properties.add(new (T.DiagnosticsPropertyOfbool()).new("ignoringSemantics", this[_effectiveIgnoringSemantics], {description: this.ignoringSemantics == null ? "implicitly " + dart.str(this[_effectiveIgnoringSemantics]) : null}));
+    build(context) {
+      if (context == null) dart.nullFailed(I[0], 114, 29, "context");
+      return new basic.SizedBox.new({height: dart.notNull(this.widget.radius) * 2, width: dart.notNull(this.widget.radius) * 2, child: new basic.CustomPaint.new({painter: new activity_indicator._CupertinoActivityIndicatorPainter.new({position: this[_controller], activeColor: colors.CupertinoDynamicColor.resolve(activity_indicator._kActiveTickColor, context), radius: this.widget.radius, progress: this.widget.progress}), $creationLocationd_0dea112b090073317d4: C[1] || CT.C1}), $creationLocationd_0dea112b090073317d4: C[4] || CT.C4});
     }
   };
-  (proxy_sliver.RenderSliverIgnorePointer.new = function(opts) {
-    let sliver = opts && 'sliver' in opts ? opts.sliver : null;
-    let ignoring = opts && 'ignoring' in opts ? opts.ignoring : true;
-    if (ignoring == null) dart.nullFailed(I[0], 216, 10, "ignoring");
-    let ignoringSemantics = opts && 'ignoringSemantics' in opts ? opts.ignoringSemantics : null;
-    if (!(ignoring != null)) dart.assertFailed(null, I[0], 218, 15, "ignoring != null");
-    this[_ignoring] = ignoring;
-    this[_ignoringSemantics] = ignoringSemantics;
-    proxy_sliver.RenderSliverIgnorePointer.__proto__.new.call(this);
-    this.child = sliver;
-  }).prototype = proxy_sliver.RenderSliverIgnorePointer.prototype;
-  dart.addTypeTests(proxy_sliver.RenderSliverIgnorePointer);
-  dart.addTypeCaches(proxy_sliver.RenderSliverIgnorePointer);
-  dart.setGetterSignature(proxy_sliver.RenderSliverIgnorePointer, () => ({
-    __proto__: dart.getGetters(proxy_sliver.RenderSliverIgnorePointer.__proto__),
-    ignoring: core.bool,
-    ignoringSemantics: dart.nullable(core.bool),
-    [_effectiveIgnoringSemantics]: core.bool
+  (activity_indicator._CupertinoActivityIndicatorState.new = function() {
+    this[___CupertinoActivityIndicatorState__controller] = null;
+    this[___CupertinoActivityIndicatorState__controller_isSet] = false;
+    activity_indicator._CupertinoActivityIndicatorState.__proto__.new.call(this);
+    ;
+  }).prototype = activity_indicator._CupertinoActivityIndicatorState.prototype;
+  dart.addTypeTests(activity_indicator._CupertinoActivityIndicatorState);
+  dart.addTypeCaches(activity_indicator._CupertinoActivityIndicatorState);
+  dart.setMethodSignature(activity_indicator._CupertinoActivityIndicatorState, () => ({
+    __proto__: dart.getMethods(activity_indicator._CupertinoActivityIndicatorState.__proto__),
+    build: dart.fnType(framework.Widget, [framework.BuildContext])
   }));
-  dart.setSetterSignature(proxy_sliver.RenderSliverIgnorePointer, () => ({
-    __proto__: dart.getSetters(proxy_sliver.RenderSliverIgnorePointer.__proto__),
-    ignoring: core.bool,
-    ignoringSemantics: dart.nullable(core.bool)
+  dart.setGetterSignature(activity_indicator._CupertinoActivityIndicatorState, () => ({
+    __proto__: dart.getGetters(activity_indicator._CupertinoActivityIndicatorState.__proto__),
+    [_controller]: animation_controller.AnimationController
   }));
-  dart.setLibraryUri(proxy_sliver.RenderSliverIgnorePointer, I[1]);
-  dart.setFieldSignature(proxy_sliver.RenderSliverIgnorePointer, () => ({
-    __proto__: dart.getFields(proxy_sliver.RenderSliverIgnorePointer.__proto__),
-    [_ignoring]: dart.fieldType(core.bool),
-    [_ignoringSemantics]: dart.fieldType(dart.nullable(core.bool))
+  dart.setSetterSignature(activity_indicator._CupertinoActivityIndicatorState, () => ({
+    __proto__: dart.getSetters(activity_indicator._CupertinoActivityIndicatorState.__proto__),
+    [_controller]: animation_controller.AnimationController
   }));
-  var _offstage = dart.privateName(proxy_sliver, "_offstage");
-  proxy_sliver.RenderSliverOffstage = class RenderSliverOffstage extends proxy_sliver.RenderProxySliver {
-    get offstage() {
-      return this[_offstage];
+  dart.setLibraryUri(activity_indicator._CupertinoActivityIndicatorState, I[1]);
+  dart.setFieldSignature(activity_indicator._CupertinoActivityIndicatorState, () => ({
+    __proto__: dart.getFields(activity_indicator._CupertinoActivityIndicatorState.__proto__),
+    [___CupertinoActivityIndicatorState__controller]: dart.fieldType(dart.nullable(animation_controller.AnimationController)),
+    [___CupertinoActivityIndicatorState__controller_isSet]: dart.fieldType(core.bool)
+  }));
+  activity_indicator._CupertinoActivityIndicatorPainter = class _CupertinoActivityIndicatorPainter extends custom_paint.CustomPainter {
+    paint(canvas, size) {
+      if (canvas == null) dart.nullFailed(I[0], 173, 21, "canvas");
+      if (size == null) dart.nullFailed(I[0], 173, 34, "size");
+      let paint = ui.Paint.new();
+      let tickCount = activity_indicator._kAlphaValues[$length];
+      canvas.save();
+      canvas.translate(dart.notNull(size.width) / 2.0, dart.notNull(size.height) / 2.0);
+      let activeTick = (dart.notNull(tickCount) * dart.notNull(this.position.value))[$floor]();
+      for (let i = 0; i < dart.notNull(tickCount) * dart.notNull(this.progress); i = i + 1) {
+        let t = (i - activeTick)[$modulo](tickCount);
+        paint.color = this.activeColor.withAlpha(dart.notNull(this.progress) < 1 ? 147 : activity_indicator._kAlphaValues[$_get](t));
+        canvas.drawRRect(this.tickFundamentalRRect, paint);
+        canvas.rotate(6.283185307179586 / dart.notNull(tickCount));
+      }
+      canvas.restore();
     }
-    set offstage(value) {
-      if (value == null) dart.nullFailed(I[0], 305, 21, "value");
-      if (!(value != null)) dart.assertFailed(null, I[0], 306, 12, "value != null");
-      if (value == this[_offstage]) return;
-      this[_offstage] = value;
-      this.markNeedsLayoutForSizedByParentChange();
-    }
-    performLayout() {
-      if (!(this.child != null)) dart.assertFailed(null, I[0], 315, 12, "child != null");
-      dart.nullCheck(this.child).layout(this.constraints, {parentUsesSize: true});
-      if (!dart.test(this.offstage))
-        this.geometry = dart.nullCheck(this.child).geometry;
-      else
-        this.geometry = sliver.SliverGeometry.zero;
-    }
-    hitTest(result, opts) {
-      if (result == null) dart.nullFailed(I[0], 324, 36, "result");
-      let mainAxisPosition = opts && 'mainAxisPosition' in opts ? opts.mainAxisPosition : null;
-      if (mainAxisPosition == null) dart.nullFailed(I[0], 324, 61, "mainAxisPosition");
-      let crossAxisPosition = opts && 'crossAxisPosition' in opts ? opts.crossAxisPosition : null;
-      if (crossAxisPosition == null) dart.nullFailed(I[0], 324, 95, "crossAxisPosition");
-      return !dart.test(this.offstage) && dart.test(super.hitTest(result, {mainAxisPosition: mainAxisPosition, crossAxisPosition: crossAxisPosition}));
-    }
-    hitTestChildren(result, opts) {
-      if (result == null) dart.nullFailed(I[0], 333, 44, "result");
-      let mainAxisPosition = opts && 'mainAxisPosition' in opts ? opts.mainAxisPosition : null;
-      if (mainAxisPosition == null) dart.nullFailed(I[0], 333, 69, "mainAxisPosition");
-      let crossAxisPosition = opts && 'crossAxisPosition' in opts ? opts.crossAxisPosition : null;
-      if (crossAxisPosition == null) dart.nullFailed(I[0], 333, 103, "crossAxisPosition");
-      return !dart.test(this.offstage) && this.child != null && dart.notNull(dart.nullCheck(dart.nullCheck(this.child).geometry).hitTestExtent) > 0 && dart.test(dart.nullCheck(this.child).hitTest(result, {mainAxisPosition: mainAxisPosition, crossAxisPosition: crossAxisPosition}));
-    }
-    paint(context, offset) {
-      if (context == null) dart.nullFailed(I[0], 345, 30, "context");
-      if (offset == null) dart.nullFailed(I[0], 345, 46, "offset");
-      if (dart.test(this.offstage)) return;
-      context.paintChild(dart.nullCheck(this.child), offset);
-    }
-    visitChildrenForSemantics(visitor) {
-      if (visitor == null) dart.nullFailed(I[0], 352, 54, "visitor");
-      if (dart.test(this.offstage)) return;
-      super.visitChildrenForSemantics(visitor);
-    }
-    debugFillProperties(properties) {
-      if (properties == null) dart.nullFailed(I[0], 359, 56, "properties");
-      super.debugFillProperties(properties);
-      properties.add(new (T.DiagnosticsPropertyOfbool()).new("offstage", this.offstage));
-    }
-    debugDescribeChildren() {
-      if (this.child == null) return T.JSArrayOfDiagnosticsNode().of([]);
-      return T.JSArrayOfDiagnosticsNode().of([dart.nullCheck(this.child).toDiagnosticsNode({name: "child", style: dart.test(this.offstage) ? diagnostics.DiagnosticsTreeStyle.offstage : diagnostics.DiagnosticsTreeStyle.sparse})]);
+    shouldRepaint(oldPainter) {
+      activity_indicator._CupertinoActivityIndicatorPainter.as(oldPainter);
+      if (oldPainter == null) dart.nullFailed(I[0], 194, 57, "oldPainter");
+      return !dart.equals(oldPainter.position, this.position) || !dart.equals(oldPainter.activeColor, this.activeColor) || oldPainter.progress != this.progress;
     }
   };
-  (proxy_sliver.RenderSliverOffstage.new = function(opts) {
-    let offstage = opts && 'offstage' in opts ? opts.offstage : true;
-    if (offstage == null) dart.nullFailed(I[0], 288, 10, "offstage");
-    let sliver = opts && 'sliver' in opts ? opts.sliver : null;
-    if (!(offstage != null)) dart.assertFailed(null, I[0], 290, 15, "offstage != null");
-    this[_offstage] = offstage;
-    proxy_sliver.RenderSliverOffstage.__proto__.new.call(this);
-    this.child = sliver;
-  }).prototype = proxy_sliver.RenderSliverOffstage.prototype;
-  dart.addTypeTests(proxy_sliver.RenderSliverOffstage);
-  dart.addTypeCaches(proxy_sliver.RenderSliverOffstage);
-  dart.setGetterSignature(proxy_sliver.RenderSliverOffstage, () => ({
-    __proto__: dart.getGetters(proxy_sliver.RenderSliverOffstage.__proto__),
-    offstage: core.bool
+  (activity_indicator._CupertinoActivityIndicatorPainter.new = function(opts) {
+    let position = opts && 'position' in opts ? opts.position : null;
+    if (position == null) dart.nullFailed(I[0], 151, 19, "position");
+    let activeColor = opts && 'activeColor' in opts ? opts.activeColor : null;
+    if (activeColor == null) dart.nullFailed(I[0], 152, 19, "activeColor");
+    let radius = opts && 'radius' in opts ? opts.radius : null;
+    if (radius == null) dart.nullFailed(I[0], 153, 19, "radius");
+    let progress = opts && 'progress' in opts ? opts.progress : null;
+    if (progress == null) dart.nullFailed(I[0], 154, 19, "progress");
+    this.position = position;
+    this.activeColor = activeColor;
+    this.radius = radius;
+    this.progress = progress;
+    this.tickFundamentalRRect = new ui.RRect.fromLTRBXY(-dart.notNull(radius) / 10, -dart.notNull(radius) / 3.0, dart.notNull(radius) / 10, -dart.notNull(radius), dart.notNull(radius) / 10, dart.notNull(radius) / 10);
+    activity_indicator._CupertinoActivityIndicatorPainter.__proto__.new.call(this, {repaint: position});
+    ;
+  }).prototype = activity_indicator._CupertinoActivityIndicatorPainter.prototype;
+  dart.addTypeTests(activity_indicator._CupertinoActivityIndicatorPainter);
+  dart.addTypeCaches(activity_indicator._CupertinoActivityIndicatorPainter);
+  dart.setMethodSignature(activity_indicator._CupertinoActivityIndicatorPainter, () => ({
+    __proto__: dart.getMethods(activity_indicator._CupertinoActivityIndicatorPainter.__proto__),
+    paint: dart.fnType(dart.void, [ui.Canvas, ui.Size]),
+    shouldRepaint: dart.fnType(core.bool, [dart.nullable(core.Object)])
   }));
-  dart.setSetterSignature(proxy_sliver.RenderSliverOffstage, () => ({
-    __proto__: dart.getSetters(proxy_sliver.RenderSliverOffstage.__proto__),
-    offstage: core.bool
+  dart.setLibraryUri(activity_indicator._CupertinoActivityIndicatorPainter, I[1]);
+  dart.setFieldSignature(activity_indicator._CupertinoActivityIndicatorPainter, () => ({
+    __proto__: dart.getFields(activity_indicator._CupertinoActivityIndicatorPainter.__proto__),
+    position: dart.finalFieldType(animation.Animation$(core.double)),
+    activeColor: dart.finalFieldType(ui.Color),
+    radius: dart.finalFieldType(core.double),
+    progress: dart.finalFieldType(core.double),
+    tickFundamentalRRect: dart.finalFieldType(ui.RRect)
   }));
-  dart.setLibraryUri(proxy_sliver.RenderSliverOffstage, I[1]);
-  dart.setFieldSignature(proxy_sliver.RenderSliverOffstage, () => ({
-    __proto__: dart.getFields(proxy_sliver.RenderSliverOffstage.__proto__),
-    [_offstage]: dart.fieldType(core.bool)
-  }));
-  const RenderProxySliver_RenderAnimatedOpacityMixin$36 = class RenderProxySliver_RenderAnimatedOpacityMixin extends proxy_sliver.RenderProxySliver {};
-  (RenderProxySliver_RenderAnimatedOpacityMixin$36.new = function(child) {
-    proxy_box.RenderAnimatedOpacityMixin$(sliver.RenderSliver)[dart.mixinNew].call(this);
-    RenderProxySliver_RenderAnimatedOpacityMixin$36.__proto__.new.call(this, child);
-  }).prototype = RenderProxySliver_RenderAnimatedOpacityMixin$36.prototype;
-  dart.applyMixin(RenderProxySliver_RenderAnimatedOpacityMixin$36, proxy_box.RenderAnimatedOpacityMixin$(sliver.RenderSliver));
-  proxy_sliver.RenderSliverAnimatedOpacity = class RenderSliverAnimatedOpacity extends RenderProxySliver_RenderAnimatedOpacityMixin$36 {};
-  (proxy_sliver.RenderSliverAnimatedOpacity.new = function(opts) {
-    let opacity = opts && 'opacity' in opts ? opts.opacity : null;
-    if (opacity == null) dart.nullFailed(I[0], 386, 32, "opacity");
-    let alwaysIncludeSemantics = opts && 'alwaysIncludeSemantics' in opts ? opts.alwaysIncludeSemantics : false;
-    if (alwaysIncludeSemantics == null) dart.nullFailed(I[0], 387, 10, "alwaysIncludeSemantics");
-    let sliver = opts && 'sliver' in opts ? opts.sliver : null;
-    if (!(opacity != null)) dart.assertFailed(null, I[0], 389, 15, "opacity != null");
-    if (!(alwaysIncludeSemantics != null)) dart.assertFailed(null, I[0], 390, 15, "alwaysIncludeSemantics != null");
-    proxy_sliver.RenderSliverAnimatedOpacity.__proto__.new.call(this);
-    this.opacity = opacity;
-    this.alwaysIncludeSemantics = alwaysIncludeSemantics;
-    this.child = sliver;
-  }).prototype = proxy_sliver.RenderSliverAnimatedOpacity.prototype;
-  dart.addTypeTests(proxy_sliver.RenderSliverAnimatedOpacity);
-  dart.addTypeCaches(proxy_sliver.RenderSliverAnimatedOpacity);
-  dart.setLibraryUri(proxy_sliver.RenderSliverAnimatedOpacity, I[1]);
-  dart.trackLibraries("packages/flutter/src/rendering/proxy_sliver.dart", {
-    "package:flutter/src/rendering/proxy_sliver.dart": proxy_sliver
+  var Color_value = dart.privateName(ui, "Color.value");
+  var CupertinoDynamicColor_darkHighContrastElevatedColor = dart.privateName(colors, "CupertinoDynamicColor.darkHighContrastElevatedColor");
+  var CupertinoDynamicColor_highContrastElevatedColor = dart.privateName(colors, "CupertinoDynamicColor.highContrastElevatedColor");
+  var CupertinoDynamicColor_darkElevatedColor = dart.privateName(colors, "CupertinoDynamicColor.darkElevatedColor");
+  var CupertinoDynamicColor_elevatedColor = dart.privateName(colors, "CupertinoDynamicColor.elevatedColor");
+  var CupertinoDynamicColor_darkHighContrastColor = dart.privateName(colors, "CupertinoDynamicColor.darkHighContrastColor");
+  var CupertinoDynamicColor_highContrastColor = dart.privateName(colors, "CupertinoDynamicColor.highContrastColor");
+  var CupertinoDynamicColor_darkColor = dart.privateName(colors, "CupertinoDynamicColor.darkColor");
+  var CupertinoDynamicColor_color = dart.privateName(colors, "CupertinoDynamicColor.color");
+  var CupertinoDynamicColor__debugResolveContext = dart.privateName(colors, "CupertinoDynamicColor._debugResolveContext");
+  var CupertinoDynamicColor__debugLabel = dart.privateName(colors, "CupertinoDynamicColor._debugLabel");
+  var CupertinoDynamicColor__effectiveColor = dart.privateName(colors, "CupertinoDynamicColor._effectiveColor");
+  dart.defineLazy(activity_indicator, {
+    /*activity_indicator._kDefaultIndicatorRadius*/get _kDefaultIndicatorRadius() {
+      return 10;
+    },
+    /*activity_indicator._kActiveTickColor*/get _kActiveTickColor() {
+      return C[9] || CT.C9;
+    },
+    /*activity_indicator._kTwoPI*/get _kTwoPI() {
+      return 6.283185307179586;
+    },
+    /*activity_indicator._kAlphaValues*/get _kAlphaValues() {
+      return C[12] || CT.C12;
+    },
+    /*activity_indicator._partiallyRevealedAlpha*/get _partiallyRevealedAlpha() {
+      return 147;
+    }
+  }, false);
+  dart.trackLibraries("packages/flutter/src/cupertino/activity_indicator.dart", {
+    "package:flutter/src/cupertino/activity_indicator.dart": activity_indicator
   }, {
-  }, '{"version":3,"sourceRoot":"","sources":["proxy_sliver.dart"],"names":[],"mappings":"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","file":"../../../../../../../../D:/packages/flutter/src/rendering/proxy_sliver.dart.lib.js"}');
+  }, '{"version":3,"sourceRoot":"","sources":["activity_indicator.dart"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;IA0Da;;;;;;IAKE;;;;;;IAQA;;;;;;;AAIT;IAAkC;;;QA/C/B;QACA;;QACA;;;IADA;IACA;UACM,AAAU,SAAD;UACT,AAAO,MAAD;UACC,aAAP,MAAM,IAAG;IACP,kBAAE;AACX,iFAAW,GAAG;;EAAC;;QASd;QACA;;QACA;;;IADA;IACA;UACM,AAAO,MAAD;UACC,aAAP,MAAM,IAAG;UACT,AAAS,QAAD;UACC,aAAT,QAAQ,KAAI;UACH,aAAT,QAAQ,KAAI;IACT,mBAAE;AACZ,iFAAW,GAAG;;EAAC;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AA2BI;IAAW;;;AAAX;;IAAW;;AAIjB,MAAX;AAIL,MAHD,oBAAc,kFAEL;AAGT,oBAAI,AAAO;AACW,QAApB,AAAY;;IAEhB;;uDAGgD;;AACd,MAA1B,sBAAgB,SAAS;AAC/B,UAAI,AAAO,yBAAa,AAAU,SAAD;AAC/B,sBAAI,AAAO;AACW,UAApB,AAAY;;AAEM,UAAlB,AAAY;;IAElB;;AAIuB,MAArB,AAAY;AACG,MAAT;IACR;;UAG0B;AACxB,YAAO,iCACiB,aAAd,AAAO,sBAAS,UACH,aAAd,AAAO,sBAAS,UAChB,oCACI,yEACG,gCAEgB,qCAAQ,sCAAmB,OAAO,WACpD,AAAO,8BACL,AAAO;IAIzB;;;2DA/CyB;;;;EAgD3B;;;;;;;;;;;;;;;;;;;;;;UA4CoB,QAAa;UAAb;UAAa;AACjB,kBAAQ;AACV,sBAAY,AAAc;AAEvB,MAAb,AAAO,MAAD;AAC+C,MAArD,AAAO,MAAD,WAAsB,aAAX,AAAK,IAAD,UAAS,KAAiB,aAAZ,AAAK,IAAD,WAAU;AAEvC,uBAA0C,CAAlB,aAAV,SAAS,iBAAG,AAAS;AAE7C,eAAS,IAAI,GAAG,AAAE,CAAD,GAAa,aAAV,SAAS,iBAAG,gBAAY,IAAF,AAAE,CAAC,GAAH;AAC9B,gBAAqB,CAAhB,AAAE,CAAD,GAAG,UAAU,WAAI,SAAS;AAE+B,QADzE,AAAM,KAAD,SAAS,AACT,2BAAmB,aAAT,iBAAW,UAA8B,AAAa,wCAAC,CAAC;AAC1B,QAA7C,AAAO,MAAD,WAAW,2BAAsB,KAAK;AACV,QAAlC,AAAO,MAAD,QAAgB,iCAAE,SAAS;;AAGnB,MAAhB,AAAO,MAAD;IACR;;+DAGsD;;AACpD,YAC0C,cADnC,AAAW,UAAD,WAAa,+BAC1B,AAAW,UAAD,cAAgB,qBAC1B,AAAW,UAAD,aAAa;IAC7B;;;QA/CgB;;QACA;;QACA;;QACA;;IAHA;IACA;IACA;IACA;IACW,4BAAQ,wBAC3B,AAAQ,cAAP,MAAM,QACP,AAAQ,cAAP,MAAM,IAAG,KACH,aAAP,MAAM,QACN,cAAC,MAAM,GACA,aAAP,MAAM,QACC,aAAP,MAAM;AAER,6FAAe,QAAQ;;EAAC;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;MAxJnB,2CAAwB;;;MAGzB,oCAAiB;;;MAqHhB,0BAAO;;;MAIJ,gCAAa;;;MAYnB,0CAAuB","file":"../../../../../../../../D:/packages/flutter/src/cupertino/activity_indicator.dart.lib.js"}');
   // Exports:
   return {
-    src__rendering__proxy_sliver: proxy_sliver
+    src__cupertino__activity_indicator: activity_indicator
   };
 }));
 
-//# sourceMappingURL=proxy_sliver.dart.lib.js.map
+//# sourceMappingURL=activity_indicator.dart.lib.js.map

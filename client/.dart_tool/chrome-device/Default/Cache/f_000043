@@ -1,707 +1,670 @@
-define(['dart_sdk', 'packages/flutter/src/foundation/object.dart'], (function load__packages__flutter__src__painting__alignment_dart(dart_sdk, packages__flutter__src__foundation__object$46dart) {
+define(['dart_sdk', 'packages/flutter/src/widgets/widget_span.dart', 'packages/flutter/src/painting/border_radius.dart', 'packages/softdoc/style.dart', 'packages/flutter/src/painting/edge_insets.dart', 'packages/flutter/src/material/dropdown.dart', 'packages/softdoc/utills.dart', 'packages/flutter/src/widgets/icon.dart', 'packages/flutter/src/material/icons.dart', 'packages/flutter/src/rendering/paragraph.dart', 'packages/softdoc/models/department.dart', 'packages/flutter/src/widgets/scroll_view.dart', 'packages/flutter/src/painting/box_decoration.dart', 'packages/flutter/src/material/checkbox_list_tile.dart', 'packages/flutter/src/painting/rounded_rectangle_border.dart'], (function load__packages__softdoc__screens__send_doc_screen__select_recepient_dart(dart_sdk, packages__flutter__src__widgets__widget_span$46dart, packages__flutter__src__painting__border_radius$46dart, packages__softdoc__style$46dart, packages__flutter__src__painting__edge_insets$46dart, packages__flutter__src__material__dropdown$46dart, packages__softdoc__utills$46dart, packages__flutter__src__widgets__icon$46dart, packages__flutter__src__material__icons$46dart, packages__flutter__src__rendering__paragraph$46dart, packages__softdoc__models__department$46dart, packages__flutter__src__widgets__scroll_view$46dart, packages__flutter__src__painting__box_decoration$46dart, packages__flutter__src__material__checkbox_list_tile$46dart, packages__flutter__src__painting__rounded_rectangle_border$46dart) {
   'use strict';
   const core = dart_sdk.core;
-  const ui = dart_sdk.ui;
-  const _internal = dart_sdk._internal;
+  const _interceptors = dart_sdk._interceptors;
   const dart = dart_sdk.dart;
   const dartx = dart_sdk.dartx;
-  const object = packages__flutter__src__foundation__object$46dart.src__foundation__object;
-  var alignment = Object.create(dart.library);
-  var $truncate = dartx.truncate;
-  var $toDouble = dartx.toDouble;
-  var $modulo = dartx['%'];
-  var $toStringAsFixed = dartx.toStringAsFixed;
-  var $runtimeType = dartx.runtimeType;
+  const basic = packages__flutter__src__widgets__widget_span$46dart.src__widgets__basic;
+  const framework = packages__flutter__src__widgets__widget_span$46dart.src__widgets__framework;
+  const container = packages__flutter__src__widgets__widget_span$46dart.src__widgets__container;
+  const widget_inspector = packages__flutter__src__widgets__widget_span$46dart.src__widgets__widget_inspector;
+  const text = packages__flutter__src__widgets__widget_span$46dart.src__widgets__text;
+  const border_radius = packages__flutter__src__painting__border_radius$46dart.src__painting__border_radius;
+  const style = packages__softdoc__style$46dart.style;
+  const edge_insets = packages__flutter__src__painting__edge_insets$46dart.src__painting__edge_insets;
+  const dropdown = packages__flutter__src__material__dropdown$46dart.src__material__dropdown;
+  const utills = packages__softdoc__utills$46dart.utills;
+  const icon = packages__flutter__src__widgets__icon$46dart.src__widgets__icon;
+  const icons = packages__flutter__src__material__icons$46dart.src__material__icons;
+  const paragraph = packages__flutter__src__rendering__paragraph$46dart.src__rendering__paragraph;
+  const department = packages__softdoc__models__department$46dart.models__department;
+  const scroll_view = packages__flutter__src__widgets__scroll_view$46dart.src__widgets__scroll_view;
+  const box_decoration = packages__flutter__src__painting__box_decoration$46dart.src__painting__box_decoration;
+  const checkbox_list_tile = packages__flutter__src__material__checkbox_list_tile$46dart.src__material__checkbox_list_tile;
+  const rounded_rectangle_border = packages__flutter__src__painting__rounded_rectangle_border$46dart.src__painting__rounded_rectangle_border;
+  var select_recepient = Object.create(dart.library);
+  var $add = dartx.add;
+  var $map = dartx.map;
+  var $toList = dartx.toList;
+  var $singleWhere = dartx.singleWhere;
+  var $length = dartx.length;
+  var $_get = dartx._get;
+  var $contains = dartx.contains;
+  var $remove = dartx.remove;
   dart._checkModuleNullSafetyMode(false);
+  var T = {
+    WidgetL: () => (T.WidgetL = dart.constFn(dart.legacy(framework.Widget)))(),
+    JSArrayOfWidgetL: () => (T.JSArrayOfWidgetL = dart.constFn(_interceptors.JSArray$(T.WidgetL())))(),
+    _LocationL: () => (T._LocationL = dart.constFn(dart.legacy(widget_inspector._Location)))(),
+    StringL: () => (T.StringL = dart.constFn(dart.legacy(core.String)))(),
+    DropdownButtonOfStringL: () => (T.DropdownButtonOfStringL = dart.constFn(dropdown.DropdownButton$(T.StringL())))(),
+    DropdownMenuItemOfStringL: () => (T.DropdownMenuItemOfStringL = dart.constFn(dropdown.DropdownMenuItem$(T.StringL())))(),
+    DropdownMenuItemLOfStringL: () => (T.DropdownMenuItemLOfStringL = dart.constFn(dart.legacy(T.DropdownMenuItemOfStringL())))(),
+    DepartmentL: () => (T.DepartmentL = dart.constFn(dart.legacy(department.Department)))(),
+    DepartmentLToDropdownMenuItemLOfStringL: () => (T.DepartmentLToDropdownMenuItemLOfStringL = dart.constFn(dart.fnType(T.DropdownMenuItemLOfStringL(), [T.DepartmentL()])))(),
+    boolL: () => (T.boolL = dart.constFn(dart.legacy(core.bool)))(),
+    DepartmentLToboolL: () => (T.DepartmentLToboolL = dart.constFn(dart.fnType(T.boolL(), [T.DepartmentL()])))(),
+    VoidToNull: () => (T.VoidToNull = dart.constFn(dart.fnType(core.Null, [])))(),
+    StringLToNull: () => (T.StringLToNull = dart.constFn(dart.fnType(core.Null, [T.StringL()])))(),
+    boolLToNull: () => (T.boolLToNull = dart.constFn(dart.fnType(core.Null, [T.boolL()])))(),
+    ContainerL: () => (T.ContainerL = dart.constFn(dart.legacy(container.Container)))(),
+    BuildContextL: () => (T.BuildContextL = dart.constFn(dart.legacy(framework.BuildContext)))(),
+    intL: () => (T.intL = dart.constFn(dart.legacy(core.int)))(),
+    BuildContextLAndintLToContainerL: () => (T.BuildContextLAndintLToContainerL = dart.constFn(dart.fnType(T.ContainerL(), [T.BuildContextL(), T.intL()])))()
+  };
   const CT = Object.create({
     _: () => (C, CT)
   });
   dart.defineLazy(CT, {
-    get C0() {
-      return C[0] = dart.const({
-        __proto__: alignment.Alignment.prototype,
-        [y$]: -1,
-        [x$]: -1
-      });
-    },
-    get C1() {
-      return C[1] = dart.const({
-        __proto__: alignment.Alignment.prototype,
-        [y$]: -1,
-        [x$]: 0
-      });
-    },
     get C2() {
       return C[2] = dart.const({
-        __proto__: alignment.Alignment.prototype,
-        [y$]: -1,
-        [x$]: 1
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "height",
+        [_Location_column]: 17,
+        [_Location_line]: 19,
+        [_Location_file]: null
       });
     },
     get C3() {
       return C[3] = dart.const({
-        __proto__: alignment.Alignment.prototype,
-        [y$]: 0,
-        [x$]: -1
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "color",
+        [_Location_column]: 17,
+        [_Location_line]: 20,
+        [_Location_file]: null
       });
     },
-    get C4() {
-      return C[4] = dart.const({
-        __proto__: alignment.Alignment.prototype,
-        [y$]: 0,
-        [x$]: 0
+    get C1() {
+      return C[1] = dart.constList([C[2] || CT.C2, C[3] || CT.C3], T._LocationL());
+    },
+    get C0() {
+      return C[0] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[1] || CT.C1,
+        [_Location_name]: null,
+        [_Location_column]: 15,
+        [_Location_line]: 18,
+        [_Location_file]: "file:///D:/Abdul-Mateen/Edu/curricular/Year%203%20sem%202/COE%20356%20Intro%20to%20Software%20engineering/Project/Papperless-Document-Handling-System/client/lib/screens/send_doc_screen/select_recepient.dart"
       });
     },
     get C5() {
-      return C[5] = dart.const({
-        __proto__: alignment.Alignment.prototype,
-        [y$]: 0,
-        [x$]: 1
-      });
+      return C[5] = dart.constList([], T._LocationL());
     },
-    get C6() {
-      return C[6] = dart.const({
-        __proto__: alignment.Alignment.prototype,
-        [y$]: 1,
-        [x$]: -1
-      });
-    },
-    get C7() {
-      return C[7] = dart.const({
-        __proto__: alignment.Alignment.prototype,
-        [y$]: 1,
-        [x$]: 0
+    get C4() {
+      return C[4] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[5] || CT.C5,
+        [_Location_name]: null,
+        [_Location_column]: 37,
+        [_Location_line]: 31,
+        [_Location_file]: "file:///D:/Abdul-Mateen/Edu/curricular/Year%203%20sem%202/COE%20356%20Intro%20to%20Software%20engineering/Project/Papperless-Document-Handling-System/client/lib/screens/send_doc_screen/select_recepient.dart"
       });
     },
     get C8() {
       return C[8] = dart.const({
-        __proto__: alignment.Alignment.prototype,
-        [y$]: 1,
-        [x$]: 1
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "icon",
+        [_Location_column]: 34,
+        [_Location_line]: 32,
+        [_Location_file]: null
       });
     },
     get C9() {
       return C[9] = dart.const({
-        __proto__: ui.TextDirection.prototype,
-        [_name]: "TextDirection.rtl",
-        index: 0
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "color",
+        [_Location_column]: 51,
+        [_Location_line]: 32,
+        [_Location_file]: null
       });
     },
-    get C10() {
-      return C[10] = dart.const({
-        __proto__: ui.TextDirection.prototype,
-        [_name]: "TextDirection.ltr",
-        index: 1
-      });
+    get C7() {
+      return C[7] = dart.constList([C[8] || CT.C8, C[9] || CT.C9], T._LocationL());
     },
-    get C11() {
-      return C[11] = dart.const({
-        __proto__: alignment.AlignmentDirectional.prototype,
-        [y$0]: -1,
-        [start$]: -1
+    get C6() {
+      return C[6] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[7] || CT.C7,
+        [_Location_name]: null,
+        [_Location_column]: 23,
+        [_Location_line]: 32,
+        [_Location_file]: "file:///D:/Abdul-Mateen/Edu/curricular/Year%203%20sem%202/COE%20356%20Intro%20to%20Software%20engineering/Project/Papperless-Document-Handling-System/client/lib/screens/send_doc_screen/select_recepient.dart"
       });
     },
     get C12() {
       return C[12] = dart.const({
-        __proto__: alignment.AlignmentDirectional.prototype,
-        [y$0]: -1,
-        [start$]: 0
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "data",
+        [_Location_column]: 32,
+        [_Location_line]: 37,
+        [_Location_file]: null
       });
     },
     get C13() {
       return C[13] = dart.const({
-        __proto__: alignment.AlignmentDirectional.prototype,
-        [y$0]: -1,
-        [start$]: 1
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "maxLines",
+        [_Location_column]: 27,
+        [_Location_line]: 38,
+        [_Location_file]: null
       });
     },
     get C14() {
       return C[14] = dart.const({
-        __proto__: alignment.AlignmentDirectional.prototype,
-        [y$0]: 0,
-        [start$]: -1
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "overflow",
+        [_Location_column]: 27,
+        [_Location_line]: 39,
+        [_Location_file]: null
       });
     },
-    get C15() {
-      return C[15] = dart.const({
-        __proto__: alignment.AlignmentDirectional.prototype,
-        [y$0]: 0,
-        [start$]: 0
-      });
+    get C11() {
+      return C[11] = dart.constList([C[12] || CT.C12, C[13] || CT.C13, C[14] || CT.C14], T._LocationL());
     },
-    get C16() {
-      return C[16] = dart.const({
-        __proto__: alignment.AlignmentDirectional.prototype,
-        [y$0]: 0,
-        [start$]: 1
+    get C10() {
+      return C[10] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[11] || CT.C11,
+        [_Location_name]: null,
+        [_Location_column]: 32,
+        [_Location_line]: 36,
+        [_Location_file]: "file:///D:/Abdul-Mateen/Edu/curricular/Year%203%20sem%202/COE%20356%20Intro%20to%20Software%20engineering/Project/Papperless-Document-Handling-System/client/lib/screens/send_doc_screen/select_recepient.dart"
       });
     },
     get C17() {
       return C[17] = dart.const({
-        __proto__: alignment.AlignmentDirectional.prototype,
-        [y$0]: 1,
-        [start$]: -1
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 25,
+        [_Location_line]: 36,
+        [_Location_file]: null
       });
     },
     get C18() {
       return C[18] = dart.const({
-        __proto__: alignment.AlignmentDirectional.prototype,
-        [y$0]: 1,
-        [start$]: 0
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "value",
+        [_Location_column]: 25,
+        [_Location_line]: 41,
+        [_Location_file]: null
       });
     },
-    get C19() {
-      return C[19] = dart.const({
-        __proto__: alignment.AlignmentDirectional.prototype,
-        [y$0]: 1,
-        [start$]: 1
-      });
+    get C16() {
+      return C[16] = dart.constList([C[17] || CT.C17, C[18] || CT.C18], T._LocationL());
     },
-    get C20() {
-      return C[20] = dart.const({
-        __proto__: alignment.TextAlignVertical.prototype,
-        [y$1]: -1
+    get C15() {
+      return C[15] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[16] || CT.C16,
+        [_Location_name]: null,
+        [_Location_column]: 33,
+        [_Location_line]: 35,
+        [_Location_file]: "file:///D:/Abdul-Mateen/Edu/curricular/Year%203%20sem%202/COE%20356%20Intro%20to%20Software%20engineering/Project/Papperless-Document-Handling-System/client/lib/screens/send_doc_screen/select_recepient.dart"
       });
     },
     get C21() {
       return C[21] = dart.const({
-        __proto__: alignment.TextAlignVertical.prototype,
-        [y$1]: 0
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "value",
+        [_Location_column]: 17,
+        [_Location_line]: 29,
+        [_Location_file]: null
       });
     },
     get C22() {
       return C[22] = dart.const({
-        __proto__: alignment.TextAlignVertical.prototype,
-        [y$1]: 1
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "isExpanded",
+        [_Location_column]: 17,
+        [_Location_line]: 30,
+        [_Location_file]: null
+      });
+    },
+    get C23() {
+      return C[23] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "underline",
+        [_Location_column]: 17,
+        [_Location_line]: 31,
+        [_Location_file]: null
+      });
+    },
+    get C24() {
+      return C[24] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "icon",
+        [_Location_column]: 17,
+        [_Location_line]: 32,
+        [_Location_file]: null
+      });
+    },
+    get C25() {
+      return C[25] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "items",
+        [_Location_column]: 17,
+        [_Location_line]: 33,
+        [_Location_file]: null
+      });
+    },
+    get C26() {
+      return C[26] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "onChanged",
+        [_Location_column]: 17,
+        [_Location_line]: 45,
+        [_Location_file]: null
+      });
+    },
+    get C20() {
+      return C[20] = dart.constList([C[21] || CT.C21, C[22] || CT.C22, C[23] || CT.C23, C[24] || CT.C24, C[25] || CT.C25, C[26] || CT.C26], T._LocationL());
+    },
+    get C19() {
+      return C[19] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[20] || CT.C20,
+        [_Location_name]: null,
+        [_Location_column]: 22,
+        [_Location_line]: 28,
+        [_Location_file]: "file:///D:/Abdul-Mateen/Edu/curricular/Year%203%20sem%202/COE%20356%20Intro%20to%20Software%20engineering/Project/Papperless-Document-Handling-System/client/lib/screens/send_doc_screen/select_recepient.dart"
+      });
+    },
+    get C29() {
+      return C[29] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "height",
+        [_Location_column]: 15,
+        [_Location_line]: 23,
+        [_Location_file]: null
+      });
+    },
+    get C30() {
+      return C[30] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "padding",
+        [_Location_column]: 15,
+        [_Location_line]: 25,
+        [_Location_file]: null
+      });
+    },
+    get C31() {
+      return C[31] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "width",
+        [_Location_column]: 15,
+        [_Location_line]: 26,
+        [_Location_file]: null
+      });
+    },
+    get C32() {
+      return C[32] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "color",
+        [_Location_column]: 15,
+        [_Location_line]: 27,
+        [_Location_file]: null
+      });
+    },
+    get C33() {
+      return C[33] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 15,
+        [_Location_line]: 28,
+        [_Location_file]: null
+      });
+    },
+    get C28() {
+      return C[28] = dart.constList([C[29] || CT.C29, C[30] || CT.C30, C[31] || CT.C31, C[32] || CT.C32, C[33] || CT.C33], T._LocationL());
+    },
+    get C27() {
+      return C[27] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[28] || CT.C28,
+        [_Location_name]: null,
+        [_Location_column]: 13,
+        [_Location_line]: 22,
+        [_Location_file]: "file:///D:/Abdul-Mateen/Edu/curricular/Year%203%20sem%202/COE%20356%20Intro%20to%20Software%20engineering/Project/Papperless-Document-Handling-System/client/lib/screens/send_doc_screen/select_recepient.dart"
+      });
+    },
+    get C36() {
+      return C[36] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "children",
+        [_Location_column]: 11,
+        [_Location_line]: 16,
+        [_Location_file]: null
+      });
+    },
+    get C35() {
+      return C[35] = dart.constList([C[36] || CT.C36], T._LocationL());
+    },
+    get C34() {
+      return C[34] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[35] || CT.C35,
+        [_Location_name]: null,
+        [_Location_column]: 16,
+        [_Location_line]: 15,
+        [_Location_file]: "file:///D:/Abdul-Mateen/Edu/curricular/Year%203%20sem%202/COE%20356%20Intro%20to%20Software%20engineering/Project/Papperless-Document-Handling-System/client/lib/screens/send_doc_screen/select_recepient.dart"
+      });
+    },
+    get C39() {
+      return C[39] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "borderRadius",
+        [_Location_column]: 9,
+        [_Location_line]: 14,
+        [_Location_file]: null
+      });
+    },
+    get C40() {
+      return C[40] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 9,
+        [_Location_line]: 15,
+        [_Location_file]: null
+      });
+    },
+    get C38() {
+      return C[38] = dart.constList([C[39] || CT.C39, C[40] || CT.C40], T._LocationL());
+    },
+    get C37() {
+      return C[37] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[38] || CT.C38,
+        [_Location_name]: null,
+        [_Location_column]: 7,
+        [_Location_line]: 13,
+        [_Location_file]: "file:///D:/Abdul-Mateen/Edu/curricular/Year%203%20sem%202/COE%20356%20Intro%20to%20Software%20engineering/Project/Papperless-Document-Handling-System/client/lib/screens/send_doc_screen/select_recepient.dart"
+      });
+    },
+    get C43() {
+      return C[43] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "data",
+        [_Location_column]: 55,
+        [_Location_line]: 75,
+        [_Location_file]: null
+      });
+    },
+    get C42() {
+      return C[42] = dart.constList([C[43] || CT.C43], T._LocationL());
+    },
+    get C41() {
+      return C[41] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[42] || CT.C42,
+        [_Location_name]: null,
+        [_Location_column]: 24,
+        [_Location_line]: 75,
+        [_Location_file]: "file:///D:/Abdul-Mateen/Edu/curricular/Year%203%20sem%202/COE%20356%20Intro%20to%20Software%20engineering/Project/Papperless-Document-Handling-System/client/lib/screens/send_doc_screen/select_recepient.dart"
+      });
+    },
+    get C46() {
+      return C[46] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "value",
+        [_Location_column]: 17,
+        [_Location_line]: 72,
+        [_Location_file]: null
+      });
+    },
+    get C47() {
+      return C[47] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "shape",
+        [_Location_column]: 17,
+        [_Location_line]: 73,
+        [_Location_file]: null
+      });
+    },
+    get C48() {
+      return C[48] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "title",
+        [_Location_column]: 17,
+        [_Location_line]: 75,
+        [_Location_file]: null
+      });
+    },
+    get C49() {
+      return C[49] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "activeColor",
+        [_Location_column]: 17,
+        [_Location_line]: 76,
+        [_Location_file]: null
+      });
+    },
+    get C50() {
+      return C[50] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "onChanged",
+        [_Location_column]: 17,
+        [_Location_line]: 77,
+        [_Location_file]: null
+      });
+    },
+    get C45() {
+      return C[45] = dart.constList([C[46] || CT.C46, C[47] || CT.C47, C[48] || CT.C48, C[49] || CT.C49, C[50] || CT.C50], T._LocationL());
+    },
+    get C44() {
+      return C[44] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[45] || CT.C45,
+        [_Location_name]: null,
+        [_Location_column]: 22,
+        [_Location_line]: 71,
+        [_Location_file]: "file:///D:/Abdul-Mateen/Edu/curricular/Year%203%20sem%202/COE%20356%20Intro%20to%20Software%20engineering/Project/Papperless-Document-Handling-System/client/lib/screens/send_doc_screen/select_recepient.dart"
+      });
+    },
+    get C53() {
+      return C[53] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "margin",
+        [_Location_column]: 15,
+        [_Location_line]: 68,
+        [_Location_file]: null
+      });
+    },
+    get C54() {
+      return C[54] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "decoration",
+        [_Location_column]: 15,
+        [_Location_line]: 69,
+        [_Location_file]: null
+      });
+    },
+    get C55() {
+      return C[55] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 15,
+        [_Location_line]: 71,
+        [_Location_file]: null
+      });
+    },
+    get C52() {
+      return C[52] = dart.constList([C[53] || CT.C53, C[54] || CT.C54, C[55] || CT.C55], T._LocationL());
+    },
+    get C51() {
+      return C[51] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[52] || CT.C52,
+        [_Location_name]: null,
+        [_Location_column]: 20,
+        [_Location_line]: 67,
+        [_Location_file]: "file:///D:/Abdul-Mateen/Edu/curricular/Year%203%20sem%202/COE%20356%20Intro%20to%20Software%20engineering/Project/Papperless-Document-Handling-System/client/lib/screens/send_doc_screen/select_recepient.dart"
+      });
+    },
+    get C58() {
+      return C[58] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "padding",
+        [_Location_column]: 11,
+        [_Location_line]: 61,
+        [_Location_file]: null
+      });
+    },
+    get C59() {
+      return C[59] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "itemCount",
+        [_Location_column]: 11,
+        [_Location_line]: 62,
+        [_Location_file]: null
+      });
+    },
+    get C60() {
+      return C[60] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "itemBuilder",
+        [_Location_column]: 11,
+        [_Location_line]: 63,
+        [_Location_file]: null
+      });
+    },
+    get C57() {
+      return C[57] = dart.constList([C[58] || CT.C58, C[59] || CT.C59, C[60] || CT.C60], T._LocationL());
+    },
+    get C56() {
+      return C[56] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[57] || CT.C57,
+        [_Location_name]: null,
+        [_Location_column]: 25,
+        [_Location_line]: 60,
+        [_Location_file]: "file:///D:/Abdul-Mateen/Edu/curricular/Year%203%20sem%202/COE%20356%20Intro%20to%20Software%20engineering/Project/Papperless-Document-Handling-System/client/lib/screens/send_doc_screen/select_recepient.dart"
+      });
+    },
+    get C63() {
+      return C[63] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 9,
+        [_Location_line]: 60,
+        [_Location_file]: null
+      });
+    },
+    get C62() {
+      return C[62] = dart.constList([C[63] || CT.C63], T._LocationL());
+    },
+    get C61() {
+      return C[61] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[62] || CT.C62,
+        [_Location_name]: null,
+        [_Location_column]: 7,
+        [_Location_line]: 59,
+        [_Location_file]: "file:///D:/Abdul-Mateen/Edu/curricular/Year%203%20sem%202/COE%20356%20Intro%20to%20Software%20engineering/Project/Papperless-Document-Handling-System/client/lib/screens/send_doc_screen/select_recepient.dart"
+      });
+    },
+    get C66() {
+      return C[66] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "children",
+        [_Location_column]: 5,
+        [_Location_line]: 12,
+        [_Location_file]: null
+      });
+    },
+    get C65() {
+      return C[65] = dart.constList([C[66] || CT.C66], T._LocationL());
+    },
+    get C64() {
+      return C[64] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[65] || CT.C65,
+        [_Location_name]: null,
+        [_Location_column]: 10,
+        [_Location_line]: 11,
+        [_Location_file]: "file:///D:/Abdul-Mateen/Edu/curricular/Year%203%20sem%202/COE%20356%20Intro%20to%20Software%20engineering/Project/Papperless-Document-Handling-System/client/lib/screens/send_doc_screen/select_recepient.dart"
       });
     }
   }, false);
-  var C = Array(23).fill(void 0);
-  var I = [
-    "file:///C:/src/flutter/packages/flutter/lib/src/painting/alignment.dart",
-    "package:flutter/src/painting/alignment.dart"
-  ];
-  var _x = dart.privateName(alignment, "_x");
-  var _start = dart.privateName(alignment, "_start");
-  var _y = dart.privateName(alignment, "_y");
-  alignment.AlignmentGeometry = class AlignmentGeometry extends core.Object {
-    add(other) {
-      if (other == null) dart.nullFailed(I[0], 43, 43, "other");
-      return new alignment._MixedAlignment.new(dart.notNull(this[_x]) + dart.notNull(other[_x]), dart.notNull(this[_start]) + dart.notNull(other[_start]), dart.notNull(this[_y]) + dart.notNull(other[_y]));
-    }
-    static lerp(a, b, t) {
-      if (t == null) dart.nullFailed(I[0], 90, 85, "t");
-      if (!(t != null)) dart.assertFailed(null, I[0], 91, 12, "t != null");
-      if (a == null && b == null) return null;
-      if (a == null) return dart.nullCheck(b)['*'](t);
-      if (b == null) return a['*'](1.0 - dart.notNull(t));
-      if (alignment.Alignment.is(a) && alignment.Alignment.is(b)) return alignment.Alignment.lerp(a, b, t);
-      if (alignment.AlignmentDirectional.is(a) && alignment.AlignmentDirectional.is(b)) return alignment.AlignmentDirectional.lerp(a, b, t);
-      return new alignment._MixedAlignment.new(dart.nullCheck(ui.lerpDouble(a[_x], b[_x], t)), dart.nullCheck(ui.lerpDouble(a[_start], b[_start], t)), dart.nullCheck(ui.lerpDouble(a[_y], b[_y], t)));
-    }
-    toString() {
-      if (this[_start] === 0.0) return alignment.Alignment._stringify(this[_x], this[_y]);
-      if (this[_x] === 0.0) return alignment.AlignmentDirectional._stringify(this[_start], this[_y]);
-      return dart.notNull(alignment.Alignment._stringify(this[_x], this[_y])) + " + " + dart.notNull(alignment.AlignmentDirectional._stringify(this[_start], 0.0));
-    }
-    _equals(other) {
-      if (other == null) return false;
-      return alignment.AlignmentGeometry.is(other) && other[_x] == this[_x] && other[_start] == this[_start] && other[_y] == this[_y];
-    }
-    get hashCode() {
-      return ui.hashValues(this[_x], this[_start], this[_y]);
-    }
+  var C = Array(67).fill(void 0);
+  var _Location_parameterLocations = dart.privateName(widget_inspector, "_Location.parameterLocations");
+  var _Location_name = dart.privateName(widget_inspector, "_Location.name");
+  var _Location_column = dart.privateName(widget_inspector, "_Location.column");
+  var _Location_line = dart.privateName(widget_inspector, "_Location.line");
+  var _Location_file = dart.privateName(widget_inspector, "_Location.file");
+  select_recepient.selectRecepient = function selectRecepient(setMainState, setModalState = null) {
+    return new basic.Column.new({children: T.JSArrayOfWidgetL().of([new basic.ClipRRect.new({borderRadius: new border_radius.BorderRadius.circular(7.0), child: new basic.Column.new({children: (() => {
+              let t0 = T.JSArrayOfWidgetL().of([]);
+              if (setModalState == null) t0[$add](new container.Container.new({height: 4.0, color: style.primary, $creationLocationd_0dea112b090073317d4: C[0] || CT.C0}));
+              t0[$add](new container.Container.new({height: 55.0, padding: new edge_insets.EdgeInsets.symmetric({horizontal: 15.0}), width: 1 / 0, color: style.primaryLight, child: new (T.DropdownButtonOfStringL()).new({value: utills.selectedDept.id, isExpanded: true, underline: new basic.SizedBox.shrink({$creationLocationd_0dea112b090073317d4: C[4] || CT.C4}), icon: new icon.Icon.new(icons.Icons.arrow_drop_down, {color: style.primaryDark, $creationLocationd_0dea112b090073317d4: C[6] || CT.C6}), items: utills.departments[$map](T.DropdownMenuItemLOfStringL(), dart.fn(dept => new (T.DropdownMenuItemOfStringL()).new({child: new text.Text.new(dept.name, {maxLines: 1, overflow: paragraph.TextOverflow.ellipsis, $creationLocationd_0dea112b090073317d4: C[10] || CT.C10}), value: dept.id, $creationLocationd_0dea112b090073317d4: C[15] || CT.C15}), T.DepartmentLToDropdownMenuItemLOfStringL()))[$toList](), onChanged: dart.fn(newVal => {
+                    core.print(newVal);
+                    utills.selectedDept = utills.departments[$singleWhere](dart.fn(dept => dept.id == newVal, T.DepartmentLToboolL()));
+                    dart.dcall(setMainState, []);
+                    if (setModalState != null) dart.dcall(setModalState, [dart.fn(() => {
+                      }, T.VoidToNull())]);
+                  }, T.StringLToNull()), $creationLocationd_0dea112b090073317d4: C[19] || CT.C19}), $creationLocationd_0dea112b090073317d4: C[27] || CT.C27}));
+              return t0;
+            })(), $creationLocationd_0dea112b090073317d4: C[34] || CT.C34}), $creationLocationd_0dea112b090073317d4: C[37] || CT.C37}), new basic.Expanded.new({child: new scroll_view.ListView.builder({padding: new edge_insets.EdgeInsets.symmetric({horizontal: 12.0, vertical: 10.0}), itemCount: utills.selectedDept.users[$length], itemBuilder: dart.fn((context, index) => {
+              let selected = utills.approvals[$contains](utills.selectedDept.users[$_get](index).id);
+              return new container.Container.new({margin: new edge_insets.EdgeInsets.symmetric({vertical: 5.0}), decoration: new box_decoration.BoxDecoration.new({color: style.primaryLight, borderRadius: new border_radius.BorderRadius.circular(7.0)}), child: new checkbox_list_tile.CheckboxListTile.new({value: selected, shape: new rounded_rectangle_border.RoundedRectangleBorder.new({borderRadius: new border_radius.BorderRadius.circular(7.0)}), title: new text.Text.new(utills.selectedDept.users[$_get](index).title, {$creationLocationd_0dea112b090073317d4: C[41] || CT.C41}), activeColor: style.primary, onChanged: dart.fn(newVal => {
+                    if (dart.test(selected)) {
+                      utills.approvals[$remove](utills.selectedDept.users[$_get](index).id);
+                      dart.dcall(setMainState, []);
+                      if (setModalState != null) dart.dcall(setModalState, [dart.fn(() => {
+                        }, T.VoidToNull())]);
+                    } else {
+                      utills.approvals[$add](utills.selectedDept.users[$_get](index).id);
+                      dart.dcall(setMainState, []);
+                      if (setModalState != null) dart.dcall(setModalState, [dart.fn(() => {
+                        }, T.VoidToNull())]);
+                    }
+                  }, T.boolLToNull()), $creationLocationd_0dea112b090073317d4: C[44] || CT.C44}), $creationLocationd_0dea112b090073317d4: C[51] || CT.C51});
+            }, T.BuildContextLAndintLToContainerL()), $creationLocationd_0dea112b090073317d4: C[56] || CT.C56}), $creationLocationd_0dea112b090073317d4: C[61] || CT.C61})]), $creationLocationd_0dea112b090073317d4: C[64] || CT.C64});
   };
-  (alignment.AlignmentGeometry.new = function() {
-    ;
-  }).prototype = alignment.AlignmentGeometry.prototype;
-  dart.addTypeTests(alignment.AlignmentGeometry);
-  dart.addTypeCaches(alignment.AlignmentGeometry);
-  dart.setMethodSignature(alignment.AlignmentGeometry, () => ({
-    __proto__: dart.getMethods(alignment.AlignmentGeometry.__proto__),
-    add: dart.fnType(alignment.AlignmentGeometry, [alignment.AlignmentGeometry])
-  }));
-  dart.setLibraryUri(alignment.AlignmentGeometry, I[1]);
-  dart.defineExtensionMethods(alignment.AlignmentGeometry, ['toString', '_equals']);
-  dart.defineExtensionAccessors(alignment.AlignmentGeometry, ['hashCode']);
-  var x$ = dart.privateName(alignment, "Alignment.x");
-  var y$ = dart.privateName(alignment, "Alignment.y");
-  alignment.Alignment = class Alignment extends alignment.AlignmentGeometry {
-    get x() {
-      return this[x$];
-    }
-    set x(value) {
-      super.x = value;
-    }
-    get y() {
-      return this[y$];
-    }
-    set y(value) {
-      super.y = value;
-    }
-    get [_x]() {
-      return this.x;
-    }
-    get [_start]() {
-      return 0.0;
-    }
-    get [_y]() {
-      return this.y;
-    }
-    add(other) {
-      if (other == null) dart.nullFailed(I[0], 243, 43, "other");
-      if (alignment.Alignment.is(other)) return this['+'](other);
-      return super.add(other);
-    }
-    ['-'](other) {
-      if (other == null) dart.nullFailed(I[0], 250, 34, "other");
-      return new alignment.Alignment.new(dart.notNull(this.x) - dart.notNull(other.x), dart.notNull(this.y) - dart.notNull(other.y));
-    }
-    ['+'](other) {
-      if (other == null) dart.nullFailed(I[0], 255, 34, "other");
-      return new alignment.Alignment.new(dart.notNull(this.x) + dart.notNull(other.x), dart.notNull(this.y) + dart.notNull(other.y));
-    }
-    _negate() {
-      return new alignment.Alignment.new(-dart.notNull(this.x), -dart.notNull(this.y));
-    }
-    ['*'](other) {
-      if (other == null) dart.nullFailed(I[0], 267, 31, "other");
-      return new alignment.Alignment.new(dart.notNull(this.x) * dart.notNull(other), dart.notNull(this.y) * dart.notNull(other));
-    }
-    ['/'](other) {
-      if (other == null) dart.nullFailed(I[0], 273, 31, "other");
-      return new alignment.Alignment.new(dart.notNull(this.x) / dart.notNull(other), dart.notNull(this.y) / dart.notNull(other));
-    }
-    ['~/'](other) {
-      if (other == null) dart.nullFailed(I[0], 279, 32, "other");
-      return new alignment.Alignment.new((dart.notNull(this.x) / dart.notNull(other))[$truncate]()[$toDouble](), (dart.notNull(this.y) / dart.notNull(other))[$truncate]()[$toDouble]());
-    }
-    ['%'](other) {
-      if (other == null) dart.nullFailed(I[0], 285, 31, "other");
-      return new alignment.Alignment.new(this.x[$modulo](other), this.y[$modulo](other));
-    }
-    alongOffset(other) {
-      if (other == null) dart.nullFailed(I[0], 290, 29, "other");
-      let centerX = dart.notNull(other.dx) / 2.0;
-      let centerY = dart.notNull(other.dy) / 2.0;
-      return new ui.Offset.new(centerX + dart.notNull(this.x) * centerX, centerY + dart.notNull(this.y) * centerY);
-    }
-    alongSize(other) {
-      if (other == null) dart.nullFailed(I[0], 297, 25, "other");
-      let centerX = dart.notNull(other.width) / 2.0;
-      let centerY = dart.notNull(other.height) / 2.0;
-      return new ui.Offset.new(centerX + dart.notNull(this.x) * centerX, centerY + dart.notNull(this.y) * centerY);
-    }
-    withinRect(rect) {
-      if (rect == null) dart.nullFailed(I[0], 304, 26, "rect");
-      let halfWidth = dart.notNull(rect.width) / 2.0;
-      let halfHeight = dart.notNull(rect.height) / 2.0;
-      return new ui.Offset.new(dart.notNull(rect.left) + halfWidth + dart.notNull(this.x) * halfWidth, dart.notNull(rect.top) + halfHeight + dart.notNull(this.y) * halfHeight);
-    }
-    inscribe(size, rect) {
-      if (size == null) dart.nullFailed(I[0], 319, 22, "size");
-      if (rect == null) dart.nullFailed(I[0], 319, 33, "rect");
-      let halfWidthDelta = (dart.notNull(rect.width) - dart.notNull(size.width)) / 2.0;
-      let halfHeightDelta = (dart.notNull(rect.height) - dart.notNull(size.height)) / 2.0;
-      return new ui.Rect.fromLTWH(dart.notNull(rect.left) + halfWidthDelta + dart.notNull(this.x) * halfWidthDelta, dart.notNull(rect.top) + halfHeightDelta + dart.notNull(this.y) * halfHeightDelta, size.width, size.height);
-    }
-    static lerp(a, b, t) {
-      if (t == null) dart.nullFailed(I[0], 335, 61, "t");
-      if (!(t != null)) dart.assertFailed(null, I[0], 336, 12, "t != null");
-      if (a == null && b == null) return null;
-      if (a == null) return new alignment.Alignment.new(dart.nullCheck(ui.lerpDouble(0.0, dart.nullCheck(b).x, t)), dart.nullCheck(ui.lerpDouble(0.0, b.y, t)));
-      if (b == null) return new alignment.Alignment.new(dart.nullCheck(ui.lerpDouble(a.x, 0.0, t)), dart.nullCheck(ui.lerpDouble(a.y, 0.0, t)));
-      return new alignment.Alignment.new(dart.nullCheck(ui.lerpDouble(a.x, b.x, t)), dart.nullCheck(ui.lerpDouble(a.y, b.y, t)));
-    }
-    resolve(direction) {
-      return this;
-    }
-    static _stringify(x, y) {
-      if (x == null) dart.nullFailed(I[0], 349, 35, "x");
-      if (y == null) dart.nullFailed(I[0], 349, 45, "y");
-      if (x === -1.0 && y === -1.0) return "Alignment.topLeft";
-      if (x === 0.0 && y === -1.0) return "Alignment.topCenter";
-      if (x === 1.0 && y === -1.0) return "Alignment.topRight";
-      if (x === -1.0 && y === 0.0) return "Alignment.centerLeft";
-      if (x === 0.0 && y === 0.0) return "Alignment.center";
-      if (x === 1.0 && y === 0.0) return "Alignment.centerRight";
-      if (x === -1.0 && y === 1.0) return "Alignment.bottomLeft";
-      if (x === 0.0 && y === 1.0) return "Alignment.bottomCenter";
-      if (x === 1.0 && y === 1.0) return "Alignment.bottomRight";
-      return "Alignment(" + x[$toStringAsFixed](1) + ", " + y[$toStringAsFixed](1) + ")";
-    }
-    toString() {
-      return alignment.Alignment._stringify(this.x, this.y);
-    }
-  };
-  (alignment.Alignment.new = function(x, y) {
-    if (x == null) dart.nullFailed(I[0], 185, 24, "x");
-    if (y == null) dart.nullFailed(I[0], 185, 32, "y");
-    this[x$] = x;
-    this[y$] = y;
-    if (!(x != null)) dart.assertFailed(null, I[0], 186, 14, "x != null");
-    if (!(y != null)) dart.assertFailed(null, I[0], 187, 14, "y != null");
-    alignment.Alignment.__proto__.new.call(this);
-    ;
-  }).prototype = alignment.Alignment.prototype;
-  dart.addTypeTests(alignment.Alignment);
-  dart.addTypeCaches(alignment.Alignment);
-  dart.setMethodSignature(alignment.Alignment, () => ({
-    __proto__: dart.getMethods(alignment.Alignment.__proto__),
-    '-': dart.fnType(alignment.Alignment, [alignment.Alignment]),
-    '+': dart.fnType(alignment.Alignment, [alignment.Alignment]),
-    _negate: dart.fnType(alignment.Alignment, []),
-    '*': dart.fnType(alignment.Alignment, [core.double]),
-    '/': dart.fnType(alignment.Alignment, [core.double]),
-    '~/': dart.fnType(alignment.Alignment, [core.double]),
-    '%': dart.fnType(alignment.Alignment, [core.double]),
-    alongOffset: dart.fnType(ui.Offset, [ui.Offset]),
-    alongSize: dart.fnType(ui.Offset, [ui.Size]),
-    withinRect: dart.fnType(ui.Offset, [ui.Rect]),
-    inscribe: dart.fnType(ui.Rect, [ui.Size, ui.Rect]),
-    resolve: dart.fnType(alignment.Alignment, [dart.nullable(ui.TextDirection)])
-  }));
-  dart.setGetterSignature(alignment.Alignment, () => ({
-    __proto__: dart.getGetters(alignment.Alignment.__proto__),
-    [_x]: core.double,
-    [_start]: core.double,
-    [_y]: core.double
-  }));
-  dart.setLibraryUri(alignment.Alignment, I[1]);
-  dart.setFieldSignature(alignment.Alignment, () => ({
-    __proto__: dart.getFields(alignment.Alignment.__proto__),
-    x: dart.finalFieldType(core.double),
-    y: dart.finalFieldType(core.double)
-  }));
-  dart.defineExtensionMethods(alignment.Alignment, ['toString']);
-  dart.defineLazy(alignment.Alignment, {
-    /*alignment.Alignment.topLeft*/get topLeft() {
-      return C[0] || CT.C0;
-    },
-    /*alignment.Alignment.topCenter*/get topCenter() {
-      return C[1] || CT.C1;
-    },
-    /*alignment.Alignment.topRight*/get topRight() {
-      return C[2] || CT.C2;
-    },
-    /*alignment.Alignment.centerLeft*/get centerLeft() {
-      return C[3] || CT.C3;
-    },
-    /*alignment.Alignment.center*/get center() {
-      return C[4] || CT.C4;
-    },
-    /*alignment.Alignment.centerRight*/get centerRight() {
-      return C[5] || CT.C5;
-    },
-    /*alignment.Alignment.bottomLeft*/get bottomLeft() {
-      return C[6] || CT.C6;
-    },
-    /*alignment.Alignment.bottomCenter*/get bottomCenter() {
-      return C[7] || CT.C7;
-    },
-    /*alignment.Alignment.bottomRight*/get bottomRight() {
-      return C[8] || CT.C8;
-    }
-  }, false);
-  var start$ = dart.privateName(alignment, "AlignmentDirectional.start");
-  var y$0 = dart.privateName(alignment, "AlignmentDirectional.y");
-  var _name = dart.privateName(ui, "_name");
-  alignment.AlignmentDirectional = class AlignmentDirectional extends alignment.AlignmentGeometry {
-    get start() {
-      return this[start$];
-    }
-    set start(value) {
-      super.start = value;
-    }
-    get y() {
-      return this[y$0];
-    }
-    set y(value) {
-      super.y = value;
-    }
-    get [_x]() {
-      return 0.0;
-    }
-    get [_start]() {
-      return this.start;
-    }
-    get [_y]() {
-      return this.y;
-    }
-    add(other) {
-      if (other == null) dart.nullFailed(I[0], 465, 43, "other");
-      if (alignment.AlignmentDirectional.is(other)) return this['+'](other);
-      return super.add(other);
-    }
-    ['-'](other) {
-      if (other == null) dart.nullFailed(I[0], 472, 56, "other");
-      return new alignment.AlignmentDirectional.new(dart.notNull(this.start) - dart.notNull(other.start), dart.notNull(this.y) - dart.notNull(other.y));
-    }
-    ['+'](other) {
-      if (other == null) dart.nullFailed(I[0], 477, 56, "other");
-      return new alignment.AlignmentDirectional.new(dart.notNull(this.start) + dart.notNull(other.start), dart.notNull(this.y) + dart.notNull(other.y));
-    }
-    _negate() {
-      return new alignment.AlignmentDirectional.new(-dart.notNull(this.start), -dart.notNull(this.y));
-    }
-    ['*'](other) {
-      if (other == null) dart.nullFailed(I[0], 489, 42, "other");
-      return new alignment.AlignmentDirectional.new(dart.notNull(this.start) * dart.notNull(other), dart.notNull(this.y) * dart.notNull(other));
-    }
-    ['/'](other) {
-      if (other == null) dart.nullFailed(I[0], 495, 42, "other");
-      return new alignment.AlignmentDirectional.new(dart.notNull(this.start) / dart.notNull(other), dart.notNull(this.y) / dart.notNull(other));
-    }
-    ['~/'](other) {
-      if (other == null) dart.nullFailed(I[0], 501, 43, "other");
-      return new alignment.AlignmentDirectional.new((dart.notNull(this.start) / dart.notNull(other))[$truncate]()[$toDouble](), (dart.notNull(this.y) / dart.notNull(other))[$truncate]()[$toDouble]());
-    }
-    ['%'](other) {
-      if (other == null) dart.nullFailed(I[0], 507, 42, "other");
-      return new alignment.AlignmentDirectional.new(this.start[$modulo](other), this.y[$modulo](other));
-    }
-    static lerp(a, b, t) {
-      if (t == null) dart.nullFailed(I[0], 516, 94, "t");
-      if (!(t != null)) dart.assertFailed(null, I[0], 517, 12, "t != null");
-      if (a == null && b == null) return null;
-      if (a == null) return new alignment.AlignmentDirectional.new(dart.nullCheck(ui.lerpDouble(0.0, dart.nullCheck(b).start, t)), dart.nullCheck(ui.lerpDouble(0.0, b.y, t)));
-      if (b == null) return new alignment.AlignmentDirectional.new(dart.nullCheck(ui.lerpDouble(a.start, 0.0, t)), dart.nullCheck(ui.lerpDouble(a.y, 0.0, t)));
-      return new alignment.AlignmentDirectional.new(dart.nullCheck(ui.lerpDouble(a.start, b.start, t)), dart.nullCheck(ui.lerpDouble(a.y, b.y, t)));
-    }
-    resolve(direction) {
-      if (!(direction != null)) dart.assertFailed("Cannot resolve " + dart.str(this[$runtimeType]) + " without a TextDirection.", I[0], 529, 12, "direction != null");
-      switch (dart.nullCheck(direction)) {
-        case C[9] || CT.C9:
-        {
-          return new alignment.Alignment.new(-dart.notNull(this.start), this.y);
-        }
-        case C[10] || CT.C10:
-        {
-          return new alignment.Alignment.new(this.start, this.y);
-        }
-        default:
-        {
-          dart.throw(new _internal.ReachabilityError.new("`null` encountered as case in a switch expression with a non-nullable enum type."));
-        }
-      }
-    }
-    static _stringify(start, y) {
-      if (start == null) dart.nullFailed(I[0], 538, 35, "start");
-      if (y == null) dart.nullFailed(I[0], 538, 49, "y");
-      if (start === -1.0 && y === -1.0) return "AlignmentDirectional.topStart";
-      if (start === 0.0 && y === -1.0) return "AlignmentDirectional.topCenter";
-      if (start === 1.0 && y === -1.0) return "AlignmentDirectional.topEnd";
-      if (start === -1.0 && y === 0.0) return "AlignmentDirectional.centerStart";
-      if (start === 0.0 && y === 0.0) return "AlignmentDirectional.center";
-      if (start === 1.0 && y === 0.0) return "AlignmentDirectional.centerEnd";
-      if (start === -1.0 && y === 1.0) return "AlignmentDirectional.bottomStart";
-      if (start === 0.0 && y === 1.0) return "AlignmentDirectional.bottomCenter";
-      if (start === 1.0 && y === 1.0) return "AlignmentDirectional.bottomEnd";
-      return "AlignmentDirectional(" + start[$toStringAsFixed](1) + ", " + y[$toStringAsFixed](1) + ")";
-    }
-    toString() {
-      return alignment.AlignmentDirectional._stringify(this.start, this.y);
-    }
-  };
-  (alignment.AlignmentDirectional.new = function(start, y) {
-    if (start == null) dart.nullFailed(I[0], 391, 35, "start");
-    if (y == null) dart.nullFailed(I[0], 391, 47, "y");
-    this[start$] = start;
-    this[y$0] = y;
-    if (!(start != null)) dart.assertFailed(null, I[0], 392, 14, "start != null");
-    if (!(y != null)) dart.assertFailed(null, I[0], 393, 14, "y != null");
-    alignment.AlignmentDirectional.__proto__.new.call(this);
-    ;
-  }).prototype = alignment.AlignmentDirectional.prototype;
-  dart.addTypeTests(alignment.AlignmentDirectional);
-  dart.addTypeCaches(alignment.AlignmentDirectional);
-  dart.setMethodSignature(alignment.AlignmentDirectional, () => ({
-    __proto__: dart.getMethods(alignment.AlignmentDirectional.__proto__),
-    '-': dart.fnType(alignment.AlignmentDirectional, [alignment.AlignmentDirectional]),
-    '+': dart.fnType(alignment.AlignmentDirectional, [alignment.AlignmentDirectional]),
-    _negate: dart.fnType(alignment.AlignmentDirectional, []),
-    '*': dart.fnType(alignment.AlignmentDirectional, [core.double]),
-    '/': dart.fnType(alignment.AlignmentDirectional, [core.double]),
-    '~/': dart.fnType(alignment.AlignmentDirectional, [core.double]),
-    '%': dart.fnType(alignment.AlignmentDirectional, [core.double]),
-    resolve: dart.fnType(alignment.Alignment, [dart.nullable(ui.TextDirection)])
-  }));
-  dart.setGetterSignature(alignment.AlignmentDirectional, () => ({
-    __proto__: dart.getGetters(alignment.AlignmentDirectional.__proto__),
-    [_x]: core.double,
-    [_start]: core.double,
-    [_y]: core.double
-  }));
-  dart.setLibraryUri(alignment.AlignmentDirectional, I[1]);
-  dart.setFieldSignature(alignment.AlignmentDirectional, () => ({
-    __proto__: dart.getFields(alignment.AlignmentDirectional.__proto__),
-    start: dart.finalFieldType(core.double),
-    y: dart.finalFieldType(core.double)
-  }));
-  dart.defineExtensionMethods(alignment.AlignmentDirectional, ['toString']);
-  dart.defineLazy(alignment.AlignmentDirectional, {
-    /*alignment.AlignmentDirectional.topStart*/get topStart() {
-      return C[11] || CT.C11;
-    },
-    /*alignment.AlignmentDirectional.topCenter*/get topCenter() {
-      return C[12] || CT.C12;
-    },
-    /*alignment.AlignmentDirectional.topEnd*/get topEnd() {
-      return C[13] || CT.C13;
-    },
-    /*alignment.AlignmentDirectional.centerStart*/get centerStart() {
-      return C[14] || CT.C14;
-    },
-    /*alignment.AlignmentDirectional.center*/get center() {
-      return C[15] || CT.C15;
-    },
-    /*alignment.AlignmentDirectional.centerEnd*/get centerEnd() {
-      return C[16] || CT.C16;
-    },
-    /*alignment.AlignmentDirectional.bottomStart*/get bottomStart() {
-      return C[17] || CT.C17;
-    },
-    /*alignment.AlignmentDirectional.bottomCenter*/get bottomCenter() {
-      return C[18] || CT.C18;
-    },
-    /*alignment.AlignmentDirectional.bottomEnd*/get bottomEnd() {
-      return C[19] || CT.C19;
-    }
-  }, false);
-  var _x$ = dart.privateName(alignment, "_MixedAlignment._x");
-  var _start$ = dart.privateName(alignment, "_MixedAlignment._start");
-  var _y$ = dart.privateName(alignment, "_MixedAlignment._y");
-  alignment._MixedAlignment = class _MixedAlignment extends alignment.AlignmentGeometry {
-    get [_x]() {
-      return this[_x$];
-    }
-    set [_x](value) {
-      super[_x] = value;
-    }
-    get [_start]() {
-      return this[_start$];
-    }
-    set [_start](value) {
-      super[_start] = value;
-    }
-    get [_y]() {
-      return this[_y$];
-    }
-    set [_y](value) {
-      super[_y] = value;
-    }
-    _negate() {
-      return new alignment._MixedAlignment.new(-dart.notNull(this[_x]), -dart.notNull(this[_start]), -dart.notNull(this[_y]));
-    }
-    ['*'](other) {
-      if (other == null) dart.nullFailed(I[0], 587, 37, "other");
-      return new alignment._MixedAlignment.new(dart.notNull(this[_x]) * dart.notNull(other), dart.notNull(this[_start]) * dart.notNull(other), dart.notNull(this[_y]) * dart.notNull(other));
-    }
-    ['/'](other) {
-      if (other == null) dart.nullFailed(I[0], 596, 37, "other");
-      return new alignment._MixedAlignment.new(dart.notNull(this[_x]) / dart.notNull(other), dart.notNull(this[_start]) / dart.notNull(other), dart.notNull(this[_y]) / dart.notNull(other));
-    }
-    ['~/'](other) {
-      if (other == null) dart.nullFailed(I[0], 605, 38, "other");
-      return new alignment._MixedAlignment.new((dart.notNull(this[_x]) / dart.notNull(other))[$truncate]()[$toDouble](), (dart.notNull(this[_start]) / dart.notNull(other))[$truncate]()[$toDouble](), (dart.notNull(this[_y]) / dart.notNull(other))[$truncate]()[$toDouble]());
-    }
-    ['%'](other) {
-      if (other == null) dart.nullFailed(I[0], 614, 37, "other");
-      return new alignment._MixedAlignment.new(this[_x][$modulo](other), this[_start][$modulo](other), this[_y][$modulo](other));
-    }
-    resolve(direction) {
-      if (!(direction != null)) dart.assertFailed("Cannot resolve " + dart.str(this[$runtimeType]) + " without a TextDirection.", I[0], 624, 12, "direction != null");
-      switch (dart.nullCheck(direction)) {
-        case C[9] || CT.C9:
-        {
-          return new alignment.Alignment.new(dart.notNull(this[_x]) - dart.notNull(this[_start]), this[_y]);
-        }
-        case C[10] || CT.C10:
-        {
-          return new alignment.Alignment.new(dart.notNull(this[_x]) + dart.notNull(this[_start]), this[_y]);
-        }
-        default:
-        {
-          dart.throw(new _internal.ReachabilityError.new("`null` encountered as case in a switch expression with a non-nullable enum type."));
-        }
-      }
-    }
-  };
-  (alignment._MixedAlignment.new = function(_x, _start, _y) {
-    if (_x == null) dart.nullFailed(I[0], 566, 30, "_x");
-    if (_start == null) dart.nullFailed(I[0], 566, 39, "_start");
-    if (_y == null) dart.nullFailed(I[0], 566, 52, "_y");
-    this[_x$] = _x;
-    this[_start$] = _start;
-    this[_y$] = _y;
-    alignment._MixedAlignment.__proto__.new.call(this);
-    ;
-  }).prototype = alignment._MixedAlignment.prototype;
-  dart.addTypeTests(alignment._MixedAlignment);
-  dart.addTypeCaches(alignment._MixedAlignment);
-  dart.setMethodSignature(alignment._MixedAlignment, () => ({
-    __proto__: dart.getMethods(alignment._MixedAlignment.__proto__),
-    _negate: dart.fnType(alignment._MixedAlignment, []),
-    '*': dart.fnType(alignment._MixedAlignment, [core.double]),
-    '/': dart.fnType(alignment._MixedAlignment, [core.double]),
-    '~/': dart.fnType(alignment._MixedAlignment, [core.double]),
-    '%': dart.fnType(alignment._MixedAlignment, [core.double]),
-    resolve: dart.fnType(alignment.Alignment, [dart.nullable(ui.TextDirection)])
-  }));
-  dart.setLibraryUri(alignment._MixedAlignment, I[1]);
-  dart.setFieldSignature(alignment._MixedAlignment, () => ({
-    __proto__: dart.getFields(alignment._MixedAlignment.__proto__),
-    [_x]: dart.finalFieldType(core.double),
-    [_start]: dart.finalFieldType(core.double),
-    [_y]: dart.finalFieldType(core.double)
-  }));
-  var y$1 = dart.privateName(alignment, "TextAlignVertical.y");
-  alignment.TextAlignVertical = class TextAlignVertical extends core.Object {
-    get y() {
-      return this[y$1];
-    }
-    set y(value) {
-      super.y = value;
-    }
-    toString() {
-      return dart.str(object.objectRuntimeType(this, "TextAlignVertical")) + "(y: " + dart.str(this.y) + ")";
-    }
-  };
-  (alignment.TextAlignVertical.new = function(opts) {
-    let y = opts && 'y' in opts ? opts.y : null;
-    if (y == null) dart.nullFailed(I[0], 652, 19, "y");
-    this[y$1] = y;
-    if (!(y != null)) dart.assertFailed(null, I[0], 653, 15, "y != null");
-    if (!(dart.notNull(y) >= -1.0 && dart.notNull(y) <= 1.0)) dart.assertFailed(null, I[0], 654, 15, "y >= -1.0 && y <= 1.0");
-    ;
-  }).prototype = alignment.TextAlignVertical.prototype;
-  dart.addTypeTests(alignment.TextAlignVertical);
-  dart.addTypeCaches(alignment.TextAlignVertical);
-  dart.setLibraryUri(alignment.TextAlignVertical, I[1]);
-  dart.setFieldSignature(alignment.TextAlignVertical, () => ({
-    __proto__: dart.getFields(alignment.TextAlignVertical.__proto__),
-    y: dart.finalFieldType(core.double)
-  }));
-  dart.defineExtensionMethods(alignment.TextAlignVertical, ['toString']);
-  dart.defineLazy(alignment.TextAlignVertical, {
-    /*alignment.TextAlignVertical.top*/get top() {
-      return C[20] || CT.C20;
-    },
-    /*alignment.TextAlignVertical.center*/get center() {
-      return C[21] || CT.C21;
-    },
-    /*alignment.TextAlignVertical.bottom*/get bottom() {
-      return C[22] || CT.C22;
-    }
-  }, false);
-  dart.trackLibraries("packages/flutter/src/painting/alignment.dart", {
-    "package:flutter/src/painting/alignment.dart": alignment
+  dart.trackLibraries("packages/softdoc/screens/send_doc_screen/select_recepient.dart", {
+    "package:softdoc/screens/send_doc_screen/select_recepient.dart": select_recepient
   }, {
-  }, '{"version":3,"sourceRoot":"","sources":["alignment.dart"],"names":[],"mappings":"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","file":"../../../../../../../../D:/packages/flutter/src/painting/alignment.dart.lib.js"}');
+  }, '{"version":3,"sourceRoot":"","sources":["select_recepient.dart"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;8DASyB,cAAwB;AAC/C,UAAO,iCACK,yBACR,uCAC6B,wCAAS,aAC7B,gCACK;;AACR,kBAAI,AAAc,aAAD,UACf,8CACU,YACD;AAEX,4DACU,eAEY,kDAAsB,6BAEnC,2BACA,8CACE,AAAa,oCACR,iBACQ,0FACd,kBAAW,qCAAwB,mFAClC,AACF,AAUA,yDATC,QAAC,QAAS,gDACD,kBACL,AAAK,IAAD,kBACM,aACa,mGAElB,AAAK,IAAD,qIAIR,QAAC;AACG,oBAAb,WAAM,MAAM;AAE4C,oBADxD,sBACI,AAAY,iCAAY,QAAC,QAAS,AAAK,AAAG,IAAJ,OAAO,MAAM;AAEzC,oBAAF,WAAZ,YAAY;AACZ,wBAAI,aAAa,UAAuB,AAAO,WAApB,aAAa,GAAC;;;;wIAQrD,+BACkB,2CACM,kDAAsB,gBAAc,mBAC7C,AAAa,AAAM,iDACjB,SAAC,SAAS;AAEhB,6BAAW,AAAU,4BAAS,AAAa,AAAK,AAAQ,iCAAP,KAAK;AAE3D,oBAAO,sCACc,gDAAoB,mBAC3B,6CACD,kCAAyC,wCAAS,eACtD,oDACE,QAAQ,SACR,uEACwB,wCAAS,eACjC,kBAAK,AAAa,AAAK,AAAQ,iCAAP,KAAK,kFACvB,0BACF,QAAC;AACV,kCAAI,QAAQ;AAEoC,sBAA9C,AAAU,0BAAO,AAAa,AAAK,AAAQ,iCAAP,KAAK;AAC3B,sBAAF,WAAZ,YAAY;AACZ,0BAAI,aAAa,UAAuB,AAAO,WAApB,aAAa,GAAC;;;AAGE,sBAA3C,AAAU,uBAAI,AAAa,AAAK,AAAQ,iCAAP,KAAK;AACxB,sBAAF,WAAZ,YAAY;AACZ,0BAAI,aAAa,UACF,AAAO,WAApB,aAAa,GAAC;;;;;EAUpC","file":"../../../../../../../../../../../packages/softdoc/screens/send_doc_screen/select_recepient.dart.lib.js"}');
   // Exports:
   return {
-    src__painting__alignment: alignment
+    screens__send_doc_screen__select_recepient: select_recepient
   };
 }));
 
-//# sourceMappingURL=alignment.dart.lib.js.map
+//# sourceMappingURL=select_recepient.dart.lib.js.map

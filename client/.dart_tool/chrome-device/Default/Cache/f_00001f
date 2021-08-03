@@ -1,67 +1,43 @@
-define(['dart_sdk', 'packages/flutter/src/widgets/widget_span.dart', 'packages/flutter/src/material/arc.dart', 'packages/flutter/src/material/icon_button.dart', 'packages/flutter/src/painting/basic_types.dart', 'packages/flutter/src/material/scrollbar.dart', 'packages/flutter/src/foundation/_platform_web.dart', 'packages/flutter/src/cupertino/debug.dart', 'packages/flutter/src/widgets/icon.dart', 'packages/flutter/src/widgets/icon_data.dart', 'packages/flutter/src/material/colors.dart', 'packages/flutter/src/material/page.dart', 'packages/flutter/src/widgets/grid_paper.dart', 'packages/flutter/src/painting/strut_style.dart'], (function load__packages__flutter__src__material__app_dart(dart_sdk, packages__flutter__src__widgets__widget_span$46dart, packages__flutter__src__material__arc$46dart, packages__flutter__src__material__icon_button$46dart, packages__flutter__src__painting__basic_types$46dart, packages__flutter__src__material__scrollbar$46dart, packages__flutter__src__foundation___platform_web$46dart, packages__flutter__src__cupertino__debug$46dart, packages__flutter__src__widgets__icon$46dart, packages__flutter__src__widgets__icon_data$46dart, packages__flutter__src__material__colors$46dart, packages__flutter__src__material__page$46dart, packages__flutter__src__widgets__grid_paper$46dart, packages__flutter__src__painting__strut_style$46dart) {
+define(['dart_sdk', 'packages/flutter/src/painting/basic_types.dart', 'packages/flutter/src/gestures/recognizer.dart', 'packages/flutter/src/widgets/scroll_view.dart', 'packages/flutter/src/widgets/widget_span.dart', 'packages/flutter/src/rendering/viewport_offset.dart', 'packages/flutter/src/painting/edge_insets.dart', 'packages/flutter/src/rendering/layer.dart', 'packages/flutter/src/rendering/sliver.dart', 'packages/flutter/src/painting/matrix_utils.dart', 'packages/flutter/src/animation/curves.dart'], (function load__packages__flutter__src__widgets__single_child_scroll_view_dart(dart_sdk, packages__flutter__src__painting__basic_types$46dart, packages__flutter__src__gestures__recognizer$46dart, packages__flutter__src__widgets__scroll_view$46dart, packages__flutter__src__widgets__widget_span$46dart, packages__flutter__src__rendering__viewport_offset$46dart, packages__flutter__src__painting__edge_insets$46dart, packages__flutter__src__rendering__layer$46dart, packages__flutter__src__rendering__sliver$46dart, packages__flutter__src__painting__matrix_utils$46dart, packages__flutter__src__animation__curves$46dart) {
   'use strict';
   const core = dart_sdk.core;
   const ui = dart_sdk.ui;
   const _internal = dart_sdk._internal;
-  const _js_helper = dart_sdk._js_helper;
+  const math = dart_sdk.math;
   const dart = dart_sdk.dart;
   const dartx = dart_sdk.dartx;
-  const framework = packages__flutter__src__widgets__widget_span$46dart.src__widgets__framework;
-  const navigator = packages__flutter__src__widgets__widget_span$46dart.src__widgets__navigator;
-  const heroes = packages__flutter__src__widgets__widget_span$46dart.src__widgets__heroes;
-  const router = packages__flutter__src__widgets__widget_span$46dart.src__widgets__router;
-  const localizations = packages__flutter__src__widgets__widget_span$46dart.src__widgets__localizations;
-  const shortcuts = packages__flutter__src__widgets__widget_span$46dart.src__widgets__shortcuts;
-  const actions = packages__flutter__src__widgets__widget_span$46dart.src__widgets__actions;
-  const scroll_configuration = packages__flutter__src__widgets__widget_span$46dart.src__widgets__scroll_configuration;
-  const widget_inspector = packages__flutter__src__widgets__widget_span$46dart.src__widgets__widget_inspector;
-  const overscroll_indicator = packages__flutter__src__widgets__widget_span$46dart.src__widgets__overscroll_indicator;
-  const media_query = packages__flutter__src__widgets__widget_span$46dart.src__widgets__media_query;
-  const basic = packages__flutter__src__widgets__widget_span$46dart.src__widgets__basic;
-  const app = packages__flutter__src__widgets__widget_span$46dart.src__widgets__app;
-  const arc = packages__flutter__src__material__arc$46dart.src__material__arc;
-  const scaffold = packages__flutter__src__material__icon_button$46dart.src__material__scaffold;
-  const theme_data = packages__flutter__src__material__icon_button$46dart.src__material__theme_data;
-  const theme$ = packages__flutter__src__material__icon_button$46dart.src__material__theme;
-  const material_localizations = packages__flutter__src__material__icon_button$46dart.src__material__material_localizations;
-  const floating_action_button = packages__flutter__src__material__icon_button$46dart.src__material__floating_action_button;
   const basic_types = packages__flutter__src__painting__basic_types$46dart.src__painting__basic_types;
-  const scrollbar = packages__flutter__src__material__scrollbar$46dart.src__material__scrollbar;
-  const platform = packages__flutter__src__foundation___platform_web$46dart.src__foundation__platform;
-  const localizations$ = packages__flutter__src__cupertino__debug$46dart.src__cupertino__localizations;
-  const icon = packages__flutter__src__widgets__icon$46dart.src__widgets__icon;
-  const icon_data = packages__flutter__src__widgets__icon_data$46dart.src__widgets__icon_data;
-  const colors = packages__flutter__src__material__colors$46dart.src__material__colors;
-  const page = packages__flutter__src__material__page$46dart.src__material__page;
-  const grid_paper = packages__flutter__src__widgets__grid_paper$46dart.src__widgets__grid_paper;
-  const text_style = packages__flutter__src__painting__strut_style$46dart.src__painting__text_style;
-  var app$ = Object.create(dart.library);
+  const recognizer = packages__flutter__src__gestures__recognizer$46dart.src__gestures__recognizer;
+  const scroll_view = packages__flutter__src__widgets__scroll_view$46dart.src__widgets__scroll_view;
+  const basic = packages__flutter__src__widgets__widget_span$46dart.src__widgets__basic;
+  const widget_inspector = packages__flutter__src__widgets__widget_span$46dart.src__widgets__widget_inspector;
+  const primary_scroll_controller = packages__flutter__src__widgets__widget_span$46dart.src__widgets__primary_scroll_controller;
+  const scrollable$ = packages__flutter__src__widgets__widget_span$46dart.src__widgets__scrollable;
+  const framework = packages__flutter__src__widgets__widget_span$46dart.src__widgets__framework;
+  const notification_listener = packages__flutter__src__widgets__widget_span$46dart.src__widgets__notification_listener;
+  const scroll_notification = packages__flutter__src__widgets__widget_span$46dart.src__widgets__scroll_notification;
+  const focus_scope = packages__flutter__src__widgets__widget_span$46dart.src__widgets__focus_scope;
+  const scroll_controller = packages__flutter__src__widgets__widget_span$46dart.src__widgets__scroll_controller;
+  const scroll_physics = packages__flutter__src__widgets__widget_span$46dart.src__widgets__scroll_physics;
+  const viewport_offset = packages__flutter__src__rendering__viewport_offset$46dart.src__rendering__viewport_offset;
+  const edge_insets = packages__flutter__src__painting__edge_insets$46dart.src__painting__edge_insets;
+  const object = packages__flutter__src__rendering__layer$46dart.src__rendering__object;
+  const box = packages__flutter__src__rendering__layer$46dart.src__rendering__box;
+  const layer = packages__flutter__src__rendering__layer$46dart.src__rendering__layer;
+  const viewport = packages__flutter__src__rendering__sliver$46dart.src__rendering__viewport;
+  const matrix_utils = packages__flutter__src__painting__matrix_utils$46dart.src__painting__matrix_utils;
+  const curves = packages__flutter__src__animation__curves$46dart.src__animation__curves;
+  var single_child_scroll_view = Object.create(dart.library);
   dart._checkModuleNullSafetyMode(false);
-  var T$ = {
-    ThemeModeL: () => (T$.ThemeModeL = dart.constFn(dart.legacy(app$.ThemeMode)))(),
-    StringL: () => (T$.StringL = dart.constFn(dart.legacy(core.String)))(),
-    WidgetL: () => (T$.WidgetL = dart.constFn(dart.legacy(framework.Widget)))(),
-    BuildContextL: () => (T$.BuildContextL = dart.constFn(dart.legacy(framework.BuildContext)))(),
-    BuildContextLToWidgetL: () => (T$.BuildContextLToWidgetL = dart.constFn(dart.fnType(T$.WidgetL(), [T$.BuildContextL()])))(),
-    BuildContextLToLWidgetL: () => (T$.BuildContextLToLWidgetL = dart.constFn(dart.legacy(T$.BuildContextLToWidgetL())))(),
-    NavigatorObserverL: () => (T$.NavigatorObserverL = dart.constFn(dart.legacy(navigator.NavigatorObserver)))(),
-    LocaleL: () => (T$.LocaleL = dart.constFn(dart.legacy(ui.Locale)))(),
-    RectN: () => (T$.RectN = dart.constFn(dart.nullable(ui.Rect)))(),
-    RectNAndRectNToMaterialRectArcTween: () => (T$.RectNAndRectNToMaterialRectArcTween = dart.constFn(dart.fnType(arc.MaterialRectArcTween, [T$.RectN(), T$.RectN()])))(),
-    _LocationL: () => (T$._LocationL = dart.constFn(dart.legacy(widget_inspector._Location)))(),
-    SyncIterableOfLocalizationsDelegate: () => (T$.SyncIterableOfLocalizationsDelegate = dart.constFn(_js_helper.SyncIterable$(localizations.LocalizationsDelegate)))(),
-    BuildContextToWidget: () => (T$.BuildContextToWidget = dart.constFn(dart.fnType(framework.Widget, [framework.BuildContext])))(),
-    StateOfStatefulWidget: () => (T$.StateOfStatefulWidget = dart.constFn(framework.State$(framework.StatefulWidget)))(),
-    GlobalObjectKeyOfStateOfStatefulWidget: () => (T$.GlobalObjectKeyOfStateOfStatefulWidget = dart.constFn(framework.GlobalObjectKey$(T$.StateOfStatefulWidget())))(),
-    ObjectN: () => (T$.ObjectN = dart.constFn(dart.nullable(core.Object)))(),
-    RouteSettingsAndFnToMaterialPageRouteOfT: () => (T$.RouteSettingsAndFnToMaterialPageRouteOfT = dart.constFn(dart.gFnType(T => {
-      var MaterialPageRouteOfT = () => (MaterialPageRouteOfT = dart.constFn(page.MaterialPageRoute$(T)))();
-      return [MaterialPageRouteOfT(), [navigator.RouteSettings, T$.BuildContextToWidget()]];
-    }, T => {
-      var MaterialPageRouteOfT = () => (MaterialPageRouteOfT = dart.constFn(page.MaterialPageRoute$(T)))();
-      return [T$.ObjectN()];
-    })))(),
-    VoidTobool: () => (T$.VoidTobool = dart.constFn(dart.fnType(core.bool, [])))()
+  var T = {
+    _LocationL: () => (T._LocationL = dart.constFn(dart.legacy(widget_inspector._Location)))(),
+    BuildContextAndViewportOffsetTo_SingleChildViewport: () => (T.BuildContextAndViewportOffsetTo_SingleChildViewport = dart.constFn(dart.fnType(single_child_scroll_view._SingleChildViewport, [framework.BuildContext, viewport_offset.ViewportOffset])))(),
+    NotificationListenerOfScrollUpdateNotification: () => (T.NotificationListenerOfScrollUpdateNotification = dart.constFn(notification_listener.NotificationListener$(scroll_notification.ScrollUpdateNotification)))(),
+    ScrollUpdateNotificationTobool: () => (T.ScrollUpdateNotificationTobool = dart.constFn(dart.fnType(core.bool, [scroll_notification.ScrollUpdateNotification])))(),
+    PaintingContextAndOffsetTovoid: () => (T.PaintingContextAndOffsetTovoid = dart.constFn(dart.fnType(dart.void, [object.PaintingContext, ui.Offset])))(),
+    RenderObjectN: () => (T.RenderObjectN = dart.constFn(dart.nullable(object.RenderObject)))(),
+    OffsetN: () => (T.OffsetN = dart.constFn(dart.nullable(ui.Offset)))(),
+    BoxHitTestResultAndOffsetNTobool: () => (T.BoxHitTestResultAndOffsetNTobool = dart.constFn(dart.fnType(core.bool, [box.BoxHitTestResult, T.OffsetN()])))()
   };
   const CT = Object.create({
     _: () => (C, CT)
@@ -69,59 +45,82 @@ define(['dart_sdk', 'packages/flutter/src/widgets/widget_span.dart', 'packages/f
   dart.defineLazy(CT, {
     get C0() {
       return C[0] = dart.const({
-        __proto__: app$.ThemeMode.prototype,
-        [_name$]: "ThemeMode.system",
-        index: 0
+        __proto__: basic_types.Axis.prototype,
+        [_name]: "Axis.vertical",
+        index: 1
       });
     },
     get C1() {
       return C[1] = dart.const({
-        __proto__: app$.ThemeMode.prototype,
-        [_name$]: "ThemeMode.light",
+        __proto__: recognizer.DragStartBehavior.prototype,
+        [_name$]: "DragStartBehavior.start",
         index: 1
       });
     },
     get C2() {
       return C[2] = dart.const({
-        __proto__: app$.ThemeMode.prototype,
-        [_name$]: "ThemeMode.dark",
-        index: 2
+        __proto__: ui.Clip.prototype,
+        [_name$0]: "Clip.hardEdge",
+        index: 1
       });
     },
     get C3() {
-      return C[3] = dart.constList([C[0] || CT.C0, C[1] || CT.C1, C[2] || CT.C2], T$.ThemeModeL());
-    },
-    get C4() {
-      return C[4] = dart.constMap(T$.StringL(), T$.BuildContextLToLWidgetL(), []);
-    },
-    get C5() {
-      return C[5] = dart.constList([], T$.NavigatorObserverL());
-    },
-    get C7() {
-      return C[7] = dart.const({
-        __proto__: ui.Locale.prototype,
-        [Locale__countryCode]: "US",
-        [Locale_scriptCode]: null,
-        [Locale__languageCode]: "en"
+      return C[3] = dart.const({
+        __proto__: scroll_view.ScrollViewKeyboardDismissBehavior.prototype,
+        [_name$1]: "ScrollViewKeyboardDismissBehavior.manual",
+        index: 0
       });
     },
     get C6() {
-      return C[6] = dart.constList([C[7] || CT.C7], T$.LocaleL());
+      return C[6] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "padding",
+        [_Location_column]: 26,
+        [_Location_line]: 327,
+        [_Location_file]: null
+      });
     },
-    get C8() {
-      return C[8] = dart.const({
-        __proto__: basic_types.Axis.prototype,
-        [_name]: "Axis.horizontal",
-        index: 0
+    get C7() {
+      return C[7] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 45,
+        [_Location_line]: 327,
+        [_Location_file]: null
+      });
+    },
+    get C5() {
+      return C[5] = dart.constList([C[6] || CT.C6, C[7] || CT.C7], T._LocationL());
+    },
+    get C4() {
+      return C[4] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[5] || CT.C5,
+        [_Location_name]: null,
+        [_Location_column]: 18,
+        [_Location_line]: 327,
+        [_Location_file]: "file:///C:/src/flutter/packages/flutter/lib/src/widgets/single_child_scroll_view.dart"
+      });
+    },
+    get C10() {
+      return C[10] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "axisDirection",
+        [_Location_column]: 11,
+        [_Location_line]: 339,
+        [_Location_file]: null
       });
     },
     get C11() {
       return C[11] = dart.const({
         __proto__: widget_inspector._Location.prototype,
         [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 15,
-        [_Location_line]: 716,
+        [_Location_name]: "offset",
+        [_Location_column]: 11,
+        [_Location_line]: 340,
         [_Location_file]: null
       });
     },
@@ -129,1830 +128,890 @@ define(['dart_sdk', 'packages/flutter/src/widgets/widget_span.dart', 'packages/f
       return C[12] = dart.const({
         __proto__: widget_inspector._Location.prototype,
         [_Location_parameterLocations]: null,
-        [_Location_name]: "controller",
-        [_Location_column]: 15,
-        [_Location_line]: 717,
+        [_Location_name]: "child",
+        [_Location_column]: 11,
+        [_Location_line]: 341,
         [_Location_file]: null
-      });
-    },
-    get C10() {
-      return C[10] = dart.constList([C[11] || CT.C11, C[12] || CT.C12], T$._LocationL());
-    },
-    get C9() {
-      return C[9] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[10] || CT.C10,
-        [_Location_name]: null,
-        [_Location_column]: 20,
-        [_Location_line]: 715,
-        [_Location_file]: "file:///C:/src/flutter/packages/flutter/lib/src/material/app.dart"
       });
     },
     get C13() {
       return C[13] = dart.const({
-        __proto__: platform.TargetPlatform.prototype,
-        [_name$0]: "TargetPlatform.linux",
-        index: 3
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "clipBehavior",
+        [_Location_column]: 11,
+        [_Location_line]: 342,
+        [_Location_file]: null
       });
     },
-    get C14() {
-      return C[14] = dart.const({
-        __proto__: platform.TargetPlatform.prototype,
-        [_name$0]: "TargetPlatform.macOS",
-        index: 4
-      });
+    get C9() {
+      return C[9] = dart.constList([C[10] || CT.C10, C[11] || CT.C11, C[12] || CT.C12, C[13] || CT.C13], T._LocationL());
     },
-    get C15() {
-      return C[15] = dart.const({
-        __proto__: platform.TargetPlatform.prototype,
-        [_name$0]: "TargetPlatform.windows",
-        index: 5
+    get C8() {
+      return C[8] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[9] || CT.C9,
+        [_Location_name]: null,
+        [_Location_column]: 16,
+        [_Location_line]: 338,
+        [_Location_file]: "file:///C:/src/flutter/packages/flutter/lib/src/widgets/single_child_scroll_view.dart"
       });
     },
     get C16() {
       return C[16] = dart.const({
-        __proto__: platform.TargetPlatform.prototype,
-        [_name$0]: "TargetPlatform.android",
-        index: 0
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "dragStartBehavior",
+        [_Location_column]: 7,
+        [_Location_line]: 332,
+        [_Location_file]: null
       });
     },
     get C17() {
       return C[17] = dart.const({
-        __proto__: platform.TargetPlatform.prototype,
-        [_name$0]: "TargetPlatform.fuchsia",
-        index: 1
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "axisDirection",
+        [_Location_column]: 7,
+        [_Location_line]: 333,
+        [_Location_file]: null
       });
     },
     get C18() {
       return C[18] = dart.const({
-        __proto__: platform.TargetPlatform.prototype,
-        [_name$0]: "TargetPlatform.iOS",
-        index: 2
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "controller",
+        [_Location_column]: 7,
+        [_Location_line]: 334,
+        [_Location_file]: null
       });
     },
     get C19() {
       return C[19] = dart.const({
-        __proto__: basic_types.Axis.prototype,
-        [_name]: "Axis.vertical",
-        index: 1
-      });
-    },
-    get C22() {
-      return C[22] = dart.const({
         __proto__: widget_inspector._Location.prototype,
         [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 11,
-        [_Location_line]: 740,
+        [_Location_name]: "physics",
+        [_Location_column]: 7,
+        [_Location_line]: 335,
         [_Location_file]: null
       });
     },
-    get C23() {
-      return C[23] = dart.const({
+    get C20() {
+      return C[20] = dart.const({
         __proto__: widget_inspector._Location.prototype,
         [_Location_parameterLocations]: null,
-        [_Location_name]: "axisDirection",
-        [_Location_column]: 11,
-        [_Location_line]: 741,
+        [_Location_name]: "restorationId",
+        [_Location_column]: 7,
+        [_Location_line]: 336,
         [_Location_file]: null
+      });
+    },
+    get C21() {
+      return C[21] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "viewportBuilder",
+        [_Location_column]: 7,
+        [_Location_line]: 337,
+        [_Location_file]: null
+      });
+    },
+    get C15() {
+      return C[15] = dart.constList([C[16] || CT.C16, C[17] || CT.C17, C[18] || CT.C18, C[19] || CT.C19, C[20] || CT.C20, C[21] || CT.C21], T._LocationL());
+    },
+    get C14() {
+      return C[14] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[15] || CT.C15,
+        [_Location_name]: null,
+        [_Location_column]: 25,
+        [_Location_line]: 331,
+        [_Location_file]: "file:///C:/src/flutter/packages/flutter/lib/src/widgets/single_child_scroll_view.dart"
       });
     },
     get C24() {
       return C[24] = dart.const({
         __proto__: widget_inspector._Location.prototype,
         [_Location_parameterLocations]: null,
-        [_Location_name]: "color",
-        [_Location_column]: 11,
-        [_Location_line]: 742,
+        [_Location_name]: "child",
+        [_Location_column]: 9,
+        [_Location_line]: 349,
         [_Location_file]: null
       });
     },
-    get C21() {
-      return C[21] = dart.constList([C[22] || CT.C22, C[23] || CT.C23, C[24] || CT.C24], T$._LocationL());
-    },
-    get C20() {
-      return C[20] = dart.const({
+    get C25() {
+      return C[25] = dart.const({
         __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[21] || CT.C21,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "onNotification",
+        [_Location_column]: 9,
+        [_Location_line]: 350,
+        [_Location_file]: null
+      });
+    },
+    get C23() {
+      return C[23] = dart.constList([C[24] || CT.C24, C[25] || CT.C25], T._LocationL());
+    },
+    get C22() {
+      return C[22] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[23] || CT.C23,
         [_Location_name]: null,
-        [_Location_column]: 16,
-        [_Location_line]: 739,
-        [_Location_file]: "file:///C:/src/flutter/packages/flutter/lib/src/material/app.dart"
+        [_Location_column]: 20,
+        [_Location_line]: 348,
+        [_Location_file]: "file:///C:/src/flutter/packages/flutter/lib/src/widgets/single_child_scroll_view.dart"
       });
     },
     get C28() {
       return C[28] = dart.const({
         __proto__: widget_inspector._Location.prototype,
         [_Location_parameterLocations]: null,
-        [_Location_name]: "icon",
-        [_Location_column]: 31,
-        [_Location_line]: 773,
+        [_Location_name]: "child",
+        [_Location_column]: 38,
+        [_Location_line]: 361,
         [_Location_file]: null
       });
     },
     get C27() {
-      return C[27] = dart.constList([C[28] || CT.C28], T$._LocationL());
+      return C[27] = dart.constList([C[28] || CT.C28], T._LocationL());
     },
     get C26() {
       return C[26] = dart.const({
         __proto__: widget_inspector._Location.prototype,
         [_Location_parameterLocations]: C[27] || CT.C27,
         [_Location_name]: null,
-        [_Location_column]: 20,
-        [_Location_line]: 773,
-        [_Location_file]: "file:///C:/src/flutter/packages/flutter/lib/src/material/app.dart"
+        [_Location_column]: 33,
+        [_Location_line]: 361,
+        [_Location_file]: "file:///C:/src/flutter/packages/flutter/lib/src/widgets/single_child_scroll_view.dart"
       });
     },
     get C29() {
       return C[29] = dart.const({
-        __proto__: icon_data.IconData.prototype,
-        [IconData_matchTextDirection]: false,
-        [IconData_fontPackage]: null,
-        [IconData_fontFamily]: "MaterialIcons",
-        [IconData_codePoint]: 58727
+        __proto__: basic_types.AxisDirection.prototype,
+        [_name]: "AxisDirection.down",
+        index: 2
       });
     },
-    get C25() {
-      return C[25] = dart.const({
-        __proto__: icon.Icon.prototype,
-        [Widget__location]: C[26] || CT.C26,
-        [Widget_key]: null,
-        [Icon_textDirection]: null,
-        [Icon_semanticLabel]: null,
-        [Icon_color]: null,
-        [Icon_size]: null,
-        [Icon_icon]: C[29] || CT.C29
+    get C30() {
+      return C[30] = dart.const({
+        __proto__: basic_types.Axis.prototype,
+        [_name]: "Axis.horizontal",
+        index: 0
+      });
+    },
+    get C31() {
+      return C[31] = dart.const({
+        __proto__: basic_types.AxisDirection.prototype,
+        [_name]: "AxisDirection.up",
+        index: 0
       });
     },
     get C32() {
       return C[32] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 7,
-        [_Location_line]: 773,
-        [_Location_file]: null
+        __proto__: basic_types.AxisDirection.prototype,
+        [_name]: "AxisDirection.left",
+        index: 3
       });
     },
     get C33() {
       return C[33] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "onPressed",
-        [_Location_column]: 7,
-        [_Location_line]: 774,
-        [_Location_file]: null
+        __proto__: basic_types.AxisDirection.prototype,
+        [_name]: "AxisDirection.right",
+        index: 1
       });
     },
     get C34() {
       return C[34] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "mini",
-        [_Location_column]: 7,
-        [_Location_line]: 775,
-        [_Location_file]: null
+        __proto__: core.Duration.prototype,
+        [Duration__duration]: 0
       });
-    },
-    get C31() {
-      return C[31] = dart.constList([C[32] || CT.C32, C[33] || CT.C33, C[34] || CT.C34], T$._LocationL());
-    },
-    get C30() {
-      return C[30] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[31] || CT.C31,
-        [_Location_name]: null,
-        [_Location_column]: 12,
-        [_Location_line]: 772,
-        [_Location_file]: "file:///C:/src/flutter/packages/flutter/lib/src/material/app.dart"
-      });
-    },
-    get C37() {
-      return C[37] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "builder",
-        [_Location_column]: 15,
-        [_Location_line]: 803,
-        [_Location_file]: null
-      });
-    },
-    get C36() {
-      return C[36] = dart.constList([C[37] || CT.C37], T$._LocationL());
     },
     get C35() {
       return C[35] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[36] || CT.C36,
-        [_Location_name]: null,
-        [_Location_column]: 13,
-        [_Location_line]: 802,
-        [_Location_file]: "file:///C:/src/flutter/packages/flutter/lib/src/material/app.dart"
-      });
-    },
-    get C40() {
-      return C[40] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "data",
-        [_Location_column]: 9,
-        [_Location_line]: 800,
-        [_Location_file]: null
-      });
-    },
-    get C41() {
-      return C[41] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 9,
-        [_Location_line]: 801,
-        [_Location_file]: null
-      });
-    },
-    get C39() {
-      return C[39] = dart.constList([C[40] || CT.C40, C[41] || CT.C41], T$._LocationL());
-    },
-    get C38() {
-      return C[38] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[39] || CT.C39,
-        [_Location_name]: null,
-        [_Location_column]: 14,
-        [_Location_line]: 799,
-        [_Location_file]: "file:///C:/src/flutter/packages/flutter/lib/src/material/app.dart"
-      });
-    },
-    get C44() {
-      return C[44] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "key",
-        [_Location_column]: 7,
-        [_Location_line]: 798,
-        [_Location_file]: null
-      });
-    },
-    get C45() {
-      return C[45] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 7,
-        [_Location_line]: 799,
-        [_Location_file]: null
-      });
-    },
-    get C43() {
-      return C[43] = dart.constList([C[44] || CT.C44, C[45] || CT.C45], T$._LocationL());
-    },
-    get C42() {
-      return C[42] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[43] || CT.C43,
-        [_Location_name]: null,
-        [_Location_column]: 12,
-        [_Location_line]: 797,
-        [_Location_file]: "file:///C:/src/flutter/packages/flutter/lib/src/material/app.dart"
-      });
-    },
-    get C48() {
-      return C[48] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "key",
-        [_Location_column]: 9,
-        [_Location_line]: 834,
-        [_Location_file]: null
-      });
-    },
-    get C49() {
-      return C[49] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "routeInformationProvider",
-        [_Location_column]: 9,
-        [_Location_line]: 835,
-        [_Location_file]: null
-      });
-    },
-    get C50() {
-      return C[50] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "routeInformationParser",
-        [_Location_column]: 9,
-        [_Location_line]: 836,
-        [_Location_file]: null
-      });
-    },
-    get C51() {
-      return C[51] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "routerDelegate",
-        [_Location_column]: 9,
-        [_Location_line]: 837,
-        [_Location_file]: null
-      });
-    },
-    get C52() {
-      return C[52] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "backButtonDispatcher",
-        [_Location_column]: 9,
-        [_Location_line]: 838,
-        [_Location_file]: null
-      });
-    },
-    get C53() {
-      return C[53] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "builder",
-        [_Location_column]: 9,
-        [_Location_line]: 839,
-        [_Location_file]: null
-      });
-    },
-    get C54() {
-      return C[54] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "title",
-        [_Location_column]: 9,
-        [_Location_line]: 840,
-        [_Location_file]: null
-      });
-    },
-    get C55() {
-      return C[55] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "onGenerateTitle",
-        [_Location_column]: 9,
-        [_Location_line]: 841,
-        [_Location_file]: null
-      });
-    },
-    get C56() {
-      return C[56] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "textStyle",
-        [_Location_column]: 9,
-        [_Location_line]: 842,
-        [_Location_file]: null
-      });
-    },
-    get C57() {
-      return C[57] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "color",
-        [_Location_column]: 9,
-        [_Location_line]: 843,
-        [_Location_file]: null
-      });
-    },
-    get C58() {
-      return C[58] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "locale",
-        [_Location_column]: 9,
-        [_Location_line]: 844,
-        [_Location_file]: null
-      });
-    },
-    get C59() {
-      return C[59] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "localizationsDelegates",
-        [_Location_column]: 9,
-        [_Location_line]: 845,
-        [_Location_file]: null
-      });
-    },
-    get C60() {
-      return C[60] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "localeResolutionCallback",
-        [_Location_column]: 9,
-        [_Location_line]: 846,
-        [_Location_file]: null
-      });
-    },
-    get C61() {
-      return C[61] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "localeListResolutionCallback",
-        [_Location_column]: 9,
-        [_Location_line]: 847,
-        [_Location_file]: null
-      });
-    },
-    get C62() {
-      return C[62] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "supportedLocales",
-        [_Location_column]: 9,
-        [_Location_line]: 848,
-        [_Location_file]: null
-      });
-    },
-    get C63() {
-      return C[63] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "showPerformanceOverlay",
-        [_Location_column]: 9,
-        [_Location_line]: 849,
-        [_Location_file]: null
-      });
-    },
-    get C64() {
-      return C[64] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "checkerboardRasterCacheImages",
-        [_Location_column]: 9,
-        [_Location_line]: 850,
-        [_Location_file]: null
-      });
-    },
-    get C65() {
-      return C[65] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "checkerboardOffscreenLayers",
-        [_Location_column]: 9,
-        [_Location_line]: 851,
-        [_Location_file]: null
-      });
-    },
-    get C66() {
-      return C[66] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "showSemanticsDebugger",
-        [_Location_column]: 9,
-        [_Location_line]: 852,
-        [_Location_file]: null
-      });
-    },
-    get C67() {
-      return C[67] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "debugShowCheckedModeBanner",
-        [_Location_column]: 9,
-        [_Location_line]: 853,
-        [_Location_file]: null
-      });
-    },
-    get C68() {
-      return C[68] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "inspectorSelectButtonBuilder",
-        [_Location_column]: 9,
-        [_Location_line]: 854,
-        [_Location_file]: null
-      });
-    },
-    get C69() {
-      return C[69] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "shortcuts",
-        [_Location_column]: 9,
-        [_Location_line]: 855,
-        [_Location_file]: null
-      });
-    },
-    get C70() {
-      return C[70] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "actions",
-        [_Location_column]: 9,
-        [_Location_line]: 856,
-        [_Location_file]: null
-      });
-    },
-    get C71() {
-      return C[71] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "restorationScopeId",
-        [_Location_column]: 9,
-        [_Location_line]: 857,
-        [_Location_file]: null
-      });
-    },
-    get C47() {
-      return C[47] = dart.constList([C[48] || CT.C48, C[49] || CT.C49, C[50] || CT.C50, C[51] || CT.C51, C[52] || CT.C52, C[53] || CT.C53, C[54] || CT.C54, C[55] || CT.C55, C[56] || CT.C56, C[57] || CT.C57, C[58] || CT.C58, C[59] || CT.C59, C[60] || CT.C60, C[61] || CT.C61, C[62] || CT.C62, C[63] || CT.C63, C[64] || CT.C64, C[65] || CT.C65, C[66] || CT.C66, C[67] || CT.C67, C[68] || CT.C68, C[69] || CT.C69, C[70] || CT.C70, C[71] || CT.C71], T$._LocationL());
-    },
-    get C46() {
-      return C[46] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[47] || CT.C47,
-        [_Location_name]: null,
-        [_Location_column]: 25,
-        [_Location_line]: 833,
-        [_Location_file]: "file:///C:/src/flutter/packages/flutter/lib/src/material/app.dart"
-      });
-    },
-    get C74() {
-      return C[74] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "key",
-        [_Location_column]: 7,
-        [_Location_line]: 862,
-        [_Location_file]: null
-      });
-    },
-    get C75() {
-      return C[75] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "navigatorKey",
-        [_Location_column]: 7,
-        [_Location_line]: 863,
-        [_Location_file]: null
-      });
-    },
-    get C76() {
-      return C[76] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "navigatorObservers",
-        [_Location_column]: 7,
-        [_Location_line]: 864,
-        [_Location_file]: null
-      });
-    },
-    get C77() {
-      return C[77] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "pageRouteBuilder",
-        [_Location_column]: 7,
-        [_Location_line]: 865,
-        [_Location_file]: null
-      });
-    },
-    get C78() {
-      return C[78] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "home",
-        [_Location_column]: 7,
-        [_Location_line]: 868,
-        [_Location_file]: null
-      });
-    },
-    get C79() {
-      return C[79] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "routes",
-        [_Location_column]: 7,
-        [_Location_line]: 869,
-        [_Location_file]: null
-      });
-    },
-    get C80() {
-      return C[80] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "initialRoute",
-        [_Location_column]: 7,
-        [_Location_line]: 870,
-        [_Location_file]: null
-      });
-    },
-    get C81() {
-      return C[81] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "onGenerateRoute",
-        [_Location_column]: 7,
-        [_Location_line]: 871,
-        [_Location_file]: null
-      });
-    },
-    get C82() {
-      return C[82] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "onGenerateInitialRoutes",
-        [_Location_column]: 7,
-        [_Location_line]: 872,
-        [_Location_file]: null
-      });
-    },
-    get C83() {
-      return C[83] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "onUnknownRoute",
-        [_Location_column]: 7,
-        [_Location_line]: 873,
-        [_Location_file]: null
-      });
-    },
-    get C84() {
-      return C[84] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "builder",
-        [_Location_column]: 7,
-        [_Location_line]: 874,
-        [_Location_file]: null
-      });
-    },
-    get C85() {
-      return C[85] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "title",
-        [_Location_column]: 7,
-        [_Location_line]: 875,
-        [_Location_file]: null
-      });
-    },
-    get C86() {
-      return C[86] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "onGenerateTitle",
-        [_Location_column]: 7,
-        [_Location_line]: 876,
-        [_Location_file]: null
-      });
-    },
-    get C87() {
-      return C[87] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "textStyle",
-        [_Location_column]: 7,
-        [_Location_line]: 877,
-        [_Location_file]: null
-      });
-    },
-    get C88() {
-      return C[88] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "color",
-        [_Location_column]: 7,
-        [_Location_line]: 878,
-        [_Location_file]: null
-      });
-    },
-    get C89() {
-      return C[89] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "locale",
-        [_Location_column]: 7,
-        [_Location_line]: 879,
-        [_Location_file]: null
-      });
-    },
-    get C90() {
-      return C[90] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "localizationsDelegates",
-        [_Location_column]: 7,
-        [_Location_line]: 880,
-        [_Location_file]: null
-      });
-    },
-    get C91() {
-      return C[91] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "localeResolutionCallback",
-        [_Location_column]: 7,
-        [_Location_line]: 881,
-        [_Location_file]: null
-      });
-    },
-    get C92() {
-      return C[92] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "localeListResolutionCallback",
-        [_Location_column]: 7,
-        [_Location_line]: 882,
-        [_Location_file]: null
-      });
-    },
-    get C93() {
-      return C[93] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "supportedLocales",
-        [_Location_column]: 7,
-        [_Location_line]: 883,
-        [_Location_file]: null
-      });
-    },
-    get C94() {
-      return C[94] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "showPerformanceOverlay",
-        [_Location_column]: 7,
-        [_Location_line]: 884,
-        [_Location_file]: null
-      });
-    },
-    get C95() {
-      return C[95] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "checkerboardRasterCacheImages",
-        [_Location_column]: 7,
-        [_Location_line]: 885,
-        [_Location_file]: null
-      });
-    },
-    get C96() {
-      return C[96] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "checkerboardOffscreenLayers",
-        [_Location_column]: 7,
-        [_Location_line]: 886,
-        [_Location_file]: null
-      });
-    },
-    get C97() {
-      return C[97] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "showSemanticsDebugger",
-        [_Location_column]: 7,
-        [_Location_line]: 887,
-        [_Location_file]: null
-      });
-    },
-    get C98() {
-      return C[98] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "debugShowCheckedModeBanner",
-        [_Location_column]: 7,
-        [_Location_line]: 888,
-        [_Location_file]: null
-      });
-    },
-    get C99() {
-      return C[99] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "inspectorSelectButtonBuilder",
-        [_Location_column]: 7,
-        [_Location_line]: 889,
-        [_Location_file]: null
-      });
-    },
-    get C100() {
-      return C[100] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "shortcuts",
-        [_Location_column]: 7,
-        [_Location_line]: 890,
-        [_Location_file]: null
-      });
-    },
-    get C101() {
-      return C[101] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "actions",
-        [_Location_column]: 7,
-        [_Location_line]: 891,
-        [_Location_file]: null
-      });
-    },
-    get C102() {
-      return C[102] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "restorationScopeId",
-        [_Location_column]: 7,
-        [_Location_line]: 892,
-        [_Location_file]: null
-      });
-    },
-    get C73() {
-      return C[73] = dart.constList([C[74] || CT.C74, C[75] || CT.C75, C[76] || CT.C76, C[77] || CT.C77, C[78] || CT.C78, C[79] || CT.C79, C[80] || CT.C80, C[81] || CT.C81, C[82] || CT.C82, C[83] || CT.C83, C[84] || CT.C84, C[85] || CT.C85, C[86] || CT.C86, C[87] || CT.C87, C[88] || CT.C88, C[89] || CT.C89, C[90] || CT.C90, C[91] || CT.C91, C[92] || CT.C92, C[93] || CT.C93, C[94] || CT.C94, C[95] || CT.C95, C[96] || CT.C96, C[97] || CT.C97, C[98] || CT.C98, C[99] || CT.C99, C[100] || CT.C100, C[101] || CT.C101, C[102] || CT.C102], T$._LocationL());
-    },
-    get C72() {
-      return C[72] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[73] || CT.C73,
-        [_Location_name]: null,
-        [_Location_column]: 12,
-        [_Location_line]: 861,
-        [_Location_file]: "file:///C:/src/flutter/packages/flutter/lib/src/material/app.dart"
-      });
-    },
-    get C103() {
-      return C[103] = dart.const({
-        __proto__: ui.Color.prototype,
-        [Color_value]: 3774462944.0
-      });
-    },
-    get C106() {
-      return C[106] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "color",
-        [_Location_column]: 11,
-        [_Location_line]: 903,
-        [_Location_file]: null
-      });
-    },
-    get C107() {
-      return C[107] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "interval",
-        [_Location_column]: 11,
-        [_Location_line]: 904,
-        [_Location_file]: null
-      });
-    },
-    get C108() {
-      return C[108] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "divisions",
-        [_Location_column]: 11,
-        [_Location_line]: 905,
-        [_Location_file]: null
-      });
-    },
-    get C109() {
-      return C[109] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "subdivisions",
-        [_Location_column]: 11,
-        [_Location_line]: 906,
-        [_Location_file]: null
-      });
-    },
-    get C110() {
-      return C[110] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 11,
-        [_Location_line]: 907,
-        [_Location_file]: null
-      });
-    },
-    get C105() {
-      return C[105] = dart.constList([C[106] || CT.C106, C[107] || CT.C107, C[108] || CT.C108, C[109] || CT.C109, C[110] || CT.C110], T$._LocationL());
-    },
-    get C104() {
-      return C[104] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[105] || CT.C105,
-        [_Location_name]: null,
-        [_Location_column]: 18,
-        [_Location_line]: 902,
-        [_Location_file]: "file:///C:/src/flutter/packages/flutter/lib/src/material/app.dart"
-      });
-    },
-    get C111() {
-      return C[111] = dart.const({
-        __proto__: app$.MaterialScrollBehavior.prototype
-      });
-    },
-    get C114() {
-      return C[114] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "controller",
-        [_Location_column]: 9,
-        [_Location_line]: 916,
-        [_Location_file]: null
-      });
-    },
-    get C115() {
-      return C[115] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 9,
-        [_Location_line]: 917,
-        [_Location_file]: null
-      });
-    },
-    get C113() {
-      return C[113] = dart.constList([C[114] || CT.C114, C[115] || CT.C115], T$._LocationL());
-    },
-    get C112() {
-      return C[112] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[113] || CT.C113,
-        [_Location_name]: null,
-        [_Location_column]: 14,
-        [_Location_line]: 915,
-        [_Location_file]: "file:///C:/src/flutter/packages/flutter/lib/src/material/app.dart"
-      });
-    },
-    get C118() {
-      return C[118] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "behavior",
-        [_Location_column]: 7,
-        [_Location_line]: 914,
-        [_Location_file]: null
-      });
-    },
-    get C119() {
-      return C[119] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 7,
-        [_Location_line]: 915,
-        [_Location_file]: null
-      });
-    },
-    get C117() {
-      return C[117] = dart.constList([C[118] || CT.C118, C[119] || CT.C119], T$._LocationL());
-    },
-    get C116() {
-      return C[116] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[117] || CT.C117,
-        [_Location_name]: null,
-        [_Location_column]: 12,
-        [_Location_line]: 913,
-        [_Location_file]: "file:///C:/src/flutter/packages/flutter/lib/src/material/app.dart"
-      });
-    },
-    get C121() {
-      return C[121] = dart.const({
-        __proto__: ui.TextDecorationStyle.prototype,
-        [_name$1]: "TextDecorationStyle.double",
-        index: 1
-      });
-    },
-    get C122() {
-      return C[122] = dart.const({
-        __proto__: ui.Color.prototype,
-        [Color_value]: 4294967040.0
-      });
-    },
-    get C123() {
-      return C[123] = dart.const({
-        __proto__: ui.TextDecoration.prototype,
-        [TextDecoration__mask]: 1
-      });
-    },
-    get C124() {
-      return C[124] = dart.const({
-        __proto__: ui.FontWeight.prototype,
-        [FontWeight_index]: 8
-      });
-    },
-    get C125() {
-      return C[125] = dart.const({
-        __proto__: ui.Color.prototype,
-        [Color_value]: 3506372608.0
-      });
-    },
-    get C120() {
-      return C[120] = dart.const({
-        __proto__: text_style.TextStyle.prototype,
-        [TextStyle_fontFeatures]: null,
-        [TextStyle_shadows]: null,
-        [TextStyle_debugLabel]: "fallback style; consider putting your text in a Material",
-        [TextStyle_decorationThickness]: null,
-        [TextStyle_decorationStyle]: C[121] || CT.C121,
-        [TextStyle_decorationColor]: C[122] || CT.C122,
-        [TextStyle_decoration]: C[123] || CT.C123,
-        [TextStyle_background]: null,
-        [TextStyle_foreground]: null,
-        [TextStyle_locale]: null,
-        [TextStyle_leadingDistribution]: null,
-        [TextStyle_height]: null,
-        [TextStyle_textBaseline]: null,
-        [TextStyle_wordSpacing]: null,
-        [TextStyle_letterSpacing]: null,
-        [TextStyle_fontStyle]: null,
-        [TextStyle_fontWeight]: C[124] || CT.C124,
-        [TextStyle_fontSize]: 48,
-        [TextStyle__package]: null,
-        [TextStyle__fontFamilyFallback]: null,
-        [TextStyle_fontFamily]: "monospace",
-        [TextStyle_backgroundColor]: null,
-        [TextStyle_color]: C[125] || CT.C125,
-        [TextStyle_inherit]: true
+        __proto__: curves.Cubic.prototype,
+        [Cubic_d]: 1,
+        [Cubic_c]: 0.25,
+        [Cubic_b]: 0.1,
+        [Cubic_a]: 0.25
       });
     }
   }, false);
-  var C = Array(126).fill(void 0);
+  var C = Array(36).fill(void 0);
   var I = [
-    "file:///C:/src/flutter/packages/flutter/lib/src/material/app.dart",
-    "package:flutter/src/material/app.dart"
+    "file:///C:/src/flutter/packages/flutter/lib/src/widgets/single_child_scroll_view.dart",
+    "package:flutter/src/widgets/single_child_scroll_view.dart"
   ];
-  var _name$ = dart.privateName(app$, "_name");
-  app$.ThemeMode = class ThemeMode extends core.Object {
-    toString() {
-      return this[_name$];
-    }
-  };
-  (app$.ThemeMode.new = function(index, _name) {
-    if (index == null) dart.nullFailed(I[0], 39, 6, "index");
-    if (_name == null) dart.nullFailed(I[0], 39, 6, "_name");
-    this.index = index;
-    this[_name$] = _name;
-    ;
-  }).prototype = app$.ThemeMode.prototype;
-  dart.addTypeTests(app$.ThemeMode);
-  dart.addTypeCaches(app$.ThemeMode);
-  dart.setLibraryUri(app$.ThemeMode, I[1]);
-  dart.setFieldSignature(app$.ThemeMode, () => ({
-    __proto__: dart.getFields(app$.ThemeMode.__proto__),
-    index: dart.finalFieldType(core.int),
-    [_name$]: dart.finalFieldType(core.String)
-  }));
-  dart.defineExtensionMethods(app$.ThemeMode, ['toString']);
-  app$.ThemeMode.system = C[0] || CT.C0;
-  app$.ThemeMode.light = C[1] || CT.C1;
-  app$.ThemeMode.dark = C[2] || CT.C2;
-  app$.ThemeMode.values = C[3] || CT.C3;
-  var navigatorKey$ = dart.privateName(app$, "MaterialApp.navigatorKey");
-  var scaffoldMessengerKey$ = dart.privateName(app$, "MaterialApp.scaffoldMessengerKey");
-  var home$ = dart.privateName(app$, "MaterialApp.home");
-  var routes$ = dart.privateName(app$, "MaterialApp.routes");
-  var initialRoute$ = dart.privateName(app$, "MaterialApp.initialRoute");
-  var onGenerateRoute$ = dart.privateName(app$, "MaterialApp.onGenerateRoute");
-  var onGenerateInitialRoutes$ = dart.privateName(app$, "MaterialApp.onGenerateInitialRoutes");
-  var onUnknownRoute$ = dart.privateName(app$, "MaterialApp.onUnknownRoute");
-  var navigatorObservers$ = dart.privateName(app$, "MaterialApp.navigatorObservers");
-  var routeInformationProvider$ = dart.privateName(app$, "MaterialApp.routeInformationProvider");
-  var routeInformationParser$ = dart.privateName(app$, "MaterialApp.routeInformationParser");
-  var routerDelegate$ = dart.privateName(app$, "MaterialApp.routerDelegate");
-  var backButtonDispatcher$ = dart.privateName(app$, "MaterialApp.backButtonDispatcher");
-  var builder$ = dart.privateName(app$, "MaterialApp.builder");
-  var title$ = dart.privateName(app$, "MaterialApp.title");
-  var onGenerateTitle$ = dart.privateName(app$, "MaterialApp.onGenerateTitle");
-  var theme$0 = dart.privateName(app$, "MaterialApp.theme");
-  var darkTheme$ = dart.privateName(app$, "MaterialApp.darkTheme");
-  var highContrastTheme$ = dart.privateName(app$, "MaterialApp.highContrastTheme");
-  var highContrastDarkTheme$ = dart.privateName(app$, "MaterialApp.highContrastDarkTheme");
-  var themeMode$ = dart.privateName(app$, "MaterialApp.themeMode");
-  var color$ = dart.privateName(app$, "MaterialApp.color");
-  var locale$ = dart.privateName(app$, "MaterialApp.locale");
-  var localizationsDelegates$ = dart.privateName(app$, "MaterialApp.localizationsDelegates");
-  var localeListResolutionCallback$ = dart.privateName(app$, "MaterialApp.localeListResolutionCallback");
-  var localeResolutionCallback$ = dart.privateName(app$, "MaterialApp.localeResolutionCallback");
-  var supportedLocales$ = dart.privateName(app$, "MaterialApp.supportedLocales");
-  var showPerformanceOverlay$ = dart.privateName(app$, "MaterialApp.showPerformanceOverlay");
-  var checkerboardRasterCacheImages$ = dart.privateName(app$, "MaterialApp.checkerboardRasterCacheImages");
-  var checkerboardOffscreenLayers$ = dart.privateName(app$, "MaterialApp.checkerboardOffscreenLayers");
-  var showSemanticsDebugger$ = dart.privateName(app$, "MaterialApp.showSemanticsDebugger");
-  var debugShowCheckedModeBanner$ = dart.privateName(app$, "MaterialApp.debugShowCheckedModeBanner");
-  var shortcuts$ = dart.privateName(app$, "MaterialApp.shortcuts");
-  var actions$ = dart.privateName(app$, "MaterialApp.actions");
-  var restorationScopeId$ = dart.privateName(app$, "MaterialApp.restorationScopeId");
-  var scrollBehavior$ = dart.privateName(app$, "MaterialApp.scrollBehavior");
-  var debugShowMaterialGrid$ = dart.privateName(app$, "MaterialApp.debugShowMaterialGrid");
-  var Locale__countryCode = dart.privateName(ui, "Locale._countryCode");
-  var Locale_scriptCode = dart.privateName(ui, "Locale.scriptCode");
-  var Locale__languageCode = dart.privateName(ui, "Locale._languageCode");
-  app$.MaterialApp = class MaterialApp extends framework.StatefulWidget {
-    get navigatorKey() {
-      return this[navigatorKey$];
-    }
-    set navigatorKey(value) {
-      super.navigatorKey = value;
-    }
-    get scaffoldMessengerKey() {
-      return this[scaffoldMessengerKey$];
-    }
-    set scaffoldMessengerKey(value) {
-      super.scaffoldMessengerKey = value;
-    }
-    get home() {
-      return this[home$];
-    }
-    set home(value) {
-      super.home = value;
-    }
-    get routes() {
-      return this[routes$];
-    }
-    set routes(value) {
-      super.routes = value;
-    }
-    get initialRoute() {
-      return this[initialRoute$];
-    }
-    set initialRoute(value) {
-      super.initialRoute = value;
-    }
-    get onGenerateRoute() {
-      return this[onGenerateRoute$];
-    }
-    set onGenerateRoute(value) {
-      super.onGenerateRoute = value;
-    }
-    get onGenerateInitialRoutes() {
-      return this[onGenerateInitialRoutes$];
-    }
-    set onGenerateInitialRoutes(value) {
-      super.onGenerateInitialRoutes = value;
-    }
-    get onUnknownRoute() {
-      return this[onUnknownRoute$];
-    }
-    set onUnknownRoute(value) {
-      super.onUnknownRoute = value;
-    }
-    get navigatorObservers() {
-      return this[navigatorObservers$];
-    }
-    set navigatorObservers(value) {
-      super.navigatorObservers = value;
-    }
-    get routeInformationProvider() {
-      return this[routeInformationProvider$];
-    }
-    set routeInformationProvider(value) {
-      super.routeInformationProvider = value;
-    }
-    get routeInformationParser() {
-      return this[routeInformationParser$];
-    }
-    set routeInformationParser(value) {
-      super.routeInformationParser = value;
-    }
-    get routerDelegate() {
-      return this[routerDelegate$];
-    }
-    set routerDelegate(value) {
-      super.routerDelegate = value;
-    }
-    get backButtonDispatcher() {
-      return this[backButtonDispatcher$];
-    }
-    set backButtonDispatcher(value) {
-      super.backButtonDispatcher = value;
-    }
-    get builder() {
-      return this[builder$];
-    }
-    set builder(value) {
-      super.builder = value;
-    }
-    get title() {
-      return this[title$];
-    }
-    set title(value) {
-      super.title = value;
-    }
-    get onGenerateTitle() {
-      return this[onGenerateTitle$];
-    }
-    set onGenerateTitle(value) {
-      super.onGenerateTitle = value;
-    }
-    get theme() {
-      return this[theme$0];
-    }
-    set theme(value) {
-      super.theme = value;
-    }
-    get darkTheme() {
-      return this[darkTheme$];
-    }
-    set darkTheme(value) {
-      super.darkTheme = value;
-    }
-    get highContrastTheme() {
-      return this[highContrastTheme$];
-    }
-    set highContrastTheme(value) {
-      super.highContrastTheme = value;
-    }
-    get highContrastDarkTheme() {
-      return this[highContrastDarkTheme$];
-    }
-    set highContrastDarkTheme(value) {
-      super.highContrastDarkTheme = value;
-    }
-    get themeMode() {
-      return this[themeMode$];
-    }
-    set themeMode(value) {
-      super.themeMode = value;
-    }
-    get color() {
-      return this[color$];
-    }
-    set color(value) {
-      super.color = value;
-    }
-    get locale() {
-      return this[locale$];
-    }
-    set locale(value) {
-      super.locale = value;
-    }
-    get localizationsDelegates() {
-      return this[localizationsDelegates$];
-    }
-    set localizationsDelegates(value) {
-      super.localizationsDelegates = value;
-    }
-    get localeListResolutionCallback() {
-      return this[localeListResolutionCallback$];
-    }
-    set localeListResolutionCallback(value) {
-      super.localeListResolutionCallback = value;
-    }
-    get localeResolutionCallback() {
-      return this[localeResolutionCallback$];
-    }
-    set localeResolutionCallback(value) {
-      super.localeResolutionCallback = value;
-    }
-    get supportedLocales() {
-      return this[supportedLocales$];
-    }
-    set supportedLocales(value) {
-      super.supportedLocales = value;
-    }
-    get showPerformanceOverlay() {
-      return this[showPerformanceOverlay$];
-    }
-    set showPerformanceOverlay(value) {
-      super.showPerformanceOverlay = value;
-    }
-    get checkerboardRasterCacheImages() {
-      return this[checkerboardRasterCacheImages$];
-    }
-    set checkerboardRasterCacheImages(value) {
-      super.checkerboardRasterCacheImages = value;
-    }
-    get checkerboardOffscreenLayers() {
-      return this[checkerboardOffscreenLayers$];
-    }
-    set checkerboardOffscreenLayers(value) {
-      super.checkerboardOffscreenLayers = value;
-    }
-    get showSemanticsDebugger() {
-      return this[showSemanticsDebugger$];
-    }
-    set showSemanticsDebugger(value) {
-      super.showSemanticsDebugger = value;
-    }
-    get debugShowCheckedModeBanner() {
-      return this[debugShowCheckedModeBanner$];
-    }
-    set debugShowCheckedModeBanner(value) {
-      super.debugShowCheckedModeBanner = value;
-    }
-    get shortcuts() {
-      return this[shortcuts$];
-    }
-    set shortcuts(value) {
-      super.shortcuts = value;
-    }
-    get actions() {
-      return this[actions$];
-    }
-    set actions(value) {
-      super.actions = value;
-    }
-    get restorationScopeId() {
-      return this[restorationScopeId$];
-    }
-    set restorationScopeId(value) {
-      super.restorationScopeId = value;
-    }
-    get scrollBehavior() {
-      return this[scrollBehavior$];
-    }
-    set scrollBehavior(value) {
-      super.scrollBehavior = value;
-    }
-    get debugShowMaterialGrid() {
-      return this[debugShowMaterialGrid$];
-    }
-    set debugShowMaterialGrid(value) {
-      super.debugShowMaterialGrid = value;
-    }
-    createState() {
-      return new app$._MaterialAppState.new();
-    }
-    static createMaterialHeroController() {
-      return new heroes.HeroController.new({createRectTween: dart.fn((begin, end) => new arc.MaterialRectArcTween.new({begin: begin, end: end}), T$.RectNAndRectNToMaterialRectArcTween())});
-    }
-  };
-  (app$.MaterialApp.new = function(opts) {
-    let key = opts && 'key' in opts ? opts.key : null;
-    let navigatorKey = opts && 'navigatorKey' in opts ? opts.navigatorKey : null;
-    let scaffoldMessengerKey = opts && 'scaffoldMessengerKey' in opts ? opts.scaffoldMessengerKey : null;
-    let home = opts && 'home' in opts ? opts.home : null;
-    let routes = opts && 'routes' in opts ? opts.routes : C[4] || CT.C4;
-    if (routes == null) dart.nullFailed(I[0], 171, 37, "routes");
-    let initialRoute = opts && 'initialRoute' in opts ? opts.initialRoute : null;
-    let onGenerateRoute = opts && 'onGenerateRoute' in opts ? opts.onGenerateRoute : null;
-    let onGenerateInitialRoutes = opts && 'onGenerateInitialRoutes' in opts ? opts.onGenerateInitialRoutes : null;
-    let onUnknownRoute = opts && 'onUnknownRoute' in opts ? opts.onUnknownRoute : null;
-    let navigatorObservers = opts && 'navigatorObservers' in opts ? opts.navigatorObservers : C[5] || CT.C5;
-    if (navigatorObservers == null) dart.nullFailed(I[0], 176, 34, "navigatorObservers");
-    let builder = opts && 'builder' in opts ? opts.builder : null;
-    let title = opts && 'title' in opts ? opts.title : "";
-    if (title == null) dart.nullFailed(I[0], 178, 10, "title");
-    let onGenerateTitle = opts && 'onGenerateTitle' in opts ? opts.onGenerateTitle : null;
-    let color = opts && 'color' in opts ? opts.color : null;
-    let theme = opts && 'theme' in opts ? opts.theme : null;
-    let darkTheme = opts && 'darkTheme' in opts ? opts.darkTheme : null;
-    let highContrastTheme = opts && 'highContrastTheme' in opts ? opts.highContrastTheme : null;
-    let highContrastDarkTheme = opts && 'highContrastDarkTheme' in opts ? opts.highContrastDarkTheme : null;
-    let themeMode = opts && 'themeMode' in opts ? opts.themeMode : C[0] || CT.C0;
-    let locale = opts && 'locale' in opts ? opts.locale : null;
-    let localizationsDelegates = opts && 'localizationsDelegates' in opts ? opts.localizationsDelegates : null;
-    let localeListResolutionCallback = opts && 'localeListResolutionCallback' in opts ? opts.localeListResolutionCallback : null;
-    let localeResolutionCallback = opts && 'localeResolutionCallback' in opts ? opts.localeResolutionCallback : null;
-    let supportedLocales = opts && 'supportedLocales' in opts ? opts.supportedLocales : C[6] || CT.C6;
-    if (supportedLocales == null) dart.nullFailed(I[0], 190, 10, "supportedLocales");
-    let debugShowMaterialGrid = opts && 'debugShowMaterialGrid' in opts ? opts.debugShowMaterialGrid : false;
-    if (debugShowMaterialGrid == null) dart.nullFailed(I[0], 191, 10, "debugShowMaterialGrid");
-    let showPerformanceOverlay = opts && 'showPerformanceOverlay' in opts ? opts.showPerformanceOverlay : false;
-    if (showPerformanceOverlay == null) dart.nullFailed(I[0], 192, 10, "showPerformanceOverlay");
-    let checkerboardRasterCacheImages = opts && 'checkerboardRasterCacheImages' in opts ? opts.checkerboardRasterCacheImages : false;
-    if (checkerboardRasterCacheImages == null) dart.nullFailed(I[0], 193, 10, "checkerboardRasterCacheImages");
-    let checkerboardOffscreenLayers = opts && 'checkerboardOffscreenLayers' in opts ? opts.checkerboardOffscreenLayers : false;
-    if (checkerboardOffscreenLayers == null) dart.nullFailed(I[0], 194, 10, "checkerboardOffscreenLayers");
-    let showSemanticsDebugger = opts && 'showSemanticsDebugger' in opts ? opts.showSemanticsDebugger : false;
-    if (showSemanticsDebugger == null) dart.nullFailed(I[0], 195, 10, "showSemanticsDebugger");
-    let debugShowCheckedModeBanner = opts && 'debugShowCheckedModeBanner' in opts ? opts.debugShowCheckedModeBanner : true;
-    if (debugShowCheckedModeBanner == null) dart.nullFailed(I[0], 196, 10, "debugShowCheckedModeBanner");
-    let shortcuts = opts && 'shortcuts' in opts ? opts.shortcuts : null;
-    let actions = opts && 'actions' in opts ? opts.actions : null;
-    let restorationScopeId = opts && 'restorationScopeId' in opts ? opts.restorationScopeId : null;
-    let scrollBehavior = opts && 'scrollBehavior' in opts ? opts.scrollBehavior : null;
-    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
-    this[navigatorKey$] = navigatorKey;
-    this[scaffoldMessengerKey$] = scaffoldMessengerKey;
-    this[home$] = home;
-    this[routes$] = routes;
-    this[initialRoute$] = initialRoute;
-    this[onGenerateRoute$] = onGenerateRoute;
-    this[onGenerateInitialRoutes$] = onGenerateInitialRoutes;
-    this[onUnknownRoute$] = onUnknownRoute;
-    this[navigatorObservers$] = navigatorObservers;
-    this[builder$] = builder;
-    this[title$] = title;
-    this[onGenerateTitle$] = onGenerateTitle;
-    this[color$] = color;
-    this[theme$0] = theme;
-    this[darkTheme$] = darkTheme;
-    this[highContrastTheme$] = highContrastTheme;
-    this[highContrastDarkTheme$] = highContrastDarkTheme;
-    this[themeMode$] = themeMode;
-    this[locale$] = locale;
-    this[localizationsDelegates$] = localizationsDelegates;
-    this[localeListResolutionCallback$] = localeListResolutionCallback;
-    this[localeResolutionCallback$] = localeResolutionCallback;
-    this[supportedLocales$] = supportedLocales;
-    this[debugShowMaterialGrid$] = debugShowMaterialGrid;
-    this[showPerformanceOverlay$] = showPerformanceOverlay;
-    this[checkerboardRasterCacheImages$] = checkerboardRasterCacheImages;
-    this[checkerboardOffscreenLayers$] = checkerboardOffscreenLayers;
-    this[showSemanticsDebugger$] = showSemanticsDebugger;
-    this[debugShowCheckedModeBanner$] = debugShowCheckedModeBanner;
-    this[shortcuts$] = shortcuts;
-    this[actions$] = actions;
-    this[restorationScopeId$] = restorationScopeId;
-    this[scrollBehavior$] = scrollBehavior;
-    if (!(routes != null)) dart.assertFailed(null, I[0], 201, 15, "routes != null");
-    if (!(navigatorObservers != null)) dart.assertFailed(null, I[0], 202, 15, "navigatorObservers != null");
-    if (!(title != null)) dart.assertFailed(null, I[0], 203, 15, "title != null");
-    if (!(debugShowMaterialGrid != null)) dart.assertFailed(null, I[0], 204, 15, "debugShowMaterialGrid != null");
-    if (!(showPerformanceOverlay != null)) dart.assertFailed(null, I[0], 205, 15, "showPerformanceOverlay != null");
-    if (!(checkerboardRasterCacheImages != null)) dart.assertFailed(null, I[0], 206, 15, "checkerboardRasterCacheImages != null");
-    if (!(checkerboardOffscreenLayers != null)) dart.assertFailed(null, I[0], 207, 15, "checkerboardOffscreenLayers != null");
-    if (!(showSemanticsDebugger != null)) dart.assertFailed(null, I[0], 208, 15, "showSemanticsDebugger != null");
-    if (!(debugShowCheckedModeBanner != null)) dart.assertFailed(null, I[0], 209, 15, "debugShowCheckedModeBanner != null");
-    this[routeInformationProvider$] = null;
-    this[routeInformationParser$] = null;
-    this[routerDelegate$] = null;
-    this[backButtonDispatcher$] = null;
-    app$.MaterialApp.__proto__.new.call(this, {key: key, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
-    ;
-  }).prototype = app$.MaterialApp.prototype;
-  (app$.MaterialApp.router = function(opts) {
-    let key = opts && 'key' in opts ? opts.key : null;
-    let scaffoldMessengerKey = opts && 'scaffoldMessengerKey' in opts ? opts.scaffoldMessengerKey : null;
-    let routeInformationProvider = opts && 'routeInformationProvider' in opts ? opts.routeInformationProvider : null;
-    let routeInformationParser = opts && 'routeInformationParser' in opts ? opts.routeInformationParser : null;
-    if (routeInformationParser == null) dart.nullFailed(I[0], 221, 50, "routeInformationParser");
-    let routerDelegate = opts && 'routerDelegate' in opts ? opts.routerDelegate : null;
-    if (routerDelegate == null) dart.nullFailed(I[0], 222, 42, "routerDelegate");
-    let backButtonDispatcher = opts && 'backButtonDispatcher' in opts ? opts.backButtonDispatcher : null;
-    let builder = opts && 'builder' in opts ? opts.builder : null;
-    let title = opts && 'title' in opts ? opts.title : "";
-    if (title == null) dart.nullFailed(I[0], 225, 10, "title");
-    let onGenerateTitle = opts && 'onGenerateTitle' in opts ? opts.onGenerateTitle : null;
-    let color = opts && 'color' in opts ? opts.color : null;
-    let theme = opts && 'theme' in opts ? opts.theme : null;
-    let darkTheme = opts && 'darkTheme' in opts ? opts.darkTheme : null;
-    let highContrastTheme = opts && 'highContrastTheme' in opts ? opts.highContrastTheme : null;
-    let highContrastDarkTheme = opts && 'highContrastDarkTheme' in opts ? opts.highContrastDarkTheme : null;
-    let themeMode = opts && 'themeMode' in opts ? opts.themeMode : C[0] || CT.C0;
-    let locale = opts && 'locale' in opts ? opts.locale : null;
-    let localizationsDelegates = opts && 'localizationsDelegates' in opts ? opts.localizationsDelegates : null;
-    let localeListResolutionCallback = opts && 'localeListResolutionCallback' in opts ? opts.localeListResolutionCallback : null;
-    let localeResolutionCallback = opts && 'localeResolutionCallback' in opts ? opts.localeResolutionCallback : null;
-    let supportedLocales = opts && 'supportedLocales' in opts ? opts.supportedLocales : C[6] || CT.C6;
-    if (supportedLocales == null) dart.nullFailed(I[0], 237, 10, "supportedLocales");
-    let debugShowMaterialGrid = opts && 'debugShowMaterialGrid' in opts ? opts.debugShowMaterialGrid : false;
-    if (debugShowMaterialGrid == null) dart.nullFailed(I[0], 238, 10, "debugShowMaterialGrid");
-    let showPerformanceOverlay = opts && 'showPerformanceOverlay' in opts ? opts.showPerformanceOverlay : false;
-    if (showPerformanceOverlay == null) dart.nullFailed(I[0], 239, 10, "showPerformanceOverlay");
-    let checkerboardRasterCacheImages = opts && 'checkerboardRasterCacheImages' in opts ? opts.checkerboardRasterCacheImages : false;
-    if (checkerboardRasterCacheImages == null) dart.nullFailed(I[0], 240, 10, "checkerboardRasterCacheImages");
-    let checkerboardOffscreenLayers = opts && 'checkerboardOffscreenLayers' in opts ? opts.checkerboardOffscreenLayers : false;
-    if (checkerboardOffscreenLayers == null) dart.nullFailed(I[0], 241, 10, "checkerboardOffscreenLayers");
-    let showSemanticsDebugger = opts && 'showSemanticsDebugger' in opts ? opts.showSemanticsDebugger : false;
-    if (showSemanticsDebugger == null) dart.nullFailed(I[0], 242, 10, "showSemanticsDebugger");
-    let debugShowCheckedModeBanner = opts && 'debugShowCheckedModeBanner' in opts ? opts.debugShowCheckedModeBanner : true;
-    if (debugShowCheckedModeBanner == null) dart.nullFailed(I[0], 243, 10, "debugShowCheckedModeBanner");
-    let shortcuts = opts && 'shortcuts' in opts ? opts.shortcuts : null;
-    let actions = opts && 'actions' in opts ? opts.actions : null;
-    let restorationScopeId = opts && 'restorationScopeId' in opts ? opts.restorationScopeId : null;
-    let scrollBehavior = opts && 'scrollBehavior' in opts ? opts.scrollBehavior : null;
-    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
-    this[scaffoldMessengerKey$] = scaffoldMessengerKey;
-    this[routeInformationProvider$] = routeInformationProvider;
-    this[routeInformationParser$] = routeInformationParser;
-    this[routerDelegate$] = routerDelegate;
-    this[backButtonDispatcher$] = backButtonDispatcher;
-    this[builder$] = builder;
-    this[title$] = title;
-    this[onGenerateTitle$] = onGenerateTitle;
-    this[color$] = color;
-    this[theme$0] = theme;
-    this[darkTheme$] = darkTheme;
-    this[highContrastTheme$] = highContrastTheme;
-    this[highContrastDarkTheme$] = highContrastDarkTheme;
-    this[themeMode$] = themeMode;
-    this[locale$] = locale;
-    this[localizationsDelegates$] = localizationsDelegates;
-    this[localeListResolutionCallback$] = localeListResolutionCallback;
-    this[localeResolutionCallback$] = localeResolutionCallback;
-    this[supportedLocales$] = supportedLocales;
-    this[debugShowMaterialGrid$] = debugShowMaterialGrid;
-    this[showPerformanceOverlay$] = showPerformanceOverlay;
-    this[checkerboardRasterCacheImages$] = checkerboardRasterCacheImages;
-    this[checkerboardOffscreenLayers$] = checkerboardOffscreenLayers;
-    this[showSemanticsDebugger$] = showSemanticsDebugger;
-    this[debugShowCheckedModeBanner$] = debugShowCheckedModeBanner;
-    this[shortcuts$] = shortcuts;
-    this[actions$] = actions;
-    this[restorationScopeId$] = restorationScopeId;
-    this[scrollBehavior$] = scrollBehavior;
-    if (!(routeInformationParser != null)) dart.assertFailed(null, I[0], 248, 15, "routeInformationParser != null");
-    if (!(routerDelegate != null)) dart.assertFailed(null, I[0], 249, 15, "routerDelegate != null");
-    if (!(title != null)) dart.assertFailed(null, I[0], 250, 15, "title != null");
-    if (!(debugShowMaterialGrid != null)) dart.assertFailed(null, I[0], 251, 15, "debugShowMaterialGrid != null");
-    if (!(showPerformanceOverlay != null)) dart.assertFailed(null, I[0], 252, 15, "showPerformanceOverlay != null");
-    if (!(checkerboardRasterCacheImages != null)) dart.assertFailed(null, I[0], 253, 15, "checkerboardRasterCacheImages != null");
-    if (!(checkerboardOffscreenLayers != null)) dart.assertFailed(null, I[0], 254, 15, "checkerboardOffscreenLayers != null");
-    if (!(showSemanticsDebugger != null)) dart.assertFailed(null, I[0], 255, 15, "showSemanticsDebugger != null");
-    if (!(debugShowCheckedModeBanner != null)) dart.assertFailed(null, I[0], 256, 15, "debugShowCheckedModeBanner != null");
-    this[navigatorObservers$] = null;
-    this[navigatorKey$] = null;
-    this[onGenerateRoute$] = null;
-    this[home$] = null;
-    this[onGenerateInitialRoutes$] = null;
-    this[onUnknownRoute$] = null;
-    this[routes$] = null;
-    this[initialRoute$] = null;
-    app$.MaterialApp.__proto__.new.call(this, {key: key, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
-    ;
-  }).prototype = app$.MaterialApp.prototype;
-  dart.addTypeTests(app$.MaterialApp);
-  dart.addTypeCaches(app$.MaterialApp);
-  dart.setMethodSignature(app$.MaterialApp, () => ({
-    __proto__: dart.getMethods(app$.MaterialApp.__proto__),
-    createState: dart.fnType(app$._MaterialAppState, [])
-  }));
-  dart.setLibraryUri(app$.MaterialApp, I[1]);
-  dart.setFieldSignature(app$.MaterialApp, () => ({
-    __proto__: dart.getFields(app$.MaterialApp.__proto__),
-    navigatorKey: dart.finalFieldType(dart.nullable(framework.GlobalKey$(navigator.NavigatorState))),
-    scaffoldMessengerKey: dart.finalFieldType(dart.nullable(framework.GlobalKey$(scaffold.ScaffoldMessengerState))),
-    home: dart.finalFieldType(dart.nullable(framework.Widget)),
-    routes: dart.finalFieldType(dart.nullable(core.Map$(core.String, dart.fnType(framework.Widget, [framework.BuildContext])))),
-    initialRoute: dart.finalFieldType(dart.nullable(core.String)),
-    onGenerateRoute: dart.finalFieldType(dart.nullable(dart.fnType(dart.nullable(navigator.Route), [navigator.RouteSettings]))),
-    onGenerateInitialRoutes: dart.finalFieldType(dart.nullable(dart.fnType(core.List$(navigator.Route), [core.String]))),
-    onUnknownRoute: dart.finalFieldType(dart.nullable(dart.fnType(dart.nullable(navigator.Route), [navigator.RouteSettings]))),
-    navigatorObservers: dart.finalFieldType(dart.nullable(core.List$(navigator.NavigatorObserver))),
-    routeInformationProvider: dart.finalFieldType(dart.nullable(router.RouteInformationProvider)),
-    routeInformationParser: dart.finalFieldType(dart.nullable(router.RouteInformationParser$(core.Object))),
-    routerDelegate: dart.finalFieldType(dart.nullable(router.RouterDelegate$(core.Object))),
-    backButtonDispatcher: dart.finalFieldType(dart.nullable(router.BackButtonDispatcher)),
-    builder: dart.finalFieldType(dart.nullable(dart.fnType(framework.Widget, [framework.BuildContext, dart.nullable(framework.Widget)]))),
-    title: dart.finalFieldType(core.String),
-    onGenerateTitle: dart.finalFieldType(dart.nullable(dart.fnType(core.String, [framework.BuildContext]))),
-    theme: dart.finalFieldType(dart.nullable(theme_data.ThemeData)),
-    darkTheme: dart.finalFieldType(dart.nullable(theme_data.ThemeData)),
-    highContrastTheme: dart.finalFieldType(dart.nullable(theme_data.ThemeData)),
-    highContrastDarkTheme: dart.finalFieldType(dart.nullable(theme_data.ThemeData)),
-    themeMode: dart.finalFieldType(dart.nullable(app$.ThemeMode)),
-    color: dart.finalFieldType(dart.nullable(ui.Color)),
-    locale: dart.finalFieldType(dart.nullable(ui.Locale)),
-    localizationsDelegates: dart.finalFieldType(dart.nullable(core.Iterable$(localizations.LocalizationsDelegate))),
-    localeListResolutionCallback: dart.finalFieldType(dart.nullable(dart.fnType(dart.nullable(ui.Locale), [dart.nullable(core.List$(ui.Locale)), core.Iterable$(ui.Locale)]))),
-    localeResolutionCallback: dart.finalFieldType(dart.nullable(dart.fnType(dart.nullable(ui.Locale), [dart.nullable(ui.Locale), core.Iterable$(ui.Locale)]))),
-    supportedLocales: dart.finalFieldType(core.Iterable$(ui.Locale)),
-    showPerformanceOverlay: dart.finalFieldType(core.bool),
-    checkerboardRasterCacheImages: dart.finalFieldType(core.bool),
-    checkerboardOffscreenLayers: dart.finalFieldType(core.bool),
-    showSemanticsDebugger: dart.finalFieldType(core.bool),
-    debugShowCheckedModeBanner: dart.finalFieldType(core.bool),
-    shortcuts: dart.finalFieldType(dart.nullable(core.Map$(shortcuts.LogicalKeySet, actions.Intent))),
-    actions: dart.finalFieldType(dart.nullable(core.Map$(core.Type, actions.Action$(actions.Intent)))),
-    restorationScopeId: dart.finalFieldType(dart.nullable(core.String)),
-    scrollBehavior: dart.finalFieldType(dart.nullable(scroll_configuration.ScrollBehavior)),
-    debugShowMaterialGrid: dart.finalFieldType(core.bool)
-  }));
+  var scrollDirection$ = dart.privateName(single_child_scroll_view, "SingleChildScrollView.scrollDirection");
+  var reverse$ = dart.privateName(single_child_scroll_view, "SingleChildScrollView.reverse");
+  var padding$ = dart.privateName(single_child_scroll_view, "SingleChildScrollView.padding");
+  var controller$ = dart.privateName(single_child_scroll_view, "SingleChildScrollView.controller");
+  var primary$ = dart.privateName(single_child_scroll_view, "SingleChildScrollView.primary");
+  var physics$ = dart.privateName(single_child_scroll_view, "SingleChildScrollView.physics");
+  var child$ = dart.privateName(single_child_scroll_view, "SingleChildScrollView.child");
+  var dragStartBehavior$ = dart.privateName(single_child_scroll_view, "SingleChildScrollView.dragStartBehavior");
+  var clipBehavior$ = dart.privateName(single_child_scroll_view, "SingleChildScrollView.clipBehavior");
+  var restorationId$ = dart.privateName(single_child_scroll_view, "SingleChildScrollView.restorationId");
+  var keyboardDismissBehavior$ = dart.privateName(single_child_scroll_view, "SingleChildScrollView.keyboardDismissBehavior");
   var _name = dart.privateName(basic_types, "_name");
+  var _name$ = dart.privateName(recognizer, "_name");
+  var _name$0 = dart.privateName(ui, "_name");
+  var _name$1 = dart.privateName(scroll_view, "_name");
+  var _getDirection = dart.privateName(single_child_scroll_view, "_getDirection");
   var _Location_parameterLocations = dart.privateName(widget_inspector, "_Location.parameterLocations");
   var _Location_name = dart.privateName(widget_inspector, "_Location.name");
   var _Location_column = dart.privateName(widget_inspector, "_Location.column");
   var _Location_line = dart.privateName(widget_inspector, "_Location.line");
   var _Location_file = dart.privateName(widget_inspector, "_Location.file");
-  var _name$0 = dart.privateName(platform, "_name");
-  app$.MaterialScrollBehavior = class MaterialScrollBehavior extends scroll_configuration.ScrollBehavior {
-    getPlatform(context) {
-      if (context == null) dart.nullFailed(I[0], 701, 43, "context");
-      return theme$.Theme.of(context).platform;
+  single_child_scroll_view.SingleChildScrollView = class SingleChildScrollView extends framework.StatelessWidget {
+    get scrollDirection() {
+      return this[scrollDirection$];
     }
-    buildScrollbar(context, child, details) {
-      if (context == null) dart.nullFailed(I[0], 704, 38, "context");
-      if (child == null) dart.nullFailed(I[0], 704, 54, "child");
-      if (details == null) dart.nullFailed(I[0], 704, 79, "details");
-      switch (basic_types.axisDirectionToAxis(details.direction)) {
-        case C[8] || CT.C8:
-        {
-          return child;
-        }
-        case C[19] || CT.C19:
-        {
-          switch (this.getPlatform(context)) {
-            case C[13] || CT.C13:
-            case C[14] || CT.C14:
-            case C[15] || CT.C15:
-            {
-              return new scrollbar.Scrollbar.new({child: child, controller: details.controller, $creationLocationd_0dea112b090073317d4: C[9] || CT.C9});
-            }
-            case C[16] || CT.C16:
-            case C[17] || CT.C17:
-            case C[18] || CT.C18:
-            {
-              return child;
-            }
-            default:
-            {
-              dart.throw(new _internal.ReachabilityError.new("`null` encountered as case in a switch expression with a non-nullable enum type."));
-            }
-          }
-        }
-        default:
-        {
-          dart.throw(new _internal.ReachabilityError.new("`null` encountered as case in a switch expression with a non-nullable enum type."));
-        }
-      }
+    set scrollDirection(value) {
+      super.scrollDirection = value;
     }
-    buildOverscrollIndicator(context, child, details) {
-      if (context == null) dart.nullFailed(I[0], 728, 48, "context");
-      if (child == null) dart.nullFailed(I[0], 728, 64, "child");
-      if (details == null) dart.nullFailed(I[0], 728, 89, "details");
-      switch (this.getPlatform(context)) {
-        case C[18] || CT.C18:
-        case C[13] || CT.C13:
-        case C[14] || CT.C14:
-        case C[15] || CT.C15:
-        {
-          return child;
-        }
-        case C[16] || CT.C16:
-        case C[17] || CT.C17:
-        {
-          return new overscroll_indicator.GlowingOverscrollIndicator.new({child: child, axisDirection: details.direction, color: theme$.Theme.of(context).colorScheme.secondary, $creationLocationd_0dea112b090073317d4: C[20] || CT.C20});
-        }
-        default:
-        {
-          dart.throw(new _internal.ReachabilityError.new("`null` encountered as case in a switch expression with a non-nullable enum type."));
-        }
-      }
+    get reverse() {
+      return this[reverse$];
     }
-  };
-  (app$.MaterialScrollBehavior.new = function() {
-    app$.MaterialScrollBehavior.__proto__.new.call(this);
-    ;
-  }).prototype = app$.MaterialScrollBehavior.prototype;
-  dart.addTypeTests(app$.MaterialScrollBehavior);
-  dart.addTypeCaches(app$.MaterialScrollBehavior);
-  dart.setLibraryUri(app$.MaterialScrollBehavior, I[1]);
-  var ___MaterialAppState__heroController = dart.privateName(app$, "_#_MaterialAppState#_heroController");
-  var ___MaterialAppState__heroController_isSet = dart.privateName(app$, "_#_MaterialAppState#_heroController#isSet");
-  var _heroController = dart.privateName(app$, "_heroController");
-  var _usesRouter = dart.privateName(app$, "_usesRouter");
-  var _localizationsDelegates = dart.privateName(app$, "_localizationsDelegates");
-  var Widget__location = dart.privateName(framework, "Widget._location");
-  var Widget_key = dart.privateName(framework, "Widget.key");
-  var Icon_textDirection = dart.privateName(icon, "Icon.textDirection");
-  var Icon_semanticLabel = dart.privateName(icon, "Icon.semanticLabel");
-  var Icon_color = dart.privateName(icon, "Icon.color");
-  var Icon_size = dart.privateName(icon, "Icon.size");
-  var IconData_matchTextDirection = dart.privateName(icon_data, "IconData.matchTextDirection");
-  var IconData_fontPackage = dart.privateName(icon_data, "IconData.fontPackage");
-  var IconData_fontFamily = dart.privateName(icon_data, "IconData.fontFamily");
-  var IconData_codePoint = dart.privateName(icon_data, "IconData.codePoint");
-  var Icon_icon = dart.privateName(icon, "Icon.icon");
-  var _inspectorSelectButtonBuilder = dart.privateName(app$, "_inspectorSelectButtonBuilder");
-  var _materialBuilder = dart.privateName(app$, "_materialBuilder");
-  var _buildWidgetApp = dart.privateName(app$, "_buildWidgetApp");
-  var Color_value = dart.privateName(ui, "Color.value");
-  app$._MaterialAppState = class _MaterialAppState extends framework.State$(app$.MaterialApp) {
-    get [_heroController]() {
-      let t0;
-      return dart.test(this[___MaterialAppState__heroController_isSet]) ? (t0 = this[___MaterialAppState__heroController], t0) : dart.throw(new _internal.LateError.fieldNI("_heroController"));
+    set reverse(value) {
+      super.reverse = value;
     }
-    set [_heroController](t0) {
-      if (t0 == null) dart.nullFailed(I[0], 749, 23, "null");
-      this[___MaterialAppState__heroController_isSet] = true;
-      this[___MaterialAppState__heroController] = t0;
+    get padding() {
+      return this[padding$];
     }
-    get [_usesRouter]() {
-      return this.widget.routerDelegate != null;
+    set padding(value) {
+      super.padding = value;
     }
-    initState() {
-      super.initState();
-      this[_heroController] = app$.MaterialApp.createMaterialHeroController();
+    get controller() {
+      return this[controller$];
     }
-    get [_localizationsDelegates]() {
-      return new (T$.SyncIterableOfLocalizationsDelegate()).new((function* _localizationsDelegates() {
-        if (this.widget.localizationsDelegates != null) yield* dart.nullCheck(this.widget.localizationsDelegates);
-        yield material_localizations.DefaultMaterialLocalizations.delegate;
-        yield localizations$.DefaultCupertinoLocalizations.delegate;
-      }).bind(this));
+    set controller(value) {
+      super.controller = value;
     }
-    [_inspectorSelectButtonBuilder](context, onPressed) {
-      if (context == null) dart.nullFailed(I[0], 771, 53, "context");
-      if (onPressed == null) dart.nullFailed(I[0], 771, 75, "onPressed");
-      return new floating_action_button.FloatingActionButton.new({child: C[25] || CT.C25, onPressed: onPressed, mini: true, $creationLocationd_0dea112b090073317d4: C[30] || CT.C30});
+    get primary() {
+      return this[primary$];
     }
-    [_materialBuilder](context, child) {
-      let t1, t1$;
-      if (context == null) dart.nullFailed(I[0], 779, 40, "context");
-      let mode = (t1 = this.widget.themeMode, t1 == null ? app$.ThemeMode.system : t1);
-      let platformBrightness = media_query.MediaQuery.platformBrightnessOf(context);
-      let useDarkTheme = mode == app$.ThemeMode.dark || mode == app$.ThemeMode.system && platformBrightness == ui.Brightness.dark;
-      let highContrast = media_query.MediaQuery.highContrastOf(context);
-      let theme = null;
-      if (useDarkTheme && dart.test(highContrast) && this.widget.highContrastDarkTheme != null) {
-        theme = this.widget.highContrastDarkTheme;
-      } else if (useDarkTheme && this.widget.darkTheme != null) {
-        theme = this.widget.darkTheme;
-      } else if (dart.test(highContrast) && this.widget.highContrastTheme != null) {
-        theme = this.widget.highContrastTheme;
-      }
-      theme == null ? theme = (t1$ = this.widget.theme, t1$ == null ? theme_data.ThemeData.light() : t1$) : null;
-      return new scaffold.ScaffoldMessenger.new({key: this.widget.scaffoldMessengerKey, child: new theme$.AnimatedTheme.new({data: theme, child: this.widget.builder != null ? new basic.Builder.new({builder: dart.fn(context => {
-              if (context == null) dart.nullFailed(I[0], 803, 38, "context");
-              return dart.nullCheck(this.widget.builder)(context, child);
-            }, T$.BuildContextToWidget()), $creationLocationd_0dea112b090073317d4: C[35] || CT.C35}) : dart.nullCheck(child), $creationLocationd_0dea112b090073317d4: C[38] || CT.C38}), $creationLocationd_0dea112b090073317d4: C[42] || CT.C42});
+    set primary(value) {
+      super.primary = value;
     }
-    [_buildWidgetApp](context) {
-      let t2, t1, t1$;
-      if (context == null) dart.nullFailed(I[0], 823, 39, "context");
-      let materialColor = (t1$ = (t1 = this.widget.color, t1 == null ? (t2 = this.widget.theme, t2 == null ? null : t2.primaryColor) : t1), t1$ == null ? colors.Colors.blue : t1$);
-      if (dart.test(this[_usesRouter])) {
-        return new app.WidgetsApp.router({key: new (T$.GlobalObjectKeyOfStateOfStatefulWidget()).new(this), routeInformationProvider: this.widget.routeInformationProvider, routeInformationParser: dart.nullCheck(this.widget.routeInformationParser), routerDelegate: dart.nullCheck(this.widget.routerDelegate), backButtonDispatcher: this.widget.backButtonDispatcher, builder: dart.bind(this, _materialBuilder), title: this.widget.title, onGenerateTitle: this.widget.onGenerateTitle, textStyle: app$._errorTextStyle, color: materialColor, locale: this.widget.locale, localizationsDelegates: this[_localizationsDelegates], localeResolutionCallback: this.widget.localeResolutionCallback, localeListResolutionCallback: this.widget.localeListResolutionCallback, supportedLocales: this.widget.supportedLocales, showPerformanceOverlay: this.widget.showPerformanceOverlay, checkerboardRasterCacheImages: this.widget.checkerboardRasterCacheImages, checkerboardOffscreenLayers: this.widget.checkerboardOffscreenLayers, showSemanticsDebugger: this.widget.showSemanticsDebugger, debugShowCheckedModeBanner: this.widget.debugShowCheckedModeBanner, inspectorSelectButtonBuilder: dart.bind(this, _inspectorSelectButtonBuilder), shortcuts: this.widget.shortcuts, actions: this.widget.actions, restorationScopeId: this.widget.restorationScopeId, $creationLocationd_0dea112b090073317d4: C[46] || CT.C46});
-      }
-      return new app.WidgetsApp.new({key: new (T$.GlobalObjectKeyOfStateOfStatefulWidget()).new(this), navigatorKey: this.widget.navigatorKey, navigatorObservers: dart.nullCheck(this.widget.navigatorObservers), pageRouteBuilder: dart.fn((T, settings, builder) => {
-          if (settings == null) dart.nullFailed(I[0], 865, 43, "settings");
-          if (builder == null) dart.nullFailed(I[0], 865, 67, "builder");
-          return new (page.MaterialPageRoute$(T)).new({settings: settings, builder: builder});
-        }, T$.RouteSettingsAndFnToMaterialPageRouteOfT()), home: this.widget.home, routes: dart.nullCheck(this.widget.routes), initialRoute: this.widget.initialRoute, onGenerateRoute: this.widget.onGenerateRoute, onGenerateInitialRoutes: this.widget.onGenerateInitialRoutes, onUnknownRoute: this.widget.onUnknownRoute, builder: dart.bind(this, _materialBuilder), title: this.widget.title, onGenerateTitle: this.widget.onGenerateTitle, textStyle: app$._errorTextStyle, color: materialColor, locale: this.widget.locale, localizationsDelegates: this[_localizationsDelegates], localeResolutionCallback: this.widget.localeResolutionCallback, localeListResolutionCallback: this.widget.localeListResolutionCallback, supportedLocales: this.widget.supportedLocales, showPerformanceOverlay: this.widget.showPerformanceOverlay, checkerboardRasterCacheImages: this.widget.checkerboardRasterCacheImages, checkerboardOffscreenLayers: this.widget.checkerboardOffscreenLayers, showSemanticsDebugger: this.widget.showSemanticsDebugger, debugShowCheckedModeBanner: this.widget.debugShowCheckedModeBanner, inspectorSelectButtonBuilder: dart.bind(this, _inspectorSelectButtonBuilder), shortcuts: this.widget.shortcuts, actions: this.widget.actions, restorationScopeId: this.widget.restorationScopeId, $creationLocationd_0dea112b090073317d4: C[72] || CT.C72});
+    get physics() {
+      return this[physics$];
+    }
+    set physics(value) {
+      super.physics = value;
+    }
+    get child() {
+      return this[child$];
+    }
+    set child(value) {
+      super.child = value;
+    }
+    get dragStartBehavior() {
+      return this[dragStartBehavior$];
+    }
+    set dragStartBehavior(value) {
+      super.dragStartBehavior = value;
+    }
+    get clipBehavior() {
+      return this[clipBehavior$];
+    }
+    set clipBehavior(value) {
+      super.clipBehavior = value;
+    }
+    get restorationId() {
+      return this[restorationId$];
+    }
+    set restorationId(value) {
+      super.restorationId = value;
+    }
+    get keyboardDismissBehavior() {
+      return this[keyboardDismissBehavior$];
+    }
+    set keyboardDismissBehavior(value) {
+      super.keyboardDismissBehavior = value;
+    }
+    [_getDirection](context) {
+      if (context == null) dart.nullFailed(I[0], 318, 44, "context");
+      return basic.getAxisDirectionFromAxisReverseAndDirectionality(context, this.scrollDirection, this.reverse);
     }
     build(context) {
-      let t1;
-      if (context == null) dart.nullFailed(I[0], 897, 29, "context");
-      let result = this[_buildWidgetApp](context);
-      if (!dart.test(dart.fn(() => {
-        if (dart.test(this.widget.debugShowMaterialGrid)) {
-          result = new grid_paper.GridPaper.new({color: C[103] || CT.C103, interval: 8.0, divisions: 2, subdivisions: 1, child: result, $creationLocationd_0dea112b090073317d4: C[104] || CT.C104});
-        }
-        return true;
-      }, T$.VoidTobool())())) dart.assertFailed(null, I[0], 900, 12, "() {\r\n      if (widget.debugShowMaterialGrid) {\r\n        result = GridPaper(\r\n          color: const Color(0xE0F9BBE0),\r\n          interval: 8.0,\r\n          divisions: 2,\r\n          subdivisions: 1,\r\n          child: result,\r\n        );\r\n      }\r\n      return true;\r\n    }()");
-      return new scroll_configuration.ScrollConfiguration.new({behavior: (t1 = this.widget.scrollBehavior, t1 == null ? C[111] || CT.C111 : t1), child: new navigator.HeroControllerScope.new({controller: this[_heroController], child: result, $creationLocationd_0dea112b090073317d4: C[112] || CT.C112}), $creationLocationd_0dea112b090073317d4: C[116] || CT.C116});
+      if (context == null) dart.nullFailed(I[0], 323, 29, "context");
+      let axisDirection = this[_getDirection](context);
+      let contents = this.child;
+      if (this.padding != null) contents = new basic.Padding.new({padding: dart.nullCheck(this.padding), child: contents, $creationLocationd_0dea112b090073317d4: C[4] || CT.C4});
+      let scrollController = dart.test(this.primary) ? primary_scroll_controller.PrimaryScrollController.of(context) : this.controller;
+      let scrollable = new scrollable$.Scrollable.new({dragStartBehavior: this.dragStartBehavior, axisDirection: axisDirection, controller: scrollController, physics: this.physics, restorationId: this.restorationId, viewportBuilder: dart.fn((context, offset) => {
+          if (context == null) dart.nullFailed(I[0], 337, 38, "context");
+          if (offset == null) dart.nullFailed(I[0], 337, 62, "offset");
+          return new single_child_scroll_view._SingleChildViewport.new({axisDirection: axisDirection, offset: offset, child: contents, clipBehavior: this.clipBehavior, $creationLocationd_0dea112b090073317d4: C[8] || CT.C8});
+        }, T.BuildContextAndViewportOffsetTo_SingleChildViewport()), $creationLocationd_0dea112b090073317d4: C[14] || CT.C14});
+      if (this.keyboardDismissBehavior == scroll_view.ScrollViewKeyboardDismissBehavior.onDrag) {
+        scrollable = new (T.NotificationListenerOfScrollUpdateNotification()).new({child: scrollable, onNotification: dart.fn(notification => {
+            if (notification == null) dart.nullFailed(I[0], 350, 51, "notification");
+            let focusNode = focus_scope.FocusScope.of(context);
+            if (notification.dragDetails != null && dart.test(focusNode.hasFocus)) {
+              focusNode.unfocus();
+            }
+            return false;
+          }, T.ScrollUpdateNotificationTobool()), $creationLocationd_0dea112b090073317d4: C[22] || CT.C22});
+      }
+      return dart.test(this.primary) && scrollController != null ? new primary_scroll_controller.PrimaryScrollController.none({child: scrollable, $creationLocationd_0dea112b090073317d4: C[26] || CT.C26}) : scrollable;
     }
   };
-  (app$._MaterialAppState.new = function() {
-    this[___MaterialAppState__heroController] = null;
-    this[___MaterialAppState__heroController_isSet] = false;
-    app$._MaterialAppState.__proto__.new.call(this);
+  (single_child_scroll_view.SingleChildScrollView.new = function(opts) {
+    let t0;
+    let key = opts && 'key' in opts ? opts.key : null;
+    let scrollDirection = opts && 'scrollDirection' in opts ? opts.scrollDirection : C[0] || CT.C0;
+    if (scrollDirection == null) dart.nullFailed(I[0], 219, 10, "scrollDirection");
+    let reverse = opts && 'reverse' in opts ? opts.reverse : false;
+    if (reverse == null) dart.nullFailed(I[0], 220, 10, "reverse");
+    let padding = opts && 'padding' in opts ? opts.padding : null;
+    let primary = opts && 'primary' in opts ? opts.primary : null;
+    let physics = opts && 'physics' in opts ? opts.physics : null;
+    let controller = opts && 'controller' in opts ? opts.controller : null;
+    let child = opts && 'child' in opts ? opts.child : null;
+    let dragStartBehavior = opts && 'dragStartBehavior' in opts ? opts.dragStartBehavior : C[1] || CT.C1;
+    if (dragStartBehavior == null) dart.nullFailed(I[0], 226, 10, "dragStartBehavior");
+    let clipBehavior = opts && 'clipBehavior' in opts ? opts.clipBehavior : C[2] || CT.C2;
+    if (clipBehavior == null) dart.nullFailed(I[0], 227, 10, "clipBehavior");
+    let restorationId = opts && 'restorationId' in opts ? opts.restorationId : null;
+    let keyboardDismissBehavior = opts && 'keyboardDismissBehavior' in opts ? opts.keyboardDismissBehavior : C[3] || CT.C3;
+    if (keyboardDismissBehavior == null) dart.nullFailed(I[0], 229, 10, "keyboardDismissBehavior");
+    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
+    this[scrollDirection$] = scrollDirection;
+    this[reverse$] = reverse;
+    this[padding$] = padding;
+    this[physics$] = physics;
+    this[controller$] = controller;
+    this[child$] = child;
+    this[dragStartBehavior$] = dragStartBehavior;
+    this[clipBehavior$] = clipBehavior;
+    this[restorationId$] = restorationId;
+    this[keyboardDismissBehavior$] = keyboardDismissBehavior;
+    if (!(scrollDirection != null)) dart.assertFailed(null, I[0], 230, 15, "scrollDirection != null");
+    if (!(dragStartBehavior != null)) dart.assertFailed(null, I[0], 231, 15, "dragStartBehavior != null");
+    if (!(clipBehavior != null)) dart.assertFailed(null, I[0], 232, 15, "clipBehavior != null");
+    if (!!(controller != null && primary === true)) dart.assertFailed("Primary ScrollViews obtain their ScrollController via inheritance from a PrimaryScrollController widget. " + "You cannot both set primary to true and pass an explicit controller.", I[0], 233, 15, "!(controller != null && primary == true)");
+    this[primary$] = (t0 = primary, t0 == null ? controller == null && scrollDirection == basic_types.Axis.vertical : t0);
+    single_child_scroll_view.SingleChildScrollView.__proto__.new.call(this, {key: key, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
     ;
-  }).prototype = app$._MaterialAppState.prototype;
-  dart.addTypeTests(app$._MaterialAppState);
-  dart.addTypeCaches(app$._MaterialAppState);
-  dart.setMethodSignature(app$._MaterialAppState, () => ({
-    __proto__: dart.getMethods(app$._MaterialAppState.__proto__),
-    [_inspectorSelectButtonBuilder]: dart.fnType(framework.Widget, [framework.BuildContext, dart.fnType(dart.void, [])]),
-    [_materialBuilder]: dart.fnType(framework.Widget, [framework.BuildContext, dart.nullable(framework.Widget)]),
-    [_buildWidgetApp]: dart.fnType(framework.Widget, [framework.BuildContext]),
+  }).prototype = single_child_scroll_view.SingleChildScrollView.prototype;
+  dart.addTypeTests(single_child_scroll_view.SingleChildScrollView);
+  dart.addTypeCaches(single_child_scroll_view.SingleChildScrollView);
+  dart.setMethodSignature(single_child_scroll_view.SingleChildScrollView, () => ({
+    __proto__: dart.getMethods(single_child_scroll_view.SingleChildScrollView.__proto__),
+    [_getDirection]: dart.fnType(basic_types.AxisDirection, [framework.BuildContext]),
     build: dart.fnType(framework.Widget, [framework.BuildContext])
   }));
-  dart.setGetterSignature(app$._MaterialAppState, () => ({
-    __proto__: dart.getGetters(app$._MaterialAppState.__proto__),
-    [_heroController]: heroes.HeroController,
-    [_usesRouter]: core.bool,
-    [_localizationsDelegates]: core.Iterable$(localizations.LocalizationsDelegate)
+  dart.setLibraryUri(single_child_scroll_view.SingleChildScrollView, I[1]);
+  dart.setFieldSignature(single_child_scroll_view.SingleChildScrollView, () => ({
+    __proto__: dart.getFields(single_child_scroll_view.SingleChildScrollView.__proto__),
+    scrollDirection: dart.finalFieldType(basic_types.Axis),
+    reverse: dart.finalFieldType(core.bool),
+    padding: dart.finalFieldType(dart.nullable(edge_insets.EdgeInsetsGeometry)),
+    controller: dart.finalFieldType(dart.nullable(scroll_controller.ScrollController)),
+    primary: dart.finalFieldType(core.bool),
+    physics: dart.finalFieldType(dart.nullable(scroll_physics.ScrollPhysics)),
+    child: dart.finalFieldType(dart.nullable(framework.Widget)),
+    dragStartBehavior: dart.finalFieldType(recognizer.DragStartBehavior),
+    clipBehavior: dart.finalFieldType(ui.Clip),
+    restorationId: dart.finalFieldType(dart.nullable(core.String)),
+    keyboardDismissBehavior: dart.finalFieldType(scroll_view.ScrollViewKeyboardDismissBehavior)
   }));
-  dart.setSetterSignature(app$._MaterialAppState, () => ({
-    __proto__: dart.getSetters(app$._MaterialAppState.__proto__),
-    [_heroController]: heroes.HeroController
-  }));
-  dart.setLibraryUri(app$._MaterialAppState, I[1]);
-  dart.setFieldSignature(app$._MaterialAppState, () => ({
-    __proto__: dart.getFields(app$._MaterialAppState.__proto__),
-    [___MaterialAppState__heroController]: dart.fieldType(dart.nullable(heroes.HeroController)),
-    [___MaterialAppState__heroController_isSet]: dart.fieldType(core.bool)
-  }));
-  var TextStyle_fontFeatures = dart.privateName(text_style, "TextStyle.fontFeatures");
-  var TextStyle_shadows = dart.privateName(text_style, "TextStyle.shadows");
-  var TextStyle_debugLabel = dart.privateName(text_style, "TextStyle.debugLabel");
-  var TextStyle_decorationThickness = dart.privateName(text_style, "TextStyle.decorationThickness");
-  var _name$1 = dart.privateName(ui, "_name");
-  var TextStyle_decorationStyle = dart.privateName(text_style, "TextStyle.decorationStyle");
-  var TextStyle_decorationColor = dart.privateName(text_style, "TextStyle.decorationColor");
-  var TextDecoration__mask = dart.privateName(ui, "TextDecoration._mask");
-  var TextStyle_decoration = dart.privateName(text_style, "TextStyle.decoration");
-  var TextStyle_background = dart.privateName(text_style, "TextStyle.background");
-  var TextStyle_foreground = dart.privateName(text_style, "TextStyle.foreground");
-  var TextStyle_locale = dart.privateName(text_style, "TextStyle.locale");
-  var TextStyle_leadingDistribution = dart.privateName(text_style, "TextStyle.leadingDistribution");
-  var TextStyle_height = dart.privateName(text_style, "TextStyle.height");
-  var TextStyle_textBaseline = dart.privateName(text_style, "TextStyle.textBaseline");
-  var TextStyle_wordSpacing = dart.privateName(text_style, "TextStyle.wordSpacing");
-  var TextStyle_letterSpacing = dart.privateName(text_style, "TextStyle.letterSpacing");
-  var TextStyle_fontStyle = dart.privateName(text_style, "TextStyle.fontStyle");
-  var FontWeight_index = dart.privateName(ui, "FontWeight.index");
-  var TextStyle_fontWeight = dart.privateName(text_style, "TextStyle.fontWeight");
-  var TextStyle_fontSize = dart.privateName(text_style, "TextStyle.fontSize");
-  var TextStyle__package = dart.privateName(text_style, "TextStyle._package");
-  var TextStyle__fontFamilyFallback = dart.privateName(text_style, "TextStyle._fontFamilyFallback");
-  var TextStyle_fontFamily = dart.privateName(text_style, "TextStyle.fontFamily");
-  var TextStyle_backgroundColor = dart.privateName(text_style, "TextStyle.backgroundColor");
-  var TextStyle_color = dart.privateName(text_style, "TextStyle.color");
-  var TextStyle_inherit = dart.privateName(text_style, "TextStyle.inherit");
-  dart.defineLazy(app$, {
-    /*app$._errorTextStyle*/get _errorTextStyle() {
-      return C[120] || CT.C120;
+  var axisDirection$ = dart.privateName(single_child_scroll_view, "_SingleChildViewport.axisDirection");
+  var offset$ = dart.privateName(single_child_scroll_view, "_SingleChildViewport.offset");
+  var clipBehavior$0 = dart.privateName(single_child_scroll_view, "_SingleChildViewport.clipBehavior");
+  single_child_scroll_view._SingleChildViewport = class _SingleChildViewport extends framework.SingleChildRenderObjectWidget {
+    get axisDirection() {
+      return this[axisDirection$];
     }
-  }, false);
-  dart.trackLibraries("packages/flutter/src/material/app.dart", {
-    "package:flutter/src/material/app.dart": app$
+    set axisDirection(value) {
+      super.axisDirection = value;
+    }
+    get offset() {
+      return this[offset$];
+    }
+    set offset(value) {
+      super.offset = value;
+    }
+    get clipBehavior() {
+      return this[clipBehavior$0];
+    }
+    set clipBehavior(value) {
+      super.clipBehavior = value;
+    }
+    createRenderObject(context) {
+      if (context == null) dart.nullFailed(I[0], 382, 62, "context");
+      return new single_child_scroll_view._RenderSingleChildViewport.new({axisDirection: this.axisDirection, offset: this.offset, clipBehavior: this.clipBehavior});
+    }
+    updateRenderObject(context, renderObject) {
+      let t0;
+      if (context == null) dart.nullFailed(I[0], 391, 40, "context");
+      single_child_scroll_view._RenderSingleChildViewport.as(renderObject);
+      if (renderObject == null) dart.nullFailed(I[0], 391, 76, "renderObject");
+      t0 = renderObject;
+      (() => {
+        t0.axisDirection = this.axisDirection;
+        t0.offset = this.offset;
+        t0.clipBehavior = this.clipBehavior;
+        return t0;
+      })();
+    }
+  };
+  (single_child_scroll_view._SingleChildViewport.new = function(opts) {
+    let key = opts && 'key' in opts ? opts.key : null;
+    let axisDirection = opts && 'axisDirection' in opts ? opts.axisDirection : C[29] || CT.C29;
+    if (axisDirection == null) dart.nullFailed(I[0], 369, 10, "axisDirection");
+    let offset = opts && 'offset' in opts ? opts.offset : null;
+    if (offset == null) dart.nullFailed(I[0], 370, 19, "offset");
+    let child = opts && 'child' in opts ? opts.child : null;
+    let clipBehavior = opts && 'clipBehavior' in opts ? opts.clipBehavior : null;
+    if (clipBehavior == null) dart.nullFailed(I[0], 372, 19, "clipBehavior");
+    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
+    this[axisDirection$] = axisDirection;
+    this[offset$] = offset;
+    this[clipBehavior$0] = clipBehavior;
+    if (!(axisDirection != null)) dart.assertFailed(null, I[0], 373, 15, "axisDirection != null");
+    if (!(clipBehavior != null)) dart.assertFailed(null, I[0], 374, 15, "clipBehavior != null");
+    single_child_scroll_view._SingleChildViewport.__proto__.new.call(this, {key: key, child: child, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
+    ;
+  }).prototype = single_child_scroll_view._SingleChildViewport.prototype;
+  dart.addTypeTests(single_child_scroll_view._SingleChildViewport);
+  dart.addTypeCaches(single_child_scroll_view._SingleChildViewport);
+  dart.setMethodSignature(single_child_scroll_view._SingleChildViewport, () => ({
+    __proto__: dart.getMethods(single_child_scroll_view._SingleChildViewport.__proto__),
+    createRenderObject: dart.fnType(single_child_scroll_view._RenderSingleChildViewport, [framework.BuildContext])
+  }));
+  dart.setLibraryUri(single_child_scroll_view._SingleChildViewport, I[1]);
+  dart.setFieldSignature(single_child_scroll_view._SingleChildViewport, () => ({
+    __proto__: dart.getFields(single_child_scroll_view._SingleChildViewport.__proto__),
+    axisDirection: dart.finalFieldType(basic_types.AxisDirection),
+    offset: dart.finalFieldType(viewport_offset.ViewportOffset),
+    clipBehavior: dart.finalFieldType(ui.Clip)
+  }));
+  var _clipBehavior = dart.privateName(single_child_scroll_view, "_clipBehavior");
+  var _clipRectLayer = dart.privateName(single_child_scroll_view, "_clipRectLayer");
+  var _axisDirection = dart.privateName(single_child_scroll_view, "_axisDirection");
+  var _offset = dart.privateName(single_child_scroll_view, "_offset");
+  var _cacheExtent = dart.privateName(single_child_scroll_view, "_cacheExtent");
+  var _hasScrolled = dart.privateName(single_child_scroll_view, "_hasScrolled");
+  var _viewportExtent = dart.privateName(single_child_scroll_view, "_viewportExtent");
+  var _minScrollExtent = dart.privateName(single_child_scroll_view, "_minScrollExtent");
+  var _maxScrollExtent = dart.privateName(single_child_scroll_view, "_maxScrollExtent");
+  var _getInnerConstraints = dart.privateName(single_child_scroll_view, "_getInnerConstraints");
+  var _paintOffsetForPosition = dart.privateName(single_child_scroll_view, "_paintOffsetForPosition");
+  var _paintOffset = dart.privateName(single_child_scroll_view, "_paintOffset");
+  var _shouldClipAtPaintOffset = dart.privateName(single_child_scroll_view, "_shouldClipAtPaintOffset");
+  var Duration__duration = dart.privateName(core, "Duration._duration");
+  var Cubic_d = dart.privateName(curves, "Cubic.d");
+  var Cubic_c = dart.privateName(curves, "Cubic.c");
+  var Cubic_b = dart.privateName(curves, "Cubic.b");
+  var Cubic_a = dart.privateName(curves, "Cubic.a");
+  const RenderBox_RenderObjectWithChildMixin$36 = class RenderBox_RenderObjectWithChildMixin extends box.RenderBox {};
+  (RenderBox_RenderObjectWithChildMixin$36.new = function() {
+    object.RenderObjectWithChildMixin$(box.RenderBox)[dart.mixinNew].call(this);
+    RenderBox_RenderObjectWithChildMixin$36.__proto__.new.call(this);
+  }).prototype = RenderBox_RenderObjectWithChildMixin$36.prototype;
+  dart.applyMixin(RenderBox_RenderObjectWithChildMixin$36, object.RenderObjectWithChildMixin$(box.RenderBox));
+  single_child_scroll_view._RenderSingleChildViewport = class _RenderSingleChildViewport extends RenderBox_RenderObjectWithChildMixin$36 {
+    get axisDirection() {
+      return this[_axisDirection];
+    }
+    set axisDirection(value) {
+      if (value == null) dart.nullFailed(I[0], 420, 35, "value");
+      if (!(value != null)) dart.assertFailed(null, I[0], 421, 12, "value != null");
+      if (value == this[_axisDirection]) return;
+      this[_axisDirection] = value;
+      this.markNeedsLayout();
+    }
+    get axis() {
+      return basic_types.axisDirectionToAxis(this.axisDirection);
+    }
+    get offset() {
+      return this[_offset];
+    }
+    set offset(value) {
+      if (value == null) dart.nullFailed(I[0], 432, 29, "value");
+      if (!(value != null)) dart.assertFailed(null, I[0], 433, 12, "value != null");
+      if (dart.equals(value, this[_offset])) return;
+      if (dart.test(this.attached)) this[_offset].removeListener(dart.bind(this, _hasScrolled));
+      this[_offset] = value;
+      if (dart.test(this.attached)) this[_offset].addListener(dart.bind(this, _hasScrolled));
+      this.markNeedsLayout();
+    }
+    get cacheExtent() {
+      return this[_cacheExtent];
+    }
+    set cacheExtent(value) {
+      if (value == null) dart.nullFailed(I[0], 447, 26, "value");
+      if (!(value != null)) dart.assertFailed(null, I[0], 448, 12, "value != null");
+      if (value == this[_cacheExtent]) return;
+      this[_cacheExtent] = value;
+      this.markNeedsLayout();
+    }
+    get clipBehavior() {
+      return this[_clipBehavior];
+    }
+    set clipBehavior(value) {
+      if (value == null) dart.nullFailed(I[0], 460, 25, "value");
+      if (!(value != null)) dart.assertFailed(null, I[0], 461, 12, "value != null");
+      if (value != this[_clipBehavior]) {
+        this[_clipBehavior] = value;
+        this.markNeedsPaint();
+        this.markNeedsSemanticsUpdate();
+      }
+    }
+    [_hasScrolled]() {
+      this.markNeedsPaint();
+      this.markNeedsSemanticsUpdate();
+    }
+    setupParentData(child) {
+      object.RenderObject.as(child);
+      if (child == null) dart.nullFailed(I[0], 475, 37, "child");
+      if (!object.ParentData.is(child.parentData)) child.parentData = new object.ParentData.new();
+    }
+    attach(owner) {
+      object.PipelineOwner.as(owner);
+      if (owner == null) dart.nullFailed(I[0], 483, 29, "owner");
+      super.attach(owner);
+      this[_offset].addListener(dart.bind(this, _hasScrolled));
+    }
+    detach() {
+      this[_offset].removeListener(dart.bind(this, _hasScrolled));
+      super.detach();
+    }
+    get isRepaintBoundary() {
+      return true;
+    }
+    get [_viewportExtent]() {
+      if (!dart.test(this.hasSize)) dart.assertFailed(null, I[0], 498, 12, "hasSize");
+      switch (this.axis) {
+        case C[30] || CT.C30:
+        {
+          return this.size.width;
+        }
+        case C[0] || CT.C0:
+        {
+          return this.size.height;
+        }
+        default:
+        {
+          dart.throw(new _internal.ReachabilityError.new("`null` encountered as case in a switch expression with a non-nullable enum type."));
+        }
+      }
+    }
+    get [_minScrollExtent]() {
+      if (!dart.test(this.hasSize)) dart.assertFailed(null, I[0], 508, 12, "hasSize");
+      return 0.0;
+    }
+    get [_maxScrollExtent]() {
+      if (!dart.test(this.hasSize)) dart.assertFailed(null, I[0], 513, 12, "hasSize");
+      if (this.child == null) return 0.0;
+      switch (this.axis) {
+        case C[30] || CT.C30:
+        {
+          return math.max(core.double, 0.0, dart.notNull(dart.nullCheck(this.child).size.width) - dart.notNull(this.size.width));
+        }
+        case C[0] || CT.C0:
+        {
+          return math.max(core.double, 0.0, dart.notNull(dart.nullCheck(this.child).size.height) - dart.notNull(this.size.height));
+        }
+        default:
+        {
+          dart.throw(new _internal.ReachabilityError.new("`null` encountered as case in a switch expression with a non-nullable enum type."));
+        }
+      }
+    }
+    [_getInnerConstraints](constraints) {
+      if (constraints == null) dart.nullFailed(I[0], 524, 54, "constraints");
+      switch (this.axis) {
+        case C[30] || CT.C30:
+        {
+          return constraints.heightConstraints();
+        }
+        case C[0] || CT.C0:
+        {
+          return constraints.widthConstraints();
+        }
+        default:
+        {
+          dart.throw(new _internal.ReachabilityError.new("`null` encountered as case in a switch expression with a non-nullable enum type."));
+        }
+      }
+    }
+    computeMinIntrinsicWidth(height) {
+      if (height == null) dart.nullFailed(I[0], 534, 42, "height");
+      if (this.child != null) return dart.nullCheck(this.child).getMinIntrinsicWidth(height);
+      return 0.0;
+    }
+    computeMaxIntrinsicWidth(height) {
+      if (height == null) dart.nullFailed(I[0], 541, 42, "height");
+      if (this.child != null) return dart.nullCheck(this.child).getMaxIntrinsicWidth(height);
+      return 0.0;
+    }
+    computeMinIntrinsicHeight(width) {
+      if (width == null) dart.nullFailed(I[0], 548, 43, "width");
+      if (this.child != null) return dart.nullCheck(this.child).getMinIntrinsicHeight(width);
+      return 0.0;
+    }
+    computeMaxIntrinsicHeight(width) {
+      if (width == null) dart.nullFailed(I[0], 555, 43, "width");
+      if (this.child != null) return dart.nullCheck(this.child).getMaxIntrinsicHeight(width);
+      return 0.0;
+    }
+    computeDryLayout(constraints) {
+      if (constraints == null) dart.nullFailed(I[0], 567, 40, "constraints");
+      if (this.child == null) {
+        return constraints.smallest;
+      }
+      let childSize = dart.nullCheck(this.child).getDryLayout(this[_getInnerConstraints](constraints));
+      return constraints.constrain(childSize);
+    }
+    performLayout() {
+      let constraints = this.constraints;
+      if (this.child == null) {
+        this.size = constraints.smallest;
+      } else {
+        dart.nullCheck(this.child).layout(this[_getInnerConstraints](constraints), {parentUsesSize: true});
+        this.size = constraints.constrain(dart.nullCheck(this.child).size);
+      }
+      this.offset.applyViewportDimension(this[_viewportExtent]);
+      this.offset.applyContentDimensions(this[_minScrollExtent], this[_maxScrollExtent]);
+    }
+    get [_paintOffset]() {
+      return this[_paintOffsetForPosition](this.offset.pixels);
+    }
+    [_paintOffsetForPosition](position) {
+      if (position == null) dart.nullFailed(I[0], 591, 41, "position");
+      if (!(this.axisDirection != null)) dart.assertFailed(null, I[0], 592, 12, "axisDirection != null");
+      switch (this.axisDirection) {
+        case C[31] || CT.C31:
+        {
+          return new ui.Offset.new(0.0, dart.notNull(position) - dart.notNull(dart.nullCheck(this.child).size.height) + dart.notNull(this.size.height));
+        }
+        case C[29] || CT.C29:
+        {
+          return new ui.Offset.new(0.0, -dart.notNull(position));
+        }
+        case C[32] || CT.C32:
+        {
+          return new ui.Offset.new(dart.notNull(position) - dart.notNull(dart.nullCheck(this.child).size.width) + dart.notNull(this.size.width), 0.0);
+        }
+        case C[33] || CT.C33:
+        {
+          return new ui.Offset.new(-dart.notNull(position), 0.0);
+        }
+        default:
+        {
+          dart.throw(new _internal.ReachabilityError.new("`null` encountered as case in a switch expression with a non-nullable enum type."));
+        }
+      }
+    }
+    [_shouldClipAtPaintOffset](paintOffset) {
+      if (paintOffset == null) dart.nullFailed(I[0], 605, 40, "paintOffset");
+      if (!(this.child != null)) dart.assertFailed(null, I[0], 606, 12, "child != null");
+      return dart.notNull(paintOffset.dx) < 0 || dart.notNull(paintOffset.dy) < 0 || dart.notNull(paintOffset.dx) + dart.notNull(dart.nullCheck(this.child).size.width) > dart.notNull(this.size.width) || dart.notNull(paintOffset.dy) + dart.notNull(dart.nullCheck(this.child).size.height) > dart.notNull(this.size.height);
+    }
+    paint(context, offset) {
+      if (context == null) dart.nullFailed(I[0], 614, 30, "context");
+      if (offset == null) dart.nullFailed(I[0], 614, 46, "offset");
+      if (this.child != null) {
+        let paintOffset = this[_paintOffset];
+        const paintContents = (context, offset) => {
+          if (context == null) dart.nullFailed(I[0], 618, 42, "context");
+          if (offset == null) dart.nullFailed(I[0], 618, 58, "offset");
+          context.paintChild(dart.nullCheck(this.child), offset['+'](paintOffset));
+        };
+        dart.fn(paintContents, T.PaintingContextAndOffsetTovoid());
+        if (dart.test(this[_shouldClipAtPaintOffset](paintOffset)) && this.clipBehavior != ui.Clip.none) {
+          this[_clipRectLayer] = context.pushClipRect(this.needsCompositing, offset, ui.Offset.zero['&'](this.size), paintContents, {clipBehavior: this.clipBehavior, oldLayer: this[_clipRectLayer]});
+        } else {
+          this[_clipRectLayer] = null;
+          paintContents(context, offset);
+        }
+      }
+    }
+    applyPaintTransform(child, transform) {
+      box.RenderBox.as(child);
+      if (child == null) dart.nullFailed(I[0], 641, 38, "child");
+      if (transform == null) dart.nullFailed(I[0], 641, 53, "transform");
+      let paintOffset = this[_paintOffset];
+      transform.translate(paintOffset.dx, paintOffset.dy);
+    }
+    describeApproximatePaintClip(child) {
+      T.RenderObjectN().as(child);
+      if (child != null && dart.test(this[_shouldClipAtPaintOffset](this[_paintOffset]))) return ui.Offset.zero['&'](this.size);
+      return null;
+    }
+    hitTestChildren(result, opts) {
+      if (result == null) dart.nullFailed(I[0], 654, 41, "result");
+      let position = opts && 'position' in opts ? opts.position : null;
+      if (position == null) dart.nullFailed(I[0], 654, 67, "position");
+      if (this.child != null) {
+        return result.addWithPaintOffset({offset: this[_paintOffset], position: position, hitTest: dart.fn((result, transformed) => {
+            if (result == null) dart.nullFailed(I[0], 659, 36, "result");
+            if (!dart.equals(transformed, position['+'](this[_paintOffset]._negate()))) dart.assertFailed(null, I[0], 660, 18, "transformed == position + -_paintOffset");
+            return dart.nullCheck(this.child).hitTest(result, {position: dart.nullCheck(transformed)});
+          }, T.BoxHitTestResultAndOffsetNTobool())});
+      }
+      return false;
+    }
+    getOffsetToReveal(target, alignment, opts) {
+      if (target == null) dart.nullFailed(I[0], 669, 49, "target");
+      if (alignment == null) dart.nullFailed(I[0], 669, 64, "alignment");
+      let rect = opts && 'rect' in opts ? opts.rect : null;
+      rect == null ? rect = target.paintBounds : null;
+      if (!box.RenderBox.is(target)) return new viewport.RevealedOffset.new({offset: this.offset.pixels, rect: rect});
+      let targetBox = target;
+      let transform = targetBox.getTransformTo(this.child);
+      let bounds = matrix_utils.MatrixUtils.transformRect(transform, rect);
+      let contentSize = dart.nullCheck(this.child).size;
+      let leadingScrollOffset = null;
+      let targetMainAxisExtent = null;
+      let mainAxisExtent = null;
+      if (!(this.axisDirection != null)) dart.assertFailed(null, I[0], 683, 12, "axisDirection != null");
+      switch (this.axisDirection) {
+        case C[31] || CT.C31:
+        {
+          mainAxisExtent = this.size.height;
+          leadingScrollOffset = dart.notNull(contentSize.height) - dart.notNull(bounds.bottom);
+          targetMainAxisExtent = bounds.height;
+          break;
+        }
+        case C[33] || CT.C33:
+        {
+          mainAxisExtent = this.size.width;
+          leadingScrollOffset = bounds.left;
+          targetMainAxisExtent = bounds.width;
+          break;
+        }
+        case C[29] || CT.C29:
+        {
+          mainAxisExtent = this.size.height;
+          leadingScrollOffset = bounds.top;
+          targetMainAxisExtent = bounds.height;
+          break;
+        }
+        case C[32] || CT.C32:
+        {
+          mainAxisExtent = this.size.width;
+          leadingScrollOffset = dart.notNull(contentSize.width) - dart.notNull(bounds.right);
+          targetMainAxisExtent = bounds.width;
+          break;
+        }
+        default:
+        {
+          dart.throw(new _internal.ReachabilityError.new("`null` encountered as case in a switch expression with a non-nullable enum type."));
+        }
+      }
+      let targetOffset = dart.notNull(leadingScrollOffset) - (dart.notNull(mainAxisExtent) - dart.notNull(targetMainAxisExtent)) * dart.notNull(alignment);
+      let targetRect = bounds.shift(this[_paintOffsetForPosition](targetOffset));
+      return new viewport.RevealedOffset.new({offset: targetOffset, rect: targetRect});
+    }
+    showOnScreen(opts) {
+      let descendant = opts && 'descendant' in opts ? opts.descendant : null;
+      let rect = opts && 'rect' in opts ? opts.rect : null;
+      let duration = opts && 'duration' in opts ? opts.duration : C[34] || CT.C34;
+      if (duration == null) dart.nullFailed(I[0], 716, 14, "duration");
+      let curve = opts && 'curve' in opts ? opts.curve : C[35] || CT.C35;
+      if (curve == null) dart.nullFailed(I[0], 717, 11, "curve");
+      if (!dart.test(this.offset.allowImplicitScrolling)) {
+        return super.showOnScreen({descendant: descendant, rect: rect, duration: duration, curve: curve});
+      }
+      let newRect = viewport.RenderViewportBase.showInViewport({descendant: descendant, viewport: this, offset: this.offset, rect: rect, duration: duration, curve: curve});
+      super.showOnScreen({rect: newRect, duration: duration, curve: curve});
+    }
+    describeSemanticsClip(child) {
+      object.RenderObject.as(child);
+      if (child == null) dart.nullFailed(I[0], 744, 43, "child");
+      if (!(this.axis != null)) dart.assertFailed(null, I[0], 745, 12, "axis != null");
+      switch (this.axis) {
+        case C[0] || CT.C0:
+        {
+          return new ui.Rect.fromLTRB(this.semanticBounds.left, dart.notNull(this.semanticBounds.top) - dart.notNull(this.cacheExtent), this.semanticBounds.right, dart.notNull(this.semanticBounds.bottom) + dart.notNull(this.cacheExtent));
+        }
+        case C[30] || CT.C30:
+        {
+          return new ui.Rect.fromLTRB(dart.notNull(this.semanticBounds.left) - dart.notNull(this.cacheExtent), this.semanticBounds.top, dart.notNull(this.semanticBounds.right) + dart.notNull(this.cacheExtent), this.semanticBounds.bottom);
+        }
+        default:
+        {
+          dart.throw(new _internal.ReachabilityError.new("`null` encountered as case in a switch expression with a non-nullable enum type."));
+        }
+      }
+    }
+  };
+  (single_child_scroll_view._RenderSingleChildViewport.new = function(opts) {
+    let axisDirection = opts && 'axisDirection' in opts ? opts.axisDirection : C[29] || CT.C29;
+    if (axisDirection == null) dart.nullFailed(I[0], 402, 19, "axisDirection");
+    let offset = opts && 'offset' in opts ? opts.offset : null;
+    if (offset == null) dart.nullFailed(I[0], 403, 29, "offset");
+    let cacheExtent = opts && 'cacheExtent' in opts ? opts.cacheExtent : 250;
+    if (cacheExtent == null) dart.nullFailed(I[0], 404, 12, "cacheExtent");
+    let child = opts && 'child' in opts ? opts.child : null;
+    let clipBehavior = opts && 'clipBehavior' in opts ? opts.clipBehavior : null;
+    if (clipBehavior == null) dart.nullFailed(I[0], 406, 19, "clipBehavior");
+    this[_clipBehavior] = ui.Clip.none;
+    this[_clipRectLayer] = null;
+    if (!(axisDirection != null)) dart.assertFailed(null, I[0], 407, 15, "axisDirection != null");
+    if (!(offset != null)) dart.assertFailed(null, I[0], 408, 15, "offset != null");
+    if (!(cacheExtent != null)) dart.assertFailed(null, I[0], 409, 15, "cacheExtent != null");
+    if (!(clipBehavior != null)) dart.assertFailed(null, I[0], 410, 15, "clipBehavior != null");
+    this[_axisDirection] = axisDirection;
+    this[_offset] = offset;
+    this[_cacheExtent] = cacheExtent;
+    this[_clipBehavior] = clipBehavior;
+    single_child_scroll_view._RenderSingleChildViewport.__proto__.new.call(this);
+    this.child = child;
+  }).prototype = single_child_scroll_view._RenderSingleChildViewport.prototype;
+  dart.addTypeTests(single_child_scroll_view._RenderSingleChildViewport);
+  dart.addTypeCaches(single_child_scroll_view._RenderSingleChildViewport);
+  single_child_scroll_view._RenderSingleChildViewport[dart.implements] = () => [viewport.RenderAbstractViewport];
+  dart.setMethodSignature(single_child_scroll_view._RenderSingleChildViewport, () => ({
+    __proto__: dart.getMethods(single_child_scroll_view._RenderSingleChildViewport.__proto__),
+    [_hasScrolled]: dart.fnType(dart.void, []),
+    [_getInnerConstraints]: dart.fnType(box.BoxConstraints, [box.BoxConstraints]),
+    [_paintOffsetForPosition]: dart.fnType(ui.Offset, [core.double]),
+    [_shouldClipAtPaintOffset]: dart.fnType(core.bool, [ui.Offset]),
+    getOffsetToReveal: dart.fnType(viewport.RevealedOffset, [object.RenderObject, core.double], {rect: dart.nullable(ui.Rect)}, {}),
+    describeSemanticsClip: dart.fnType(ui.Rect, [dart.nullable(core.Object)])
+  }));
+  dart.setGetterSignature(single_child_scroll_view._RenderSingleChildViewport, () => ({
+    __proto__: dart.getGetters(single_child_scroll_view._RenderSingleChildViewport.__proto__),
+    axisDirection: basic_types.AxisDirection,
+    axis: basic_types.Axis,
+    offset: viewport_offset.ViewportOffset,
+    cacheExtent: core.double,
+    clipBehavior: ui.Clip,
+    [_viewportExtent]: core.double,
+    [_minScrollExtent]: core.double,
+    [_maxScrollExtent]: core.double,
+    [_paintOffset]: ui.Offset
+  }));
+  dart.setSetterSignature(single_child_scroll_view._RenderSingleChildViewport, () => ({
+    __proto__: dart.getSetters(single_child_scroll_view._RenderSingleChildViewport.__proto__),
+    axisDirection: basic_types.AxisDirection,
+    offset: viewport_offset.ViewportOffset,
+    cacheExtent: core.double,
+    clipBehavior: ui.Clip
+  }));
+  dart.setLibraryUri(single_child_scroll_view._RenderSingleChildViewport, I[1]);
+  dart.setFieldSignature(single_child_scroll_view._RenderSingleChildViewport, () => ({
+    __proto__: dart.getFields(single_child_scroll_view._RenderSingleChildViewport.__proto__),
+    [_axisDirection]: dart.fieldType(basic_types.AxisDirection),
+    [_offset]: dart.fieldType(viewport_offset.ViewportOffset),
+    [_cacheExtent]: dart.fieldType(core.double),
+    [_clipBehavior]: dart.fieldType(ui.Clip),
+    [_clipRectLayer]: dart.fieldType(dart.nullable(layer.ClipRectLayer))
+  }));
+  dart.trackLibraries("packages/flutter/src/widgets/single_child_scroll_view.dart", {
+    "package:flutter/src/widgets/single_child_scroll_view.dart": single_child_scroll_view
   }, {
-  }, '{"version":3,"sourceRoot":"","sources":["app.dart"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;IAgDA;;;QAVK;;;;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","file":"../../../../../../../../D:/packages/flutter/src/material/app.dart.lib.js"}');
+  }, '{"version":3,"sourceRoot":"","sources":["single_child_scroll_view.dart"],"names":[],"mappings":"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","file":"../../../../../../../../D:/packages/flutter/src/widgets/single_child_scroll_view.dart.lib.js"}');
   // Exports:
   return {
-    src__material__app: app$
+    src__widgets__single_child_scroll_view: single_child_scroll_view
   };
 }));
 
-//# sourceMappingURL=app.dart.lib.js.map
+//# sourceMappingURL=single_child_scroll_view.dart.lib.js.map

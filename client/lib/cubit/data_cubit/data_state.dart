@@ -14,5 +14,3 @@ class ReveivedDoc extends DataState {
   final List<Map<String, List<Doc>>> docs;
   ReveivedDoc(this.docs);
 }
-
-
