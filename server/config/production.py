@@ -15,7 +15,7 @@ JWT_ACCESS_TOKEN_EXPIRES = timedelta(
     hours=int(environ.get('JWT_ACCESS_TOKEN_EXPIRES')))
 JWT_REFRESH_TOKEN_EXPIRES = timedelta(
     days=int(environ.get('JWT_REFRESH_TOKEN_EXPIRES')))
-
+SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 # Others
 FLASK_ENV = 'production'
@@ -29,7 +29,7 @@ SQL_HOST = environ.get('SQL_HOST')
 SQL_USERNAME = environ.get('SQL_USERNAME')
 SQL_PASSWORD = environ.get('SQL_PASSWORD')
 SQL_DATABASE = environ.get('SQL_DATABASE')
-DATABASE_URI = '{dialect}+{driver}://{username}:{password}@{host}:{port}/{database}'.format(
+SQLALCHEMY_DATABASE_URI = '{dialect}+{driver}://{username}:{password}@{host}:{port}/{database}'.format(
     dialect=environ.get('SQL_DIALECT'),
     driver=environ.get('SQL_DRIVER'),
     username=environ.get('SQL_USER'),

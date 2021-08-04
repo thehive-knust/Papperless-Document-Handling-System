@@ -16,6 +16,7 @@ JWT_ACCESS_TOKEN_EXPIRES = timedelta(
     hours=int(environ.get('JWT_ACCESS_TOKEN_EXPIRES')))
 JWT_REFRESH_TOKEN_EXPIRES = timedelta(
     days=int(environ.get('JWT_REFRESH_TOKEN_EXPIRES')))
+SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 # Others
 FLASK_ENV = 'testing'
@@ -24,7 +25,7 @@ SESSION_COOKIE_SECURE = False
 JWT_COOKIE_SECURE = False
 
 # Database
-DATABASE_URI = "sqlite:///{instance_path}/{path}".format(
+SQLALCHEMY_DATABASE_URI = "sqlite:///{instance_path}/{path}".format(
     instance_path=environ.get('INSTANCE_PATH'),
     path=environ.get('SQL_LITE_PATH')
 )
