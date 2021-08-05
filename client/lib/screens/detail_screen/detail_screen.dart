@@ -3,14 +3,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:softdoc/cubit/android_nav_cubit/AndroidNav_cubit.dart';
 import 'package:softdoc/cubit/desktop_nav_cubit/desktopnav_cubit.dart';
 import 'package:softdoc/models/doc.dart';
-import 'package:softdoc/shared/docTypeIcon.dart';
 import 'package:softdoc/shared/pdf_card.dart';
 import 'package:softdoc/style.dart';
 import 'package:intl/intl.dart';
 import 'approval_progress.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class DetailScreen extends StatefulWidget {
-  Doc selectedDoc;
+  final Doc selectedDoc;
   final bool isDesktop;
   DetailScreen({Key key, this.isDesktop = false, this.selectedDoc})
       : super(key: key);
@@ -28,7 +28,6 @@ class _DetailScreenState extends State<DetailScreen> {
     super.initState();
     _androidNavCubit = BlocProvider.of<AndroidNavCubit>(context);
     _desktopNavCubit = BlocProvider.of<DesktopNavCubit>(context);
-    // request for doc details
   }
 
   void confirmWithdrawal(BuildContext context) {
@@ -130,25 +129,27 @@ class _DetailScreenState extends State<DetailScreen> {
                           ),
                         ),
                       ),
-                      SizedBox(height: 5),
-                      Container(height: 200, child: pdfCard('name')),
+                      InkWell(
+                        onTap: () async {
+                          // TODO: hard coded url must be changed in final version
+                          final url = widget.selectedDoc.fileUrl ??
+                              'http://africau.edu/images/default/sample.pdf';
+                          if (await canLaunch(url)) {
+                            await launch(url);
+                          } else {
+                            throw 'Could not launch $url';
+                          }
+                        },
+                        child: Container(
+                          height: 200,
+                          child: pdfCard(
+                              // TODO:  hard coded name must be changed in final version
+                              widget.selectedDoc.filename ?? 'name of file'),
+                        ),
+                      ),
                       SizedBox(height: 12),
                       if (widget.selectedDoc.status != "pending")
                         StatusMessage(widget.selectedDoc.status),
-                      // Flexible(child: SizedBox(), fit: FlexFit.tight),
-                      // if (selectedDoc.status == "pending")
-                      //   ElevatedButton(
-                      //     onPressed: () => confirmWithdrawal(context),
-                      //     child: Text("Cancel request"),
-                      //     style: ElevatedButton.styleFrom(
-                      //       shape: RoundedRectangleBorder(
-                      //         borderRadius: BorderRadius.circular(8),
-                      //       ),
-                      //       primary: red,
-                      //       minimumSize: Size(300, 50),
-                      //       textStyle: TextStyle(fontSize: 20),
-                      //     ),
-                      //   ),
                     ],
                   ),
                 ),
