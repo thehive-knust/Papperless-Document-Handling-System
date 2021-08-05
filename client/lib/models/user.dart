@@ -25,21 +25,7 @@ class User {
       deptId: json['deptId'],
       title: json['title'],
       colId: json['colId'],
+      email: json['email'],
     );
-  }
-
-  static List<Map<String, dynamic>> dumyJson() {
-    return [
-      {
-        "id": "1",
-        "name": "His/Her name",
-        "email": "something@gmail.com",
-        "dept_id": "111",
-        "position": "HOD",
-      },
-      {},
-      {},
-      {},
-    ];
   }
 }

@@ -9,7 +9,7 @@ class FlaskDatabase {
   // -TODO: authentication:-------------------------------
   static Future<Map> authenticateWithIdAndPassword(
       String userId, String password) async {
-    Uri url = Uri.parse("https://soft-doc.herokuapp.com/users/login");
+    Uri url = Uri.parse("https://soft-doc.herokuapp.com/auth/login");
     http.Response response;
     try {
       response = await http.post(
@@ -18,7 +18,7 @@ class FlaskDatabase {
           'Content-Type': 'application/json; charset=UTF-8',
         },
         body: jsonEncode(
-          <String, String>{'user_id': userId, 'password': password},
+          <String, String>{'id': userId, 'password': password},
         ),
       );
 
@@ -72,18 +72,11 @@ class FlaskDatabase {
 
   //TODO: implement get departments here:
   static Future<dynamic> getDepartmentsByColId(colId) async {
-    Uri url = Uri.parse("");
+    Uri url = Uri.parse(
+        "https://soft-doc.herokuapp.com/department/get/${int.parse(colId)}");
     http.Response response;
     try {
-      response = await http.post(
-        url,
-        headers: <String, String>{
-          'Content-Type': 'application/json; charset=UTF-8',
-        },
-        body: jsonEncode(
-          <String, String>{'colId': colId},
-        ),
-      );
+      response = await http.get(url);
 
       if (response.statusCode == 200) {
         print(response.body);
@@ -100,7 +93,8 @@ class FlaskDatabase {
 
   //TODO: implement get users in deparment here:
   static Future<dynamic> getUsersInDepartmentByDeptId(deptId) {
-    Uri uri = Uri.parse("");
+    Uri uri = Uri.parse(
+        "https://soft-doc.herokuapp.com/get_department_users/${int.parse(deptId)}");
     http.Response response;
     try {
       http.post(
@@ -128,7 +122,8 @@ class FlaskDatabase {
 
   //TODO: implement get sent docs here:
   static Future<dynamic> getSentDocsByUserId(userId) {
-    Uri uri = Uri.parse("");
+    Uri uri = Uri.parse(
+        "https://soft-doc.herokuapp.com/documents/user/${int.parse(userId)}");
     http.Response response;
     try {
       http.post(
@@ -156,7 +151,7 @@ class FlaskDatabase {
 
   //TODO: implement getDoc by doc id:
   static Future<dynamic> getDocByDocId(docId) {
-    Uri uri = Uri.parse("");
+    Uri uri = Uri.parse("https://soft-doc.herokuapp.com");
     http.Response reponse;
     try {
       http.get(uri);

@@ -27,8 +27,9 @@ class DataCubit extends Cubit<DataState> {
     } else if (jsonData.keys.contains('message')) {
       return true;
     } else {
-      user = User.fromJson(jsonData);
-      // get departments in user's college
+      user = User.fromJson(jsonData['user']);
+      print(user.toString());
+      getDepts(); // get departments in user's college
       // get users in user's department
       // get sent documents
       // get revieved documents
