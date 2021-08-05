@@ -8,6 +8,7 @@ import 'package:softdoc/screens/reveived_detail_screen/reveived_detail_screen.da
 import 'package:softdoc/screens/send_doc_screen/add_or_edit_recepient.dart';
 import 'package:softdoc/screens/send_doc_screen/select_recepient.dart';
 import 'package:softdoc/screens/send_doc_screen/send_doc_screen.dart';
+import 'package:softdoc/screens/detail_screen/vertical_approval_progress.dart';
 
 class DesktopScreen extends StatefulWidget {
   const DesktopScreen({Key key}) : super(key: key);
@@ -71,8 +72,10 @@ class _DesktopScreenState extends State<DesktopScreen> {
                       )),
                       Expanded(
                         child: Center(
-                          child:
-                              Text('replace with vertical approval progress'),
+                          child: VApprovalProgress(
+                            approvalList: state.selectedDoc.approvalProgress,
+                            docStatus: state.selectedDoc.status,
+                          ),
                         ),
                       )
                     ],

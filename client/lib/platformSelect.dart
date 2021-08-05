@@ -10,11 +10,10 @@ import 'package:softdoc/screens/desktop_screen/desktop_screen.dart';
 
 // import 'package:softdoc/screens/home_screen/home_screen.dart';
 class PlatformSelect extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     // bool isLoggedIn = false;
-    bool isDesktop = MediaQuery.of(context).size.width > 500;
+    bool isDesktop = MediaQuery.of(context).size.width > 600;
 
     return BlocBuilder<DataCubit, DataState>(
       builder: (context, state) {

@@ -18,10 +18,6 @@ class _ApprovalProgressState extends State<ApprovalProgress> {
   bool nextIsAsh;
   bool lastColoredLine = false;
 
-  // checkcolor() {
-  //   widget.approvalList.values.forEach((value) {});
-  // }
-
   @override
   Widget build(BuildContext context) {
     List<String> approvalListKeys = widget.approvalList.keys.toList();

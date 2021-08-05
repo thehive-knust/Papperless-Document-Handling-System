@@ -107,15 +107,17 @@ class Doc {
               "Lorem ipsum dolor sit amet, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat 'pending'a pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
         ),
         Doc(
-            id: "2",
-            subject: "Request for Classroom",
-            approvalProgress: {
-              "1": 'approved',
-              "2": 'approved',
-              "3": 'rejected',
-              "4": 'pending'
-            },
-            status: 'rejected'),
+          id: "2",
+          subject: "Request for Classroom",
+          approvalProgress: {
+            "1": 'approved',
+            "2": 'approved',
+            "3": 'rejected',
+            "4": 'pending'
+          },
+          status: 'rejected',
+          createdAt: DateTime.now(),
+        ),
         Doc(
             id: "3",
             subject: "Request for Classroom",
@@ -135,9 +137,6 @@ class Doc {
             subject: "Request for Classroom",
             approvalProgress: {
               "1": 'pending',
-              "2": 'pending',
-              "3": 'pending',
-              "4": 'pending'
             },
             status: 'pending'),
         Doc(
