@@ -6,8 +6,10 @@ class College(db.Model):
     name = db.Column(db.String(50), nullable=False)
     faculties = db.relationship("Faculty", lazy='select',
                                 backref=db.backref('college', lazy='joined'))
-    provost_id = db.Column(db.Integer, db.ForeignKey(
-        'user.id', use_alter=True), nullable=True)
+    users = db.relationship("User", lazy='select',
+                            backref=db.backref('college', lazy='joined'))
+    # provost_id = db.Column(db.Integer, db.ForeignKey(
+    #     'user.id', use_alter=True), nullable=True)
 
     def __repr__(self):
         return '<College %r>' % self.name
@@ -31,7 +33,6 @@ class College(db.Model):
     def to_json(self):
         college = {
             'id': self.id,
-            'name': self.name,
-            'provost_id': self.provost_id
+            'name': self.name
         }
         return college

@@ -10,12 +10,17 @@ bp = Blueprint('documents', __name__, url_prefix='/documents')
 
 ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
 
+
 def _allowed_file(filename):
     return '.' in filename and \
         filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+
 @bp.route('/')
 def index():
+    # return jsonify({"message": None})
     return "Hello from /document"
+
 
 @bp.route('/all-docs', methods=['GET'])
 def get_all_users():
@@ -34,6 +39,7 @@ def get_all_users():
         if len(documents) == 0 or len(result) == 0:
             return jsonify({'msg': 'Ther are no uploaded documents'}), 404
         return jsonify({'documents': documents})
+
 
 @bp.route('/upload', methods=['POST'])
 def upload():
@@ -66,25 +72,24 @@ def upload():
                 subject=doc_subject,
                 user_id=user_id,
                 description=doc_description
-            )   
-                    
+            )
+
         if _allowed_file(doc_file.filename):
-                filename = secure_filename(doc_file.filename)
-                new_document.name = filename
-                try:
-                    document_url = upload_blob(doc_file.stream, filename)
-                    if document_url is not None:
-                        new_document.file = document_url
-                except Exception as e:
-                    print('Error uploading file: %s' % e)
-                try:
-                    new_document.save_to_db()
-                    return jsonify(document=new_document.id), 201
-                except:
-                    return jsonify(msg='Error saving document'), 500
+            filename = secure_filename(doc_file.filename)
+            new_document.name = filename
+            try:
+                document_url = upload_blob(doc_file.stream, filename)
+                if document_url is not None:
+                    new_document.file = document_url
+            except Exception as e:
+                print('Error uploading file: %s' % e)
+            try:
+                new_document.save_to_db()
+                return jsonify(document=new_document.id), 201
+            except:
+                return jsonify(msg='Error saving document'), 500
         else:
             return jsonify(msg="File type not supported"), 201
-        
 
         # Handling the associated people to approve the document
         # for recepient in recepients:
@@ -95,21 +100,27 @@ def upload():
 @bp.route('/new/<int:user_id>', methods=['GET'])
 def new(user_id):
     if request.method == 'GET':
-        inbox_documents = Approval.query.filter_by(recipient_id=user_id, status="Pending")
-        return jsonify(inbox_documents)    
+        inbox_documents = Approval.query.filter_by(
+            recipient_id=user_id, status="Pending")
+        return jsonify(inbox_documents)
+
 
 @bp.route('/approved/<int:user_id>', methods=['GET'])
 def approved(user_id):
     if request.method == 'GET':
-        approved_documents = Approval.query.filter_by(recipient_id=user_id, status="Approved")
-        return jsonify(approved_documents)  
+        approved_documents = Approval.query.filter_by(
+            recipient_id=user_id, status="Approved")
+        return jsonify(approved_documents)
+
 
 @bp.route('/rejected/<int:user_id>', methods=['GET'])
 def rejected(user_id):
     if request.method == 'GET':
-        rejected_documents = Approval.query.filter_by(recipient_id=user_id, status="Rejected")
-        return jsonify(rejected_documents)        
-        
+        rejected_documents = Approval.query.filter_by(
+            recipient_id=user_id, status="Rejected")
+        return jsonify(rejected_documents)
+
+
 @bp.route('/cancel', methods=['GET'])
 def cancel():
     if request.method == 'GET':
@@ -160,6 +171,7 @@ def get_document_by_id(document_id):
         elif document is not None:
             return jsonify(document.to_json())
 
+
 @bp.route('/delete/<int:document_id>', methods=['DELETE'])
 def delete_document(document_id):
     if request.method == 'DELETE':
@@ -168,13 +180,17 @@ def delete_document(document_id):
             document = Document.find_by_id(document_id)
         except:
             error_msg = 'Error occured finding document'
+            error_code = 404
         if document is not None:
+            if delete_blob(document.name):
+                error_msg = 'Error occured deleting document from storage'
+                error_code = 500
             try:
-                delete_blob(document.name)
                 document.delete_from_db()
             except:
-                error_msg = 'Error occured deleting Document'
+                error_msg = 'Error occured deleting Document from database'
+                error_code = 500
         if error_msg is not None:
-            return jsonify(msg=error_msg), 404
+            return jsonify(msg=error_msg), error_code
         else:
-            return jsonify(msg='Document deleted successfully')
+            return jsonify(msg='Document deleted successfully'), 200

@@ -41,6 +41,7 @@ def refresh():
     return jsonify(access_token=access_token)
 
 
+# @jwt.token_verification_loader
 @jwt.token_in_blocklist_loader
 def check_if_token_revoked(jwt_header, jwt_payload):
     jti = jwt_payload["jti"]
@@ -58,6 +59,8 @@ def register():
         password = request.json.get('password', None)
         portfolio_id = request.json.get('portfolio_id', None)
         department_id = request.json.get('department_id', None)
+        faculty_id = request.json.get('faculty_id', None)
+        college_id = request.json.get('college_id', None)
 
         error = None
 
@@ -71,10 +74,12 @@ def register():
             error = 'Last name is required.'
         elif not portfolio_id:
             error = 'Portfolio is required.'
-        elif not department_id:
-            error = 'Department is required.'
         elif not password:
             error = 'Password is required.'
+        elif department_id and not (faculty_id and college_id):
+            error = 'Faculty and College IDs are required if Dept is provided.'
+        elif faculty_id and not college_id:
+            error = 'College ID is required if faculty is provided.'
         elif User.find_by_id(id) is not None:
             error = f"The ID {id} is already registered."
         elif User.find_by_email(email) is not None:
@@ -91,7 +96,9 @@ def register():
                 email=email,
                 password=password,
                 portfolio_id=portfolio_id,
-                department_id=department_id
+                department_id=department_id,
+                faculty_id=faculty_id,
+                college_id=college_id
             )
             try:
                 new_user.save_to_db()
