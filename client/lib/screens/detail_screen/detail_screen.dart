@@ -15,6 +15,14 @@ class DetailScreen extends StatefulWidget {
   DetailScreen({Key key, this.isDesktop = false, this.selectedDoc})
       : super(key: key);
 
+  static void downloadPDF(String url) async {
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+
   @override
   _DetailScreenState createState() => _DetailScreenState();
 }
@@ -130,16 +138,9 @@ class _DetailScreenState extends State<DetailScreen> {
                         ),
                       ),
                       InkWell(
-                        onTap: () async {
-                          // TODO: hard coded url must be changed in final version
-                          final url = widget.selectedDoc.fileUrl ??
-                              'http://africau.edu/images/default/sample.pdf';
-                          if (await canLaunch(url)) {
-                            await launch(url);
-                          } else {
-                            throw 'Could not launch $url';
-                          }
-                        },
+                        onTap: () => DetailScreen.downloadPDF(
+                            widget.selectedDoc.fileUrl ??
+                                'http://africau.edu/images/default/sample.pdf'),
                         child: Container(
                           height: 200,
                           child: pdfCard(
