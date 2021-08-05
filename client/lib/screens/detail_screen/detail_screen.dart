@@ -4,6 +4,7 @@ import 'package:softdoc/cubit/android_nav_cubit/AndroidNav_cubit.dart';
 import 'package:softdoc/cubit/desktop_nav_cubit/desktopnav_cubit.dart';
 import 'package:softdoc/models/doc.dart';
 import 'package:softdoc/shared/docTypeIcon.dart';
+import 'package:softdoc/shared/pdf_card.dart';
 import 'package:softdoc/style.dart';
 import 'package:intl/intl.dart';
 import 'approval_progress.dart';
@@ -91,7 +92,6 @@ class _DetailScreenState extends State<DetailScreen> {
                   )
                 ],
                 Container(
-                  // flexible was here
                   padding: const EdgeInsets.symmetric(vertical: 12),
                   child: Column(
                     //mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -130,46 +130,8 @@ class _DetailScreenState extends State<DetailScreen> {
                           ),
                         ),
                       ),
-                      Container(
-                        height: 200,
-                        child: Card(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10)),
-                          child: Column(
-                            children: [
-                              Expanded(
-                                  child: Container(
-                                      color: Colors.white,
-                                      child: Icon(Icons.note))),
-                              // Thumbnail(
-                              //   mimeType: 'application/pdf',
-                              //   widgetSize:
-                              //       MediaQuery.of(context).size.height * 0.2,
-                              //   dataResolver: () async {
-                              //     return (await DefaultAssetBundle.of(context)
-                              //             .load('assets/sample/thispdf.pdf'))
-                              //         .buffer
-                              //         .asUint8List();
-                              //   },
-                              //   useWrapper: true,
-                              // ),
-                              Container(
-                                color: primaryLight,
-                                padding: EdgeInsets.all(8),
-                                height: 50,
-                                child: Row(
-                                  children: [
-                                    DocTypeIcon(),
-                                    SizedBox(width: 10),
-                                    //Text(basename())
-                                    Text("name of file.pdf"),
-                                  ],
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
+                      SizedBox(height: 5),
+                      Container(height: 200, child: pdfCard('name')),
                       SizedBox(height: 12),
                       if (widget.selectedDoc.status != "pending")
                         StatusMessage(widget.selectedDoc.status),

@@ -16,9 +16,9 @@ class Department {
 
   factory Department.fromJson(json) {
     return Department(
-      id: json['id'],
+      id: json['id'].toString(),
       name: json['name'],
-      facultyId: json['faculty_id'] ?? null,
+      facultyId: json['faculty_id'].toString() ?? null,
     );
   }
   

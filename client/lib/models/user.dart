@@ -21,10 +21,10 @@ class User {
 
   factory User.fromJson(json) {
     return User(
-      id: json["id"],
-      deptId: json['deptId'],
-      title: json['title'],
-      colId: json['colId'],
+      id: json["id"].toString(),
+      deptId: json['department_id'].toString(),
+      title: json['portfolio'],
+      colId: json['college_id'].toString(),
       email: json['email'],
     );
   }

@@ -3,7 +3,6 @@ import 'package:meta/meta.dart';
 import 'package:softdoc/models/department.dart';
 import 'package:softdoc/models/doc.dart';
 import 'package:softdoc/models/user.dart';
-import "package:softdoc/models/doc.dart";
 import 'package:softdoc/services/flask_database.dart';
 
 part 'data_state.dart';
@@ -48,6 +47,7 @@ class DataCubit extends Cubit<DataState> {
       jsonData.forEach((deptJson) {
         departments.add(Department.fromJson(deptJson));
       });
+      print(departments.toString());
     }
   }
 
@@ -59,7 +59,7 @@ class DataCubit extends Cubit<DataState> {
     } else if (jsonData.keys.contains('message')) {
     } else {
       int deptIndex = departments.indexWhere((dept) => dept.id == user.deptId);
-      jsonData.forEach((userJson) {
+      jsonData['departments'].forEach((userJson) {
         departments[deptIndex].users.add(User.fromJson(userJson));
       });
     }
