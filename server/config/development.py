@@ -10,7 +10,6 @@ load_dotenv()
 
 # defaults
 SECRET_KEY = environ.get('SECRET_KEY')
-print('SECRET KEY........................: %s' % SECRET_KEY)
 JWT_SECRET_KEY = environ.get('JWT_SECRET_KEY')
 JWT_ACCESS_TOKEN_EXPIRES = timedelta(
     hours=int(environ.get('JWT_ACCESS_TOKEN_EXPIRES')))

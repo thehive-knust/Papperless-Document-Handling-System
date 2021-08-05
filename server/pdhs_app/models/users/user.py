@@ -11,8 +11,12 @@ class User(db.Model):
     password = db.Column(db.String(255), nullable=False)
     portfolio_id = db.Column(db.Integer, db.ForeignKey(
         'portfolio.id'), nullable=False)
+    college_id = db.Column(db.Integer, db.ForeignKey(
+        'college.id'), nullable=True)
+    faculty_id = db.Column(db.Integer, db.ForeignKey(
+        'faculty.id'), nullable=True)
     department_id = db.Column(db.Integer, db.ForeignKey(
-        'department.id'), nullable=False)
+        'department.id'), nullable=True)
     documents = db.relationship(
         "Document", lazy='select', backref=db.backref('user', lazy='joined'))
     comments = db.relationship(
@@ -47,10 +51,10 @@ class User(db.Model):
             'first_name': self.first_name,
             'last_name': self.last_name,
             'email': self.email,
-            'department': self.department.to_json(),
-            'faculty': self.faculty.to_json(),
-            'college': self.college.to_json(),
-            'portfolio': self.portfolio.to_json()
+            'portfolio_id': self.portfolio_id if self.portfolio else None,
+            'department_id': self.department_id if self.department else None,
+            'faculty_id': self.faculty_id if self.faculty else None,
+            'college_id': self.college_id if self.college else None
         }
 
     @staticmethod
@@ -99,5 +103,3 @@ class User(db.Model):
         new_user = User(user_id, first_name, last_name, email,
                         password, portfolio_id, department_id).save_to_db()
         return True
-
-    

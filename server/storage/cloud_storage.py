@@ -1,5 +1,6 @@
 from dotenv import load_dotenv
 from os import environ
+from json import loads
 # Imports the Google Cloud client library
 from google.cloud import storage
 
@@ -8,7 +9,12 @@ from google.cloud import storage
 # this will include in the Google Credentials file path
 load_dotenv()
 
+# Load the Google Cloud credentials information
+# credentials = environ.get('GOOGLE_APPLICATION_CREDENTIALS')
+# credentials_info = loads(credentials)
+
 # Instantiates a client
+# storage_client = storage.Client.from_service_account_info(credentials_info)
 storage_client = storage.Client()
 
 # The name for the new bucket
@@ -23,8 +29,6 @@ def download_blob(source_blob_name, destination_file_name, bucket_name=bucket_na
     # bucket_name = "your-bucket-name"
     # source_blob_name = "storage-object-name"
     # destination_file_name = "local/path/to/file"
-
-    storage_client = storage.Client()
 
     bucket = storage_client.bucket(bucket_name)
 
@@ -51,24 +55,20 @@ def upload_blob(source_file, destination_blob_name, bucket_name=bucket_name):
     # The ID of your GCS object
     # destination_blob_name = "storage-object-name"
 
-    storage_client = storage.Client()
     bucket = storage_client.bucket(bucket_name)
     blob = bucket.blob(destination_blob_name)
 
-    # blob.upload_from_filename(source_file_name)
-    # blob.upload_from_string(source_file.stream.read(), content_type='application/octet-stream')
     blob.upload_from_file(source_file, rewind=True,
                           content_type='application/octet-stream')
-    # blob.upload
+
+    print(
+        "Blob {} uploaded to {}.".format(
+            source_file, destination_blob_name
+        )
+    )
     return blob.public_url if blob.public_url else None
 
 
-# file_path = r'C:\Users\Ayarmz\Documents\Projects\Papperless-Document-Handling-System\server\storage'
-# upload_blob(bucket_name, os.path.join(
-#     file_path, 'image.png'), 'motivation.png')
-
-# download_blob(bucket_name, 'motivation.png',
-#               os.path.join(os.getcwd(), 'motivation.png'))
 def delete_blob(blob_name, bucket_name=bucket_name):
     """Deletes a blob from the bucket."""
     # bucket_name = "your-bucket-name"
