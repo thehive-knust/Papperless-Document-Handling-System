@@ -6,7 +6,7 @@ import 'package:softdoc/cubit/desktop_nav_cubit/desktopnav_cubit.dart';
 import 'package:softdoc/models/doc.dart';
 import 'package:softdoc/shared/pdf_card.dart';
 import 'package:softdoc/style.dart';
-import 'package:softdoc/shared/pdf_card.dart';
+import 'package:softdoc/screens/detail_screen/detail_screen.dart';
 
 class ReveivedDetailScreen extends StatefulWidget {
   final Doc selectedDoc;
@@ -102,9 +102,9 @@ class _ReveivedDetailScreenState extends State<ReveivedDetailScreen> {
               SizedBox(height: 10),
               // pdf card section:-----------------------------------------------------------------
               GestureDetector(
-                onTap: () {
-                  // open pdf here:
-                },
+                onTap: () => DetailScreen.downloadPDF(
+                    widget.selectedDoc.fileUrl ??
+                        'http://africau.edu/images/default/sample.pdf'),
                 child: Container(
                   height: 200,
                   width: double.infinity,
