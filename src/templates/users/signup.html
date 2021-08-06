@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LogIn</title>
+</head>
+<body>
+    <form method="POST">
+        <label>User ID: </label><br>
+        <input type="number" name="id" placeholder="Student/Staff ID"><br><br>
+        
+        <label>First name: </label><br>
+        <input type="text" name="first_name"><br><br>
+        
+        <label>Last name: </label><br>
+        <input type="text" name="last_name"><br><br>
+        
+        <label>E-mail: </label><br>
+        <input type="email" name="email"><br><br>
+        
+        <label>Password: </label><br>
+        <input type="password" name="password"><br><br>
+
+        <label for="portfolios">Portfolio: </label><br>
+        <select id="portfolio" name="portfolio_id">
+          <option value="1">Provost</option>
+          <option value="2">Dean</option>
+          <option value="3">Registrar</option>
+          <option value="4">HOD</option>
+          <option value="5">President</option>
+          <option value="6">Vice President</option>
+          <option value="7">General Secretary</option>
+        </select><br><br>
+        
+        <label>Department: </label><br>
+        <select id="department" name="department_id">
+          <option value="1">Computer Engineering</option>
+          <option value="2">Biomedical Engineering</option>
+          <option value="3">Electrical Engineering</option>
+          <option value="4">Telecommunications Engineering</option>
+          <option value="5">Mechanical Engineering</option>
+          <option value="6">Petroleum Engineering</option>
+          <option value="7">Materials Engineering</option>
+        </select><br><br>
+
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
