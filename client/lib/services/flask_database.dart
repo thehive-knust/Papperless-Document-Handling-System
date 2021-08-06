@@ -92,20 +92,12 @@ class FlaskDatabase {
   }
 
   //TODO: implement get users in deparment here:
-  static Future<dynamic> getUsersInDepartmentByDeptId(deptId) {
+  static Future<dynamic> getUsersInDepartmentByDeptId(deptId) async {
     Uri uri = Uri.parse(
-        "https://soft-doc.herokuapp.com/get_department_users/${int.parse(deptId)}");
+        "https://soft-doc.herokuapp.com/department/users/${int.parse(deptId)}");
     http.Response response;
     try {
-      http.post(
-        uri,
-        headers: <String, String>{
-          'Content-Type': 'application/json; charset=UTF-8',
-        },
-        body: jsonEncode(
-          <String, String>{'deptId': deptId},
-        ),
-      );
+      response = await http.get(uri);
 
       if (response.statusCode == 200) {
         print(response.body);
@@ -121,20 +113,12 @@ class FlaskDatabase {
   }
 
   //TODO: implement get sent docs here:
-  static Future<dynamic> getSentDocsByUserId(userId) {
+  static Future<dynamic> getSentDocsByUserId(userId) async {
     Uri uri = Uri.parse(
         "https://soft-doc.herokuapp.com/documents/user/${int.parse(userId)}");
     http.Response response;
     try {
-      http.post(
-        uri,
-        headers: <String, String>{
-          'Content-Type': 'application/json; charset=UTF-8',
-        },
-        body: jsonEncode(
-          <String, String>{'userId': userId},
-        ),
-      );
+      response = await http.get(uri);
 
       if (response.statusCode == 200) {
         print(response.body);
@@ -150,20 +134,20 @@ class FlaskDatabase {
   }
 
   //TODO: implement getDoc by doc id:
-  static Future<dynamic> getDocByDocId(docId) {
+  static Future<dynamic> getDocByDocId(docId) async {
     Uri uri = Uri.parse("https://soft-doc.herokuapp.com");
-    http.Response reponse;
+    http.Response response;
     try {
-      http.get(uri);
+      response = await http.get(uri);
     } catch (e) {}
   }
 
   //TODO: implement get received docs here:
-  static Future<dynamic> getReveivedDocsByUserId(userId) {
+  static Future<dynamic> getReveivedDocsByUserId(userId) async {
     Uri uri = Uri.parse("");
     http.Response response;
     try {
-      http.post(
+      response = await http.post(
         uri,
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
@@ -187,11 +171,11 @@ class FlaskDatabase {
   }
 
   //TODO: implement post document:--------------
-  static Future<dynamic> sendDoc(Doc doc) {
+  static Future<dynamic> sendDoc(Doc doc) async {
     Uri uri = Uri.parse("");
     http.Response response;
     try {
-      http.post(
+      response = await http.post(
         uri,
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
@@ -215,11 +199,11 @@ class FlaskDatabase {
   }
 
   //TODO: implement approval stuff here:--------
-  static Future<dynamic> sendApproval(userId) {
+  static Future<dynamic> sendApproval(userId) async {
     Uri uri = Uri.parse("");
     http.Response response;
     try {
-      http.post(
+      response = await http.post(
         uri,
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',

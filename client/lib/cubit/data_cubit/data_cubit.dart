@@ -10,11 +10,15 @@ part 'data_state.dart';
 class DataCubit extends Cubit<DataState> {
   DataCubit() : super(DataInitial());
   User user;
-  List<Department> departments;
+  static List<Department> departments = [];
+  static Department selectedDept;
+  static List<String> approvals = [];
   List<Doc> sentDocs;
   List<Doc> receivedDocs;
   // Department selectedDept = departments[0];
   // List<String> approvals;
+
+  static List<Department> get depts => departments;
 
   //TODO: authenticate code:-------------------------------------------
   Future<bool> authenticate(String userId, String password) async {
@@ -28,9 +32,10 @@ class DataCubit extends Cubit<DataState> {
     } else {
       user = User.fromJson(jsonData['user']);
       print(user.toString());
-      getDepts(); // get departments in user's college
-      // get users in user's department
-      // get sent documents
+      await getDepts(); // get departments in user's college
+      await getUsersInDept(); // get users in user's department
+      selectedDept = departments.singleWhere((dept) => dept.id == user.deptId);
+      await getSent(); // get sent documents
       // get revieved documents
       emit(SentDoc(Doc.sentDocs));
       return false;
@@ -38,13 +43,13 @@ class DataCubit extends Cubit<DataState> {
   }
 
   //TODO: get departments:
-  void getDepts() async {
+  Future<void> getDepts() async {
     dynamic jsonData = await FlaskDatabase.getDepartmentsByColId(user.colId);
 
     if (jsonData == null) {
     } else if (jsonData.keys.contains('message')) {
     } else {
-      jsonData.forEach((deptJson) {
+      jsonData['departments'].forEach((deptJson) {
         departments.add(Department.fromJson(deptJson));
       });
       print(departments.toString());
@@ -52,30 +57,32 @@ class DataCubit extends Cubit<DataState> {
   }
 
   //TODO: get users in department:
-  void getUsersInDept([deptId]) async {
+  Future<void> getUsersInDept([deptId]) async {
     dynamic jsonData =
         await FlaskDatabase.getUsersInDepartmentByDeptId(user.deptId);
     if (jsonData == null) {
     } else if (jsonData.keys.contains('message')) {
     } else {
       int deptIndex = departments.indexWhere((dept) => dept.id == user.deptId);
-      jsonData['departments'].forEach((userJson) {
+      jsonData['department_users'].forEach((userJson) {
         departments[deptIndex].users.add(User.fromJson(userJson));
       });
+      print(departments[deptIndex].users.toString());
     }
   }
 
   //TODO: document handling code:--------------------------------------
 
   //TODO: get Sent docs:
-  void getSent() async {
+  Future<void> getSent() async {
     dynamic jsonData = await FlaskDatabase.getSentDocsByUserId(user.id);
     if (jsonData == null) {
     } else if (jsonData.keys.contains('message')) {
     } else {
-      jsonData.forEach((docJson) {
+      jsonData['documents'].forEach((docJson) {
         sentDocs.add(Doc.fromJson(docJson));
       });
+      print(sentDocs.toString());
     }
     emit(SentDoc(Doc.sentDocs));
   }

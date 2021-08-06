@@ -3,7 +3,7 @@ import 'package:softdoc/models/user.dart';
 class Department {
   String id;
   String name;
-  List<User> users;
+  List<User> users = [];
   String facultyId;
 
   Department({this.id, this.name, this.users, this.facultyId});
@@ -19,6 +19,7 @@ class Department {
       id: json['id'].toString(),
       name: json['name'],
       facultyId: json['faculty_id'].toString() ?? null,
+      users: []
     );
   }
   

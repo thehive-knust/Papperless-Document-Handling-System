@@ -1,4 +1,5 @@
-import 'dart:html';
+// import 'dart:html';
+import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:dotted_border/dotted_border.dart';
@@ -48,7 +49,8 @@ class _SendDocScreenState extends State<SendDocScreen> {
     if (result != null) {
       bytes = result.files.single.bytes;
       filename = result.files.single.name;
-      pdf = File(bytes, filename);
+      // pdf = File(bytes, filename);
+      pdf = File.fromRawPath(bytes);
       setState(() {});
     } else {
       debugPrint('file not found');

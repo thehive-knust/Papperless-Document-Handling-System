@@ -28,7 +28,7 @@ class Doc {
       status: json['status'],
       subject: json['subject'] ?? null,
       description: json['description'] ?? null,
-      senderId: json['senderId'],
+      senderId: json['user_id'],
       createdAt: json['createdAt'] ?? null,
       updatedAt: json['updatedAt'] ?? null,
       file: json['file'] ?? null,
@@ -41,7 +41,7 @@ class Doc {
       'status': this.status,
       'subject': this.subject,
       'description': this.description,
-      'senderId': this.senderId,
+      'user_id': this.senderId,
       'createdAt': this.createdAt,
       'updatedAt': this.updatedAt,
       'file': this.file
