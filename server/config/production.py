@@ -34,7 +34,20 @@ SQLALCHEMY_DATABASE_URI = '{dialect}+{driver}://{username}:{password}@{host}:{po
     driver=environ.get('SQL_DRIVER'),
     username=environ.get('SQL_USER'),
     password=environ.get('SQL_PASSWORD'),
-    host=environ.get('HOST'),
-    port=environ.get('PORT'),
-    database=environ.get('DATABASE')
+    host=environ.get('SQL_HOST'),
+    port=environ.get('SQL_PORT'),
+    database=environ.get('SQL_DATABASE')
 )
+# SQLALCHEMY_DATABASE_URI = '{dialect}+{driver}://{username}:{password}@{host}:{port}/{database}\
+#     ?ssl_ca={ssl_ca}&ssl_cert={ssl_cert}&ssl_key={ssl_key}'.format(
+#     dialect=environ.get('SQL_DIALECT'),
+#     driver=environ.get('SQL_DRIVER'),
+#     username=environ.get('SQL_USER'),
+#     password=environ.get('SQL_PASSWORD'),
+#     host=environ.get('SQL_HOST'),
+#     port=environ.get('SQL_PORT'),
+#     database=environ.get('SQL-DATABASE'),
+#     ssl_ca=environ.get('SSL_CA'),
+#     ssl_cert=environ.get('SSL_CERT'),
+#     ssl_key=environ.get('SSL_KEY')
+# )

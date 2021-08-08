@@ -164,6 +164,8 @@ def get_document_by_id(document_id):
         error_msg = None
         try:
             document = Document.find_by_id(document_id)
+            if document is None:
+                error_msg = f'No document with ID {document_id} found'
         except:
             error_msg = 'Error occured finding document'
         if error_msg is not None:

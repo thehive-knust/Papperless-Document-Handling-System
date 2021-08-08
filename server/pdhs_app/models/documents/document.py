@@ -10,12 +10,14 @@ class Document(db.Model):
     updated_at = db.Column(db.DateTime, nullable=False,
                            default=datetime.utcnow)
     subject = db.Column(db.String(255), nullable=False)
-    user_id = db.Column(db.String(255), db.ForeignKey(
+    user_id = db.Column(db.Integer, db.ForeignKey(
         'user.id'), nullable=False)
     file = db.Column(db.String(255), nullable=False)
     progress = db.Column(db.String(50), nullable=False, default='Pending')
-    description = db.Column(db.String, nullable=True)
+    description = db.Column(db.String(255), nullable=True)
     approvals = db.relationship('Approval', backref='document', lazy='joined')
+    comment = db.relationship(
+        'Comment', backref='document', lazy='joined', uselist=False)
 
     def __repr__(self):
         return '<Document %r>' % self.name
