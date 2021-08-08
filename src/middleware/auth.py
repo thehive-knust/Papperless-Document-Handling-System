@@ -38,6 +38,11 @@ def refresh():
     access_token = create_access_token(identity=identity, fresh=False)
     return jsonify(access_token=access_token)
 
+@jwt.token_verification_loader
+def verify_token(jwt_header, jwt_data):
+    print('verify_token', jwt_header)
+    return True
+
 
 @jwt.token_in_blocklist_loader
 def check_if_token_revoked(jwt_header, jwt_payload):
@@ -57,8 +62,8 @@ def register_user():
         portfolio_id = request.form['portfolio_id'] if request.form['portfolio_id'] else request.json.get('portfolio_id', None)
         department_id = request.form['department_id'] if request.form['department_id'] else request.json.get('department_id', None)
         
-        faculty_id = request.json.get('faculty_id', None)
-        college_id = request.json.get('college_id', None)
+        faculty_id = request.form['faculty_id'] if request.form['faculty_id'] else request.json.get('faculty_id', None)
+        college_id = request.form['college_id'] if request.form['college_id']  else request.json.get('college_id', None)
 
         error = None
 
@@ -104,7 +109,8 @@ def register_user():
             )
             try:
                 new_user.save_to_db()
-            except:
+            except Exception as e:
+                print("Error saving user to database: ..............................\n", e)
                 return jsonify(msg="Could not save new user to database"), 500
             return jsonify({'msg': 'User created successfully'}), 201
     return render_template("users/signup.html")
@@ -121,6 +127,8 @@ def login():
             return jsonify(message="User Don't Exist")
         correct_password = check_password_hash(user.password, password)
         if _id is not None and correct_password:
+            user.last_login = datetime.utcnow()
+            user.save_to_db()
             access_token = create_access_token(identity=user)
             refresh_token = create_refresh_token(identity=user)
             return jsonify(access_token=access_token, refresh_token=refresh_token, user=user.to_json()), 200
@@ -159,30 +167,3 @@ def who_am_i():
         first_name=current_user.first_name.title(),
         last_name=current_user.last_name.title()
     )
-
-
-# @bp.before_app_request
-# def load_logged_in_user():
-#     user_id = session.get('user_id')
-
-#     if user_id is None:
-#         g.user = None
-#     else:
-#         g.user = User.query.filter_by(id=user_id).first()
-
-
-# @bp.route('/logout')
-# def logout():
-#     session.clear()
-#     return redirect(url_for('index'))
-
-
-# def login_required(view):
-#     @functools.wraps(view)
-#     def wrapped_view(**kwargs):
-#         if g.user is None:
-#             return redirect(url_for('auth.login'))
-
-#         return view(**kwargs)
-
-#     return wrapped_view
