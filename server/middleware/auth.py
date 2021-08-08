@@ -27,7 +27,7 @@ def user_identity_lookup(user):
 
 
 @jwt.user_lookup_loader
-def user_lookup_callback(_jwt_header, jwt_data):
+def user_lookup_callback(jwt_header, jwt_data):
     identity = jwt_data["sub"]
     user = User.find_by_id(identity)
     return user if user else None
@@ -41,7 +41,12 @@ def refresh():
     return jsonify(access_token=access_token)
 
 
-# @jwt.token_verification_loader
+@jwt.token_verification_loader
+def verify_token(jwt_header, jwt_data):
+    print('verify_token', jwt_header)
+    return True
+
+
 @jwt.token_in_blocklist_loader
 def check_if_token_revoked(jwt_header, jwt_payload):
     jti = jwt_payload["jti"]
@@ -63,7 +68,6 @@ def register():
         college_id = request.json.get('college_id', None)
 
         error = None
-
         if not email:
             error = 'Email is required.'
         elif not first_name:
@@ -102,7 +106,9 @@ def register():
             )
             try:
                 new_user.save_to_db()
-            except:
+            except Exception as e:
+                print(
+                    "Error saving user to database: ..............................\n", e)
                 return jsonify(msg="Could not save new user to database"), 500
             return jsonify({'msg': 'User created successfully'}), 201
 
@@ -114,10 +120,14 @@ def login():
         password = request.json.get('password', None)
         try:
             user = User.find_by_id(id)
+            if not user:
+                return jsonify(msg="User Doesn't Exist")
         except:
-            return jsonify(message="User Don't Exist")
+            return jsonify(msg="Error finding user")
         correct_password = check_password_hash(user.password, password)
-        if id is not None and correct_password:
+        if user is not None and correct_password:
+            user.last_login = datetime.utcnow()
+            user.save_to_db()
             access_token = create_access_token(identity=user)
             refresh_token = create_refresh_token(identity=user)
             return jsonify(access_token=access_token, refresh_token=refresh_token, user=user.to_json()), 200
@@ -131,6 +141,7 @@ def login():
 @jwt_required()
 def modify_token():
     jti = get_jwt()["jti"]
+    print(get_jwt())
     now = datetime.now(timezone.utc)
     token_block = TokenBlocklist(
         jti=jti, created_at=now, created_by=current_user.id)

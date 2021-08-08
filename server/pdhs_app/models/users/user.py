@@ -1,6 +1,7 @@
 from database.db import db
 from pdhs_app.common.utils import Utils
 import pdhs_app.models.users.errors as UserErrors
+from datetime import datetime
 
 
 class User(db.Model):
@@ -16,7 +17,7 @@ class User(db.Model):
     faculty_id = db.Column(db.Integer, db.ForeignKey(
         'faculty.id'), nullable=True)
     department_id = db.Column(db.Integer, db.ForeignKey(
-        'department.id'), nullable=True)
+        'department.id'), nullable=True, default=0)
     documents = db.relationship(
         "Document", lazy='select', backref=db.backref('user', lazy='joined'))
     comments = db.relationship(
@@ -25,6 +26,9 @@ class User(db.Model):
         "Approval", lazy='select', backref=db.backref('recipient', lazy='joined'))
     tokens = db.relationship(
         'TokenBlocklist', lazy='select', backref=db.backref('user', lazy='joined'))
+    created_at = db.Column(db.DateTime, nullable=False,
+                           default=datetime.utcnow)
+    last_login = db.Column(db.DateTime, nullable=True)
 
     def __repr__(self):
         return '<User %r>' % self.user_id
@@ -54,7 +58,9 @@ class User(db.Model):
             'portfolio_id': self.portfolio_id if self.portfolio else None,
             'department_id': self.department_id if self.department else None,
             'faculty_id': self.faculty_id if self.faculty else None,
-            'college_id': self.college_id if self.college else None
+            'college_id': self.college_id if self.college else None,
+            'created_at': self.created_at,
+            'last_login': self.last_login if self.last_login else None
         }
 
     @staticmethod

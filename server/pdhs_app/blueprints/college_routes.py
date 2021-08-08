@@ -44,6 +44,8 @@ def get_college_by_id(college_id):
         error_msg = None
         try:
             college = College.find_by_id(college_id)
+            if college is None:
+                error_msg = f'No college with ID {college_id} found'
         except:
             error_msg = 'Error occured finding college'
         if error_msg is not None:
@@ -60,14 +62,11 @@ def create_college():
     if request.method == 'POST':
         id = request.json.get('id', None)
         name = request.json.get('name', None)
-        provost_id = request.json.get('provost_id', None)
         error_msg = None
         if not id:
             error_msg = 'Id is required.'
         elif not name:
             error_msg = 'Name is required.'
-        elif not provost_id:
-            provost_id = 0
         if error_msg is not None:
             return jsonify(msg=error_msg), 500
         else:

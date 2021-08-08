@@ -44,6 +44,8 @@ def get_faculty_by_id(faculty_id):
         error_msg = None
         try:
             faculty = Faculty.find_by_id(faculty_id)
+            if faculty is None:
+                error_msg = f'No faculty with ID {faculty_id} found'
         except:
             error_msg = 'Error occured finding faculty'
         if error_msg is not None:

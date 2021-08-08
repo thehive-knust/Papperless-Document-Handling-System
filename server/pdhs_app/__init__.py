@@ -32,14 +32,13 @@ def create_app(*args, **kwargs):
 
     app.config['ENV'] = env
     app.config.from_object('config.%s' % env)
-    
+
     # ensure the instance folder exists
     try:
         os.makedirs(app.instance_path)
     except OSError as e:
         print(e)
-    
-        
+
     # Initialize CORS
     CORS(app)
 
@@ -68,6 +67,6 @@ def create_app(*args, **kwargs):
     with app.app_context():
 
         # Reset Database
-        db.drop_all()   # Comment out if you want to use flask_migrate
+        # db.drop_all()   # Comment out if you want to use flask_migrate
         db.create_all()  # Comment out if you want to use flask_migrate
     return app

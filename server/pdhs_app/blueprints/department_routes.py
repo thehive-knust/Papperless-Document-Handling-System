@@ -6,10 +6,12 @@ from pdhs_app.models.portfolios.portfolio import Portfolio
 
 bp = Blueprint('department', __name__, url_prefix='/department')
 
+
 @bp.route('/get/<int:college_id>', methods=['GET'])
 def get_departments(college_id):
     if request.method == 'GET':
         return "Hello from /department"
+
 
 @bp.route('/', methods=['GET'])
 def get_all_departments():
@@ -44,6 +46,8 @@ def get_department_by_id(department_id):
         error_msg = None
         try:
             department = Department.find_by_id(department_id)
+            if department is None:
+                error_msg = f'No department with ID {department_id} found'
         except:
             error_msg = 'Error occured finding department'
         if error_msg is not None:
@@ -60,21 +64,21 @@ def create_department():
     if request.method == 'POST':
         id = request.json.get('id', None)
         name = request.json.get('name', None)
-        provost_id = request.json.get('provost_id', None)
+        faculty_id = request.json.get('faculty_id', None)
         error_msg = None
         if not id:
             error_msg = 'Id is required.'
         elif not name:
             error_msg = 'Name is required.'
-        elif not provost_id:
-            provost_id = 0
+        elif not faculty_id:
+            error_msg = 'Faculty ID is required.'
         if error_msg is not None:
             return jsonify(msg=error_msg), 500
         else:
             new_dept = Department(
                 id=id,
                 name=name,
-                provost_id=provost_id
+                faculty_id=faculty_id
             )
             try:
                 new_dept.save_to_db()
@@ -126,13 +130,12 @@ def delete_department(department_id):
             return jsonify(msg=error_msg), 404
         else:
             return jsonify(msg='Department deleted successfully')
-        departments = Department.query.filter_by(college_id=college_id)
-        return jsonify(departments)
+
 
 @bp.route('get_portfolio/<int:department_id>', methods=['DELETE'])
 def get_department_portfolios(department_id):
     users = User.query.filter_by(department_id=department_id)
-    portfolio_ids = list(set([ user.portfolio_id for user in users ].sort()))
+    portfolio_ids = list(set([user.portfolio_id for user in users].sort()))
     portfolios = []
     for id in portfolio_ids:
         portfolios.append(Portfolio.find_by_id(id).to_json())
