@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 import 'package:softdoc/models/doc.dart';
 import 'package:softdoc/models/user.dart';
@@ -30,7 +29,7 @@ class FlaskDatabase {
         return null;
       }
     } catch (e) {
-      print("This is the Error Message => " + e.toString());
+      print("authentication Error Message => " + e.toString());
       return null;
     }
   }
@@ -73,7 +72,7 @@ class FlaskDatabase {
   //TODO: implement get departments here:
   static Future<dynamic> getDepartmentsByColId(colId) async {
     Uri url = Uri.parse(
-        "https://soft-doc.herokuapp.com/department/get/${int.parse(colId)}");
+        "https://soft-doc.herokuapp.com/departments/get/${int.parse(colId)}");
     http.Response response;
     try {
       response = await http.get(url);
@@ -86,7 +85,7 @@ class FlaskDatabase {
         return null;
       }
     } catch (e) {
-      print("This is the Error Message => " + e.toString());
+      print("get departments error message => " + e.toString());
       return null;
     }
   }
@@ -94,7 +93,7 @@ class FlaskDatabase {
   //TODO: implement get users in deparment here:
   static Future<dynamic> getUsersInDepartmentByDeptId(deptId) async {
     Uri uri = Uri.parse(
-        "https://soft-doc.herokuapp.com/department/users/${int.parse(deptId)}");
+        "https://soft-doc.herokuapp.com/departments/users/${int.parse(deptId)}");
     http.Response response;
     try {
       response = await http.get(uri);
@@ -107,7 +106,7 @@ class FlaskDatabase {
         return jsonDecode(response.body);
       }
     } catch (e) {
-      print("This is the Error Message => " + e.toString());
+      print("get users in department Error Message => " + e.toString());
       return null;
     }
   }
@@ -128,7 +127,7 @@ class FlaskDatabase {
         return null;
       }
     } catch (e) {
-      print("This is the Error Message => " + e.toString());
+      print("get sent documents Error Message => " + e.toString());
       return null;
     }
   }
@@ -165,35 +164,42 @@ class FlaskDatabase {
         return null;
       }
     } catch (e) {
-      print("This is the Error Message => " + e.toString());
+      print("get doc by docId Error Message => " + e.toString());
       return null;
     }
   }
 
   //TODO: implement post document:--------------
   static Future<dynamic> sendDoc(Doc doc) async {
-    Uri uri = Uri.parse("");
-    http.Response response;
+    Uri uri = Uri.parse("https://soft-doc.herokuapp.com/documents/upload");
+    http.MultipartRequest request;
+    http.StreamedResponse response;
     try {
-      response = await http.post(
-        uri,
-        headers: <String, String>{
-          'Content-Type': 'application/json; charset=UTF-8',
-        },
-        body: jsonEncode(
-          <String, dynamic>{'doc': doc},
-        ),
-      );
+      // response = await http.post(
+      //   uri,
+      //   headers: <String, String>{
+      //     'Content-Type': 'application/json; charset=UTF-8'
+      //   },
+      //   body: doc.toMap()
+      // );
 
-      if (response.statusCode == 200) {
-        print(response.body);
-        return jsonDecode(response.body);
+      request = http.MultipartRequest("POST", uri);
+      request.fields.addAll(Map<String, String>.from(doc.toMap()));
+      request.files.add(http.MultipartFile.fromBytes(
+          'file', doc.fileBytes.toList(),
+          filename: doc.filename));
+
+      response = await request.send();
+
+      if (response.statusCode == 201) {
+        print(response.stream.bytesToString());
+        return response.stream.bytesToString();
       } else {
         print(response.statusCode);
         return null;
       }
     } catch (e) {
-      print("This is the Error Message => " + e.toString());
+      print("send doc Error Message => " + e.toString());
       return null;
     }
   }
@@ -221,7 +227,7 @@ class FlaskDatabase {
         return null;
       }
     } catch (e) {
-      print("This is the Error Message => " + e.toString());
+      print("send approval Error Message => " + e.toString());
       return null;
     }
   }

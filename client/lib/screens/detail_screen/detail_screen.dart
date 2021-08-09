@@ -137,6 +137,7 @@ class _DetailScreenState extends State<DetailScreen> {
                           ),
                         ),
                       ),
+                      SizedBox(height: 20),
                       InkWell(
                         onTap: () => DetailScreen.downloadPDF(
                             widget.selectedDoc.fileUrl ??

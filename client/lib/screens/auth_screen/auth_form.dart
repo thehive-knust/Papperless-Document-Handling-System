@@ -39,7 +39,7 @@ class _AuthFormState extends State<AuthForm> {
     _androidNavCubit = BlocProvider.of<AndroidNavCubit>(context);
     _desktopNavCubit = BlocProvider.of<DesktopNavCubit>(context);
     _dataCubit = BlocProvider.of<DataCubit>(context);
-    _dataCubit.emit(SentDoc(Doc.sentDocs));
+    // _dataCubit.emit(SentDoc(Doc.sentDocs));
   }
 
   void showMessage(String msg) {

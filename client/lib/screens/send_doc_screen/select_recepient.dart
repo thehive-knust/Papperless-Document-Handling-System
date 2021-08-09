@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:softdoc/cubit/data_cubit/data_cubit.dart';
 import 'package:softdoc/models/department.dart';
 import 'package:softdoc/style.dart';
-import '../../utills.dart';
 
 selectRecepient(Function setMainState, [Function setModalState]) {
   return Column(
@@ -41,8 +40,8 @@ selectRecepient(Function setMainState, [Function setModalState]) {
                     .toList(),
                 onChanged: (newVal) {
                   print(newVal);
-                  selectedDept =
-                      departments.singleWhere((dept) => dept.id == newVal);
+                  DataCubit.selectedDept =
+                      DataCubit.departments.singleWhere((dept) => dept.id == newVal);
                   // get users in selected department
                   setMainState();
                   if (setModalState != null) setModalState(() {});
@@ -59,7 +58,7 @@ selectRecepient(Function setMainState, [Function setModalState]) {
           itemCount: DataCubit.selectedDept.users.length,
           itemBuilder: (context, index) {
             // checking if DataCubit.approvals contains this user's id
-            bool selected = DataCubit.approvals.contains(selectedDept.users[index].id);
+            bool selected = DataCubit.approvals.contains(DataCubit.selectedDept.users[index].id);
 
             return Container(
               margin: EdgeInsets.symmetric(vertical: 5),

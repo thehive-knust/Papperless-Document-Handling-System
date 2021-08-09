@@ -153,9 +153,9 @@ class _HomeScreenState extends State<HomeScreen> {
                           borderRadius: BorderRadius.circular(70),
                           onTap: () {
                             if (map.key == 'Sent')
-                              _dataCubit.getSent();
+                              _dataCubit.emit(SentDoc(Doc.sentDocs));
                             else
-                              _dataCubit.getReceived();
+                              _dataCubit.emit(ReveivedDoc(Doc.reveivedDocs));
                             bottomNavSelector = map.key;
                             setState(() {});
                           },

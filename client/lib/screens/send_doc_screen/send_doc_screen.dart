@@ -1,5 +1,4 @@
-// import 'dart:html';
-import 'dart:io';
+import 'dart:html';
 import 'dart:typed_data';
 
 import 'package:dotted_border/dotted_border.dart';
@@ -8,6 +7,7 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:softdoc/cubit/android_nav_cubit/AndroidNav_cubit.dart';
+import 'package:softdoc/cubit/data_cubit/data_cubit.dart';
 import 'package:softdoc/cubit/desktop_nav_cubit/desktopnav_cubit.dart';
 import 'package:softdoc/models/doc.dart';
 import 'package:softdoc/screens/send_doc_screen/add_or_edit_recepient.dart';
@@ -26,6 +26,7 @@ class _SendDocScreenState extends State<SendDocScreen> {
   Doc doc;
   AndroidNavCubit _androidNavCubit;
   DesktopNavCubit _desktopNavCubit;
+  DataCubit _dataCubit;
   Uint8List bytes;
   String filename;
   File pdf;
@@ -37,9 +38,10 @@ class _SendDocScreenState extends State<SendDocScreen> {
   @override
   void initState() {
     super.initState();
-    doc = Doc();
     _androidNavCubit = BlocProvider.of<AndroidNavCubit>(context);
     _desktopNavCubit = BlocProvider.of<DesktopNavCubit>(context);
+    _dataCubit = BlocProvider.of<DataCubit>(context);
+    doc = Doc();
   }
 
   void pickFile() async {
@@ -49,12 +51,26 @@ class _SendDocScreenState extends State<SendDocScreen> {
     if (result != null) {
       bytes = result.files.single.bytes;
       filename = result.files.single.name;
-      // pdf = File(bytes, filename);
-      pdf = File.fromRawPath(bytes);
+      pdf = File(bytes, filename);
+      // pdf = File.fromRawPath(bytes);
       setState(() {});
     } else {
       debugPrint('file not found');
     }
+  }
+
+  void uploadDoc() async {
+    doc.senderId = DataCubit.user.id;
+    doc.fileBytes = bytes;
+    doc.filename = filename;
+    // doc.file = pdf;
+    DataCubit.approvals.forEach((id) {
+      doc.approvalProgress = {};
+      doc.approvalProgress.putIfAbsent(id, () => 'pending');
+    });
+    print("------uploading---------");
+    await _dataCubit.uploadDoc(doc);
+    print("------uploaded------");
   }
 
   @override
@@ -69,9 +85,10 @@ class _SendDocScreenState extends State<SendDocScreen> {
         floatingActionButton: FloatingActionButton(
           backgroundColor: primary,
           onPressed: () {
-            widget.isDesktop
-                ? _desktopNavCubit.navToHomeScreen()
-                : _androidNavCubit.navToHomeScreen();
+            uploadDoc();
+            // widget.isDesktop
+            //     ? _desktopNavCubit.navToHomeScreen()
+            //     : _androidNavCubit.navToHomeScreen();
             // call api to post this document.
           },
           child: Icon(Icons.send),
@@ -85,6 +102,7 @@ class _SendDocScreenState extends State<SendDocScreen> {
                 Container(
                   height: 50,
                   child: TextField(
+                    onChanged: (val) => doc.subject = val,
                     decoration: InputDecoration(
                       filled: true,
                       fillColor: primaryLight,
@@ -111,6 +129,7 @@ class _SendDocScreenState extends State<SendDocScreen> {
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: TextField(
+                    onChanged: (val) => doc.description = val,
                     maxLines: 6,
                     decoration: InputDecoration(
                       hintText: "Enter description",

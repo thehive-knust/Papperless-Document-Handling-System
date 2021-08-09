@@ -9,16 +9,23 @@ part 'data_state.dart';
 
 class DataCubit extends Cubit<DataState> {
   DataCubit() : super(DataInitial());
-  User user;
+  static User user;
   static List<Department> departments = [];
   static Department selectedDept;
   static List<String> approvals = [];
   List<Doc> sentDocs;
   List<Doc> receivedDocs;
   // Department selectedDept = departments[0];
-  // List<String> approvals;
+  // List<String> approvals
 
   static List<Department> get depts => departments;
+
+  static User getUser(id) {
+    // gets a particular department user by his id.
+    List<User> users = [];
+    departments.forEach((dept) => users.addAll(dept.users));
+    return users.singleWhere((user) => user.id == id);
+  }
 
   //TODO: authenticate code:-------------------------------------------
   Future<bool> authenticate(String userId, String password) async {
@@ -35,7 +42,7 @@ class DataCubit extends Cubit<DataState> {
       await getDepts(); // get departments in user's college
       await getUsersInDept(); // get users in user's department
       selectedDept = departments.singleWhere((dept) => dept.id == user.deptId);
-      await getSent(); // get sent documents
+      // await getSent(); // get sent documents
       // get revieved documents
       emit(SentDoc(Doc.sentDocs));
       return false;
@@ -48,6 +55,7 @@ class DataCubit extends Cubit<DataState> {
 
     if (jsonData == null) {
     } else if (jsonData.keys.contains('message')) {
+      print(jsonData['message']);
     } else {
       jsonData['departments'].forEach((deptJson) {
         departments.add(Department.fromJson(deptJson));
@@ -57,11 +65,12 @@ class DataCubit extends Cubit<DataState> {
   }
 
   //TODO: get users in department:
-  Future<void> getUsersInDept([deptId]) async {
+  Future<void> getUsersInDept() async {
     dynamic jsonData =
         await FlaskDatabase.getUsersInDepartmentByDeptId(user.deptId);
     if (jsonData == null) {
     } else if (jsonData.keys.contains('message')) {
+      print(jsonData['message']);
     } else {
       int deptIndex = departments.indexWhere((dept) => dept.id == user.deptId);
       jsonData['department_users'].forEach((userJson) {
@@ -101,7 +110,7 @@ class DataCubit extends Cubit<DataState> {
   }
 
   //TODO: upload doc:
-  void uploadDoc(Doc doc) async {
+  Future<void> uploadDoc(Doc doc) async {
     dynamic success = await FlaskDatabase.sendDoc(doc);
     if (success == null) {
       // do something

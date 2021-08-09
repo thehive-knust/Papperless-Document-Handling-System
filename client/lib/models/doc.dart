@@ -1,4 +1,7 @@
-import 'dart:io';
+import 'dart:html';
+import 'package:http/http.dart' as http;
+
+import 'dart:typed_data';
 
 class Doc {
   String id;
@@ -6,6 +9,7 @@ class Doc {
   String subject;
   String description;
   File file;
+  Uint8List fileBytes;
   String fileUrl;
   String filename;
   String senderId;
@@ -18,6 +22,7 @@ class Doc {
     this.description,
     this.filename,
     this.file,
+    this.fileBytes,
     this.senderId,
     this.createdAt,
     this.updatedAt,
@@ -41,14 +46,15 @@ class Doc {
 
   Map<String, dynamic> toMap() {
     return {
-      'id': this.id,
-      'status': this.status,
+      // 'id': this.id,
       'subject': this.subject,
       'description': this.description,
       'user_id': this.senderId,
-      'createdAt': this.createdAt,
-      'updatedAt': this.updatedAt,
-      'file': this.file
+      // 'createdAt': this.createdAt,
+      // 'updatedAt': this.updatedAt,
+      // 'file': http.MultipartFile()
+      // 'fileBytes': this.fileBytes,
+      // 'fileName' : this.filename
     };
   }
 
