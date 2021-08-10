@@ -30,7 +30,7 @@ class _HomeScreenState extends State<HomeScreen> {
     _androidNavCubit = BlocProvider.of<AndroidNavCubit>(context);
     _desktopNavCubit = BlocProvider.of<DesktopNavCubit>(context);
     _dataCubit = BlocProvider.of<DataCubit>(context);
-    _dataCubit.getSent();
+    _dataCubit.getSent(); // TODO: repair the get sent
   }
 
   @override
