@@ -6,6 +6,7 @@ import 'package:file_picker/_internal/file_picker_web.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:softdoc/cubit/android_nav_cubit/AndroidNav_cubit.dart';
 import 'package:softdoc/cubit/data_cubit/data_cubit.dart';
 import 'package:softdoc/cubit/desktop_nav_cubit/desktopnav_cubit.dart';
@@ -27,9 +28,6 @@ class _SendDocScreenState extends State<SendDocScreen> {
   AndroidNavCubit _androidNavCubit;
   DesktopNavCubit _desktopNavCubit;
   DataCubit _dataCubit;
-  Uint8List bytes;
-  String filename;
-  File pdf;
 
   void changeState() {
     setState(() {});
@@ -42,6 +40,18 @@ class _SendDocScreenState extends State<SendDocScreen> {
     _desktopNavCubit = BlocProvider.of<DesktopNavCubit>(context);
     _dataCubit = BlocProvider.of<DataCubit>(context);
     doc = Doc();
+
+    EasyLoading.instance
+      ..loadingStyle = EasyLoadingStyle.custom
+      ..backgroundColor = Colors.white
+      ..contentPadding = EdgeInsets.all(30)
+      ..indicatorType = EasyLoadingIndicatorType.doubleBounce
+      ..indicatorColor = primary
+      ..progressColor = primary
+      ..textColor = Colors.black
+      ..maskType = EasyLoadingMaskType.black
+      ..successWidget = Icon(Icons.check_rounded, size: 50, color: Colors.green)
+      ..errorWidget = Icon(Icons.cancel_rounded, size: 50, color: Colors.red);
   }
 
   void pickFile() async {
@@ -49,9 +59,8 @@ class _SendDocScreenState extends State<SendDocScreen> {
         .pickFiles(allowedExtensions: ['pdf'], type: FileType.custom);
 
     if (result != null) {
-      bytes = result.files.single.bytes;
-      filename = result.files.single.name;
-      pdf = File(bytes, filename);
+      doc.fileBytes = result.files.single.bytes;
+      doc.filename = result.files.single.name;
       // pdf = File.fromRawPath(bytes);
       setState(() {});
     } else {
@@ -60,17 +69,27 @@ class _SendDocScreenState extends State<SendDocScreen> {
   }
 
   void uploadDoc() async {
-    doc.senderId = DataCubit.user.id;
-    doc.fileBytes = bytes;
-    doc.filename = filename;
-    // doc.file = pdf;
-    DataCubit.approvals.forEach((id) {
-      doc.approvalProgress = {};
-      doc.approvalProgress.putIfAbsent(id, () => 'pending');
-    });
-    print("------uploading---------");
-    await _dataCubit.uploadDoc(doc);
-    print("------uploaded------");
+    if (DataCubit.approvals.isEmpty) {
+      EasyLoading.showInfo('please add recipient(s) before sending');
+    } else if (doc.fileBytes == null) {
+      EasyLoading.showInfo("please pick a pdf file before sending");
+    } else {
+      doc.senderId = DataCubit.user.id;
+      DataCubit.approvals.forEach((id) {
+        doc.approvalProgress = {};
+        doc.approvalProgress.putIfAbsent(id, () => 'pending');
+      });
+      EasyLoading.show(status: "Uploading document");
+      bool success = await _dataCubit.uploadDoc(doc);
+      if (success) {
+        EasyLoading.showSuccess("Upload successful");
+        widget.isDesktop
+            ? _desktopNavCubit.navToHomeScreen()
+            : _androidNavCubit.navToHomeScreen();
+      } else {
+        EasyLoading.showError('Upload unsuccessful');
+      }
+    }
   }
 
   @override
@@ -86,9 +105,7 @@ class _SendDocScreenState extends State<SendDocScreen> {
           backgroundColor: primary,
           onPressed: () {
             uploadDoc();
-            // widget.isDesktop
-            //     ? _desktopNavCubit.navToHomeScreen()
-            //     : _androidNavCubit.navToHomeScreen();
+
             // call api to post this document.
           },
           child: Icon(Icons.send),
@@ -146,7 +163,7 @@ class _SendDocScreenState extends State<SendDocScreen> {
                   child: Container(
                       height: 200,
                       width: double.infinity,
-                      child: pdf == null
+                      child: doc.filename == null
                           ? DottedBorder(
                               dashPattern: [8],
                               color: primary,
@@ -168,7 +185,7 @@ class _SendDocScreenState extends State<SendDocScreen> {
                                 ),
                               ),
                             )
-                          : pdfCard(filename)),
+                          : pdfCard(doc.filename)),
                 )
               ],
             ),

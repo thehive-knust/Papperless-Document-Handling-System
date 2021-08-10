@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:html';
 import 'package:http/http.dart' as http;
 
@@ -47,9 +48,10 @@ class Doc {
   Map<String, dynamic> toMap() {
     return {
       // 'id': this.id,
-      'subject': this.subject,
-      'description': this.description,
+      'subject': this.subject ?? "",
+      'description': this.description ?? "",
       'user_id': this.senderId,
+      'recipients': jsonEncode(this.approvalProgress)
       // 'createdAt': this.createdAt,
       // 'updatedAt': this.updatedAt,
       // 'file': http.MultipartFile()

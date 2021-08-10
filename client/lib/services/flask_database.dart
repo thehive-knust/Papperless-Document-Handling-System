@@ -170,19 +170,11 @@ class FlaskDatabase {
   }
 
   //TODO: implement post document:--------------
-  static Future<dynamic> sendDoc(Doc doc) async {
+  static Future<bool> sendDoc(Doc doc) async {
     Uri uri = Uri.parse("https://soft-doc.herokuapp.com/documents/upload");
     http.MultipartRequest request;
     http.StreamedResponse response;
     try {
-      // response = await http.post(
-      //   uri,
-      //   headers: <String, String>{
-      //     'Content-Type': 'application/json; charset=UTF-8'
-      //   },
-      //   body: doc.toMap()
-      // );
-
       request = http.MultipartRequest("POST", uri);
       request.fields.addAll(Map<String, String>.from(doc.toMap()));
       request.files.add(http.MultipartFile.fromBytes(
@@ -191,16 +183,15 @@ class FlaskDatabase {
 
       response = await request.send();
 
-      if (response.statusCode == 201) {
-        print(response.stream.bytesToString());
-        return response.stream.bytesToString();
+      if (response.statusCode == 200) {
+        return true;
       } else {
         print(response.statusCode);
-        return null;
+        return false;
       }
     } catch (e) {
       print("send doc Error Message => " + e.toString());
-      return null;
+      return false;
     }
   }
 

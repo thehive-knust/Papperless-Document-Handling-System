@@ -110,15 +110,9 @@ class DataCubit extends Cubit<DataState> {
   }
 
   //TODO: upload doc:
-  Future<void> uploadDoc(Doc doc) async {
-    dynamic success = await FlaskDatabase.sendDoc(doc);
-    if (success == null) {
-      // do something
-    } else if (success.keys.contains("message")) {
-    } else {
-      // return true;
-    }
-  }
+  Future<bool> uploadDoc(Doc doc) async => await FlaskDatabase.sendDoc(doc);
+    
+  
 
   //TODO: getDoc:
   Future<Doc> getDoc(docId) async {
