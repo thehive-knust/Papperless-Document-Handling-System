@@ -16,13 +16,13 @@ def _allowed_file(filename):
         filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 
-@bp.route('/')
+@bp.route('/hello')
 def index():
     # return jsonify({"message": None})
     return "Hello from /document"
 
 
-@bp.route('/all-docs', methods=['GET'])
+@bp.route('/', methods=['GET'])
 def get_all_users():
     """
     Return all the documents in the document table
@@ -78,14 +78,15 @@ def upload():
             filename = secure_filename(doc_file.filename)
             new_document.name = filename
             try:
-                document_url = upload_blob(doc_file.stream, filename)
+                document_url = upload_blob(
+                    doc_file.stream, str(user_id)+filename)
                 if document_url is not None:
                     new_document.file = document_url
             except Exception as e:
                 print('Error uploading file: %s' % e)
             try:
                 new_document.save_to_db()
-                return jsonify(document=new_document.id), 201
+                return jsonify(document=new_document.to_json()), 201
             except:
                 return jsonify(msg='Error saving document'), 500
         else:
@@ -130,7 +131,7 @@ def cancel():
         for approval in all_approvals:
             approval.delete_from_db()
         Document.query.filter_by(id=document_id).delete_from_db()
-        return {"message": "Done"}
+        return {"msg": "Done"}
 
 
 @bp.route('/user/<int:user_id>', methods=['GET'])
@@ -146,12 +147,12 @@ def get_user_documents(user_id):
             result = Document.query.filter_by(user_id=user_id).all()
         except:
             error_msg = 'Error occured retrieving documents'
-        if error_msg is not None:
-            return jsonify(msg=error_msg)
-        elif len(documents) > 0:
-            for doc in result:
-                documents.append(doc)
-            return jsonify(documents=documents)
+            return jsonify(msg=error_msg), 500
+        if len(documents) == 0:
+            return jsonify(msg='No documents were found for user'), 404
+        for doc in result:
+            documents.append(doc)
+        return jsonify(documents=documents), 200
 
 
 @bp.route('/<int:document_id>', methods=['GET'])
@@ -172,6 +173,25 @@ def get_document_by_id(document_id):
             return jsonify(msg=error_msg)
         elif document is not None:
             return jsonify(document.to_json())
+
+
+@bp.route('/<int:document_id>/progress', methods=['GET'])
+def get_document_progress(document_id):
+    approvals = None
+    try:
+        approvals = Approval.query.filter(document_id=document_id).all()
+    except:
+        return jsonify(msg='Error retrieving approvals'), 404
+    if not approvals:
+        return jsonify(msg='There are no approvals for this document'), 404
+    else:
+        statuses_count = sum([a.status for a in approvals])
+        if statuses_count == 0:
+            return jsonify(progress='Rejected'), 200
+        elif statuses_count == len(approvals):
+            return jsonify(progress='Accepted'), 200
+        elif statuses_count > 0 and statuses_count < len(approvals):
+            return jsonify(progress='Pending'), 200
 
 
 @bp.route('/delete/<int:document_id>', methods=['DELETE'])
