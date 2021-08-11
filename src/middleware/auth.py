@@ -128,6 +128,7 @@ def login():
         correct_password = check_password_hash(user.password, password)
         if _id is not None and correct_password:
             user.last_login = datetime.utcnow()
+            user.login_count += 1
             user.save_to_db()
             access_token = create_access_token(identity=user)
             refresh_token = create_refresh_token(identity=user)
