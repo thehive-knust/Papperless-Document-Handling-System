@@ -61,11 +61,11 @@ def upload_blob(source_file, destination_blob_name, bucket_name=bucket_name):
     blob.upload_from_file(source_file, rewind=True,
                           content_type='application/octet-stream')
 
-    print(
-        "Blob {} uploaded to {}.".format(
-            source_file, destination_blob_name
-        )
-    )
+    # print(
+    #     "Blob {} uploaded to {}.".format(
+    #         source_file, destination_blob_name
+    #     )
+    # )
     return blob.public_url if blob.public_url else None
 
 

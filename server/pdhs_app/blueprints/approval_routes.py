@@ -87,7 +87,6 @@ def create_approval():
             return jsonify(new_approval.to_json()), 201
 
 
-
 @bp.route('/delete/<int:approval_id>', methods=['DELETE'])
 def delete_approval(approval_id):
     if request.method == 'DELETE':
@@ -130,3 +129,22 @@ def update_approval():
                     return jsonify(msg='Error updating Approval'), 500
             else:
                 return jsonify(msg=f"Approval with {approval_id} does not exist"), 404
+
+
+@bp.route('/received/<int:user_id>', methods=['GET'])
+def get_approvals_received_by_user(user_id):
+    error_msg = None
+    # results = None
+    approvals = []
+    try:
+        results = Approval.query.filter_by(recipient_id=user_id)
+    except:
+        error_msg = 'Error occured finding approval'
+    if len(results) == 0:
+        error_msg = f'No new approvals have requested from you.'
+    else:
+        for approval in results:
+            approvals.append(approval.to_json())
+    if error_msg is not None:
+        return jsonify(msg=error_msg), 404
+    return jsonify(approvals=approvals)

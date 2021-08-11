@@ -69,5 +69,6 @@ class Document(db.Model):
             'file': self.file,
             'description': self.description,
             'progress': self.progress,
+            'created_at': str(self.created_at)
         }
         return doc

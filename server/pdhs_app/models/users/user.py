@@ -29,6 +29,7 @@ class User(db.Model):
     created_at = db.Column(db.DateTime, nullable=False,
                            default=datetime.utcnow)
     last_login = db.Column(db.DateTime, nullable=True)
+    login_count = db.Column(db.DateTime, nullable=True, default=0)
 
     def __repr__(self):
         return '<User %r>' % self.user_id
