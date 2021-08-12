@@ -5,7 +5,7 @@ from datetime import datetime
 
 
 class User(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True, autoincrement=False)
     first_name = db.Column(db.String(50), nullable=False)
     last_name = db.Column(db.String(50), nullable=False)
     email = db.Column(db.String(50), nullable=False)
@@ -13,11 +13,15 @@ class User(db.Model):
     portfolio_id = db.Column(db.Integer, db.ForeignKey(
         'portfolio.id'), nullable=False)
     college_id = db.Column(db.Integer, db.ForeignKey(
-        'college.id'), nullable=True)
+        'college.id'), nullable=False)
     faculty_id = db.Column(db.Integer, db.ForeignKey(
         'faculty.id'), nullable=True)
     department_id = db.Column(db.Integer, db.ForeignKey(
-        'department.id'), nullable=True, default=0)
+        'department.id'), nullable=True)
+    registered_at = db.Column(db.DateTime, nullable=False,
+                              default=db.func.now())
+    last_login = db.Column(db.DateTime, nullable=True)
+    login_count = db.Column(db.Integer, nullable=False, default=0)
     documents = db.relationship(
         "Document", lazy='select', backref=db.backref('user', lazy='joined'))
     comments = db.relationship(
@@ -26,10 +30,6 @@ class User(db.Model):
         "Approval", lazy='select', backref=db.backref('recipient', lazy='joined'))
     tokens = db.relationship(
         'TokenBlocklist', lazy='select', backref=db.backref('user', lazy='joined'))
-    created_at = db.Column(db.DateTime, nullable=False,
-                           default=datetime.utcnow)
-    last_login = db.Column(db.DateTime, nullable=True)
-    login_count = db.Column(db.DateTime, nullable=True, default=0)
 
     def __repr__(self):
         return '<User %r>' % self.user_id
@@ -60,7 +60,7 @@ class User(db.Model):
             'department_id': self.department_id if self.department else None,
             'faculty_id': self.faculty_id if self.faculty else None,
             'college_id': self.college_id if self.college else None,
-            'created_at': self.created_at,
+            'registered_at': self.registered_at,
             'last_login': self.last_login if self.last_login else None
         }
 

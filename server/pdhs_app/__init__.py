@@ -22,7 +22,11 @@ def create_app(*args, **kwargs):
     Initialize core application using app factory.
     """
     try:
-        env = kwargs['env']
+        # Check if an environment is specified in the shell
+        # Else default to one specified as a keyword argument
+        env = os.environ.get('env', None)
+        if env is None:
+            env = kwargs['env']
     except KeyError as e:
         env = 'development'
         print('Error:', e, 'Environment was not specified, defaulting to development')

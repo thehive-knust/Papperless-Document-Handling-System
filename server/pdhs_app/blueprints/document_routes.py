@@ -76,19 +76,19 @@ def upload():
 
         if _allowed_file(doc_file.filename):
             filename = secure_filename(doc_file.filename)
-            new_document.name = filename
+            new_document.name = f"{user_id}_{filename}"
             try:
                 document_url = upload_blob(
-                    doc_file.stream, str(user_id)+filename)
+                    doc_file.stream, new_document.name)
                 if document_url is not None:
                     new_document.file = document_url
-            except Exception as e:
-                print('Error uploading file: %s' % e)
+            except:
+                return jsonify(msg="Error uploading document")
             try:
                 new_document.save_to_db()
                 return jsonify(document=new_document.to_json()), 201
             except:
-                return jsonify(msg='Error saving document'), 500
+                return jsonify(msg='Error saving document to database'), 500
         else:
             return jsonify(msg="File type not supported"), 201
 
@@ -204,8 +204,8 @@ def delete_document(document_id):
             error_msg = 'Error occured finding document'
             error_code = 404
         if document is not None:
-            if delete_blob(document.name):
-                error_msg = 'Error occured deleting document from storage'
+            if not delete_blob(document.name):
+                error_msg = 'Error occured deleting document from cloud storage'
                 error_code = 500
             try:
                 document.delete_from_db()
