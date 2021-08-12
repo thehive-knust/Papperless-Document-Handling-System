@@ -35,9 +35,6 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'SoftDoc',
       builder: EasyLoading.init(),
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
     );
   }
 }

@@ -4,6 +4,7 @@ import 'package:softdoc/cubit/android_nav_cubit/AndroidNav_cubit.dart';
 import 'package:softdoc/cubit/desktop_nav_cubit/desktopnav_cubit.dart';
 import 'package:softdoc/models/doc.dart';
 import 'package:softdoc/shared/pdf_card.dart';
+import 'package:softdoc/shared/time_badge.dart';
 import 'package:softdoc/style.dart';
 import 'package:intl/intl.dart';
 import 'approval_progress.dart';
@@ -114,7 +115,8 @@ class _DetailScreenState extends State<DetailScreen> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              if (widget.selectedDoc.description != null)
+                              if (widget.selectedDoc.description
+                                  .isNotEmpty) // changed it from isNotNull to is not empty
                                 Padding(
                                   padding: const EdgeInsets.only(top: 12),
                                   child: Text(widget.selectedDoc.description,
@@ -122,17 +124,10 @@ class _DetailScreenState extends State<DetailScreen> {
                                           fontSize:
                                               widget.isDesktop ? 20 : 14)),
                                 ),
-                              Container(
-                                margin: EdgeInsets.only(top: 10, bottom: 10),
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(5),
-                                    color: Colors.white),
-                                padding: EdgeInsets.all(4),
-                                child: Text(
-                                  DateFormat("d MMMM, y   h:m a")
-                                      .format(widget.selectedDoc.createdAt),
-                                ),
-                              )
+                              Padding(
+                                padding: EdgeInsets.symmetric(vertical: 10),
+                                child: timeBadge(widget.selectedDoc.createdAt),
+                              ),
                             ],
                           ),
                         ),

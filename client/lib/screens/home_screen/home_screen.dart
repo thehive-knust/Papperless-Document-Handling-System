@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:softdoc/cubit/android_nav_cubit/AndroidNav_cubit.dart';
 import 'package:softdoc/cubit/data_cubit/data_cubit.dart';
 import 'package:softdoc/cubit/desktop_nav_cubit/desktopnav_cubit.dart';
@@ -23,6 +24,7 @@ class _HomeScreenState extends State<HomeScreen> {
   DesktopNavCubit _desktopNavCubit;
   DataCubit _dataCubit;
   String bottomNavSelector = "Sent";
+  int what = 0;
 
   @override
   void initState() {
@@ -30,7 +32,34 @@ class _HomeScreenState extends State<HomeScreen> {
     _androidNavCubit = BlocProvider.of<AndroidNavCubit>(context);
     _desktopNavCubit = BlocProvider.of<DesktopNavCubit>(context);
     _dataCubit = BlocProvider.of<DataCubit>(context);
-    _dataCubit.getSent(); // TODO: repair the get sent
+    _dataCubit.downloadDocs();
+
+    EasyLoading.instance
+      ..loadingStyle = EasyLoadingStyle.custom
+      ..backgroundColor = Colors.white
+      ..contentPadding = EdgeInsets.all(30)
+      ..indicatorType = EasyLoadingIndicatorType.doubleBounce
+      ..indicatorColor = primary
+      ..progressColor = primary
+      ..textColor = Colors.black
+      ..maskType = EasyLoadingMaskType.black
+      ..successWidget = Icon(Icons.check_rounded, size: 50, color: Colors.green)
+      ..errorWidget = Icon(Icons.cancel_rounded, size: 50, color: Colors.red);
+  }
+
+  void searchWhat() {
+    // anytime the user filters the document, we want to get the appropiate
+    // docs,
+    // if he searches, he searches the filtered docs,
+    //this methods keeps track of the filtering type.
+    bool isSent = bottomNavSelector == 'Sent' ? true : false;
+    if (what == 0)
+      _dataCubit.getDocs(isSent);
+    else if (what == 1)
+      _dataCubit.getDocs(isSent, 'pending');
+    else if (what == 2)
+      _dataCubit.getDocs(isSent, 'approved');
+    else if (what == 3) _dataCubit.getDocs(isSent, 'rejected');
   }
 
   @override
@@ -38,10 +67,11 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       extendBody: true,
       floatingActionButton: FloatingActionButton(
-        // onPressed: () => Navigator.of(context).pushNamed(SENDPAGE),
-        onPressed: () => widget.isDesktop
-            ? _desktopNavCubit.navToSendDocScreen()
-            : _androidNavCubit.navToSendDocScreen(),
+        onPressed: () {
+          widget.isDesktop
+              ? _desktopNavCubit.navToSendDocScreen()
+              : _androidNavCubit.navToSendDocScreen();
+        },
         backgroundColor: primary,
         child: Icon(Icons.note_add_rounded),
       ),
@@ -62,24 +92,42 @@ class _HomeScreenState extends State<HomeScreen> {
         backgroundColor: Colors.transparent,
         actionsIconTheme: IconThemeData(color: primaryDark),
         actions: [
-          IconButton(
-            onPressed: () {},
-            icon: Icon(Icons.notifications),
-          ),
-          IconButton(
-            onPressed: () {},
+          PopupMenuButton(
             icon: Icon(Icons.sort_rounded),
+            onSelected: (val) {
+              what = val;
+              searchWhat();
+            },
+            itemBuilder: (context) => ["All", "Pending", "Approved", "Rejected"]
+                .asMap()
+                .entries
+                .map(
+                  (option) => PopupMenuItem(
+                      value: option.key, child: Text(option.value)),
+                )
+                .toList(),
           ),
-          IconButton(
-            onPressed: () {},
+          PopupMenuButton(
             icon: Icon(Icons.more_vert),
-          )
+            onSelected: (val) {
+              _dataCubit.emit(DataInitial());
+            },
+            itemBuilder: (context) => ["Log out"]
+                .asMap()
+                .entries
+                .map(
+                  (option) => PopupMenuItem(
+                      value: option.key, child: Text(option.value)),
+                )
+                .toList(),
+          ),
         ],
       ),
       // body:------------------------------------------------------------------------------------------
       body: Container(
         padding: EdgeInsets.symmetric(horizontal: 12),
         width: double.infinity,
+        height: double.infinity,
         // color: Colors.blue,
         child: Column(
           children: [
@@ -93,6 +141,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 borderRadius: BorderRadius.circular(7),
               ),
               child: TextField(
+                onChanged: (srch) {
+                  DataCubit.searchString = srch;
+                  searchWhat();
+                },
                 decoration: InputDecoration(
                   contentPadding: EdgeInsets.symmetric(horizontal: 10),
                   border: InputBorder.none,
@@ -101,31 +153,91 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
             // listView:-----------------------------------------------------------
-            Expanded(
-              child: BlocBuilder<DataCubit, DataState>(
-                builder: (context, state) {
-                  if (state is SentDoc) {
-                    return DocTiles(
+            BlocBuilder<DataCubit, DataState>(
+              builder: (context, state) {
+                // sentDoc state:--------------------------------------------------
+                if (state is SentDoc) {
+                  if (state.docs == null) {
+                    return errorWidget();
+                  } else if (state.docs.isEmpty) {
+                    return emptyList();
+                  }
+                  return Expanded(
+                    child: DocTiles(
                       docs: state.docs,
                       isDesktop: widget.isDesktop,
                       isSent: true,
-                    );
-                  } else if (state is ReveivedDoc) {
-                    return DocTiles(
+                    ),
+                  );
+                }
+                // receivedDoc State:-------------------------------------------------------------
+                else if (state is ReceivedDoc) {
+                  if (state.docs == null) {
+                    return errorWidget();
+                  } else if (state.docs.isEmpty) {
+                    return emptyList(false);
+                  }
+                  return Expanded(
+                    child: DocTiles(
                       docs: state.docs,
                       isDesktop: widget.isDesktop,
                       isSent: false,
-                    );
-                  } else
-                    return LinearProgressIndicator();
-                },
-              ),
+                    ),
+                  );
+                }
+                // loading state:---------------------------------------------------------------------------
+                else
+                  return Expanded(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        CircularProgressIndicator(color: primary),
+                        SizedBox(height: 10),
+                        Text("Loading documents"),
+                      ],
+                    ),
+                  );
+              },
             )
           ],
         ),
       ),
     );
   }
+
+  //Error widget:-----------------------------------
+  Widget errorWidget() => Center(
+        child: Text(
+          "Error connecting to server, pull to refresh",
+          style: TextStyle(fontSize: 20),
+        ),
+      );
+
+  //Empty list widget:-------------------------------
+  Widget emptyList([isSent = true]) => Container(
+        width: double.infinity,
+        height: 500,
+        child: CircleAvatar(
+          radius: double.infinity,
+          backgroundColor: Colors.white70,
+          child: isSent
+              ? Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text("Tap ",
+                        style:
+                            TextStyle(fontSize: 20, color: Colors.grey[600])),
+                    Icon(Icons.note_add_rounded, color: Colors.grey[600]),
+                    Text(" to add a document",
+                        style: TextStyle(fontSize: 20, color: Colors.grey[600]))
+                  ],
+                )
+              : Text(
+                  "No documents",
+                  style: TextStyle(fontSize: 20, color: Colors.grey[600]),
+                ),
+        ),
+      );
 
   //BottomNavBar widget:----------------------------
   Widget bottomNavBar() {
@@ -153,9 +265,9 @@ class _HomeScreenState extends State<HomeScreen> {
                           borderRadius: BorderRadius.circular(70),
                           onTap: () {
                             if (map.key == 'Sent')
-                              _dataCubit.emit(SentDoc(Doc.sentDocs));
+                              _dataCubit.getAll(true);
                             else
-                              _dataCubit.emit(ReveivedDoc(Doc.reveivedDocs));
+                              _dataCubit.emit(ReceivedDoc(Doc.reveivedDocs));
                             bottomNavSelector = map.key;
                             setState(() {});
                           },

@@ -40,18 +40,6 @@ class _SendDocScreenState extends State<SendDocScreen> {
     _desktopNavCubit = BlocProvider.of<DesktopNavCubit>(context);
     _dataCubit = BlocProvider.of<DataCubit>(context);
     doc = Doc();
-
-    EasyLoading.instance
-      ..loadingStyle = EasyLoadingStyle.custom
-      ..backgroundColor = Colors.white
-      ..contentPadding = EdgeInsets.all(30)
-      ..indicatorType = EasyLoadingIndicatorType.doubleBounce
-      ..indicatorColor = primary
-      ..progressColor = primary
-      ..textColor = Colors.black
-      ..maskType = EasyLoadingMaskType.black
-      ..successWidget = Icon(Icons.check_rounded, size: 50, color: Colors.green)
-      ..errorWidget = Icon(Icons.cancel_rounded, size: 50, color: Colors.red);
   }
 
   void pickFile() async {
@@ -69,23 +57,31 @@ class _SendDocScreenState extends State<SendDocScreen> {
   }
 
   void uploadDoc() async {
-    if (DataCubit.approvals.isEmpty) {
-      EasyLoading.showInfo('please add recipient(s) before sending');
+    if (doc.subject == null || doc.subject.isEmpty) {
+      EasyLoading.showInfo('please enter subject before uploading',
+          dismissOnTap: true);
+    } else if (DataCubit.approvals.isEmpty) {
+      EasyLoading.showInfo('please add recipient(s) before sending',
+          dismissOnTap: true);
     } else if (doc.fileBytes == null) {
-      EasyLoading.showInfo("please pick a pdf file before sending");
+      EasyLoading.showInfo("please pick a pdf file before sending",
+          dismissOnTap: true);
     } else {
       doc.senderId = DataCubit.user.id;
+      doc.approvalProgress = {};
       DataCubit.approvals.forEach((id) {
-        doc.approvalProgress = {};
         doc.approvalProgress.putIfAbsent(id, () => 'pending');
       });
+      print(doc.approvalProgress.toString());
       EasyLoading.show(status: "Uploading document");
       bool success = await _dataCubit.uploadDoc(doc);
       if (success) {
         EasyLoading.showSuccess("Upload successful");
+        DataCubit.approvals.clear();
         widget.isDesktop
             ? _desktopNavCubit.navToHomeScreen()
             : _androidNavCubit.navToHomeScreen();
+        _dataCubit.downloadDocs();
       } else {
         EasyLoading.showError('Upload unsuccessful');
       }

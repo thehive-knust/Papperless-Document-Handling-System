@@ -222,4 +222,24 @@ class FlaskDatabase {
       return null;
     }
   }
+
+  static Future<bool> delectDocumentByDocumentId(docId) async {
+    Uri uri = Uri.parse(
+        "https://soft-doc.herokuapp.com/documents/delete/${int.parse(docId)}");
+    http.Response response;
+    try {
+      response = await http.delete(uri);
+
+      if (response.statusCode == 200) {
+        print(response.body);
+        return true;
+      } else {
+        print(response.statusCode);
+        return false;
+      }
+    } catch (e) {
+      print("send approval Error Message => " + e.toString());
+      return false;
+    }
+  }
 }

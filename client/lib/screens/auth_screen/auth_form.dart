@@ -39,7 +39,7 @@ class _AuthFormState extends State<AuthForm> {
     _androidNavCubit = BlocProvider.of<AndroidNavCubit>(context);
     _desktopNavCubit = BlocProvider.of<DesktopNavCubit>(context);
     _dataCubit = BlocProvider.of<DataCubit>(context);
-    // _dataCubit.emit(SentDoc(Doc.sentDocs));
+    // _dataCubit.emit(Authenticated());
   }
 
   void showMessage(String msg) {
@@ -72,45 +72,19 @@ class _AuthFormState extends State<AuthForm> {
           ),
           widget.isDesktop ? SizedBox(height: 10) : const SizedBox(height: 40),
           TextFormField(
-            onChanged: (newId) {
-              id = newId;
-            },
-            validator: (newId) =>
-                newId.isEmpty ? "please enter ID number" : null,
-            keyboardType: TextInputType.number,
-            decoration: InputDecoration(
-              filled: true,
-              fillColor: primaryLight,
-              hintText: "Enter your ID number",
-              hoverColor: primary.withOpacity(.15),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(7),
-                borderSide: BorderSide.none,
-              ),
-            ),
-          ),
+              onChanged: (newId) => id = newId,
+              validator: (newId) =>
+                  newId.isEmpty ? "please enter ID number" : null,
+              keyboardType: TextInputType.number,
+              decoration: authInputDecoration("Enter your ID number")),
           SizedBox(height: 15),
           TextFormField(
-            onChanged: (pass) {
-              // List<int> bytes = utf8.encode(pass);
-              // password = sha512.convert(bytes).toString();
-              // print(password);
-              password = pass;
-            },
-            validator: (pass) => pass.isEmpty ? "Please enter password" : null,
-            obscureText: true,
-            keyboardType: TextInputType.visiblePassword,
-            decoration: InputDecoration(
-              filled: true,
-              fillColor: primaryLight,
-              hintText: "password",
-              hoverColor: primary.withOpacity(.15),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(7),
-                borderSide: BorderSide.none,
-              ),
-            ),
-          ),
+              onChanged: (pass) => password = pass,
+              validator: (pass) =>
+                  pass.isEmpty ? "Please enter password" : null,
+              obscureText: true,
+              keyboardType: TextInputType.visiblePassword,
+              decoration: authInputDecoration('Password')),
           SizedBox(height: 30),
           Container(
             height: 45,
@@ -124,6 +98,7 @@ class _AuthFormState extends State<AuthForm> {
                 ),
               ),
               onPressed: () async {
+                FocusScope.of(context).unfocus();
                 if (_formKey.currentState.validate()) {
                   isLoading = true;
                   setState(() {});

@@ -5,6 +5,7 @@ import 'package:softdoc/cubit/data_cubit/data_cubit.dart';
 import 'package:softdoc/cubit/desktop_nav_cubit/desktopnav_cubit.dart';
 import 'package:softdoc/models/doc.dart';
 import 'package:softdoc/shared/pdf_card.dart';
+import 'package:softdoc/shared/time_badge.dart';
 import 'package:softdoc/style.dart';
 import 'package:softdoc/screens/detail_screen/detail_screen.dart';
 
@@ -59,7 +60,7 @@ class _ReveivedDetailScreenState extends State<ReveivedDetailScreen> {
                 // user info section:----------------------------------------------------
                 height: 150,
                 width: double.infinity,
-                padding: EdgeInsets.symmetric(vertical: 15, horizontal: 15),
+                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
                 decoration: BoxDecoration(
                     color: primaryLight,
                     borderRadius: BorderRadius.circular(10)),
@@ -71,21 +72,10 @@ class _ReveivedDetailScreenState extends State<ReveivedDetailScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
-                            "From: Emmanuel J.A Sackey",
-                            style: TextStyle(fontSize: 20),
-                            maxLines: 1,
-                          ),
-                          Text(
-                            "Portfolio: SRC President",
-                            style: TextStyle(fontSize: 20),
-                            maxLines: 1,
-                          ),
-                          Text(
-                            "Phone 0236541522",
-                            style: TextStyle(fontSize: 20),
-                            maxLines: 1,
-                          )
+                          textRow("From: ", "Emmanuel Sackey"),
+                          textRow("Portfolio: ", "Src president"),
+                          textRow("Phone: ", "0236514784"),
+                          timeBadge(widget.selectedDoc.createdAt)
                         ],
                       ),
                     ),
@@ -152,4 +142,20 @@ class _ReveivedDetailScreenState extends State<ReveivedDetailScreen> {
       ),
     );
   }
+
+  Widget textRow(String p, String txt) => RichText(
+        text: TextSpan(
+          text: p,
+          style: TextStyle(fontSize: 16, color: Colors.grey[700]),
+          children: [
+            TextSpan(
+              text: txt,
+              style: TextStyle(
+                fontSize: 18,
+                color: Colors.black.withOpacity(0.9),
+              ),
+            )
+          ],
+        ),
+      );
 }

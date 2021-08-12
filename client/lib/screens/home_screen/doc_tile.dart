@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:intl/intl.dart';
 import 'package:softdoc/cubit/android_nav_cubit/AndroidNav_cubit.dart';
+import 'package:softdoc/cubit/data_cubit/data_cubit.dart';
 import 'package:softdoc/cubit/desktop_nav_cubit/desktopnav_cubit.dart';
 import 'package:softdoc/models/doc.dart';
 import 'package:softdoc/screens/home_screen/transition_animation.dart';
@@ -8,29 +11,51 @@ import 'package:softdoc/style.dart';
 
 import '../../shared/docTypeIcon.dart';
 
-class DocTiles extends StatelessWidget {
+class DocTiles extends StatefulWidget {
   // Map<String, List<Doc>> section;
   final isDesktop;
   final isSent;
   final List<Map<String, List<Doc>>> docs;
   DocTiles({this.docs, this.isDesktop, this.isSent});
 
+  @override
+  _DocTilesState createState() => _DocTilesState();
+}
+
+class _DocTilesState extends State<DocTiles> {
+  DataCubit _dataCubit;
+
   AndroidNavCubit _androidNavCubit;
+
   DesktopNavCubit _desktopNavCubit;
 
   @override
+  void initState() {
+    super.initState();
+    _androidNavCubit = BlocProvider.of<AndroidNavCubit>(context);
+    _desktopNavCubit = BlocProvider.of<DesktopNavCubit>(context);
+    _dataCubit = BlocProvider.of<DataCubit>(context);
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      padding: EdgeInsets.fromLTRB(0.0, 10, 0.0, 60.0),
-      itemCount: docs.length,
-      itemBuilder: (context, index) => sectionWidget(
-        context,
-        docs[index],
+    return RefreshIndicator(
+      onRefresh: () {
+        //TODO: complete the on refresh
+        return _dataCubit.downloadDocs();
+      },
+      child: ListView.builder(
+        padding: EdgeInsets.fromLTRB(0.0, 10, 0.0, 60.0),
+        itemCount: widget.docs.length,
+        itemBuilder: (context, index) => sectionWidget(
+          context,
+          widget.docs[index],
+        ),
       ),
     );
   }
 
-  sectionWidget(context, section) {
+  sectionWidget(context, Map<String, List<Doc>> section) {
     return section.entries.map((entry) {
       return Container(
         width: double.infinity,
@@ -43,7 +68,7 @@ class DocTiles extends StatelessWidget {
             ...entry.value
                 .asMap()
                 .entries
-                .map((doc) => docTile(doc, context))
+                .map((doc) => docTile(doc, entry.value, context))
                 .toList()
           ],
         ),
@@ -51,9 +76,7 @@ class DocTiles extends StatelessWidget {
     }).toList()[0];
   }
 
-  docTile(data, context) {
-    _androidNavCubit = BlocProvider.of<AndroidNavCubit>(context);
-    _desktopNavCubit = BlocProvider.of<DesktopNavCubit>(context);
+  docTile(data, List<Doc> docs, context) {
     Doc doc = data.value;
     int index = data.key;
     Color status;
@@ -69,12 +92,12 @@ class DocTiles extends StatelessWidget {
       delay: index,
       child: GestureDetector(
         onTap: () {
-          if (isSent) {
-            isDesktop
+          if (widget.isSent) {
+            widget.isDesktop
                 ? _desktopNavCubit.navToDetailScreen(doc)
                 : _androidNavCubit.navToDetailScreen(doc);
           } else {
-            isDesktop
+            widget.isDesktop
                 ? _desktopNavCubit.navToReveivedDetailScreen(doc)
                 : _androidNavCubit.navToReveivedDetailScreen(doc);
           }
@@ -86,7 +109,12 @@ class DocTiles extends StatelessWidget {
             child: Dismissible(
               key: GlobalKey(),
               direction: DismissDirection.endToStart,
-              confirmDismiss: (direction) => alertDialog(direction, context),
+              confirmDismiss: (direction) =>
+                  alertDialog(direction, context, doc.id),
+              onDismissed: (direction) {
+                docs.removeAt(index);
+                setState(() {});
+              },
               background: Container(
                 padding: EdgeInsets.symmetric(horizontal: 15),
                 alignment: Alignment.centerRight,
@@ -119,7 +147,7 @@ class DocTiles extends StatelessWidget {
                               style: TextStyle(fontSize: 20),
                             ),
                             SizedBox(height: 5),
-                            Text("10: 30 AM",
+                            Text(DateFormat("h:m a").format(doc.updatedAt),
                                 style: TextStyle(color: Colors.grey))
                           ],
                         ),
@@ -137,7 +165,7 @@ class DocTiles extends StatelessWidget {
   }
 
   Future<bool> alertDialog(
-      DismissDirection direction, BuildContext context) async {
+      DismissDirection direction, BuildContext context, String id) async {
     return showDialog(
       context: context,
       builder: (context) => AlertDialog(
@@ -145,8 +173,17 @@ class DocTiles extends StatelessWidget {
         content: Text("this action is irreversible"),
         actions: [
           TextButton(
-            onPressed: () =>
-                Navigator.of(context, rootNavigator: true).pop(true),
+            onPressed: () async {
+              EasyLoading.show(status: "Deleting document");
+              bool success = await _dataCubit.deleteDoc(id);
+              if (success) {
+                EasyLoading.showSuccess("Document deleted");
+                Navigator.of(context, rootNavigator: true).pop(true);
+              } else {
+                EasyLoading.showError('Document not deleted, try again');
+                Navigator.pop(context);
+              }
+            },
             child: Text("DELETE", style: TextStyle(color: Colors.redAccent)),
           ),
           TextButton(

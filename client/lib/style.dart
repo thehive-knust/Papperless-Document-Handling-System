@@ -16,3 +16,18 @@ const DETAILPAGE = "/detail_page";
 const SENDPAGE = "/send_page";
 const DESKTOPAUTHPAGE = "/desktop_auth_page";
 const AUTHPAGE = "/auth_page";
+
+InputDecoration authInputDecoration(String hint) => InputDecoration(
+  filled: true,
+  fillColor: primaryLight,
+  hintText: hint,
+  hoverColor: primary.withOpacity(.15),
+  border: OutlineInputBorder(
+    borderRadius: BorderRadius.circular(7),
+    borderSide: BorderSide.none,
+  ),
+  focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(7), 
+  borderSide: BorderSide(color: primary),
+  )
+            
+);

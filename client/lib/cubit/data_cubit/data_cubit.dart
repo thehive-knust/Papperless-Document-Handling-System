@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 import 'package:softdoc/models/department.dart';
 import 'package:softdoc/models/doc.dart';
@@ -13,8 +14,9 @@ class DataCubit extends Cubit<DataState> {
   static List<Department> departments = [];
   static Department selectedDept;
   static List<String> approvals = [];
-  List<Doc> sentDocs;
-  List<Doc> receivedDocs;
+  static String searchString = "";
+  List<Doc> sentDocs = [];
+  List<Doc> receivedDocs = [];
   // Department selectedDept = departments[0];
   // List<String> approvals
 
@@ -42,9 +44,9 @@ class DataCubit extends Cubit<DataState> {
       await getDepts(); // get departments in user's college
       await getUsersInDept(); // get users in user's department
       selectedDept = departments.singleWhere((dept) => dept.id == user.deptId);
-      // await getSent(); // get sent documents
+      // get sent documents
       // get revieved documents
-      emit(SentDoc(Doc.sentDocs));
+      emit(Authenticated());
       return false;
     }
   }
@@ -83,17 +85,66 @@ class DataCubit extends Cubit<DataState> {
   //TODO: document handling code:--------------------------------------
 
   //TODO: get Sent docs:
-  Future<void> getSent() async {
+  Future<void> downloadDocs() async {
     dynamic jsonData = await FlaskDatabase.getSentDocsByUserId(user.id);
     if (jsonData == null) {
+      emit(SentDoc(null));
     } else if (jsonData.keys.contains('message')) {
+      emit(SentDoc(null));
     } else {
+      sentDocs.clear();
       jsonData['documents'].forEach((docJson) {
         sentDocs.add(Doc.fromJson(docJson));
       });
+      sentDocs.sort((a, b) {
+        // earliest in front
+        if (a.updatedAt.isAfter(b.updatedAt)) {
+          return -1;
+        } else if (a.updatedAt.isBefore(b.updatedAt)) {
+          return 1;
+        }
+        return 0;
+      });
       print(sentDocs.toString());
+      emit(SentDoc(getSections(sentDocs)));
     }
-    emit(SentDoc(Doc.sentDocs));
+  }
+
+  //TODO: implement the get doc filtering
+  void getAll(bool isSent) {
+    List<Doc> allDocs;
+    if (isSent) {
+      allDocs = searchDocs(sentDocs);
+      emit(SentDoc(getSections(allDocs)));
+    } else {
+      allDocs = searchDocs(receivedDocs);
+      emit(ReceivedDoc(getSections(allDocs)));
+    }
+  }
+
+  void getDocs(bool isSent, [String status = ""]) {
+    List<Doc> docs;
+    if (isSent) {
+      docs = status.isNotEmpty
+          ? sentDocs.where((doc) => doc.status == status).toList()
+          : sentDocs;
+      docs = searchDocs(docs);
+      emit(SentDoc(getSections(docs)));
+    } else {
+      docs = status.isNotEmpty
+          ? receivedDocs.where((doc) => doc.status == status).toList()
+          : receivedDocs;
+      docs = searchDocs(docs);
+      emit(ReceivedDoc(getSections(docs)));
+    }
+  }
+
+
+  List<Doc> searchDocs(List<Doc> docs) {
+    return searchString.isNotEmpty
+        ? docs.where((doc) =>
+            doc.subject.toLowerCase().contains(searchString.toLowerCase())).toList()
+        : docs;
   }
 
   //TODO: get reveived docs:
@@ -106,13 +157,11 @@ class DataCubit extends Cubit<DataState> {
         receivedDocs.add(Doc.fromJson(docJson));
       });
     }
-    emit(ReveivedDoc(Doc.reveivedDocs));
+    emit(ReceivedDoc(Doc.reveivedDocs));
   }
 
   //TODO: upload doc:
-  Future<bool> uploadDoc(Doc doc) async => await FlaskDatabase.sendDoc(doc);
-    
-  
+  Future<bool> uploadDoc(Doc doc) => FlaskDatabase.sendDoc(doc);
 
   //TODO: getDoc:
   Future<Doc> getDoc(docId) async {
@@ -123,6 +172,10 @@ class DataCubit extends Cubit<DataState> {
       return Doc.fromJson(jsonData);
     }
   }
+
+  //TODO; delete doc:
+  Future<bool> deleteDoc(docId) =>
+      FlaskDatabase.delectDocumentByDocumentId(docId);
 
   //TODO: getUserData:
 

@@ -34,29 +34,24 @@ class Doc {
 
   factory Doc.fromJson(Map<String, dynamic> json) {
     return Doc(
-      id: json['id'],
-      status: json['status'],
-      subject: json['subject'] ?? null,
-      description: json['description'] ?? null,
-      senderId: json['user_id'],
-      createdAt: json['createdAt'] ?? null,
-      updatedAt: json['updatedAt'] ?? null,
-      fileUrl: json['fileUrl'] ?? null,
-    );
+        id: json['id'].toString(),
+        status: json['progress'],
+        subject: json['subject'] ?? null,
+        description: json['description'] ?? null,
+        senderId: json['user_id'].toString(),
+        createdAt: DateTime.parse(json['created_at']) ?? DateTime.now(),
+        updatedAt: DateTime.parse(json['updated_at']) ?? DateTime.now(),
+        fileUrl: json['file'] ?? null,
+        filename: json['name'] ?? null,
+        approvalProgress: Map<String, String>.from(json['approval_list']));
   }
 
   Map<String, dynamic> toMap() {
     return {
-      // 'id': this.id,
       'subject': this.subject ?? "",
       'description': this.description ?? "",
       'user_id': this.senderId,
       'recipients': jsonEncode(this.approvalProgress)
-      // 'createdAt': this.createdAt,
-      // 'updatedAt': this.updatedAt,
-      // 'file': http.MultipartFile()
-      // 'fileBytes': this.fileBytes,
-      // 'fileName' : this.filename
     };
   }
 
@@ -75,6 +70,7 @@ class Doc {
           fileUrl: "http://africau.edu/images/default/sample.pdf",
           filename: "sample.pdf",
           createdAt: DateTime.now(),
+          updatedAt: DateTime.now(),
           status: "cancelled",
           description:
               "Lorem ipsum dolor sit amet, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat 'pending'a pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
@@ -88,6 +84,8 @@ class Doc {
               "3": 'rejected',
               "4": 'pending'
             },
+            createdAt: DateTime.now(),
+            updatedAt: DateTime.now(),
             status: 'rejected'),
         Doc(
             id: "3",
@@ -98,6 +96,8 @@ class Doc {
               "3": 'approved',
               "4": 'approved'
             },
+            createdAt: DateTime.now(),
+            updatedAt: DateTime.now(),
             status: 'approved'),
       ],
     },
