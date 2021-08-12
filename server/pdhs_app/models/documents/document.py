@@ -64,7 +64,7 @@ class Document(db.Model):
         doc = {
             'id': self.id,
             'user_id': self.user_id,
-            'name': self.name,
+            'name': self.name.split('_').pop(),
             'subject': self.subject,
             'file': self.file,
             'description': self.description,

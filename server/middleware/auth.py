@@ -100,13 +100,16 @@ def register():
                 email=email,
                 password=password,
                 portfolio_id=portfolio_id,
-                department_id=department_id,
-                faculty_id=faculty_id,
+                registered_at=datetime.utcnow(),
                 college_id=college_id
             )
+            if department_id is not None:
+                new_user.department_id = department_id
+            elif faculty_id is not None:
+                new_user.faculty_id = faculty_id
             try:
                 new_user.save_to_db()
-            except Exception as e:
+            except:
                 print(
                     "Error saving user to database: ..............................\n", e)
                 return jsonify(msg="Could not save new user to database"), 500
