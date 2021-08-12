@@ -52,13 +52,22 @@ def check_if_token_revoked(jwt_header, jwt_payload):
 def register():
     if request.method == 'POST':
         request_data = request.get_json()
-        id = request_data['user_id']
-        first_name = request_data['first_name']
-        last_name = request_data['last_name']
-        email = request_data['email']
-        password = request_data['password']
-        portfolio_id = request_data['portfolio_id']
-        department_id = request_data['department_id']
+        if request_data:
+            id = request_data['user_id']
+            first_name = request_data['first_name']
+            last_name = request_data['last_name']
+            email = request_data['email']
+            password = request_data['password']
+            portfolio_id = request_data['portfolio_id']
+            department_id = request_data['department_id']
+        else:
+            id = request['user_id']
+            first_name = request['first_name']
+            last_name = request['last_name']
+            email = request['email']
+            password = request['password']
+            portfolio_id = request['portfolio_id']
+            department_id = request['department_id']
 
         error = None
 
