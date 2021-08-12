@@ -16,10 +16,18 @@ def get_user_by_id(user_id):
     Query the database and return a single user that matches the specified id
     """
     if request.method == 'GET':
-        user = User.find_by_id(user_id)
-    if user is not None:
-        return jsonify(user.to_json())
-    return jsonify(msg="User not found"), 404
+        error_msg = None
+        try:
+            user = User.find_by_id(user_id)
+            if user is None:
+                error_msg = f'No user with ID {user_id} found'
+        except:
+            error_msg = 'Error occured finding user'
+        if error_msg is not None:
+            return jsonify(msg=error_msg), 404
+        elif user is not None:
+            return jsonify(user.to_json()), 200
+
 
 
 @bp.route('/<string:email>', methods=['GET'])
@@ -66,15 +74,3 @@ def get_all_users():
         if len(users) == 0 or len(result) == 0:
             return jsonify({'msg': 'Ther are no registered users'}), 404
         return jsonify({'users': users})
-
-@bp.route('delete/<int:user_id>', methods=['DELETE'])
-def delete_user(user_id):
-    if request.method == 'DELETE':
-        user = User.find_by_id(user_id)
-    if user is not None:
-        try:
-            user.delete_from_db()
-        except:
-            return jsonify(msg="Error deleting user."), 500
-
-    return jsonify(msg="User not found"), 404

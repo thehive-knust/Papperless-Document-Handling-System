@@ -1,2 +1,0 @@
-io/scer/native_pdf_renderer/BuildConfig.java
- io.scer.native_pdf_renderer.BuildConfig

@@ -15,14 +15,14 @@ It can be used standalone, in place of Pipenv.
 
 ### Basic Usage
 
-**Create a virtual environment for a project:**
--- `cd project_folder`
+**Create a virtual environment for a project:**\
+-- `cd project_folder`\
 -- `virtualenv venv`
 
-**Install project dependencies using pip:**
+**Install project dependencies using pip:**\
 -- `pip install -r requirements.txt`
 
-**Save project dependencies using pip:**
+**Save project dependencies using pip:**\
 -- `pip freeze > requirements.txt`
 
 ### Read more about virtual environment here
@@ -31,37 +31,37 @@ It can be used standalone, in place of Pipenv.
 
 # You can set your system up for flask
 
-Before you install flask make sure you have python installed on your pc
+Before you install flask make sure you have python installed on your pc\
 -- pip install flask
 
 # And install the following libraries or packages:
 
--- pip install flask-mysqldb
--- pip install passlib
+-- pip install flask-mysqldb\
+-- pip install passlib\
 -- pip install requests
 
 # Extra setup
 
--- Create a `.env ` file in the root folder i.e. `server`
--- In the .env file set INSTANCE_PATH="absolute/path/to/root/folder"
--- Set SECRET_KEY
--- Set SQL_LITE_PATH="name_of_sqlite_db_to_be_created"
+-- Create a `.env ` file in the root folder i.e. `server`\
+-- In the .env file set INSTANCE_PATH="absolute/path/to/root/folder"\
+-- Set SECRET_KEY\
+-- Set SQL_LITE_PATH="name_of_sqlite_db_to_be_created"\
 -- Contact the Project Manager for other sensitive environment variables which are excluded for security reasons
 
 # To run the application
 
---Set FLASK*APP environment variable to pdhs_app (app module) in the terminal using:*
-`$env:FLASK_APP='pdhs_app'`
+--Set FLASK*APP environment variable to pdhs_app (app module) in the terminal using:*\
+`$env:FLASK_APP='pdhs_app'`\
 -- Run the file `run.py`
 
 # Miscellaneous
 
-**Migrations**
-Migration is done using flask migrated
+**Migrations**\
+Migration is done using flask migrated\
 You can learn more here: https://flask-migrate.readthedocs.io/
 
-**Others**
--- Flask-SQLAlchemy as ORM
+**Others**\
+-- Flask-SQLAlchemy as ORM\
 -- This project utilizes sqlite database for local development and an SQL server for production
 
 # APIs
@@ -77,4 +77,4 @@ Get All Users : /user/all
 Upload document : /document/upload\
 Get new documents : /document/new/{user_id}\
 Get approved docs : /document/approved/{user_id}\
-Get rejected docs : /document/rejected/{user_id}
+Get rejected docs : /document/rejected/{user_id}\

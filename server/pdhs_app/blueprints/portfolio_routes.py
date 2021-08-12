@@ -44,6 +44,8 @@ def get_portfolio_by_id(portfolio_id):
         error_msg = None
         try:
             portfolio = Portfolio.find_by_id(portfolio_id)
+            if portfolio is None:
+                error_msg = f'No portfolio with ID {portfolio_id} found'
         except:
             error_msg = 'Error occured finding portfolio'
         if error_msg is not None:
@@ -60,8 +62,6 @@ def create_portfolio():
     if request.method == 'POST':
         id = request.json.get('id', None)
         name = request.json.get('name', None)
-        can_approve = request.json.get('can_approve', None)
-        is_student = request.json.get('is_student', None)
         error_msg = None
         if not id:
             error_msg = 'Id is required.'
@@ -72,9 +72,7 @@ def create_portfolio():
         else:
             new_portfolio = Portfolio(
                 id=id,
-                name=name,
-                can_approve=bool(can_approve),
-                is_student=bool(is_student)
+                name=name
             )
             try:
                 new_portfolio.save_to_db()

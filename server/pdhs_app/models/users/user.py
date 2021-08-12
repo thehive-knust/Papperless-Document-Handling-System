@@ -1,18 +1,27 @@
 from database.db import db
 from pdhs_app.common.utils import Utils
 import pdhs_app.models.users.errors as UserErrors
+from datetime import datetime
 
 
 class User(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True, autoincrement=False)
     first_name = db.Column(db.String(50), nullable=False)
     last_name = db.Column(db.String(50), nullable=False)
     email = db.Column(db.String(50), nullable=False)
     password = db.Column(db.String(255), nullable=False)
     portfolio_id = db.Column(db.Integer, db.ForeignKey(
         'portfolio.id'), nullable=False)
+    college_id = db.Column(db.Integer, db.ForeignKey(
+        'college.id'), nullable=False)
+    faculty_id = db.Column(db.Integer, db.ForeignKey(
+        'faculty.id'), nullable=True)
     department_id = db.Column(db.Integer, db.ForeignKey(
-        'department.id'), nullable=False)
+        'department.id'), nullable=True)
+    registered_at = db.Column(db.DateTime, nullable=False,
+                              default=db.func.now())
+    last_login = db.Column(db.DateTime, nullable=True)
+    login_count = db.Column(db.Integer, nullable=False, default=0)
     documents = db.relationship(
         "Document", lazy='select', backref=db.backref('user', lazy='joined'))
     comments = db.relationship(
@@ -47,10 +56,12 @@ class User(db.Model):
             'first_name': self.first_name,
             'last_name': self.last_name,
             'email': self.email,
-            'department': self.department.to_json(),
-            'faculty': self.faculty.to_json(),
-            'college': self.college.to_json(),
-            'portfolio': self.portfolio.to_json()
+            'portfolio_id': self.portfolio_id if self.portfolio else None,
+            'department_id': self.department_id if self.department else None,
+            'faculty_id': self.faculty_id if self.faculty else None,
+            'college_id': self.college_id if self.college else None,
+            'registered_at': self.registered_at,
+            'last_login': self.last_login if self.last_login else None
         }
 
     @staticmethod
@@ -99,5 +110,3 @@ class User(db.Model):
         new_user = User(user_id, first_name, last_name, email,
                         password, portfolio_id, department_id).save_to_db()
         return True
-
-    

@@ -1,4 +1,0 @@
-io/flutter/plugins/GeneratedPluginRegistrant.java
- io.flutter.plugins.GeneratedPluginRegistrant
-com/thehive/softdoc/BuildConfig.java
- com.thehive.softdoc.BuildConfig

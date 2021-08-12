@@ -2,12 +2,12 @@ from pdhs_app import db
 
 
 class Comment(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     sender_id = db.Column(db.Integer, db.ForeignKey(
         'user.id'), nullable=False)
-    document_id = db.Column(db.String(100), db.ForeignKey(
+    document_id = db.Column(db.Integer, db.ForeignKey(
         'document.id'), nullable=False)
-    content = db.Column(db.String(255), nullable=True)
+    content = db.Column(db.String(1000), nullable=True)
 
     def __repr__(self):
         return '<Comment on %r>' % self.document_id

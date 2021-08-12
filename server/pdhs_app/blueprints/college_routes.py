@@ -44,6 +44,8 @@ def get_college_by_id(college_id):
         error_msg = None
         try:
             college = College.find_by_id(college_id)
+            if college is None:
+                error_msg = f'No college with ID {college_id} found'
         except:
             error_msg = 'Error occured finding college'
         if error_msg is not None:
@@ -60,21 +62,17 @@ def create_college():
     if request.method == 'POST':
         id = request.json.get('id', None)
         name = request.json.get('name', None)
-        provost_id = request.json.get('provost_id', None)
         error_msg = None
         if not id:
             error_msg = 'Id is required.'
         elif not name:
             error_msg = 'Name is required.'
-        elif not provost_id:
-            provost_id = 0
         if error_msg is not None:
             return jsonify(msg=error_msg), 500
         else:
             new_college = College(
                 id=id,
-                name=name,
-                provost_id=provost_id
+                name=name
             )
             try:
                 new_college.save_to_db()
@@ -91,7 +89,6 @@ def update_college(college_id):
     if request.method == 'PUT':
         college_id = request.json.get('id', None)
         name = request.json.get('name', None)
-        provost_id = request.json.get('provost_id', None)
 
         if not college_id:
             return jsonify(msg='Id is required.'), 500
@@ -101,8 +98,6 @@ def update_college(college_id):
                 if new_college is not None:
                     if name is not None:
                         new_college.name = name
-                    if provost_id is not None:
-                        new_college.provost_id = provost_id
                     new_college.save_to_db()
             except:
                 return jsonify(msg='Error updating College'), 500

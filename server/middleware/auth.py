@@ -27,7 +27,7 @@ def user_identity_lookup(user):
 
 
 @jwt.user_lookup_loader
-def user_lookup_callback(_jwt_header, jwt_data):
+def user_lookup_callback(jwt_header, jwt_data):
     identity = jwt_data["sub"]
     user = User.find_by_id(identity)
     return user if user else None
@@ -41,6 +41,12 @@ def refresh():
     return jsonify(access_token=access_token)
 
 
+@jwt.token_verification_loader
+def verify_token(jwt_header, jwt_data):
+    print('verify_token', jwt_header)
+    return True
+
+
 @jwt.token_in_blocklist_loader
 def check_if_token_revoked(jwt_header, jwt_payload):
     jti = jwt_payload["jti"]
@@ -51,26 +57,17 @@ def check_if_token_revoked(jwt_header, jwt_payload):
 @bp.route('/register', methods=['POST'])
 def register():
     if request.method == 'POST':
-        request_data = request.get_json()
-        if request_data:
-            id = request_data['user_id']
-            first_name = request_data['first_name']
-            last_name = request_data['last_name']
-            email = request_data['email']
-            password = request_data['password']
-            portfolio_id = request_data['portfolio_id']
-            department_id = request_data['department_id']
-        else:
-            id = request['user_id']
-            first_name = request['first_name']
-            last_name = request['last_name']
-            email = request['email']
-            password = request['password']
-            portfolio_id = request['portfolio_id']
-            department_id = request['department_id']
+        id = request.json.get('id', None)
+        first_name = request.json.get('first_name', None)
+        last_name = request.json.get('last_name', None)
+        email = request.json.get('email', None)
+        password = request.json.get('password', None)
+        portfolio_id = request.json.get('portfolio_id', None)
+        department_id = request.json.get('department_id', None)
+        faculty_id = request.json.get('faculty_id', None)
+        college_id = request.json.get('college_id', None)
 
         error = None
-
         if not email:
             error = 'Email is required.'
         elif not first_name:
@@ -81,10 +78,12 @@ def register():
             error = 'Last name is required.'
         elif not portfolio_id:
             error = 'Portfolio is required.'
-        elif not department_id:
-            error = 'Department is required.'
         elif not password:
             error = 'Password is required.'
+        elif department_id and not (faculty_id and college_id):
+            error = 'Faculty and College IDs are required if Dept is provided.'
+        elif faculty_id and not college_id:
+            error = 'College ID is required if faculty is provided.'
         elif User.find_by_id(id) is not None:
             error = f"The ID {id} is already registered."
         elif User.find_by_email(email) is not None:
@@ -101,11 +100,18 @@ def register():
                 email=email,
                 password=password,
                 portfolio_id=portfolio_id,
-                department_id=department_id
+                registered_at=datetime.utcnow(),
+                college_id=college_id
             )
+            if department_id is not None:
+                new_user.department_id = department_id
+            elif faculty_id is not None:
+                new_user.faculty_id = faculty_id
             try:
                 new_user.save_to_db()
             except:
+                print(
+                    "Error saving user to database: ..............................\n", e)
                 return jsonify(msg="Could not save new user to database"), 500
             return jsonify({'msg': 'User created successfully'}), 201
 
@@ -117,10 +123,15 @@ def login():
         password = request.json.get('password', None)
         try:
             user = User.find_by_id(id)
+            if not user:
+                return jsonify(msg="User Doesn't Exist")
         except:
-            return jsonify(message="User Don't Exist")
+            return jsonify(msg="Error finding user")
         correct_password = check_password_hash(user.password, password)
-        if id is not None and correct_password:
+        if user is not None and correct_password:
+            user.last_login = datetime.utcnow()
+            user.login_count += 1
+            user.save_to_db()
             access_token = create_access_token(identity=user)
             refresh_token = create_refresh_token(identity=user)
             return jsonify(access_token=access_token, refresh_token=refresh_token, user=user.to_json()), 200
@@ -134,6 +145,7 @@ def login():
 @jwt_required()
 def modify_token():
     jti = get_jwt()["jti"]
+    print(get_jwt())
     now = datetime.now(timezone.utc)
     token_block = TokenBlocklist(
         jti=jti, created_at=now, created_by=current_user.id)

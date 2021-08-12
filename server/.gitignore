@@ -1,11 +1,14 @@
 .env
 venv/
 
+# Migrations
+migrations/
+
 *.pyc
 __pycache__/
 __pycache__
 instance/
-
+keys/
 .pytest_cache/
 .coverage
 htmlcov/

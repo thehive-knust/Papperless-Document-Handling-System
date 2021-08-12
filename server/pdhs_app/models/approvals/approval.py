@@ -1,11 +1,15 @@
 from database.db import db
 from pdhs_app.models.approvals import errors as ApprovalErrors
 
+
 class Approval(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    document_id = db.Column(db.Integer, db.ForeignKey('document.id'), nullable=False)
-    recipient_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-    status = db.Column(db.Boolean)
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    name = db.Column(db.String(50), nullable=False)
+    document_id = db.Column(db.Integer, db.ForeignKey(
+        'document.id'), nullable=False)
+    recipient_id = db.Column(
+        db.Integer, db.ForeignKey('user.id'), nullable=False)
+    status = db.Column(db.Boolean, default=False)
 
     def __init__(self, id, document_id, recipient_id, status):
         self.id = id
@@ -21,7 +25,8 @@ class Approval(db.Model):
         try:
             result = cls.query.filter_by(id=id).first()
         except:
-            raise ApprovalErrors.ApprovalDontExistError(f"Approval with {id} does not exist")
+            raise ApprovalErrors.ApprovalDontExistError(
+                f"Approval with {id} does not exist")
         return result
 
     def save_to_db(self):

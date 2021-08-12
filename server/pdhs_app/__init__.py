@@ -1,5 +1,6 @@
 import os
-from flask import Flask
+from flask import Flask, request, flash, redirect, url_for
+from werkzeug.utils import secure_filename
 from database.db import db, migrate
 from middleware.security import jwt
 from flask_cors import CORS
@@ -21,7 +22,11 @@ def create_app(*args, **kwargs):
     Initialize core application using app factory.
     """
     try:
-        env = kwargs['env']
+        # Check if an environment is specified in the shell
+        # Else default to one specified as a keyword argument
+        env = os.environ.get('env', None)
+        if env is None:
+            env = kwargs['env']
     except KeyError as e:
         env = 'development'
         print('Error:', e, 'Environment was not specified, defaulting to development')
@@ -32,14 +37,11 @@ def create_app(*args, **kwargs):
     app.config['ENV'] = env
     app.config.from_object('config.%s' % env)
 
-    app.config['SQLALCHEMY_DATABASE_URI'] = app.config['DATABASE_URI']
-    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-
     # ensure the instance folder exists
     try:
         os.makedirs(app.instance_path)
-    except OSError:
-        pass
+    except OSError as e:
+        print(e)
 
     # Initialize CORS
     CORS(app)
@@ -51,9 +53,9 @@ def create_app(*args, **kwargs):
     db.init_app(app)
     migrate.init_app(app, db, render_as_batch=True)
 
-    @app.route('/')
+    @app.route('/', methods=['GET', 'POST'])
     def hello():
-        return "Hello from root of app /"
+        return 'Hello from app root'
 
     # Register Blueprints
     app.register_blueprint(auth_bp)
@@ -69,6 +71,6 @@ def create_app(*args, **kwargs):
     with app.app_context():
 
         # Reset Database
-        db.drop_all()   # Comment out if you want to use flask_migrate
+        # db.drop_all()   # Comment out if you want to use flask_migrate
         db.create_all()  # Comment out if you want to use flask_migrate
     return app
