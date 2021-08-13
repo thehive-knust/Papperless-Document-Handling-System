@@ -1,0 +1,31 @@
+859011	Provost
+859022	College Registrar
+859033	College Accountant
+859044	Senior Assistant Registrar
+859055	Junior Assistant Registrar
+859066	College Librarian
+859077	Head of Department
+859078	Dean of Faculty
+859079	Property Facilitator
+859080	Administrative Staff
+859081	Senior Technician
+859082	Senior Clerk
+859083	Senior Adminstrative Assistant
+859084	Chief Technician
+859085	Technician
+859086	Technical Staff
+859087	Chief Draughtsman
+859088	Draughtsman
+859089	Foreman (Welder)
+859090	Laborer
+859091	Storekeeper
+859092	Assistant Transport Officer
+859093	Workshop Supervisor
+859094	Artisan
+859095	Head Cleaner
+209080	President
+209081	Vice President
+209082	General Secretary
+209083	Financial Secretary
+209084	Women Commissioner
+209085	Organizer                                                                                                                                                                                                                                                                                                                                       
