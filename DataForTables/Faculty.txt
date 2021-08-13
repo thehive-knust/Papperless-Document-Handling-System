@@ -1,0 +1,4 @@
+FACOEC&G4	Civil and Geo	CKCOE3
+FACOEE&C3	Electrical and Computer	CKCOE3
+FACOEM&C4	Mechanical and Chemical	CKCOE3
+
