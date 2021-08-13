@@ -15,7 +15,7 @@ class DataCubit extends Cubit<DataState> {
   static Department selectedDept;
   static List<String> approvals = [];
   static String searchString = "";
-  List<Doc> sentDocs = [];
+  List<Doc> sentDocs; //DONE: don't initialize sentdocs here
   List<Doc> receivedDocs = [];
   // Department selectedDept = departments[0];
   // List<String> approvals
@@ -92,7 +92,8 @@ class DataCubit extends Cubit<DataState> {
     } else if (jsonData.keys.contains('message')) {
       emit(SentDoc(null));
     } else {
-      sentDocs.clear();
+      // sentDocs.clear(); //TODO: initialize the sentdocs here instead.
+      sentDocs = [];
       jsonData['documents'].forEach((docJson) {
         sentDocs.add(Doc.fromJson(docJson));
       });
@@ -110,40 +111,36 @@ class DataCubit extends Cubit<DataState> {
     }
   }
 
-  //TODO: implement the get doc filtering
-  void getAll(bool isSent) {
-    List<Doc> allDocs;
-    if (isSent) {
-      allDocs = searchDocs(sentDocs);
-      emit(SentDoc(getSections(allDocs)));
-    } else {
-      allDocs = searchDocs(receivedDocs);
-      emit(ReceivedDoc(getSections(allDocs)));
-    }
-  }
-
   void getDocs(bool isSent, [String status = ""]) {
+    // check if sentDocs is null, if it is emit null;
     List<Doc> docs;
-    if (isSent) {
-      docs = status.isNotEmpty
-          ? sentDocs.where((doc) => doc.status == status).toList()
-          : sentDocs;
-      docs = searchDocs(docs);
-      emit(SentDoc(getSections(docs)));
-    } else {
-      docs = status.isNotEmpty
-          ? receivedDocs.where((doc) => doc.status == status).toList()
-          : receivedDocs;
-      docs = searchDocs(docs);
-      emit(ReceivedDoc(getSections(docs)));
+    if (isSent) { // sentDocs code:-----------------------------------
+      if (sentDocs != null) {
+        docs = status.isNotEmpty
+            ? sentDocs.where((doc) => doc.status == status).toList()
+            : sentDocs;
+        docs = searchDocs(docs);
+        emit(SentDoc(getSections(docs)));
+      } else
+        emit(SentDoc(null));
+    } else { // receivedDocs code:-------------------------------------
+      if (receivedDocs != null) {
+        docs = status.isNotEmpty
+            ? receivedDocs.where((doc) => doc.status == status).toList()
+            : receivedDocs;
+        docs = searchDocs(docs);
+        emit(ReceivedDoc(getSections(docs)));
+      } else
+        emit(ReceivedDoc(null));
     }
   }
-
 
   List<Doc> searchDocs(List<Doc> docs) {
     return searchString.isNotEmpty
-        ? docs.where((doc) =>
-            doc.subject.toLowerCase().contains(searchString.toLowerCase())).toList()
+        ? docs
+            .where((doc) =>
+                doc.subject.toLowerCase().contains(searchString.toLowerCase()))
+            .toList()
         : docs;
   }
 

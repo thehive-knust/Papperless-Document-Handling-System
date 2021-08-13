@@ -24,7 +24,7 @@ class ReceivedDoc extends DataState {
     List<List> sections = [
       ["Today"],
       ["Yesterday"],
-      ["Last week"],
+      ["This week"],
       ["Earlier"]
     ];
     final now = DateTime.now();

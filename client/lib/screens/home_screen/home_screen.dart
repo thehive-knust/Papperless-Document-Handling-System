@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:softdoc/cubit/android_nav_cubit/AndroidNav_cubit.dart';
 import 'package:softdoc/cubit/data_cubit/data_cubit.dart';
 import 'package:softdoc/cubit/desktop_nav_cubit/desktopnav_cubit.dart';
 import 'package:softdoc/screens/home_screen/doc_tile.dart';
-import 'package:softdoc/screens/home_screen/transition_animation.dart';
-import 'package:softdoc/screens/send_doc_screen/send_doc_screen.dart';
 import '../../models/doc.dart';
 import 'package:softdoc/style.dart';
 
@@ -24,7 +21,7 @@ class _HomeScreenState extends State<HomeScreen> {
   DesktopNavCubit _desktopNavCubit;
   DataCubit _dataCubit;
   String bottomNavSelector = "Sent";
-  int what = 0;
+  int optionSel = 0;
 
   @override
   void initState() {
@@ -47,19 +44,19 @@ class _HomeScreenState extends State<HomeScreen> {
       ..errorWidget = Icon(Icons.cancel_rounded, size: 50, color: Colors.red);
   }
 
-  void searchWhat() {
+  void getDocsByOption() {
     // anytime the user filters the document, we want to get the appropiate
     // docs,
     // if he searches, he searches the filtered docs,
     //this methods keeps track of the filtering type.
     bool isSent = bottomNavSelector == 'Sent' ? true : false;
-    if (what == 0)
+    if (optionSel == 0)
       _dataCubit.getDocs(isSent);
-    else if (what == 1)
+    else if (optionSel == 1)
       _dataCubit.getDocs(isSent, 'pending');
-    else if (what == 2)
+    else if (optionSel == 2)
       _dataCubit.getDocs(isSent, 'approved');
-    else if (what == 3) _dataCubit.getDocs(isSent, 'rejected');
+    else if (optionSel == 3) _dataCubit.getDocs(isSent, 'rejected');
   }
 
   @override
@@ -92,21 +89,36 @@ class _HomeScreenState extends State<HomeScreen> {
         backgroundColor: Colors.transparent,
         actionsIconTheme: IconThemeData(color: primaryDark),
         actions: [
-          PopupMenuButton(
-            icon: Icon(Icons.sort_rounded),
-            onSelected: (val) {
-              what = val;
-              searchWhat();
-            },
-            itemBuilder: (context) => ["All", "Pending", "Approved", "Rejected"]
-                .asMap()
-                .entries
-                .map(
-                  (option) => PopupMenuItem(
-                      value: option.key, child: Text(option.value)),
-                )
-                .toList(),
+          Container(
+            width: 115,
+            height: double.infinity,
+            alignment: Alignment.center,
+            padding: EdgeInsets.symmetric(horizontal: 10),
+            margin: EdgeInsets.symmetric(vertical: 10),
+            decoration: BoxDecoration(
+                color: Colors.white, borderRadius: BorderRadius.circular(10)),
+            child: DropdownButton<int>(
+              value: optionSel,
+              isExpanded: true,
+              iconEnabledColor: primaryDark,
+              underline: SizedBox.shrink(),
+              onChanged: (newVal) {
+                optionSel = newVal;
+                getDocsByOption();
+              },
+              items: ["All", "Pending", "Approved", "Rejected"]
+                  .asMap()
+                  .entries
+                  .map(
+                    (option) => DropdownMenuItem(
+                      value: option.key,
+                      child: Text(option.value),
+                    ),
+                  )
+                  .toList(),
+            ),
           ),
+          SizedBox(width: 10),
           PopupMenuButton(
             icon: Icon(Icons.more_vert),
             onSelected: (val) {
@@ -143,7 +155,7 @@ class _HomeScreenState extends State<HomeScreen> {
               child: TextField(
                 onChanged: (srch) {
                   DataCubit.searchString = srch;
-                  searchWhat();
+                  getDocsByOption();
                 },
                 decoration: InputDecoration(
                   contentPadding: EdgeInsets.symmetric(horizontal: 10),
@@ -207,9 +219,36 @@ class _HomeScreenState extends State<HomeScreen> {
 
   //Error widget:-----------------------------------
   Widget errorWidget() => Center(
-        child: Text(
-          "Error connecting to server, pull to refresh",
-          style: TextStyle(fontSize: 20),
+        child: Container(
+          width: double.infinity,
+          height: 500,
+          alignment: Alignment.center,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                "Error connecting to server",
+                style: TextStyle(fontSize: 17),
+              ),
+              SizedBox(height: 10),
+              ElevatedButton(
+                style: ButtonStyle(
+                  padding: MaterialStateProperty.all(
+                      EdgeInsets.symmetric(horizontal: 30, vertical: 20)),
+                  shape: MaterialStateProperty.all(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                ),
+                onPressed: () {
+                  _dataCubit.downloadDocs();
+                  _dataCubit.emit(Authenticated());
+                },
+                child: Text("Reload"),
+              )
+            ],
+          ),
         ),
       );
 
@@ -264,11 +303,12 @@ class _HomeScreenState extends State<HomeScreen> {
                           splashColor: Color(0xFF6D95E6).withOpacity(0.5),
                           borderRadius: BorderRadius.circular(70),
                           onTap: () {
+                            bottomNavSelector = map.key;
                             if (map.key == 'Sent')
-                              _dataCubit.getAll(true);
+                              // _dataCubit.getAll(true);
+                              getDocsByOption();
                             else
                               _dataCubit.emit(ReceivedDoc(Doc.reveivedDocs));
-                            bottomNavSelector = map.key;
                             setState(() {});
                           },
                           child: Column(

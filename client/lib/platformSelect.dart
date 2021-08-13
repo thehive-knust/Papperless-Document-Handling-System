@@ -13,7 +13,7 @@ class PlatformSelect extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // bool isLoggedIn = false;
-    bool isDesktop = MediaQuery.of(context).size.width > 600;
+    bool isDesktop = MediaQuery.of(context).size.width > 700;
 
     return BlocBuilder<DataCubit, DataState>(
       builder: (context, state) {
