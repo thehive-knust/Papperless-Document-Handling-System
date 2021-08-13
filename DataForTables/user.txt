@@ -1,6 +1,8 @@
-20588778	Andrews	Tang	andrewstangeng@gmail.com	3587618	859066	COE	FACOEE&C3	DEFACOE	
+20588778	Andrews	Tang	cocasticmustdo@gmail.com	3587618	859066	COE	FACOEE&C3	DEFACOE	
 20620926	Abdul-Mateen Demah	Saeed	saeedabdulmateen0369@gmail.com	3587518	859077	COE	FACOEE&C3	DEFACOE
 20622405	Emmanuel	Sackey	ejasnuel@gmail.com	3587418	859078	COE	FACOEE&C3	DEFACOE
-20634322	Alidu Baba	Abukari	aliduabukari6@gmaol.com	3590218	859079	COE	FACOEE&C3	DEFACOE
+20634322	Alidu Baba	Abukari	testhost140@gmaol.com	3590218	859079	COE	FACOEE&C3	DEFACOE
 20269392	Deborah	Antwi	antwideborah36@gmail.com	3579918	209082	COE	FACOEE&C3	DEFACOE
 20608562	Francisca	Quayson	franciscaquayson4@gmail.com	3597518	209084	COE	FACOEE&C3	DEFACOE
+20594760	Obed	Ansah	wagesansah@gmail.com	3579718	FACOEE&C3	DEFACOE
+56221602	Elijah	Occupualor	mytestlab@gmail.com	3591218	FACOEE&C3	DEFACOE
