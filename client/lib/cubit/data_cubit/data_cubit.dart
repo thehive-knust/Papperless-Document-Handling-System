@@ -42,7 +42,7 @@ class DataCubit extends Cubit<DataState> {
       user = User.fromJson(jsonData['user']);
       print(user.toString());
       await getDepts(); // get departments in user's college
-      await getUsersInDept(); // get users in user's department
+      await getUsersInDept(user.deptId); // get users in user's department
       selectedDept = departments.singleWhere((dept) => dept.id == user.deptId);
       // get sent documents
       // get revieved documents
@@ -67,17 +67,18 @@ class DataCubit extends Cubit<DataState> {
   }
 
   //TODO: get users in department:
-  Future<void> getUsersInDept() async {
-    dynamic jsonData =
-        await FlaskDatabase.getUsersInDepartmentByDeptId(user.deptId);
+  static Future<void> getUsersInDept(String deptId,
+      [Function setMainState]) async {
+    dynamic jsonData = await FlaskDatabase.getUsersInDepartmentByDeptId(deptId);
     if (jsonData == null) {
     } else if (jsonData.keys.contains('message')) {
       print(jsonData['message']);
     } else {
-      int deptIndex = departments.indexWhere((dept) => dept.id == user.deptId);
+      int deptIndex = departments.indexWhere((dept) => dept.id == deptId);
       jsonData['department_users'].forEach((userJson) {
         departments[deptIndex].users.add(User.fromJson(userJson));
       });
+      if (setMainState != null) setMainState();
       print(departments[deptIndex].users.toString());
     }
   }
@@ -114,7 +115,8 @@ class DataCubit extends Cubit<DataState> {
   void getDocs(bool isSent, [String status = ""]) {
     // check if sentDocs is null, if it is emit null;
     List<Doc> docs;
-    if (isSent) { // sentDocs code:-----------------------------------
+    if (isSent) {
+      // sentDocs code:-----------------------------------
       if (sentDocs != null) {
         docs = status.isNotEmpty
             ? sentDocs.where((doc) => doc.status == status).toList()
@@ -123,7 +125,8 @@ class DataCubit extends Cubit<DataState> {
         emit(SentDoc(getSections(docs)));
       } else
         emit(SentDoc(null));
-    } else { // receivedDocs code:-------------------------------------
+    } else {
+      // receivedDocs code:-------------------------------------
       if (receivedDocs != null) {
         docs = status.isNotEmpty
             ? receivedDocs.where((doc) => doc.status == status).toList()

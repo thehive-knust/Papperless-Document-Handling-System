@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:uis/AddUserConfirmation/AddUserConfirmation.dart';
-import 'package:uis/AdminUser/AdminUser.dart';
-import 'package:uis/RemoveUserConfirmation/RemoveUserConfirmation.dart';
-import 'remove_user.dart';
+import '../AdminUser/AdminUser.dart';
 
-void main()=>runApp(Home());
+void main() => runApp(Home());
 
 class Home extends StatelessWidget {
-  const Home({Key? key}) : super(key: key);
+  const Home({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
