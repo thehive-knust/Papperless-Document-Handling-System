@@ -1,11 +1,11 @@
-DEFACE	CE	FACOEC&G4
-DEFAGED	GED	FACOEC&G4
-DEFAGE	GE	FACOEC&G4
-DEFAPETE	PETE	FACOEC&G4
-DEFACOE	COE	FACOEE&C3
-DEFAEE	EE	FACOEE&C3
-DEFATE	TE	FACOEE&C3
-DEFAAE	AE	FACOEM&C4
-DEFACHE	CHE	FACOEM&C4
-DEFAMSE	MSE	FACOEM&C4
-DEFAME	ME	FACOEM&C4
+CE	Department of Civil Engineering	CEGEO
+GED	Department of Geological Engineering	CEGEO
+GE	Department of Geomatic Engineering	CEGEO
+PETE	Department of Petroleum Engineering	CEGEO
+COE	Department of Computer Engineering	EECOE
+EE	Department of Electrical Engineering	EECOE
+TE	Department of Telecommunication Engineering	EECOE
+AE	Departmentof Agricultural and Biosystems Engineering	MECHE
+CHE	Department of Chemical Engineering	MECHE
+MSE	Department of Materials Engineering	MECHE
+ME	Department of Mechanical Engineering	MECHE
