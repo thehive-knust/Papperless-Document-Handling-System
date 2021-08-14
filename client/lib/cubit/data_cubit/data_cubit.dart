@@ -107,7 +107,7 @@ class DataCubit extends Cubit<DataState> {
         }
         return 0;
       });
-      print(sentDocs.toString());
+      //print(sentDocs.toString());
       emit(SentDoc(getSections(sentDocs)));
     }
   }
