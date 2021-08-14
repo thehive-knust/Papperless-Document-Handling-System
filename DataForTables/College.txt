@@ -1,6 +1,6 @@
-CKCANR4	CANR
-CKCABE4	CABE
-CKCOHSS5	COHSS
-CKCOE3	COE
-CKCHS3	CHS
-CKCOS3	COS
+CANR	College of Agriculture and Natural Resources
+CABE	College of Art and Built Environment
+COHSS	College of Humanities and Social Sciences
+COE	College of Engineering
+CHS	College of Health and Sciences
+COS	College of Science
