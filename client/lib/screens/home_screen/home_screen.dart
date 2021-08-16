@@ -29,7 +29,8 @@ class _HomeScreenState extends State<HomeScreen> {
     _androidNavCubit = BlocProvider.of<AndroidNavCubit>(context);
     _desktopNavCubit = BlocProvider.of<DesktopNavCubit>(context);
     _dataCubit = BlocProvider.of<DataCubit>(context);
-    _dataCubit.downloadDocs();
+    _dataCubit.downloadReceivedDocs();
+    _dataCubit.downloadSentDocs();
 
     EasyLoading.instance
       ..loadingStyle = EasyLoadingStyle.custom
@@ -242,7 +243,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
                 onPressed: () {
-                  _dataCubit.downloadDocs();
+                  _dataCubit.downloadSentDocs();
                   _dataCubit.emit(Authenticated());
                 },
                 child: Text("Reload"),
@@ -308,7 +309,8 @@ class _HomeScreenState extends State<HomeScreen> {
                               // _dataCubit.getAll(true);
                               getDocsByOption();
                             else
-                              _dataCubit.emit(ReceivedDoc(Doc.reveivedDocs));
+                              // _dataCubit.emit(ReceivedDoc(Doc.reveivedDocs));
+                              getDocsByOption();
                             setState(() {});
                           },
                           child: Column(

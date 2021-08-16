@@ -5,6 +5,14 @@ import 'package:softdoc/models/user.dart';
 // import 'package:softdoc/utills.dart';
 
 class FlaskDatabase {
+  static const GET_DEPT_URL = "https://soft-doc.herokuapp.com/departments/get/";
+  static const GET_USERS_IN_DEPT_URL =
+      "https://soft-doc.herokuapp.com/departments/users/";
+  static const GET_SENTDOCS_URL =
+      "https://soft-doc.herokuapp.com/documents/user/";
+  static const GET_RECEIVEDDOCS_URL =
+      "https://soft-doc.herokuapp.com/documents/new/";
+
   // -TODO: authentication:-------------------------------
   static Future<Map> authenticateWithIdAndPassword(
       String userId, String password) async {
@@ -30,6 +38,24 @@ class FlaskDatabase {
       }
     } catch (e) {
       print("authentication Error Message => " + e.toString());
+      return null;
+    }
+  }
+
+  static dynamic getApi(url) async {
+    http.Response response;
+    try {
+      response = await http.get(Uri.parse(url));
+
+      if (response.statusCode == 200) {
+        print(response.body);
+        return jsonDecode(response.body);
+      } else {
+        print(response.statusCode);
+        return null;
+      }
+    } catch (e) {
+      print("get Api error => " + e.toString());
       return null;
     }
   }
@@ -70,104 +96,21 @@ class FlaskDatabase {
   // }
 
   //TODO: implement get departments here:
-  static Future<dynamic> getDepartmentsByColId(colId) async {
-    Uri url = Uri.parse(
-        "https://soft-doc.herokuapp.com/departments/get/${int.parse(colId)}");
-    http.Response response;
-    try {
-      response = await http.get(url);
-
-      if (response.statusCode == 200) {
-        print(response.body);
-        return jsonDecode(response.body);
-      } else {
-        print(response.statusCode);
-        return null;
-      }
-    } catch (e) {
-      print("get departments error message => " + e.toString());
-      return null;
-    }
-  }
+  static Future<dynamic> getDepartmentsByColId(colId) async =>
+      getApi(GET_DEPT_URL + colId);
 
   //TODO: implement get users in deparment here:
-  static Future<dynamic> getUsersInDepartmentByDeptId(deptId) async {
-    Uri uri = Uri.parse(
-        "https://soft-doc.herokuapp.com/departments/users/${int.parse(deptId)}");
-    http.Response response;
-    try {
-      response = await http.get(uri);
-
-      if (response.statusCode == 200) {
-        print(response.body);
-        return jsonDecode(response.body);
-      } else {
-        print(response.statusCode);
-        return jsonDecode(response.body);
-      }
-    } catch (e) {
-      print("get users in department Error Message => " + e.toString());
-      return null;
-    }
-  }
+  static Future<dynamic> getUsersInDepartmentByDeptId(deptId) async =>
+      getApi(GET_USERS_IN_DEPT_URL + deptId);
 
   //TODO: implement get sent docs here:
-  static Future<dynamic> getSentDocsByUserId(userId) async {
-    Uri uri = Uri.parse(
-        "https://soft-doc.herokuapp.com/documents/user/${int.parse(userId)}");
-    http.Response response;
-    try {
-      response = await http.get(uri);
-
-      if (response.statusCode == 200) {
-        print(response.body);
-        return jsonDecode(response.body);
-      } else {
-        print(response.statusCode);
-        return null;
-      }
-    } catch (e) {
-      print("get sent documents Error Message => " + e.toString());
-      return null;
-    }
-  }
-
-  //TODO: implement getDoc by doc id:
-  static Future<dynamic> getDocByDocId(docId) async {
-    Uri uri = Uri.parse("https://soft-doc.herokuapp.com");
-    http.Response response;
-    try {
-      response = await http.get(uri);
-    } catch (e) {}
-  }
+  static Future<dynamic> getSentDocsByUserId(userId) async =>
+     getApi(GET_SENTDOCS_URL + userId);
 
   //TODO: implement get received docs here:
-  static Future<dynamic> getReveivedDocsByUserId(userId) async {
-    Uri uri = Uri.parse("");
-    http.Response response;
-    try {
-      response = await http.post(
-        uri,
-        headers: <String, String>{
-          'Content-Type': 'application/json; charset=UTF-8',
-        },
-        body: jsonEncode(
-          <String, String>{'userId': userId},
-        ),
-      );
-
-      if (response.statusCode == 200) {
-        print(response.body);
-        return jsonDecode(response.body);
-      } else {
-        print(response.statusCode);
-        return null;
-      }
-    } catch (e) {
-      print("get doc by docId Error Message => " + e.toString());
-      return null;
-    }
-  }
+  static Future<dynamic> getReceivedDocsByUserId(userId) async =>
+     getApi(GET_RECEIVEDDOCS_URL + userId);
+  
 
   //TODO: implement post document:--------------
   static Future<bool> sendDoc(Doc doc) async {

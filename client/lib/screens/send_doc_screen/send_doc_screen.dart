@@ -81,7 +81,7 @@ class _SendDocScreenState extends State<SendDocScreen> {
         widget.isDesktop
             ? _desktopNavCubit.navToHomeScreen()
             : _androidNavCubit.navToHomeScreen();
-        _dataCubit.downloadDocs();
+        _dataCubit.downloadSentDocs();
       } else {
         EasyLoading.showError('Upload unsuccessful');
       }

@@ -43,9 +43,6 @@ class DataCubit extends Cubit<DataState> {
       print(user.toString());
       await getDepts(); // get departments in user's college
       await getUsersInDept(); // get users in user's department
-      selectedDept = departments.singleWhere((dept) => dept.id == user.deptId);
-      // get sent documents
-      // get revieved documents
       emit(Authenticated());
       return false;
     }
@@ -67,25 +64,27 @@ class DataCubit extends Cubit<DataState> {
   }
 
   //TODO: get users in department:
-  Future<void> getUsersInDept() async {
-    dynamic jsonData =
-        await FlaskDatabase.getUsersInDepartmentByDeptId(user.deptId);
+  Future<void> getUsersInDept([deptId]) async {
+    if (deptId == null) deptId = user.deptId;
+    dynamic jsonData = await FlaskDatabase.getUsersInDepartmentByDeptId(deptId);
     if (jsonData == null) {
     } else if (jsonData.keys.contains('message')) {
       print(jsonData['message']);
     } else {
-      int deptIndex = departments.indexWhere((dept) => dept.id == user.deptId);
+      int deptIndex = departments.indexWhere((dept) => dept.id == deptId);
       jsonData['department_users'].forEach((userJson) {
         departments[deptIndex].users.add(User.fromJson(userJson));
       });
       print(departments[deptIndex].users.toString());
+      // selectedDept = departments.singleWhere((dept) => dept.id == user.deptId);
+      selectedDept = departments[deptIndex];
     }
   }
 
   //TODO: document handling code:--------------------------------------
 
   //TODO: get Sent docs:
-  Future<void> downloadDocs() async {
+  Future<void> downloadSentDocs() async {
     dynamic jsonData = await FlaskDatabase.getSentDocsByUserId(user.id);
     if (jsonData == null) {
       emit(SentDoc(null));
@@ -111,10 +110,37 @@ class DataCubit extends Cubit<DataState> {
     }
   }
 
+  Future<void> downloadReceivedDocs() async {
+    dynamic jsonData = await FlaskDatabase.getReceivedDocsByUserId(user.id);
+    if (jsonData == null) {
+      emit(ReceivedDoc(null));
+    } else if (jsonData.keys.contains('message')) {
+      emit(ReceivedDoc(null));
+    } else {
+      // sentDocs.clear(); //TODO: initialize the sentdocs here instead.
+      receivedDocs = [];
+      jsonData['documents'].forEach((docJson) {
+        receivedDocs.add(Doc.fromJson(docJson, false));
+      });
+      receivedDocs.sort((a, b) {
+        // earliest in front
+        if (a.updatedAt.isAfter(b.updatedAt)) {
+          return -1;
+        } else if (a.updatedAt.isBefore(b.updatedAt)) {
+          return 1;
+        }
+        return 0;
+      });
+      print(receivedDocs.toString());
+      emit(ReceivedDoc(getSections(receivedDocs)));
+    }
+  }
+
   void getDocs(bool isSent, [String status = ""]) {
     // check if sentDocs is null, if it is emit null;
     List<Doc> docs;
-    if (isSent) { // sentDocs code:-----------------------------------
+    if (isSent) {
+      // sentDocs code:-----------------------------------
       if (sentDocs != null) {
         docs = status.isNotEmpty
             ? sentDocs.where((doc) => doc.status == status).toList()
@@ -123,7 +149,8 @@ class DataCubit extends Cubit<DataState> {
         emit(SentDoc(getSections(docs)));
       } else
         emit(SentDoc(null));
-    } else { // receivedDocs code:-------------------------------------
+    } else {
+      // receivedDocs code:-------------------------------------
       if (receivedDocs != null) {
         docs = status.isNotEmpty
             ? receivedDocs.where((doc) => doc.status == status).toList()
@@ -145,30 +172,20 @@ class DataCubit extends Cubit<DataState> {
   }
 
   //TODO: get reveived docs:
-  void getReceived() async {
-    dynamic jsonData = await FlaskDatabase.getReveivedDocsByUserId(user.id);
-    if (jsonData == null) {
-    } else if (jsonData.keys.contains('message')) {
-    } else {
-      jsonData.forEach((docJson) {
-        receivedDocs.add(Doc.fromJson(docJson));
-      });
-    }
-    emit(ReceivedDoc(Doc.reveivedDocs));
-  }
+  // void getReceived() async {
+  //   dynamic jsonData = await FlaskDatabase.getReceivedDocsByUserId(user.id);
+  //   if (jsonData == null) {
+  //   } else if (jsonData.keys.contains('message')) {
+  //   } else {
+  //     jsonData.forEach((docJson) {
+  //       receivedDocs.add(Doc.fromJson(docJson));
+  //     });
+  //   }
+  //   emit(ReceivedDoc(Doc.reveivedDocs));
+  // }
 
   //TODO: upload doc:
   Future<bool> uploadDoc(Doc doc) => FlaskDatabase.sendDoc(doc);
-
-  //TODO: getDoc:
-  Future<Doc> getDoc(docId) async {
-    dynamic jsonData = await FlaskDatabase.getDocByDocId(docId);
-    if (jsonData == null) {
-    } else if (jsonData.keys.contians("message")) {
-    } else {
-      return Doc.fromJson(jsonData);
-    }
-  }
 
   //TODO; delete doc:
   Future<bool> deleteDoc(docId) =>

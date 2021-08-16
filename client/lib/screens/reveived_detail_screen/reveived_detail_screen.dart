@@ -72,9 +72,9 @@ class _ReveivedDetailScreenState extends State<ReveivedDetailScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          textRow("From: ", "Emmanuel Sackey"),
-                          textRow("Portfolio: ", "Src president"),
-                          textRow("Phone: ", "0236514784"),
+                          textRow("From: ", widget.selectedDoc.senderInfo['name']),
+                          textRow("Portfolio: ", widget.selectedDoc.senderInfo['title']),
+                          textRow("Phone: ", widget.selectedDoc.senderInfo['contact']),
                           timeBadge(widget.selectedDoc.createdAt)
                         ],
                       ),
@@ -98,7 +98,7 @@ class _ReveivedDetailScreenState extends State<ReveivedDetailScreen> {
                 child: Container(
                   height: 200,
                   width: double.infinity,
-                  child: pdfCard("name of pdf here"),
+                  child: pdfCard(widget.selectedDoc.filename),
                 ),
               ),
               SizedBox(height: 40),

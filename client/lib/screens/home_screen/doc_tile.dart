@@ -42,7 +42,7 @@ class _DocTilesState extends State<DocTiles> {
     return RefreshIndicator(
       onRefresh: () {
         //TODO: complete the on refresh
-        return _dataCubit.downloadDocs();
+        return _dataCubit.downloadSentDocs();
       },
       child: ListView.builder(
         padding: EdgeInsets.fromLTRB(0.0, 10, 0.0, 60.0),

@@ -17,6 +17,7 @@ class Doc {
   DateTime createdAt;
   DateTime updatedAt;
   Map<String, String> approvalProgress;
+  Map<String, String> senderInfo;
   Doc({
     this.id,
     this.subject,
@@ -25,6 +26,7 @@ class Doc {
     this.file,
     this.fileBytes,
     this.senderId,
+    this.senderInfo,
     this.createdAt,
     this.updatedAt,
     this.approvalProgress,
@@ -32,18 +34,20 @@ class Doc {
     this.fileUrl,
   });
 
-  factory Doc.fromJson(Map<String, dynamic> json) {
+  factory Doc.fromJson(Map<String, dynamic> json, [isSent = true]) {
     return Doc(
-        id: json['id'].toString(),
-        status: json['progress'],
-        subject: json['subject'] ?? null,
-        description: json['description'] ?? null,
-        senderId: json['user_id'].toString(),
-        createdAt: DateTime.parse(json['created_at']) ?? DateTime.now(),
-        updatedAt: DateTime.parse(json['updated_at']) ?? DateTime.now(),
-        fileUrl: json['file'] ?? null,
-        filename: json['name'] ?? null,
-        approvalProgress: Map<String, String>.from(json['approval_list']));
+      id: json['id'].toString(),
+      status: json['progress'],
+      subject: json['subject'] ?? null,
+      description: json['description'] ?? null,
+      senderId: json['user_id'].toString(),
+      createdAt: DateTime.parse(json['created_at']) ?? DateTime.now(),
+      updatedAt: DateTime.parse(json['updated_at']) ?? DateTime.now(),
+      fileUrl: json['file'] ?? null,
+      filename: json['name'] ?? null,
+      approvalProgress: isSent ?Map<String, String>.from(json['approval_list']) :null,
+      senderInfo: isSent? null: Map<String,String>.from(json['user_info'])
+    );
   }
 
   Map<String, dynamic> toMap() {
