@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:softdoc/cubit/data_cubit/data_cubit.dart';
 import 'package:softdoc/models/department.dart';
 import 'package:softdoc/style.dart';
-import 'package:softdoc/utills.dart';
 
 Widget selectRecepient(Function setMainState, [Function setModalState]) {
   return Column(

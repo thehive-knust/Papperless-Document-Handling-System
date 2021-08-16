@@ -83,6 +83,7 @@ class _ReveivedDetailScreenState extends State<ReveivedDetailScreen> {
                     Expanded(
                       child: CircleAvatar(
                         radius: double.infinity,
+                        // TODO: put profile image here
                         backgroundColor: Colors.white,
                       ),
                     )

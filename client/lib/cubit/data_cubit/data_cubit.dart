@@ -15,6 +15,8 @@ class DataCubit extends Cubit<DataState> {
   static Department selectedDept;
   static List<String> approvals = [];
   static String searchString = "";
+  String bottomNavSelector = "Sent";
+  int optionSel = 0;
   List<Doc> sentDocs; //DONE: don't initialize sentdocs here
   List<Doc> receivedDocs = [];
   // Department selectedDept = departments[0];
@@ -136,6 +138,17 @@ class DataCubit extends Cubit<DataState> {
       print(receivedDocs.toString());
       emit(ReceivedDoc(getSections(receivedDocs)));
     }
+  }
+
+  void getDocsByOption() {
+    bool isSent = bottomNavSelector == "Sent" ? true : false;
+    if (optionSel == 0)
+      getDocs(isSent);
+    else if (optionSel == 1)
+      getDocs(isSent, 'pending');
+    else if (optionSel == 2)
+      getDocs(isSent, 'approved');
+    else if (optionSel == 3) getDocs(isSent, 'rejected');
   }
 
   void getDocs(bool isSent, [String status = ""]) {

@@ -38,7 +38,7 @@ class ReceivedDoc extends DataState {
         sections[0].add(doc);
       } else if (date == yesterdayDate) {
         sections[1].add(doc);
-      } else if (date.isBefore(lastWeekDate)) {
+      } else if (date.isAfter(lastWeekDate)) {
         sections[2].add(doc);
       } else {
         sections[3].add(doc);

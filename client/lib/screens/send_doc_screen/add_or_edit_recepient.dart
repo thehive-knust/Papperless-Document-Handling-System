@@ -5,7 +5,6 @@ import 'package:softdoc/models/department.dart';
 import 'package:softdoc/models/user.dart';
 import 'package:softdoc/screens/send_doc_screen/select_recepient.dart';
 import '../../style.dart';
-import '../../utills.dart';
 
 Widget addOrEditReciepient(bool isDesktop, Function setMainState) {
   return Container(

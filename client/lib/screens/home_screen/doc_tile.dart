@@ -41,8 +41,9 @@ class _DocTilesState extends State<DocTiles> {
   Widget build(BuildContext context) {
     return RefreshIndicator(
       onRefresh: () {
-        //TODO: complete the on refresh
-        return _dataCubit.downloadSentDocs();
+        return Future.wait(
+          [_dataCubit.downloadReceivedDocs(), _dataCubit.downloadSentDocs()],
+        );
       },
       child: ListView.builder(
         padding: EdgeInsets.fromLTRB(0.0, 10, 0.0, 60.0),
@@ -177,10 +178,14 @@ class _DocTilesState extends State<DocTiles> {
               EasyLoading.show(status: "Deleting document");
               bool success = await _dataCubit.deleteDoc(id);
               if (success) {
-                EasyLoading.showSuccess("Document deleted");
+                EasyLoading.showSuccess("Document deleted", dismissOnTap: true);
                 Navigator.of(context, rootNavigator: true).pop(true);
+                widget.isDesktop
+                    ? _desktopNavCubit.navToHomeScreen()
+                    : _androidNavCubit.navToHomeScreen();
               } else {
-                EasyLoading.showError('Document not deleted, try again');
+                EasyLoading.showError('Document not deleted, try again',
+                    dismissOnTap: true);
                 Navigator.pop(context);
               }
             },

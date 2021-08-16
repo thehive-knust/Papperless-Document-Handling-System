@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:softdoc/cubit/android_nav_cubit/AndroidNav_cubit.dart';
+import 'package:softdoc/cubit/data_cubit/data_cubit.dart';
 import 'package:softdoc/cubit/desktop_nav_cubit/desktopnav_cubit.dart';
 import 'package:softdoc/models/doc.dart';
 import 'package:softdoc/shared/pdf_card.dart';
@@ -31,12 +33,14 @@ class DetailScreen extends StatefulWidget {
 class _DetailScreenState extends State<DetailScreen> {
   AndroidNavCubit _androidNavCubit;
   DesktopNavCubit _desktopNavCubit;
+  DataCubit _dataCubit;
 
   @override
   void initState() {
     super.initState();
     _androidNavCubit = BlocProvider.of<AndroidNavCubit>(context);
     _desktopNavCubit = BlocProvider.of<DesktopNavCubit>(context);
+    _dataCubit = BlocProvider.of<DataCubit>(context);
   }
 
   void confirmWithdrawal(BuildContext context) {
@@ -44,14 +48,28 @@ class _DetailScreenState extends State<DetailScreen> {
       context: context,
       builder: (context) => AlertDialog(
         title: Text("Are you sure?"),
-        content: Text("this action is irreversible"),
+        content: Text("this action will delete this document irreversibly"),
         actions: [
           TextButton(
-            onPressed: () {
-              setState(() {
-                widget.selectedDoc.status = 'cancelled';
-              });
-              Navigator.of(context).pop();
+            onPressed: () async {
+              EasyLoading.show(status: "Deleting document");
+              bool success = await _dataCubit.deleteDoc(widget.selectedDoc.id);
+              if (success) {
+                EasyLoading.showSuccess("Submission canceled",
+                    dismissOnTap: true);
+                _dataCubit.sentDocs.remove(widget.selectedDoc);
+                _dataCubit.getDocsByOption();
+                Navigator.of(context).pop();
+                widget.isDesktop
+                    ? _desktopNavCubit.navToHomeScreen()
+                    : _androidNavCubit.navToHomeScreen();
+              } else {
+                EasyLoading.showError("Document not deleted, try again");
+              }
+              // setState(() {
+              //   widget.selectedDoc.status = 'cancelled';
+              // });
+              // Navigator.of(context).pop();
             },
             child: Text(
               "YES",
@@ -156,9 +174,8 @@ class _DetailScreenState extends State<DetailScreen> {
         floatingActionButton: widget.selectedDoc.status == 'pending'
             ? FloatingActionButton.extended(
                 // onPressed: () => confirmWithdrawal(context),
-                onPressed: () => widget.isDesktop
-                    ? _desktopNavCubit.navToHomeScreen()
-                    : _androidNavCubit.navToHomeScreen(),
+                onPressed: () => confirmWithdrawal(context),
+
                 label: Padding(
                   padding: EdgeInsets.symmetric(horizontal: 40),
                   child: Text(

@@ -20,8 +20,8 @@ class _HomeScreenState extends State<HomeScreen> {
   AndroidNavCubit _androidNavCubit;
   DesktopNavCubit _desktopNavCubit;
   DataCubit _dataCubit;
-  String bottomNavSelector = "Sent";
-  int optionSel = 0;
+  // String bottomNavSelector = "Sent";
+  // int optionSel = 0;
 
   @override
   void initState() {
@@ -47,20 +47,20 @@ class _HomeScreenState extends State<HomeScreen> {
       ..errorWidget = Icon(Icons.cancel_rounded, size: 50, color: Colors.red);
   }
 
-  void getDocsByOption() {
-    // anytime the user filters the document, we want to get the appropiate
-    // docs,
-    // if he searches, he searches the filtered docs,
-    //this methods keeps track of the filtering type.
-    bool isSent = bottomNavSelector == 'Sent' ? true : false;
-    if (optionSel == 0)
-      _dataCubit.getDocs(isSent);
-    else if (optionSel == 1)
-      _dataCubit.getDocs(isSent, 'pending');
-    else if (optionSel == 2)
-      _dataCubit.getDocs(isSent, 'approved');
-    else if (optionSel == 3) _dataCubit.getDocs(isSent, 'rejected');
-  }
+  // void getDocsByOption() {
+  //   // anytime the user filters the document, we want to get the appropiate
+  //   // docs,
+  //   // if he searches, he searches the filtered docs,
+  //   //this methods keeps track of the filtering type.
+  //   bool isSent = bottomNavSelector == 'Sent' ? true : false;
+  //   if (optionSel == 0)
+  //     _dataCubit.getDocs(isSent);
+  //   else if (optionSel == 1)
+  //     _dataCubit.getDocs(isSent, 'pending');
+  //   else if (optionSel == 2)
+  //     _dataCubit.getDocs(isSent, 'approved');
+  //   else if (optionSel == 3) _dataCubit.getDocs(isSent, 'rejected');
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -101,13 +101,15 @@ class _HomeScreenState extends State<HomeScreen> {
             decoration: BoxDecoration(
                 color: Colors.white, borderRadius: BorderRadius.circular(10)),
             child: DropdownButton<int>(
-              value: optionSel,
+              value: _dataCubit.optionSel,
               isExpanded: true,
               iconEnabledColor: primaryDark,
               underline: SizedBox.shrink(),
               onChanged: (newVal) {
-                optionSel = newVal;
-                getDocsByOption();
+                _dataCubit.optionSel = newVal;
+                _dataCubit.getDocsByOption();
+                // optionSel = newVal;
+                // getDocsByOption();
               },
               items: ["All", "Pending", "Approved", "Rejected"]
                   .asMap()
@@ -158,7 +160,8 @@ class _HomeScreenState extends State<HomeScreen> {
               child: TextField(
                 onChanged: (srch) {
                   DataCubit.searchString = srch;
-                  getDocsByOption();
+                  // getDocsByOption();
+                  _dataCubit.getDocsByOption();
                 },
                 decoration: InputDecoration(
                   contentPadding: EdgeInsets.symmetric(horizontal: 10),
@@ -237,7 +240,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ElevatedButton(
                 style: ButtonStyle(
                   padding: MaterialStateProperty.all(
-                      EdgeInsets.symmetric(horizontal: 30, vertical: 20)),
+                      EdgeInsets.symmetric(horizontal: 35, vertical: 17)),
                   shape: MaterialStateProperty.all(
                     RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
@@ -245,6 +248,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
                 onPressed: () {
+                  _dataCubit.downloadReceivedDocs();
                   _dataCubit.downloadSentDocs();
                   _dataCubit.emit(Authenticated());
                 },
@@ -292,7 +296,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget bottomNavBar() {
     Map<String, dynamic> buttons = {
       "Sent": Icons.send,
-      "Reveived": Icons.receipt,
+      "Received": Icons.receipt,
       "space": "_",
     };
 
@@ -313,13 +317,10 @@ class _HomeScreenState extends State<HomeScreen> {
                           splashColor: Color(0xFF6D95E6).withOpacity(0.5),
                           borderRadius: BorderRadius.circular(70),
                           onTap: () {
-                            bottomNavSelector = map.key;
-                            if (map.key == 'Sent')
-                              // _dataCubit.getAll(true);
-                              getDocsByOption();
-                            else
-                              // _dataCubit.emit(ReceivedDoc(Doc.reveivedDocs));
-                              getDocsByOption();
+                            // bottomNavSelector = map.key;
+                            // getDocsByOption();
+                            _dataCubit.bottomNavSelector = map.key;
+                            _dataCubit.getDocsByOption();
                             setState(() {});
                           },
                           child: Column(
@@ -328,7 +329,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               Icon(
                                 map.value,
                                 size: 30,
-                                color: bottomNavSelector == map.key
+                                color: _dataCubit.bottomNavSelector == map.key
                                     ? primary
                                     : Colors.grey,
                               ),
