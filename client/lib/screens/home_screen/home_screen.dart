@@ -30,8 +30,10 @@ class _HomeScreenState extends State<HomeScreen> {
     _desktopNavCubit = BlocProvider.of<DesktopNavCubit>(context);
     _dataCubit = BlocProvider.of<DataCubit>(context);
     if (_dataCubit.sentDocs == null) {
+      _dataCubit.homeScreenSetState = () => setState((() {}));
       _dataCubit.downloadReceivedDocs();
       _dataCubit.downloadSentDocs();
+      
     }
 
     EasyLoading.instance
@@ -243,7 +245,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       EdgeInsets.symmetric(horizontal: 35, vertical: 17)),
                   shape: MaterialStateProperty.all(
                     RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
+                      borderRadius: BorderRadius.circular(5),
                     ),
                   ),
                 ),

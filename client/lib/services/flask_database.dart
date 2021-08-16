@@ -140,7 +140,7 @@ class FlaskDatabase {
 
   //TODO: implement approval stuff here:--------
   static Future<dynamic> sendApproval(userId) async {
-    Uri uri = Uri.parse("");
+    Uri uri = Uri.parse("https://soft-doc.herokuapp.com/");
     http.Response response;
     try {
       response = await http.post(

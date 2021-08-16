@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:softdoc/cubit/android_nav_cubit/AndroidNav_cubit.dart';
 import 'package:softdoc/cubit/data_cubit/data_cubit.dart';
 import 'package:softdoc/cubit/desktop_nav_cubit/desktopnav_cubit.dart';
 import 'package:softdoc/models/doc.dart';
 import 'package:softdoc/shared/pdf_card.dart';
+import 'package:softdoc/shared/status_message.dart';
 import 'package:softdoc/shared/time_badge.dart';
 import 'package:softdoc/style.dart';
 import 'package:softdoc/screens/detail_screen/detail_screen.dart';
@@ -37,7 +39,6 @@ class _ReveivedDetailScreenState extends State<ReveivedDetailScreen> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () {
-        // TODO: nav to previous state
         _androidNavCubit.navToHomeScreen();
         return Future.value(false);
       },
@@ -72,9 +73,12 @@ class _ReveivedDetailScreenState extends State<ReveivedDetailScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          textRow("From: ", widget.selectedDoc.senderInfo['name']),
-                          textRow("Portfolio: ", widget.selectedDoc.senderInfo['title']),
-                          textRow("Phone: ", widget.selectedDoc.senderInfo['contact']),
+                          textRow(
+                              "From: ", widget.selectedDoc.senderInfo['name']),
+                          textRow("Portfolio: ",
+                              widget.selectedDoc.senderInfo['title']),
+                          textRow("Phone: ",
+                              widget.selectedDoc.senderInfo['contact']),
                           timeBadge(widget.selectedDoc.createdAt)
                         ],
                       ),
@@ -104,39 +108,12 @@ class _ReveivedDetailScreenState extends State<ReveivedDetailScreen> {
               ),
               SizedBox(height: 40),
               // buttons section:-----------------------------------------------------------------
-              Container(
-                margin: EdgeInsets.symmetric(horizontal: 15),
-                height: 45,
-                width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: () {
-                    // call approve api here:
-                  },
-                  style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(green)),
-                  child: Text(
-                    "Approve",
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
-                  ),
-                ),
-              ),
-              SizedBox(height: 30),
-              Container(
-                margin: EdgeInsets.symmetric(horizontal: 15),
-                height: 45,
-                width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: () {
-                    // call reject api here
-                  },
-                  style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(red)),
-                  child: Text(
-                    "Reject",
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
-                  ),
-                ),
-              )
+              if (widget.selectedDoc.status == 'pending') ...[
+                decitionButtons(true),
+                SizedBox(height: 30),
+                decitionButtons(false)
+              ] else
+                StatusMessage(widget.selectedDoc.status)
             ],
           ),
         ),
@@ -145,6 +122,8 @@ class _ReveivedDetailScreenState extends State<ReveivedDetailScreen> {
   }
 
   Widget textRow(String p, String txt) => RichText(
+    maxLines: 1,
+    overflow: TextOverflow.ellipsis,
         text: TextSpan(
           text: p,
           style: TextStyle(fontSize: 16, color: Colors.grey[700]),
@@ -157,6 +136,37 @@ class _ReveivedDetailScreenState extends State<ReveivedDetailScreen> {
               ),
             )
           ],
+        ),
+      );
+
+  Widget decitionButtons(bool isApprove) => Container(
+        margin: EdgeInsets.symmetric(horizontal: 15),
+        height: 45,
+        width: double.infinity,
+        child: ElevatedButton(
+          onPressed: () {
+            if (isApprove) {
+              EasyLoading.showSuccess('Document approved successfully',
+                  dismissOnTap: true);
+              widget.selectedDoc.status = 'approved';
+            } else {
+              // call reject api here
+              EasyLoading.showSuccess("Document rejected successfully",
+                  dismissOnTap: true);
+              widget.selectedDoc.status = 'rejected';
+            }
+            widget.selectedDoc.updatedAt = DateTime.now();
+            _dataCubit.sortReceivedDocs();
+            _dataCubit.getDocsByOption();
+            setState(() {});
+          },
+          style: ButtonStyle(
+              backgroundColor:
+                  MaterialStateProperty.all(isApprove ? green : red)),
+          child: Text(
+            isApprove ? "Approve" : "Reject",
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+          ),
         ),
       );
 }

@@ -19,6 +19,7 @@ class DataCubit extends Cubit<DataState> {
   int optionSel = 0;
   List<Doc> sentDocs; //DONE: don't initialize sentdocs here
   List<Doc> receivedDocs = [];
+  Function homeScreenSetState;
   // Department selectedDept = departments[0];
   // List<String> approvals
 
@@ -111,6 +112,8 @@ class DataCubit extends Cubit<DataState> {
         return 0;
       });
       //print(sentDocs.toString());
+      bottomNavSelector = 'Sent';
+      if (homeScreenSetState != null) homeScreenSetState();
       emit(SentDoc(getSections(sentDocs)));
     }
   }
@@ -136,6 +139,8 @@ class DataCubit extends Cubit<DataState> {
         return 0;
       });
       print(receivedDocs.toString());
+      bottomNavSelector = 'Received';
+      if (homeScreenSetState != null) homeScreenSetState();
       emit(ReceivedDoc(getSections(receivedDocs)));
     }
   }
@@ -184,6 +189,18 @@ class DataCubit extends Cubit<DataState> {
                 doc.subject.toLowerCase().contains(searchString.toLowerCase()))
             .toList()
         : docs;
+  }
+
+  void sortReceivedDocs() {
+    receivedDocs.sort((a, b) {
+      // earliest in front
+      if (a.updatedAt.isAfter(b.updatedAt)) {
+        return -1;
+      } else if (a.updatedAt.isBefore(b.updatedAt)) {
+        return 1;
+      }
+      return 0;
+    });
   }
 
   //TODO: get reveived docs:
