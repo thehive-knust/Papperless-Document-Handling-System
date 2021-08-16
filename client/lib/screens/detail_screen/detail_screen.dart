@@ -69,7 +69,6 @@ class _DetailScreenState extends State<DetailScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // selectedDoc = ModalRoute.of(context).settings.arguments;
     return WillPopScope(
       onWillPop: () {
         _androidNavCubit.navToHomeScreen();

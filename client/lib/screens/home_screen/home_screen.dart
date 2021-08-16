@@ -29,8 +29,10 @@ class _HomeScreenState extends State<HomeScreen> {
     _androidNavCubit = BlocProvider.of<AndroidNavCubit>(context);
     _desktopNavCubit = BlocProvider.of<DesktopNavCubit>(context);
     _dataCubit = BlocProvider.of<DataCubit>(context);
-    _dataCubit.downloadReceivedDocs();
-    _dataCubit.downloadSentDocs();
+    if (_dataCubit.sentDocs == null) {
+      _dataCubit.downloadReceivedDocs();
+      _dataCubit.downloadSentDocs();
+    }
 
     EasyLoading.instance
       ..loadingStyle = EasyLoadingStyle.custom
@@ -254,28 +256,35 @@ class _HomeScreenState extends State<HomeScreen> {
       );
 
   //Empty list widget:-------------------------------
-  Widget emptyList([isSent = true]) => Container(
-        width: double.infinity,
-        height: 500,
-        child: CircleAvatar(
-          radius: double.infinity,
-          backgroundColor: Colors.white70,
-          child: isSent
-              ? Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text("Tap ",
-                        style:
-                            TextStyle(fontSize: 20, color: Colors.grey[600])),
-                    Icon(Icons.note_add_rounded, color: Colors.grey[600]),
-                    Text(" to add a document",
-                        style: TextStyle(fontSize: 20, color: Colors.grey[600]))
-                  ],
-                )
-              : Text(
-                  "No documents",
-                  style: TextStyle(fontSize: 20, color: Colors.grey[600]),
-                ),
+  Widget emptyList([isSent = true]) => SingleChildScrollView(
+        child: Container(
+          width: double.infinity,
+          height: 400,
+          child: CircleAvatar(
+            radius: double.infinity,
+            backgroundColor: Colors.white70,
+            child: isSent
+                ? Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text("Tap ",
+                          style:
+                              TextStyle(fontSize: 20, color: Colors.grey[600])),
+                      SizedBox(height: 8),
+                      Icon(Icons.note_add_rounded, color: Colors.grey[600]),
+                      SizedBox(height: 8),
+                      Text(
+                        " to add a document",
+                        style: TextStyle(fontSize: 20, color: Colors.grey[600]),
+                        overflow: TextOverflow.ellipsis,
+                      )
+                    ],
+                  )
+                : Text(
+                    "No documents",
+                    style: TextStyle(fontSize: 20, color: Colors.grey[600]),
+                  ),
+          ),
         ),
       );
 

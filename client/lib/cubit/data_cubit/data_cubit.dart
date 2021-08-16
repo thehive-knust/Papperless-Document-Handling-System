@@ -42,7 +42,10 @@ class DataCubit extends Cubit<DataState> {
       user = User.fromJson(jsonData['user']);
       print(user.toString());
       await getDepts(); // get departments in user's college
-      await getUsersInDept(); // get users in user's department
+      await getUsersInDept(user.deptId); // get users in user's department
+      // selectedDept = departments.singleWhere((dept) => dept.id == user.deptId);
+      // get sent documents
+      // get revieved documents
       emit(Authenticated());
       return false;
     }
@@ -64,8 +67,8 @@ class DataCubit extends Cubit<DataState> {
   }
 
   //TODO: get users in department:
-  Future<void> getUsersInDept([deptId]) async {
-    if (deptId == null) deptId = user.deptId;
+  static Future<void> getUsersInDept(String deptId,
+      [Function setMainState]) async {
     dynamic jsonData = await FlaskDatabase.getUsersInDepartmentByDeptId(deptId);
     if (jsonData == null) {
     } else if (jsonData.keys.contains('message')) {
@@ -75,6 +78,7 @@ class DataCubit extends Cubit<DataState> {
       jsonData['department_users'].forEach((userJson) {
         departments[deptIndex].users.add(User.fromJson(userJson));
       });
+      if (setMainState != null) setMainState();
       print(departments[deptIndex].users.toString());
       // selectedDept = departments.singleWhere((dept) => dept.id == user.deptId);
       selectedDept = departments[deptIndex];
@@ -91,7 +95,6 @@ class DataCubit extends Cubit<DataState> {
     } else if (jsonData.keys.contains('message')) {
       emit(SentDoc(null));
     } else {
-      // sentDocs.clear(); //TODO: initialize the sentdocs here instead.
       sentDocs = [];
       jsonData['documents'].forEach((docJson) {
         sentDocs.add(Doc.fromJson(docJson));
@@ -105,7 +108,7 @@ class DataCubit extends Cubit<DataState> {
         }
         return 0;
       });
-      print(sentDocs.toString());
+      //print(sentDocs.toString());
       emit(SentDoc(getSections(sentDocs)));
     }
   }
@@ -117,7 +120,6 @@ class DataCubit extends Cubit<DataState> {
     } else if (jsonData.keys.contains('message')) {
       emit(ReceivedDoc(null));
     } else {
-      // sentDocs.clear(); //TODO: initialize the sentdocs here instead.
       receivedDocs = [];
       jsonData['documents'].forEach((docJson) {
         receivedDocs.add(Doc.fromJson(docJson, false));
