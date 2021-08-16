@@ -20,6 +20,7 @@ class User(db.Model):
         'department.id'), nullable=True)
     registered_at = db.Column(db.DateTime, nullable=False,
                               default=db.func.now())
+    profile_image_link = db.Column(db.String(255), nullable=True)
     last_login = db.Column(db.DateTime, nullable=True)
     login_count = db.Column(db.Integer, nullable=False, default=0)
     documents = db.relationship(
@@ -60,8 +61,9 @@ class User(db.Model):
             'department_id': self.department_id if self.department else None,
             'faculty_id': self.faculty_id if self.faculty else None,
             'college_id': self.college_id if self.college else None,
-            'registered_at': self.registered_at,
-            'last_login': self.last_login if self.last_login else None
+            'registered_at': str(self.registered_at),
+            'last_login': str(self.last_login) if self.last_login else None,
+            'profile_image_link': self.profile_image_link if self.profile_image_link else None,
         }
 
     @staticmethod

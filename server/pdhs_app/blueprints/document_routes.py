@@ -4,7 +4,6 @@ from pdhs_app.models.users.user import User  # src.
 from pdhs_app.models.documents.document import Document
 from pdhs_app.models.approvals.approval import Approval
 from storage.cloud_storage import delete_blob, upload_blob
-import os
 
 bp = Blueprint('documents', __name__, url_prefix='/documents')
 
