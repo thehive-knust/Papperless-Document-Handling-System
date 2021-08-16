@@ -64,7 +64,7 @@ class Document(db.Model):
         doc = {
             'id': self.id,
             'user_id': self.user_id,
-            'name': self.name.split('_').pop(),
+            'name': self._trim_user_id(self.name),
             'subject': self.subject,
             'file': self.file,
             'description': self.description,
@@ -72,3 +72,9 @@ class Document(db.Model):
             'created_at': str(self.created_at)
         }
         return doc
+
+    def _trim_user_id(self, filename):
+        names = filename.split('_')
+        user_id = names[0]
+        names.remove(user_id)
+        return '_'.join(names)
