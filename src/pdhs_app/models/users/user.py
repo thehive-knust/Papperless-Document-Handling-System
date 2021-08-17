@@ -19,6 +19,7 @@ class User(db.Model):
     last_login = db.Column(db.DateTime, nullable=True)
     login_count = db.Column(db.Integer, nullable=True, default=0)
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    profile_image_link = db.Column(db.String(255), nullable=True)
   
     documents = db.relationship("Document", lazy='select', backref=db.backref('user', lazy='joined'))
     comments = db.relationship("Comment", lazy='select', backref=db.backref('user', lazy='joined'))
@@ -54,7 +55,9 @@ class User(db.Model):
             'portfolio': self.portfolio.to_json()['name'],
             'college_id': self.college_id,
             'faculty_id': self.faculty_id,
-            'department_id': self.department_id
+            'department_id': self.department_id,
+            'last_login': str(self.last_login) if self.last_login else None,
+            'profile_image_link': self.profile_image_link if self.profile_image_link else None
          }
 
     @staticmethod
