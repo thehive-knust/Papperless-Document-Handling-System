@@ -105,12 +105,11 @@ class FlaskDatabase {
 
   //TODO: implement get sent docs here:
   static Future<dynamic> getSentDocsByUserId(userId) async =>
-     getApi(GET_SENTDOCS_URL + userId);
+      getApi(GET_SENTDOCS_URL + userId);
 
   //TODO: implement get received docs here:
   static Future<dynamic> getReceivedDocsByUserId(userId) async =>
-     getApi(GET_RECEIVEDDOCS_URL + userId);
-  
+      getApi(GET_RECEIVEDDOCS_URL + userId);
 
   //TODO: implement post document:--------------
   static Future<bool> sendDoc(Doc doc) async {
@@ -139,30 +138,34 @@ class FlaskDatabase {
   }
 
   //TODO: implement approval stuff here:--------
-  static Future<dynamic> sendApproval(userId) async {
-    Uri uri = Uri.parse("https://soft-doc.herokuapp.com/");
+  static Future<bool> sendApproval(recipientId, docId, status) async {
+    Uri uri = Uri.parse("https://soft-doc.herokuapp.com/approvals/update");
     http.Response response;
     try {
       response = await http.post(
         uri,
         headers: <String, String>{
-          'Content-Type': 'application/json; charset=UTF-8',
+          'Content-Type': 'application/json; charset=UTF-8'
         },
         body: jsonEncode(
-          <String, String>{'userId': userId},
+          <String, String>{
+            'user_id': recipientId,
+            'doc_id': docId,
+            'status': status
+          },
         ),
       );
 
       if (response.statusCode == 200) {
         print(response.body);
-        return jsonDecode(response.body);
+        return true;
       } else {
         print(response.statusCode);
-        return null;
+        return false;
       }
     } catch (e) {
       print("send approval Error Message => " + e.toString());
-      return null;
+      return false;
     }
   }
 
@@ -181,7 +184,7 @@ class FlaskDatabase {
         return false;
       }
     } catch (e) {
-      print("send approval Error Message => " + e.toString());
+      print("delete document Error Message => " + e.toString());
       return false;
     }
   }

@@ -4,7 +4,7 @@ import 'package:softdoc/cubit/desktop_nav_cubit/desktopnav_cubit.dart';
 import 'package:softdoc/screens/desktop_screen/desktop_auth_screen.dart';
 import 'package:softdoc/screens/detail_screen/detail_screen.dart';
 import 'package:softdoc/screens/home_screen/home_screen.dart';
-import 'package:softdoc/screens/reveived_detail_screen/reveived_detail_screen.dart';
+import 'package:softdoc/screens/reveived_detail_screen/received_detail_screen.dart';
 import 'package:softdoc/screens/send_doc_screen/add_or_edit_recepient.dart';
 import 'package:softdoc/screens/send_doc_screen/select_recepient.dart';
 import 'package:softdoc/screens/send_doc_screen/send_doc_screen.dart';
@@ -88,7 +88,7 @@ class _DesktopScreenState extends State<DesktopScreen> {
                   return Row(
                     children: [
                       Expanded(
-                        child: ReveivedDetailScreen(
+                        child: ReceivedDetailScreen(
                           isDesktop: true,
                           selectedDoc: state.selectedDoc,
                         ),

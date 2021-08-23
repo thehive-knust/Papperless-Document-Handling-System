@@ -66,11 +66,8 @@ class _DetailScreenState extends State<DetailScreen> {
                     : _androidNavCubit.navToHomeScreen();
               } else {
                 EasyLoading.showError("Document not deleted, try again");
+                Navigator.of(context).pop();
               }
-              // setState(() {
-              //   widget.selectedDoc.status = 'cancelled';
-              // });
-              // Navigator.of(context).pop();
             },
             child: Text(
               "YES",

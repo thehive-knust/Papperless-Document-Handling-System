@@ -11,17 +11,17 @@ import 'package:softdoc/shared/time_badge.dart';
 import 'package:softdoc/style.dart';
 import 'package:softdoc/screens/detail_screen/detail_screen.dart';
 
-class ReveivedDetailScreen extends StatefulWidget {
+class ReceivedDetailScreen extends StatefulWidget {
   final Doc selectedDoc;
   final bool isDesktop;
-  const ReveivedDetailScreen({Key key, this.selectedDoc, this.isDesktop})
+  const ReceivedDetailScreen({Key key, this.selectedDoc, this.isDesktop})
       : super(key: key);
 
   @override
-  _ReveivedDetailScreenState createState() => _ReveivedDetailScreenState();
+  _ReceivedDetailScreenState createState() => _ReceivedDetailScreenState();
 }
 
-class _ReveivedDetailScreenState extends State<ReveivedDetailScreen> {
+class _ReceivedDetailScreenState extends State<ReceivedDetailScreen> {
   AndroidNavCubit _androidNavCubit;
   DesktopNavCubit _desktopNavCubit;
   DataCubit _dataCubit;
@@ -87,7 +87,9 @@ class _ReveivedDetailScreenState extends State<ReveivedDetailScreen> {
                     Expanded(
                       child: CircleAvatar(
                         radius: double.infinity,
-                        // TODO: put profile image here
+                        backgroundImage: NetworkImage(
+                            widget.selectedDoc.senderInfo['img_url'] ??
+                                "https://source.unsplash.com/random"),
                         backgroundColor: Colors.white,
                       ),
                     )
@@ -122,8 +124,8 @@ class _ReveivedDetailScreenState extends State<ReveivedDetailScreen> {
   }
 
   Widget textRow(String p, String txt) => RichText(
-    maxLines: 1,
-    overflow: TextOverflow.ellipsis,
+        maxLines: 1,
+        overflow: TextOverflow.ellipsis,
         text: TextSpan(
           text: p,
           style: TextStyle(fontSize: 16, color: Colors.grey[700]),
@@ -144,22 +146,7 @@ class _ReveivedDetailScreenState extends State<ReveivedDetailScreen> {
         height: 45,
         width: double.infinity,
         child: ElevatedButton(
-          onPressed: () {
-            if (isApprove) {
-              EasyLoading.showSuccess('Document approved successfully',
-                  dismissOnTap: true);
-              widget.selectedDoc.status = 'approved';
-            } else {
-              // call reject api here
-              EasyLoading.showSuccess("Document rejected successfully",
-                  dismissOnTap: true);
-              widget.selectedDoc.status = 'rejected';
-            }
-            widget.selectedDoc.updatedAt = DateTime.now();
-            _dataCubit.sortReceivedDocs();
-            _dataCubit.getDocsByOption();
-            setState(() {});
-          },
+          onPressed: () => alertDialog(isApprove),
           style: ButtonStyle(
               backgroundColor:
                   MaterialStateProperty.all(isApprove ? green : red)),
@@ -169,4 +156,50 @@ class _ReveivedDetailScreenState extends State<ReveivedDetailScreen> {
           ),
         ),
       );
+
+  Future<bool> alertDialog(isApproved) async {
+    return showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text("Are you sure?"),
+        content: Text("this action is irreversible"),
+        actions: [
+          TextButton(
+            onPressed: () async {
+              String status = isApproved ? 'approved' : 'rejected';
+              EasyLoading.show(
+                  status:
+                      isApproved ? "Approving document" : "Rejecting document");
+              bool success = await _dataCubit.statusUpdate(
+                  DataCubit.user.id, widget.selectedDoc.id, status);
+              if (success) {
+                EasyLoading.showSuccess('Document $status successfully',
+                    dismissOnTap: true);
+                widget.selectedDoc.status = status;
+                widget.selectedDoc.updatedAt = DateTime.now();
+                _dataCubit.sortReceivedDocs();
+                _dataCubit.getDocsByOption();
+                setState(() {});
+                Navigator.pop(context);
+                widget.isDesktop
+                    ? _desktopNavCubit.navToHomeScreen()
+                    : _androidNavCubit.navToHomeScreen();
+              } else {
+                EasyLoading.showError(
+                    (isApproved
+                        ? "Approval unsuccessful"
+                        : "Rejection unsuccessful"),
+                    dismissOnTap: true);
+                Navigator.pop(context);
+              }
+            },
+            child: Text("YES"),
+          ),
+          TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: Text("NO", style: TextStyle(color: Colors.redAccent)))
+        ],
+      ),
+    );
+  }
 }

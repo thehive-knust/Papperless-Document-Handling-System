@@ -109,11 +109,14 @@ class _DocTilesState extends State<DocTiles> {
             borderRadius: BorderRadius.circular(6),
             child: Dismissible(
               key: GlobalKey(),
-              direction: DismissDirection.endToStart,
+              direction: widget.isSent
+                  ? DismissDirection.endToStart
+                  : DismissDirection.none,
               confirmDismiss: (direction) =>
                   alertDialog(direction, context, doc.id),
               onDismissed: (direction) {
                 docs.removeAt(index);
+                _dataCubit.sentDocs.remove(docs[index]);
                 setState(() {});
               },
               background: Container(

@@ -20,18 +20,10 @@ class MyApp extends StatelessWidget {
         providers: [
           BlocProvider<AndroidNavCubit>(create: (context) => AndroidNavCubit()),
           BlocProvider<DesktopNavCubit>(create: (context) => DesktopNavCubit()),
-          BlocProvider<AuthCubit>(create: (context) => AuthCubit()),
           BlocProvider<DataCubit>(create: (context) => DataCubit())
         ],
         child: PlatformSelect(),
-      ),
-      // routes: {
-      //   HOMEPAGE : (context) => PlatformSelect(),
-      //   DETAILPAGE: (context) => DetailScreen(),
-      //   SENDPAGE: (context) => SendDocScreen(),
-      //   DESKTOPAUTHPAGE: (context) => DesktopAuthScreen(),
-      //   AUTHPAGE: (context) => AuthScreen(),
-      // },
+      ), 
       debugShowCheckedModeBanner: false,
       title: 'SoftDoc',
       builder: EasyLoading.init(),

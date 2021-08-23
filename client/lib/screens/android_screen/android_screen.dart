@@ -6,7 +6,7 @@ import 'package:softdoc/models/doc.dart';
 import 'package:softdoc/screens/auth_screen/auth_screen.dart';
 import 'package:softdoc/screens/detail_screen/detail_screen.dart';
 import 'package:softdoc/screens/home_screen/home_screen.dart';
-import 'package:softdoc/screens/reveived_detail_screen/reveived_detail_screen.dart';
+import 'package:softdoc/screens/reveived_detail_screen/received_detail_screen.dart';
 import 'package:softdoc/screens/send_doc_screen/send_doc_screen.dart';
 
 class AndroidScreen extends StatefulWidget {
@@ -35,7 +35,7 @@ class _AndroidScreenState extends State<AndroidScreen> {
       else if (state is DetailScreenNav)
         return DetailScreen(selectedDoc: state.selectedDoc);
       else if (state is ReveivedDetailScreenNav)
-        return ReveivedDetailScreen(selectedDoc: state.selectedDoc);
+        return ReceivedDetailScreen(selectedDoc: state.selectedDoc);
       else if (state is SendDocScreenNav) return SendDocScreen();
       return CircularProgressIndicator();
     });

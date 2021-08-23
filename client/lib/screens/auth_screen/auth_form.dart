@@ -25,10 +25,6 @@ class _AuthFormState extends State<AuthForm> {
   String testPass;
   String password;
   bool isLoading = false;
-
-  AndroidNavCubit _androidNavCubit;
-  DesktopNavCubit _desktopNavCubit;
-  AuthCubit _authCubit;
   DataCubit _dataCubit;
   String errorMessage = "";
 
@@ -36,8 +32,6 @@ class _AuthFormState extends State<AuthForm> {
   void initState() {
     // -TODO: implement initState
     super.initState();
-    _androidNavCubit = BlocProvider.of<AndroidNavCubit>(context);
-    _desktopNavCubit = BlocProvider.of<DesktopNavCubit>(context);
     _dataCubit = BlocProvider.of<DataCubit>(context);
     // _dataCubit.emit(Authenticated());
   }

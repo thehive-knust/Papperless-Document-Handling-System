@@ -17,8 +17,8 @@ class DataCubit extends Cubit<DataState> {
   static String searchString = "";
   String bottomNavSelector = "Sent";
   int optionSel = 0;
-  List<Doc> sentDocs; //DONE: don't initialize sentdocs here
-  List<Doc> receivedDocs = [];
+  List<Doc> sentDocs;
+  List<Doc> receivedDocs;
   Function homeScreenSetState;
   // Department selectedDept = departments[0];
   // List<String> approvals
@@ -32,7 +32,7 @@ class DataCubit extends Cubit<DataState> {
     return users.singleWhere((user) => user.id == id);
   }
 
-  //TODO: authenticate code:-------------------------------------------
+  //TODO: authenticate code:------------------------------------------------
   Future<bool> authenticate(String userId, String password) async {
     // authentication algo
     Map jsonData =
@@ -45,10 +45,7 @@ class DataCubit extends Cubit<DataState> {
       user = User.fromJson(jsonData['user']);
       print(user.toString());
       await getDepts(); // get departments in user's college
-      await getUsersInDept(user.deptId); // get users in user's department
-      // selectedDept = departments.singleWhere((dept) => dept.id == user.deptId);
-      // get sent documents
-      // get revieved documents
+      await getUsersInDept(user.deptId); // get users in user's department.
       emit(Authenticated());
       return false;
     }
@@ -62,6 +59,7 @@ class DataCubit extends Cubit<DataState> {
     } else if (jsonData.keys.contains('message')) {
       print(jsonData['message']);
     } else {
+      departments.clear();
       jsonData['departments'].forEach((deptJson) {
         departments.add(Department.fromJson(deptJson));
       });
@@ -79,16 +77,16 @@ class DataCubit extends Cubit<DataState> {
     } else {
       int deptIndex = departments.indexWhere((dept) => dept.id == deptId);
       jsonData['department_users'].forEach((userJson) {
-        departments[deptIndex].users.add(User.fromJson(userJson));
+        User deptUser = User.fromJson(userJson);
+        if (user.id != deptUser.id) departments[deptIndex].users.add(deptUser);
       });
       if (setMainState != null) setMainState();
       print(departments[deptIndex].users.toString());
-      // selectedDept = departments.singleWhere((dept) => dept.id == user.deptId);
       selectedDept = departments[deptIndex];
     }
   }
 
-  //TODO: document handling code:--------------------------------------
+  //TODO: document handling code:-----------------------------------------
 
   //TODO: get Sent docs:
   Future<void> downloadSentDocs() async {
@@ -203,19 +201,6 @@ class DataCubit extends Cubit<DataState> {
     });
   }
 
-  //TODO: get reveived docs:
-  // void getReceived() async {
-  //   dynamic jsonData = await FlaskDatabase.getReceivedDocsByUserId(user.id);
-  //   if (jsonData == null) {
-  //   } else if (jsonData.keys.contains('message')) {
-  //   } else {
-  //     jsonData.forEach((docJson) {
-  //       receivedDocs.add(Doc.fromJson(docJson));
-  //     });
-  //   }
-  //   emit(ReceivedDoc(Doc.reveivedDocs));
-  // }
-
   //TODO: upload doc:
   Future<bool> uploadDoc(Doc doc) => FlaskDatabase.sendDoc(doc);
 
@@ -223,8 +208,12 @@ class DataCubit extends Cubit<DataState> {
   Future<bool> deleteDoc(docId) =>
       FlaskDatabase.delectDocumentByDocumentId(docId);
 
-  //TODO: getUserData:
-
   //TODO: approval handling code:--------------------------------------
+  Future<bool> statusUpdate(recId, docId, status) async =>
+      await FlaskDatabase.sendApproval(recId, docId, status);
 
+  clearDocs() {
+    sentDocs = null;
+    receivedDocs = null;
+  }
 }

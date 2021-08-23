@@ -33,7 +33,6 @@ class _HomeScreenState extends State<HomeScreen> {
       _dataCubit.homeScreenSetState = () => setState((() {}));
       _dataCubit.downloadReceivedDocs();
       _dataCubit.downloadSentDocs();
-      
     }
 
     EasyLoading.instance
@@ -48,21 +47,6 @@ class _HomeScreenState extends State<HomeScreen> {
       ..successWidget = Icon(Icons.check_rounded, size: 50, color: Colors.green)
       ..errorWidget = Icon(Icons.cancel_rounded, size: 50, color: Colors.red);
   }
-
-  // void getDocsByOption() {
-  //   // anytime the user filters the document, we want to get the appropiate
-  //   // docs,
-  //   // if he searches, he searches the filtered docs,
-  //   //this methods keeps track of the filtering type.
-  //   bool isSent = bottomNavSelector == 'Sent' ? true : false;
-  //   if (optionSel == 0)
-  //     _dataCubit.getDocs(isSent);
-  //   else if (optionSel == 1)
-  //     _dataCubit.getDocs(isSent, 'pending');
-  //   else if (optionSel == 2)
-  //     _dataCubit.getDocs(isSent, 'approved');
-  //   else if (optionSel == 3) _dataCubit.getDocs(isSent, 'rejected');
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -110,8 +94,6 @@ class _HomeScreenState extends State<HomeScreen> {
               onChanged: (newVal) {
                 _dataCubit.optionSel = newVal;
                 _dataCubit.getDocsByOption();
-                // optionSel = newVal;
-                // getDocsByOption();
               },
               items: ["All", "Pending", "Approved", "Rejected"]
                   .asMap()
@@ -129,6 +111,7 @@ class _HomeScreenState extends State<HomeScreen> {
           PopupMenuButton(
             icon: Icon(Icons.more_vert),
             onSelected: (val) {
+              _dataCubit.clearDocs();
               _dataCubit.emit(DataInitial());
             },
             itemBuilder: (context) => ["Log out"]
@@ -322,6 +305,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             // bottomNavSelector = map.key;
                             // getDocsByOption();
                             _dataCubit.bottomNavSelector = map.key;
+                            _dataCubit.optionSel = map.key == "Sent" ? 0 : 1;
                             _dataCubit.getDocsByOption();
                             setState(() {});
                           },
