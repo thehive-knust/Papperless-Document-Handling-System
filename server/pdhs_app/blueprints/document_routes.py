@@ -3,7 +3,8 @@ from werkzeug.utils import secure_filename
 from pdhs_app.models.users.user import User  # src.
 from pdhs_app.models.documents.document import Document
 from pdhs_app.models.approvals.approval import Approval
-from storage.cloud_storage import delete_blob, upload_blob
+from storage.cloud_upload import upload_file    # This is being used for cloudinary sevices
+# from storage.cloud_storage import delete_blob, upload_blob  # This was used for google cloud services
 
 bp = Blueprint('documents', __name__, url_prefix='/documents')
 
@@ -77,8 +78,8 @@ def upload():
             filename = secure_filename(doc_file.filename)
             new_document.name = f"{user_id}_{filename}"
             try:
-                document_url = upload_blob(
-                    doc_file.stream, new_document.name)
+                document_url = upload_file(doc_file)
+#                 upload_blob(doc_file.stream, new_document.name)
                 if document_url is not None:
                     new_document.file = document_url
             except:
