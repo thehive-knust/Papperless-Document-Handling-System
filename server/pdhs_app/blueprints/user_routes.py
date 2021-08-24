@@ -1,13 +1,15 @@
-from flask import Blueprint, request, jsonify
+import os
+from flask import Blueprint, request, jsonify, current_app, send_from_directory
 from pdhs_app.models.users.user import User  # src.
 import pdhs_app.models.users.errors as UserErrors  # src.
 import pdhs_app.models.users.decorators as user_decorators  # src.
 import pdhs_app.models.users.constants as UserConstants
 from pdhs_app.models.documents.document import Document
 from pdhs_app.models.departments.department import Department
-from pdhs_app.blueprints.document_routes import new as get_new_docs
+# from pdhs_app.blueprints.document_routes import new as get_new_docs
 from werkzeug.utils import secure_filename
-from storage.cloud_storage import delete_blob, upload_blob
+# from storage.cloud_storage import delete_blob, upload_blob
+from storage.local_storage import delete_blob, upload_blob
 
 bp = Blueprint('users', __name__, url_prefix='/users')
 
@@ -78,23 +80,34 @@ def update_user_profile_image(user_id):
             user = User.find_by_id(user_id)
             if user is None:
                 return jsonify(msg="Unauthorized request"), 401
-
+            # Delete old profile picture if it exists
+            elif user.profile_image_link:
+                delete_blob(user.profile_image_link.split('/')[-1])
         if _allowed_file(image_file.filename):
             filename = secure_filename(image_file.filename)
             image_filename = f"{user_id}_{filename}"
             image_url = upload_blob(
                 image_file.stream, image_filename)
             if image_url is not None:
-                user.profile_image_link = image_url
+                # production environment:
+                # user.profile_image_link = image_url
+
+                # development environment:
+                user.profile_image_link = f'http://{request.host}/users/d/profile-image/{image_filename}'
             else:
                 return jsonify(msg="Error uploading image")
             try:
                 user.save_to_db()
-                return jsonify(image=image_url), 200
+                return jsonify(image=user.profile_image_link), 200
             except:
                 return jsonify(msg='Error updating profile'), 500
         else:
             return jsonify(msg="File type not supported"), 500
+
+
+@bp.route('/d/profile-image/<filename>', methods=['GET'])
+def download_document(filename):
+    return send_from_directory(os.getenv('UPLOAD_PATH'), filename)
 
 
 @bp.route('/delete/profile-image/<int:user_id>', methods=['DELETE'])
