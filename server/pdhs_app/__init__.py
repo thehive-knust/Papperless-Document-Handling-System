@@ -36,10 +36,15 @@ def create_app(*args, **kwargs):
 
     app.config['ENV'] = env
     app.config.from_object('config.%s' % env)
-
     # ensure the instance folder exists
     try:
         os.makedirs(app.instance_path)
+    except OSError as e:
+        print(e)
+
+    # ensure the upload folder exists
+    try:
+        os.makedirs(os.path.join(app.instance_path, 'upload'))
     except OSError as e:
         print(e)
 

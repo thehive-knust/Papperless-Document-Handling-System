@@ -1,4 +1,5 @@
-from flask import Blueprint, request, jsonify, current_app
+import os
+from flask import Blueprint, request, jsonify, send_from_directory
 from werkzeug.utils import secure_filename
 from pdhs_app.models.users.user import User  # src.
 from pdhs_app.models.documents.document import Document
@@ -6,9 +7,11 @@ from pdhs_app.models.approvals.approval import Approval
 from storage.cloud_upload import upload_file    # This is being used for cloudinary sevices
 # from storage.cloud_storage import delete_blob, upload_blob  # This was used for google cloud services
 
+
+
 bp = Blueprint('documents', __name__, url_prefix='/documents')
 
-ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
+ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg'}
 
 
 def _allowed_file(filename):
@@ -81,21 +84,31 @@ def upload():
                 document_url = upload_file(doc_file)
 #                 upload_blob(doc_file.stream, new_document.name)
                 if document_url is not None:
-                    new_document.file = document_url
-            except:
-                return jsonify(msg="Error uploading document")
+                    # production environment:
+                    # new_document.file = document_url
+
+                    # development environment:
+                    new_document.file = f'http://{request.host}/documents/download/{new_document.name}'
+            except Exception as e:
+                print(e, e.with_traceback(None))
+                return jsonify(msg="Error uploading document"), 500
             try:
                 new_document.save_to_db()
                 return jsonify(document=new_document.to_json()), 201
             except:
                 return jsonify(msg='Error saving document to database'), 500
         else:
-            return jsonify(msg="File type not supported"), 201
+            return jsonify(msg="File type not supported"), 500
 
         # Handling the associated people to approve the document
         # for recepient in recepients:
         #     new_approval = Approval(document_id=doc_id, recipient_id=recepient).save_to_db()
         # return jsonify(message="Done!")
+
+
+@bp.route('/download/<filename>', methods=['GET'])
+def download_document(filename):
+    return send_from_directory(os.getenv('UPLOAD_PATH'), filename)
 
 
 @bp.route('/new/<int:user_id>', methods=['GET'])
@@ -212,6 +225,9 @@ def delete_document(document_id):
             except:
                 error_msg = 'Error occured deleting Document from database'
                 error_code = 500
+        else:
+            error_msg = 'No document matches the id specified'
+            error_code = 404
         if error_msg is not None:
             return jsonify(msg=error_msg), error_code
         else:
