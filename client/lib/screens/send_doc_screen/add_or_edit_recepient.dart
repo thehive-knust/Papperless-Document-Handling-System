@@ -19,10 +19,13 @@ Widget addOrEditReciepient(bool isDesktop, Function setMainState) {
       children: [
         ...DataCubit.approvals.map(
           (id) {
-            // getting the title for each user with the id.
             User user = DataCubit.getUser(id);
-            // String title =
-            //     Department.getUsers.singleWhere((user) => user.id == id).title;
+            String deptName = "";
+            if(user.deptId!= null){
+              deptName = DataCubit.departments
+                .singleWhere((dept) => user.deptId == dept.id)
+                .id;
+            }
             return Container(
               alignment: Alignment.centerLeft,
               margin: EdgeInsets.only(bottom: 10),
@@ -33,7 +36,10 @@ Widget addOrEditReciepient(bool isDesktop, Function setMainState) {
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(6),
               ),
-              child: Text(user.title),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [Text(user.title), Text(deptName)],
+              ),
             );
           },
         ),
