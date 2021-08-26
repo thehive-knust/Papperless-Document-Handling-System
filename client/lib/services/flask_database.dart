@@ -45,7 +45,10 @@ class FlaskDatabase {
   static dynamic getApi(url) async {
     http.Response response;
     try {
-      response = await http.get(Uri.parse(url));
+      response = await http.get(
+        Uri.parse(url),
+        // headers: <String, String>{'access_token': 'the_access_token'}
+      );
 
       if (response.statusCode == 200) {
         print(response.body);
@@ -59,41 +62,6 @@ class FlaskDatabase {
       return null;
     }
   }
-
-  // test get request:-----------------------
-  // static Future<http.Response> getMessage() async {
-  //   http.Response response;
-
-  //   try {
-  //     response = await http.get(
-  //       Uri.parse('http://192.168.138.29:5000/user/'),
-  //     );
-  //   } catch (e) {
-  //     print("=======" + e.toString() + "------------");
-  //   }
-  //   if (response.statusCode == 200) {
-  //     print(response.body);
-  //     // jsonDecode("source");
-  //   }
-  //   return response;
-  // }
-
-  // test local network:------------------------------------
-  // static Future getLocal() async {
-  //   http.Response response;
-  //   try {
-  //     response = await http.get(
-  //       Uri.parse('https://soft-doc.herokuapp.com/'),
-  //     );
-  //   } catch (e) {
-  //     debugPrint("---------" + e.toString() + "------------");
-  //   }
-  //   if (response.statusCode == 200) {
-  //     print(response.body);
-  //   } else {
-  //     print(response.statusCode);
-  //   }
-  // }
 
   //TODO: implement get departments here:
   static Future<dynamic> getDepartmentsByColId(colId) async =>
@@ -122,6 +90,8 @@ class FlaskDatabase {
       request.files.add(http.MultipartFile.fromBytes(
           'file', doc.fileBytes.toList(),
           filename: doc.filename));
+      // request.headers
+      //     .addAll(<String, String>{'access_token': 'the_access_token'});
 
       response = await request.send();
 
@@ -145,7 +115,8 @@ class FlaskDatabase {
       response = await http.post(
         uri,
         headers: <String, String>{
-          'Content-Type': 'application/json; charset=UTF-8'
+          'Content-Type': 'application/json; charset=UTF-8',
+          // 'access_token': 'the_access_token'
         },
         body: jsonEncode(
           <String, String>{
@@ -174,7 +145,10 @@ class FlaskDatabase {
         "https://soft-doc.herokuapp.com/documents/delete/${int.parse(docId)}");
     http.Response response;
     try {
-      response = await http.delete(uri);
+      response = await http.delete(
+        uri,
+        // headers: <String, String>{'access_token': 'the_acces_token'}
+      );
 
       if (response.statusCode == 200) {
         print(response.body);

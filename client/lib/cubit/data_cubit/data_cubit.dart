@@ -63,6 +63,7 @@ class DataCubit extends Cubit<DataState> {
       jsonData['departments'].forEach((deptJson) {
         departments.add(Department.fromJson(deptJson));
       });
+      departments.add(Department(id: "others", name: "General", users: []));
       print(departments.toString());
     }
   }

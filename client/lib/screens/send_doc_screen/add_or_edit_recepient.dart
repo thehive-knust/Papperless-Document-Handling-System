@@ -1,7 +1,6 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:softdoc/cubit/data_cubit/data_cubit.dart';
-import 'package:softdoc/models/department.dart';
 import 'package:softdoc/models/user.dart';
 import 'package:softdoc/screens/send_doc_screen/select_recepient.dart';
 import '../../style.dart';
@@ -21,11 +20,14 @@ Widget addOrEditReciepient(bool isDesktop, Function setMainState) {
           (id) {
             User user = DataCubit.getUser(id);
             String deptName = "";
-            if(user.deptId!= null){
+            if (user.deptId.isNotEmpty) {
               deptName = DataCubit.departments
-                .singleWhere((dept) => user.deptId == dept.id)
-                .id;
+                  .singleWhere((dept) => user.deptId == dept.id)
+                  .id;
             }
+            print("-----------I got here-----------");
+            print(user.deptId);
+
             return Container(
               alignment: Alignment.centerLeft,
               margin: EdgeInsets.only(bottom: 10),

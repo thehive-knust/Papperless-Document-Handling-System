@@ -32,7 +32,7 @@ class Department {
             User(id: "2", title: "Registrar"),
             User(id: "3", title: "Patron"),
             User(id: "4", title: "Student Affairs"),
-            User(id: "31", title: "Facility manageer"),
+            User(id: "31", title: "Facility manager"),
             User(id: "32", title: "Financial manager"),
             User(id: "33", title: "General Secretary"),
             User(id: "34", title: "Aces President"),
