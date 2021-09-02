@@ -22,7 +22,7 @@ class User {
   factory User.fromJson(json) {
     return User(
       id: json["id"].toString(),
-      deptId: json['department_id'] ?? "",
+      deptId: json['department_id'],
       title: json['portfolio'],
       colId: json['college_id'].toString(),
       email: json['email'],

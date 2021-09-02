@@ -20,12 +20,12 @@ Widget addOrEditReciepient(bool isDesktop, Function setMainState) {
           (id) {
             User user = DataCubit.getUser(id);
             String deptName = "";
-            if (user.deptId.isNotEmpty) {
+            if (user.deptId != "others") {
               deptName = DataCubit.departments
                   .singleWhere((dept) => user.deptId == dept.id)
                   .id;
             }
-            print("-----------I got here-----------");
+            // print("-----------I got here-----------");
             print(user.deptId);
 
             return Container(
