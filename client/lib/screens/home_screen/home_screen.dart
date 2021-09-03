@@ -33,6 +33,7 @@ class _HomeScreenState extends State<HomeScreen> {
       _dataCubit.homeScreenSetState = () => setState((() {}));
       _dataCubit.downloadReceivedDocs();
       _dataCubit.downloadSentDocs();
+      setState(() {});
     }
 
     EasyLoading.instance
@@ -134,26 +135,43 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Column(
           children: [
             // searchbar:--------------------------------------------------------------
-            Container(
-              height: 45,
-              width: double.infinity,
-              margin: EdgeInsets.only(bottom: 5),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(7),
-              ),
-              child: TextField(
-                onChanged: (srch) {
-                  DataCubit.searchString = srch;
-                  // getDocsByOption();
-                  _dataCubit.getDocsByOption();
-                },
-                decoration: InputDecoration(
-                  contentPadding: EdgeInsets.symmetric(horizontal: 10),
-                  border: InputBorder.none,
-                  hintText: "Search",
+            Row(
+              children: [
+                Expanded(
+                  child: Container(
+                    height: 45,
+                    margin: EdgeInsets.only(bottom: 5, right: 5),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(7),
+                    ),
+                    child: TextField(
+                      onChanged: (srch) {
+                        DataCubit.searchString = srch;
+                        // getDocsByOption();
+                        _dataCubit.getDocsByOption();
+                      },
+                      decoration: InputDecoration(
+                        contentPadding: EdgeInsets.symmetric(horizontal: 10),
+                        border: InputBorder.none,
+                        hintText: "Search",
+                      ),
+                    ),
+                  ),
                 ),
-              ),
+                IconButton(
+                  onPressed: () async {
+                    _dataCubit.downloadSentDocs();
+                    _dataCubit.downloadReceivedDocs();
+                    setState(() {});
+                  },
+                  splashRadius: 20,
+                  icon: Icon(
+                    Icons.refresh,
+                    color: primary,
+                  ),
+                ),
+              ],
             ),
             // listView:-----------------------------------------------------------
             BlocBuilder<DataCubit, DataState>(

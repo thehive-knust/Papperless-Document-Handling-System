@@ -68,9 +68,12 @@ class _VApprovalProgressState extends State<VApprovalProgress> {
                           ],
                         ),
                         SizedBox(width: 12),
-                        Text(
-                          e.key,
-                          textAlign: TextAlign.center,
+                        Expanded(
+                          child: Text(
+                            e.key,
+                            textAlign: TextAlign.center,
+                            overflow: TextOverflow.ellipsis,
+                          ),
                         ),
                       ],
                     ),
