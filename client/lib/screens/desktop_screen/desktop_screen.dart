@@ -53,7 +53,9 @@ class _DesktopScreenState extends State<DesktopScreen> {
                                   child:
                                       addOrEditReciepient(true, changeState)),
                               SizedBox(height: 10),
-                              Expanded(child: selectRecepient(changeState))
+                              Expanded(
+                                  child: SelectRecipient(
+                                      setMainState: changeState))
                             ],
                           ),
                         ),

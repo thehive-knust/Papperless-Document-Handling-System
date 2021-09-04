@@ -15,6 +15,7 @@ class DataCubit extends Cubit<DataState> {
   static Department selectedDept;
   static List<String> approvals = [];
   static String searchString = "";
+  static bool refreshingDocList = false;
   String bottomNavSelector = "Sent";
   int optionSel = 0;
   List<Doc> sentDocs;
@@ -70,10 +71,13 @@ class DataCubit extends Cubit<DataState> {
 
   //TODO: get users in department:
   static Future<void> getUsersInDept(String deptId,
-      [Function setMainState]) async {
+      [Function setMainState, Function rebuildWidget]) async {
+    if (rebuildWidget != null) rebuildWidget('loading');
     dynamic jsonData = await FlaskDatabase.getUsersInDepartmentByDeptId(deptId);
     if (jsonData == null) {
+      if (rebuildWidget != null) rebuildWidget('failed');
     } else if (jsonData.keys.contains('message')) {
+      if (rebuildWidget != null) rebuildWidget('failed');
       print(jsonData['message']);
     } else {
       int deptIndex = departments.indexWhere((dept) => dept.id == deptId);
@@ -81,6 +85,7 @@ class DataCubit extends Cubit<DataState> {
         User deptUser = User.fromJson(userJson);
         if (user.id != deptUser.id) departments[deptIndex].users.add(deptUser);
       });
+      if (rebuildWidget != null) rebuildWidget('idle');
       if (setMainState != null) setMainState();
       print(departments[deptIndex].users.toString());
       selectedDept = departments[deptIndex];
@@ -90,7 +95,8 @@ class DataCubit extends Cubit<DataState> {
   //TODO: document handling code:-----------------------------------------
 
   //TODO: get Sent docs:
-  Future<void> downloadSentDocs() async {
+  Future<void> downloadSentDocs({bool rebuild}) async {
+    if (rebuild == true) refreshingDocList = true;
     dynamic jsonData = await FlaskDatabase.getSentDocsByUserId(user.id);
     if (jsonData == null) {
       emit(SentDoc(null));
@@ -110,14 +116,15 @@ class DataCubit extends Cubit<DataState> {
         }
         return 0;
       });
-      //print(sentDocs.toString());
       bottomNavSelector = 'Sent';
+      if (refreshingDocList == true) refreshingDocList = false;
       if (homeScreenSetState != null) homeScreenSetState();
       emit(SentDoc(getSections(sentDocs)));
     }
   }
 
-  Future<void> downloadReceivedDocs() async {
+  Future<void> downloadReceivedDocs({bool rebuild}) async {
+    if (rebuild == true) refreshingDocList = true;
     dynamic jsonData = await FlaskDatabase.getReceivedDocsByUserId(user.id);
     if (jsonData == null) {
       emit(ReceivedDoc(null));
@@ -137,8 +144,8 @@ class DataCubit extends Cubit<DataState> {
         }
         return 0;
       });
-      print(receivedDocs.toString());
       bottomNavSelector = 'Received';
+      if (refreshingDocList == true) refreshingDocList = false;
       if (homeScreenSetState != null) homeScreenSetState();
       emit(ReceivedDoc(getSections(receivedDocs)));
     }

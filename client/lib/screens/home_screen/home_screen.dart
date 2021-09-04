@@ -159,17 +159,25 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                 ),
-                IconButton(
-                  onPressed: () async {
-                    _dataCubit.downloadSentDocs();
-                    _dataCubit.downloadReceivedDocs();
-                    setState(() {});
+                StatefulBuilder(
+                  builder: (context, setState) {
+                    return DataCubit.refreshingDocList
+                        ? CircularProgressIndicator(color: primary)
+                        : IconButton(
+                            onPressed: () async {
+                              if (_dataCubit.bottomNavSelector == "Sent")
+                                _dataCubit.downloadSentDocs(rebuild: true);
+                              else
+                                _dataCubit.downloadReceivedDocs(rebuild: true);
+                              setState(() {});
+                            },
+                            splashRadius: 20,
+                            icon: Icon(
+                              Icons.refresh,
+                              color: primary,
+                            ),
+                          );
                   },
-                  splashRadius: 20,
-                  icon: Icon(
-                    Icons.refresh,
-                    color: primary,
-                  ),
                 ),
               ],
             ),

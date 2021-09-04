@@ -96,8 +96,9 @@ Widget addOrEditReciepient(bool isDesktop, Function setMainState) {
                               borderRadius: BorderRadius.only(
                                   topLeft: Radius.circular(20),
                                   topRight: Radius.circular(20)),
-                              child:
-                                  selectRecepient(setMainState, setModalState)),
+                              child: SelectRecipient(
+                                  setMainState: setMainState,
+                                  setModalState: setModalState)),
                         ),
                       );
                     },
