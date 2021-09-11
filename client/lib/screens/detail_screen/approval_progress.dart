@@ -21,19 +21,19 @@ class _ApprovalProgressState extends State<ApprovalProgress> {
   @override
   Widget build(BuildContext context) {
     List<String> approvalListKeys = widget.approvalList.keys.toList();
-    return Container(
-      alignment: Alignment.topCenter,
-      height: 80,
-      child: widget.approvalList.length == 1
-          ? Column(
+    return widget.approvalList.length == 1
+        ? IntrinsicHeight(
+            child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 progressDot(widget.approvalList.values.first),
                 SizedBox(height: 12),
                 Text(approvalListKeys[0]),
               ],
-            )
-          : Row(
+            ),
+          )
+        : IntrinsicHeight(
+            child: Row(
               children: widget.approvalList.entries.map((e) {
                 bool isFirst = false;
                 bool isLast = false;
@@ -73,7 +73,7 @@ class _ApprovalProgressState extends State<ApprovalProgress> {
                 );
               }).toList(),
             ),
-    );
+          );
   }
 
   Color approvalStateColor(String approvalState) {
