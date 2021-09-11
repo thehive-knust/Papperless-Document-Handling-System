@@ -168,7 +168,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                 ),
-                StatefulBuilder(
+                if(widget.isDesktop) StatefulBuilder(
                   builder: (context, setState) {
                     return DataCubit.refreshingDocList
                         ? CircularProgressIndicator(color: primary)
