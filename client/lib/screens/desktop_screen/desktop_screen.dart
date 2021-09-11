@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:softdoc/cubit/desktop_nav_cubit/desktopnav_cubit.dart';
 import 'package:softdoc/screens/desktop_screen/desktop_auth_screen.dart';
+import 'package:softdoc/screens/desktop_screen/open_animation.dart';
 import 'package:softdoc/screens/detail_screen/detail_screen.dart';
 import 'package:softdoc/screens/home_screen/home_screen.dart';
 import 'package:softdoc/screens/reveived_detail_screen/received_detail_screen.dart';
@@ -38,65 +39,76 @@ class _DesktopScreenState extends State<DesktopScreen> {
               builder: (context, state) {
                 // nav to send document screen:--------------------------------------
                 if (state is SendDocScreenNav) {
-                  return Row(
-                    children: [
-                      Expanded(child: SendDocScreen(isDesktop: true)),
-                      Expanded(
-                        child: Container(
-                          // color: Colors.red,
-                          padding:
-                              EdgeInsets.only(top: 12, right: 10, bottom: 10),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Expanded(
-                                  child:
-                                      addOrEditReciepient(true, changeState)),
-                              SizedBox(height: 10),
-                              Expanded(
-                                  child: SelectRecipient(
-                                      setMainState: changeState))
-                            ],
+                  return OpenAnimation(
+                    // key: GlobalKey(),
+                    child: Row(
+                      children: [
+                        Expanded(child: SendDocScreen(isDesktop: true)),
+                        Expanded(
+                          child: Container(
+                            // color: Colors.red,
+                            padding:
+                                EdgeInsets.only(top: 12, right: 10, bottom: 10),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Expanded(
+                                    child:
+                                        addOrEditReciepient(true, changeState)),
+                                SizedBox(height: 10),
+                                Expanded(
+                                    child: SelectRecipient(
+                                        setMainState: changeState))
+                              ],
+                            ),
                           ),
-                        ),
-                      )
-                    ],
+                        )
+                      ],
+                    ),
                   );
                 }
                 // navigate to detail screen:-------------------------------------
                 else if (state is DetailScreenNav) {
-                  return Row(
-                    children: [
-                      Expanded(
-                          child: DetailScreen(
-                        isDesktop: true,
-                        selectedDoc: state.selectedDoc,
-                      )),
-                      Expanded(
-                        child: Center(
-                          child: VApprovalProgress(
-                            approvalList: state.selectedDoc.approvalProgress,
-                            docStatus: state.selectedDoc.status,
+                  return OpenAnimation(
+                    key: GlobalKey(),
+                    child: Row(
+                      children: [
+                        Expanded(
+                            child: DetailScreen(
+                          isDesktop: true,
+                          selectedDoc: state.selectedDoc,
+                        )),
+                        Expanded(
+                          child: Center(
+                            child: VApprovalProgress(
+                              approvalList: state.selectedDoc.approvalProgress,
+                              docStatus: state.selectedDoc.status,
+                            ),
                           ),
-                        ),
-                      )
-                    ],
+                        )
+                      ],
+                    ),
                   );
                 } else if (state is HomeScreenNav) {
                   return Center(
                       child:
                           Image.asset("assets/images/pdf_icon_activated.png"));
-                } else if (state is ReveivedDetailScreenNav) {
-                  return Row(
-                    children: [
-                      Expanded(
-                        child: ReceivedDetailScreen(
-                          isDesktop: true,
-                          selectedDoc: state.selectedDoc,
+                }
+                // navigate to receiveddetail screen:--------------------
+                else if (state is ReveivedDetailScreenNav) {
+                  return OpenAnimation(
+                    key: GlobalKey(),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: ReceivedDetailScreen(
+                            isDesktop: true,
+                            selectedDoc: state.selectedDoc,
+                          ),
                         ),
-                      ),
-                      Spacer()
-                    ],
+                        Spacer()
+                      ],
+                    ),
                   );
                 }
                 return CircularProgressIndicator();

@@ -71,7 +71,7 @@ class _VApprovalProgressState extends State<VApprovalProgress> {
                         Expanded(
                           child: Text(
                             e.key,
-                            textAlign: TextAlign.center,
+                            textAlign: TextAlign.left,
                             overflow: TextOverflow.ellipsis,
                           ),
                         ),

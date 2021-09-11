@@ -36,6 +36,9 @@ class _HomeScreenState extends State<HomeScreen> {
       setState(() {});
     }
 
+    _dataCubit.selectedIndexes =
+        _dataCubit.selectedIndexes.map((e) => -1).toList();
+
     EasyLoading.instance
       ..loadingStyle = EasyLoadingStyle.custom
       ..backgroundColor = Colors.white
@@ -58,6 +61,9 @@ class _HomeScreenState extends State<HomeScreen> {
           widget.isDesktop
               ? _desktopNavCubit.navToSendDocScreen()
               : _androidNavCubit.navToSendDocScreen();
+          _dataCubit.selectedIndexes =
+              _dataCubit.selectedIndexes.map((e) => -1).toList();
+          setState(() {});
         },
         backgroundColor: primary,
         child: Icon(Icons.note_add_rounded),
@@ -94,6 +100,9 @@ class _HomeScreenState extends State<HomeScreen> {
               underline: SizedBox.shrink(),
               onChanged: (newVal) {
                 _dataCubit.optionSel = newVal;
+                _dataCubit.selectedIndexes =
+                    _dataCubit.selectedIndexes.map((e) => -1).toList();
+                _desktopNavCubit.navToHomeScreen();
                 _dataCubit.getDocsByOption();
               },
               items: ["All", "Pending", "Approved", "Rejected"]
@@ -333,6 +342,11 @@ class _HomeScreenState extends State<HomeScreen> {
                             _dataCubit.bottomNavSelector = map.key;
                             _dataCubit.optionSel = map.key == "Sent" ? 0 : 1;
                             _dataCubit.getDocsByOption();
+                            _dataCubit.selectedIndexes = _dataCubit
+                                .selectedIndexes
+                                .map((e) => -1)
+                                .toList();
+                            _desktopNavCubit.navToHomeScreen();
                             setState(() {});
                           },
                           child: Column(

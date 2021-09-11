@@ -21,6 +21,7 @@ class DataCubit extends Cubit<DataState> {
   List<Doc> sentDocs;
   List<Doc> receivedDocs;
   Function homeScreenSetState;
+  List<int> selectedIndexes = [];
   // Department selectedDept = departments[0];
   // List<String> approvals
 

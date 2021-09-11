@@ -48,15 +48,14 @@ class _DocTilesState extends State<DocTiles> {
       child: ListView.builder(
         padding: EdgeInsets.fromLTRB(0.0, 10, 0.0, 60.0),
         itemCount: widget.docs.length,
-        itemBuilder: (context, index) => sectionWidget(
-          context,
-          widget.docs[index],
-        ),
+        itemBuilder: (context, index) =>
+            sectionWidget(context, widget.docs[index], index),
       ),
     );
   }
 
-  sectionWidget(context, Map<String, List<Doc>> section) {
+  sectionWidget(context, Map<String, List<Doc>> section, index) {
+    _dataCubit.selectedIndexes.add(-1);
     return section.entries.map((entry) {
       return Container(
         width: double.infinity,
@@ -69,7 +68,7 @@ class _DocTilesState extends State<DocTiles> {
             ...entry.value
                 .asMap()
                 .entries
-                .map((doc) => docTile(doc, entry.value, context))
+                .map((doc) => docTile(doc, entry.value, context, index))
                 .toList()
           ],
         ),
@@ -77,7 +76,7 @@ class _DocTilesState extends State<DocTiles> {
     }).toList()[0];
   }
 
-  docTile(data, List<Doc> docs, context) {
+  docTile(data, List<Doc> docs, context, sectionIndex) {
     Doc doc = data.value;
     int index = data.key;
     Color status;
@@ -102,6 +101,9 @@ class _DocTilesState extends State<DocTiles> {
                 ? _desktopNavCubit.navToReveivedDetailScreen(doc)
                 : _androidNavCubit.navToReveivedDetailScreen(doc);
           }
+          _dataCubit.selectedIndexes = _dataCubit.selectedIndexes.map((e) => -1).toList();
+          _dataCubit.selectedIndexes[sectionIndex] = index;
+          setState(() {});
         },
         child: Padding(
           padding: EdgeInsets.symmetric(vertical: 3),
@@ -130,7 +132,9 @@ class _DocTilesState extends State<DocTiles> {
               ),
               child: Container(
                 height: 61,
-                color: Colors.white,
+                color: _dataCubit.selectedIndexes[sectionIndex] == index
+                    ? primaryLight
+                    : Colors.white,
                 child: Row(
                   children: [
                     Container(
