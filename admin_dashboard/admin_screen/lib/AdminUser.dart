@@ -10,7 +10,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 
 class AdminUser extends StatefulWidget {
-  const AdminUser({Key? key}) : super(key: key);
+
 
   @override
   _AdminUserState createState() => _AdminUserState();
@@ -18,19 +18,24 @@ class AdminUser extends StatefulWidget {
 
 
 class _AdminUserState extends State<AdminUser> {
+  void dummy(){
+
+  }
+  
   
   void addUserScreen(BuildContext context){
     Navigator.of(context).push(MaterialPageRoute(builder: (_){
       return Adduser();
     }));
   }
-  
+
+  Color primaryLight = Color(0xFFEFF7FF);
   
 GlobalKey<ScaffoldState>? _scaffoldKey;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[300],
+      backgroundColor: primaryLight,
       appBar: AppBar(
         backgroundColor: Colors.grey[600],
         actions: [

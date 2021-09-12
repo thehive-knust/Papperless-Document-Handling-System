@@ -21,6 +21,7 @@ class Repository {
 
   List facultyDepartments = [
     {
+
       "faculty": "Faculty of Electrical and Computer",
       "departments": [
         "Department of Computer Engineering",
