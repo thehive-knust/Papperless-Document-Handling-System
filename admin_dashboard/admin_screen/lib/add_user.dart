@@ -1,13 +1,10 @@
 import 'dart:convert';
-import 'dart:html';
-import 'dart:typed_data';
 import 'package:admin_screen/repository.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:google_fonts/google_fonts.dart';
-import 'package:image_picker/image_picker.dart';
-import './display_user.dart';
+
 
 class Adduser extends StatefulWidget {
   final String title = "Flutter Data Table";
@@ -19,7 +16,7 @@ class Adduser extends StatefulWidget {
 enum SingingCharacter { Standard, Admin }
 
 class _AdduserState extends State<Adduser> {
-  bool _validateEmail = false;
+
   Map<String, dynamic>? departments;
   Repository repo = Repository();
 
@@ -98,17 +95,17 @@ class _AdduserState extends State<Adduser> {
   Future<void> submit() async {
     try {
       var request = http.MultipartRequest('POST',Uri.parse('https://soft-doc.herokuapp.com/auth/signup'));
-      request.fields.addAll({
-        "id": userIDController!.text,
-        "first_name": firstNameController!.text,
-        "last_name": lastNameController!.text,
-        "email": emailController!.text,
-        "contact": contactNameController!.text,
-        "password": passwordController!.text,
-        "faculty_id": selectedFaculty,
-        "department_id": selectedDepartment!,
-        "portfolio_id": selectedPortfolio!,
-      });
+      // request.fields.addAll({
+      //   "id": userIDController!.text,
+      //   "first_name": firstNameController!.text,
+      //   "last_name": lastNameController!.text,
+      //   "email": emailController!.text,
+      //   "contact": contactNameController!.text,
+      //   "password": passwordController!.text,
+      //   "faculty_id": selectedFaculty,
+      //   "department_id": selectedDepartment!,
+      //   "portfolio_id": selectedPortfolio!,
+      // });
     request.files.add(http.MultipartFile.fromBytes('file', image!.bytes!.toList(), filename: image!.name));
       var response = await request.send();
       print('==================');
@@ -128,18 +125,7 @@ class _AdduserState extends State<Adduser> {
     passwordController!.clear();
   }
 
-  // void _onSelectedState(String value) {
-  //   setState(() {
-  //     selectedDepartment = "Choose ..";
-  //     departments = ["Choose .."];
-  //     selectedFaculty = value;
-  //     departments = List.from(departments)..addAll(repo.getLocalByState(value));
-  //   });
-  // }
 
-  // void _onSelectedLGA(String value) {
-  //   setState(() => selectedDepartment = value);
-  // }
 
   PlatformFile? image;
 
