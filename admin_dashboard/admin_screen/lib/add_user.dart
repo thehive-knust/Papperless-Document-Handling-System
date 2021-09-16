@@ -1,9 +1,10 @@
 import 'dart:convert';
-import 'package:admin_screen/repository.dart';
+import 'package:admin_screen/users_provider.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 
 class Adduser extends StatefulWidget {
@@ -17,30 +18,19 @@ enum SingingCharacter { Standard, Admin }
 
 class _AdduserState extends State<Adduser> {
 
-  Map<String, dynamic>? departments;
-  Repository repo = Repository();
 
-  List<String> faculties = ["Choose your Faculty"];
-  String selectedFaculty = "Choose your Faculty";
+  bool fetchingDepartments = false;
+  bool fetchingPortfolios = false;
+  bool fetchingFaculties = false;
+  String? selectedFaculty;
   String? selectedDepartment;
-
-  @override
-  void initState() {
-    faculties = List.from(faculties)..addAll(repo.getFaculties()!);
-    super.initState();
-    fetchDepartments();
-    fetchPortfolios();
-  }
-
-
   String? selectedPortfolio;
-
+  Map<String, dynamic>? departments;
   Map<String, dynamic>? portfolios;
-
-  List<String> collegesForKNUST = [
-    "Select your College",
-    // "COS",
-  ];
+  List<dynamic>? faculties;
+  Uri url = Uri.parse("https://soft-doc.herokuapp.com/auth/signup");
+  Color primaryLight = Color(0xFFEFF7FF);
+  PlatformFile? image;
 
   TextEditingController? userIDController = TextEditingController();
   TextEditingController? emailController = TextEditingController();
@@ -49,70 +39,114 @@ class _AdduserState extends State<Adduser> {
   TextEditingController? passwordController = TextEditingController();
   TextEditingController? contactNameController = TextEditingController();
 
-  // var counterUsers = [];
+
+  @override
+  void initState() {
+
+    super.initState();
+     fetchDepartments();
+     fetchPortfolios();
+     fetchFaculties();
+    print("###########################");
+    print(portfolios);
+    print(departments);
+  }
+
+
 
   Future<void> fetchDepartments() async {
-    const url = "https://soft-doc.herokuapp.com/departments/get/COE";
-    final response = await http.get(Uri.parse(url));
-    departments = jsonDecode(response.body);
-    setState(() {
-      selectedDepartment = departments!['departments'][0]['id'];
-    });
+   try{
+     const url = "https://soft-doc.herokuapp.com/departments/get/COE";
+     fetchingDepartments = true;
+     final response = await http.get(Uri.parse(url));
+     departments = jsonDecode(response.body);
+     fetchingDepartments = false;
+     print("===========================Department============================");
+     print(departments);
+     setState(() {
+       selectedDepartment = departments!['departments'][0]['id'].toString();
+       //selectedFaculty = departments!["departments"][0]['faculty_id'].toString();
+     });
+
+   }catch(e){
+     fetchingDepartments=false;
+   }
   }
 
   Future<void> fetchPortfolios() async {
-    const url = "https://soft-doc.herokuapp.com/portfolios";
-    final response = await http.get(Uri.parse(url));
-    portfolios = jsonDecode(response.body);
-    print(portfolios);
-    setState(() {
-      selectedPortfolio = portfolios!['portfolios'][0]['id'].toString();
-    });
+    try{
+      const url = "https://soft-doc.herokuapp.com/portfolios";
+      fetchingPortfolios = true;
+      final response = await http.get(Uri.parse(url));
+      portfolios = jsonDecode(response.body);
+      fetchingPortfolios = false;
+      print("===========================Portfolios==========================");
+      print(portfolios);
+      setState(() {
+        selectedPortfolio = portfolios!['portfolios'][0]['id'].toString();
+      });
+    } catch(e){
+      fetchingPortfolios=false;
+    }
     // return response.body as Map<String, dynamic>;
   }
 
-  // Future<String> getID() async {
-  //   String? key;
-  //   const url =
-  //       "https://testadmin-c82a8-default-rtdb.firebaseio.com/users.json";
-  //   final response = await http.get(Uri.parse(url)).then((response) {
-  //     final extracteddata = jsonDecode(response.body) as Map<String, dynamic>;
-  //     extracteddata.forEach((key, value) {
-  //       if (value['email'] == emailController!.text) {
-  //         print("yeah");
-  //         key = key.toString();
-  //         print(key);
-  //       }
-  //     });
-  //   });
-  //   return key!;
-  // }
+  Future<void> fetchFaculties() async {
+    try{
+      const url = "https://soft-doc.herokuapp.com/faculties/college/COE";
+      fetchingFaculties=true;
+      final response = await http.get(Uri.parse(url));
+      faculties = jsonDecode(response.body);
+      fetchingFaculties=false;
+      print("=========================Faculties========================");
+      print(faculties);
+      setState(() {
+        selectedFaculty = faculties![0]['id'].toString();
+      });
+    }catch(e){
+      print(e.toString());
+      fetchingFaculties = false;
+    }
+    // return response.body as Map<String, dynamic>;
+  }
 
 
 
-  Uri url = Uri.parse("https://soft-doc.herokuapp.com/auth/signup");
 
-  Future<void> submit() async {
+  Future<int> submit() async {
     try {
+      print("==================Before the send=========================");
+      print(userIDController!.text);
+      print(firstNameController!.text);
+      print(lastNameController!.text);
+      print(emailController!.text);
+      print(contactNameController!.text);
+      print(passwordController!.text);
+      print(selectedFaculty);
+      print(selectedDepartment);
+      print(selectedPortfolio);
+
+      print("==================Be the send=========================");
       var request = http.MultipartRequest('POST',Uri.parse('https://soft-doc.herokuapp.com/auth/signup'));
-      // request.fields.addAll({
-      //   "id": userIDController!.text,
-      //   "first_name": firstNameController!.text,
-      //   "last_name": lastNameController!.text,
-      //   "email": emailController!.text,
-      //   "contact": contactNameController!.text,
-      //   "password": passwordController!.text,
-      //   "faculty_id": selectedFaculty,
-      //   "department_id": selectedDepartment!,
-      //   "portfolio_id": selectedPortfolio!,
-      // });
-    request.files.add(http.MultipartFile.fromBytes('file', image!.bytes!.toList(), filename: image!.name));
+      request.fields.addAll({
+        "id": userIDController!.text,
+        "first_name": firstNameController!.text,
+        "last_name": lastNameController!.text,
+        "email": emailController!.text,
+        "contact": contactNameController!.text,
+        "password": passwordController!.text,
+        "faculty_id": selectedFaculty!,
+        "department_id": selectedDepartment!,
+        "portfolio_id": selectedPortfolio!,
+      });
+    request.files.add(http.MultipartFile.fromBytes('user_img', image!.bytes!.toList(), filename: image!.name));
       var response = await request.send();
+      return response.statusCode;
       print('==================');
       print(response.statusCode);
     } catch (e) {
       print("authentication Error Message => " + e.toString());
-      return null;
+      return 0;
     }
   }
 
@@ -127,7 +161,7 @@ class _AdduserState extends State<Adduser> {
 
 
 
-  PlatformFile? image;
+
 
   uploadImage() async {
     FilePickerResult? result = await FilePicker.platform.pickFiles(
@@ -145,12 +179,14 @@ class _AdduserState extends State<Adduser> {
     }
   }
 
-  Color primaryLight = Color(0xFFEFF7FF);
+
 
   @override
   Widget build(BuildContext context) {
-    if(portfolios == null) fetchPortfolios();
-    if(departments == null) fetchDepartments();
+    if(portfolios == null && !fetchingPortfolios) fetchPortfolios();
+    if(departments == null && !fetchingDepartments) fetchDepartments();
+    if(faculties == null && !fetchingFaculties) fetchFaculties();
+    final usersProvider = Provider.of<UsersProvider>(context);
     return Scaffold(
       backgroundColor: primaryLight,
       body: Container(
@@ -365,21 +401,34 @@ class _AdduserState extends State<Adduser> {
                         SizedBox(
                           height: 40,
                         ),
-                        // Container(
-                        //   padding: EdgeInsets.only(left: 50),
-                        //   child: DropdownButton<String>(
-                        //     isExpanded: true,
-                        //     style: const TextStyle(color: Colors.deepPurple),
-                        //     items: faculties.map((String dropDownStringItem) {
-                        //       return DropdownMenuItem<String>(
-                        //         value: dropDownStringItem,
-                        //         child: Text(dropDownStringItem),
-                        //       );
-                        //     }).toList(),
-                        //     onChanged: (value) => _onSelectedState(value!),
-                        //     value: selectedFaculty,
-                        //   ),
-                        // ),
+                        faculties == null? CircularProgressIndicator(color: Colors.blue,): Container(
+                          padding: EdgeInsets.only(left: 50),
+                          child: DropdownButton<String>(
+                            value: selectedFaculty,
+                            icon: const Icon(Icons.arrow_drop_down_sharp),
+                            iconSize: 24,
+                            elevation: 16,
+                            isExpanded: true,
+                            style: const TextStyle(color: Colors.deepPurple),
+                            underline: Container(
+                              height: 2,
+                              width: 20,
+                              color: Colors.deepPurpleAccent,
+                            ),
+                            onChanged: (String? newValue) {
+                              setState(() {
+                                selectedFaculty = newValue!;
+                              });
+                            },
+                            items: faculties!
+                                .map<DropdownMenuItem<String>>((faculty) {
+                              return DropdownMenuItem<String>(
+                                value: faculty['id'].toString(),
+                                child: Text(faculty['name']),
+                              );
+                            }).toList(),
+                          ),
+                        ),
                       ],
                     ),
                   ),
@@ -457,10 +506,9 @@ class _AdduserState extends State<Adduser> {
                             }).toList(),
                             // onChanged: (value) => print(value),
                             onChanged: (value) {
+
                               selectedDepartment = value!;
-                              selectedFaculty = departments!["departments"]
-                                  .singleWhere((department) =>
-                                      department.id == value)['faculty_id'];
+                              print(selectedFaculty);
                             },
                             value: selectedDepartment,
                           ),
@@ -502,8 +550,24 @@ class _AdduserState extends State<Adduser> {
                   Container(
                     padding: EdgeInsets.only(right: 50),
                     child: ElevatedButton(
-                      onPressed: () {
-                        submit();
+                      onPressed: () async{
+                        int status = await submit();
+                        if(status == 200) usersProvider.addRow(DataRow(
+                          cells: <DataCell>[
+                            DataCell(Text(firstNameController!.text)),
+                            DataCell(Text(lastNameController!.text)),
+                            DataCell(Text(emailController!.text)),
+                            DataCell(IconButton(
+                              onPressed: () {},
+                              icon: Icon(
+                                Icons.delete,
+                                color: Colors.red.shade400,
+                              ),
+                              splashColor: Colors.red.shade200,
+                            )),
+                          ],
+                        ));
+                        Navigator.of(context).pop();
                        // clearAll();
                       },
                       child: Text(

@@ -1,6 +1,9 @@
+
+
 import 'package:admin_screen/AdminUser.dart';
-import 'package:admin_screen/add_user.dart';
+import 'package:admin_screen/users_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 void main()=>runApp(HomePage());
 
@@ -16,9 +19,12 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: AdminUser(),
+    return ChangeNotifierProvider(
+      create: (context) => UsersProvider(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: AdminUser(),
+      ),
     );
   }
 }
