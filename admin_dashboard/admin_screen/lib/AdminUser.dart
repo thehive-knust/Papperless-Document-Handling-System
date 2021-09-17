@@ -29,6 +29,9 @@ class _AdminUserState extends State<AdminUser> {
       fetchingUsers = false;
       print("===========================Users============================");
       print(users);
+      setState(() {
+
+      });
     } catch (e) {
       print(e);
       fetchingUsers = false;
@@ -58,8 +61,9 @@ class _AdminUserState extends State<AdminUser> {
   Widget build(BuildContext context) {
     final usersProvider = Provider.of<UsersProvider>(context);
     if (users == null && !fetchingUsers) fetchUsers();
-    if (users != null && usersProvider.rowList == null)
-      usersProvider.initialise(users!);
+    if (users != null && usersProvider.rowList == null) usersProvider.initialise(users!);
+    print("==============Checking==========================");
+    print(usersProvider.rowList);
     return Scaffold(
       backgroundColor: primaryLight,
       appBar: AppBar(
