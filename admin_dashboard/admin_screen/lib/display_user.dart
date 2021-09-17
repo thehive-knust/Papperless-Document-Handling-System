@@ -44,26 +44,42 @@ class DisplayState extends State<Display> {
         scrollDirection: Axis.horizontal,
         child: DataTable(
             sortColumnIndex: 3,
-            columnSpacing: 100,
+            columnSpacing: 150,
             columns: <DataColumn>[
               DataColumn(
                 label: Text(
                   'First Name',
+                  style: GoogleFonts.notoSans(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                  ),
                 ),
               ),
               DataColumn(
                 label: Text(
                   'Last Name',
+                  style: GoogleFonts.notoSans(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                  ),
                 ),
               ),
               DataColumn(
                 label: Text(
                   'Email',
+                  style: GoogleFonts.notoSans(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                  ),
                 ),
               ),
             DataColumn(
                 label: Text(
                   'Remove',
+                  style: GoogleFonts.notoSans(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                  ),
                 ),
               ),
             ],
