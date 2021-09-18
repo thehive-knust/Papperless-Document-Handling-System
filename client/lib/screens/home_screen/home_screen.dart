@@ -30,7 +30,6 @@ class _HomeScreenState extends State<HomeScreen> {
     _desktopNavCubit = BlocProvider.of<DesktopNavCubit>(context);
     _dataCubit = BlocProvider.of<DataCubit>(context);
     if (_dataCubit.sentDocs == null) {
-      _dataCubit.homeScreenSetState = () => setState((() {}));
       _dataCubit.downloadReceivedDocs();
       _dataCubit.downloadSentDocs();
       setState(() {});

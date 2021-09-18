@@ -20,7 +20,6 @@ class DataCubit extends Cubit<DataState> {
   int optionSel = 0;
   List<Doc> sentDocs;
   List<Doc> receivedDocs;
-  Function homeScreenSetState;
   List<int> selectedIndexes = [];
   // Department selectedDept = departments[0];
   // List<String> approvals
@@ -119,7 +118,6 @@ class DataCubit extends Cubit<DataState> {
       });
       bottomNavSelector = 'Sent';
       if (refreshingDocList == true) refreshingDocList = false;
-      if (homeScreenSetState != null) homeScreenSetState();
       emit(SentDoc(getSections(sentDocs)));
     }
   }
@@ -147,7 +145,6 @@ class DataCubit extends Cubit<DataState> {
       });
       bottomNavSelector = 'Received';
       if (refreshingDocList == true) refreshingDocList = false;
-      if (homeScreenSetState != null) homeScreenSetState();
       emit(ReceivedDoc(getSections(receivedDocs)));
     }
   }

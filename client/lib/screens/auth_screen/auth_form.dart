@@ -1,15 +1,8 @@
-import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:softdoc/cubit/android_nav_cubit/AndroidNav_cubit.dart';
-import 'package:softdoc/cubit/auth_cubit/auth_cubit.dart';
 import 'package:softdoc/cubit/data_cubit/data_cubit.dart';
-import 'package:softdoc/cubit/desktop_nav_cubit/desktopnav_cubit.dart';
-import 'package:softdoc/models/doc.dart';
 import 'package:softdoc/style.dart';
-import 'package:crypto/crypto.dart';
-import '../../services/flask_database.dart';
 
 class AuthForm extends StatefulWidget {
   final bool isDesktop;

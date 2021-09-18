@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:softdoc/cubit/android_nav_cubit/AndroidNav_cubit.dart';
-import 'package:softdoc/cubit/auth_cubit/auth_cubit.dart';
 import 'package:softdoc/cubit/data_cubit/data_cubit.dart';
 import 'package:softdoc/platformSelect.dart';
 import 'cubit/desktop_nav_cubit/desktopnav_cubit.dart';

@@ -101,8 +101,6 @@ class _SendDocScreenState extends State<SendDocScreen> {
           backgroundColor: primary,
           onPressed: () {
             uploadDoc();
-
-            // call api to post this document.
           },
           child: Icon(Icons.send),
         ),

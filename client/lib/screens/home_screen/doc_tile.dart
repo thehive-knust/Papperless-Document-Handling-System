@@ -101,7 +101,8 @@ class _DocTilesState extends State<DocTiles> {
                 ? _desktopNavCubit.navToReveivedDetailScreen(doc)
                 : _androidNavCubit.navToReveivedDetailScreen(doc);
           }
-          _dataCubit.selectedIndexes = _dataCubit.selectedIndexes.map((e) => -1).toList();
+          _dataCubit.selectedIndexes =
+              _dataCubit.selectedIndexes.map((e) => -1).toList();
           _dataCubit.selectedIndexes[sectionIndex] = index;
           setState(() {});
         },
@@ -117,8 +118,8 @@ class _DocTilesState extends State<DocTiles> {
               confirmDismiss: (direction) =>
                   alertDialog(direction, context, doc.id),
               onDismissed: (direction) {
-                docs.removeAt(index);
                 _dataCubit.sentDocs.remove(docs[index]);
+                docs.removeAt(index);
                 setState(() {});
               },
               background: Container(
@@ -182,14 +183,13 @@ class _DocTilesState extends State<DocTiles> {
         actions: [
           TextButton(
             onPressed: () async {
-              EasyLoading.show(status: "Deleting document");
+              await EasyLoading.show(status: "Deleting document");
               bool success = await _dataCubit.deleteDoc(id);
               if (success) {
-                EasyLoading.showSuccess("Document deleted", dismissOnTap: true);
+                await EasyLoading.showSuccess("Document deleted",
+                    dismissOnTap: true);
                 Navigator.of(context, rootNavigator: true).pop(true);
-                widget.isDesktop
-                    ? _desktopNavCubit.navToHomeScreen()
-                    : _androidNavCubit.navToHomeScreen();
+                _desktopNavCubit.navToHomeScreen();
               } else {
                 EasyLoading.showError('Document not deleted, try again',
                     dismissOnTap: true);

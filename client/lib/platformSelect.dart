@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:softdoc/cubit/android_nav_cubit/AndroidNav_cubit.dart';
-import 'package:softdoc/cubit/auth_cubit/auth_cubit.dart';
 import 'package:softdoc/cubit/data_cubit/data_cubit.dart';
 import 'package:softdoc/screens/android_screen/android_screen.dart';
 import 'package:softdoc/screens/auth_screen/auth_screen.dart';
