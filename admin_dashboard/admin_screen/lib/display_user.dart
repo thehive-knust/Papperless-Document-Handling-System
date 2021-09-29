@@ -13,7 +13,6 @@ class Display extends StatefulWidget {
 }
 
 class DisplayState extends State<Display> {
-
   // List<DataRow> rowList;
   //
   // void addRow() {
@@ -38,51 +37,58 @@ class DisplayState extends State<Display> {
 
   @override
   Widget build(BuildContext context) {
-    final usersProvider = Provider.of<UsersProvider>(context);
-    final dataRows = usersProvider.rowList;
     return SingleChildScrollView(
         scrollDirection: Axis.horizontal,
-        child: DataTable(
-            sortColumnIndex: 3,
-            columnSpacing: 150,
-            columns: <DataColumn>[
-              DataColumn(
-                label: Text(
-                  'First Name',
-                  style: GoogleFonts.notoSans(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20,
+        child: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
+          child: Selector<UsersProvider, List<DataRow>>(
+            selector: (context, provider) => provider.rowList!,
+            builder: (context, rowList, child) {
+              return DataTable(
+                sortColumnIndex: 3,
+                columnSpacing: 150,
+                columns: <DataColumn>[
+                  DataColumn(
+                    label: Text(
+                      'First Name',
+                      style: GoogleFonts.notoSans(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                      ),
+                    ),
                   ),
-                ),
-              ),
-              DataColumn(
-                label: Text(
-                  'Last Name',
-                  style: GoogleFonts.notoSans(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20,
+                  DataColumn(
+                    label: Text(
+                      'Last Name',
+                      style: GoogleFonts.notoSans(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                      ),
+                    ),
                   ),
-                ),
-              ),
-              DataColumn(
-                label: Text(
-                  'Email',
-                  style: GoogleFonts.notoSans(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20,
+                  DataColumn(
+                    label: Text(
+                      'Email',
+                      style: GoogleFonts.notoSans(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                      ),
+                    ),
                   ),
-                ),
-              ),
-            DataColumn(
-                label: Text(
-                  'Remove',
-                  style: GoogleFonts.notoSans(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20,
+                  DataColumn(
+                    label: Text(
+                      'Remove',
+                      style: GoogleFonts.notoSans(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                      ),
+                    ),
                   ),
-                ),
-              ),
-            ],
-            rows: dataRows!));
+                ],
+                rows: rowList,
+              );
+            },
+          ),
+        ));
   }
 }

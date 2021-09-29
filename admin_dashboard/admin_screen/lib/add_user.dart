@@ -6,6 +6,7 @@ import 'package:http/http.dart' as http;
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
+import 'user.dart';
 
 class Adduser extends StatefulWidget {
   final String title = "Flutter Data Table";
@@ -17,8 +18,6 @@ class Adduser extends StatefulWidget {
 enum SingingCharacter { Standard, Admin }
 
 class _AdduserState extends State<Adduser> {
-
-
   bool fetchingDepartments = false;
   bool fetchingPortfolios = false;
   bool fetchingFaculties = false;
@@ -39,42 +38,38 @@ class _AdduserState extends State<Adduser> {
   TextEditingController? passwordController = TextEditingController();
   TextEditingController? contactNameController = TextEditingController();
 
-
   @override
   void initState() {
-
     super.initState();
-     fetchDepartments();
-     fetchPortfolios();
-     fetchFaculties();
+    fetchDepartments();
+    fetchPortfolios();
+    fetchFaculties();
     print("###########################");
     print(portfolios);
     print(departments);
   }
 
-
-
   Future<void> fetchDepartments() async {
-   try{
-     const url = "https://soft-doc.herokuapp.com/departments/get/COE";
-     fetchingDepartments = true;
-     final response = await http.get(Uri.parse(url));
-     departments = jsonDecode(response.body);
-     fetchingDepartments = false;
-     print("===========================Department============================");
-     print(departments);
-     setState(() {
-       selectedDepartment = departments!['departments'][0]['id'].toString();
-       //selectedFaculty = departments!["departments"][0]['faculty_id'].toString();
-     });
-
-   }catch(e){
-     fetchingDepartments=false;
-   }
+    try {
+      const url = "https://soft-doc.herokuapp.com/departments/get/COE";
+      fetchingDepartments = true;
+      final response = await http.get(Uri.parse(url));
+      departments = jsonDecode(response.body);
+      fetchingDepartments = false;
+      print(
+          "===========================Department============================");
+      print(departments);
+      setState(() {
+        selectedDepartment = departments!['departments'][0]['id'].toString();
+        //selectedFaculty = departments!["departments"][0]['faculty_id'].toString();
+      });
+    } catch (e) {
+      fetchingDepartments = false;
+    }
   }
 
   Future<void> fetchPortfolios() async {
-    try{
+    try {
       const url = "https://soft-doc.herokuapp.com/portfolios";
       fetchingPortfolios = true;
       final response = await http.get(Uri.parse(url));
@@ -85,33 +80,30 @@ class _AdduserState extends State<Adduser> {
       setState(() {
         selectedPortfolio = portfolios!['portfolios'][0]['id'].toString();
       });
-    } catch(e){
-      fetchingPortfolios=false;
+    } catch (e) {
+      fetchingPortfolios = false;
     }
     // return response.body as Map<String, dynamic>;
   }
 
   Future<void> fetchFaculties() async {
-    try{
+    try {
       const url = "https://soft-doc.herokuapp.com/faculties/college/COE";
-      fetchingFaculties=true;
+      fetchingFaculties = true;
       final response = await http.get(Uri.parse(url));
       faculties = jsonDecode(response.body);
-      fetchingFaculties=false;
+      fetchingFaculties = false;
       print("=========================Faculties========================");
       print(faculties);
       setState(() {
         selectedFaculty = faculties![0]['id'].toString();
       });
-    }catch(e){
+    } catch (e) {
       print(e.toString());
       fetchingFaculties = false;
     }
     // return response.body as Map<String, dynamic>;
   }
-
-
-
 
   Future<int> submit() async {
     try {
@@ -127,7 +119,8 @@ class _AdduserState extends State<Adduser> {
       print(selectedPortfolio);
 
       print("==================Be the send=========================");
-      var request = http.MultipartRequest('POST',Uri.parse('https://soft-doc.herokuapp.com/auth/signup'));
+      var request = http.MultipartRequest(
+          'POST', Uri.parse('https://soft-doc.herokuapp.com/auth/signup'));
       request.fields.addAll({
         "id": userIDController!.text,
         "first_name": firstNameController!.text,
@@ -139,7 +132,9 @@ class _AdduserState extends State<Adduser> {
         "department_id": selectedDepartment!,
         "portfolio_id": selectedPortfolio!,
       });
-    request.files.add(http.MultipartFile.fromBytes('user_img', image!.bytes!.toList(), filename: image!.name));
+      request.files.add(http.MultipartFile.fromBytes(
+          'user_img', image!.bytes!.toList(),
+          filename: image!.name));
       var response = await request.send();
       return response.statusCode;
       print('==================');
@@ -159,10 +154,6 @@ class _AdduserState extends State<Adduser> {
     passwordController!.clear();
   }
 
-
-
-
-
   uploadImage() async {
     FilePickerResult? result = await FilePicker.platform.pickFiles(
         type: FileType.custom,
@@ -179,13 +170,11 @@ class _AdduserState extends State<Adduser> {
     }
   }
 
-
-
   @override
   Widget build(BuildContext context) {
-    if(portfolios == null && !fetchingPortfolios) fetchPortfolios();
-    if(departments == null && !fetchingDepartments) fetchDepartments();
-    if(faculties == null && !fetchingFaculties) fetchFaculties();
+    if (portfolios == null && !fetchingPortfolios) fetchPortfolios();
+    if (departments == null && !fetchingDepartments) fetchDepartments();
+    if (faculties == null && !fetchingFaculties) fetchFaculties();
     final usersProvider = Provider.of<UsersProvider>(context);
     return Scaffold(
       backgroundColor: primaryLight,
@@ -284,34 +273,40 @@ class _AdduserState extends State<Adduser> {
                         //     }).toList(),
                         //   ),
                         // ),
-                        portfolios == null? CircularProgressIndicator(color: Colors.blue,): Container(
-                          padding: EdgeInsets.only(left: 50),
-                          child: DropdownButton<String>(
-                            value: selectedPortfolio,
-                            icon: const Icon(Icons.arrow_drop_down_sharp),
-                            iconSize: 24,
-                            elevation: 16,
-                            isExpanded: true,
-                            style: const TextStyle(color: Colors.deepPurple),
-                            underline: Container(
-                              height: 2,
-                              width: 20,
-                              color: Colors.deepPurpleAccent,
-                            ),
-                            onChanged: (String? newValue) {
-                              setState(() {
-                                selectedPortfolio = newValue!;
-                              });
-                            },
-                            items: portfolios!['portfolios']!
-                                .map<DropdownMenuItem<String>>((portfolio) {
-                              return DropdownMenuItem<String>(
-                                value: portfolio['id'].toString(),
-                                child: Text(portfolio['name']),
-                              );
-                            }).toList(),
-                          ),
-                        ),
+                        portfolios == null
+                            ? CircularProgressIndicator(
+                                color: Colors.blue,
+                              )
+                            : Container(
+                                padding: EdgeInsets.only(left: 50),
+                                child: DropdownButton<String>(
+                                  value: selectedPortfolio,
+                                  icon: const Icon(Icons.arrow_drop_down_sharp),
+                                  iconSize: 24,
+                                  elevation: 16,
+                                  isExpanded: true,
+                                  style:
+                                      const TextStyle(color: Colors.deepPurple),
+                                  underline: Container(
+                                    height: 2,
+                                    width: 20,
+                                    color: Colors.deepPurpleAccent,
+                                  ),
+                                  onChanged: (String? newValue) {
+                                    setState(() {
+                                      selectedPortfolio = newValue!;
+                                    });
+                                  },
+                                  items: portfolios!['portfolios']!
+                                      .map<DropdownMenuItem<String>>(
+                                          (portfolio) {
+                                    return DropdownMenuItem<String>(
+                                      value: portfolio['id'].toString(),
+                                      child: Text(portfolio['name']),
+                                    );
+                                  }).toList(),
+                                ),
+                              ),
                         Row(
                           children: [
                             Expanded(
@@ -334,7 +329,9 @@ class _AdduserState extends State<Adduser> {
                                         style:
                                             GoogleFonts.notoSans(fontSize: 10),
                                       )
-                                    : Expanded(child: Image.memory(image!.bytes!),),
+                                    : Expanded(
+                                        child: Image.memory(image!.bytes!),
+                                      ),
                               ),
                             ),
                           ],
@@ -401,34 +398,39 @@ class _AdduserState extends State<Adduser> {
                         SizedBox(
                           height: 40,
                         ),
-                        faculties == null? CircularProgressIndicator(color: Colors.blue,): Container(
-                          padding: EdgeInsets.only(left: 50),
-                          child: DropdownButton<String>(
-                            value: selectedFaculty,
-                            icon: const Icon(Icons.arrow_drop_down_sharp),
-                            iconSize: 24,
-                            elevation: 16,
-                            isExpanded: true,
-                            style: const TextStyle(color: Colors.deepPurple),
-                            underline: Container(
-                              height: 2,
-                              width: 20,
-                              color: Colors.deepPurpleAccent,
-                            ),
-                            onChanged: (String? newValue) {
-                              setState(() {
-                                selectedFaculty = newValue!;
-                              });
-                            },
-                            items: faculties!
-                                .map<DropdownMenuItem<String>>((faculty) {
-                              return DropdownMenuItem<String>(
-                                value: faculty['id'].toString(),
-                                child: Text(faculty['name']),
-                              );
-                            }).toList(),
-                          ),
-                        ),
+                        faculties == null
+                            ? CircularProgressIndicator(
+                                color: Colors.blue,
+                              )
+                            : Container(
+                                padding: EdgeInsets.only(left: 50),
+                                child: DropdownButton<String>(
+                                  value: selectedFaculty,
+                                  icon: const Icon(Icons.arrow_drop_down_sharp),
+                                  iconSize: 24,
+                                  elevation: 16,
+                                  isExpanded: true,
+                                  style:
+                                      const TextStyle(color: Colors.deepPurple),
+                                  underline: Container(
+                                    height: 2,
+                                    width: 20,
+                                    color: Colors.deepPurpleAccent,
+                                  ),
+                                  onChanged: (String? newValue) {
+                                    setState(() {
+                                      selectedFaculty = newValue!;
+                                    });
+                                  },
+                                  items: faculties!
+                                      .map<DropdownMenuItem<String>>((faculty) {
+                                    return DropdownMenuItem<String>(
+                                      value: faculty['id'].toString(),
+                                      child: Text(faculty['name']),
+                                    );
+                                  }).toList(),
+                                ),
+                              ),
                       ],
                     ),
                   ),
@@ -492,27 +494,32 @@ class _AdduserState extends State<Adduser> {
                         SizedBox(
                           height: 40,
                         ),
-                        departments == null? CircularProgressIndicator(color: Colors.blue,):Container(
-                          padding: EdgeInsets.only(left: 50),
-                          child: DropdownButton<String>(
-                            isExpanded: true,
-                            style: const TextStyle(color: Colors.deepPurple),
-                            items: departments!["departments"]
-                                .map<DropdownMenuItem<String>>((department) {
-                              return DropdownMenuItem<String>(
-                                value: department['id'],
-                                child: Text(department['name']),
-                              );
-                            }).toList(),
-                            // onChanged: (value) => print(value),
-                            onChanged: (value) {
-
-                              selectedDepartment = value!;
-                              print(selectedFaculty);
-                            },
-                            value: selectedDepartment,
-                          ),
-                        ),
+                        departments == null
+                            ? CircularProgressIndicator(
+                                color: Colors.blue,
+                              )
+                            : Container(
+                                padding: EdgeInsets.only(left: 50),
+                                child: DropdownButton<String>(
+                                  isExpanded: true,
+                                  style:
+                                      const TextStyle(color: Colors.deepPurple),
+                                  items: departments!["departments"]
+                                      .map<DropdownMenuItem<String>>(
+                                          (department) {
+                                    return DropdownMenuItem<String>(
+                                      value: department['id'],
+                                      child: Text(department['name']),
+                                    );
+                                  }).toList(),
+                                  // onChanged: (value) => print(value),
+                                  onChanged: (value) {
+                                    selectedDepartment = value!;
+                                    print(selectedFaculty);
+                                  },
+                                  value: selectedDepartment,
+                                ),
+                              ),
                       ],
                     ),
                   ),
@@ -550,25 +557,18 @@ class _AdduserState extends State<Adduser> {
                   Container(
                     padding: EdgeInsets.only(right: 50),
                     child: ElevatedButton(
-                      onPressed: () async{
+                      onPressed: () async {
                         int status = await submit();
-                        if(status == 200) usersProvider.addRow(DataRow(
-                          cells: <DataCell>[
-                            DataCell(Text(firstNameController!.text)),
-                            DataCell(Text(lastNameController!.text)),
-                            DataCell(Text(emailController!.text)),
-                            DataCell(IconButton(
-                              onPressed: () {},
-                              icon: Icon(
-                                Icons.delete,
-                                color: Colors.red.shade400,
-                              ),
-                              splashColor: Colors.red.shade200,
-                            )),
-                          ],
-                        ));
+                        if (status == 200)
+                          usersProvider.addUser(User(
+                            email: emailController!.text,
+                            lastName: lastNameController!.text,
+                            firstName: firstNameController!.text,
+                            portfolio: selectedPortfolio!,
+                            id: userIDController!.text,
+                          ));
                         Navigator.of(context).pop();
-                       // clearAll();
+                        // clearAll();
                       },
                       child: Text(
                         "Save",

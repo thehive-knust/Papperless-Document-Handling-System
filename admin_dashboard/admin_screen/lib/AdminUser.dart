@@ -1,14 +1,15 @@
 import 'dart:core';
 import 'package:admin_screen/add_user.dart';
 import 'package:admin_screen/display_user.dart';
+import 'package:admin_screen/services/requests_to_backend.dart';
 import 'package:admin_screen/users_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
 
 import 'package:provider/provider.dart';
+
+import 'user_details.dart';
 
 class AdminUser extends StatefulWidget {
   @override
@@ -20,24 +21,10 @@ class _AdminUserState extends State<AdminUser> {
   List<dynamic>? users;
 
   Future<void> fetchUsers() async {
-    try {
-      const url = "https://soft-doc.herokuapp.com/users/";
-      fetchingUsers = true;
-      print("===========================Before Users============================");
-      final response = await http.get(Uri.parse(url));
-      users = jsonDecode(response.body)['users'];
-      fetchingUsers = false;
-      print("===========================Users============================");
-      print(users);
-      setState(() {
-
-      });
-    } catch (e) {
-      print(e);
-      fetchingUsers = false;
-      print('something went wrong??????????????????????????????????');
-
-    }
+    fetchingUsers = true;
+    users = await Api.fetchUsers();
+    fetchingUsers = false;
+    setState(() {});
   }
 
   @override
@@ -60,8 +47,10 @@ class _AdminUserState extends State<AdminUser> {
   @override
   Widget build(BuildContext context) {
     final usersProvider = Provider.of<UsersProvider>(context);
+    final screenWidth = MediaQuery.of(context).size.width;
     if (users == null && !fetchingUsers) fetchUsers();
-    if (users != null && usersProvider.rowList == null) usersProvider.initialise(users!);
+    if (users != null && usersProvider.rowList == null)
+      usersProvider.initialise(context, users!);
     print("==============Checking==========================");
     print(usersProvider.rowList);
     return Scaffold(
@@ -152,24 +141,39 @@ class _AdminUserState extends State<AdminUser> {
         ),
       ),
       body: Container(
-        padding: EdgeInsets.fromLTRB(100, 50, 0, 50),
         child: usersProvider.rowList == null
             ? Center(
-              child: CircularProgressIndicator(
-                strokeWidth: 5,
-                  color: Colors.green
-                ,
+                child: CircularProgressIndicator(
+                  strokeWidth: 5,
+                  color: Colors.green,
                 ),
-            )
-            : Display(),
+              )
+            : SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: [
+                    UserDetails(),
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(10, 50, 50, 5),
+                      child: Display(),
+                    ),
+                  ],
+                ),
+              ),
       ),
-      floatingActionButton: FloatingActionButton(
+      floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
           addUserScreen(context);
         },
-        child: Icon(
-          Icons.add,
-          size: 35,
+        label: Row(
+          children: [
+            Icon(
+              Icons.add,
+              size: 35,
+            ),
+            if (screenWidth > 1000) SizedBox(width: 8),
+            if (screenWidth > 1000) Text('Add user'),
+          ],
         ),
       ),
     );
