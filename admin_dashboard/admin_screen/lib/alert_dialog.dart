@@ -12,7 +12,7 @@ Future<bool?> confirm(BuildContext context, String _title, String _content) {
               onPressed: () {
                 Navigator.of(context).pop(true);
               },
-              child: Text("DELETE", style: TextStyle(color: Colors.redAccent)),
+              child: Text("PROCEED", style: TextStyle(color: Colors.redAccent)),
             ),
             TextButton(
                 onPressed: () {
@@ -36,7 +36,7 @@ void showProcessingAlert(context, message) {
       });
 }
 
-void showMessage(context, status) {
+void showMessage(context, {status, message}) {
   showDialog(
       context: context,
       builder: (context) {
@@ -44,12 +44,12 @@ void showMessage(context, status) {
           Navigator.pop(context);
         });
         return AlertDialog(
-          content: Container(
-            child: Text(
-              status ? "Operation Successful" : "Operation Failed",
-              style: TextStyle(color: status ? Colors.green : Colors.red),
-            ),
-          ),
+          content: message == null
+              ? Text(
+                  status ? "Operation Successful" : "Operation Failed",
+                  style: TextStyle(color: status ? Colors.green : Colors.red),
+                )
+              : Text(message),
         );
       });
 }

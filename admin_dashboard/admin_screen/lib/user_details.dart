@@ -86,14 +86,30 @@ class _UserDetailsState extends State<UserDetails> {
                     label: 'contact',
                     controller: contactController!,
                   ),
-                  if (edited) button('Save Changes', () {}),
-                  button('Delete user', () async {
-                    bool succeeded = await usersProvider
-                        .deleteUserFromDb(usersProvider.selectedUser!.id);
-                    if (succeeded)
-                      usersProvider.removeUser(usersProvider.selectedUser!.id);
-                  }),
-                  button('Make Admin', () {}),
+                  Selector<UsersProvider, bool>(
+                    selector: (context, provider) => provider.userEdited,
+                    builder: (context, userEdited, child) => userEdited
+                        ? button('Save Changes', () {
+                            usersProvider.updateUserDetails({
+                              "id": idController!.text,
+                              "first_name": firstNameController!.text,
+                              "last_name": lastNameController!.text,
+                              "email": emailController!.text,
+                              "contact": contactController!.text
+                            });
+                          })
+                        : Container(),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 8.0),
+                    child: button('Delete user', () async {
+                      bool succeeded = await usersProvider
+                          .deleteUserFromDb(usersProvider.selectedUser!.id);
+                      if (succeeded)
+                        usersProvider
+                            .removeUser(usersProvider.selectedUser!.id);
+                    }),
+                  ),
                 ],
               ),
             ),
@@ -131,34 +147,39 @@ class _UserAttributeState extends State<UserAttribute> {
 
   @override
   Widget build(BuildContext context) {
-    print(
-        '===============================is this doing anything======================');
-    return ListTile(
-      title: Selector<UsersProvider, User>(
-        selector: (context, provider) => provider.selectedUser!,
-        builder: (context, selectedUser, child) {
-          widget.controller.text = value(selectedUser) ?? 'not set';
-          return TextField(
-            controller: widget.controller,
-            enabled: editable,
-            readOnly: !editable,
-            decoration: InputDecoration(
-              labelText: widget.label,
-              labelStyle: TextStyle(color: Colors.blueAccent, fontSize: 14),
-              floatingLabelBehavior: FloatingLabelBehavior.always,
-              border: editable ? UnderlineInputBorder() : InputBorder.none,
-              //enabled: true,
-            ),
-          );
-        },
-      ),
-      trailing: IconButton(
-        icon: Icon(Icons.edit),
-        onPressed: () {
-          setState(() {
-            editable = true;
-          });
-        },
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 0),
+      child: ListTile(
+        title: Selector<UsersProvider, User>(
+          selector: (context, provider) => provider.selectedUser!,
+          builder: (context, selectedUser, child) {
+            widget.controller.text = value(selectedUser) ?? 'not set';
+            return TextField(
+              controller: widget.controller,
+              enabled: editable,
+              readOnly: !editable,
+              decoration: InputDecoration(
+                labelText: widget.label,
+                labelStyle: TextStyle(color: Colors.blueAccent, fontSize: 14),
+                floatingLabelBehavior: FloatingLabelBehavior.always,
+                border: editable ? UnderlineInputBorder() : InputBorder.none,
+                //enabled: true,
+              ),
+            );
+          },
+        ),
+        trailing: IconButton(
+          icon: Icon(Icons.edit),
+          onPressed: () {
+            setState(() {
+              editable = true;
+              UsersProvider usersProvider =
+                  Provider.of<UsersProvider>(context, listen: false);
+              if (!usersProvider.userEdited)
+                usersProvider.updateUserEdited(true);
+            });
+          },
+        ),
       ),
     );
   }

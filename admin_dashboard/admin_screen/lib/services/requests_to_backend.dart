@@ -37,8 +37,32 @@ class Api {
       Navigator.of(context).pop();
       return response.statusCode == 200;
     } catch (e) {
+      Navigator.of(context).pop();
+      return false;
+    }
+  }
+
+  static Future<bool> editUserAttributes(
+      context, oldId, Map<String, String> newAttributes) async {
+    try {
+      print(
+          '===============================is this doing anything======================');
+      print(oldId);
+      print(newAttributes);
+      final response = await http.post(
+        Uri.parse(index + "users/update/" + oldId),
+        body: jsonEncode(newAttributes),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+      );
+      Navigator.of(context).pop();
+      print(response.statusCode);
+      return response.statusCode == 200;
+    } catch (e) {
       print('=========================ERROR=======================');
       print(e);
+
       Navigator.of(context).pop();
       return false;
     }
