@@ -5,7 +5,7 @@ The goal of this project is to develop and design an effective software solution
 handling documents processing in the College of Engineering, KNUST. Specifically,
 internal document approvals.\
 -- You can find the links to production below\
--- Users: https://the-hive.surge.sh/\
+-- Users: https://the-hive.surge.sh/ \
 -- Admin: https://the-hive-admin.surge.sh/
 
 # Contributors - Name (Index No. - Role)
