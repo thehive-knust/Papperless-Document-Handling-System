@@ -4,6 +4,9 @@ This is a collaborative project work for the Software Engineering Course 2021.
 The goal of this project is to develop and design an effective software solution for
 handling documents processing in the College of Engineering, KNUST. Specifically,
 internal document approvals.
+-- You can find the links to production below\
+-- Users: https://the-hive.surge.sh/
+-- Admin: https://the-hive-admin.surge.sh/
 
 # Contributors - Name (Index No. - Role)
 
