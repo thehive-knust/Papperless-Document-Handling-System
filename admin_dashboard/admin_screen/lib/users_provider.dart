@@ -1,4 +1,6 @@
+import 'package:admin_screen/portfolio_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'alert_dialog.dart';
 import 'services/requests_to_backend.dart';
@@ -37,35 +39,39 @@ class UsersProvider with ChangeNotifier {
   }
 
   void showUserDetails(User? user) {
-    print(user);
     selectedUser = user;
     userEdited = false;
+    final portfolioProvider =
+        Provider.of<PortfolioProvider>(context!, listen: false);
+    portfolioProvider.portfolios!['selectedPortfolio'] = user!.portfolio;
+    portfolioProvider.departments!['selectedDepartment'] = user.deptId;
+    portfolioProvider.faculties!['selectedFaculty'] = user.facId;
     notifyListeners();
   }
 
   DataRow createDataRow(User user) {
     return DataRow(
-      cells: <DataCell>[
-        DataCell(Text(user.firstName), onTap: () {
-          showUserDetails(user);
-        }),
-        DataCell(Text(user.lastName)),
-        DataCell(Text(user.email)),
-        DataCell(
-          IconButton(
-            onPressed: () async {
-              bool succeeded = await deleteUserFromDb(user.id);
-              if (succeeded == true) removeUser(user.id);
-            },
-            icon: Icon(
-              Icons.delete,
-              color: Colors.red.shade400,
+        cells: <DataCell>[
+          DataCell(Text(user.firstName)),
+          DataCell(Text(user.lastName)),
+          DataCell(Text(user.email)),
+          DataCell(
+            IconButton(
+              onPressed: () async {
+                bool succeeded = await deleteUserFromDb(user.id);
+                if (succeeded == true) removeUser(user.id);
+              },
+              icon: Icon(
+                Icons.delete,
+                color: Colors.red.shade400,
+              ),
+              splashColor: Colors.red.shade200,
             ),
-            splashColor: Colors.red.shade200,
           ),
-        ),
-      ],
-    );
+        ],
+        onSelectChanged: (selected) {
+          if (selected!) showUserDetails(user);
+        });
   }
 
   void updateUserDetails(Map<String, String> newAttributes) async {

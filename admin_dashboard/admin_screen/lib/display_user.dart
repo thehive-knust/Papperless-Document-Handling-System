@@ -47,6 +47,7 @@ class DisplayState extends State<Display> {
               return DataTable(
                 sortColumnIndex: 3,
                 columnSpacing: 150,
+                showCheckboxColumn: false,
                 columns: <DataColumn>[
                   DataColumn(
                     label: Text(

@@ -1,7 +1,11 @@
 import 'dart:core';
 import 'package:admin_screen/add_user.dart';
 import 'package:admin_screen/display_user.dart';
+import 'package:admin_screen/portfolio_provider.dart';
+import 'package:admin_screen/search_results_provider.dart';
+import 'package:admin_screen/search_results_provider.dart';
 import 'package:admin_screen/services/requests_to_backend.dart';
+import 'package:admin_screen/user.dart';
 import 'package:admin_screen/users_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -29,9 +33,9 @@ class _AdminUserState extends State<AdminUser> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     fetchUsers();
+    Provider.of<PortfolioProvider>(context, listen: false).initialise();
   }
 
   void addUserScreen(BuildContext context) {
@@ -42,124 +46,170 @@ class _AdminUserState extends State<AdminUser> {
 
   Color primaryLight = Color(0xFFEFF7FF);
 
-  GlobalKey<ScaffoldState>? _scaffoldKey;
+  OverlayEntry? searchResults;
+  OverlayEntry showSearchResults(
+      screenSize, usersProvider, searchResultsProvider) {
+    return OverlayEntry(
+      //opaque: true,
+      builder: (context) {
+        return Positioned(
+          left: 20,
+          top: 60,
+          width: screenSize.width * 0.5,
+          //height: screenSi,
+          child: Material(
+            type: MaterialType.card,
+            borderRadius: BorderRadius.circular(15),
+            //color: Colors.black,
+            elevation: 1.5,
+            child: Container(
+              constraints: BoxConstraints(
+                maxHeight:
+                    screenSize.height <= 300 ? 135 : screenSize.height * 0.5,
+              ),
+              child: Selector<SearchResultsProvider, List<dynamic>>(
+                selector: (context, provider) => provider.searchResults,
+                builder: (context, searchResults, child) {
+                  return ListView(
+                    padding: EdgeInsets.zero,
+                    shrinkWrap: true,
+                    children: searchResults
+                        .map((user) => InkWell(
+                              onTap: () {
+                                usersProvider.selectedUser = user;
+                                print("==================this ain't working");
+                                print(usersProvider.selectedUser);
+                                print(
+                                    "==================this ain't working ${searchResultsProvider.searchingStarted}");
+                                searchResultsProvider
+                                    .updateSearchingStarted(false);
+                                //Overlay.of(context)?.dispose();
+                              },
+                              child: ListTile(
+                                title:
+                                    Text(user.firstName + " " + user.lastName),
+                                subtitle: Text(user.portfolio),
+                              ),
+                            ))
+                        .toList(),
+                  );
+                },
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     final usersProvider = Provider.of<UsersProvider>(context);
-    final screenWidth = MediaQuery.of(context).size.width;
+    final searchResultsProvider = Provider.of<SearchResultsProvider>(context);
+    final screenSize = MediaQuery.of(context).size;
+
+    print("=========================screenWidth: ${screenSize.width}");
+    print("=========================screenHeight: ${screenSize.height}");
     if (users == null && !fetchingUsers) fetchUsers();
     if (users != null && usersProvider.rowList == null)
       usersProvider.initialise(context, users!);
-    print("==============Checking==========================");
-    print(usersProvider.rowList);
     return Scaffold(
       backgroundColor: primaryLight,
-      appBar: AppBar(
-        backgroundColor: Colors.grey[600],
-        actions: [
-          Spacer(
-            flex: 2,
-          ),
-          Expanded(
-            flex: 15,
-            child: Container(
-              width: 900,
-              height: 5,
-              margin: EdgeInsets.fromLTRB(10, 10, 50, 5),
-              child: TextField(
-                cursorColor: Colors.black,
-                cursorHeight: 25,
-                cursorWidth: 3.2,
-                decoration: InputDecoration(
-                    contentPadding: EdgeInsets.symmetric(vertical: 15),
-                    prefixIcon: Icon(Icons.search),
-                    filled: true,
-                    hintText: "Search",
-                    hintStyle: GoogleFonts.notoSans(),
-                    fillColor: Colors.grey[200],
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(40),
-                      borderSide: BorderSide.none,
-                    )),
-              ),
-            ),
-          ),
-          Expanded(
-            child: IconButton(
-              onPressed: () {},
-              hoverColor: Colors.black38,
-              splashRadius: 20,
-              icon: Icon(Icons.notifications),
-              tooltip: "Notification",
-              color: Colors.black,
-            ),
-          ),
-        ],
-      ),
-      drawer: Container(
-        child: Drawer(
-          elevation: 20,
-          child: ListView(
-            children: [
-              Container(
-                padding: EdgeInsets.fromLTRB(5, 10, 140, 10),
-                child: CircleAvatar(
-                  backgroundColor: Colors.grey[500],
-                  child: Icon(Icons.person),
-                  radius: 50,
-                ),
-              ),
-              Container(
-                padding: EdgeInsets.fromLTRB(50, 0, 140, 5),
-                child: Text("User Name",
-                    textAlign: TextAlign.left, style: GoogleFonts.notoSans()),
-              ),
-              Divider(
-                thickness: 0.5,
-              ),
-              Container(
-                child: InkWell(
-                  onTap: () {},
-                  child: ListTile(
-                    leading: Icon(Icons.person),
-                    title: Text("Profile"),
-                  ),
-                ),
-              ),
-              Container(
-                child: InkWell(
-                  onTap: () {},
-                  child: ListTile(
-                    leading: Icon(Icons.settings),
-                    title: Text("Settings"),
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-      body: Container(
-        child: usersProvider.rowList == null
-            ? Center(
-                child: CircularProgressIndicator(
-                  strokeWidth: 5,
-                  color: Colors.green,
-                ),
-              )
-            : SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: [
-                    UserDetails(),
-                    Padding(
-                      padding: EdgeInsets.fromLTRB(10, 50, 50, 5),
-                      child: Display(),
+      body: GestureDetector(
+        onTap: () {
+          searchResultsProvider.updateSearchingStarted(false);
+        },
+        child: Column(
+          children: [
+            Card(
+              color: Colors.grey[600],
+              child: Row(
+                children: [
+                  Expanded(
+                    flex: 15,
+                    child: Container(
+                      //constraints: BoxConstraints(minHeight: 40, maxHeight: 50),
+                      padding:
+                          EdgeInsets.symmetric(vertical: 4, horizontal: 10),
+                      // width: 900,
+                      height: 50,
+                      //margin: EdgeInsets.fromLTRB(10, 10, 50, 5),
+                      child: TextField(
+                        cursorColor: Colors.black,
+                        cursorHeight: 25,
+                        cursorWidth: 3.2,
+                        decoration: InputDecoration(
+                          contentPadding: EdgeInsets.symmetric(vertical: 15),
+                          prefixIcon: Icon(Icons.search),
+                          filled: true,
+                          hintText: "Search",
+                          hintStyle: GoogleFonts.notoSans(),
+                          fillColor: Colors.grey[200],
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(40),
+                            borderSide: BorderSide.none,
+                          ),
+                        ),
+                        onChanged: (newValue) {
+                          if (newValue.length == 0) {
+                            searchResults!.remove();
+                            searchResultsProvider.searchResults = [];
+                            searchResultsProvider.searchingStarted = false;
+                            return;
+                          }
+
+                          if (!searchResultsProvider.searchingStarted) {
+                            searchResults = showSearchResults(screenSize,
+                                usersProvider, searchResultsProvider);
+                            Overlay.of(context)?.insert(searchResults!);
+                            searchResultsProvider.searchingStarted = true;
+                          }
+
+                          searchResultsProvider.searchValue = newValue;
+                          searchResultsProvider
+                              .generateSearchResults(usersProvider);
+                        },
+                      ),
                     ),
-                  ],
-                ),
+                  ),
+                  Expanded(
+                    child: IconButton(
+                      onPressed: () {},
+                      hoverColor: Colors.black38,
+                      splashRadius: 20,
+                      icon: Icon(Icons.notifications),
+                      tooltip: "Notification",
+                      color: Colors.black,
+                    ),
+                  ),
+                ],
               ),
+            ),
+            Expanded(
+              child: Container(
+                child: usersProvider.rowList == null
+                    ? Center(
+                        child: CircularProgressIndicator(
+                          strokeWidth: 5,
+                          color: Colors.green,
+                        ),
+                      )
+                    : SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
+                          children: [
+                            UserDetails(),
+                            Padding(
+                              padding: EdgeInsets.fromLTRB(10, 50, 50, 5),
+                              child: Display(),
+                            ),
+                          ],
+                        ),
+                      ),
+              ),
+            ),
+          ],
+        ),
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
@@ -167,12 +217,20 @@ class _AdminUserState extends State<AdminUser> {
         },
         label: Row(
           children: [
-            Icon(
-              Icons.add,
-              size: 35,
+            Selector<SearchResultsProvider, bool>(
+              selector: (context, provider) => provider.searchingStarted,
+              builder: (context, searchingStarted, child) {
+                if (!searchingStarted &&
+                    searchResults != null &&
+                    searchResults!.mounted) searchResults?.remove();
+                return Icon(
+                  Icons.add,
+                  size: 35,
+                );
+              },
             ),
-            if (screenWidth > 1000) SizedBox(width: 8),
-            if (screenWidth > 1000) Text('Add user'),
+            if (screenSize.width > 1000) SizedBox(width: 8),
+            if (screenSize.width > 1000) Text('Add user'),
           ],
         ),
       ),

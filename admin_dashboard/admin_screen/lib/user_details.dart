@@ -1,6 +1,7 @@
+import 'package:admin_screen/portfolio_provider.dart';
 import 'package:admin_screen/users_provider.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 import 'user.dart';
@@ -27,7 +28,7 @@ class _UserDetailsState extends State<UserDetails> {
       contactController = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    final usersProvider = Provider.of<UsersProvider>(context);
+    final usersProvider = Provider.of<UsersProvider>(context, listen: false);
     minimize = usersProvider.selectedUser == null;
     double _width = minimize ? 0 : MediaQuery.of(context).size.width * 0.3;
     double _minWidth = minimize ? 0 : 300;
@@ -78,10 +79,9 @@ class _UserDetailsState extends State<UserDetails> {
                     label: 'email',
                     controller: emailController!,
                   ),
-                  UserAttribute(
-                    label: 'portfolio',
-                    controller: portfolioController!,
-                  ),
+                  DropdownUserAttribute(category: "portfolio"),
+                  DropdownUserAttribute(category: "faculty"),
+                  DropdownUserAttribute(category: "department"),
                   UserAttribute(
                     label: 'contact',
                     controller: contactController!,
@@ -90,12 +90,22 @@ class _UserDetailsState extends State<UserDetails> {
                     selector: (context, provider) => provider.userEdited,
                     builder: (context, userEdited, child) => userEdited
                         ? button('Save Changes', () {
+                            final portfolioProvider =
+                                Provider.of<PortfolioProvider>(context,
+                                    listen: false);
+
                             usersProvider.updateUserDetails({
                               "id": idController!.text,
                               "first_name": firstNameController!.text,
                               "last_name": lastNameController!.text,
                               "email": emailController!.text,
-                              "contact": contactController!.text
+                              "contact": contactController!.text,
+                              "portfolio": portfolioProvider
+                                  .portfolios!['selectedPortfolio'],
+                              "faculty_id": portfolioProvider
+                                  .faculties!['selectedFaculty'],
+                              "department_id": portfolioProvider
+                                  .departments!['selectedDepartment'],
                             });
                           })
                         : Container(),
@@ -153,19 +163,10 @@ class _UserAttributeState extends State<UserAttribute> {
         title: Selector<UsersProvider, User>(
           selector: (context, provider) => provider.selectedUser!,
           builder: (context, selectedUser, child) {
-            widget.controller.text = value(selectedUser) ?? 'not set';
-            return TextField(
-              controller: widget.controller,
-              enabled: editable,
-              readOnly: !editable,
-              decoration: InputDecoration(
-                labelText: widget.label,
-                labelStyle: TextStyle(color: Colors.blueAccent, fontSize: 14),
-                floatingLabelBehavior: FloatingLabelBehavior.always,
-                border: editable ? UnderlineInputBorder() : InputBorder.none,
-                //enabled: true,
-              ),
-            );
+            if (widget.controller != null)
+              widget.controller.text = value(selectedUser) ?? 'not set';
+            return attributeTextField(
+                widget.label, editable, widget.controller);
           },
         ),
         trailing: IconButton(
@@ -185,6 +186,21 @@ class _UserAttributeState extends State<UserAttribute> {
   }
 }
 
+Widget attributeTextField(label, editable, controller) {
+  return TextField(
+    controller: controller,
+    enabled: editable,
+    readOnly: !editable,
+    decoration: InputDecoration(
+      labelText: label,
+      labelStyle: TextStyle(color: Colors.blueAccent, fontSize: 14),
+      floatingLabelBehavior: FloatingLabelBehavior.always,
+      border: editable ? UnderlineInputBorder() : InputBorder.none,
+      //enabled: true,
+    ),
+  );
+}
+
 Widget button(String _text, Function() _onpressed) {
   return Container(
     padding: EdgeInsets.only(top: 10, right: 10),
@@ -198,4 +214,120 @@ Widget button(String _text, Function() _onpressed) {
       onPressed: _onpressed,
     ),
   );
+}
+
+class DropdownUserAttribute extends StatefulWidget {
+  final String category;
+  const DropdownUserAttribute({Key? key, required this.category})
+      : super(key: key);
+
+  @override
+  _DropdownUserAttributeState createState() => _DropdownUserAttributeState();
+}
+
+class _DropdownUserAttributeState extends State<DropdownUserAttribute> {
+  bool editable = false;
+  String? selectedInCategory;
+
+  bool render(UsersProvider usersProvider) {
+    switch (widget.category) {
+      case "portfolio":
+        return usersProvider.selectedUser?.portfolio != 'null';
+      case "faculty":
+        return usersProvider.selectedUser?.facId != 'null';
+      case "department":
+        return usersProvider.selectedUser?.deptId != 'null';
+      default:
+        return true;
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    selectedInCategory = 'selected' +
+        widget.category.substring(0, 1).toUpperCase() +
+        widget.category.substring(1);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final usersProvider = Provider.of<UsersProvider>(context, listen: false);
+    return Selector<PortfolioProvider, Map<String, dynamic>?>(
+      selector: (context, provider) {
+        switch (widget.category) {
+          case "portfolio":
+            return provider.portfolios;
+          case "faculty":
+            return provider.faculties;
+          case "department":
+            return provider.departments;
+        }
+      },
+      builder: (context, categoryObject, child) {
+        return !render(usersProvider)
+            ? Container()
+            : Container(
+                child: ListTile(
+                  title: editable
+                      ? DropdownButton<String>(
+                          icon: const Icon(Icons.arrow_drop_down_sharp),
+                          iconSize: 24,
+                          elevation: 16,
+                          isExpanded: true,
+                          iconEnabledColor: Colors.blue,
+                          style: TextStyle(color: Colors.black),
+                          underline: Container(
+                            height: 2,
+                            width: 20,
+                            color: Colors.blueAccent,
+                          ),
+                          value: categoryObject![selectedInCategory],
+                          onChanged: (String? newValue) {
+                            setState(() {
+                              categoryObject[selectedInCategory!] = newValue;
+                            });
+                          },
+                          items: categoryObject[widget.category == 'faculty'
+                                  ? 'faculties'
+                                  : widget.category + 's']
+                              .map<DropdownMenuItem<String>>((categoryValue) {
+                            return DropdownMenuItem<String>(
+                              value: widget.category == "portfolio"
+                                  ? categoryValue['name']
+                                  : categoryValue['id'].toString(),
+                              child: Text(categoryValue['name']),
+                            );
+                          }).toList(),
+                        )
+                      : attributeTextField(
+                          widget.category,
+                          editable,
+                          TextEditingController(
+                            text: widget.category == "portfolio"
+                                ? categoryObject![selectedInCategory]
+                                : categoryObject![widget.category == 'faculty'
+                                            ? 'faculties'
+                                            : widget.category + 's']
+                                        .firstWhere((element) =>
+                                            element['id'].toString() ==
+                                            categoryObject[selectedInCategory])[
+                                    'name'],
+                          ),
+                        ),
+                  trailing: IconButton(
+                    icon: Icon(Icons.edit),
+                    onPressed: () {
+                      setState(() {
+                        editable = true;
+                        if (!usersProvider.userEdited)
+                          usersProvider.updateUserEdited(true);
+                      });
+                    },
+                  ),
+                ),
+              );
+      },
+    );
+  }
 }

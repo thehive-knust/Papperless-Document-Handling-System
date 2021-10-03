@@ -73,6 +73,6 @@ class User {
   @override
   String toString() {
     // TODO: implement toString
-    return 'id: ${this.id} \n name:${this.firstName} \n email: ${this.email} contact: ${this.contact} portfolio: ${this.portfolio}';
+    return ' id: ${this.id} \n name:${this.firstName} \n email: ${this.email} \n contact: ${this.contact} \n portfolio: ${this.portfolio} \n portId: ${this.portId} \n ';
   }
 }
