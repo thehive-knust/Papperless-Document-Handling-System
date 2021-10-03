@@ -1,6 +1,6 @@
 import 'dart:ui';
 
-import 'package:admin_screen/users_provider.dart';
+import '../providers/users_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -13,28 +13,6 @@ class Display extends StatefulWidget {
 }
 
 class DisplayState extends State<Display> {
-  // List<DataRow> rowList;
-  //
-  // void addRow() {
-  //   setState(() {
-  //     rowList.add(DataRow(
-  //       cells: <DataCell>[
-  //         DataCell(Text('Angelina')),
-  //         DataCell(Text('Fufuo')),
-  //         DataCell(Text('angelina@gmail.com')),
-  //         DataCell(IconButton(
-  //           onPressed: () {},
-  //           icon: Icon(
-  //             Icons.delete,
-  //             color: Colors.red.shade400,
-  //           ),
-  //           splashColor: Colors.red.shade200,
-  //         )),
-  //       ],
-  //     ));
-  //   });
-  // }
-
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(

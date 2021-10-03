@@ -1,12 +1,12 @@
 import 'dart:convert';
-import 'package:admin_screen/users_provider.dart';
+import '../providers/users_provider.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-import 'user.dart';
+import '../models/user.dart';
 
 class Adduser extends StatefulWidget {
   final String title = "Flutter Data Table";
@@ -44,9 +44,6 @@ class _AdduserState extends State<Adduser> {
     fetchDepartments();
     fetchPortfolios();
     fetchFaculties();
-    print("###########################");
-    print(portfolios);
-    print(departments);
   }
 
   Future<void> fetchDepartments() async {
@@ -56,9 +53,6 @@ class _AdduserState extends State<Adduser> {
       final response = await http.get(Uri.parse(url));
       departments = jsonDecode(response.body);
       fetchingDepartments = false;
-      print(
-          "===========================Department============================");
-      print(departments);
       setState(() {
         selectedDepartment = departments!['departments'][0]['id'].toString();
         //selectedFaculty = departments!["departments"][0]['faculty_id'].toString();
@@ -75,8 +69,6 @@ class _AdduserState extends State<Adduser> {
       final response = await http.get(Uri.parse(url));
       portfolios = jsonDecode(response.body);
       fetchingPortfolios = false;
-      print("===========================Portfolios==========================");
-      print(portfolios);
       setState(() {
         selectedPortfolio = portfolios!['portfolios'][0]['id'].toString();
       });
@@ -93,13 +85,10 @@ class _AdduserState extends State<Adduser> {
       final response = await http.get(Uri.parse(url));
       faculties = jsonDecode(response.body);
       fetchingFaculties = false;
-      print("=========================Faculties========================");
-      print(faculties);
       setState(() {
         selectedFaculty = faculties![0]['id'].toString();
       });
     } catch (e) {
-      print(e.toString());
       fetchingFaculties = false;
     }
     // return response.body as Map<String, dynamic>;
@@ -107,18 +96,6 @@ class _AdduserState extends State<Adduser> {
 
   Future<int> submit() async {
     try {
-      print("==================Before the send=========================");
-      print(userIDController!.text);
-      print(firstNameController!.text);
-      print(lastNameController!.text);
-      print(emailController!.text);
-      print(contactNameController!.text);
-      print(passwordController!.text);
-      print(selectedFaculty);
-      print(selectedDepartment);
-      print(selectedPortfolio);
-
-      print("==================Be the send=========================");
       var request = http.MultipartRequest(
           'POST', Uri.parse('https://soft-doc.herokuapp.com/auth/signup'));
       request.fields.addAll({
@@ -137,10 +114,7 @@ class _AdduserState extends State<Adduser> {
           filename: image!.name));
       var response = await request.send();
       return response.statusCode;
-      print('==================');
-      print(response.statusCode);
     } catch (e) {
-      print("authentication Error Message => " + e.toString());
       return 0;
     }
   }
@@ -512,10 +486,8 @@ class _AdduserState extends State<Adduser> {
                                       child: Text(department['name']),
                                     );
                                   }).toList(),
-                                  // onChanged: (value) => print(value),
                                   onChanged: (value) {
                                     selectedDepartment = value!;
-                                    print(selectedFaculty);
                                   },
                                   value: selectedDepartment,
                                 ),

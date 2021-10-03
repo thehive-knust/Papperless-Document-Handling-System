@@ -1,10 +1,10 @@
-import 'package:admin_screen/portfolio_provider.dart';
+import 'portfolio_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'alert_dialog.dart';
-import 'services/requests_to_backend.dart';
-import 'user.dart';
+import '../widgets/alert_dialogs.dart';
+import '../services/requests_to_backend.dart';
+import '../models/user.dart';
 
 class UsersProvider with ChangeNotifier {
   List<DataRow>? rowList;
@@ -103,20 +103,14 @@ class UsersProvider with ChangeNotifier {
   }
 
   Future<bool> deleteUserFromDb(userId) async {
-    print('########################################');
-    print(userId);
     bool? succeeded;
     final confirmed = await confirm(
         context!, "User Would be Deleted", "this action is irreversible");
-    print('==========================confirmed=======================');
-    print(confirmed);
     if (confirmed == true) {
       showProcessingAlert(context, "Deleting");
       succeeded = await Api.deleteUser(context!, userId);
       showMessage(context, status: succeeded);
     }
-    print('==========================succeeded=======================');
-    print(succeeded);
     return succeeded!;
   }
 

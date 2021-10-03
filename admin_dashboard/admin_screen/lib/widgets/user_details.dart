@@ -1,13 +1,14 @@
-import 'package:admin_screen/portfolio_provider.dart';
-import 'package:admin_screen/users_provider.dart';
+import '../providers/portfolio_provider.dart';
+import '../providers/users_provider.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'user.dart';
+import '../models/user.dart';
 
 class UserDetails extends StatefulWidget {
   final user;
+
   const UserDetails({Key? key, this.user}) : super(key: key);
 
   @override
@@ -26,6 +27,7 @@ class _UserDetailsState extends State<UserDetails> {
       departmentController = TextEditingController(),
       facultyController = TextEditingController(),
       contactController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     final usersProvider = Provider.of<UsersProvider>(context, listen: false);
@@ -130,7 +132,9 @@ class _UserDetailsState extends State<UserDetails> {
 class UserAttribute extends StatefulWidget {
   final label;
   final controller;
+
   UserAttribute({Key? key, this.label, this.controller}) : super(key: key);
+
   @override
   _UserAttributeState createState() => _UserAttributeState();
 }
@@ -218,6 +222,7 @@ Widget button(String _text, Function() _onpressed) {
 
 class DropdownUserAttribute extends StatefulWidget {
   final String category;
+
   const DropdownUserAttribute({Key? key, required this.category})
       : super(key: key);
 

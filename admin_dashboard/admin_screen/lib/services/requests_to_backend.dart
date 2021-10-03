@@ -14,7 +14,6 @@ class Api {
           .get(Uri.parse(index + 'users/'))
           .timeout(const Duration(seconds: 30));
       users = jsonDecode(response.body)['users'];
-      print(users);
       return users;
     } on TimeoutException {
       return null;
@@ -25,9 +24,7 @@ class Api {
 
   static Future<bool> deleteUser(BuildContext context, String id) async {
     try {
-      print(id);
       final response = await http.post(Uri.parse(index + "users/delete/" + id));
-      print(response.statusCode);
       Navigator.of(context).pop();
       return response.statusCode == 200;
     } catch (e) {

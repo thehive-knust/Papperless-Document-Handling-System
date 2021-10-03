@@ -43,13 +43,11 @@ class PortfolioProvider with ChangeNotifier {
     _facultiesLoading = true;
     faculties = {"faculties": await Api.fetchCategory("faculties")};
     _facultiesLoading = false;
-    print(faculties);
   }
 
   Future<void> fetchDepartments() async {
     _departmentsLoading = true;
     departments = await Api.fetchCategory("departments");
     _departmentsLoading = false;
-    print(departments);
   }
 }

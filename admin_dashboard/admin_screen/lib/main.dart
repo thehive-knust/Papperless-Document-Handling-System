@@ -1,7 +1,7 @@
-import 'package:admin_screen/AdminUser.dart';
-import 'package:admin_screen/portfolio_provider.dart';
-import 'package:admin_screen/search_results_provider.dart';
-import 'package:admin_screen/users_provider.dart';
+import 'widgets/AdminUser.dart';
+import 'providers/portfolio_provider.dart';
+import 'providers/search_results_provider.dart';
+import 'providers/users_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

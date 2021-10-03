@@ -1,12 +1,10 @@
 import 'dart:core';
-import 'package:admin_screen/add_user.dart';
-import 'package:admin_screen/display_user.dart';
-import 'package:admin_screen/portfolio_provider.dart';
-import 'package:admin_screen/search_results_provider.dart';
-import 'package:admin_screen/search_results_provider.dart';
+import 'add_user.dart';
+import 'package:admin_screen/widgets/display_user.dart';
+import '../providers/portfolio_provider.dart';
+import '../providers/search_results_provider.dart';
 import 'package:admin_screen/services/requests_to_backend.dart';
-import 'package:admin_screen/user.dart';
-import 'package:admin_screen/users_provider.dart';
+import '../providers/users_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -47,6 +45,7 @@ class _AdminUserState extends State<AdminUser> {
   Color primaryLight = Color(0xFFEFF7FF);
 
   OverlayEntry? searchResults;
+
   OverlayEntry showSearchResults(
       screenSize, usersProvider, searchResultsProvider) {
     return OverlayEntry(
@@ -77,10 +76,6 @@ class _AdminUserState extends State<AdminUser> {
                         .map((user) => InkWell(
                               onTap: () {
                                 usersProvider.selectedUser = user;
-                                print("==================this ain't working");
-                                print(usersProvider.selectedUser);
-                                print(
-                                    "==================this ain't working ${searchResultsProvider.searchingStarted}");
                                 searchResultsProvider
                                     .updateSearchingStarted(false);
                                 //Overlay.of(context)?.dispose();
@@ -108,8 +103,6 @@ class _AdminUserState extends State<AdminUser> {
     final searchResultsProvider = Provider.of<SearchResultsProvider>(context);
     final screenSize = MediaQuery.of(context).size;
 
-    print("=========================screenWidth: ${screenSize.width}");
-    print("=========================screenHeight: ${screenSize.height}");
     if (users == null && !fetchingUsers) fetchUsers();
     if (users != null && usersProvider.rowList == null)
       usersProvider.initialise(context, users!);

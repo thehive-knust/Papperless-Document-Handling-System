@@ -1,5 +1,5 @@
-import 'package:admin_screen/user.dart';
-import 'package:admin_screen/users_provider.dart';
+import '../models/user.dart';
+import 'users_provider.dart';
 import 'package:flutter/material.dart';
 
 class SearchResultsProvider with ChangeNotifier {
@@ -9,7 +9,6 @@ class SearchResultsProvider with ChangeNotifier {
 
   void updateSearchingStarted(status) {
     searchingStarted = status;
-    print("==================making the change");
     notifyListeners();
   }
 
@@ -25,6 +24,5 @@ class SearchResultsProvider with ChangeNotifier {
               .contains(localSearchValue!.toLowerCase()) &&
           searchResults.contains(user) == false) searchResults.add(user);
     }
-    print(searchResults);
   }
 }
