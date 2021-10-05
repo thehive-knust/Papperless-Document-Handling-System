@@ -83,4 +83,30 @@ class Api {
       return null;
     }
   }
+
+  static Future<bool> login(userId, password) async {
+    Uri url = Uri.parse("https://soft-doc.herokuapp.com/auth/login");
+    http.Response response;
+    try {
+      response = await http.post(
+        url,
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode(
+          <String, String>{'id': userId, 'password': password},
+        ),
+      );
+
+      if (response.statusCode == 200) {
+        return true;
+      } else {
+        print(response.statusCode);
+        return false;
+      }
+    } catch (e) {
+      print("authentication Error Message => " + e.toString());
+      return false;
+    }
+  }
 }
