@@ -99,6 +99,7 @@ class UsersProvider with ChangeNotifier {
             .singleWhere((element) => element.id == selectedUser!.id)
             .bulkEdit(newAttributes);
         selectedUser!.bulkEdit(newAttributes);
+        buildRowList();
         print(userEdited);
         notifyListeners();
       }
