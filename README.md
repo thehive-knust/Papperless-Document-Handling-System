@@ -6,7 +6,7 @@ handling documents processing in the __College of Engineering, KNUST__. Specific
 internal document approvals.\
 -- You can find the links to production below\
 -- Users: https://the-hive.surge.sh/ \
--- Admin: https://the-hive-admin.surge.sh/
+-- Admin: https://thehive-admin.surge.sh/
 
 # Contributors - Name (Index No. - Role)
 
