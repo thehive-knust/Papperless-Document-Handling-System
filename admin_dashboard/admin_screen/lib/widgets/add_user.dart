@@ -218,35 +218,6 @@ class _AdduserState extends State<Adduser> {
                         SizedBox(
                           height: 40,
                         ),
-                        // Container(
-                        //   padding: EdgeInsets.only(left: 50),
-                        //   child: DropdownButton<String>(
-                        //     value: collegeDropdown,
-                        //     icon: const Icon(Icons.arrow_drop_down_sharp),
-                        //     iconSize: 24,
-                        //     elevation: 16,
-                        //     isExpanded: true,
-                        //     hint: Text("Select your College"),
-                        //     style: const TextStyle(color: Colors.deepPurple),
-                        //     underline: Container(
-                        //       height: 2,
-                        //       width: 20,
-                        //       color: Colors.deepPurpleAccent,
-                        //     ),
-                        //     onChanged: (String? newValue) {
-                        //       setState(() {
-                        //         collegeDropdown = newValue!;
-                        //       });
-                        //     },
-                        //     items: collegesForKNUST
-                        //         .map<DropdownMenuItem<String>>((String value) {
-                        //       return DropdownMenuItem<String>(
-                        //         value: value,
-                        //         child: Text(value),
-                        //       );
-                        //     }).toList(),
-                        //   ),
-                        // ),
                         portfolios == null
                             ? CircularProgressIndicator(
                                 color: Colors.blue,
@@ -304,7 +275,11 @@ class _AdduserState extends State<Adduser> {
                                             GoogleFonts.notoSans(fontSize: 10),
                                       )
                                     : Expanded(
-                                        child: Image.memory(image!.bytes!),
+                                        child: Container(
+                                            margin: EdgeInsets.fromLTRB(2, 5, 0, 0),
+                                            height: 45,
+                                            width: 35,
+                                            child: Image.memory(image!.bytes!, width: 35, height: 45,)),
                                       ),
                               ),
                             ),
