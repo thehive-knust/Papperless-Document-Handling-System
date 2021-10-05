@@ -14,6 +14,8 @@ class Api {
           .get(Uri.parse(index + 'users/'))
           .timeout(const Duration(seconds: 30));
       users = jsonDecode(response.body)['users'];
+      print("===========users");
+      print(users);
       return users;
     } on TimeoutException {
       return null;
@@ -35,6 +37,8 @@ class Api {
 
   static Future<bool> editUserAttributes(
       context, oldId, Map<String, String> newAttributes) async {
+    print("===========new attributes in api call");
+    print(newAttributes);
     try {
       final response = await http.post(
         Uri.parse(index + "users/update/" + oldId),
@@ -44,6 +48,8 @@ class Api {
         },
       );
       Navigator.of(context).pop();
+      print("===========status code");
+      print(response.statusCode);
       return response.statusCode == 200;
     } catch (e) {
       Navigator.of(context).pop();

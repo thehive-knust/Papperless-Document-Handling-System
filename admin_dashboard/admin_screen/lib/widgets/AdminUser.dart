@@ -21,6 +21,8 @@ class AdminUser extends StatefulWidget {
 class _AdminUserState extends State<AdminUser> {
   bool fetchingUsers = false;
   List<dynamic>? users;
+  Color primaryLight = Color(0xFFEFF7FF);
+  OverlayEntry? searchResults;
 
   Future<void> fetchUsers() async {
     fetchingUsers = true;
@@ -29,37 +31,24 @@ class _AdminUserState extends State<AdminUser> {
     setState(() {});
   }
 
-  @override
-  void initState() {
-    super.initState();
-    fetchUsers();
-    Provider.of<PortfolioProvider>(context, listen: false).initialise();
-  }
-
   void addUserScreen(BuildContext context) {
     Navigator.of(context).push(MaterialPageRoute(builder: (_) {
       return Adduser();
     }));
   }
 
-  Color primaryLight = Color(0xFFEFF7FF);
-
-  OverlayEntry? searchResults;
-
   OverlayEntry showSearchResults(
-      screenSize, usersProvider, searchResultsProvider) {
+      context, usersProvider, searchResultsProvider) {
+    final screenSize = MediaQuery.of(context).size;
     return OverlayEntry(
-      //opaque: true,
       builder: (context) {
         return Positioned(
           left: 20,
           top: 60,
           width: screenSize.width * 0.5,
-          //height: screenSi,
           child: Material(
             type: MaterialType.card,
             borderRadius: BorderRadius.circular(15),
-            //color: Colors.black,
             elevation: 1.5,
             child: Container(
               constraints: BoxConstraints(
@@ -78,7 +67,6 @@ class _AdminUserState extends State<AdminUser> {
                                 usersProvider.selectedUser = user;
                                 searchResultsProvider
                                     .updateSearchingStarted(false);
-                                //Overlay.of(context)?.dispose();
                               },
                               child: ListTile(
                                 title:
@@ -98,111 +86,137 @@ class _AdminUserState extends State<AdminUser> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    fetchUsers();
+    Provider.of<PortfolioProvider>(context, listen: false).initialise();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final usersProvider = Provider.of<UsersProvider>(context);
     final searchResultsProvider = Provider.of<SearchResultsProvider>(context);
     final screenSize = MediaQuery.of(context).size;
-
+    print(screenSize.width);
     if (users == null && !fetchingUsers) fetchUsers();
     if (users != null && usersProvider.rowList == null)
       usersProvider.initialise(context, users!);
     return Scaffold(
       backgroundColor: primaryLight,
-      body: GestureDetector(
-        onTap: () {
-          searchResultsProvider.updateSearchingStarted(false);
-        },
-        child: Column(
-          children: [
-            Card(
-              color: Colors.grey[600],
-              child: Row(
-                children: [
-                  Expanded(
-                    flex: 15,
-                    child: Container(
-                      //constraints: BoxConstraints(minHeight: 40, maxHeight: 50),
-                      padding:
-                          EdgeInsets.symmetric(vertical: 4, horizontal: 10),
-                      // width: 900,
-                      height: 50,
-                      //margin: EdgeInsets.fromLTRB(10, 10, 50, 5),
-                      child: TextField(
-                        cursorColor: Colors.black,
-                        cursorHeight: 25,
-                        cursorWidth: 3.2,
-                        decoration: InputDecoration(
-                          contentPadding: EdgeInsets.symmetric(vertical: 15),
-                          prefixIcon: Icon(Icons.search),
-                          filled: true,
-                          hintText: "Search",
-                          hintStyle: GoogleFonts.notoSans(),
-                          fillColor: Colors.grey[200],
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(40),
-                            borderSide: BorderSide.none,
+      body: Column(
+        children: [
+          Card(
+            color: Colors.grey[600],
+            child: Row(
+              children: [
+                Expanded(
+                  child: Container(
+                    padding: EdgeInsets.symmetric(vertical: 4, horizontal: 10),
+                    height: 50,
+                    child: TextField(
+                      cursorColor: Colors.black,
+                      cursorHeight: 25,
+                      cursorWidth: 3.2,
+                      decoration: InputDecoration(
+                        contentPadding: EdgeInsets.symmetric(vertical: 15),
+                        prefixIcon: Icon(Icons.search),
+                        filled: true,
+                        hintText: "Search by name or portfolio",
+                        hintStyle: GoogleFonts.notoSans(),
+                        fillColor: Colors.grey[200],
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(40),
+                          borderSide: BorderSide.none,
+                        ),
+                      ),
+                      onChanged: (newValue) {
+                        if (newValue.length == 0) {
+                          searchResults!.remove();
+                          searchResultsProvider.searchResults = [];
+                          searchResultsProvider.searchingStarted = false;
+                          return;
+                        }
+
+                        if (!searchResultsProvider.searchingStarted) {
+                          searchResults = showSearchResults(
+                              context, usersProvider, searchResultsProvider);
+                          Overlay.of(context)?.insert(searchResults!);
+                          searchResultsProvider.searchingStarted = true;
+                        }
+
+                        searchResultsProvider.searchValue = newValue;
+                        searchResultsProvider
+                            .generateSearchResults(usersProvider);
+                      },
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 10),
+                  child: IconButton(
+                    onPressed: () {},
+                    hoverColor: Colors.black38,
+                    splashRadius: 20,
+                    icon: Icon(Icons.notifications),
+                    tooltip: "Notification",
+                    color: Colors.black,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(left: 8.0),
+                child: Text(
+                  'SoftDoc',
+                  style: TextStyle(
+                    color: Colors.blue[400],
+                    fontSize: 35,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 3.0),
+                child: Text(
+                  'admin',
+                  style: TextStyle(
+                    color: Colors.blue[700],
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              )
+            ],
+          ),
+          Expanded(
+            child: Container(
+              child: usersProvider.rowList == null
+                  ? Center(
+                      child: CircularProgressIndicator(
+                        strokeWidth: 5,
+                        color: Colors.green,
+                      ),
+                    )
+                  : SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        children: [
+                          UserDetails(),
+                          Padding(
+                            padding: EdgeInsets.fromLTRB(10, 0, 50, 5),
+                            child: Display(),
                           ),
-                        ),
-                        onChanged: (newValue) {
-                          if (newValue.length == 0) {
-                            searchResults!.remove();
-                            searchResultsProvider.searchResults = [];
-                            searchResultsProvider.searchingStarted = false;
-                            return;
-                          }
-
-                          if (!searchResultsProvider.searchingStarted) {
-                            searchResults = showSearchResults(screenSize,
-                                usersProvider, searchResultsProvider);
-                            Overlay.of(context)?.insert(searchResults!);
-                            searchResultsProvider.searchingStarted = true;
-                          }
-
-                          searchResultsProvider.searchValue = newValue;
-                          searchResultsProvider
-                              .generateSearchResults(usersProvider);
-                        },
+                        ],
                       ),
                     ),
-                  ),
-                  Expanded(
-                    child: IconButton(
-                      onPressed: () {},
-                      hoverColor: Colors.black38,
-                      splashRadius: 20,
-                      icon: Icon(Icons.notifications),
-                      tooltip: "Notification",
-                      color: Colors.black,
-                    ),
-                  ),
-                ],
-              ),
             ),
-            Expanded(
-              child: Container(
-                child: usersProvider.rowList == null
-                    ? Center(
-                        child: CircularProgressIndicator(
-                          strokeWidth: 5,
-                          color: Colors.green,
-                        ),
-                      )
-                    : SingleChildScrollView(
-                        scrollDirection: Axis.horizontal,
-                        child: Row(
-                          children: [
-                            UserDetails(),
-                            Padding(
-                              padding: EdgeInsets.fromLTRB(10, 50, 50, 5),
-                              child: Display(),
-                            ),
-                          ],
-                        ),
-                      ),
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {

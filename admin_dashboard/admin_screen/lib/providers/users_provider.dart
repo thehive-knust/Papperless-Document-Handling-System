@@ -79,6 +79,8 @@ class UsersProvider with ChangeNotifier {
     final currentDetails = selectedUser!.toMap();
 
     newAttributes.removeWhere((key, value) => value == currentDetails[key]);
+    print("===========new attributes");
+    print(newAttributes);
     if (newAttributes.length == 0) {
       showMessage(context, message: "No changes made");
       return;
@@ -88,7 +90,7 @@ class UsersProvider with ChangeNotifier {
         context!, "Edit User's Details", "Old account details would be lost");
 
     if (confirmed == true) {
-      showProcessingAlert(context, "Deleting");
+      showProcessingAlert(context, "Making Changes");
       succeeded = await Api.editUserAttributes(
           context, selectedUser!.id, newAttributes);
       showMessage(context, status: succeeded);

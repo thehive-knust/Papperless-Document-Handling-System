@@ -35,12 +35,17 @@ class _UserDetailsState extends State<UserDetails> {
     double _width = minimize ? 0 : MediaQuery.of(context).size.width * 0.3;
     double _minWidth = minimize ? 0 : 300;
     return AnimatedContainer(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.only(
+          topRight: Radius.circular(10),
+        ),
+        color: Color(0xFFEFFDFF),
+      ),
       duration: Duration(seconds: 1),
       curve: Curves.decelerate,
       width: _width,
       constraints: BoxConstraints(maxWidth: 400, minWidth: _minWidth),
       height: double.infinity,
-      color: Color(0xFFEFFDFF),
       child: minimize
           ? Container()
           : SingleChildScrollView(
@@ -52,7 +57,9 @@ class _UserDetailsState extends State<UserDetails> {
                       icon: Icon(Icons.arrow_back),
                       splashRadius: 10,
                       onPressed: () {
-                        usersProvider.showUserDetails(null);
+                        setState(() {
+                          usersProvider.selectedUser = null;
+                        });
                       },
                     ),
                   ),
