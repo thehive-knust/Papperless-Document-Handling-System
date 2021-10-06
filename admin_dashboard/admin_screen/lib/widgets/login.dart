@@ -3,6 +3,8 @@ import 'package:admin_screen/widgets/AdminUser.dart';
 import 'package:flutter/material.dart';
 
 class AuthForm extends StatefulWidget {
+  final isDesktop;
+  AuthForm(this.isDesktop);
   @override
   _AuthFormState createState() => _AuthFormState();
 }
@@ -25,14 +27,13 @@ class _AuthFormState extends State<AuthForm> {
 
   @override
   Widget build(BuildContext context) {
-    final isDesktop = true;
     return Form(
       key: _formKey,
       child: Column(
         mainAxisAlignment:
-            isDesktop ? MainAxisAlignment.center : MainAxisAlignment.start,
+            widget.isDesktop ? MainAxisAlignment.center : MainAxisAlignment.start,
         crossAxisAlignment:
-            isDesktop ? CrossAxisAlignment.center : CrossAxisAlignment.start,
+            widget.isDesktop ? CrossAxisAlignment.center : CrossAxisAlignment.start,
         children: [
           Text(
             "SoftDoc",
@@ -41,7 +42,7 @@ class _AuthFormState extends State<AuthForm> {
               fontWeight: FontWeight.w600,
             ),
           ),
-          isDesktop ? SizedBox(height: 10) : const SizedBox(height: 40),
+          widget.isDesktop ? SizedBox(height: 10) : const SizedBox(height: 40),
           TextFormField(
             onChanged: (newId) => id = newId,
             validator: (newId) =>

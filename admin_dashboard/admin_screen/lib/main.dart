@@ -1,5 +1,7 @@
 //import 'package:admin_screen/widgets/login/auth_screen.dart';
 
+import 'package:admin_screen/widgets/login_screen.dart';
+
 import 'widgets/AdminUser.dart';
 import 'providers/portfolio_provider.dart';
 import 'providers/search_results_provider.dart';
@@ -33,7 +35,7 @@ class _HomePageState extends State<HomePage> {
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: AdminUser(),
+        home: Scaffold(body: LoginScreen()),
       ),
     );
   }
