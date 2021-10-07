@@ -16,6 +16,8 @@ class _AuthFormState extends State<AuthForm> {
   String? password;
   bool isLoading = false;
   String errorMessage = "";
+  Color primary = Color(0xFF61B1F8);
+  Color primaryLight = Color(0xFFEFF7FF);
 
   void showMessage(String msg) {
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -35,12 +37,28 @@ class _AuthFormState extends State<AuthForm> {
         crossAxisAlignment:
             widget.isDesktop ? CrossAxisAlignment.center : CrossAxisAlignment.start,
         children: [
-          Text(
-            "SoftDoc",
-            style: TextStyle(
-              fontSize: 37,
-              fontWeight: FontWeight.w600,
-            ),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              Text(
+                "SoftDoc",
+                style: TextStyle(
+                  fontSize: 37,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 4.0),
+                child: Text(
+                  "admin",
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w600,
+                    color: primary,
+                  ),
+                ),
+              ),
+            ],
           ),
           widget.isDesktop ? SizedBox(height: 10) : const SizedBox(height: 40),
           TextFormField(
@@ -48,7 +66,7 @@ class _AuthFormState extends State<AuthForm> {
             validator: (newId) =>
                 newId!.isEmpty ? "please enter ID number" : null,
             keyboardType: TextInputType.number,
-            //decoration: authInputDecoration("Enter your ID number"),
+            decoration: authInputDecoration("Enter your ID number"),
           ),
           SizedBox(height: 15),
           TextFormField(
@@ -56,7 +74,7 @@ class _AuthFormState extends State<AuthForm> {
             validator: (pass) => pass!.isEmpty ? "Please enter password" : null,
             obscureText: true,
             keyboardType: TextInputType.visiblePassword,
-            //decoration: authInputDecoration('Password'),
+            decoration: authInputDecoration('Password'),
           ),
           SizedBox(height: 30),
           Container(
@@ -96,5 +114,21 @@ class _AuthFormState extends State<AuthForm> {
         ],
       ),
     );
+  }
+
+  InputDecoration authInputDecoration(String hint) {
+    return InputDecoration(
+      filled: true,
+      fillColor: primaryLight,
+      hintText: hint,
+      hoverColor: primary.withOpacity(.15),
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(7),
+        borderSide: BorderSide.none,
+      ),
+      focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(7),
+        borderSide: BorderSide(color: primary),
+      )
+  );
   }
 }
