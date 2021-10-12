@@ -19,8 +19,8 @@ internal document approvals.\
 >- __[Andrews Tang](https://github.com/cocastic8590)__ - (3587618 - __Head of Backend__)
 >- __[Obed Ansah](https://github.com/obedansah)__ - (3579718)- Front-end Team
 >- __[Osei-Bonsu Alexander Kwasi Tweneboah](https://github.com/TKJNR)__ - - ( __Head of Multimedia__)
- Deborah Antwi -  (3579918 - __Communications Head__)
- Nyaaba Sulley - (3585518 - Front-end Team)
+>- Deborah Antwi -  (3579918 - __Communications Head__)
+>- Nyaaba Sulley - (3585518 - Front-end Team)
 ___
 
 # Main Stream Production
