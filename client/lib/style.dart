@@ -17,7 +17,9 @@ const SENDPAGE = "/send_page";
 const DESKTOPAUTHPAGE = "/desktop_auth_page";
 const AUTHPAGE = "/auth_page";
 
-InputDecoration authInputDecoration(String hint) => InputDecoration(
+InputDecoration authInputDecoration(String hint,
+        {Function togglePasswordVisibilty, bool passwordVisible}) =>
+    InputDecoration(
       filled: true,
       fillColor: primaryLight,
       hintText: hint,
@@ -34,4 +36,16 @@ InputDecoration authInputDecoration(String hint) => InputDecoration(
         borderRadius: BorderRadius.circular(7),
         borderSide: BorderSide(color: Colors.red),
       ),
+      suffixIcon: passwordVisible != null
+          ? Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: IconButton(
+                onPressed: togglePasswordVisibilty,
+                icon: Icon(
+                  passwordVisible ? Icons.visibility_off : Icons.visibility,
+                ),
+                color: primary,
+              ),
+            )
+          : null,
     );

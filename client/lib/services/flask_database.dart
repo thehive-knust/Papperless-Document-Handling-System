@@ -16,6 +16,8 @@ class FlaskDatabase {
   // -TODO: authentication:-------------------------------
   static Future<Map> authenticateWithIdAndPassword(
       String userId, String password) async {
+    print('==================================check this out');
+    print("$userId $password");
     Uri url = Uri.parse("https://soft-doc.herokuapp.com/auth/login");
     http.Response response;
     try {

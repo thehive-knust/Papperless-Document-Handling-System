@@ -13,6 +13,7 @@ class AuthForm extends StatefulWidget {
 
 class _AuthFormState extends State<AuthForm> {
   final _formKey = GlobalKey<FormState>();
+  bool passwordVisible = false;
   String id;
   String testPass;
   String password;
@@ -52,6 +53,12 @@ class _AuthFormState extends State<AuthForm> {
     }
   }
 
+  void togglePasswordVisibility() {
+    setState(() {
+      passwordVisible = !passwordVisible;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     // Size screenSize = MediaQuery.of(context).size;
@@ -86,9 +93,13 @@ class _AuthFormState extends State<AuthForm> {
           TextFormField(
             onChanged: (pass) => password = pass,
             validator: (pass) => pass.isEmpty ? "Please enter password" : null,
-            obscureText: true,
+            obscureText: !passwordVisible,
             keyboardType: TextInputType.visiblePassword,
-            decoration: authInputDecoration('Password'),
+            decoration: authInputDecoration(
+              'Password',
+              passwordVisible: passwordVisible,
+              togglePasswordVisibilty: togglePasswordVisibility,
+            ),
             textInputAction: TextInputAction.done,
             onFieldSubmitted: (_) => submit(),
           ),
