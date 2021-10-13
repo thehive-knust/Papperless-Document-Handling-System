@@ -152,7 +152,7 @@ class _SendDocScreenState extends State<SendDocScreen> {
                 InkWell(
                   onTap: pickFile,
                   child: Container(
-                      height: 200,
+                      height: 250,
                       width: double.infinity,
                       child: doc.filename == null
                           ? DottedBorder(
@@ -176,7 +176,7 @@ class _SendDocScreenState extends State<SendDocScreen> {
                                 ),
                               ),
                             )
-                          : PdfCard(name: doc.filename, url: doc.fileUrl)),
+                          : PdfCard(name: doc.filename, bytes: doc.fileBytes)),
                 )
               ],
             ),

@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:native_pdf_renderer/native_pdf_renderer.dart';
@@ -6,8 +8,8 @@ import 'package:softdoc/shared/docTypeIcon.dart';
 import 'package:softdoc/style.dart';
 
 class PdfCard extends StatelessWidget {
-  final name, url;
-  const PdfCard({Key key, this.name, this.url}) : super(key: key);
+  final name, url, bytes;
+  const PdfCard({Key key, this.name, this.url, this.bytes}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,8 +22,9 @@ class PdfCard extends StatelessWidget {
         child: Column(
           children: [
             Expanded(
-              child: Center(
-                child: PdfThumbnail(url: url),
+              child: Container(
+                width: double.infinity,
+                child: PdfThumbnail(url: url, bytes: bytes),
               ),
             ),
             Container(
@@ -60,25 +63,42 @@ class PdfCard extends StatelessWidget {
 }
 
 class PdfThumbnail extends StatefulWidget {
-  final url;
-  const PdfThumbnail({Key key, this.url}) : super(key: key);
+  final url, bytes;
+  const PdfThumbnail({Key key, this.url, this.bytes}) : super(key: key);
 
   @override
   _PdfThumbnailState createState() => _PdfThumbnailState();
 }
 
 class _PdfThumbnailState extends State<PdfThumbnail> {
-  Image thumbnail;
+  Widget thumbnail;
 
   void generateThumbnail() async {
-    final pdf = await http.get(Uri.parse(widget.url));
-    final document = await PdfDocument.openData(pdf.bodyBytes);
+    Uint8List pdfBytes;
+    if (widget.bytes == null) {
+      final pdf = await http.get(Uri.parse(widget.url));
+      pdfBytes = pdf.bodyBytes;
+    } else
+      pdfBytes = widget.bytes;
+    final document = await PdfDocument.openData(pdfBytes);
     final page = await document.getPage(1);
-    final pageImage = await page.render(width: page.width, height: 150);
+    final pageImage = await page.render(
+      width: page.width,
+      height: page.height,
+    );
     await page.close();
-    thumbnail = Image(
-      image: MemoryImage(pageImage.bytes, scale: 2),
+    thumbnail = FittedBox(
       fit: BoxFit.fill,
+      child: ClipRect(
+        child: Align(
+          alignment: Alignment.topLeft,
+          heightFactor: 0.3,
+          child: Image.memory(
+            pageImage.bytes,
+            filterQuality: FilterQuality.high,
+          ),
+        ),
+      ),
     );
     setState(() {});
   }
@@ -92,9 +112,11 @@ class _PdfThumbnailState extends State<PdfThumbnail> {
   @override
   Widget build(BuildContext context) {
     return thumbnail ??
-        Image.asset(
-          "assets/images/pdf_icon_activated.png",
-          height: 100,
+        Center(
+          child: Image.asset(
+            "assets/images/pdf_icon_activated.png",
+            height: 100,
+          ),
         );
   }
 }

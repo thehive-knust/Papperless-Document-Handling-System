@@ -106,7 +106,7 @@ class _ReceivedDetailScreenState extends State<ReceivedDetailScreen> {
                           fromReceivedScreen: true);
                 },
                 child: Container(
-                  height: 200,
+                  height: 250,
                   width: double.infinity,
                   child: PdfCard(
                     name: widget.selectedDoc.filename,
