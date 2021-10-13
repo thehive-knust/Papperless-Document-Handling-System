@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:softdoc/cubit/data_cubit/data_cubit.dart';
@@ -37,6 +36,22 @@ class _AuthFormState extends State<AuthForm> {
         margin: EdgeInsets.symmetric(horizontal: 400, vertical: 20)));
   }
 
+  void submit() async {
+    FocusScope.of(context).unfocus();
+    if (_formKey.currentState.validate()) {
+      isLoading = true;
+      setState(() {});
+      bool error = await _dataCubit.authenticate(id, password);
+      if (error) {
+        errorMessage = "wrong username or password";
+        setState(() {});
+      }
+
+      isLoading = false;
+      setState(() {});
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     // Size screenSize = MediaQuery.of(context).size;
@@ -59,19 +74,24 @@ class _AuthFormState extends State<AuthForm> {
           ),
           widget.isDesktop ? SizedBox(height: 10) : const SizedBox(height: 40),
           TextFormField(
-              onChanged: (newId) => id = newId,
-              validator: (newId) =>
-                  newId.isEmpty ? "please enter ID number" : null,
-              keyboardType: TextInputType.number,
-              decoration: authInputDecoration("Enter your ID number")),
+            autofocus: true,
+            onChanged: (newId) => id = newId,
+            validator: (newId) =>
+                newId.isEmpty ? "please enter ID number" : null,
+            keyboardType: TextInputType.number,
+            decoration: authInputDecoration("Enter your ID number"),
+            textInputAction: TextInputAction.next,
+          ),
           SizedBox(height: 15),
           TextFormField(
-              onChanged: (pass) => password = pass,
-              validator: (pass) =>
-                  pass.isEmpty ? "Please enter password" : null,
-              obscureText: true,
-              keyboardType: TextInputType.visiblePassword,
-              decoration: authInputDecoration('Password')),
+            onChanged: (pass) => password = pass,
+            validator: (pass) => pass.isEmpty ? "Please enter password" : null,
+            obscureText: true,
+            keyboardType: TextInputType.visiblePassword,
+            decoration: authInputDecoration('Password'),
+            textInputAction: TextInputAction.done,
+            onFieldSubmitted: (_) => submit(),
+          ),
           SizedBox(height: 30),
           Container(
             height: 45,
@@ -84,21 +104,7 @@ class _AuthFormState extends State<AuthForm> {
                       borderRadius: BorderRadius.circular(6)),
                 ),
               ),
-              onPressed: () async {
-                FocusScope.of(context).unfocus();
-                if (_formKey.currentState.validate()) {
-                  isLoading = true;
-                  setState(() {});
-                  bool error = await _dataCubit.authenticate(id, password);
-                  if (error) {
-                    errorMessage = "invalid User";
-                    setState(() {});
-                  }
-
-                  isLoading = false;
-                  setState(() {});
-                }
-              },
+              onPressed: submit,
               child: isLoading
                   ? CircularProgressIndicator(color: Colors.white)
                   : Text("Verify", style: TextStyle(fontSize: 20)),

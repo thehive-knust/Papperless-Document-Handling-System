@@ -1,6 +1,3 @@
-import 'dart:html';
-import 'dart:typed_data';
-
 import 'package:dotted_border/dotted_border.dart';
 import 'package:file_picker/_internal/file_picker_web.dart';
 import 'package:file_picker/file_picker.dart';
@@ -179,7 +176,7 @@ class _SendDocScreenState extends State<SendDocScreen> {
                                 ),
                               ),
                             )
-                          : pdfCard(doc.filename)),
+                          : pdfCard(doc.filename, doc.fileUrl)),
                 )
               ],
             ),

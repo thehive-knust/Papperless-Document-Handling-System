@@ -18,16 +18,20 @@ const DESKTOPAUTHPAGE = "/desktop_auth_page";
 const AUTHPAGE = "/auth_page";
 
 InputDecoration authInputDecoration(String hint) => InputDecoration(
-  filled: true,
-  fillColor: primaryLight,
-  hintText: hint,
-  hoverColor: primary.withOpacity(.15),
-  border: OutlineInputBorder(
-    borderRadius: BorderRadius.circular(7),
-    borderSide: BorderSide.none,
-  ),
-  focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(7), 
-  borderSide: BorderSide(color: primary),
-  )
-            
-);
+      filled: true,
+      fillColor: primaryLight,
+      hintText: hint,
+      hoverColor: primary.withOpacity(.15),
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(7),
+        borderSide: BorderSide.none,
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(7),
+        borderSide: BorderSide(color: primary),
+      ),
+      errorBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(7),
+        borderSide: BorderSide(color: Colors.red),
+      ),
+    );

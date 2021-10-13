@@ -1,8 +1,5 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:softdoc/cubit/data_cubit/data_cubit.dart';
-import 'package:softdoc/models/department.dart';
 import 'package:softdoc/style.dart';
 
 class SelectRecipient extends StatefulWidget {
@@ -39,7 +36,6 @@ class _SelectRecipientState extends State<SelectRecipient> {
                 ),
               Container(
                 height: 55,
-                // alignment: Alignment.center,
                 padding: EdgeInsets.symmetric(horizontal: 15),
                 width: double.infinity,
                 color: primaryLight,

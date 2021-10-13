@@ -10,9 +10,15 @@ class DetailScreenNav extends DesktopNavState {
   DetailScreenNav(this.selectedDoc);
 }
 
-class ReveivedDetailScreenNav extends DesktopNavState {
+class ReceivedDetailScreenNav extends DesktopNavState {
   final Doc selectedDoc;
-  ReveivedDetailScreenNav(this.selectedDoc);
+  ReceivedDetailScreenNav(this.selectedDoc);
 }
 
 class SendDocScreenNav extends DesktopNavState {}
+
+class PdfViewerNav extends DesktopNavState {
+  final selectedDoc;
+  final fromReceivedScreen;
+  PdfViewerNav(this.selectedDoc, this.fromReceivedScreen);
+}

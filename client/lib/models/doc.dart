@@ -36,18 +36,19 @@ class Doc {
 
   factory Doc.fromJson(Map<String, dynamic> json, [isSent = true]) {
     return Doc(
-      id: json['id'].toString(),
-      status: json['progress'],
-      subject: json['subject'] ?? null,
-      description: json['description'] ?? null,
-      senderId: json['user_id'].toString(),
-      createdAt: DateTime.parse(json['created_at']) ?? DateTime.now(),
-      updatedAt: DateTime.parse(json['updated_at']) ?? DateTime.now(),
-      fileUrl: json['file'] ?? null,
-      filename: json['name'] ?? null,
-      approvalProgress: isSent ?Map<String, String>.from(json['approval_list']) :null,
-      senderInfo: isSent? null: Map<String,String>.from(json['user_info'])
-    );
+        id: json['id'].toString(),
+        status: json['progress'],
+        subject: json['subject'] ?? null,
+        description: json['description'] ?? null,
+        senderId: json['user_id'].toString(),
+        createdAt: DateTime.parse(json['created_at']) ?? DateTime.now(),
+        updatedAt: DateTime.parse(json['updated_at']) ?? DateTime.now(),
+        fileUrl: json['file'] ?? null,
+        filename: json['name'] ?? null,
+        approvalProgress:
+            isSent ? Map<String, String>.from(json['approval_list']) : null,
+        senderInfo:
+            isSent ? null : Map<String, String>.from(json['user_info']));
   }
 
   Map<String, dynamic> toMap() {
@@ -59,7 +60,7 @@ class Doc {
     };
   }
 
-  static List<Map<String, List<Doc>>> reveivedDocs = [
+  static List<Map<String, List<Doc>>> receivedDocs = [
     {
       "Today": [
         Doc(

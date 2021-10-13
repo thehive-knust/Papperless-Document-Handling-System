@@ -40,7 +40,13 @@ dependencies:
   sqflite: ^2.0.0+3
   url_launcher: ^6.0.9
   flutter_easyloading: ^3.0.0
-
+  native_pdf_view: ^4.2.0
+  syncfusion_flutter_pdfviewer: ^19.3.44-beta
+  dio: ^4.0.0
+  path_provider: ^2.0.5
+  webview_flutter: ^2.1.1
+  native_pdf_renderer: ^3.1.0
+        
 dev_dependencies:
   flutter_test:
     sdk: flutter

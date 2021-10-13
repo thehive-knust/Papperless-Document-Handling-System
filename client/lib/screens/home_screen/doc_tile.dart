@@ -98,8 +98,8 @@ class _DocTilesState extends State<DocTiles> {
                 : _androidNavCubit.navToDetailScreen(doc);
           } else {
             widget.isDesktop
-                ? _desktopNavCubit.navToReveivedDetailScreen(doc)
-                : _androidNavCubit.navToReveivedDetailScreen(doc);
+                ? _desktopNavCubit.navToreceivedDetailScreen(doc)
+                : _androidNavCubit.navToreceivedDetailScreen(doc);
           }
           _dataCubit.selectedIndexes =
               _dataCubit.selectedIndexes.map((e) => -1).toList();

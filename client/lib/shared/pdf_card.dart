@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:softdoc/screens/detail_screen/pdf_view.dart';
 import 'package:softdoc/shared/docTypeIcon.dart';
 import 'package:softdoc/style.dart';
 
-Widget pdfCard(name) => Card(
+Widget pdfCard(name, url) => Card(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       // elevation: 2.0,
       margin: EdgeInsets.zero,
@@ -31,6 +32,16 @@ Widget pdfCard(name) => Card(
                       name,
                       overflow: TextOverflow.ellipsis,
                       maxLines: 1,
+                    ),
+                  ),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: IconButton(
+                      onPressed: () => PdfViewer.downloadPDF(url),
+                      icon: Icon(Icons.download),
+                      color: primaryDark,
+                      splashColor: primaryLight,
+                      hoverColor: primaryLight,
                     ),
                   ),
                 ],

@@ -19,8 +19,11 @@ class AndroidNavCubit extends Cubit<AndroidNavState> {
     emit(DetailScreenNav(selectedDoc));
   }
 
-  void navToReveivedDetailScreen(Doc selectedDoc) {
-    emit(ReveivedDetailScreenNav(selectedDoc));
+  void navToreceivedDetailScreen(Doc selectedDoc) {
+    emit(receivedDetailScreenNav(selectedDoc));
   }
-  
+
+  void navToPdfViewer({Doc selectedDoc, bool fromReceivedScreen}) {
+    emit(PdfViewerNav(selectedDoc, fromReceivedScreen));
+  }
 }

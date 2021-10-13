@@ -9,23 +9,11 @@ import 'package:softdoc/shared/pdf_card.dart';
 import 'package:softdoc/shared/status_message.dart';
 import 'package:softdoc/shared/time_badge.dart';
 import 'package:softdoc/style.dart';
-import 'package:intl/intl.dart';
 import 'approval_progress.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class DetailScreen extends StatefulWidget {
   final Doc selectedDoc;
-  final bool isDesktop;
-  DetailScreen({Key key, this.isDesktop = false, this.selectedDoc})
-      : super(key: key);
-
-  static void downloadPDF(String url) async {
-    if (await canLaunch(url)) {
-      await launch(url);
-    } else {
-      throw 'Could not launch $url';
-    }
-  }
+  DetailScreen({Key key, this.selectedDoc}) : super(key: key);
 
   @override
   _DetailScreenState createState() => _DetailScreenState();
@@ -44,7 +32,7 @@ class _DetailScreenState extends State<DetailScreen> {
     _dataCubit = BlocProvider.of<DataCubit>(context);
   }
 
-  void confirmWithdrawal(BuildContext context) {
+  void confirmWithdrawal(BuildContext context, isDesktop) {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
@@ -61,7 +49,7 @@ class _DetailScreenState extends State<DetailScreen> {
                 _dataCubit.sentDocs.remove(widget.selectedDoc);
                 _dataCubit.getDocsByOption();
                 Navigator.of(context).pop();
-                widget.isDesktop
+                isDesktop
                     ? _desktopNavCubit.navToHomeScreen()
                     : _androidNavCubit.navToHomeScreen();
               } else {
@@ -85,6 +73,7 @@ class _DetailScreenState extends State<DetailScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final isDesktop = MediaQuery.of(context).size.width > 600;
     return WillPopScope(
       onWillPop: () {
         _androidNavCubit.navToHomeScreen();
@@ -107,7 +96,7 @@ class _DetailScreenState extends State<DetailScreen> {
                       style:
                           TextStyle(fontSize: 21, fontWeight: FontWeight.w600)),
                 ),
-                if (!widget.isDesktop) ...[
+                if (!isDesktop) ...[
                   SizedBox(height: 10),
                   ApprovalProgress(
                     approvalList: widget.selectedDoc.approvalProgress,
@@ -136,8 +125,7 @@ class _DetailScreenState extends State<DetailScreen> {
                                   padding: const EdgeInsets.only(top: 12),
                                   child: Text(widget.selectedDoc.description,
                                       style: TextStyle(
-                                          fontSize:
-                                              widget.isDesktop ? 20 : 14)),
+                                          fontSize: isDesktop ? 20 : 14)),
                                 ),
                               Padding(
                                 padding: EdgeInsets.symmetric(vertical: 10),
@@ -149,14 +137,32 @@ class _DetailScreenState extends State<DetailScreen> {
                       ),
                       SizedBox(height: 20),
                       InkWell(
-                        onTap: () => DetailScreen.downloadPDF(
-                            widget.selectedDoc.fileUrl ??
-                                'http://africau.edu/images/default/sample.pdf'),
+                        onTap: () => isDesktop
+                            ? _desktopNavCubit.navToPdfViewer(
+                                selectedDoc: widget.selectedDoc,
+                                fromReceivedScreen: false,
+                              )
+                            : _androidNavCubit.navToPdfViewer(
+                                selectedDoc: widget.selectedDoc,
+                                fromReceivedScreen: false,
+                              ),
+
+                        // {
+                        // html.window.open(widget.selectedDoc.fileUrl,
+                        //     widget.selectedDoc.filename);
+                        //   return Navigator.of(context).push(
+                        //     MaterialPageRoute(
+                        //       builder: (context) =>
+                        //           PdfViewer(url: widget.selectedDoc.fileUrl),
+                        //     ),
+                        //   );
+                        // },
                         child: Container(
                           height: 200,
                           child: pdfCard(
-                              // TODO:  hard coded name must be changed in final version
-                              widget.selectedDoc.filename ?? 'name of file'),
+                            widget.selectedDoc.filename,
+                            widget.selectedDoc.fileUrl,
+                          ),
                         ),
                       ),
                       SizedBox(height: 12),
@@ -172,7 +178,7 @@ class _DetailScreenState extends State<DetailScreen> {
         floatingActionButton: widget.selectedDoc.status == 'pending'
             ? FloatingActionButton.extended(
                 // onPressed: () => confirmWithdrawal(context),
-                onPressed: () => confirmWithdrawal(context),
+                onPressed: () => confirmWithdrawal(context, isDesktop),
 
                 label: Padding(
                   padding: EdgeInsets.symmetric(horizontal: 40),
@@ -187,12 +193,10 @@ class _DetailScreenState extends State<DetailScreen> {
                 ),
               )
             : null,
-        floatingActionButtonLocation: !widget.isDesktop
+        floatingActionButtonLocation: !isDesktop
             ? FloatingActionButtonLocation.centerFloat
             : FloatingActionButtonLocation.startFloat,
       ),
     );
   }
 }
-
-

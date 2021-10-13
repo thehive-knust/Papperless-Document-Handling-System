@@ -1,7 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:softdoc/models/doc.dart';
-import 'package:softdoc/screens/home_screen/home_screen.dart';
 
 part 'desktopnav_state.dart';
 
@@ -20,7 +19,11 @@ class DesktopNavCubit extends Cubit<DesktopNavState> {
     emit(HomeScreenNav());
   }
 
-  void navToReveivedDetailScreen(Doc selectedDoc) {
-    emit(ReveivedDetailScreenNav(selectedDoc));
+  void navToreceivedDetailScreen(Doc selectedDoc) {
+    emit(ReceivedDetailScreenNav(selectedDoc));
+  }
+
+  void navToPdfViewer({Doc selectedDoc, bool fromReceivedScreen}) {
+    emit(PdfViewerNav(selectedDoc, fromReceivedScreen));
   }
 }

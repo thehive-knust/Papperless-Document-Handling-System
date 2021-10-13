@@ -9,13 +9,10 @@ import 'package:softdoc/shared/pdf_card.dart';
 import 'package:softdoc/shared/status_message.dart';
 import 'package:softdoc/shared/time_badge.dart';
 import 'package:softdoc/style.dart';
-import 'package:softdoc/screens/detail_screen/detail_screen.dart';
 
 class ReceivedDetailScreen extends StatefulWidget {
   final Doc selectedDoc;
-  final bool isDesktop;
-  const ReceivedDetailScreen({Key key, this.selectedDoc, this.isDesktop})
-      : super(key: key);
+  const ReceivedDetailScreen({Key key, this.selectedDoc}) : super(key: key);
 
   @override
   _ReceivedDetailScreenState createState() => _ReceivedDetailScreenState();
@@ -32,11 +29,11 @@ class _ReceivedDetailScreenState extends State<ReceivedDetailScreen> {
     _androidNavCubit = BlocProvider.of<AndroidNavCubit>(context);
     _desktopNavCubit = BlocProvider.of<DesktopNavCubit>(context);
     _dataCubit = BlocProvider.of<DataCubit>(context);
-    // request for doc details.
   }
 
   @override
   Widget build(BuildContext context) {
+    final isDesktop = MediaQuery.of(context).size.width > 600;
     return WillPopScope(
       onWillPop: () {
         _androidNavCubit.navToHomeScreen();
@@ -98,22 +95,29 @@ class _ReceivedDetailScreenState extends State<ReceivedDetailScreen> {
               ),
               SizedBox(height: 10),
               // pdf card section:-----------------------------------------------------------------
-              GestureDetector(
-                onTap: () => DetailScreen.downloadPDF(
-                    widget.selectedDoc.fileUrl ??
-                        'http://africau.edu/images/default/sample.pdf'),
+              InkWell(
+                onTap: () {
+                  isDesktop
+                      ? _desktopNavCubit.navToPdfViewer(
+                          selectedDoc: widget.selectedDoc,
+                          fromReceivedScreen: true)
+                      : _androidNavCubit.navToPdfViewer(
+                          selectedDoc: widget.selectedDoc,
+                          fromReceivedScreen: true);
+                },
                 child: Container(
                   height: 200,
                   width: double.infinity,
-                  child: pdfCard(widget.selectedDoc.filename),
+                  child: pdfCard(
+                      widget.selectedDoc.filename, widget.selectedDoc.fileUrl),
                 ),
               ),
               SizedBox(height: 40),
               // buttons section:-----------------------------------------------------------------
               if (widget.selectedDoc.status == 'pending') ...[
-                decitionButtons(true),
+                decitionButtons(true, isDesktop),
                 SizedBox(height: 30),
-                decitionButtons(false)
+                decitionButtons(false, isDesktop)
               ] else
                 StatusMessage(widget.selectedDoc.status)
             ],
@@ -141,23 +145,23 @@ class _ReceivedDetailScreenState extends State<ReceivedDetailScreen> {
         ),
       );
 
-  Widget decitionButtons(bool isApprove) => Container(
+  Widget decitionButtons(bool isApproved, isDesktop) => Container(
         margin: EdgeInsets.symmetric(horizontal: 15),
         height: 45,
         width: double.infinity,
         child: ElevatedButton(
-          onPressed: () => alertDialog(isApprove),
+          onPressed: () => alertDialog(isApproved, isDesktop),
           style: ButtonStyle(
               backgroundColor:
-                  MaterialStateProperty.all(isApprove ? green : red)),
+                  MaterialStateProperty.all(isApproved ? green : red)),
           child: Text(
-            isApprove ? "Approve" : "Reject",
+            isApproved ? "Approve" : "Reject",
             style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
           ),
         ),
       );
 
-  Future<bool> alertDialog(isApproved) async {
+  Future<bool> alertDialog(isApproved, isDesktop) async {
     return showDialog(
       context: context,
       builder: (context) => AlertDialog(
@@ -181,7 +185,7 @@ class _ReceivedDetailScreenState extends State<ReceivedDetailScreen> {
                 _dataCubit.getDocsByOption();
                 setState(() {});
                 Navigator.pop(context);
-                widget.isDesktop
+                isDesktop
                     ? _desktopNavCubit.navToHomeScreen()
                     : _androidNavCubit.navToHomeScreen();
               } else {

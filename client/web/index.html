@@ -29,7 +29,7 @@
 </head>
 <style>
   .blink {
-    animation: blink 1.5s;
+    animation: blink 3s;
     animation-iteration-count: infinite;
   }
 
@@ -48,7 +48,7 @@
     20%{opacity: 0.6;}
     30%{opacity: 0.4;}
     40%{opacity: 0.2;}
-    50%{opacity: 0;}
+    50%{opacity: 0.1;}
     60%{opacity: 0.2;}
     70%{opacity: 0.4;}
     80%{opacity: 0.6;}
@@ -61,7 +61,7 @@
     20%{opacity: 0.6;}
     30%{opacity: 0.4;}
     40%{opacity: 0.2;}
-    50%{opacity: 0;}
+    50%{opacity: 0.1;}
     60%{opacity: 0.2;}
     70%{opacity: 0.4;}
     80%{opacity: 0.6;}
@@ -74,7 +74,7 @@
     20%{opacity: 0.6;}
     30%{opacity: 0.4;}
     40%{opacity: 0.2;}
-    50%{opacity: 0;}
+    50%{opacity: 0.1;}
     60%{opacity: 0.2;}
     70%{opacity: 0.4;}
     80%{opacity: 0.6;}
@@ -97,7 +97,10 @@
       });
     }
   </script>
-  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/pdf.js/2.4.456/pdf.min.js"></script>
+<script type="text/javascript">
+  pdfjsLib.GlobalWorkerOptions.workerSrc = "//cdnjs.cloudflare.com/ajax/libs/pdf.js/2.4.456/pdf.worker.min.js";
+</script>
   <script src="main.dart.js" type="application/javascript"></script>
 </body>
 </html>

@@ -8,9 +8,15 @@ class DetailScreenNav extends AndroidNavState {
   DetailScreenNav(this.selectedDoc);
 }
 
-class ReveivedDetailScreenNav extends AndroidNavState {
+class PdfViewerNav extends AndroidNavState {
+  final selectedDoc;
+  final fromReceivedScreen;
+  PdfViewerNav(this.selectedDoc, this.fromReceivedScreen);
+}
+
+class receivedDetailScreenNav extends AndroidNavState {
   final Doc selectedDoc;
-  ReveivedDetailScreenNav(this.selectedDoc);
+  receivedDetailScreenNav(this.selectedDoc);
 }
 
 class SendDocScreenNav extends AndroidNavState {}

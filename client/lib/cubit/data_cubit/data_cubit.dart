@@ -39,7 +39,7 @@ class DataCubit extends Cubit<DataState> {
     Map jsonData =
         await FlaskDatabase.authenticateWithIdAndPassword(userId, password);
     if (jsonData == null) {
-      return false;
+      return true;
     } else if (jsonData.keys.contains('message')) {
       return true;
     } else {
