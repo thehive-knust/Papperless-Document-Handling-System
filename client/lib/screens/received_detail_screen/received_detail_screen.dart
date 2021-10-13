@@ -108,8 +108,10 @@ class _ReceivedDetailScreenState extends State<ReceivedDetailScreen> {
                 child: Container(
                   height: 200,
                   width: double.infinity,
-                  child: pdfCard(
-                      widget.selectedDoc.filename, widget.selectedDoc.fileUrl),
+                  child: PdfCard(
+                    name: widget.selectedDoc.filename,
+                    url: widget.selectedDoc.fileUrl,
+                  ),
                 ),
               ),
               SizedBox(height: 40),

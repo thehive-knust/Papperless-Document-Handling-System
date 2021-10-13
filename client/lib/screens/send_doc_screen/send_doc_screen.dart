@@ -176,7 +176,7 @@ class _SendDocScreenState extends State<SendDocScreen> {
                                 ),
                               ),
                             )
-                          : pdfCard(doc.filename, doc.fileUrl)),
+                          : PdfCard(name: doc.filename, url: doc.fileUrl)),
                 )
               ],
             ),

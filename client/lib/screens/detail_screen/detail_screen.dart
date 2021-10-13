@@ -159,9 +159,9 @@ class _DetailScreenState extends State<DetailScreen> {
                         // },
                         child: Container(
                           height: 200,
-                          child: pdfCard(
-                            widget.selectedDoc.filename,
-                            widget.selectedDoc.fileUrl,
+                          child: PdfCard(
+                            name: widget.selectedDoc.filename,
+                            url: widget.selectedDoc.fileUrl,
                           ),
                         ),
                       ),

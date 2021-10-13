@@ -76,7 +76,6 @@ class _PdfViewerState extends State<PdfViewer> {
         ],
       ),
       body: Container(
-        // width: double.infinity,
         child: SfPdfViewer.network(widget.selectedDoc.fileUrl),
       ),
     );
