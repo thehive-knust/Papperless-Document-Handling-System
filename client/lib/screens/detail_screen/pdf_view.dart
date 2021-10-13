@@ -36,7 +36,7 @@ class _PdfViewerState extends State<PdfViewer> {
     _desktopNavCubit = BlocProvider.of<DesktopNavCubit>(context);
   }
 
-  void goBack() {
+  Future<bool> goBack() {
     final isDesktop = MediaQuery.of(context).size.width > 600;
 
     if (!widget.fromReceivedDetailScreen)
@@ -47,36 +47,40 @@ class _PdfViewerState extends State<PdfViewer> {
       isDesktop
           ? _desktopNavCubit.navToreceivedDetailScreen(widget.selectedDoc)
           : _androidNavCubit.navToreceivedDetailScreen(widget.selectedDoc);
+    return Future.value(false);
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: primaryLight,
-        leading: IconButton(
-          onPressed: () => goBack(),
-          icon: Icon(Icons.arrow_back),
-          color: primaryDark,
-        ),
-        actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 8.0),
-            child: IconButton(
-              onPressed: () {
-                PdfViewer.downloadPDF(widget.selectedDoc.fileUrl);
-                goBack();
-              },
-              icon: Icon(
-                Icons.download,
-              ),
-              color: primaryDark,
-            ),
+    return WillPopScope(
+      onWillPop: goBack,
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: primaryLight,
+          leading: IconButton(
+            onPressed: () => goBack(),
+            icon: Icon(Icons.arrow_back),
+            color: primaryDark,
           ),
-        ],
-      ),
-      body: Container(
-        child: SfPdfViewer.network(widget.selectedDoc.fileUrl),
+          actions: [
+            Padding(
+              padding: const EdgeInsets.only(right: 8.0),
+              child: IconButton(
+                onPressed: () {
+                  PdfViewer.downloadPDF(widget.selectedDoc.fileUrl);
+                  goBack();
+                },
+                icon: Icon(
+                  Icons.download,
+                ),
+                color: primaryDark,
+              ),
+            ),
+          ],
+        ),
+        body: Container(
+          child: SfPdfViewer.network(widget.selectedDoc.fileUrl),
+        ),
       ),
     );
   }
