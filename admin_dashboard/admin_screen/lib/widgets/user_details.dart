@@ -1,3 +1,5 @@
+import 'dart:js';
+
 import '../providers/portfolio_provider.dart';
 import '../providers/users_provider.dart';
 import 'package:flutter/foundation.dart';
@@ -100,8 +102,10 @@ class _UserDetailsState extends State<UserDetails> {
                     builder: (context, userEdited, child) => userEdited
                         ? button('Save Changes', () {
                             final portfolioProvider =
-                                Provider.of<PortfolioProvider>(context,
-                                    listen: false);
+                                Provider.of<PortfolioProvider>(
+                              context,
+                              listen: false,
+                            );
 
                             usersProvider.updateUserDetails({
                               "id": idController!.text,
@@ -177,7 +181,7 @@ class _UserAttributeState extends State<UserAttribute> {
             if (widget.controller != null)
               widget.controller.text = value(selectedUser) ?? 'not set';
             return attributeTextField(
-                widget.label, editable, widget.controller);
+                widget.label, editable, widget.controller, context);
           },
         ),
         trailing: IconButton(
@@ -197,16 +201,19 @@ class _UserAttributeState extends State<UserAttribute> {
   }
 }
 
-Widget attributeTextField(label, editable, controller) {
+Widget attributeTextField(label, editable, controller, context) {
+  bool userEdited =
+      Provider.of<UsersProvider>(context, listen: false).userEdited;
   return TextField(
     controller: controller,
-    enabled: editable,
-    readOnly: !editable,
+    enabled: editable && userEdited,
+    readOnly: !(editable && userEdited),
     decoration: InputDecoration(
       labelText: label,
       labelStyle: TextStyle(color: Colors.blueAccent, fontSize: 14),
       floatingLabelBehavior: FloatingLabelBehavior.always,
-      border: editable ? UnderlineInputBorder() : InputBorder.none,
+      border:
+          editable && userEdited ? UnderlineInputBorder() : InputBorder.none,
       //enabled: true,
     ),
   );
@@ -277,11 +284,13 @@ class _DropdownUserAttributeState extends State<DropdownUserAttribute> {
         }
       },
       builder: (context, categoryObject, child) {
+        bool userEdited =
+            Provider.of<UsersProvider>(context, listen: false).userEdited;
         return !render(usersProvider)
             ? Container()
             : Container(
                 child: ListTile(
-                  title: editable
+                  title: editable && userEdited
                       ? DropdownButton<String>(
                           icon: const Icon(Icons.arrow_drop_down_sharp),
                           iconSize: 24,
@@ -326,6 +335,7 @@ class _DropdownUserAttributeState extends State<DropdownUserAttribute> {
                                             categoryObject[selectedInCategory])[
                                     'name'],
                           ),
+                          context,
                         ),
                   trailing: IconButton(
                     icon: Icon(Icons.edit),

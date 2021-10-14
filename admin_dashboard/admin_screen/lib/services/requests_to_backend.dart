@@ -85,7 +85,7 @@ class Api {
   }
 
   static Future<bool> login(userId, password) async {
-    Uri url = Uri.parse("https://soft-doc.herokuapp.com/auth/login");
+    Uri url = Uri.parse(index + "auth/login");
     http.Response response;
     try {
       response = await http.post(
@@ -99,14 +99,14 @@ class Api {
       );
 
       if (response.statusCode == 200) {
-        return true;
+        return false;
       } else {
         print(response.statusCode);
-        return false;
+        return true;
       }
     } catch (e) {
       print("authentication Error Message => " + e.toString());
-      return false;
+      return true;
     }
   }
 }

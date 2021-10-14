@@ -74,6 +74,11 @@ class UsersProvider with ChangeNotifier {
         });
   }
 
+  // void changeSelectedUser(newUser) {
+  //   selectedUser = newUser;
+  //   notifyListeners();
+  // }
+
   void updateUserDetails(Map<String, String> newAttributes) async {
     bool? succeeded;
     final currentDetails = selectedUser!.toMap();
@@ -99,6 +104,7 @@ class UsersProvider with ChangeNotifier {
             .singleWhere((element) => element.id == selectedUser!.id)
             .bulkEdit(newAttributes);
         selectedUser!.bulkEdit(newAttributes);
+        userEdited = false;
         buildRowList();
         print(userEdited);
         notifyListeners();

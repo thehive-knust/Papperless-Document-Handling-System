@@ -1,4 +1,5 @@
 import 'dart:core';
+import 'dart:ui';
 import 'add_user.dart';
 import 'package:admin_screen/widgets/display_user.dart';
 import '../providers/portfolio_provider.dart';
@@ -102,131 +103,134 @@ class _AdminUserState extends State<AdminUser> {
     if (users != null && usersProvider.rowList == null)
       usersProvider.initialise(context, users!);
     return Scaffold(
-
       backgroundColor: primaryLight,
       body: Container(
-           width: double.infinity,
-            height: double.infinity,
-            decoration: BoxDecoration(
-            image: DecorationImage(
+        width: double.infinity,
+        height: double.infinity,
+        decoration: BoxDecoration(
+          image: DecorationImage(
             image: AssetImage('assets/images/auth_desktop_background.png'),
             fit: BoxFit.fill,
           ),
         ),
-        child: Column(
-          children: [
-            Card(
-              color: Colors.grey[600],
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Container(
-                      padding: EdgeInsets.symmetric(vertical: 4, horizontal: 10),
-                      height: 50,
-                      child: TextField(
-                        cursorColor: Colors.black,
-                        cursorHeight: 25,
-                        cursorWidth: 3.2,
-                        decoration: InputDecoration(
-                          contentPadding: EdgeInsets.symmetric(vertical: 15),
-                          prefixIcon: Icon(Icons.search),
-                          filled: true,
-                          hintText: "Search by name or portfolio",
-                          hintStyle: GoogleFonts.notoSans(),
-                          fillColor: Colors.grey[200],
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(40),
-                            borderSide: BorderSide.none,
+        child: BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 3, sigmaY: 3),
+          child: Column(
+            children: [
+              Card(
+                color: Colors.grey[600],
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Container(
+                        padding:
+                            EdgeInsets.symmetric(vertical: 4, horizontal: 10),
+                        height: 50,
+                        child: TextField(
+                          cursorColor: Colors.black,
+                          cursorHeight: 25,
+                          cursorWidth: 3.2,
+                          decoration: InputDecoration(
+                            contentPadding: EdgeInsets.symmetric(vertical: 15),
+                            prefixIcon: Icon(Icons.search),
+                            filled: true,
+                            hintText: "Search by name or portfolio",
+                            hintStyle: GoogleFonts.notoSans(),
+                            fillColor: Colors.grey[200],
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(40),
+                              borderSide: BorderSide.none,
+                            ),
                           ),
+                          onChanged: (newValue) {
+                            if (newValue.length == 0) {
+                              searchResults!.remove();
+                              searchResultsProvider.searchResults = [];
+                              searchResultsProvider.searchingStarted = false;
+                              return;
+                            }
+
+                            if (!searchResultsProvider.searchingStarted) {
+                              searchResults = showSearchResults(context,
+                                  usersProvider, searchResultsProvider);
+                              Overlay.of(context)?.insert(searchResults!);
+                              searchResultsProvider.searchingStarted = true;
+                            }
+
+                            searchResultsProvider.searchValue = newValue;
+                            searchResultsProvider
+                                .generateSearchResults(usersProvider);
+                          },
                         ),
-                        onChanged: (newValue) {
-                          if (newValue.length == 0) {
-                            searchResults!.remove();
-                            searchResultsProvider.searchResults = [];
-                            searchResultsProvider.searchingStarted = false;
-                            return;
-                          }
-
-                          if (!searchResultsProvider.searchingStarted) {
-                            searchResults = showSearchResults(
-                                context, usersProvider, searchResultsProvider);
-                            Overlay.of(context)?.insert(searchResults!);
-                            searchResultsProvider.searchingStarted = true;
-                          }
-
-                          searchResultsProvider.searchValue = newValue;
-                          searchResultsProvider
-                              .generateSearchResults(usersProvider);
-                        },
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 10),
+                      child: IconButton(
+                        onPressed: () {},
+                        hoverColor: Colors.black38,
+                        splashRadius: 20,
+                        icon: Icon(Icons.notifications),
+                        tooltip: "Notification",
+                        color: Colors.black,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 8.0),
+                    child: Text(
+                      'SoftDoc',
+                      style: TextStyle(
+                        color: Colors.blue[400],
+                        fontSize: 35,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 10),
-                    child: IconButton(
-                      onPressed: () {},
-                      hoverColor: Colors.black38,
-                      splashRadius: 20,
-                      icon: Icon(Icons.notifications),
-                      tooltip: "Notification",
-                      color: Colors.black,
+                    padding: const EdgeInsets.only(bottom: 3.0),
+                    child: Text(
+                      'admin',
+                      style: TextStyle(
+                        color: Colors.blue[700],
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                  ),
+                  )
                 ],
               ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(left: 8.0),
-                  child: Text(
-                    'SoftDoc',
-                    style: TextStyle(
-                      color: Colors.blue[400],
-                      fontSize: 35,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
+              Expanded(
+                child: Container(
+                  child: usersProvider.rowList == null
+                      ? Center(
+                          child: CircularProgressIndicator(
+                            strokeWidth: 5,
+                            color: Colors.green,
+                          ),
+                        )
+                      : SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Row(
+                            children: [
+                              UserDetails(),
+                              Padding(
+                                padding: EdgeInsets.fromLTRB(10, 0, 50, 5),
+                                child: Display(),
+                              ),
+                            ],
+                          ),
+                        ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 3.0),
-                  child: Text(
-                    'admin',
-                    style: TextStyle(
-                      color: Colors.blue[700],
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                )
-              ],
-            ),
-            Expanded(
-              child: Container(
-                child: usersProvider.rowList == null
-                    ? Center(
-                        child: CircularProgressIndicator(
-                          strokeWidth: 5,
-                          color: Colors.green,
-                        ),
-                      )
-                    : SingleChildScrollView(
-                        scrollDirection: Axis.horizontal,
-                        child: Row(
-                          children: [
-                            UserDetails(),
-                            Padding(
-                              padding: EdgeInsets.fromLTRB(10, 0, 50, 5),
-                              child: Display(),
-                            ),
-                          ],
-                        ),
-                      ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
       floatingActionButton: FloatingActionButton.extended(
