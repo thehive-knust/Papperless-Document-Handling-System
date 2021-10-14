@@ -1,16 +1,24 @@
-# Papperless-Document-Handling-System
+# Paperless-Document-Handling-System
 
-This is a collaborative project work for the Software Engineering Course 2021.
-The goal of this project is to develop and design an effective software solution for
-handling documents processing in the College of Engineering, KNUST. Specifically,
-internal document approvals.
+This is a collaborative project work for the __Software Engineering Course 2021__.
+The __goal__ of this project is to __develop__ and __design__ an effective software solution for
+handling documents processing in the __College of Engineering, KNUST__. Specifically,
+internal document approvals.\
+-- You can find the links to production below\
+-- Users: https://the-hive.surge.sh/ \
+-- Admin: https://thehive-admin.surge.sh/
 
 # Contributors - Name (Index No. - Role)
 
-Ayarma Emmanuel John (3581418 - Quality Assurance Officer)
-OCUPUALOR ELIJAH (3591218 - Project Manager)
-Saeed Abdul-Mateen Demah (3587518 - System Analyst)
-Alidu abukari baba(3590218)
-Sackey Emmanuel James Ato Sackey (3587418 - Head of Frontend)
-Andrews Tang (3587618 - Head of Backend)
-Obed Ansah (3579718)-Member. Osei-Bonsu Alexander Kwasi Tweneboah- ( Head of Multimedia)
+
+>- __[OCUPUALOR ELIJAH](https://github.com/Koffi-Cobbin)__ - (3591218 - __Project Manager__)
+>- __[Ayarma Emmanuel John](https://github.com/EJAyarma)__ - (3581418 - __Quality Assurance Officer__) 
+>- __[Saeed Abdul-Mateen Demah](https://github.com/kin-saga)__ - (3587518 - __System Analyst__)
+>- __[Alidu abukari Baba](https://github.com/khalid753)__ - (3590218 - Front-end Team)
+>- __[Sackey Emmanuel James Ato Sackey](https://github.com/Ejasackey)__ - (3587418 - __Head of Frontend__)
+>- __[Andrews Tang](https://github.com/cocastic8590)__ - (3587618 - __Head of Backend__)
+>- __[Obed Ansah](https://github.com/obedansah)__ - (3579718)- Front-end Team
+>- __[Osei-Bonsu Alexander Kwasi Tweneboah](https://github.com/TKJNR)__ - - ( __Head of Multimedia__)
+>- Deborah Antwi -  (3579918 - __Communications Head__)
+>- Nyaaba Sulley - (3585518 - Front-end Team)
+___

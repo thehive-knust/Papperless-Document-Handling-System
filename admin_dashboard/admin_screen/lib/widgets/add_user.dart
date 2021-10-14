@@ -1,4 +1,6 @@
 import 'dart:convert';
+import 'package:admin_screen/widgets/AdminUser.dart';
+
 import '../providers/users_provider.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
@@ -119,13 +121,8 @@ class _AdduserState extends State<Adduser> {
     }
   }
 
-  void clearAll() {
-    userIDController!.clear();
-    firstNameController!.clear();
-    lastNameController!.clear();
-    emailController!.clear();
-    contactNameController!.clear();
-    passwordController!.clear();
+  void cancel() {
+    Navigator.of(context).pop();
   }
 
   uploadImage() async {
@@ -480,10 +477,10 @@ class _AdduserState extends State<Adduser> {
                     padding: EdgeInsets.only(left: 50),
                     child: ElevatedButton(
                       onPressed: () {
-                        clearAll();
+                        cancel();
                       },
                       child: Text(
-                        "Clear",
+                        "Cancel",
                         style: GoogleFonts.notoSans(
                           fontSize: 20,
                           color: Colors.black,
@@ -506,15 +503,17 @@ class _AdduserState extends State<Adduser> {
                     child: ElevatedButton(
                       onPressed: () async {
                         int status = await submit();
-                        if (status == 200)
+                        if (status == 200) {
                           usersProvider.addUser(User(
                             email: emailController!.text,
                             lastName: lastNameController!.text,
                             firstName: firstNameController!.text,
                             portfolio: selectedPortfolio!,
                             id: userIDController!.text,
+
                           ));
-                        Navigator.of(context).pop();
+                          Navigator.of(context).pop();
+                        }
                         // clearAll();
                       },
                       child: Text(
