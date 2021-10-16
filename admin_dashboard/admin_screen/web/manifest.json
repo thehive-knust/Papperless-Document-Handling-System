@@ -1,11 +1,11 @@
 {
-    "name": "admin_screen",
-    "short_name": "admin_screen",
+    "name": "Softdoc-admin",
+    "short_name": "Softdoc-admin",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "description": "Admin app for softdoc website",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
