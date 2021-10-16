@@ -6,10 +6,12 @@ import 'package:native_pdf_renderer/native_pdf_renderer.dart';
 import 'package:softdoc/screens/detail_screen/pdf_view.dart';
 import 'package:softdoc/shared/docTypeIcon.dart';
 import 'package:softdoc/style.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class PdfCard extends StatelessWidget {
-  final name, url, bytes;
-  const PdfCard({Key key, this.name, this.url, this.bytes}) : super(key: key);
+  final name, url, bytes, isDesktop;
+  const PdfCard({Key key, this.name, this.url, this.bytes, this.isDesktop})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +26,8 @@ class PdfCard extends StatelessWidget {
             Expanded(
               child: Container(
                 width: double.infinity,
-                child: PdfThumbnail(url: url, bytes: bytes),
+                child:
+                    PdfThumbnail(url: url, bytes: bytes, isDesktop: isDesktop),
               ),
             ),
             Container(
@@ -64,7 +67,9 @@ class PdfCard extends StatelessWidget {
 
 class PdfThumbnail extends StatefulWidget {
   final url, bytes;
-  const PdfThumbnail({Key key, this.url, this.bytes}) : super(key: key);
+  final bool isDesktop;
+  const PdfThumbnail({Key key, this.url, this.bytes, this.isDesktop})
+      : super(key: key);
 
   @override
   _PdfThumbnailState createState() => _PdfThumbnailState();
@@ -76,8 +81,12 @@ class _PdfThumbnailState extends State<PdfThumbnail> {
   void generateThumbnail() async {
     Uint8List pdfBytes;
     if (widget.bytes == null) {
-      final pdf = await http.get(Uri.parse(widget.url));
-      pdfBytes = pdf.bodyBytes;
+      try {
+        final pdf = await http.get(Uri.parse(widget.url));
+        pdfBytes = pdf.bodyBytes;
+      } catch (e) {
+        downloadErrorDialog();
+      }
     } else
       pdfBytes = widget.bytes;
     final document = await PdfDocument.openData(pdfBytes);
@@ -101,6 +110,44 @@ class _PdfThumbnailState extends State<PdfThumbnail> {
       ),
     );
     setState(() {});
+  }
+
+  downloadErrorDialog() {
+    showDialog(
+      barrierDismissible: false,
+      context: context,
+      
+      builder: (context) => AlertDialog(
+        shape:RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+          title: Text("Couldn't download PDF"),
+          content: IntrinsicHeight(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "Please check your internet connection.${widget.isDesktop ? "\nif you're using a third party download \nmanager such as IDM, make sure to exempt \nhttps://res.cloudinary.com/thehivecloudstorage/ \nfrom automatic downloads for the best possible experience" : ""} ",
+                ),
+                SizedBox(height: 5),
+                if(widget.isDesktop) TextButton(
+                  onPressed: () async {
+                    String link =
+                        "https://www.internetdownloadmanager.com/register/new_faq/functions6.html";
+                    if (await canLaunch(link)) {
+                      await launch(link);
+                    } else {
+                      throw "couldn't launch $link";
+                    }
+                  },
+                  child: Text("How to exempt site from IDM"),
+                )
+              ],
+            ),
+          ),
+          actions: [
+            TextButton(
+                onPressed: () => Navigator.pop(context), child: Text('OK'))
+          ]),
+    );
   }
 
   @override

@@ -12,7 +12,8 @@ import 'package:softdoc/style.dart';
 
 class ReceivedDetailScreen extends StatefulWidget {
   final Doc selectedDoc;
-  const ReceivedDetailScreen({Key key, this.selectedDoc}) : super(key: key);
+  final bool isDesktop;
+  const ReceivedDetailScreen({Key key, this.selectedDoc, this.isDesktop = false}) : super(key: key);
 
   @override
   _ReceivedDetailScreenState createState() => _ReceivedDetailScreenState();
@@ -109,6 +110,7 @@ class _ReceivedDetailScreenState extends State<ReceivedDetailScreen> {
                   height: 250,
                   width: double.infinity,
                   child: PdfCard(
+                    isDesktop: widget.isDesktop,
                     name: widget.selectedDoc.filename,
                     url: widget.selectedDoc.fileUrl,
                   ),

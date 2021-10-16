@@ -13,7 +13,8 @@ import 'approval_progress.dart';
 
 class DetailScreen extends StatefulWidget {
   final Doc selectedDoc;
-  DetailScreen({Key key, this.selectedDoc}) : super(key: key);
+  final bool isDesktop;
+  DetailScreen({Key key, this.selectedDoc, this.isDesktop= false}) : super(key: key);
 
   @override
   _DetailScreenState createState() => _DetailScreenState();
@@ -162,6 +163,7 @@ class _DetailScreenState extends State<DetailScreen> {
                           child: PdfCard(
                             name: widget.selectedDoc.filename,
                             url: widget.selectedDoc.fileUrl,
+                            isDesktop: widget.isDesktop,
                           ),
                         ),
                       ),

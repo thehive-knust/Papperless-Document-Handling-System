@@ -167,26 +167,28 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                 ),
-                if(widget.isDesktop) StatefulBuilder(
-                  builder: (context, setState) {
-                    return DataCubit.refreshingDocList
-                        ? CircularProgressIndicator(color: primary)
-                        : IconButton(
-                            onPressed: () async {
-                              if (_dataCubit.bottomNavSelector == "Sent")
-                                _dataCubit.downloadSentDocs(rebuild: true);
-                              else
-                                _dataCubit.downloadReceivedDocs(rebuild: true);
-                              setState(() {});
-                            },
-                            splashRadius: 20,
-                            icon: Icon(
-                              Icons.refresh,
-                              color: primary,
-                            ),
-                          );
-                  },
-                ),
+                if (widget.isDesktop)
+                  StatefulBuilder(
+                    builder: (context, setState) {
+                      return DataCubit.refreshingDocList
+                          ? CircularProgressIndicator(color: primary)
+                          : IconButton(
+                              onPressed: () async {
+                                if (_dataCubit.bottomNavSelector == "Sent")
+                                  _dataCubit.downloadSentDocs(rebuild: true);
+                                else
+                                  _dataCubit.downloadReceivedDocs(
+                                      rebuild: true);
+                                setState(() {});
+                              },
+                              splashRadius: 20,
+                              icon: Icon(
+                                Icons.refresh,
+                                color: primary,
+                              ),
+                            );
+                    },
+                  ),
               ],
             ),
             // listView:-----------------------------------------------------------

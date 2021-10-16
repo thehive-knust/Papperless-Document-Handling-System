@@ -76,6 +76,7 @@ class _DesktopScreenState extends State<DesktopScreen> {
                         Expanded(
                             child: DetailScreen(
                           selectedDoc: state.selectedDoc,
+                          isDesktop: true
                         )),
                         Expanded(
                           child: Center(
@@ -102,6 +103,7 @@ class _DesktopScreenState extends State<DesktopScreen> {
                         Expanded(
                           child: ReceivedDetailScreen(
                             selectedDoc: state.selectedDoc,
+                            isDesktop: true
                           ),
                         ),
                         Spacer()
