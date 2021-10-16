@@ -271,13 +271,15 @@ class _AdduserState extends State<Adduser> {
                                         style:
                                             GoogleFonts.notoSans(fontSize: 10),
                                       )
-                                    : Expanded(
-                                        child: Container(
-                                            margin: EdgeInsets.fromLTRB(2, 5, 0, 0),
-                                            height: 45,
-                                            width: 35,
-                                            child: Image.memory(image!.bytes!, width: 35, height: 45,)),
-                                      ),
+                                    : Container(
+                                        margin: EdgeInsets.fromLTRB(2, 5, 0, 0),
+                                        height: 45,
+                                        width: 35,
+                                        child: Image.memory(
+                                          image!.bytes!,
+                                          width: 35,
+                                          height: 45,
+                                        )),
                               ),
                             ),
                           ],
@@ -510,7 +512,6 @@ class _AdduserState extends State<Adduser> {
                             firstName: firstNameController!.text,
                             portfolio: selectedPortfolio!,
                             id: userIDController!.text,
-
                           ));
                           Navigator.of(context).pop();
                         }
