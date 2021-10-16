@@ -13,8 +13,8 @@ import 'approval_progress.dart';
 
 class DetailScreen extends StatefulWidget {
   final Doc selectedDoc;
-  final bool isDesktop;
-  DetailScreen({Key key, this.selectedDoc, this.isDesktop= false}) : super(key: key);
+  DetailScreen({Key key, this.selectedDoc,})
+      : super(key: key);
 
   @override
   _DetailScreenState createState() => _DetailScreenState();
@@ -138,15 +138,23 @@ class _DetailScreenState extends State<DetailScreen> {
                       ),
                       SizedBox(height: 20),
                       InkWell(
-                        onTap: () => isDesktop
-                            ? _desktopNavCubit.navToPdfViewer(
-                                selectedDoc: widget.selectedDoc,
-                                fromReceivedScreen: false,
-                              )
-                            : _androidNavCubit.navToPdfViewer(
-                                selectedDoc: widget.selectedDoc,
-                                fromReceivedScreen: false,
-                              ),
+                        onTap: () async {
+                          var success = await PdfThumbnail.tryPdfDownload(
+                            context,
+                            widget.selectedDoc.fileUrl,
+                            isDesktop,
+                          );
+                          if (success == null) return;
+                          isDesktop
+                              ? _desktopNavCubit.navToPdfViewer(
+                                  selectedDoc: widget.selectedDoc,
+                                  fromReceivedScreen: false,
+                                )
+                              : _androidNavCubit.navToPdfViewer(
+                                  selectedDoc: widget.selectedDoc,
+                                  fromReceivedScreen: false,
+                                );
+                        },
 
                         // {
                         // html.window.open(widget.selectedDoc.fileUrl,
@@ -163,7 +171,7 @@ class _DetailScreenState extends State<DetailScreen> {
                           child: PdfCard(
                             name: widget.selectedDoc.filename,
                             url: widget.selectedDoc.fileUrl,
-                            isDesktop: widget.isDesktop,
+                            isDesktop: isDesktop,
                           ),
                         ),
                       ),

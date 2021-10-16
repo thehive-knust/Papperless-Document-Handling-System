@@ -73,6 +73,55 @@ class PdfThumbnail extends StatefulWidget {
 
   @override
   _PdfThumbnailState createState() => _PdfThumbnailState();
+
+    static tryPdfDownload(context, url, isDesktop) async {
+    try {
+      final pdf = await http.get(Uri.parse(url));
+      return pdf.bodyBytes;
+    } catch (e) {
+      downloadErrorDialog(context, isDesktop);
+      return null;
+    }
+  }
+
+    static downloadErrorDialog(context, isDesktop) {
+    showDialog(
+      barrierDismissible: false,
+      context: context,
+      builder: (context) => AlertDialog(
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+          title: Text("Couldn't download PDF"),
+          content: IntrinsicHeight(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "Please check your internet connection.${isDesktop ? "\nif you're using a third party download \nmanager such as IDM, make sure to exempt \nhttps://res.cloudinary.com/thehivecloudstorage/ \nfrom automatic downloads for the best possible experience" : ""} ",
+                ),
+                SizedBox(height: 5),
+                if (isDesktop)
+                  TextButton(
+                    onPressed: () async {
+                      String link =
+                          "https://www.internetdownloadmanager.com/register/new_faq/functions6.html";
+                      if (await canLaunch(link)) {
+                        await launch(link);
+                      } else {
+                        throw "couldn't launch $link";
+                      }
+                    },
+                    child: Text("How to exempt site from IDM"),
+                  )
+              ],
+            ),
+          ),
+          actions: [
+            TextButton(
+                onPressed: () => Navigator.pop(context), child: Text('OK'))
+          ]),
+    );
+  }
 }
 
 class _PdfThumbnailState extends State<PdfThumbnail> {
@@ -81,12 +130,15 @@ class _PdfThumbnailState extends State<PdfThumbnail> {
   void generateThumbnail() async {
     Uint8List pdfBytes;
     if (widget.bytes == null) {
-      try {
-        final pdf = await http.get(Uri.parse(widget.url));
-        pdfBytes = pdf.bodyBytes;
-      } catch (e) {
-        downloadErrorDialog();
-      }
+      pdfBytes = await PdfThumbnail.tryPdfDownload(context, widget.url, widget.isDesktop);
+      if (pdfBytes == null) return;
+      // try {
+      //   final pdf = await http.get(Uri.parse(widget.url));
+      //   pdfBytes = pdf.bodyBytes;
+      // } catch (e) {
+      //   downloadErrorDialog();
+      //   return;
+      // }
     } else
       pdfBytes = widget.bytes;
     final document = await PdfDocument.openData(pdfBytes);
@@ -112,43 +164,9 @@ class _PdfThumbnailState extends State<PdfThumbnail> {
     setState(() {});
   }
 
-  downloadErrorDialog() {
-    showDialog(
-      barrierDismissible: false,
-      context: context,
-      
-      builder: (context) => AlertDialog(
-        shape:RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-          title: Text("Couldn't download PDF"),
-          content: IntrinsicHeight(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "Please check your internet connection.${widget.isDesktop ? "\nif you're using a third party download \nmanager such as IDM, make sure to exempt \nhttps://res.cloudinary.com/thehivecloudstorage/ \nfrom automatic downloads for the best possible experience" : ""} ",
-                ),
-                SizedBox(height: 5),
-                if(widget.isDesktop) TextButton(
-                  onPressed: () async {
-                    String link =
-                        "https://www.internetdownloadmanager.com/register/new_faq/functions6.html";
-                    if (await canLaunch(link)) {
-                      await launch(link);
-                    } else {
-                      throw "couldn't launch $link";
-                    }
-                  },
-                  child: Text("How to exempt site from IDM"),
-                )
-              ],
-            ),
-          ),
-          actions: [
-            TextButton(
-                onPressed: () => Navigator.pop(context), child: Text('OK'))
-          ]),
-    );
-  }
+
+
+
 
   @override
   void initState() {

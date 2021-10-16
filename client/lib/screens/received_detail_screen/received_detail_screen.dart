@@ -12,8 +12,10 @@ import 'package:softdoc/style.dart';
 
 class ReceivedDetailScreen extends StatefulWidget {
   final Doc selectedDoc;
-  final bool isDesktop;
-  const ReceivedDetailScreen({Key key, this.selectedDoc, this.isDesktop = false}) : super(key: key);
+  const ReceivedDetailScreen({
+    Key key,
+    this.selectedDoc,
+  }) : super(key: key);
 
   @override
   _ReceivedDetailScreenState createState() => _ReceivedDetailScreenState();
@@ -97,20 +99,28 @@ class _ReceivedDetailScreenState extends State<ReceivedDetailScreen> {
               SizedBox(height: 10),
               // pdf card section:-----------------------------------------------------------------
               InkWell(
-                onTap: () {
+                onTap: () async {
+                  var success = await PdfThumbnail.tryPdfDownload(
+                    context,
+                    widget.selectedDoc.fileUrl,
+                    isDesktop,
+                  );
+                  if (success == null) return;
                   isDesktop
                       ? _desktopNavCubit.navToPdfViewer(
                           selectedDoc: widget.selectedDoc,
-                          fromReceivedScreen: true)
+                          fromReceivedScreen: true,
+                        )
                       : _androidNavCubit.navToPdfViewer(
                           selectedDoc: widget.selectedDoc,
-                          fromReceivedScreen: true);
+                          fromReceivedScreen: true,
+                        );
                 },
                 child: Container(
                   height: 250,
                   width: double.infinity,
                   child: PdfCard(
-                    isDesktop: widget.isDesktop,
+                    isDesktop: isDesktop,
                     name: widget.selectedDoc.filename,
                     url: widget.selectedDoc.fileUrl,
                   ),
