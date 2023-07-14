@@ -12,8 +12,8 @@ import 'package:softdoc/style.dart';
 import 'approval_progress.dart';
 
 class DetailScreen extends StatefulWidget {
-  final Doc selectedDoc;
-  DetailScreen({Key key, this.selectedDoc,})
+  final Doc? selectedDoc;
+  DetailScreen({Key? key, this.selectedDoc,})
       : super(key: key);
 
   @override
@@ -21,9 +21,9 @@ class DetailScreen extends StatefulWidget {
 }
 
 class _DetailScreenState extends State<DetailScreen> {
-  AndroidNavCubit _androidNavCubit;
-  DesktopNavCubit _desktopNavCubit;
-  DataCubit _dataCubit;
+  AndroidNavCubit? _androidNavCubit;
+  DesktopNavCubit? _desktopNavCubit;
+  DataCubit? _dataCubit;
 
   @override
   void initState() {
@@ -43,16 +43,16 @@ class _DetailScreenState extends State<DetailScreen> {
           TextButton(
             onPressed: () async {
               EasyLoading.show(status: "Deleting document");
-              bool success = await _dataCubit.deleteDoc(widget.selectedDoc.id);
+              bool success = await _dataCubit!.deleteDoc(widget.selectedDoc!.id);
               if (success) {
                 EasyLoading.showSuccess("Submission canceled",
                     dismissOnTap: true);
-                _dataCubit.sentDocs.remove(widget.selectedDoc);
-                _dataCubit.getDocsByOption();
+                _dataCubit!.sentDocs!.remove(widget.selectedDoc);
+                _dataCubit!.getDocsByOption();
                 Navigator.of(context).pop();
                 isDesktop
-                    ? _desktopNavCubit.navToHomeScreen()
-                    : _androidNavCubit.navToHomeScreen();
+                    ? _desktopNavCubit!.navToHomeScreen()
+                    : _androidNavCubit!.navToHomeScreen();
               } else {
                 EasyLoading.showError("Document not deleted, try again");
                 Navigator.of(context).pop();
@@ -77,7 +77,7 @@ class _DetailScreenState extends State<DetailScreen> {
     final isDesktop = MediaQuery.of(context).size.width > 600;
     return WillPopScope(
       onWillPop: () {
-        _androidNavCubit.navToHomeScreen();
+        _androidNavCubit!.navToHomeScreen();
         return Future.value(false);
       },
       child: Scaffold(
@@ -93,15 +93,15 @@ class _DetailScreenState extends State<DetailScreen> {
                   width: double.infinity,
                   height: 60,
                   // color: Colors.blue,
-                  child: Text(widget.selectedDoc.subject,
+                  child: Text(widget.selectedDoc!.subject!!,
                       style:
                           TextStyle(fontSize: 21, fontWeight: FontWeight.w600)),
                 ),
                 if (!isDesktop) ...[
                   SizedBox(height: 10),
                   ApprovalProgress(
-                    approvalList: widget.selectedDoc.approvalProgress,
-                    docStatus: widget.selectedDoc.status,
+                    approvalList: widget.selectedDoc!.approvalProgress,
+                    docStatus: widget.selectedDoc!.status,
                   )
                 ],
                 Container(
@@ -120,17 +120,17 @@ class _DetailScreenState extends State<DetailScreen> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              if (widget.selectedDoc.description
+                              if (widget.selectedDoc!.description!
                                   .isNotEmpty) // changed it from isNotNull to is not empty
                                 Padding(
                                   padding: const EdgeInsets.only(top: 12),
-                                  child: Text(widget.selectedDoc.description,
+                                  child: Text(widget.selectedDoc!.description!,
                                       style: TextStyle(
                                           fontSize: isDesktop ? 20 : 14)),
                                 ),
                               Padding(
                                 padding: EdgeInsets.symmetric(vertical: 10),
-                                child: timeBadge(widget.selectedDoc.createdAt),
+                                child: timeBadge(widget.selectedDoc!.createdAt!),
                               ),
                             ],
                           ),
@@ -141,16 +141,16 @@ class _DetailScreenState extends State<DetailScreen> {
                         onTap: () async {
                           var success = await PdfThumbnail.tryPdfDownload(
                             context,
-                            widget.selectedDoc.fileUrl,
+                            widget.selectedDoc!.fileUrl!,
                             isDesktop,
                           );
                           if (success == null) return;
                           isDesktop
-                              ? _desktopNavCubit.navToPdfViewer(
+                              ? _desktopNavCubit!.navToPdfViewer(
                                   selectedDoc: widget.selectedDoc,
                                   fromReceivedScreen: false,
                                 )
-                              : _androidNavCubit.navToPdfViewer(
+                              : _androidNavCubit!.navToPdfViewer(
                                   selectedDoc: widget.selectedDoc,
                                   fromReceivedScreen: false,
                                 );
@@ -169,15 +169,15 @@ class _DetailScreenState extends State<DetailScreen> {
                         child: Container(
                           height: 250,
                           child: PdfCard(
-                            name: widget.selectedDoc.filename,
-                            url: widget.selectedDoc.fileUrl,
+                            name: widget.selectedDoc!.filename!,
+                            url: widget.selectedDoc!.fileUrl!,
                             isDesktop: isDesktop,
                           ),
                         ),
                       ),
                       SizedBox(height: 12),
-                      if (widget.selectedDoc.status != "pending")
-                        StatusMessage(widget.selectedDoc.status),
+                      if (widget.selectedDoc!.status! != "pending")
+                        StatusMessage(widget.selectedDoc!.status!),
                     ],
                   ),
                 ),
@@ -185,7 +185,7 @@ class _DetailScreenState extends State<DetailScreen> {
             ),
           ),
         ),
-        floatingActionButton: widget.selectedDoc.status == 'pending'
+        floatingActionButton: widget.selectedDoc!.status == 'pending'
             ? FloatingActionButton.extended(
                 // onPressed: () => confirmWithdrawal(context),
                 onPressed: () => confirmWithdrawal(context, isDesktop),

@@ -18,7 +18,7 @@ const DESKTOPAUTHPAGE = "/desktop_auth_page";
 const AUTHPAGE = "/auth_page";
 
 InputDecoration authInputDecoration(String hint,
-        {Function togglePasswordVisibilty, bool passwordVisible}) =>
+        {togglePasswordVisibilty, bool? passwordVisible}) =>
     InputDecoration(
       filled: true,
       fillColor: primaryLight,

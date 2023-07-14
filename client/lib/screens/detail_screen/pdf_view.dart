@@ -8,9 +8,9 @@ import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class PdfViewer extends StatefulWidget {
-  final Doc selectedDoc;
-  final bool fromReceivedDetailScreen;
-  const PdfViewer({Key key, this.selectedDoc, this.fromReceivedDetailScreen})
+  final Doc? selectedDoc;
+  final bool? fromReceivedDetailScreen;
+  const PdfViewer({Key? key, this.selectedDoc, this.fromReceivedDetailScreen})
       : super(key: key);
 
   static void downloadPDF(String _url) async {
@@ -26,8 +26,8 @@ class PdfViewer extends StatefulWidget {
 }
 
 class _PdfViewerState extends State<PdfViewer> {
-  AndroidNavCubit _androidNavCubit;
-  DesktopNavCubit _desktopNavCubit;
+  AndroidNavCubit? _androidNavCubit;
+  DesktopNavCubit? _desktopNavCubit;
 
   @override
   void initState() {
@@ -39,14 +39,14 @@ class _PdfViewerState extends State<PdfViewer> {
   Future<bool> goBack() {
     final isDesktop = MediaQuery.of(context).size.width > 600;
 
-    if (!widget.fromReceivedDetailScreen)
+    if (!widget.fromReceivedDetailScreen!)
       isDesktop
-          ? _desktopNavCubit.navToDetailScreen(widget.selectedDoc)
-          : _androidNavCubit.navToDetailScreen(widget.selectedDoc);
+          ? _desktopNavCubit!.navToDetailScreen(widget.selectedDoc!)
+          : _androidNavCubit!.navToDetailScreen(widget.selectedDoc!);
     else
       isDesktop
-          ? _desktopNavCubit.navToreceivedDetailScreen(widget.selectedDoc)
-          : _androidNavCubit.navToreceivedDetailScreen(widget.selectedDoc);
+          ? _desktopNavCubit!.navToreceivedDetailScreen(widget.selectedDoc!)
+          : _androidNavCubit!.navToreceivedDetailScreen(widget.selectedDoc!);
     return Future.value(false);
   }
 
@@ -67,7 +67,7 @@ class _PdfViewerState extends State<PdfViewer> {
               padding: const EdgeInsets.only(right: 8.0),
               child: IconButton(
                 onPressed: () {
-                  PdfViewer.downloadPDF(widget.selectedDoc.fileUrl);
+                  PdfViewer.downloadPDF(widget.selectedDoc!.fileUrl!);
                   goBack();
                 },
                 icon: Icon(
@@ -79,7 +79,7 @@ class _PdfViewerState extends State<PdfViewer> {
           ],
         ),
         body: Container(
-          child: SfPdfViewer.network(widget.selectedDoc.fileUrl),
+          child: SfPdfViewer.network(widget.selectedDoc!.fileUrl!),
         ),
       ),
     );

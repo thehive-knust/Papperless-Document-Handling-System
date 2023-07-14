@@ -1,16 +1,16 @@
 import 'package:softdoc/models/user.dart';
 
 class Department {
-  String id;
-  String name;
-  List<User> users = [];
-  String facultyId;
+  String? id;
+  String? name;
+  List<User>? users = [];
+  String? facultyId;
 
   Department({this.id, this.name, this.users, this.facultyId});
 
   static List<User> get getUsers {
     List<User> users = [];
-    departments.forEach((dept) => users.addAll(dept.users));
+    departments.forEach((dept) => users.addAll(dept.users!));
     return users;
   }
 

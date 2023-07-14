@@ -23,7 +23,7 @@ Widget addOrEditReciepient(bool isDesktop, Function setMainState) {
             if (user.deptId != "others") {
               deptName = DataCubit.departments
                   .singleWhere((dept) => user.deptId == dept.id)
-                  .id;
+                  .id!;
             }
             // print("-----------I got here-----------");
             print(user.deptId);
@@ -40,7 +40,7 @@ Widget addOrEditReciepient(bool isDesktop, Function setMainState) {
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [Text(user.title), Text(deptName)],
+                children: [Text(user.title!), Text(deptName)],
               ),
             );
           },

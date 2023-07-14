@@ -5,19 +5,19 @@ import 'package:http/http.dart' as http;
 import 'dart:typed_data';
 
 class Doc {
-  String id;
-  String status;
-  String subject;
-  String description;
-  File file;
-  Uint8List fileBytes;
-  String fileUrl;
-  String filename;
-  String senderId;
-  DateTime createdAt;
-  DateTime updatedAt;
-  Map<String, String> approvalProgress;
-  Map<String, String> senderInfo;
+  String? id;
+  String? status;
+  String? subject;
+  String? description;
+  File? file;
+  Uint8List? fileBytes;
+  String? fileUrl;
+  String? filename;
+  String? senderId;
+  DateTime? createdAt;
+  DateTime? updatedAt;
+  Map<String, String>? approvalProgress;
+  Map<String, String>? senderInfo;
   Doc({
     this.id,
     this.subject,

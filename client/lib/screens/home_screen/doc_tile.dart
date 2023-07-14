@@ -16,18 +16,18 @@ class DocTiles extends StatefulWidget {
   final isDesktop;
   final isSent;
   final List<Map<String, List<Doc>>> docs;
-  DocTiles({this.docs, this.isDesktop, this.isSent});
+  DocTiles({required this.docs, this.isDesktop, this.isSent});
 
   @override
   _DocTilesState createState() => _DocTilesState();
 }
 
 class _DocTilesState extends State<DocTiles> {
-  DataCubit _dataCubit;
+  DataCubit? _dataCubit;
 
-  AndroidNavCubit _androidNavCubit;
+  AndroidNavCubit? _androidNavCubit;
 
-  DesktopNavCubit _desktopNavCubit;
+  DesktopNavCubit? _desktopNavCubit;
 
   @override
   void initState() {
@@ -42,7 +42,7 @@ class _DocTilesState extends State<DocTiles> {
     return RefreshIndicator(
       onRefresh: () {
         return Future.wait(
-          [_dataCubit.downloadReceivedDocs(), _dataCubit.downloadSentDocs()],
+          [_dataCubit!.downloadReceivedDocs(), _dataCubit!.downloadSentDocs()],
         );
       },
       child: ListView.builder(
@@ -55,7 +55,7 @@ class _DocTilesState extends State<DocTiles> {
   }
 
   sectionWidget(context, Map<String, List<Doc>> section, index) {
-    _dataCubit.selectedIndexes.add(-1);
+    _dataCubit!.selectedIndexes.add(-1);
     return section.entries.map((entry) {
       return Container(
         width: double.infinity,
@@ -87,23 +87,23 @@ class _DocTilesState extends State<DocTiles> {
     else if (doc.status == 'rejected')
       status = redLight;
     else
-      status = Colors.grey[300];
+      status = Colors.grey[300]!;
     return TransitionAnimation(
       delay: index,
       child: GestureDetector(
         onTap: () {
           if (widget.isSent) {
             widget.isDesktop
-                ? _desktopNavCubit.navToDetailScreen(doc)
-                : _androidNavCubit.navToDetailScreen(doc);
+                ? _desktopNavCubit!.navToDetailScreen(doc)
+                : _androidNavCubit!.navToDetailScreen(doc);
           } else {
             widget.isDesktop
-                ? _desktopNavCubit.navToreceivedDetailScreen(doc)
-                : _androidNavCubit.navToreceivedDetailScreen(doc);
+                ? _desktopNavCubit!.navToreceivedDetailScreen(doc)
+                : _androidNavCubit!.navToreceivedDetailScreen(doc);
           }
-          _dataCubit.selectedIndexes =
-              _dataCubit.selectedIndexes.map((e) => -1).toList();
-          _dataCubit.selectedIndexes[sectionIndex] = index;
+          _dataCubit!.selectedIndexes =
+              _dataCubit!.selectedIndexes.map((e) => -1).toList();
+          _dataCubit!.selectedIndexes[sectionIndex] = index;
           setState(() {});
         },
         child: Padding(
@@ -116,9 +116,9 @@ class _DocTilesState extends State<DocTiles> {
                   ? DismissDirection.endToStart
                   : DismissDirection.none,
               confirmDismiss: (direction) =>
-                  alertDialog(direction, context, doc.id),
+                  alertDialog(direction, context, doc.id!),
               onDismissed: (direction) {
-                _dataCubit.sentDocs.remove(docs[index]);
+                _dataCubit!.sentDocs!.remove(docs[index]);
                 docs.removeAt(index);
                 setState(() {});
               },
@@ -133,7 +133,7 @@ class _DocTilesState extends State<DocTiles> {
               ),
               child: Container(
                 height: 61,
-                color: _dataCubit.selectedIndexes[sectionIndex] == index
+                color: _dataCubit!.selectedIndexes[sectionIndex] == index
                     ? primaryLight
                     : Colors.white,
                 child: Row(
@@ -150,13 +150,13 @@ class _DocTilesState extends State<DocTiles> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              doc.subject,
+                              doc.subject!,
                               overflow: TextOverflow.ellipsis,
                               maxLines: 1,
                               style: TextStyle(fontSize: 20),
                             ),
                             SizedBox(height: 5),
-                            Text(DateFormat("h:m a").format(doc.updatedAt),
+                            Text(DateFormat("h:m a").format(doc.updatedAt!),
                                 style: TextStyle(color: Colors.grey))
                           ],
                         ),
@@ -173,9 +173,9 @@ class _DocTilesState extends State<DocTiles> {
     );
   }
 
-  Future<bool> alertDialog(
+  Future<bool?> alertDialog(
       DismissDirection direction, BuildContext context, String id) async {
-    return showDialog(
+    return showDialog<bool>(
       context: context,
       builder: (context) => AlertDialog(
         title: Text("Are you sure?"),
@@ -184,12 +184,12 @@ class _DocTilesState extends State<DocTiles> {
           TextButton(
             onPressed: () async {
               await EasyLoading.show(status: "Deleting document");
-              bool success = await _dataCubit.deleteDoc(id);
+              bool success = await _dataCubit!.deleteDoc(id);
               if (success) {
                 await EasyLoading.showSuccess("Document deleted",
                     dismissOnTap: true);
                 Navigator.of(context, rootNavigator: true).pop(true);
-                _desktopNavCubit.navToHomeScreen();
+                _desktopNavCubit!.navToHomeScreen();
               } else {
                 EasyLoading.showError('Document not deleted, try again',
                     dismissOnTap: true);

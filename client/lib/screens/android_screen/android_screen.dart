@@ -8,7 +8,7 @@ import 'package:softdoc/screens/received_detail_screen/received_detail_screen.da
 import 'package:softdoc/screens/send_doc_screen/send_doc_screen.dart';
 
 class AndroidScreen extends StatefulWidget {
-  const AndroidScreen({Key key}) : super(key: key);
+  const AndroidScreen({Key? key}) : super(key: key);
 
   @override
   _AndroidScreenState createState() => _AndroidScreenState();

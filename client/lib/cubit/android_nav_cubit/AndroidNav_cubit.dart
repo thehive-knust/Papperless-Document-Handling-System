@@ -23,7 +23,7 @@ class AndroidNavCubit extends Cubit<AndroidNavState> {
     emit(receivedDetailScreenNav(selectedDoc));
   }
 
-  void navToPdfViewer({Doc selectedDoc, bool fromReceivedScreen}) {
+  void navToPdfViewer({Doc? selectedDoc, bool? fromReceivedScreen}) {
     emit(PdfViewerNav(selectedDoc, fromReceivedScreen));
   }
 }

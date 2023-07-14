@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import '../../style.dart';
 
 class VApprovalProgress extends StatefulWidget {
-  final Map<String, String> approvalList;
-  final String docStatus;
-  const VApprovalProgress({Key key, this.approvalList, this.docStatus})
+  final Map<String, String>? approvalList;
+  final String? docStatus;
+  const VApprovalProgress({Key? key, this.approvalList, this.docStatus})
       : super(key: key);
 
   @override
@@ -12,33 +12,33 @@ class VApprovalProgress extends StatefulWidget {
 }
 
 class _VApprovalProgressState extends State<VApprovalProgress> {
-  Color previousColor;
-  bool nextIsAsh;
+  Color? previousColor;
+  bool? nextIsAsh;
   bool lastColoredLine = false;
 
   @override
   Widget build(BuildContext context) {
     nextIsAsh = false;
     final Size screenSize = MediaQuery.of(context).size;
-    List<String> approvalListKeys = widget.approvalList.keys.toList();
+    List<String> approvalListKeys = widget.approvalList!.keys.toList();
 
     return Center(
       child: Container(
         constraints: BoxConstraints(minHeight: 500),
         padding: EdgeInsets.only(left: screenSize.width * 0.08),
         height: screenSize.height * 0.8,
-        child: widget.approvalList.length == 1
+        child: widget.approvalList!.length == 1
             ? Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  progressDot(widget.approvalList.values.first),
+                  progressDot(widget.approvalList!.values.first),
                   SizedBox(width: 12),
                   Text(approvalListKeys[0]),
                 ],
               )
             : Column(
-                children: widget.approvalList.entries.map((e) {
+                children: widget.approvalList!.entries.map((e) {
                   bool isFirst = false;
                   bool isLast = false;
                   if (approvalListKeys.first == e.key) isFirst = true;
@@ -50,9 +50,9 @@ class _VApprovalProgressState extends State<VApprovalProgress> {
                           children: [
                             progressLine(
                               isFirst: isFirst,
-                              start: widget.approvalList[approvalListKeys[
+                              start: widget.approvalList![approvalListKeys[
                                   (approvalListKeys.indexOf(e.key) - 1) %
-                                      widget.approvalList.length]],
+                                      widget.approvalList!.length]]!,
                               end: e.value,
                               beforeLine: true,
                             ),
@@ -60,9 +60,9 @@ class _VApprovalProgressState extends State<VApprovalProgress> {
                             progressLine(
                               isLast: isLast,
                               start: e.value,
-                              end: widget.approvalList[approvalListKeys[
+                              end: widget.approvalList![approvalListKeys[
                                   (approvalListKeys.indexOf(e.key) + 1) %
-                                      widget.approvalList.length]],
+                                      widget.approvalList!.length]]!,
                               afterLine: true,
                             ),
                           ],
@@ -96,7 +96,7 @@ class _VApprovalProgressState extends State<VApprovalProgress> {
   Widget progressDot(String approvalStatus) {
     Color color;
     if (nextIsAsh == true || widget.docStatus == 'cancelled')
-      color = Colors.grey[400];
+      color = Colors.grey[400]!;
     else
       color = approvalStateColor(approvalStatus);
 
@@ -130,25 +130,25 @@ class _VApprovalProgressState extends State<VApprovalProgress> {
   Widget progressLine(
       {bool isFirst = false,
       bool isLast = false,
-      String start,
-      String end,
+      String? start,
+      String? end,
       bool beforeLine = false,
       bool afterLine = false}) {
-    Color startColor = approvalStateColor(start);
-    Color endColor = approvalStateColor(end);
+    Color startColor = approvalStateColor(start!);
+    Color endColor = approvalStateColor(end!);
 
     if (widget.docStatus == 'cancelled')
-      startColor = endColor = Colors.grey[400];
+      startColor = endColor = Colors.grey[400]!;
     else if (nextIsAsh == true) {
-      startColor = lastColoredLine ? startColor : Colors.grey[400];
+      startColor = lastColoredLine ? startColor : Colors.grey[400]!;
 
       if (lastColoredLine) lastColoredLine = false;
 
       if (afterLine)
-        endColor = colorMix(startColor, Colors.grey[400]);
+        endColor = colorMix(startColor, Colors.grey[400]!);
       else {
-        startColor = colorMix(startColor, Colors.grey[400]);
-        endColor = Colors.grey[400];
+        startColor = colorMix(startColor, Colors.grey[400]!);
+        endColor = Colors.grey[400]!;
       }
     } else if (beforeLine)
       startColor = colorMix(startColor, endColor);

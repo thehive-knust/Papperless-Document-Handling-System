@@ -8,18 +8,18 @@ class DataInitial extends DataState {}
 class Authenticated extends DataState{}
 
 class SentDoc extends DataState {
-  final List<Map<String, List<Doc>>> docs;
+  final List<Map<String, List<Doc>>>? docs;
   SentDoc(this.docs);
 }
 
 class ReceivedDoc extends DataState {
-  final List<Map<String, List<Doc>>> docs;
+  final List<Map<String, List<Doc>>>? docs;
   ReceivedDoc(this.docs);
 }
 
 //-----------------SIDE METHODS---------------------------------
 
-  List<Map<String, List<Doc>>> getSections(List<Doc> docs) {
+  List<Map<String, List<Doc>>> getSections(List<Doc>? docs) {
     List<Map<String, List<Doc>>> docSections = [];
     List<List> sections = [
       ["Today"],
@@ -31,9 +31,9 @@ class ReceivedDoc extends DataState {
     final todayDate = DateTime(now.year, now.month, now.day);
     final yesterdayDate = DateTime(now.year, now.month, now.day - 1);
     final lastWeekDate = DateTime(now.year, now.month, now.day - 7);
-    docs.forEach((doc) {
+    docs!.forEach((doc) {
       final date =
-          DateTime(doc.updatedAt.year, doc.updatedAt.month, doc.updatedAt.day);
+          DateTime(doc.updatedAt!.year, doc.updatedAt!.month, doc.updatedAt!.day);
       if (date == todayDate) {
         sections[0].add(doc);
       } else if (date == yesterdayDate) {

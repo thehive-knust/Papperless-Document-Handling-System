@@ -1,5 +1,5 @@
 class College{
-  String id;
-  String name;
-  String head;
+  String? id;
+  String? name;
+  String? head;
 }

@@ -14,17 +14,17 @@ import 'package:softdoc/style.dart';
 
 class SendDocScreen extends StatefulWidget {
   final bool isDesktop;
-  SendDocScreen({Key key, this.isDesktop = false}) : super(key: key);
+  SendDocScreen({Key? key, this.isDesktop = false}) : super(key: key);
 
   @override
   _SendDocScreenState createState() => _SendDocScreenState();
 }
 
 class _SendDocScreenState extends State<SendDocScreen> {
-  Doc doc;
-  AndroidNavCubit _androidNavCubit;
-  DesktopNavCubit _desktopNavCubit;
-  DataCubit _dataCubit;
+  Doc? doc;
+  AndroidNavCubit? _androidNavCubit;
+  DesktopNavCubit? _desktopNavCubit;
+  DataCubit? _dataCubit;
 
   void changeState() {
     setState(() {});
@@ -40,12 +40,12 @@ class _SendDocScreenState extends State<SendDocScreen> {
   }
 
   void pickFile() async {
-    FilePickerResult result = await FilePickerWeb.platform
+    FilePickerResult? result = await FilePickerWeb.platform
         .pickFiles(allowedExtensions: ['pdf'], type: FileType.custom);
 
     if (result != null) {
-      doc.fileBytes = result.files.single.bytes;
-      doc.filename = result.files.single.name;
+      doc!.fileBytes = result.files.single.bytes;
+      doc!.filename = result.files.single.name;
       // pdf = File.fromRawPath(bytes);
       setState(() {});
     } else {
@@ -54,31 +54,31 @@ class _SendDocScreenState extends State<SendDocScreen> {
   }
 
   void uploadDoc() async {
-    if (doc.subject == null || doc.subject.isEmpty) {
+    if (doc!.subject == null || doc!.subject!.isEmpty) {
       EasyLoading.showInfo('please enter subject before uploading',
           dismissOnTap: true);
     } else if (DataCubit.approvals.isEmpty) {
       EasyLoading.showInfo('please add recipient(s) before sending',
           dismissOnTap: true);
-    } else if (doc.fileBytes == null) {
+    } else if (doc!.fileBytes == null) {
       EasyLoading.showInfo("please pick a pdf file before sending",
           dismissOnTap: true);
     } else {
-      doc.senderId = DataCubit.user.id;
-      doc.approvalProgress = {};
+      doc!.senderId = DataCubit.user!.id!;
+      doc!.approvalProgress = {};
       DataCubit.approvals.forEach((id) {
-        doc.approvalProgress.putIfAbsent(id, () => 'pending');
+        doc!.approvalProgress!.putIfAbsent(id, () => 'pending');
       });
-      print(doc.approvalProgress.toString());
+      print(doc!.approvalProgress.toString());
       EasyLoading.show(status: "Uploading document");
-      bool success = await _dataCubit.uploadDoc(doc);
+      bool success = await _dataCubit!.uploadDoc(doc!);
       if (success) {
         EasyLoading.showSuccess("Upload successful");
         DataCubit.approvals.clear();
         widget.isDesktop
-            ? _desktopNavCubit.navToHomeScreen()
-            : _androidNavCubit.navToHomeScreen();
-        _dataCubit.downloadSentDocs();
+            ? _desktopNavCubit!.navToHomeScreen()
+            : _androidNavCubit!.navToHomeScreen();
+        _dataCubit!.downloadSentDocs();
       } else {
         EasyLoading.showError('Upload unsuccessful');
       }
@@ -89,7 +89,7 @@ class _SendDocScreenState extends State<SendDocScreen> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () {
-        _androidNavCubit.navToHomeScreen();
+        _androidNavCubit!.navToHomeScreen();
         return Future.value(false);
       },
       child: Scaffold(
@@ -110,7 +110,7 @@ class _SendDocScreenState extends State<SendDocScreen> {
                 Container(
                   height: 50,
                   child: TextField(
-                    onChanged: (val) => doc.subject = val,
+                    onChanged: (val) => doc!.subject = val,
                     decoration: InputDecoration(
                       filled: true,
                       fillColor: primaryLight,
@@ -137,7 +137,7 @@ class _SendDocScreenState extends State<SendDocScreen> {
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: TextField(
-                    onChanged: (val) => doc.description = val,
+                    onChanged: (val) => doc!.description = val,
                     maxLines: 6,
                     decoration: InputDecoration(
                       hintText: "Enter description",
@@ -154,7 +154,7 @@ class _SendDocScreenState extends State<SendDocScreen> {
                   child: Container(
                       height: 250,
                       width: double.infinity,
-                      child: doc.filename == null
+                      child: doc!.filename == null
                           ? DottedBorder(
                               dashPattern: [8],
                               color: primary,
@@ -176,7 +176,7 @@ class _SendDocScreenState extends State<SendDocScreen> {
                                 ),
                               ),
                             )
-                          : PdfCard(name: doc.filename, bytes: doc.fileBytes)),
+                          : PdfCard(name: doc!.filename, bytes: doc!.fileBytes)),
                 )
               ],
             ),

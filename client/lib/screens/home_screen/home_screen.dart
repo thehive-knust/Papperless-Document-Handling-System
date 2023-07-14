@@ -10,16 +10,16 @@ import 'package:softdoc/style.dart';
 
 class HomeScreen extends StatefulWidget {
   final bool isDesktop;
-  const HomeScreen({Key key, this.isDesktop = false}) : super(key: key);
+  const HomeScreen({Key? key, this.isDesktop = false}) : super(key: key);
 
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  AndroidNavCubit _androidNavCubit;
-  DesktopNavCubit _desktopNavCubit;
-  DataCubit _dataCubit;
+  AndroidNavCubit? _androidNavCubit;
+  DesktopNavCubit? _desktopNavCubit;
+  DataCubit? _dataCubit;
   // String bottomNavSelector = "Sent";
   // int optionSel = 0;
 
@@ -29,14 +29,14 @@ class _HomeScreenState extends State<HomeScreen> {
     _androidNavCubit = BlocProvider.of<AndroidNavCubit>(context);
     _desktopNavCubit = BlocProvider.of<DesktopNavCubit>(context);
     _dataCubit = BlocProvider.of<DataCubit>(context);
-    if (_dataCubit.sentDocs == null) {
-      _dataCubit.downloadReceivedDocs();
-      _dataCubit.downloadSentDocs();
+    if (_dataCubit!.sentDocs == null) {
+      _dataCubit!.downloadReceivedDocs();
+      _dataCubit!.downloadSentDocs();
       setState(() {});
     }
 
-    _dataCubit.selectedIndexes =
-        _dataCubit.selectedIndexes.map((e) => -1).toList();
+    _dataCubit!.selectedIndexes =
+        _dataCubit!.selectedIndexes.map((e) => -1).toList();
 
     EasyLoading.instance
       ..loadingStyle = EasyLoadingStyle.custom
@@ -58,10 +58,10 @@ class _HomeScreenState extends State<HomeScreen> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           widget.isDesktop
-              ? _desktopNavCubit.navToSendDocScreen()
-              : _androidNavCubit.navToSendDocScreen();
-          _dataCubit.selectedIndexes =
-              _dataCubit.selectedIndexes.map((e) => -1).toList();
+              ? _desktopNavCubit!.navToSendDocScreen()
+              : _androidNavCubit!.navToSendDocScreen();
+          _dataCubit!.selectedIndexes =
+              _dataCubit!.selectedIndexes.map((e) => -1).toList();
           setState(() {});
         },
         backgroundColor: primary,
@@ -69,7 +69,7 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       backgroundColor: Colors.blueGrey[50],
       bottomNavigationBar: bottomNavBar(),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       // appbar:---------------------------------------------------------------------------------
       appBar: AppBar(
         title: Text(
@@ -93,16 +93,16 @@ class _HomeScreenState extends State<HomeScreen> {
             decoration: BoxDecoration(
                 color: Colors.white, borderRadius: BorderRadius.circular(10)),
             child: DropdownButton<int>(
-              value: _dataCubit.optionSel,
+              value: _dataCubit!.optionSel,
               isExpanded: true,
               iconEnabledColor: primaryDark,
               underline: SizedBox.shrink(),
               onChanged: (newVal) {
-                _dataCubit.optionSel = newVal;
-                _dataCubit.selectedIndexes =
-                    _dataCubit.selectedIndexes.map((e) => -1).toList();
-                _desktopNavCubit.navToHomeScreen();
-                _dataCubit.getDocsByOption();
+                _dataCubit!.optionSel = newVal;
+                _dataCubit!.selectedIndexes =
+                    _dataCubit!.selectedIndexes.map((e) => -1).toList();
+                _desktopNavCubit!.navToHomeScreen();
+                _dataCubit!.getDocsByOption();
               },
               items: ["All", "Pending", "Approved", "Rejected"]
                   .asMap()
@@ -120,8 +120,8 @@ class _HomeScreenState extends State<HomeScreen> {
           PopupMenuButton(
             icon: Icon(Icons.more_vert),
             onSelected: (val) {
-              _dataCubit.clearDocs();
-              _dataCubit.emit(DataInitial());
+              _dataCubit!.clearDocs();
+              _dataCubit!.emit(DataInitial());
             },
             itemBuilder: (context) => ["Log out"]
                 .asMap()
@@ -157,7 +157,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       onChanged: (srch) {
                         DataCubit.searchString = srch;
                         // getDocsByOption();
-                        _dataCubit.getDocsByOption();
+                        _dataCubit!.getDocsByOption();
                       },
                       decoration: InputDecoration(
                         contentPadding: EdgeInsets.symmetric(horizontal: 10),
@@ -170,15 +170,15 @@ class _HomeScreenState extends State<HomeScreen> {
                 if (widget.isDesktop)
                   StatefulBuilder(
                     builder: (context, setState) {
-                      return DataCubit.refreshingDocList
+                      return DataCubit.refreshingDocList!
                           ? CircularProgressIndicator(color: primary)
                           : IconButton(
                               onPressed: () async {
-                                if (_dataCubit.bottomNavSelector == "Sent")
-                                  _dataCubit.downloadSentDocs(rebuild: true);
+                                if (_dataCubit!.bottomNavSelector == "Sent")
+                                  _dataCubit!.downloadSentDocs(rebuild: true);
                                 else
-                                  _dataCubit.downloadReceivedDocs(
-                                      rebuild: true);
+                                  _dataCubit!
+                                      .downloadReceivedDocs(rebuild: true);
                                 setState(() {});
                               },
                               splashRadius: 20,
@@ -198,12 +198,12 @@ class _HomeScreenState extends State<HomeScreen> {
                 if (state is SentDoc) {
                   if (state.docs == null) {
                     return errorWidget();
-                  } else if (state.docs.isEmpty) {
+                  } else if (state.docs!.isEmpty) {
                     return emptyList();
                   }
                   return Expanded(
                     child: DocTiles(
-                      docs: state.docs,
+                      docs: state.docs!,
                       isDesktop: widget.isDesktop,
                       isSent: true,
                     ),
@@ -213,12 +213,12 @@ class _HomeScreenState extends State<HomeScreen> {
                 else if (state is ReceivedDoc) {
                   if (state.docs == null) {
                     return errorWidget();
-                  } else if (state.docs.isEmpty) {
+                  } else if (state.docs!.isEmpty) {
                     return emptyList(false);
                   }
                   return Expanded(
                     child: DocTiles(
-                      docs: state.docs,
+                      docs: state.docs!,
                       isDesktop: widget.isDesktop,
                       isSent: false,
                     ),
@@ -269,9 +269,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
                 onPressed: () {
-                  _dataCubit.downloadReceivedDocs();
-                  _dataCubit.downloadSentDocs();
-                  _dataCubit.emit(Authenticated());
+                  _dataCubit!.downloadReceivedDocs();
+                  _dataCubit!.downloadSentDocs();
+                  _dataCubit!.emit(Authenticated());
                 },
                 child: Text("Reload"),
               )
@@ -317,8 +317,8 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget bottomNavBar() {
     Map<String, dynamic> buttons = {
       "Sent": Icons.send,
-      "Received": Icons.receipt,
       "space": "_",
+      "Received": Icons.receipt,
     };
 
     return BottomAppBar(
@@ -340,14 +340,14 @@ class _HomeScreenState extends State<HomeScreen> {
                           onTap: () {
                             // bottomNavSelector = map.key;
                             // getDocsByOption();
-                            _dataCubit.bottomNavSelector = map.key;
-                            _dataCubit.optionSel = map.key == "Sent" ? 0 : 1;
-                            _dataCubit.getDocsByOption();
-                            _dataCubit.selectedIndexes = _dataCubit
+                            _dataCubit!.bottomNavSelector = map.key;
+                            _dataCubit!.optionSel = map.key == "Sent" ? 0 : 1;
+                            _dataCubit!.getDocsByOption();
+                            _dataCubit!.selectedIndexes = _dataCubit!
                                 .selectedIndexes
                                 .map((e) => -1)
                                 .toList();
-                            _desktopNavCubit.navToHomeScreen();
+                            _desktopNavCubit!.navToHomeScreen();
                             setState(() {});
                           },
                           child: Column(
@@ -356,7 +356,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               Icon(
                                 map.value,
                                 size: 30,
-                                color: _dataCubit.bottomNavSelector == map.key
+                                color: _dataCubit!.bottomNavSelector == map.key
                                     ? primary
                                     : Colors.grey,
                               ),

@@ -10,7 +10,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 class PdfCard extends StatelessWidget {
   final name, url, bytes, isDesktop;
-  const PdfCard({Key key, this.name, this.url, this.bytes, this.isDesktop})
+  const PdfCard({Key? key, this.name, this.url, this.bytes, this.isDesktop})
       : super(key: key);
 
   @override
@@ -67,8 +67,8 @@ class PdfCard extends StatelessWidget {
 
 class PdfThumbnail extends StatefulWidget {
   final url, bytes;
-  final bool isDesktop;
-  const PdfThumbnail({Key key, this.url, this.bytes, this.isDesktop})
+  final bool? isDesktop;
+  const PdfThumbnail({Key? key, this.url, this.bytes, this.isDesktop})
       : super(key: key);
 
   @override
@@ -125,7 +125,7 @@ class PdfThumbnail extends StatefulWidget {
 }
 
 class _PdfThumbnailState extends State<PdfThumbnail> {
-  Widget thumbnail;
+  Widget? thumbnail;
 
   void generateThumbnail() async {
     Uint8List pdfBytes;
@@ -155,7 +155,7 @@ class _PdfThumbnailState extends State<PdfThumbnail> {
           alignment: Alignment.topLeft,
           heightFactor: 0.3,
           child: Image.memory(
-            pageImage.bytes,
+            pageImage!.bytes,
             filterQuality: FilterQuality.high,
           ),
         ),

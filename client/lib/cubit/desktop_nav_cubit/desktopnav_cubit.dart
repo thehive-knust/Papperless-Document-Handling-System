@@ -23,7 +23,7 @@ class DesktopNavCubit extends Cubit<DesktopNavState> {
     emit(ReceivedDetailScreenNav(selectedDoc));
   }
 
-  void navToPdfViewer({Doc selectedDoc, bool fromReceivedScreen}) {
+  void navToPdfViewer({Doc? selectedDoc, bool? fromReceivedScreen}) {
     emit(PdfViewerNav(selectedDoc, fromReceivedScreen));
   }
 }

@@ -12,7 +12,7 @@ import 'package:softdoc/screens/send_doc_screen/send_doc_screen.dart';
 import 'package:softdoc/screens/detail_screen/vertical_approval_progress.dart';
 
 class DesktopScreen extends StatefulWidget {
-  const DesktopScreen({Key key}) : super(key: key);
+  const DesktopScreen({Key? key}) : super(key: key);
 
   @override
   _DesktopScreenState createState() => _DesktopScreenState();
@@ -58,7 +58,9 @@ class _DesktopScreenState extends State<DesktopScreen> {
                                 SizedBox(height: 10),
                                 Expanded(
                                     child: SelectRecipient(
-                                        setMainState: changeState))
+                                  setMainState: changeState,
+                                  setModalState: () {},
+                                ))
                               ],
                             ),
                           ),
@@ -80,8 +82,8 @@ class _DesktopScreenState extends State<DesktopScreen> {
                         Expanded(
                           child: Center(
                             child: VApprovalProgress(
-                              approvalList: state.selectedDoc.approvalProgress,
-                              docStatus: state.selectedDoc.status,
+                              approvalList: state.selectedDoc.approvalProgress!,
+                              docStatus: state.selectedDoc.status!,
                             ),
                           ),
                         )

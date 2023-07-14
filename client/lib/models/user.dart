@@ -1,12 +1,12 @@
 class User {
-  String id;
-  String name;
-  String email;
-  String deptId;
-  String facId;
-  String colId;
-  String portId;
-  String title;
+  String? id;
+  String? name;
+  String? email;
+  String? deptId;
+  String? facId;
+  String? colId;
+  String? portId;
+  String? title;
 
   User({
     this.id,

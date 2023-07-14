@@ -7,14 +7,14 @@ class StatusMessage extends StatelessWidget {
 
   const StatusMessage(this.status, {this.isDesktop = false});
 
-  Color color({bool light = false}) {
+  Color? color({bool light = false}) {
     switch (status) {
       case "approved":
         return light ? green.withOpacity(0.3) : green;
       case 'rejected':
         return light ? redLight.withOpacity(0.3) : red;
       case 'cancelled':
-        return light ? Colors.grey[200] : Colors.grey[400];
+        return light ? Colors.grey[200]! : Colors.grey[400]!;
     }
   }
 

@@ -10,16 +10,16 @@ part 'data_state.dart';
 
 class DataCubit extends Cubit<DataState> {
   DataCubit() : super(DataInitial());
-  static User user;
+  static User? user;
   static List<Department> departments = [];
-  static Department selectedDept;
+  static Department? selectedDept;
   static List<String> approvals = [];
-  static String searchString = "";
-  static bool refreshingDocList = false;
-  String bottomNavSelector = "Sent";
-  int optionSel = 0;
-  List<Doc> sentDocs;
-  List<Doc> receivedDocs;
+  static String? searchString = "";
+  static bool? refreshingDocList = false;
+  String? bottomNavSelector = "Sent";
+  int? optionSel = 0;
+  List<Doc>? sentDocs;
+  List<Doc>? receivedDocs;
   List<int> selectedIndexes = [];
   // Department selectedDept = departments[0];
   // List<String> approvals
@@ -29,14 +29,14 @@ class DataCubit extends Cubit<DataState> {
   static User getUser(id) {
     // gets a particular department user by his id.
     List<User> users = [];
-    departments.forEach((dept) => users.addAll(dept.users));
+    departments.forEach((dept) => users.addAll(dept.users!));
     return users.singleWhere((user) => user.id == id);
   }
 
   //TODO: authenticate code:------------------------------------------------
   Future<bool> authenticate(String userId, String password) async {
     // authentication algo
-    Map jsonData =
+    Map? jsonData =
         await FlaskDatabase.authenticateWithIdAndPassword(userId, password);
     if (jsonData == null) {
       return true;
@@ -46,7 +46,7 @@ class DataCubit extends Cubit<DataState> {
       user = User.fromJson(jsonData['user']);
       print(user.toString());
       await getDepts(); // get departments in user's college
-      await getUsersInDept(user.deptId); // get users in user's department.
+      await getUsersInDept(user!.deptId!); // get users in user's department.
       emit(Authenticated());
       return false;
     }
@@ -54,7 +54,7 @@ class DataCubit extends Cubit<DataState> {
 
   //TODO: get departments:
   Future<void> getDepts() async {
-    dynamic jsonData = await FlaskDatabase.getDepartmentsByColId(user.colId);
+    dynamic jsonData = await FlaskDatabase.getDepartmentsByColId(user!.colId);
 
     if (jsonData == null) {
     } else if (jsonData.keys.contains('message')) {
@@ -71,7 +71,7 @@ class DataCubit extends Cubit<DataState> {
 
   //TODO: get users in department:
   static Future<void> getUsersInDept(String deptId,
-      [Function setMainState, Function rebuildWidget]) async {
+      [Function? setMainState, Function? rebuildWidget]) async {
     if (rebuildWidget != null) rebuildWidget('loading');
     dynamic jsonData = await FlaskDatabase.getUsersInDepartmentByDeptId(deptId);
     if (jsonData == null) {
@@ -83,7 +83,7 @@ class DataCubit extends Cubit<DataState> {
       int deptIndex = departments.indexWhere((dept) => dept.id == deptId);
       jsonData['department_users'].forEach((userJson) {
         User deptUser = User.fromJson(userJson);
-        if (user.id != deptUser.id) departments[deptIndex].users.add(deptUser);
+        if (user!.id != deptUser.id) departments[deptIndex].users!.add(deptUser);
       });
       if (rebuildWidget != null) rebuildWidget('idle');
       if (setMainState != null) setMainState();
@@ -95,9 +95,9 @@ class DataCubit extends Cubit<DataState> {
   //TODO: document handling code:-----------------------------------------
 
   //TODO: get Sent docs:
-  Future<void> downloadSentDocs({bool rebuild}) async {
+  Future<void> downloadSentDocs({bool? rebuild}) async {
     if (rebuild == true) refreshingDocList = true;
-    dynamic jsonData = await FlaskDatabase.getSentDocsByUserId(user.id);
+    dynamic jsonData = await FlaskDatabase.getSentDocsByUserId(user!.id);
     if (jsonData == null) {
       emit(SentDoc(null));
     } else if (jsonData.keys.contains('message')) {
@@ -105,13 +105,13 @@ class DataCubit extends Cubit<DataState> {
     } else {
       sentDocs = [];
       jsonData['documents'].forEach((docJson) {
-        sentDocs.add(Doc.fromJson(docJson));
+        sentDocs!.add(Doc.fromJson(docJson));
       });
-      sentDocs.sort((a, b) {
+      sentDocs!.sort((a, b) {
         // earliest in front
-        if (a.updatedAt.isAfter(b.updatedAt)) {
+        if (a.updatedAt!.isAfter(b.updatedAt!)) {
           return -1;
-        } else if (a.updatedAt.isBefore(b.updatedAt)) {
+        } else if (a.updatedAt!.isBefore(b.updatedAt!)) {
           return 1;
         }
         return 0;
@@ -122,9 +122,9 @@ class DataCubit extends Cubit<DataState> {
     }
   }
 
-  Future<void> downloadReceivedDocs({bool rebuild}) async {
+  Future<void> downloadReceivedDocs({bool? rebuild}) async {
     if (rebuild == true) refreshingDocList = true;
-    dynamic jsonData = await FlaskDatabase.getReceivedDocsByUserId(user.id);
+    dynamic jsonData = await FlaskDatabase.getReceivedDocsByUserId(user!.id);
     if (jsonData == null) {
       emit(ReceivedDoc(null));
     } else if (jsonData.keys.contains('message')) {
@@ -132,13 +132,13 @@ class DataCubit extends Cubit<DataState> {
     } else {
       receivedDocs = [];
       jsonData['documents'].forEach((docJson) {
-        receivedDocs.add(Doc.fromJson(docJson, false));
+        receivedDocs!.add(Doc.fromJson(docJson, false));
       });
-      receivedDocs.sort((a, b) {
+      receivedDocs!.sort((a, b) {
         // earliest in front
-        if (a.updatedAt.isAfter(b.updatedAt)) {
+        if (a.updatedAt!.isAfter(b.updatedAt!)) {
           return -1;
-        } else if (a.updatedAt.isBefore(b.updatedAt)) {
+        } else if (a.updatedAt!.isBefore(b.updatedAt!)) {
           return 1;
         }
         return 0;
@@ -162,14 +162,14 @@ class DataCubit extends Cubit<DataState> {
 
   void getDocs(bool isSent, [String status = ""]) {
     // check if sentDocs is null, if it is emit null;
-    List<Doc> docs;
+    List<Doc>? docs;
     if (isSent) {
       // sentDocs code:-----------------------------------
       if (sentDocs != null) {
         docs = status.isNotEmpty
-            ? sentDocs.where((doc) => doc.status == status).toList()
+            ? sentDocs!.where((doc) => doc.status == status).toList()
             : sentDocs;
-        docs = searchDocs(docs);
+        docs = searchDocs(docs!);
         emit(SentDoc(getSections(docs)));
       } else
         emit(SentDoc(null));
@@ -177,9 +177,9 @@ class DataCubit extends Cubit<DataState> {
       // receivedDocs code:-------------------------------------
       if (receivedDocs != null) {
         docs = status.isNotEmpty
-            ? receivedDocs.where((doc) => doc.status == status).toList()
+            ? receivedDocs!.where((doc) => doc.status == status).toList()
             : receivedDocs;
-        docs = searchDocs(docs);
+        docs = searchDocs(docs!);
         emit(ReceivedDoc(getSections(docs)));
       } else
         emit(ReceivedDoc(null));
@@ -187,20 +187,20 @@ class DataCubit extends Cubit<DataState> {
   }
 
   List<Doc> searchDocs(List<Doc> docs) {
-    return searchString.isNotEmpty
+    return searchString!.isNotEmpty
         ? docs
             .where((doc) =>
-                doc.subject.toLowerCase().contains(searchString.toLowerCase()))
+                doc.subject!.toLowerCase().contains(searchString!.toLowerCase()))
             .toList()
         : docs;
   }
 
   void sortReceivedDocs() {
-    receivedDocs.sort((a, b) {
+    receivedDocs!.sort((a, b) {
       // earliest in front
-      if (a.updatedAt.isAfter(b.updatedAt)) {
+      if (a.updatedAt!.isAfter(b.updatedAt!)) {
         return -1;
-      } else if (a.updatedAt.isBefore(b.updatedAt)) {
+      } else if (a.updatedAt!.isBefore(b.updatedAt!)) {
         return 1;
       }
       return 0;

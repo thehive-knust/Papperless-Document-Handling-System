@@ -4,8 +4,8 @@ import 'package:softdoc/cubit/data_cubit/data_cubit.dart';
 import 'package:softdoc/style.dart';
 
 class AuthForm extends StatefulWidget {
-  final bool isDesktop;
-  AuthForm({Key key, this.isDesktop}) : super(key: key);
+  final bool? isDesktop;
+  AuthForm({Key? key, this.isDesktop}) : super(key: key);
 
   @override
   _AuthFormState createState() => _AuthFormState();
@@ -14,12 +14,12 @@ class AuthForm extends StatefulWidget {
 class _AuthFormState extends State<AuthForm> {
   final _formKey = GlobalKey<FormState>();
   bool passwordVisible = false;
-  String id;
-  String testPass;
-  String password;
-  bool isLoading = false;
-  DataCubit _dataCubit;
-  String errorMessage = "";
+  String? id;
+  String? testPass;
+  String? password;
+  bool? isLoading = false;
+  DataCubit? _dataCubit;
+  String? errorMessage = "";
 
   @override
   void initState() {
@@ -39,10 +39,10 @@ class _AuthFormState extends State<AuthForm> {
 
   void submit() async {
     FocusScope.of(context).unfocus();
-    if (_formKey.currentState.validate()) {
+    if (_formKey.currentState!.validate()) {
       isLoading = true;
       setState(() {});
-      bool error = await _dataCubit.authenticate(id, password);
+      bool error = await _dataCubit!.authenticate(id!, password!);
       if (error) {
         errorMessage = "wrong username or password";
         setState(() {});
@@ -65,10 +65,10 @@ class _AuthFormState extends State<AuthForm> {
     return Form(
       key: _formKey,
       child: Column(
-        mainAxisAlignment: widget.isDesktop
+        mainAxisAlignment: widget.isDesktop!
             ? MainAxisAlignment.center
             : MainAxisAlignment.start,
-        crossAxisAlignment: widget.isDesktop
+        crossAxisAlignment: widget.isDesktop!
             ? CrossAxisAlignment.center
             : CrossAxisAlignment.start,
         children: [
@@ -79,12 +79,12 @@ class _AuthFormState extends State<AuthForm> {
               fontWeight: FontWeight.w600,
             ),
           ),
-          widget.isDesktop ? SizedBox(height: 10) : const SizedBox(height: 40),
+          widget.isDesktop! ? SizedBox(height: 10) : const SizedBox(height: 40),
           TextFormField(
             autofocus: true,
             onChanged: (newId) => id = newId,
             validator: (newId) =>
-                newId.isEmpty ? "please enter ID number" : null,
+                newId!.isEmpty ? "please enter ID number" : null,
             keyboardType: TextInputType.number,
             decoration: authInputDecoration("Enter your ID number"),
             textInputAction: TextInputAction.next,
@@ -92,7 +92,7 @@ class _AuthFormState extends State<AuthForm> {
           SizedBox(height: 15),
           TextFormField(
             onChanged: (pass) => password = pass,
-            validator: (pass) => pass.isEmpty ? "Please enter password" : null,
+            validator: (pass) => pass!.isEmpty ? "Please enter password" : null,
             obscureText: !passwordVisible,
             keyboardType: TextInputType.visiblePassword,
             decoration: authInputDecoration(
@@ -116,13 +116,13 @@ class _AuthFormState extends State<AuthForm> {
                 ),
               ),
               onPressed: submit,
-              child: isLoading
+              child: isLoading!
                   ? CircularProgressIndicator(color: Colors.white)
                   : Text("Verify", style: TextStyle(fontSize: 20)),
             ),
           ),
           SizedBox(height: 20),
-          Text(errorMessage, style: TextStyle(color: Colors.red))
+          Text(errorMessage!, style: TextStyle(color: Colors.red))
         ],
       ),
     );

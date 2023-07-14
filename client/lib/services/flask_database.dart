@@ -5,20 +5,21 @@ import 'package:softdoc/models/user.dart';
 // import 'package:softdoc/utills.dart';
 
 class FlaskDatabase {
-  static const GET_DEPT_URL = "https://soft-doc.herokuapp.com/departments/get/";
+  static const GET_DEPT_URL =
+      "https://thehive.pythonanywhere.com/departments/get/";
   static const GET_USERS_IN_DEPT_URL =
-      "https://soft-doc.herokuapp.com/departments/users/";
+      "https://thehive.pythonanywhere.com/departments/users/";
   static const GET_SENTDOCS_URL =
-      "https://soft-doc.herokuapp.com/documents/user/";
+      "https://thehive.pythonanywhere.com/documents/user/";
   static const GET_RECEIVEDDOCS_URL =
-      "https://soft-doc.herokuapp.com/documents/new/";
+      "https://thehive.pythonanywhere.com/documents/new/";
 
   // -TODO: authentication:-------------------------------
-  static Future<Map> authenticateWithIdAndPassword(
+  static Future<Map?> authenticateWithIdAndPassword(
       String userId, String password) async {
     print('==================================check this out');
     print("$userId $password");
-    Uri url = Uri.parse("https://soft-doc.herokuapp.com/auth/login");
+    Uri url = Uri.parse("https://thehive.pythonanywhere.com/auth/login");
     http.Response response;
     try {
       response = await http.post(
@@ -83,14 +84,14 @@ class FlaskDatabase {
 
   //TODO: implement post document:--------------
   static Future<bool> sendDoc(Doc doc) async {
-    Uri uri = Uri.parse("https://soft-doc.herokuapp.com/documents/upload");
+    Uri uri = Uri.parse("https://thehive.pythonanywhere.com/documents/upload");
     http.MultipartRequest request;
     http.StreamedResponse response;
     try {
       request = http.MultipartRequest("POST", uri);
       request.fields.addAll(Map<String, String>.from(doc.toMap()));
       request.files.add(http.MultipartFile.fromBytes(
-          'file', doc.fileBytes.toList(),
+          'file', doc.fileBytes!.toList(),
           filename: doc.filename));
       // request.headers
       //     .addAll(<String, String>{'access_token': 'the_access_token'});
@@ -111,7 +112,7 @@ class FlaskDatabase {
 
   //TODO: implement approval stuff here:--------
   static Future<bool> sendApproval(recipientId, docId, status) async {
-    Uri uri = Uri.parse("https://soft-doc.herokuapp.com/approvals/update");
+    Uri uri = Uri.parse("https://thehive.pythonanywhere.com/approvals/update");
     http.Response response;
     try {
       response = await http.post(
@@ -144,7 +145,7 @@ class FlaskDatabase {
 
   static Future<bool> delectDocumentByDocumentId(docId) async {
     Uri uri = Uri.parse(
-        "https://soft-doc.herokuapp.com/documents/delete/${int.parse(docId)}");
+        "https://thehive.pythonanywhere.com/documents/delete/${int.parse(docId)}");
     http.Response response;
     try {
       response = await http.delete(

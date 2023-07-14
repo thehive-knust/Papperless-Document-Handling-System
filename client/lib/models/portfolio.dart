@@ -1,7 +1,7 @@
 class Portfolio {
-  String id;
-  String title;
-  bool canApprove;
+  String? id;
+  String? title;
+  bool? canApprove;
 
   Portfolio({this.id, this.title});
 

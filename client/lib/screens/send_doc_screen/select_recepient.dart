@@ -5,7 +5,7 @@ import 'package:softdoc/style.dart';
 class SelectRecipient extends StatefulWidget {
   final Function setMainState;
   Function setModalState;
-  SelectRecipient({this.setMainState, this.setModalState, Key key})
+  SelectRecipient({required this.setMainState, required this.setModalState, Key? key})
       : super(key: key);
 
   @override
@@ -40,7 +40,7 @@ class _SelectRecipientState extends State<SelectRecipient> {
                 width: double.infinity,
                 color: primaryLight,
                 child: DropdownButton<String>(
-                  value: DataCubit.selectedDept.id,
+                  value: DataCubit.selectedDept!.id,
                   isExpanded: true,
                   underline: SizedBox.shrink(),
                   icon: Icon(Icons.arrow_drop_down, color: primaryDark),
@@ -48,7 +48,7 @@ class _SelectRecipientState extends State<SelectRecipient> {
                       .map(
                         (dept) => DropdownMenuItem<String>(
                           child: Text(
-                            dept.name,
+                            dept.name!,
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                           ),
@@ -61,8 +61,8 @@ class _SelectRecipientState extends State<SelectRecipient> {
                     DataCubit.selectedDept = DataCubit.departments
                         .singleWhere((dept) => dept.id == newVal);
                     // get users in selected department
-                    if (DataCubit.selectedDept.users.length == 0)
-                      DataCubit.getUsersInDept(DataCubit.selectedDept.id,
+                    if (DataCubit.selectedDept!.users!.length == 0)
+                      DataCubit.getUsersInDept(DataCubit.selectedDept!.id!,
                           widget.setMainState, rebuildSelectRecipient);
                     widget.setMainState();
                     if (widget.setModalState != null)
@@ -78,11 +78,11 @@ class _SelectRecipientState extends State<SelectRecipient> {
           Expanded(
             child: ListView.builder(
               padding: EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-              itemCount: DataCubit.selectedDept.users.length,
+              itemCount: DataCubit.selectedDept!.users!.length,
               itemBuilder: (context, index) {
                 // checking if DataCubit.approvals contains this user's id
                 bool selected = DataCubit.approvals
-                    .contains(DataCubit.selectedDept.users[index].id);
+                    .contains(DataCubit.selectedDept!.users![index].id);
 
                 return Container(
                   margin: EdgeInsets.symmetric(vertical: 5),
@@ -93,20 +93,20 @@ class _SelectRecipientState extends State<SelectRecipient> {
                     value: selected,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(7)),
-                    title: Text(DataCubit.selectedDept.users[index].title),
+                    title: Text(DataCubit.selectedDept!.users![index].title!),
                     activeColor: primary,
                     onChanged: (newVal) {
                       if (selected) {
                         // remove id if already selected
                         DataCubit.approvals
-                            .remove(DataCubit.selectedDept.users[index].id);
+                            .remove(DataCubit.selectedDept!.users![index].id);
                         widget.setMainState();
                         if (widget.setModalState != null)
                           widget.setModalState(() {});
                       } else {
                         // add id to approval list if not selected
                         DataCubit.approvals
-                            .add(DataCubit.selectedDept.users[index].id);
+                            .add(DataCubit.selectedDept!.users![index].id!);
                         widget
                             .setMainState(); // setState for the send screen to update approval ui
                         if (widget.setModalState != null)
@@ -133,7 +133,7 @@ class _SelectRecipientState extends State<SelectRecipient> {
               Text('Something went wrong'),
               TextButton(
                 onPressed: () => DataCubit.getUsersInDept(
-                    DataCubit.selectedDept.id,
+                    DataCubit.selectedDept!.id!,
                     widget.setMainState,
                     rebuildSelectRecipient),
                 child: Text('Try again'),

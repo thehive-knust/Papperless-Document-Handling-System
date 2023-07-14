@@ -11,9 +11,9 @@ import 'package:softdoc/shared/time_badge.dart';
 import 'package:softdoc/style.dart';
 
 class ReceivedDetailScreen extends StatefulWidget {
-  final Doc selectedDoc;
+  final Doc? selectedDoc;
   const ReceivedDetailScreen({
-    Key key,
+    Key? key,
     this.selectedDoc,
   }) : super(key: key);
 
@@ -22,9 +22,9 @@ class ReceivedDetailScreen extends StatefulWidget {
 }
 
 class _ReceivedDetailScreenState extends State<ReceivedDetailScreen> {
-  AndroidNavCubit _androidNavCubit;
-  DesktopNavCubit _desktopNavCubit;
-  DataCubit _dataCubit;
+  AndroidNavCubit? _androidNavCubit;
+  DesktopNavCubit? _desktopNavCubit;
+  DataCubit? _dataCubit;
 
   @override
   void initState() {
@@ -39,7 +39,7 @@ class _ReceivedDetailScreenState extends State<ReceivedDetailScreen> {
     final isDesktop = MediaQuery.of(context).size.width > 600;
     return WillPopScope(
       onWillPop: () {
-        _androidNavCubit.navToHomeScreen();
+        _androidNavCubit?.navToHomeScreen();
         return Future.value(false);
       },
       child: Scaffold(
@@ -53,7 +53,7 @@ class _ReceivedDetailScreenState extends State<ReceivedDetailScreen> {
                 width: double.infinity,
                 height: 60,
                 // color: Colors.blue,
-                child: Text(widget.selectedDoc.subject,
+                child: Text(widget.selectedDoc!.subject!,
                     style:
                         TextStyle(fontSize: 21, fontWeight: FontWeight.w600)),
               ),
@@ -74,12 +74,12 @@ class _ReceivedDetailScreenState extends State<ReceivedDetailScreen> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           textRow(
-                              "From: ", widget.selectedDoc.senderInfo['name']),
+                              "From: ", widget.selectedDoc!.senderInfo!['name']!),
                           textRow("Portfolio: ",
-                              widget.selectedDoc.senderInfo['title']),
+                              widget.selectedDoc!.senderInfo!['title']!),
                           textRow("Phone: ",
-                              widget.selectedDoc.senderInfo['contact']),
-                          timeBadge(widget.selectedDoc.createdAt)
+                              widget.selectedDoc!.senderInfo!['contact']!),
+                          timeBadge(widget.selectedDoc!.createdAt!)
                         ],
                       ),
                     ),
@@ -88,7 +88,7 @@ class _ReceivedDetailScreenState extends State<ReceivedDetailScreen> {
                       child: CircleAvatar(
                         radius: double.infinity,
                         backgroundImage: NetworkImage(
-                            widget.selectedDoc.senderInfo['img_url'] ??
+                            widget.selectedDoc!.senderInfo!['img_url'] ??
                                 "https://source.unsplash.com/random"),
                         backgroundColor: Colors.white,
                       ),
@@ -102,16 +102,16 @@ class _ReceivedDetailScreenState extends State<ReceivedDetailScreen> {
                 onTap: () async {
                   var success = await PdfThumbnail.tryPdfDownload(
                     context,
-                    widget.selectedDoc.fileUrl,
+                    widget.selectedDoc!.fileUrl!,
                     isDesktop,
                   );
                   if (success == null) return;
                   isDesktop
-                      ? _desktopNavCubit.navToPdfViewer(
+                      ? _desktopNavCubit!.navToPdfViewer(
                           selectedDoc: widget.selectedDoc,
                           fromReceivedScreen: true,
                         )
-                      : _androidNavCubit.navToPdfViewer(
+                      : _androidNavCubit!.navToPdfViewer(
                           selectedDoc: widget.selectedDoc,
                           fromReceivedScreen: true,
                         );
@@ -121,19 +121,19 @@ class _ReceivedDetailScreenState extends State<ReceivedDetailScreen> {
                   width: double.infinity,
                   child: PdfCard(
                     isDesktop: isDesktop,
-                    name: widget.selectedDoc.filename,
-                    url: widget.selectedDoc.fileUrl,
+                    name: widget.selectedDoc!.filename,
+                    url: widget.selectedDoc!.fileUrl,
                   ),
                 ),
               ),
               SizedBox(height: 40),
               // buttons section:-----------------------------------------------------------------
-              if (widget.selectedDoc.status == 'pending') ...[
+              if (widget.selectedDoc!.status == 'pending') ...[
                 decitionButtons(true, isDesktop),
                 SizedBox(height: 30),
                 decitionButtons(false, isDesktop)
               ] else
-                StatusMessage(widget.selectedDoc.status)
+                StatusMessage(widget.selectedDoc!.status!)
             ],
           ),
         ),
@@ -175,7 +175,7 @@ class _ReceivedDetailScreenState extends State<ReceivedDetailScreen> {
         ),
       );
 
-  Future<bool> alertDialog(isApproved, isDesktop) async {
+  Future<bool?> alertDialog(isApproved, isDesktop) async {
     return showDialog(
       context: context,
       builder: (context) => AlertDialog(
@@ -188,20 +188,20 @@ class _ReceivedDetailScreenState extends State<ReceivedDetailScreen> {
               EasyLoading.show(
                   status:
                       isApproved ? "Approving document" : "Rejecting document");
-              bool success = await _dataCubit.statusUpdate(
-                  DataCubit.user.id, widget.selectedDoc.id, status);
+              bool success = await _dataCubit!.statusUpdate(
+                  DataCubit.user!.id, widget.selectedDoc!.id, status);
               if (success) {
                 EasyLoading.showSuccess('Document $status successfully',
                     dismissOnTap: true);
-                widget.selectedDoc.status = status;
-                widget.selectedDoc.updatedAt = DateTime.now();
-                _dataCubit.sortReceivedDocs();
-                _dataCubit.getDocsByOption();
+                widget.selectedDoc!.status = status;
+                widget.selectedDoc!.updatedAt = DateTime.now();
+                _dataCubit!.sortReceivedDocs();
+                _dataCubit!.getDocsByOption();
                 setState(() {});
                 Navigator.pop(context);
                 isDesktop
-                    ? _desktopNavCubit.navToHomeScreen()
-                    : _androidNavCubit.navToHomeScreen();
+                    ? _desktopNavCubit!.navToHomeScreen()
+                    : _androidNavCubit!.navToHomeScreen();
               } else {
                 EasyLoading.showError(
                     (isApproved
